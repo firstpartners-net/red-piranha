@@ -1,0 +1,165 @@
+
+<project name="Red Piranha" basedir="." default="build">
+
+	<!-- This file allows the building of Red-Piranha Core from Source  -->
+
+	<!-- Copyright (C) 2004-2010 Paul Browne, http://www.firstpartners.net 	-->
+	<!-- Released under terms of the LGPL license						-->
+	<!-- http://www.opensource.org/licenses/lgpl-license.php				-->
+
+	<description>
+       Standard Ant Build file - compile, build, test , package the Red-Piranha project
+    </description>
+
+	<!-- Define additional ant tasks -->
+	<!--
+	<taskdef name="rulepackage" classname="net.firstpartners.drools.AntRuleBuilder"/>
+    -->
+	
+	<!-- Define Variables used in the build script -->
+	<property name="name" value="red-piranha" />
+	<property name="src.dir" value="src" />
+	<property name="build.dir" value="build" />
+	<property name="docs.dir" value="docs" />
+	<property name="distrib.dir" value="distrib" />
+	<property name="testsrc.dir" value="test" />
+	<property name="testbuild.dir" value="testbuild" />
+	<property name="testreports.dir" value="junit-test-reports" />
+	<property name="testhtml.dir" value="${testreports.dir}/html" />
+	<property name="app.root" value="." />
+	<property name="lib.root" value="war/WEB-INF" />
+
+
+	<!-- The Main classpath we use when compiling -->
+	<path id="master-classpath">
+		<fileset dir="${lib.root}/lib/">
+			<include name="**/*.jar" />
+			<include name="**/*.zip" />
+		</fileset>
+
+
+	</path>
+
+	<!-- A modified classpath we use when running tests -->
+	<path id="test-classpath">
+		<!-- Include any additional files if required-->
+	</path>
+
+
+	<!-- Clean out old directories -->
+	<target name="clean" description="Clean output dirs (build, docs, dist)">
+		<delete dir="${build.dir}" />
+		<delete dir="${testbuild.dir}" />
+		<delete dir="${docs.dir}" />
+		<delete dir="${distrib.dir}" />
+	</target>
+
+	<!-- Compile Java Classes into build folder-->
+	<target name="build" description="Compile main source tree java files into class files, generate build folder">
+		<delete dir="${build.dir}" />
+		<mkdir dir="${build.dir}" />
+		<javac destdir="${build.dir}" source="1.5" target="1.5" debug="true" deprecation="false" optimize="false" failonerror="true">
+
+			<!-- Source path-->
+			<src path="${src.dir}" />
+
+			<!-- Comment this out for production build-->
+			<!-- Include mock objects and tests-->
+			<src path="${testsrc.dir}" />
+
+			<!-- Main Production Classpath-->
+			<classpath refid="master-classpath" />
+
+			<!-- Comment this out for production build-->
+			<!-- Additional Classpath for test-->
+			<classpath refid="test-classpath" />
+
+		</javac>
+		<copy todir="${build.dir}" preservelastmodified="true">
+			<fileset dir="${src.dir}">
+				<include name="**/.*" />
+				<exclude name="*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- Run the Junit tests in the application -->
+	<target name="tests" depends="build">
+	<property name="rp.root" value="${testreports.dir}" />
+	<delete dir="${testbuild.dir}" />
+	<mkdir dir="${testbuild.dir}" />
+	<!--delete dir="${testreports.dir}"/-->
+	<mkdir dir="${testreports.dir}" />
+	<mkdir dir="${testreports.dir}/logs" />
+	<mkdir dir="${testhtml.dir}" />
+	<javac srcdir="${testsrc.dir}" destdir="${testbuild.dir}" deprecation="true">
+		<classpath path="${build.dir}" />
+		<classpath refid="master-classpath" />
+		<classpath path="${app.root}/lib/junit/junit.jar" />
+		<classpath refid="test-classpath" />
+	</javac>
+	<!-- copy the test configuration -->
+	<copy todir="${testbuild.dir}" preservelastmodified="true">
+		<fileset dir="${testsrc.dir}">
+			<include name="*" />
+			<include name="*.xml" />
+			<include name="*.properties" />
+			<include name="**/.*" />
+		</fileset>
+	</copy>
+		
+	<junit printsummary="true" fork="yes">
+		<formatter type="xml" />
+		<formatter type="plain" usefile="false" />
+	
+		 <batchtest fork="yes" todir="${testreports.dir}">
+		    <fileset dir="${testsrc.dir}">
+		      <include name="**/*Test*.java"/>
+		      <exclude name="**/AllTests.java"/>
+		    </fileset>
+		  </batchtest>
+
+		
+		<classpath path="${build.dir}" />
+		<classpath path="${src.dir}"/>
+		<classpath path="${testbuild.dir}" />
+		<classpath path="${testsrc.dir}"/>
+		<classpath refid="master-classpath"/>
+				<classpath refid="test-classpath"/>
+	</junit>
+		
+	<junitreport todir="${testhtml.dir}">
+		<fileset dir="${testreports.dir}">
+			<include name="TEST-*.xml" />
+		</fileset>
+		<report format="frames" todir="${testhtml.dir}" />
+	</junitreport>
+	</target>
+	
+	<!-- Create Jar file for  distribution-->
+	<target name="jar" depends ="tests" description="Create the Jar file for distribution">
+
+		<jar jarfile="${distrib.dir}/${name}.jar" compress="true">
+			<fileset dir="${build.dir}">
+				<include name="**" />
+			</fileset>
+		</jar>
+
+
+	</target>
+
+	<!-- Create Javadoc for application-->
+	<target name="docs" description="Create complete Javadoc documentation">
+		<delete dir="${docs.dir}" />
+		<mkdir dir="${docs.dir}" />
+		<javadoc sourcepath="${src.dir}" destdir="${docs.dir}" windowtitle="Tiles Example" source="1.3" author="true" version="true" use="true" packagenames="*">
+			<doctitle>
+				<![CDATA[<h1>Red-Piranha</h1>]]></doctitle>
+		<bottom>
+			<![CDATA[<i>FirstPartners.net 2010.</i>]]></bottom>
+	<classpath refid="master-classpath" />
+</javadoc>
+</target>
+	
+	
+</project>

@@ -1,15 +1,15 @@
-#labels Featured
+#labels Featured tidy
 #sidebar SideBarDeveloper
-
 #Instructions for Developers on How to start using Red-Piranha.
 
 Other useful pages
 
-  * Other useful notes are available on the [ProjectLayout] and [LibrariesUsed] wiki pages.
-
+  * [ProjectLayout]
+  * [LibrariesUsed] 
+  * [RedPiranhaExamples]
+  * [RoadMap]
 
 = Introduction =
-
 
   * [http://internetducttape.com/2007/0/03/howto_google_code_hosting_subversion_tortoisesvn/ This post] is a good description of how to checkout the Google code. 
   * Browse the source at [http://code.google.com/p/red-piranha/source/checkout source]. 
@@ -29,3 +29,34 @@ _In Progress_
 == Other useful information ==
 
   * Google FAQ on using Subversion; http://code.google.com/p/support/wiki/SubversionFAQ
+  
+ = How to run samples =
+ 
+
+GETTING STARTED - USING RED-PIRANHA LOCALLY
+
+Getting 
+
+
+
+Using Ant
+- dev server
+- upload
+
+
+- login
+appcfg (make executable in Linux)
+
+
+~/software/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.2.2.v200907131030/appengine-java-sdk-1.2.2/bin$ 
+
+
+ensure java version exactly same as google app engine
+
+
+GETTING STARTED - USING RED-PIRANHA FROM COMMAND LINE
+
+
+MOVE - TO COMPILE TO COMMAND LINE
+
+ 

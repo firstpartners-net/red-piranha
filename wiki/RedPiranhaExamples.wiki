@@ -18,6 +18,5 @@ _For the moment this page presumes that you've followed the instructions on the
   * Unit tests (to call) are in the folder test/net/firstpartners/samples
   * Each Unit test contains a 'Main' Method so that they can be called from the command line
 
-== Sample Summary ==
-Book Sample -> New Sample
+
 

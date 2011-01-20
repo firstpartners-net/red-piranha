@@ -12,10 +12,10 @@ The project is intended to be used in the following ways, hence the project layo
  * src/net/firstpartners/rp2/Rp2CommandLine.java - call from commandline (Work in progress)
  * src/net/firstpartners/rp2/Rp2Servlet.java
  * src/net/firstpartners/rp2/Drools/PreCompileRuleBuilder - Main method rebuilds the packages as listed in PreCompileRuleBuilder.properties 
- * test/net/firstpartners/rp2/Drools/PreCompileRuleBuilderTest - 
+ * test/net/firstpartners/rp2/Drools/PreCompileRuleBuilderTest - Also rebuilds the packages
   
 
-== Main folders ==
+== Main folders and useful files==
 
   * Root of project ; Scripts and project files
   * .classes
@@ -34,5 +34,5 @@ The project is intended to be used in the following ways, hence the project layo
   ** rpproto2 - GWT compiled code for deployment on the front end
   ** WEB-INF
   
-  === Next Steps ===
+
   

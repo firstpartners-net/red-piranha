@@ -1,28 +1,14 @@
 #sidebar sidebar
+#Frequently asked Questions
+#labels tidy
 
-GETTING STARTED - USING RED-PIRANHA LOCALLY
+(Still in progress)
 
-Getting 
-
-
-
-Using Ant
-- dev server
-- upload
-
-
-- login
-appcfg (make executable in Linux)
-
-
-~/software/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.2.2.v200907131030/appengine-java-sdk-1.2.2/bin$ 
-
-
-ensure java version exactly same as google app engine
-
-
-GETTING STARTED - USING RED-PIRANHA FROM COMMAND LINE
-
-
-MOVE - TO COMPILE TO COMMAND LINE
-
+=== Questions to Answer ===
+  * What's the problem with Excel?
+  * What is Drools?
+  * What's wrong with VBA?
+  * What can I use it for?
+  * 
+  
+  

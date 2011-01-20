@@ -1,6 +1,7 @@
 #sidebar sidebar
+#labels tidy
 
-Roadmap - things to look at 
+Roadmap - Things to look at  and
 
 
 -http://code.google.com/appengine/docs/python/channel/ for Drools CEP

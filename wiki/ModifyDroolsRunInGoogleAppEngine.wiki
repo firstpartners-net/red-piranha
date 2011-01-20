@@ -2,6 +2,10 @@
 # Modifications to allow Drools to run in Google App Engine
 
 By default Red Piranha comes with modified Drools libraries needed to run within Google app engine.
+If you want a copy the libs can be downloaded from these links, based on Drools 5.1.1 M1
+  * [http://red-piranha.googlecode.com/svn/trunk/war/WEB-INF/lib/drools-core-5.1.1.jar Drools Core]
+  * [http://red-piranha.googlecode.com/svn/trunk/war/WEB-INF/lib/drools-api-5.1.1.jar Drools Api]
+
 
 Below lists these modifications if you need to replicate them. 
 

@@ -1,0 +1,6 @@
+Where is the FIT example?
+
+Due to licence restrictions (FIT is available only under the GPL), it cannot be included
+in the project (as Red Piranha uses the less restrictive LGPL Licence).
+
+The original Book sample is still available at http://red-piranha.googlecode.com/files/droolsbook-chap6-sample_01.zip

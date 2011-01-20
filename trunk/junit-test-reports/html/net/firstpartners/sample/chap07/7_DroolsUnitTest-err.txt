@@ -1,0 +1,9 @@
+01-Feb-2010 16:26:36 net.firstpartners.drools.RuleRunner runStatelessRules
+INFO: Creating master rule base
+01-Feb-2010 16:26:37 net.firstpartners.drools.AbstractRuleLoader loadMultipleRules
+INFO: Loading file: src/main/java/net/firstpartners/chap6/shipping-rules.drl
+01-Feb-2010 16:26:37 net.firstpartners.drools.AbstractRuleLoader loadMultipleRules
+INFO: Loading Drl file: src/main/java/net/firstpartners/chap6/shipping-rules.drl
+01-Feb-2010 16:26:37 net.firstpartners.drools.AbstractRuleLoader loadDrlRules
+INFO: Loading Main rule file
+

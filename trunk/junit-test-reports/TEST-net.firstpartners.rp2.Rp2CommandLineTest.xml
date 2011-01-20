@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="paul-laptop" name="net.firstpartners.rp2.Rp2CommandLineTest" tests="1" time="6.224" timestamp="2010-02-01T16:26:27">
+  <properties>
+    <property name="java.vendor" value="Sun Microsystems Inc." />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="eclipse.pdebuild.templates" value="/home/paul/software/eclipse_3_5/plugins/org.eclipse.pde.build_3.5.1.R35x_20090820/templates//" />
+    <property name="sun.management.compiler" value="HotSpot Client Compiler" />
+    <property name="docs.dir" value="docs" />
+    <property name="distrib.dir" value="distrib" />
+    <property name="os.name" value="Linux" />
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-6-sun-1.6.0.16/jre/lib/resources.jar:/usr/lib/jvm/java-6-sun-1.6.0.16/jre/lib/rt.jar:/usr/lib/jvm/java-6-sun-1.6.0.16/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-6-sun-1.6.0.16/jre/lib/jsse.jar:/usr/lib/jvm/java-6-sun-1.6.0.16/jre/lib/jce.jar:/usr/lib/jvm/java-6-sun-1.6.0.16/jre/lib/charsets.jar:/usr/lib/jvm/java-6-sun-1.6.0.16/jre/classes" />
+    <property name="sun.desktop" value="gnome" />
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc." />
+    <property name="ant.home" value="/home/paul/software/eclipse_3_5/plugins/org.apache.ant_1.7.1.v20090120-1145" />
+    <property name="java.runtime.version" value="1.6.0_16-b01" />
+    <property name="testbuild.dir" value="testbuild" />
+    <property name="lib.root" value="war/WEB-INF" />
+    <property name="user.name" value="paul" />
+    <property name="build.dir" value="build" />
+    <property name="testsrc.dir" value="test" />
+    <property name="user.language" value="en" />
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-6-sun-1.6.0.16/jre/lib/i386" />
+    <property name="ant.project.name" value="Red Piranha" />
+    <property name="java.version" value="1.6.0_16" />
+    <property name="user.timezone" value="" />
+    <property name="sun.arch.data.model" value="32" />
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-6-sun-1.6.0.16/jre/lib/endorsed" />
+    <property name="sun.cpu.isalist" value="" />
+    <property name="sun.jnu.encoding" value="UTF-8" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="rp.root" value="junit-test-reports" />
+    <property name="file.separator" value="/" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="java.class.version" value="50.0" />
+    <property name="user.country" value="IE" />
+    <property name="java.home" value="/usr/lib/jvm/java-6-sun-1.6.0.16/jre" />
+    <property name="java.vm.info" value="mixed mode, sharing" />
+    <property name="ant.file" value="/home/paul/projects/red-piranha/build.xml" />
+    <property name="os.version" value="2.6.31-18-generic" />
+    <property name="path.separator" value=":" />
+    <property name="java.vm.version" value="14.2-b01" />
+    <property name="ant.file.Red Piranha" value="/home/paul/projects/red-piranha/build.xml" />
+    <property name="ant.library.dir" value="/home/paul/software/eclipse_3_5/plugins/org.apache.ant_1.7.1.v20090120-1145/lib" />
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="eclipse.pdebuild.scripts" value="/home/paul/software/eclipse_3_5/plugins/org.eclipse.pde.build_3.5.1.R35x_20090820/scripts//" />
+    <property name="user.home" value="/home/paul" />
+    <property name="java.specification.vendor" value="Sun Microsystems Inc." />
+    <property name="java.library.path" value="/usr/lib/jvm/java-6-sun-1.6.0.16/jre/lib/i386/client:/usr/lib/jvm/java-6-sun-1.6.0.16/jre/lib/i386:/usr/lib/jvm/java-6-sun-1.6.0.16/jre/../lib/i386:/usr/lib/jvm/java-6-sun-1.6.0.16/jre/lib/i386/client:/usr/lib/jvm/java-6-sun-1.6.0.16/jre/lib/i386:/usr/lib/xulrunner-addons:/usr/lib/xulrunner-addons:/usr/java/packages/lib/i386:/lib:/usr/lib" />
+    <property name="name" value="red-piranha" />
+    <property name="java.vendor.url" value="http://java.sun.com/" />
+    <property name="java.vm.vendor" value="Sun Microsystems Inc." />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="java.class.path" value="/home/paul/projects/red-piranha/build:/home/paul/projects/red-piranha/src:/home/paul/projects/red-piranha/testbuild:/home/paul/projects/red-piranha/test:/home/paul/projects/red-piranha/war/WEB-INF/lib/antlr-runtime-3.1.1.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/appengine-api-1.0-sdk-1.2.2.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/commons-logging-1.1.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/core-3.4.2.v_883_R34x.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/datanucleus-appengine-1.0.2.final.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/datanucleus-core-1.1.4-gae.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/datanucleus-jpa-1.1.4.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/drools-api-5.0.1.SNAPSHOT.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/drools-compiler-5.0.1.SNAPSHOT.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/drools-core-5.0.1.SNAPSHOT.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/geronimo-jpa_3.0_spec-1.1.1.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/geronimo-jta_1.1_spec-1.1.1.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/jdo2-api-2.3-ea.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/junit-4.6.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/log4j-1.2.13.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/mvel2-2.0.15.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/poi-3.2-FINAL-20081019.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/poi-contrib-3.2-FINAL-20081019.jar:/home/paul/projects/red-piranha/war/WEB-INF/lib/poi-scratchpad-3.2-FINAL-20081019.jar:/home/paul/software/eclipse_3_5/plugins/org.apache.ant_1.7.1.v20090120-1145/lib/ant-launcher.jar:/home/paul/software/eclipse_3_5/plugins/org.apache.ant_1.7.1.v20090120-1145/lib/ant.jar:/home/paul/software/eclipse_3_5/plugins/org.apache.ant_1.7.1.v20090120-1145/lib/ant-junit.jar" />
+    <property name="ant.version" value="Apache Ant version 1.7.1 compiled on June 27 2008" />
+    <property name="testhtml.dir" value="junit-test-reports/html" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="java.vm.specification.version" value="1.0" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="sun.os.patch.level" value="unknown" />
+    <property name="eclipse.pdebuild.home" value="/home/paul/software/eclipse_3_5/plugins/org.eclipse.pde.build_3.5.1.R35x_20090820/.//" />
+    <property name="java.io.tmpdir" value="/tmp" />
+    <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi" />
+    <property name="os.arch" value="i386" />
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+    <property name="java.ext.dirs" value="/usr/lib/jvm/java-6-sun-1.6.0.16/jre/lib/ext:/usr/java/packages/lib/ext" />
+    <property name="user.dir" value="/home/paul/projects/red-piranha" />
+    <property name="line.separator" value="
+" />
+    <property name="java.vm.name" value="Java HotSpot(TM) Client VM" />
+    <property name="basedir" value="/home/paul/projects/red-piranha" />
+    <property name="ant.java.version" value="1.6" />
+    <property name="ant.core.lib" value="/home/paul/software/eclipse_3_5/plugins/org.apache.ant_1.7.1.v20090120-1145/lib/ant.jar" />
+    <property name="file.encoding" value="UTF-8" />
+    <property name="testreports.dir" value="junit-test-reports" />
+    <property name="app.root" value="." />
+    <property name="java.specification.version" value="1.6" />
+    <property name="src.dir" value="src" />
+  </properties>
+  <testcase classname="net.firstpartners.rp2.Rp2CommandLineTest" name="testCallMain" time="6.136" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[01-Feb-2010 16:26:27 net.firstpartners.rp2.Rp2CommandLineTest testCallMain
+INFO: Default file location:/home/paul/projects/red-piranha/.
+01-Feb-2010 16:26:28 net.firstpartners.drools.RuleRunner runStatelessRules
+INFO: Creating master rule base
+01-Feb-2010 16:26:28 net.firstpartners.drools.AbstractRuleLoader loadMultipleRules
+INFO: Loading file: test/net/firstpartners/rp2/log-then-modify-rules.drl
+01-Feb-2010 16:26:28 net.firstpartners.drools.AbstractRuleLoader loadMultipleRules
+INFO: Loading Drl file: test/net/firstpartners/rp2/log-then-modify-rules.drl
+01-Feb-2010 16:26:28 net.firstpartners.drools.AbstractRuleLoader loadDrlRules
+INFO: Loading Main rule file
+01-Feb-2010 16:26:33 net.firstpartners.drools.AbstractRuleLoader loadDrlRules
+INFO: Finished Loading rule files
+01-Feb-2010 16:26:33 net.firstpartners.drools.AbstractRuleLoader loadMultipleRules
+INFO: No Drools Errors
+01-Feb-2010 16:26:33 net.firstpartners.drools.AbstractRuleLoader logKnowledgePackages
+INFO: Number of packages1
+01-Feb-2010 16:26:33 net.firstpartners.drools.AbstractRuleLoader logKnowledgePackages
+INFO: org.drools.definitions.impl.KnowledgePackageImp@107108e
+01-Feb-2010 16:26:33 net.firstpartners.drools.AbstractRuleLoader loadMultipleRules
+INFO: Creating new knowledgebase
+01-Feb-2010 16:26:33 net.firstpartners.drools.AbstractRuleLoader loadMultipleRules
+INFO: Adding packages to localBase
+01-Feb-2010 16:26:33 net.firstpartners.drools.RuleRunner runStatelessRules
+INFO: Creating new working memory
+01-Feb-2010 16:26:33 net.firstpartners.drools.RuleRunner runStatelessRules
+INFO: Checking for globals
+01-Feb-2010 16:26:33 net.firstpartners.drools.RuleRunner runStatelessRules
+INFO: Inserting handle to logger (via global)
+01-Feb-2010 16:26:33 net.firstpartners.drools.RuleRunner runStatelessRules
+INFO: Using facts:[Range:A_Broker
+A_Broker_2: cellName:A_Broker_2 value:110.0 comment:null modified:false
+A_Broker_3: cellName:A_Broker_3 value:300.0 comment:null modified:false
+A_Broker_0: cellName:A_Broker_0 value:A Broker comment:null modified:false
+A_Broker_1: cellName:A_Broker_1 value:true comment:null modified:false
+A_Broker_4: cellName:A_Broker_4 value:n/a comment:null modified:false
+, cellName:A_Broker_2 value:110.0 comment:null modified:false, cellName:A_Broker_3 value:300.0 comment:null modified:false, cellName:A_Broker_0 value:A Broker comment:null modified:false, cellName:A_Broker_1 value:true comment:null modified:false, cellName:A_Broker_4 value:n/a comment:null modified:false, Range:B_Broker
+B_Broker_0: cellName:B_Broker_0 value:B Broker comment:null modified:false
+B_Broker_1: cellName:B_Broker_1 value:false comment:null modified:false
+B_Broker_2: cellName:B_Broker_2 value:120.0 comment:null modified:false
+B_Broker_3: cellName:B_Broker_3 value:500.0 comment:null modified:false
+B_Broker_4: cellName:B_Broker_4 value:n/a comment:null modified:false
+, cellName:B_Broker_0 value:B Broker comment:null modified:false, cellName:B_Broker_1 value:false comment:null modified:false, cellName:B_Broker_2 value:120.0 comment:null modified:false, cellName:B_Broker_3 value:500.0 comment:null modified:false, cellName:B_Broker_4 value:n/a comment:null modified:false, Range:C_Broker
+C_Broker_0: cellName:C_Broker_0 value:C Broker comment:null modified:false
+C_Broker_1: cellName:C_Broker_1 value:true comment:null modified:false
+C_Broker_2: cellName:C_Broker_2 value:130.0 comment:null modified:false
+C_Broker_3: cellName:C_Broker_3 value:700.0 comment:null modified:false
+C_Broker_4: cellName:C_Broker_4 value:n/a comment:null modified:false
+, cellName:C_Broker_0 value:C Broker comment:null modified:false, cellName:C_Broker_1 value:true comment:null modified:false, cellName:C_Broker_2 value:130.0 comment:null modified:false, cellName:C_Broker_3 value:700.0 comment:null modified:false, cellName:C_Broker_4 value:n/a comment:null modified:false, Range:Current_Stock
+Current_Stock_0: cellName:Current_Stock_0 value:Current Stock comment:null modified:false
+Current_Stock_1: cellName:Current_Stock_1 value:2000.0 comment:null modified:false
+, cellName:Current_Stock_0 value:Current Stock comment:null modified:false, cellName:Current_Stock_1 value:2000.0 comment:null modified:false, Range:D_Broker
+D_Broker_0: cellName:D_Broker_0 value:D Broker comment:null modified:false
+D_Broker_2: cellName:D_Broker_2 value:140.0 comment:null modified:false
+D_Broker_1: cellName:D_Broker_1 value:false comment:null modified:false
+D_Broker_4: cellName:D_Broker_4 value:n/a comment:null modified:false
+D_Broker_3: cellName:D_Broker_3 value:300.0 comment:null modified:false
+, cellName:D_Broker_0 value:D Broker comment:null modified:false, cellName:D_Broker_2 value:140.0 comment:null modified:false, cellName:D_Broker_1 value:false comment:null modified:false, cellName:D_Broker_4 value:n/a comment:null modified:false, cellName:D_Broker_3 value:300.0 comment:null modified:false, Range:E_Broker
+E_Broker_4: cellName:E_Broker_4 value:n/a comment:null modified:false
+E_Broker_1: cellName:E_Broker_1 value:true comment:null modified:false
+E_Broker_0: cellName:E_Broker_0 value:E Broker comment:null modified:false
+E_Broker_3: cellName:E_Broker_3 value:500.0 comment:null modified:false
+E_Broker_2: cellName:E_Broker_2 value:150.0 comment:null modified:false
+, cellName:E_Broker_4 value:n/a comment:null modified:false, cellName:E_Broker_1 value:true comment:null modified:false, cellName:E_Broker_0 value:E Broker comment:null modified:false, cellName:E_Broker_3 value:500.0 comment:null modified:false, cellName:E_Broker_2 value:150.0 comment:null modified:false, Range:F_Broker
+F_Broker_2: cellName:F_Broker_2 value:160.0 comment:null modified:false
+F_Broker_1: cellName:F_Broker_1 value:false comment:null modified:false
+F_Broker_4: cellName:F_Broker_4 value:n/a comment:null modified:false
+F_Broker_3: cellName:F_Broker_3 value:700.0 comment:null modified:false
+F_Broker_0: cellName:F_Broker_0 value:F Broker comment:null modified:false
+, cellName:F_Broker_2 value:160.0 comment:null modified:false, cellName:F_Broker_1 value:false comment:null modified:false, cellName:F_Broker_4 value:n/a comment:null modified:false, cellName:F_Broker_3 value:700.0 comment:null modified:false, cellName:F_Broker_0 value:F Broker comment:null modified:false, Range:G_Broker
+G_Broker_1: cellName:G_Broker_1 value:true comment:null modified:false
+G_Broker_0: cellName:G_Broker_0 value:G  Broker comment:null modified:false
+G_Broker_4: cellName:G_Broker_4 value:n/a comment:null modified:false
+G_Broker_3: cellName:G_Broker_3 value:300.0 comment:null modified:false
+G_Broker_2: cellName:G_Broker_2 value:170.0 comment:null modified:false
+, cellName:G_Broker_1 value:true comment:null modified:false, cellName:G_Broker_0 value:G  Broker comment:null modified:false, cellName:G_Broker_4 value:n/a comment:null modified:false, cellName:G_Broker_3 value:300.0 comment:null modified:false, cellName:G_Broker_2 value:170.0 comment:null modified:false, Range:H_Broker
+H_Broker_0: cellName:H_Broker_0 value:H  Broker comment:null modified:false
+H_Broker_1: cellName:H_Broker_1 value:false comment:null modified:false
+H_Broker_2: cellName:H_Broker_2 value:180.0 comment:null modified:false
+H_Broker_3: cellName:H_Broker_3 value:500.0 comment:null modified:false
+H_Broker_4: cellName:H_Broker_4 value:n/a comment:null modified:false
+, cellName:H_Broker_0 value:H  Broker comment:null modified:false, cellName:H_Broker_1 value:false comment:null modified:false, cellName:H_Broker_2 value:180.0 comment:null modified:false, cellName:H_Broker_3 value:500.0 comment:null modified:false, cellName:H_Broker_4 value:n/a comment:null modified:false, Range:I_Broker
+I_Broker_3: cellName:I_Broker_3 value:700.0 comment:null modified:false
+I_Broker_2: cellName:I_Broker_2 value:190.0 comment:null modified:false
+I_Broker_1: cellName:I_Broker_1 value:true comment:null modified:false
+I_Broker_0: cellName:I_Broker_0 value:I  Broker comment:null modified:false
+I_Broker_4: cellName:I_Broker_4 value:n/a comment:null modified:false
+, cellName:I_Broker_3 value:700.0 comment:null modified:false, cellName:I_Broker_2 value:190.0 comment:null modified:false, cellName:I_Broker_1 value:true comment:null modified:false, cellName:I_Broker_0 value:I  Broker comment:null modified:false, cellName:I_Broker_4 value:n/a comment:null modified:false, Range:J_Broker
+J_Broker_0: cellName:J_Broker_0 value:J  Broker comment:null modified:false
+J_Broker_4: cellName:J_Broker_4 value:n/a comment:null modified:false
+J_Broker_3: cellName:J_Broker_3 value:300.0 comment:null modified:false
+J_Broker_2: cellName:J_Broker_2 value:200.0 comment:null modified:false
+J_Broker_1: cellName:J_Broker_1 value:false comment:null modified:false
+, cellName:J_Broker_0 value:J  Broker comment:null modified:false, cellName:J_Broker_4 value:n/a comment:null modified:false, cellName:J_Broker_3 value:300.0 comment:null modified:false, cellName:J_Broker_2 value:200.0 comment:null modified:false, cellName:J_Broker_1 value:false comment:null modified:false, Range:K_Broker
+K_Broker_0: cellName:K_Broker_0 value:K  Broker comment:null modified:false
+K_Broker_1: cellName:K_Broker_1 value:true comment:null modified:false
+K_Broker_3: cellName:K_Broker_3 value:500.0 comment:null modified:false
+K_Broker_2: cellName:K_Broker_2 value:210.0 comment:null modified:false
+K_Broker_4: cellName:K_Broker_4 value:n/a comment:null modified:false
+, cellName:K_Broker_0 value:K  Broker comment:null modified:false, cellName:K_Broker_1 value:true comment:null modified:false, cellName:K_Broker_3 value:500.0 comment:null modified:false, cellName:K_Broker_2 value:210.0 comment:null modified:false, cellName:K_Broker_4 value:n/a comment:null modified:false, Range:L_Broker
+L_Broker_3: cellName:L_Broker_3 value:700.0 comment:null modified:false
+L_Broker_4: cellName:L_Broker_4 value:n/a comment:null modified:false
+L_Broker_0: cellName:L_Broker_0 value:L  Broker comment:null modified:false
+L_Broker_1: cellName:L_Broker_1 value:false comment:null modified:false
+L_Broker_2: cellName:L_Broker_2 value:220.0 comment:null modified:false
+, cellName:L_Broker_3 value:700.0 comment:null modified:false, cellName:L_Broker_4 value:n/a comment:null modified:false, cellName:L_Broker_0 value:L  Broker comment:null modified:false, cellName:L_Broker_1 value:false comment:null modified:false, cellName:L_Broker_2 value:220.0 comment:null modified:false, Range:M_Broker
+M_Broker_1: cellName:M_Broker_1 value:true comment:null modified:false
+M_Broker_0: cellName:M_Broker_0 value:M Broker comment:null modified:false
+M_Broker_3: cellName:M_Broker_3 value:300.0 comment:null modified:false
+M_Broker_2: cellName:M_Broker_2 value:230.0 comment:null modified:false
+M_Broker_4: cellName:M_Broker_4 value:n/a comment:null modified:false
+, cellName:M_Broker_1 value:true comment:null modified:false, cellName:M_Broker_0 value:M Broker comment:null modified:false, cellName:M_Broker_3 value:300.0 comment:null modified:false, cellName:M_Broker_2 value:230.0 comment:null modified:false, cellName:M_Broker_4 value:n/a comment:null modified:false, Range:N_Broker
+N_Broker_2: cellName:N_Broker_2 value:240.0 comment:null modified:false
+N_Broker_1: cellName:N_Broker_1 value:false comment:null modified:false
+N_Broker_4: cellName:N_Broker_4 value:n/a comment:null modified:false
+N_Broker_3: cellName:N_Broker_3 value:500.0 comment:null modified:false
+N_Broker_0: cellName:N_Broker_0 value:N Broker comment:null modified:false
+, cellName:N_Broker_2 value:240.0 comment:null modified:false, cellName:N_Broker_1 value:false comment:null modified:false, cellName:N_Broker_4 value:n/a comment:null modified:false, cellName:N_Broker_3 value:500.0 comment:null modified:false, cellName:N_Broker_0 value:N Broker comment:null modified:false, Range:O_Broker
+O_Broker_1: cellName:O_Broker_1 value:true comment:null modified:false
+O_Broker_0: cellName:O_Broker_0 value:O Broker comment:null modified:false
+O_Broker_3: cellName:O_Broker_3 value:700.0 comment:null modified:false
+O_Broker_2: cellName:O_Broker_2 value:250.0 comment:null modified:false
+O_Broker_4: cellName:O_Broker_4 value:n/a comment:null modified:false
+, cellName:O_Broker_1 value:true comment:null modified:false, cellName:O_Broker_0 value:O Broker comment:null modified:false, cellName:O_Broker_3 value:700.0 comment:null modified:false, cellName:O_Broker_2 value:250.0 comment:null modified:false, cellName:O_Broker_4 value:n/a comment:null modified:false, Range:P_Broker
+P_Broker_2: cellName:P_Broker_2 value:260.0 comment:null modified:false
+P_Broker_1: cellName:P_Broker_1 value:false comment:null modified:false
+P_Broker_0: cellName:P_Broker_0 value:P Broker comment:null modified:false
+P_Broker_4: cellName:P_Broker_4 value:n/a comment:null modified:false
+P_Broker_3: cellName:P_Broker_3 value:300.0 comment:null modified:false
+, cellName:P_Broker_2 value:260.0 comment:null modified:false, cellName:P_Broker_1 value:false comment:null modified:false, cellName:P_Broker_0 value:P Broker comment:null modified:false, cellName:P_Broker_4 value:n/a comment:null modified:false, cellName:P_Broker_3 value:300.0 comment:null modified:false, Range:Q_Broker
+Q_Broker_4: cellName:Q_Broker_4 value:n/a comment:null modified:false
+Q_Broker_2: cellName:Q_Broker_2 value:270.0 comment:null modified:false
+Q_Broker_3: cellName:Q_Broker_3 value:500.0 comment:null modified:false
+Q_Broker_0: cellName:Q_Broker_0 value:Q Broker comment:null modified:false
+Q_Broker_1: cellName:Q_Broker_1 value:true comment:null modified:false
+, cellName:Q_Broker_4 value:n/a comment:null modified:false, cellName:Q_Broker_2 value:270.0 comment:null modified:false, cellName:Q_Broker_3 value:500.0 comment:null modified:false, cellName:Q_Broker_0 value:Q Broker comment:null modified:false, cellName:Q_Broker_1 value:true comment:null modified:false, Range:R_Broker
+R_Broker_4: cellName:R_Broker_4 value:n/a comment:null modified:false
+R_Broker_3: cellName:R_Broker_3 value:700.0 comment:null modified:false
+R_Broker_2: cellName:R_Broker_2 value:280.0 comment:null modified:false
+R_Broker_1: cellName:R_Broker_1 value:false comment:null modified:false
+R_Broker_0: cellName:R_Broker_0 value:R Broker comment:null modified:false
+, cellName:R_Broker_4 value:n/a comment:null modified:false, cellName:R_Broker_3 value:700.0 comment:null modified:false, cellName:R_Broker_2 value:280.0 comment:null modified:false, cellName:R_Broker_1 value:false comment:null modified:false, cellName:R_Broker_0 value:R Broker comment:null modified:false, Range:S_Broker
+S_Broker_4: cellName:S_Broker_4 value:n/a comment:null modified:false
+S_Broker_2: cellName:S_Broker_2 value:290.0 comment:null modified:false
+S_Broker_3: cellName:S_Broker_3 value:300.0 comment:null modified:false
+S_Broker_0: cellName:S_Broker_0 value:S Broker comment:null modified:false
+S_Broker_1: cellName:S_Broker_1 value:true comment:null modified:false
+, cellName:S_Broker_4 value:n/a comment:null modified:false, cellName:S_Broker_2 value:290.0 comment:null modified:false, cellName:S_Broker_3 value:300.0 comment:null modified:false, cellName:S_Broker_0 value:S Broker comment:null modified:false, cellName:S_Broker_1 value:true comment:null modified:false, Range:T_Broker
+T_Broker_0: cellName:T_Broker_0 value:T Broker comment:null modified:false
+T_Broker_2: cellName:T_Broker_2 value:300.0 comment:null modified:false
+T_Broker_1: cellName:T_Broker_1 value:false comment:null modified:false
+T_Broker_4: cellName:T_Broker_4 value:n/a comment:null modified:false
+T_Broker_3: cellName:T_Broker_3 value:500.0 comment:null modified:false
+, cellName:T_Broker_0 value:T Broker comment:null modified:false, cellName:T_Broker_2 value:300.0 comment:null modified:false, cellName:T_Broker_1 value:false comment:null modified:false, cellName:T_Broker_4 value:n/a comment:null modified:false, cellName:T_Broker_3 value:500.0 comment:null modified:false, Range:U_Broker
+U_Broker_4: cellName:U_Broker_4 value:n/a comment:null modified:false
+U_Broker_3: cellName:U_Broker_3 value:300.0 comment:null modified:false
+U_Broker_2: cellName:U_Broker_2 value:290.0 comment:null modified:false
+U_Broker_1: cellName:U_Broker_1 value:true comment:null modified:false
+U_Broker_0: cellName:U_Broker_0 value:U Broker comment:null modified:false
+, cellName:U_Broker_4 value:n/a comment:null modified:false, cellName:U_Broker_3 value:300.0 comment:null modified:false, cellName:U_Broker_2 value:290.0 comment:null modified:false, cellName:U_Broker_1 value:true comment:null modified:false, cellName:U_Broker_0 value:U Broker comment:null modified:false, Range:V_Broker
+V_Broker_4: cellName:V_Broker_4 value:n/a comment:null modified:false
+V_Broker_3: cellName:V_Broker_3 value:500.0 comment:null modified:false
+V_Broker_2: cellName:V_Broker_2 value:300.0 comment:null modified:false
+V_Broker_1: cellName:V_Broker_1 value:false comment:null modified:false
+V_Broker_0: cellName:V_Broker_0 value:V Broker comment:null modified:false
+, cellName:V_Broker_4 value:n/a comment:null modified:false, cellName:V_Broker_3 value:500.0 comment:null modified:false, cellName:V_Broker_2 value:300.0 comment:null modified:false, cellName:V_Broker_1 value:false comment:null modified:false, cellName:V_Broker_0 value:V Broker comment:null modified:false, Range:W_Broker
+W_Broker_0: cellName:W_Broker_0 value:W Broker comment:null modified:false
+W_Broker_1: cellName:W_Broker_1 value:true comment:null modified:false
+W_Broker_4: cellName:W_Broker_4 value:n/a comment:null modified:false
+W_Broker_2: cellName:W_Broker_2 value:290.0 comment:null modified:false
+W_Broker_3: cellName:W_Broker_3 value:300.0 comment:null modified:false
+, cellName:W_Broker_0 value:W Broker comment:null modified:false, cellName:W_Broker_1 value:true comment:null modified:false, cellName:W_Broker_4 value:n/a comment:null modified:false, cellName:W_Broker_2 value:290.0 comment:null modified:false, cellName:W_Broker_3 value:300.0 comment:null modified:false, Range:X_Broker
+X_Broker_0: cellName:X_Broker_0 value:X Broker comment:null modified:false
+X_Broker_1: cellName:X_Broker_1 value:false comment:null modified:false
+X_Broker_2: cellName:X_Broker_2 value:300.0 comment:null modified:false
+X_Broker_3: cellName:X_Broker_3 value:500.0 comment:null modified:false
+X_Broker_4: cellName:X_Broker_4 value:n/a comment:null modified:false
+, cellName:X_Broker_0 value:X Broker comment:null modified:false, cellName:X_Broker_1 value:false comment:null modified:false, cellName:X_Broker_2 value:300.0 comment:null modified:false, cellName:X_Broker_3 value:500.0 comment:null modified:false, cellName:X_Broker_4 value:n/a comment:null modified:false, Range:Y_Broker
+Y_Broker_2: cellName:Y_Broker_2 value:290.0 comment:null modified:false
+Y_Broker_3: cellName:Y_Broker_3 value:300.0 comment:null modified:false
+Y_Broker_0: cellName:Y_Broker_0 value:Y Broker comment:null modified:false
+Y_Broker_1: cellName:Y_Broker_1 value:true comment:null modified:false
+Y_Broker_4: cellName:Y_Broker_4 value:n/a comment:null modified:false
+, cellName:Y_Broker_2 value:290.0 comment:null modified:false, cellName:Y_Broker_3 value:300.0 comment:null modified:false, cellName:Y_Broker_0 value:Y Broker comment:null modified:false, cellName:Y_Broker_1 value:true comment:null modified:false, cellName:Y_Broker_4 value:n/a comment:null modified:false, Range:Z_Broker
+Z_Broker_0: cellName:Z_Broker_0 value:Z Broker comment:null modified:false
+Z_Broker_1: cellName:Z_Broker_1 value:false comment:null modified:false
+Z_Broker_2: cellName:Z_Broker_2 value:300.0 comment:null modified:false
+Z_Broker_3: cellName:Z_Broker_3 value:500.0 comment:null modified:false
+Z_Broker_4: cellName:Z_Broker_4 value:n/a comment:null modified:false
+, cellName:Z_Broker_0 value:Z Broker comment:null modified:false, cellName:Z_Broker_1 value:false comment:null modified:false, cellName:Z_Broker_2 value:300.0 comment:null modified:false, cellName:Z_Broker_3 value:500.0 comment:null modified:false, cellName:Z_Broker_4 value:n/a comment:null modified:false]
+01-Feb-2010 16:26:33 net.firstpartners.drools.RuleRunner runStatelessRules
+INFO: ==================== Calling Rule Engine ====================
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Z_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Z_Broker_3 value:500.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Z_Broker_2 value:300.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Z_Broker_1 value:false comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Z_Broker_0 value:Z Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Y_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Y_Broker_1 value:true comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Y_Broker_0 value:Y Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Y_Broker_3 value:300.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Y_Broker_2 value:290.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:X_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:X_Broker_3 value:500.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:X_Broker_2 value:300.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:X_Broker_1 value:false comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:X_Broker_0 value:X Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:W_Broker_3 value:300.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:W_Broker_2 value:290.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:W_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:W_Broker_1 value:true comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:W_Broker_0 value:W Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:V_Broker_0 value:V Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:V_Broker_1 value:false comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:V_Broker_2 value:300.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:V_Broker_3 value:500.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:V_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:U_Broker_0 value:U Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:U_Broker_1 value:true comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:U_Broker_2 value:290.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:U_Broker_3 value:300.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:U_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:T_Broker_3 value:500.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:T_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:T_Broker_1 value:false comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:T_Broker_2 value:300.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:T_Broker_0 value:T Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:S_Broker_1 value:true comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:S_Broker_0 value:S Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:S_Broker_3 value:300.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:S_Broker_2 value:290.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:S_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:R_Broker_0 value:R Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:R_Broker_1 value:false comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:R_Broker_2 value:280.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:R_Broker_3 value:700.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:R_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Q_Broker_1 value:true comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Q_Broker_0 value:Q Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Q_Broker_3 value:500.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Q_Broker_2 value:270.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Q_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:P_Broker_3 value:300.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:P_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:P_Broker_0 value:P Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:P_Broker_1 value:false comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:P_Broker_2 value:260.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:O_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:O_Broker_2 value:250.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:O_Broker_3 value:700.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:O_Broker_0 value:O Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:O_Broker_1 value:true comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:N_Broker_0 value:N Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:N_Broker_3 value:500.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:N_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:N_Broker_1 value:false comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:N_Broker_2 value:240.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:M_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:M_Broker_2 value:230.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:M_Broker_3 value:300.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:M_Broker_0 value:M Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:M_Broker_1 value:true comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:L_Broker_2 value:220.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:L_Broker_1 value:false comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:L_Broker_0 value:L  Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:L_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:L_Broker_3 value:700.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:K_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:K_Broker_2 value:210.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:K_Broker_3 value:500.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:K_Broker_1 value:true comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:K_Broker_0 value:K  Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:J_Broker_1 value:false comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:J_Broker_2 value:200.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:J_Broker_3 value:300.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:J_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:J_Broker_0 value:J  Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:I_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:I_Broker_0 value:I  Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:I_Broker_1 value:true comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:I_Broker_2 value:190.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:I_Broker_3 value:700.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:H_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:H_Broker_3 value:500.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:H_Broker_2 value:180.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:H_Broker_1 value:false comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:H_Broker_0 value:H  Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:G_Broker_2 value:170.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:G_Broker_3 value:300.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:G_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:G_Broker_0 value:G  Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:G_Broker_1 value:true comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:F_Broker_0 value:F Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:F_Broker_3 value:700.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:F_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:F_Broker_1 value:false comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:F_Broker_2 value:160.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:E_Broker_2 value:150.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:E_Broker_3 value:500.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:E_Broker_0 value:E Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:E_Broker_1 value:true comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:E_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:D_Broker_3 value:300.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:D_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:D_Broker_1 value:false comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:D_Broker_2 value:140.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:D_Broker_0 value:D Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Current_Stock_1 value:2000.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:Current_Stock_0 value:Current Stock comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:C_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:C_Broker_3 value:700.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:C_Broker_2 value:130.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:C_Broker_1 value:true comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:C_Broker_0 value:C Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:B_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:B_Broker_3 value:500.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:B_Broker_2 value:120.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:B_Broker_1 value:false comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:B_Broker_0 value:B Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:A_Broker_4 value:n/a comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:A_Broker_1 value:true comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:A_Broker_0 value:A Broker comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:A_Broker_3 value:300.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.log.ExcelLogger info
+INFO: modified cell value:cellName:A_Broker_2 value:110.0 comment:null modified:true
+01-Feb-2010 16:26:33 net.firstpartners.drools.RuleRunner runStatelessRules
+INFO: ==================== Rules Complete ====================
+]]></system-err>
+</testsuite>

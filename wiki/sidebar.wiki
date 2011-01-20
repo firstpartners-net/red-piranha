@@ -1,3 +1,4 @@
+
 * [Index Home]
 * [EndUserGettingStarted User Getting Started]
 * [PowerUserGettingStarted PowerUser Getting Started]
@@ -5,8 +6,8 @@
 * [FAQ FAQ]
 
 Book
-*[Book Book]
-*[PageName Book Feedback]
+* [Book Book]
+* [PageName Book Feedback]
    
 Developer
 * [DeveloperGettingStarted Developer Getting Started]

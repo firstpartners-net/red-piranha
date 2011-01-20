@@ -7,7 +7,7 @@ Home
   * [Book Book]
     * [PageName Book Feedback]  
   * [DeveloperGettingStarted Developer Getting Started]
-    * [DeveloperGettingStarted Developer Getting Started]
     * [ModifyDroolsRunInGoogleAppEngine Changes to Drools to run in App Engine]
     * [LibrariesUsed]
     * [ProjectLayout]
+    * [RoadMap]

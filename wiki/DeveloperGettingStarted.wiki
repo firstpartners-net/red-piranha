@@ -3,6 +3,11 @@
 
 #Instructions for Developers on How to start using Red-Piranha.
 
+Other useful pages
+
+  * Other useful notes are available on the [ProjectLayout] and [LibrariesUsed] wiki pages.
+
+
 = Introduction =
 
 

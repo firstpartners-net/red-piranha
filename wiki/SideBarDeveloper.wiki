@@ -1,19 +1,13 @@
-Developers
-
 * [Index Home]
-* [EndUserGettingStarted User Getting Started]
-* [PowerUserGettingStarted PowerUser Getting Started]
-* [RedPiranhaExamples Examples]
-* [FAQ FAQ]
-
-Book
+  * [EndUserGettingStarted User Getting Started]
+  * [PowerUserGettingStarted PowerUser Getting Started]
+  * [RedPiranhaExamples Examples]
+  * [FAQ FAQ]
 * [Book Book]
-* [PageName Book Feedback]
-   
-Developer
+  * [PageName Book Feedback]  
 * [DeveloperGettingStarted Developer Getting Started]
-* [ModifyDroolsRunInGoogleAppEngine Changes to Drools to run in App Engine]
-* [LibrariesUsed]
-* [ProjectLayout]
-
+  * [DeveloperGettingStarted Developer Getting Started]
+  * [ModifyDroolsRunInGoogleAppEngine Changes to Drools to run in App Engine]
+  * [LibrariesUsed]
+  * [ProjectLayout]
 * [http://code.google.com/p/red-piranha/wiki/Index Index]

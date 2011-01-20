@@ -1,3 +1,4 @@
+#sidebar sidebar
 = Book Feedback =
 
 This page contains reader feedback to the book 'JBoss Drools Business Rules'. Specific technical issues can be found at the [http://code.google.com/p/red-piranha/issues/list?can=1&q=&colspec=ID+Type+Status+Priority+Milestone+Owner+Summary&cells=tiles Issues List]

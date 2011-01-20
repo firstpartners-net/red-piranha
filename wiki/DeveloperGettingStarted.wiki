@@ -1,4 +1,6 @@
 #labels Featured
+#sidebar SideBarDeveloper
+
 #Instructions for Developers on How to start using Red-Piranha.
 
 = Introduction =

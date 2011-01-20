@@ -1,4 +1,5 @@
 #labels Featured
+#sidebar sidebar
 #Information on how Power Users can get started.
 
 Work in progress!

@@ -1,4 +1,7 @@
+#sidebar sidebar
+
 Roadmap - things to look at 
+
 
 -http://code.google.com/appengine/docs/python/channel/ for Drools CEP
 Database.com

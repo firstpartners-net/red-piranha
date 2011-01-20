@@ -1,0 +1,21 @@
+== How these sample differ from the book ==
+
+These samples are similar, but differ in several key aspects to the book samples
+
+  # These samples are more 'Excel Centric' i.e. they use the Red Piranha Code base to execute Rules Code (although Drools is still being called underneath)
+  # These samples are 'work in progress' and will diverge further over time.
+  # For the moment, these samples are less 'user friendly'. E.g. they use an Ant instead of a Maven build, are called using JUnit etc
+
+== How to use the Red - Piranha Examples ==
+
+_For the moment this page presumes that you've followed the instructions on the 
+[DeveloperGettingStarted] page.
+
+=== Where are the samples ===
+  * Located In the folder src/net/firstpartners/samples
+  * Unit tests (to call) are in the folder test/net/firstpartners/samples
+  * Each Unit test contains a 'Main' Method so that they can be called from the command line
+
+== Sample Summary ==
+Book Sample -> New Sample
+

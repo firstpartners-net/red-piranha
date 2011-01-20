@@ -1,0 +1,23 @@
+#Instructions for Developers on How to start using Red-Piranha.
+
+= Introduction =
+
+
+  * [http://internetducttape.com/2007/0/03/howto_google_code_hosting_subversion_tortoisesvn/ This post] is a good description of how to checkout the Google code. 
+  * Browse the source at [http://code.google.com/p/red-piranha/source/checkout source]. 
+
+= More detailled instructions =
+_In Progress_
+
+  # Ensure you have Java installed on your Machine
+  # If you don't already have a google account, get one at https://www.google.com/accounts/NewAccount?continue=http://code.google.com/hosting/faq.html
+  # Download and install Eclipse from http://www.eclipse.org/home/categories/index.php?category=enterprise
+  # Get the Subversion Plugin from: http://subclipse.tigris.org/
+  # Get the Google App Engine Plugin from: http://code.google.com/eclipse/docs/download.html
+  # Get the Drools Eclipse Plugin from: http://www.jboss.org/drools/downloads.html
+  # Checkout the code _Instructions to follow_
+  # Build the code _Instructions to follow_
+
+== Other useful information ==
+
+  * Google FAQ on using Subversion; http://code.google.com/p/support/wiki/SubversionFAQ

@@ -1,0 +1,28 @@
+
+
+GETTING STARTED - USING RED-PIRANHA LOCALLY
+
+Getting 
+
+
+
+Using Ant
+- dev server
+- upload
+
+
+- login
+appcfg (make executable in Linux)
+
+
+~/software/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.2.2.v200907131030/appengine-java-sdk-1.2.2/bin$ 
+
+
+ensure java version exactly same as google app engine
+
+
+GETTING STARTED - USING RED-PIRANHA FROM COMMAND LINE
+
+
+MOVE - TO COMPILE TO COMMAND LINE
+

@@ -28,9 +28,9 @@ public class RuleflowExample {
 
 	private static Log log = LogFactory.getLog(RuleflowExample.class);
 
-	private static final String EXCEL_DATA_FILE = "src/net/firstpartners/sample/chap09/chocolate-data.xls";
+	private static final String EXCEL_DATA_FILE = "src/net/firstpartners/sample/DslRuleflow/chocolate-data.xls";
 
-	private static final String EXCEL_OUTPUT_FILE = "src/net/firstpartners/sample/chap09/chocolate-output.xls";
+	private static final String EXCEL_OUTPUT_FILE = "src/net/firstpartners/sample/DslRuleflow/chocolate-output.xls";
 
 	// the name of the sheet the we log files to
 	private static final String EXCEL_LOG_WORKSHEET_NAME = "log";
@@ -38,7 +38,7 @@ public class RuleflowExample {
 	private static final String[] RULES_FILES = new String[] {
 	"ruleflow-rules.drl"};
 
-	private static final String RULEFLOW_FILE="src/net/firstpartners/sample/chap09/trading.rf";
+	private static final String RULEFLOW_FILE="src/net/firstpartners/sample/DslRuleflow/trading.rf";
 
 	private static final String RULEFLOW_ID = "ruleflow-sample";
 

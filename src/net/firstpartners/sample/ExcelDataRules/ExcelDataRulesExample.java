@@ -28,15 +28,15 @@ public class ExcelDataRulesExample {
 
 	private static Log log = LogFactory.getLog(ExcelDataRulesExample.class);
 
-	private static final String EXCEL_DATA_FILE = "src/net/firstpartners/sample/chap08/chocolate-data.xls";
+	private static final String EXCEL_DATA_FILE = "src/net/firstpartners/sample/ExcelDataRules/chocolate-data.xls";
 
-	private static final String EXCEL_OUTPUT_FILE = "src/net/firstpartners/sample/chap08/chocolate-output.xls";
+	private static final String EXCEL_OUTPUT_FILE = "src/net/firstpartners/sample/ExcelDataRules/chocolate-output.xls";
 
 	// the name of the sheet the we log files to
 	private static final String EXCEL_LOG_WORKSHEET_NAME = "log";
 
 	private static final String[] RULES_FILES = new String[] {
-		"src/net/firstpartners/sample/chap08/log-rules.drl", "src/net/firstpartners/sample/chap08/TradingRules.xls" };
+		"src/net/firstpartners/sample/chap08/log-rules.drl", "src/net/firstpartners/sample/ExcelDataRules/TradingRules.xls" };
 
 	/**
 	 * Read an excel file and spit out what we find.

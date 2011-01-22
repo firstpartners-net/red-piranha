@@ -31,7 +31,7 @@ public class EventRulesExample {
 
 	private static final String NEXT_AVAILABLE_SHIPMENT_DATE = "nextAvailableShipmentDate";
 
-	private static final String[] RULES_FILES= new String[]{"src/net/firstpartners/sample/chap09/shipping-rules.drl"};
+	private static final String[] RULES_FILES= new String[]{"src/net/firstpartners/sample/EventRules/shipping-rules.drl"};
 
 	public static void main(String[] args) throws Exception {
 

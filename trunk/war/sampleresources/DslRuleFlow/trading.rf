@@ -147,7 +147,7 @@
         <id>mortgage-ruleflow</id>
         <name>homeloan</name>
         <type>RuleFlow</type>
-        <packageName>net.firstpartners.chap9</packageName>
+        <packageName>net.firstpartners.sample.DslRuleflow</packageName>
       </process>
       <routerLayout>2</routerLayout>
     </default>

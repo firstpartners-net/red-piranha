@@ -33,6 +33,8 @@ public class PreCompileRuleBuilder {
 
 	FileRuleLoader ruleLoader = new FileRuleLoader();
 
+	public static String LIST_OF_DRL_FILES_TO_COMPILE="src/net/firstpartners/drools/PreCompileRuleList.properties";
+
 	/**
 	 * Cache the pre built knowledgebase
 	 */
@@ -52,7 +54,7 @@ public class PreCompileRuleBuilder {
 
 		// Read properties file.
 		Properties properties = new Properties();
-		properties.load(new FileInputStream("src/net/firstpartners/drools/PreCompileRuleList.properties"));
+		properties.load(new FileInputStream(LIST_OF_DRL_FILES_TO_COMPILE));
 
 		return properties;
 	}

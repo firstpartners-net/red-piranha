@@ -1,19 +1,17 @@
 /**
- * Chap 6 /7 sample 
  * 
- * (c) Paul Browne, FirstPartners.net 
+ * (c) Paul Browne, FirstPartners.net
  * Contains sample code from FIT and Drools
- * Chap 6/7/ available under the GPL
  */
 package net.firstpartners.sample.multiple;
 
 
 public class ChocolateShipment {
-	
+
 	private long shipmentAmount;
 	private OoompaLoompaDate shipmentDate;
 	private long itemsStillToShip;
-	
+
 
 	public ChocolateShipment(){}
 	public ChocolateShipment(long shipmentQuantity){
@@ -25,11 +23,12 @@ public class ChocolateShipment {
 		return shipmentDate;
 	}
 	public void setShipmentDate(OoompaLoompaDate ooompaLoompaDate) {
-		this.shipmentDate = ooompaLoompaDate;
+		shipmentDate = ooompaLoompaDate;
 	}
-	
-	
-	
+
+
+
+	@Override
 	public String toString(){
 		StringBuffer returnValue = new StringBuffer("Shipment amount:");
 		returnValue.append(shipmentAmount);
@@ -51,6 +50,6 @@ public class ChocolateShipment {
 	public void setItemsStillToShip(long itemsStillToShip) {
 		this.itemsStillToShip = itemsStillToShip;
 	}
-	
-	
+
+
 }

@@ -181,7 +181,7 @@ public class SpreadSheetRuleRunner {
 		}
 
 		if (!locationOfExcelDataFile.exists()){
-			throw new IOException("no file at location"+locationOfExcelDataFile.getAbsolutePath());
+			throw new IOException("no file at location:"+locationOfExcelDataFile.getAbsolutePath());
 		}
 
 

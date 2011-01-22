@@ -35,25 +35,26 @@ public class RuleRunnerExcelTest {
 
 	private static Log log = LogFactory.getLog(RuleRunnerExcelTest.class);
 
-	private static final String EXCEL_DATA_FILE = "src/net/firstpartners/sample/ExcelDataRules/chocolate-data.xls";
+	private static final String EXCEL_DATA_FILE = "war/sampleresources/ExcelDataRules/chocolate-data.xls";
 
-	private static final String EXCEL_OUTPUT_FILE = "src/net/firstpartners/sample/ExcelDataRules/chocolate-output.xls";
+	private static final String EXCEL_OUTPUT_FILE = "war/sampleresources/ExcelDataRules/chocolate-output.xls";
 
 	// the name of the sheet the we log files to
 	private static final String EXCEL_LOG_WORKSHEET_NAME = "log";
 
 	private static final String[] RULES_FILES = new String[] {
-		"src/net/firstpartners/sample/ExcelDataRules/log-rules.drl", "src/net/firstpartners/sample/ExcelDataRules/TradingRules.xls" };
+		"war/sampleresources/ExcelDataRules/log-rules.drl", "war/sampleresources/ExcelDataRules/TradingRules.xls" };
 
 
 
 	@Test
 	public  void testRunRulesWithExcelFileInput() throws IOException, DroolsParserException, ClassNotFoundException{
 
+		FileRuleLoader ruleLoader = new FileRuleLoader();
+		InputStream inputFromExcel = ruleLoader.getInputStream(EXCEL_DATA_FILE);
+
 		// Open our Excel file using Apache Poi
 		// This method searches for our file in a number of places on disk
-		InputStream inputFromExcel = RuleRunnerExcelTest.class
-		.getClassLoader().getResourceAsStream(EXCEL_DATA_FILE);
 
 		if (null == inputFromExcel) {
 			throw new FileNotFoundException("Cannot find file:"

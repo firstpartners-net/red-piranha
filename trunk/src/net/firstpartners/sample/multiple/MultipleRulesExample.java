@@ -1,9 +1,7 @@
 /**
- * Chap 6 /7 sample
  * 
  * (c) Paul Browne, FirstPartners.net
  * Contains sample code from FIT and Drools
- * Chap 6/7/ available under the GPL
  */
 package net.firstpartners.sample.multiple;
 
@@ -34,7 +32,7 @@ public class MultipleRulesExample {
 
 	private static final String NEXT_AVAILABLE_SHIPMENT_DATE = "nextAvailableShipmentDate";
 
-	private static final String[] RULES_FILES= new String[]{"src/net/firstpartners/sample/chap06/shipping-rules.drl"};
+	private static final String[] RULES_FILES= new String[]{"war/sampleresources/multiple/shipping-rules.drl"};
 
 	/**
 	 * Main Method, allows file to be run from the command line

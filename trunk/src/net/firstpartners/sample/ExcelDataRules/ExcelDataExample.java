@@ -27,9 +27,9 @@ public class ExcelDataExample {
 
 	private static Log log = LogFactory.getLog(ExcelDataExample.class);
 
-	private static final String EXCEL_DATA_FILE = "src/net/firstpartners/sample/chap08/chocolate-data.xls";
+	private static final String EXCEL_DATA_FILE = "src/net/firstpartners/sample/ExcelDataRules/chocolate-data.xls";
 
-	private static final String EXCEL_OUTPUT_FILE = "src/net/firstpartners/sample/chap08/chocolate-output.xls";
+	private static final String EXCEL_OUTPUT_FILE = "src/net/firstpartners/sample/ExcelDataRules/chocolate-output.xls";
 
 	// the name of the sheet the we log files to
 	private static final String EXCEL_LOG_WORKSHEET_NAME = "log";

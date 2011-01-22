@@ -97,7 +97,7 @@ public class PreCompileRuleBuilderTest {
 		Map preLoadRules = preCompileRuleBuilder.readProperties();
 		assertNotNull(preLoadRules);
 		assertTrue(!preLoadRules.isEmpty());
-		assertTrue(preLoadRules.get("war/spreadsheet/log-then-modify-rules.drl")!=null);
+		assertTrue(preLoadRules.get("war/sampleresources/SpreadsheetServlet/log-then-modify-rules.drl")!=null);
 
 	}
 }

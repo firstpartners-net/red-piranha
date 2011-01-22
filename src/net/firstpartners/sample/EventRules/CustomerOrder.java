@@ -1,9 +1,7 @@
 /**
- * Chap 6 /7 sample 
  * 
- * (c) Paul Browne, FirstPartners.net 
+ * (c) Paul Browne, FirstPartners.net
  * Contains sample code from FIT and Drools
- * Chap 6/7/ available under the GPL
  */
 package net.firstpartners.sample.EventRules;
 
@@ -45,7 +43,7 @@ public class CustomerOrder {
 	}
 
 	public void setCurrentBalance(long loanBalance) {
-		this.currentBalance = loanBalance;
+		currentBalance = loanBalance;
 	}
 
 	public long getInitialBalance() {
@@ -61,9 +59,10 @@ public class CustomerOrder {
 	}
 
 	public void setShipments(ArrayList<ChocolateShipment> loanPayments) {
-		this.shipments = loanPayments;
+		shipments = loanPayments;
 	}
 
+	@Override
 	public String toString() {
 		StringBuffer returnValue = new StringBuffer("Initial Chocolate Order:");
 		returnValue.append(initialBalance);

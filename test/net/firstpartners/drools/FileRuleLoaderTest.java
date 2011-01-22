@@ -20,7 +20,7 @@ public class FileRuleLoaderTest {
 
 		//Set the rule source
 		RuleSource ruleSource = new RuleSource();
-		ruleSource.setKnowledgeBaseLocation("war/spreadsheet/log-then-modify-rules.KnowledgeBase");
+		ruleSource.setKnowledgeBaseLocation("war/sampleresources/SpreadSheetServlet/log-then-modify-rules.KnowledgeBase");
 
 		//do the call
 		ruleLoader.loadKnowledgeBase(ruleSource);

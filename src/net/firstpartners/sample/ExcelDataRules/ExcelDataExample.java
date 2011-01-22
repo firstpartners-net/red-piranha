@@ -27,16 +27,16 @@ public class ExcelDataExample {
 
 	private static Log log = LogFactory.getLog(ExcelDataExample.class);
 
-	private static final String EXCEL_DATA_FILE = "src/net/firstpartners/sample/ExcelDataRules/chocolate-data.xls";
+	private static final String EXCEL_DATA_FILE = "war/sampleresources/ExcelDataRules/chocolate-data.xls";
 
-	private static final String EXCEL_OUTPUT_FILE = "src/net/firstpartners/sample/ExcelDataRules/chocolate-output.xls";
+	private static final String EXCEL_OUTPUT_FILE = "war/sampleresources/ExcelDataRules/chocolate-output.xls";
 
 	// the name of the sheet the we log files to
 	private static final String EXCEL_LOG_WORKSHEET_NAME = "log";
 
 	//The rule files that we are using
 	private static final String[] RULES_FILES = new String[] {
-	"src/net/firstpartners/sample/chap08/log-then-modify-rules.drl"};
+	"war/sampleresources/EventDataRules/log-then-modify-rules.drl"};
 
 	//Handle to common utility file
 	private final  SpreadSheetRuleRunner commonSpreadsheetUtils = new SpreadSheetRuleRunner(new FileRuleLoader());

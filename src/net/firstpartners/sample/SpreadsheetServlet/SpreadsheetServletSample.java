@@ -30,10 +30,10 @@ public class SpreadsheetServletSample extends HttpServlet {
 			.getName());
 
 	//Tmp rules and data file names
-	public static final String EXCEL_DATA_FILE = "http://red-piranha.appspot.com/sampleresources/spreadsheet/chocolate-data.xls";
-	public static final String[] RULES_FILES = new String[] { "http://red-piranha.appspot.com/sampleresources/spreadsheet/log-then-modify-rules.drl" };
+	public static final String EXCEL_DATA_FILE = "http://red-piranha.appspot.com/sampleresources/SpreadSheetServlet/chocolate-data.xls";
+	public static final String[] RULES_FILES = new String[] { "http://red-piranha.appspot.com/sampleresources/SpreadSheetServlet/log-then-modify-rules.drl" };
 
-	public static final String KNOWLEDGE_BASE_FILE="http://red-piranha.appspot.com/sampleresources/spreadsheet/log-then-modify-rules.KnowledgeBase";
+	public static final String KNOWLEDGE_BASE_FILE="http://red-piranha.appspot.com/sampleresources/SpreadSheetServlet/log-then-modify-rules.KnowledgeBase";
 
 	// the name of the sheet the we log files to
 	private static final String EXCEL_LOG_WORKSHEET_NAME = "log";

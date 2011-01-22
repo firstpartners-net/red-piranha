@@ -1,9 +1,7 @@
 /**
- * Chap 6 /7 sample 
  * 
  * (c) Paul Browne, FirstPartners.net 
  * Contains sample code from FIT and Drools
- * Chap 6/7/ available under the GPL
  */
 package net.firstpartners.EventRules;
 

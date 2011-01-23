@@ -134,11 +134,11 @@ public class SpreadSheetRuleRunner {
 		InputStream inputFromExcel = null;
 
 		try {
-			log.info("Looking for file:" + urlOfExcelDataFile);
+			log.info("Looking for url:" + urlOfExcelDataFile);
 
 			inputFromExcel = urlOfExcelDataFile.openStream();
 
-			log.info("found file:" + urlOfExcelDataFile);
+			log.info("found url:" + urlOfExcelDataFile);
 
 		} catch (MalformedURLException e) {
 

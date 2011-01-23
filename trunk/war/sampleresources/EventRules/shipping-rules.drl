@@ -9,9 +9,9 @@ import java.util.Date;
 
 import net.firstpartners.drools.log.ILogger;
 
-import net.firstpartners.EventRules.domain.CustomerOrder;
-import net.firstpartners.EventRules.domain.ChocolateShipment;
-import net.firstpartners.EventRules.domain.OoompaLoompaDate;
+import net.firstpartners.sample.EventRules.CustomerOrder;
+import net.firstpartners.sample.EventRules.ChocolateShipment;
+import net.firstpartners.sample.EventRules.OoompaLoompaDate;
 
 global OoompaLoompaDate nextAvailableShipmentDate;
 global ILogger log;

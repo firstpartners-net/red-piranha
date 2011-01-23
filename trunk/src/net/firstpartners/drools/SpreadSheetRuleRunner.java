@@ -52,8 +52,6 @@ public class SpreadSheetRuleRunner {
 			String nameOfLogSheet,ILogger logger) throws DroolsParserException, IOException, ClassNotFoundException {
 
 
-
-
 		// Log the cell contents
 		log.finer("============ Spreadsheet Cell Contents In =========");
 		for (Range r : spreadsheetRange) {

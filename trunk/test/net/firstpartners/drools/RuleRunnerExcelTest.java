@@ -19,7 +19,6 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.drools.compiler.DroolsParserException;
-import org.junit.Test;
 
 /**
  * Sample showing how we can read both data and rules from Excel
@@ -47,7 +46,6 @@ public class RuleRunnerExcelTest {
 
 
 
-	@Test
 	public  void testRunRulesWithExcelFileInput() throws IOException, DroolsParserException, ClassNotFoundException{
 
 		FileRuleLoader ruleLoader = new FileRuleLoader();

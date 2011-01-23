@@ -8,7 +8,7 @@
 	<!--  Main Servlet -->
 	<servlet>
 		<servlet-name>rp2</servlet-name>
-		<servlet-class>net.firstpartners.rp2.Rp2Servlet</servlet-class>
+		<servlet-class>net.firstpartners.ui.Rp2Servlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>rp2</servlet-name>
@@ -16,15 +16,15 @@
 	</servlet-mapping>
 	
 	<!-- Our Sample -->
-	<servlet>
+	<!-- <servlet>
 		<servlet-name>ServletSample</servlet-name>
-		<servlet-class>net.firstpartners.sample.SpreadsheetServlet</servlet-class>
+		<servlet-class>net.firstpartners.sample.SpreadsheetServlet.SpreadsheetServletSample</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ServletSample</servlet-name>
 		<url-pattern>/ServletSample</url-pattern>
 	</servlet-mapping>
-	
+	 -->
 	<welcome-file-list>
 		<welcome-file>service.jsp</welcome-file>
 	</welcome-file-list>

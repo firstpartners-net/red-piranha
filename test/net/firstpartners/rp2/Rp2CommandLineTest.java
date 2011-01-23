@@ -10,21 +10,21 @@ public class Rp2CommandLineTest {
 
 	//Logger
 	private static final Logger log = Logger.getLogger(Rp2CommandLineTest.class.getName());
-	
-	//Test file locations
-	private static final String[] args = new String[] {"test/net/firstpartners/rp2/chocolate-data.xls",
-														"test/net/firstpartners/rp2/output.xls",
-														"test/net/firstpartners/rp2/log-then-modify-rules.drl" };
 
-	
+	//Test file locations
+	private static final String[] args = new String[] {"war/sampleresources/ExcelDataRules/chocolate-data.xls",
+		"war/sampleresources/ExcelDataRules/output.xls",
+	"war/sampleresources/ExcelDataRules/log-then-modify-rules.drl" };
+
+
 	@Test
 	public final void testCallMain() throws Throwable{
-		
+
 		//Check where we are
 		File whereAmI = new File(".");
 		log.info("Default file location:"+whereAmI.getAbsolutePath());
-		
-		
+
+
 		//Call test
 		try{
 			Rp2CommandLine.main(args);
@@ -32,8 +32,8 @@ public class Rp2CommandLineTest {
 			t.printStackTrace();
 			throw t;
 		}
-		
-		
+
+
 	}
 
 }

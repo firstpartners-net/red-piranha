@@ -1,4 +1,4 @@
-package net.firstpartners.ExcelDataRules;
+package net.firstpartners.sample.ExcelDataRules;
 
 import net.firstpartners.drools.log.ILogger
 

@@ -67,8 +67,12 @@ public class FileRuleLoader extends AbstractRuleLoader implements IRuleLoader {
 	@Override
 	Reader getReader(String fileResource) throws IOException {
 
+		File baseFile= new File(".");
+		log.info("baseFile:"+baseFile.getAbsolutePath());
+
 		File lookForFile = new File (fileResource);
 		log.info("Looking for File:"+lookForFile);
+		log.info("lookForFile.exists():"+lookForFile.exists());
 		log.info("lookForFile.isAbsolute():"+lookForFile.isAbsolute());
 		log.info("lookForFile.getParent():"+lookForFile.getParent());
 		log.info("lookForFile.getAbsolutePath():"+lookForFile.getAbsolutePath());

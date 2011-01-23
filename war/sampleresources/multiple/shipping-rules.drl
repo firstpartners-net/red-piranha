@@ -3,7 +3,7 @@
  * (c) Paul Browne, FirstPartners.net 
  * Contains sample code from FIT and Drools
  */
-package net.firstpartners.multiple;
+package net.firstpartners.sample.multiple;
 
 import java.util.Date;
 

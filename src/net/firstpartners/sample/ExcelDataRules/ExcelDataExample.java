@@ -36,7 +36,7 @@ public class ExcelDataExample {
 
 	//The rule files that we are using
 	private static final String[] RULES_FILES = new String[] {
-	"war/sampleresources/EventDataRules/log-then-modify-rules.drl"};
+	"war/sampleresources/ExcelDataRules/log-then-modify-rules.drl"};
 
 	//Handle to common utility file
 	private final  SpreadSheetRuleRunner commonSpreadsheetUtils = new SpreadSheetRuleRunner(new FileRuleLoader());

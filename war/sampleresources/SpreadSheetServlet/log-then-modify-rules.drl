@@ -1,4 +1,4 @@
-package net.firstpartners.drools;
+package net.firstpartners.sample.drools;
 
 import net.firstpartners.drools.log.ILogger
 

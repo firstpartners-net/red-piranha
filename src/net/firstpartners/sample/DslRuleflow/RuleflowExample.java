@@ -36,7 +36,7 @@ public class RuleflowExample {
 	private static final String EXCEL_LOG_WORKSHEET_NAME = "log";
 
 	private static final String[] RULES_FILES = new String[] {
-	"ruleflow-rules.drl"};
+	"war/sampleresources/DslRuleFlow/ruleflow-rules.drl"};
 
 	private static final String RULEFLOW_FILE="war/sampleresources/DslRuleFlow/trading.rf";
 

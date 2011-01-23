@@ -1,4 +1,4 @@
-package net.firstpartners.DslRuleflow;
+package net.firstpartners.sample.DslRuleflow;
 
 import net.firstpartners.drools.log.ILogger
 

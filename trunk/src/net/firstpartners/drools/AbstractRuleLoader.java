@@ -7,7 +7,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
+import net.firstpartners.RedConstants;
 import net.firstpartners.drools.data.RuleSource;
+import net.firstpartners.security.RedSecurityManager;
 
 import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
@@ -23,7 +25,7 @@ import org.drools.io.ResourceFactory;
 
 public abstract class AbstractRuleLoader implements IRuleLoader {
 
-	static final String XLS_FILE_EXTENSION = ".xls";
+
 
 	private static final Logger log = Logger.getLogger(AbstractRuleLoader.class
 			.getName());
@@ -59,7 +61,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 			log.info("Loading file: " + ruleFile);
 
 			// Check the type of rule file, then load it
-			if (ruleFile.endsWith(XLS_FILE_EXTENSION)) {
+			if (ruleFile.endsWith(RedConstants.XLS_FILE_EXTENSION)) {
 
 				log.info("Loading Excel file: " + ruleFile);
 				loadExcelRules(ruleFile, localBuilder);
@@ -239,7 +241,9 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 	 * @throws ClassNotFoundException
 	 */
 	KnowledgeBase loadKnowledgeBase(RuleSource ruleSource)
-	throws IOException, ClassNotFoundException{
+	throws IOException, ClassNotFoundException, SecurityException{
+
+		RedSecurityManager.checkUrl(ruleSource);
 
 		//DeSerialize the Object
 		//	ObjectInputStream in = new ObjectInputStream(getInputStream( ruleSource.getKnowledgeBaseLocation()));

@@ -1,5 +1,14 @@
 #sidebar sidebar
 
+To Cover (figure out how to do sectins - read wikisyntax
+  * Link to Sample
+  * Picture of example
+  * why need to login
+  * what is happening
+  * (drools/excel/
+  * calling from url
+
+
 == How these sample differ from the book ==
 
 These samples are similar, but differ in several key aspects to the book samples

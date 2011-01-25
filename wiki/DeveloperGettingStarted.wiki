@@ -2,12 +2,24 @@
 #sidebar SideBarDeveloper
 #Instructions for Developers on How to start using Red-Piranha.
 
+
+To cover
+  * Setup the environment
+  * Checking out the code
+  * Deploying to App Engine
+  * (Link to running the exmaples) [RedPiranhaExamples]
+  * How Red-Piranha differs from drools
+  * Grabbing the War and deploying to Red Piranha
+  * Building your own rules
+  * Extending RP
+
 Other useful pages
 
   * [ProjectLayout]
   * [LibrariesUsed] 
-  * [RedPiranhaExamples]
   * [RoadMap]
+  
+  
 
 = Introduction =
 

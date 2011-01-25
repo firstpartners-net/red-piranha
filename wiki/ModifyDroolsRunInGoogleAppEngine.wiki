@@ -9,13 +9,14 @@ If you want a copy the libs can be downloaded from these links, based on Drools 
 
 Below lists these modifications if you need to replicate them. 
 
-	* Download Drools Source  http://www.jboss.org/drools/ and extract to folder. 
-	* Script expects Drools source to be in paralell folder to Red Piranha (but you can edit)
-	** e.g. source/red-piranha and source/drools_5_1_1 
-	* Make sure you have Apache Maven installed
-	* open command prompt to red-piranha folder
-	* Type (no quotes) './build-drools.sh' to start script
-	* Instructions are for unix, but easily modified for windoes
+  * Download Drools Source  http://www.jboss.org/drools/ and extract to folder.
+    ** Alternative is to get the source via GIT, see Drools 'Source' Documentation
+  * Script expects Drools source to be in paralel folder to Red Piranha (but you can edit)
+    ** e.g. source/red-piranha and source/drools_5_1_1 
+  * Make sure you have Apache Maven installed
+  * open command prompt to red-piranha folder
+  * Type (no quotes) './build-drools.sh' to start script
+  * Instructions are for unix, but easily modified for windoes
 	
 
 == Specific Changes Made ==

@@ -1,6 +1,6 @@
 #sidebar sidebar
 
-To Cover (figure out how to do sectins - read wikisyntax
+To Cover (figure out how to do sections - read wikisyntax)
   * Link to Sample
   * Picture of example
   * why need to login
@@ -26,6 +26,4 @@ _For the moment this page presumes that you've followed the instructions on the
   * Located In the folder src/net/firstpartners/samples
   * Unit tests (to call) are in the folder test/net/firstpartners/samples
   * Each Unit test contains a 'Main' Method so that they can be called from the command line
-
-
 

@@ -5,18 +5,26 @@
 # More Info at http://code.google.com/p/red-piranha/wiki/ModifyDroolsRunInGoogleAppEngine
 
 #Build the Core, copy to Red Piranha
-cd ~/projects/drools-5.1.1/drools-core
+
+#Old Location
+##cd ~/projects/drools-5.1.1/drools-core
+
+cd ~/projects/droolsjbpm/drools-core
 mvn -Dmaven.test.skip=true install
-cp target/drools-core-5.1.1.jar ~/projects/red-piranha/war/WEB-INF/lib/drools-core-5.1.1.jar
+cp target/drools-core-5.2.0-SNAPSHOT.jar ~/projects/red-piranha/war/WEB-INF/lib/drools-core-5.2.0-SNAPSHOT.jar
 
 #Build the API, copy to Red Piranha
-cd ~/projects/drools-5.1.1/drools-api
+
+#Old Location
+##cd ~/projects/drools-5.1.1/drools-api
+
+cd ~/projects/droolsjbpm/drools-api
 mvn -Dmaven.test.skip=true install
-cp target/drools-api-5.1.1.jar ~/projects/red-piranha/war/WEB-INF/lib/drools-api-5.1.1.jar
+cp target/drools-api-5.2.0-SNAPSHOT.jar ~/projects/red-piranha/war/WEB-INF/lib/drools-api-5.2.0-SNAPSHOT.jar
 
 #Return to start directory 
 cd ~/projects/red-piranha
 
 #Use Ant to deploy to Google App Engine
-ant -file ant-app-engine.xml
+# ant -file ant-app-engine.xml
 

@@ -11,13 +11,13 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/core-3.4.2.v_883_R34x.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/antlr-runtime-3.1.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/mvel2-2.0.15.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-api-5.1.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-compiler-5.1.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-core-5.1.1.jar" sourcepath="/drools-core/src/main/java"/>
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
-	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-decisiontables-5.1.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-templates-5.1.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-api-5.1.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-core-5.1.1.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

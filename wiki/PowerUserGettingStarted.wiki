@@ -1,4 +1,4 @@
-#labels Featured tidy
+#labels Featured
 #sidebar sidebar
 #Information on how Power Users can get started.
 

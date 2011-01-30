@@ -1,4 +1,4 @@
-#labels Featured tidy
+#labels Featuredtidy,Featured
 #sidebar SideBarDeveloper
 #Instructions for Developers on How to start using Red-Piranha.
 

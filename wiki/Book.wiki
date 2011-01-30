@@ -1,6 +1,4 @@
-#summary One-sentence summary of this page.
 #labels book,Featured
-
 = Beginning Business rules with JBoss Drools =
 
 

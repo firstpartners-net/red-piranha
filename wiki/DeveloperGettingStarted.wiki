@@ -3,11 +3,11 @@
 
 == Instructions for Developers on How to start using Red-Piranha ==
 
-  * [#Setup the environment Setup the environment]
-  * [#Checking out the code Checking out the code]
-  * [#Deploying to App Engine Deploying to App Engine]
-  * [#Building your own rules Building your own rules]
-  * [#Extending Red Piranha Extending Red Piranha]
+  * [#Setup_the_environment Setup the environment]
+  * [#Checking_out_the_code Checking out the code]
+  * [#Deploying_to_App_Engine Deploying to App Engine]
+  * [#Building_your_own_rules Building your own rules]
+  * [#Extending_Red_Piranha Extending Red Piranha]
   * [#Red_Piranha_for_Drools_Developers Red Piranha for Drools Developers]
 
 Other useful pages
@@ -67,6 +67,4 @@ ensure java version exactly same as google app engine
 
 
 == Red Piranha for Drools Developers ==
-
-
 

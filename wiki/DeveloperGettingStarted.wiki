@@ -3,33 +3,22 @@
 
 == Instructions for Developers on How to start using Red-Piranha ==
 
-
-  * Setup the environment
-  * Checking out the code
-  * Deploying to App Engine
-  * (Link to running the exmaples) [RedPiranhaExamples]
-  * How Red-Piranha differs from drools
-  * Grabbing the War and deploying to Red Piranha
-  * Building your own rules
-  * Extending RP
-  * [#Red_Piranha_for_Drools_Developers]
+  * [#Setup the environment Setup the environment]
+  * [#Checking out the code Checking out the code]
+  * [#Deploying to App Engine Deploying to App Engine]
+  * [#Building your own rules Building your own rules]
+  * [#Extending Red Piranha Extending Red Piranha]
+  * [#Red_Piranha_for_Drools_Developers Red Piranha for Drools Developers]
 
 Other useful pages
 
   * [ProjectLayout]
   * [LibrariesUsed] 
   * [RoadMap]
+  * [RedPiranhaExamples Running the Examples]
   
   
-
-= Introduction =
-
-  * [http://internetducttape.com/2007/0/03/howto_google_code_hosting_subversion_tortoisesvn/ This post] is a good description of how to checkout the Google code. 
-  * Browse the source at [http://code.google.com/p/red-piranha/source/checkout source]. 
-
-= More detailed instructions =
-_In Progress_
-
+== Setup the environment ==
   # Ensure you have Java installed on your Machine
   # If you don't already have a google account, get one at https://www.google.com/accounts/NewAccount?continue=http://code.google.com/hosting/faq.html
   # Download and install Eclipse from http://www.eclipse.org/home/categories/index.php?category=enterprise
@@ -39,16 +28,18 @@ _In Progress_
   # Checkout the code _Instructions to follow_
   # Build the code _Instructions to follow_
 
-== Other useful information ==
+
+== Checking out the code ==
 
   * Google FAQ on using Subversion; http://code.google.com/p/support/wiki/SubversionFAQ
-  
- = How to run samples =
- 
 
-GETTING STARTED - USING RED-PIRANHA LOCALLY
+  * [http://internetducttape.com/2007/0/03/howto_google_code_hosting_subversion_tortoisesvn/ This post] is a good description of how to checkout the Google code. 
+  * Browse the source at [http://code.google.com/p/red-piranha/source/checkout source]. 
 
-Getting 
+
+
+== Deploying to App Engine ==
+
 
 
 
@@ -67,10 +58,15 @@ appcfg (make executable in Linux)
 ensure java version exactly same as google app engine
 
 
-GETTING STARTED - USING RED-PIRANHA FROM COMMAND LINE
 
+== Building your own rules ==
+== Extending Red Piranha ==
 
-MOVE - TO COMPILE TO COMMAND LINE
+  * Link to Servlet
+  * Link to Builder
+
 
 == Red Piranha for Drools Developers ==
- 
+
+
+

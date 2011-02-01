@@ -7,6 +7,9 @@ If you want a copy the libs can be downloaded from these links, based on Drools 
   * [http://red-piranha.googlecode.com/svn/trunk/war/WEB-INF/lib/drools-api-5.1.1.jar Drools Api]
 
 
+An important point is that Red Piranha currently *builds* the rules on your own PC, and the pre-built package of rules is what deployed / runs in GAE (Google App Engine). The reason for the 2 steps is that GAE does not like some of the Dynamic reflection in the MVEL Libraries (used by Drools) during the rule building.
+
+
 Below lists these modifications if you need to replicate them. 
 
   * Download Drools Source  http://www.jboss.org/drools/ and extract to folder.

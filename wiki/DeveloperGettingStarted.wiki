@@ -26,15 +26,18 @@ Other useful pages
   # Get the [http://subclipse.tigris.org/ Subversion Plugin for Eclipse]: 
   # Get the [http://code.google.com/eclipse/docs/download.htmlGoogle App Engine Plugin for Eclipse] 
   # Get the [http://www.jboss.org/drools/downloads.html Drools Eclipse Plugin]
-  # Checkout the code _Instructions to follow_
-  # Build the code _Instructions to follow_
+
 
 
 == Checking out the code ==
 
+Background Information on Subversion (SVN) source control, hosted at Google code
   * Google FAQ on using Subversion; http://code.google.com/p/support/wiki/SubversionFAQ
   * [http://internetducttape.com/2007/0/03/howto_google_code_hosting_subversion_tortoisesvn/ This post] is a good description of how to checkout the Google code. 
   * Browse the source at [http://code.google.com/p/red-piranha/source/checkout source]. 
+
+If you're logged in with google,
+[http://code.google.com/p/red-piranha/source/checkout This page] will give you more detailled instructions on how to Checkout the code
 
 == Building the code ==
 _work in progress_ an ant build file

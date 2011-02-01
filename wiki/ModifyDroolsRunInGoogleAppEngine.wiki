@@ -1,5 +1,5 @@
 #sidebar SideBarDeveloper
-# Modifications to allow Drools to run in Google App Engine
+= Modifications to allow Drools to run in Google App Engine =
 
 By default Red Piranha comes with modified Drools libraries needed to run within Google app engine.
 If you want a copy the libs can be downloaded from these links, based on Drools 5.1.1 M1

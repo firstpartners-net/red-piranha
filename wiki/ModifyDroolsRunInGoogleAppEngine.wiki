@@ -15,7 +15,7 @@ Below lists these modifications if you need to replicate them.
   * Download Drools Source  http://www.jboss.org/drools/ and extract to folder.
     ** Alternative is to get the source via GIT, see Drools 'Source' Documentation
   * Check out the Red Piranha code [http://code.google.com/p/red-piranha/wiki/DeveloperGettingStarted#Checking_out_the_code (instructions here)].
-  *Script (build-drools.sh) expects Drools source to be in paralel folder to Red Piranha (but you can edit)
+  * Script (build-drools.sh) expects Drools source to be in paralel folder to Red Piranha (but you can edit)
     ** e.g. source/red-piranha and source/drools_5_1_1 
   * Make sure you have Apache Maven installed
   * open command prompt to red-piranha folder

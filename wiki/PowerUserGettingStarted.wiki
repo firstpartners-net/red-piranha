@@ -2,4 +2,4 @@
 #sidebar sidebar
 #Information on how Power Users can get started.
 
-Work in progress!
+Work in progress - [EndUserGettingStarted] and [DeveloperGettingStarted] are other useful start points.

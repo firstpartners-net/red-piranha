@@ -1,9 +1,9 @@
 #labels Featuredtidy,Featured
 #sidebar SideBarDeveloper
-#Instructions for Developers on How to start using Red-Piranha.
+
+== Instructions for Developers on How to start using Red-Piranha ==
 
 
-To cover
   * Setup the environment
   * Checking out the code
   * Deploying to App Engine
@@ -12,6 +12,7 @@ To cover
   * Grabbing the War and deploying to Red Piranha
   * Building your own rules
   * Extending RP
+  * [#Red_Piranha_for_Drools_Developers]
 
 Other useful pages
 
@@ -71,4 +72,5 @@ GETTING STARTED - USING RED-PIRANHA FROM COMMAND LINE
 
 MOVE - TO COMPILE TO COMMAND LINE
 
+== Red Piranha for Drools Developers ==
  

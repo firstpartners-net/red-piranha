@@ -1,7 +1,7 @@
 #labels Featuredtidy,Featured
 #sidebar SideBarDeveloper
 
-== Instructions for Developers on How to start using Red-Piranha ==
+== Instructions for developers on how to start using Red-Piranha ==
 
   * [#Setup_the_environment Setup the environment]
   * [#Checking_out_the_code Checking out the code]
@@ -40,25 +40,38 @@ If you're logged in with google,
 [http://code.google.com/p/red-piranha/source/checkout This page] will give you more detailled instructions on how to Checkout the code
 
 == Building the code ==
-_work in progress_ an ant build file
-  * For the moment right click on the Red_Piranha project name, resolve the build errors, let Eclipse carry out an automated build.
-  *
+
+  * For the moment right click on the Red Piranha project name, resolve the build errors, let Eclipse carry out an automated build.
+  * _work in progress_ an ant build file
+
 == Deploying to App Engine ==
 
-_work in progress_ an ant build file
-
-or use the Google App Engine Toolbar in Eclipse
-<img src="images/google_app_engine_eclipse_button.png"/>
-
+  * use the Google App Engine Toolbar in Eclipse
+<img src="./images/google_app_engine_eclipse_button.png"/>
+  * _work in progress_ an ant build file
+  * _work in progress_ automated tools
 
 == Building your own rules ==
-_work in progress_
-
+  * _work in progress_  For the moment, you need to 
+  # Write your rule (similar to [http://code.google.com/p/red-piranha/source/browse/trunk/war/sampleresources/ExcelDataRules/log-then-modify-rules.drl log-then-modify-rule.drl]
+  # Add you new rule using [http://code.google.com/p/red-piranha/source/browse/trunk/src/net/firstpartners/drools/PreCompileRuleList.properties PreCompileRuleList.properties]
+  # Create the pre-built KnowledgePackage using [PreCompileRuleBuilder.java http://code.google.com/p/red-piranha/source/browse/trunk/src/net/firstpartners/drools/PreCompileRuleBuilder.java] . TestPreCompileRuleBuilder is one easy way of running this through eclipse
+  # Modify the [http://code.google.com/p/red-piranha/source/browse/trunk/war/service.jsp Service.jsp] to include the option of selecting your newly created knowledgebase.
+  # Deploy to Google App Engine and enjoy!
 
 == Extending Red Piranha ==
 
-  * Link to Servlet
-  * Link to Builder
+_work in progress_ for the moment you'll have to explore the code!
+
+*[http://code.google.com/p/red-piranha/source/browse/trunk/src/net/firstpartners/drools/PreCompileRuleBuilder.java Link to Builder]* The code that builds the pre-compiled rule packages. Start with the main[] method.
+
+*[http://code.google.com/p/red-piranha/source/browse/trunk/src/net/firstpartners/ui/Rp2Servlet.java Link to Servlet]* The code that calls the pre-compiled rule packages. Start with the service() method that runs in response to the form submitted by the jsp submission.
+
 
 
 == Red Piranha for Drools Developers ==
+
+  * Red Piranha uses [http://www.jboss.org/drools] as a key library. It's focus is more on Excel and Google Docs users looking to add the power of a rule engine to their documents.
+  * Google App Engine (GAE) is a key deployment target, and enforces key limitations on the code; For examples rules cannot be 'compiled' in the normal Drools way, hence the offline package step, before you deploy.
+  * With Drools, you normally supply (1) The rules file (2) A Model (or data structure) holding the information that the rules act on (3) Java code to tie it all together. 
+  * With Red-Piranha all you need is 1) the rules file. The Data structure is always excel, and there is standard Java code to combine the Rules and the excel spreadsheet. This makes it easier, although Drools gives you more flexibility (with a bit more work!).

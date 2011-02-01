@@ -5,6 +5,7 @@
 
   * [#Setup_the_environment Setup the environment]
   * [#Checking_out_the_code Checking out the code]
+  * [#Building_the_code Building the code] 
   * [#Deploying_to_App_Engine Deploying to App Engine]
   * [#Building_your_own_rules Building your own rules]
   * [#Extending_Red_Piranha Extending Red Piranha]
@@ -20,11 +21,11 @@ Other useful pages
   
 == Setup the environment ==
   # Ensure you have Java installed on your Machine
-  # If you don't already have a google account, get one at https://www.google.com/accounts/NewAccount?continue=http://code.google.com/hosting/faq.html
-  # Download and install Eclipse from http://www.eclipse.org/home/categories/index.php?category=enterprise
-  # Get the Subversion Plugin from: http://subclipse.tigris.org/
-  # Get the Google App Engine Plugin from: http://code.google.com/eclipse/docs/download.html
-  # Get the Drools Eclipse Plugin from: http://www.jboss.org/drools/downloads.html
+  # If you don't already have a google account, get one at [https://www.google.com/accounts/NewAccount?continue=http://code.google.com/hosting/faq.html here]
+  # Download and install [http://www.eclipse.org/home/categories/index.php?category=enterprise Eclipse]
+  # Get the [http://subclipse.tigris.org/ Subversion Plugin for Eclipse]: 
+  # Get the [http://code.google.com/eclipse/docs/download.htmlGoogle App Engine Plugin for Eclipse] 
+  # Get the [http://www.jboss.org/drools/downloads.html Drools Eclipse Plugin]
   # Checkout the code _Instructions to follow_
   # Build the code _Instructions to follow_
 
@@ -32,34 +33,25 @@ Other useful pages
 == Checking out the code ==
 
   * Google FAQ on using Subversion; http://code.google.com/p/support/wiki/SubversionFAQ
-
   * [http://internetducttape.com/2007/0/03/howto_google_code_hosting_subversion_tortoisesvn/ This post] is a good description of how to checkout the Google code. 
   * Browse the source at [http://code.google.com/p/red-piranha/source/checkout source]. 
 
-
-
+== Building the code ==
+_work in progress_ an ant build file
+  * For the moment right click on the Red_Piranha project name, resolve the build errors, let Eclipse carry out an automated build.
+  *
 == Deploying to App Engine ==
 
+_work in progress_ an ant build file
 
-
-
-Using Ant
-- dev server
-- upload
-
-
-- login
-appcfg (make executable in Linux)
-
-
-~/software/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.2.2.v200907131030/appengine-java-sdk-1.2.2/bin$ 
-
-
-ensure java version exactly same as google app engine
-
+or use the Google App Engine Toolbar in Eclipse
+<img src="images/google_app_engine_eclipse_button.png"/>
 
 
 == Building your own rules ==
+_work in progress_
+
+
 == Extending Red Piranha ==
 
   * Link to Servlet
@@ -67,4 +59,3 @@ ensure java version exactly same as google app engine
 
 
 == Red Piranha for Drools Developers ==
-

@@ -2,4 +2,6 @@
 #sidebar sidebar
 #Information on how Power Users can get started.
 
-Work in progress - [EndUserGettingStarted] and [DeveloperGettingStarted] are other useful start points.
+
+Still a _work in progress_ - probably good to look at [RedPiranhaExamples] and start working through them
+ start working through the examples. [DeveloperGettingStarted] is another useful start point.

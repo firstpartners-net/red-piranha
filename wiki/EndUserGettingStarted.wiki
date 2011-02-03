@@ -1,4 +1,5 @@
 #labels Featured
 #sidebar sidebar
 
-Still a work in progress - probably good to [RedPiranhaExamples start working through the examples]
+Still a _work in progress_- probably good to look at [RedPiranhaExamples] and start working through them
+ start working through the examples

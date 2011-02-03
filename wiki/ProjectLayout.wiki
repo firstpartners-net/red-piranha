@@ -1,17 +1,22 @@
 #Summary of the main folders in the project
 #sidebar SideBarDeveloper
 
+= Project Layout= 
+
+If you're [http://code.google.com/p/red-piranha/source/browse/#svn%2Ftrunk browsing the code] or
+have [DeveloperGettingStarted the code checked out] these are some useful start points.
+
+
 The project is intended to be used in the following ways, hence the project layout
   * Hosted in in Google App Engine (although the layout is almost standard Java web application)
   * Run from the command line
   * Run via JUnit Tests (mainly for developers to check code quality)
 
 
-
 == Useful Start Points ==
- * src/net/firstpartners/rp2/Rp2CommandLine.java - call from commandline (Work in progress)
- * src/net/firstpartners/rp2/Rp2Servlet.java
- * src/net/firstpartners/rp2/Drools/PreCompileRuleBuilder - Main method rebuilds the packages as listed in PreCompileRuleBuilder.properties 
+ * src/net/firstpartners/ui/Rp2CommandLine.java - call from commandline (Work in progress)
+ * src/net/firstpartners/ui/Rp2Servlet.java
+ * src/net/firstpartners/ui/Drools/PreCompileRuleBuilder - Main method rebuilds the packages as listed in PreCompileRuleBuilder.properties 
  * test/net/firstpartners/rp2/Drools/PreCompileRuleBuilderTest - Also rebuilds the packages
   
 

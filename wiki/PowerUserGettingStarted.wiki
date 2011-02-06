@@ -5,3 +5,11 @@
 
 Still a _work in progress_ - probably good to look at [RedPiranhaExamples] and start working through them
  start working through the examples. [DeveloperGettingStarted] is another useful start point.
+ 
+   
+_ Items to create in code and document here _
+  * How to get the RulePlayer
+  * What the RulePlayer Needs (Excel Sheet, Rule, Output)
+  * How to host this in (Examples)
+  * How to host this in your own Server
+  * What can you do with it ...

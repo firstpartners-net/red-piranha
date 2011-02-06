@@ -3,3 +3,13 @@
 
 Still a _work in progress_- probably good to look at [RedPiranhaExamples] and start working through them
  start working through the examples
+ 
+ 
+ _Things to add when coded_
+ 
+   * [EndUserGettingStarted]
+   * How to run the examples [RedPiranhaExamples]
+   * How to run your own data in an examples
+   * What's going on behind the scenes
+   
+   

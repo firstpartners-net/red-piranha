@@ -1,13 +1,15 @@
 
-Home
+*Home*
   * [EndUserGettingStarted User Getting Started]
   * [PowerUserGettingStarted PowerUser Getting Started]
   * [RedPiranhaExamples Examples]
   * [FAQ FAQ]
   * [Book Book]
     * [BookFeedback Book Feedback]  
+
+*Developer*    
   * [DeveloperGettingStarted Developer Getting Started]
-    * [CommonErrorMessages]s
+    * [CommonErrorMessages]
     * [LibrariesUsed]
     * [ModifyDroolsRunInGoogleAppEngine Changes to Drools to run in App Engine]
     * [ProjectLayout]

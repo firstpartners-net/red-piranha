@@ -1,0 +1,104 @@
+<!-- 
+
+This build file is based on an example from https://code.google.com/p/wami/ 
+and is made available under the MIT Licence
+
+To rebuild the applet, right-click on this file and
+and Run As Ant Build...
+
+Then be sure to refresh the "lib" folder to get the
+changes from the file system.
+
+Note that if you want a signed applet, you will need to
+add properties pointing to the keystore, etc, and change
+the target to "sign"
+-->
+<project name="applet" default="sign" basedir=".">
+
+
+	<property name="src.home" value="${basedir}/src-applet" />
+	<property name="build.home" value="${basedir}/build-applet" />
+	<property name="classes.home" value="${build.home}/classes" />
+	<property name="jar.name" value="red-player.jar" />
+
+	<!-- Destination and other RP (main project) info -->
+	<property name="destination" value="../red-piranha/war" />
+	<property name="red-piranha-lib" value="../red-piranha/war/rulerunner/lib" />
+
+	<!-- Compilation options -->
+	<property name="compile.debug" value="true" />
+	<property name="compile.deprecation" value="false" />
+	<property name="compile.optimize" value="true" />
+
+	<!-- Compilation classpath -->
+	<path id="compile.classpath">
+
+		<fileset dir="${red-piranha-lib}">
+			<include name="**/*.jar" />
+		</fileset>
+
+	</path>
+
+	<!-- All target -->
+	<target name="all" depends="clean, prepare, jar" description="Clean build" />
+
+	<!-- Clean target -->
+	<target name="clean" description="Delete old build directories">
+		<delete file="${red-piranha-lib}/${jar.name}" />
+		<delete dir="${classes.home}" />
+	</target>
+
+	<!-- Preparation -->
+	<target name="prepare" depends="build-main">
+		<!-- Create build directories as needed -->
+		<mkdir dir="${build.home}" />
+		<mkdir dir="${classes.home}" />
+	</target>
+
+	<!-- Ensure we are working against the very latest version of the main Red-Piranha project -->
+	<target name="build-main" description="Make sure we build the main Red Piranha project">
+		<echo message="Call main Red_Piranha build file" />
+		<ant antfile="../red-piranha/build.xml" dir="../red-piranha/" target="jar" />
+		<echo message="Returned to Red Player build file" />
+	</target>
+
+	<!-- Compile target -->
+	<target name="compile" depends="prepare" description="Compile Java sources">
+		<!-- Compile Java classes as necessary -->
+		<mkdir dir="${classes.home}" />
+
+		<javac srcdir="${src.home}" destdir="${classes.home}" debug="${compile.debug}" deprecation="${compile.deprecation}" optimize="${compile.optimize}" target="1.5">
+			<classpath refid="compile.classpath" />
+		</javac>
+
+	</target>
+
+	<!-- Jar target -->
+	<target name="jar" depends="compile" description="Make the jar">
+		<jar jarfile="${red-piranha-lib}/${jar.name}" basedir="${classes.home}">
+		</jar>
+	</target>
+
+	<!-- Copy Target-->
+	<!--	
+	<target name="deploy" depends="jar" description="Copy to Main Web Project">
+		<copy file="${jar.home}/${jar.name}" todir="${red-piranha-lib}/${jar.name}" />
+	</target>-->
+
+	<!-- sign target -->
+	<target name="sign" depends="jar" description="Sign the jar">
+		<echo message="${signjar.alias}" />
+		<echo message="${signjar.storepass}" />
+		<echo message="${signjar.keypass}" />
+		<echo message="${signjar.keystore}" />
+		<signjar alias="${signjar.alias}" storepass="${signjar.storepass}" keypass="${signjar.keypass}" keystore="${signjar.keystore}">
+
+			<path>
+				<fileset dir="${red-piranha-lib}" includes="**/*.jar" />
+			</path>
+
+
+		</signjar>
+	</target>
+
+</project>

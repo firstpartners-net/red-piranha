@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="classes" path="src-applet"/>
+	<classpathentry kind="var" path="JRE_LIB" sourcepath="JRE_SRC"/>
+	<classpathentry kind="con" path="/home/paul/projects/red-piranha/applet/lib"/>
+	<classpathentry kind="src" path="/red-piranha"/>
+	<classpathentry kind="lib" path="/red-piranha/war/WEB-INF/lib/drools-compiler-5.1.1.jar"/>
+	<classpathentry kind="lib" path="/red-piranha/war/WEB-INF/lib/drools-core-5.1.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

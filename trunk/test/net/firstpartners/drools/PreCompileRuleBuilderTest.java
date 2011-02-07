@@ -5,6 +5,7 @@ package net.firstpartners.drools;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -99,5 +100,10 @@ public class PreCompileRuleBuilderTest {
 		assertTrue(!preLoadRules.isEmpty());
 		assertTrue(preLoadRules.get("war/sampleresources/SpreadSheetServlet/log-then-modify-rules.drl")!=null);
 
+	}
+
+	@Test
+	public final void testGetRuleLoader(){
+		fail("Test that the correct file / Url rule loader is returned");
 	}
 }

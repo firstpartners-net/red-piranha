@@ -31,7 +31,7 @@ public class PreCompileRuleBuilder {
 			.getName());
 
 
-	FileRuleLoader ruleLoader = new FileRuleLoader();
+
 
 	public static String LIST_OF_DRL_FILES_TO_COMPILE="src/net/firstpartners/drools/PreCompileRuleList.properties";
 
@@ -100,21 +100,43 @@ public class PreCompileRuleBuilder {
 	 * @throws DroolsParserException
 	 * @throws ClassNotFoundException
 	 */
-	void cacheRule(String ruleLocation, String outputFile) throws DroolsParserException, IOException, ClassNotFoundException {
+	public void cacheRule(String ruleLocation, String outputFile) throws DroolsParserException, IOException, ClassNotFoundException {
 
 
 		log.info("Loading Knowledgebase from "+ruleLocation);
 
+		//Get a handle to the rule loader that we will use
+		IRuleLoader ruleLoader = getRuleLoader(ruleLocation);
 
+		//Setup the source
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setRulesLocation(ruleLocation);
 
 
 		KnowledgeBase kb= ruleLoader.loadRules(ruleSource);
+		if(outputFile!=null){
+			cacheKnowledgeBase(kb,outputFile);
+			log.info("Cached Knowledgebase to "+outputFile);
 
-		cacheKnowledgeBase(kb,outputFile);
-		log.info("Cached Knowledgebase to "+outputFile);
+		}
 
+	}
+	/**
+	 * 
+	 */
+	private IRuleLoader  getRuleLoader(String ruleLocation){
+
+
+		IRuleLoader ruleLoader;
+
+		if(ruleLocation.startsWith("http")){
+			ruleLoader = new URLRuleLoader();
+		} else {
+			ruleLoader = new FileRuleLoader();
+		}
+
+		//Default - url rule loader
+		return ruleLoader;
 	}
 
 }

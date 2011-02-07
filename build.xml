@@ -21,12 +21,15 @@
 	<property name="src.dir" value="src" />
 	<property name="build.dir" value="build" />
 	<property name="docs.dir" value="docs" />
-	<property name="distrib.dir" value="distrib" />
+	<property name="distrib.dir" value="war/rulerunner/lib" />
 	<property name="testsrc.dir" value="test" />
 	<property name="testbuild.dir" value="testbuild" />
 	<property name="testreports.dir" value="junit-test-reports" />
 	<property name="testhtml.dir" value="${testreports.dir}/html" />
 	<property name="app.root" value="." />
+	<property name="testlib.dir" value="${app.root}/testlib" />
+		
+	
 	<property name="lib.root" value="war/WEB-INF" />
 
 
@@ -42,6 +45,12 @@
 
 	<!-- A modified classpath we use when running tests -->
 	<path id="test-classpath">
+		
+		<fileset dir="${testlib.dir}/">
+				<include name="**/*.jar" />
+				<include name="**/*.zip" />
+			</fileset>
+		
 		<!-- Include any additional files if required-->
 	</path>
 
@@ -51,7 +60,7 @@
 		<delete dir="${build.dir}" />
 		<delete dir="${testbuild.dir}" />
 		<delete dir="${docs.dir}" />
-		<delete dir="${distrib.dir}" />
+		<delete file="${distrib.dir}/${name}.jar" />
 	</target>
 
 	<!-- Compile Java Classes into build folder-->
@@ -75,6 +84,8 @@
 			<classpath refid="test-classpath" />
 
 		</javac>
+		
+		
 		<copy todir="${build.dir}" preservelastmodified="true">
 			<fileset dir="${src.dir}">
 				<include name="**/.*" />
@@ -127,17 +138,18 @@
 		<classpath refid="master-classpath"/>
 				<classpath refid="test-classpath"/>
 	</junit>
-		
+	
+		<!--
 	<junitreport todir="${testhtml.dir}">
 		<fileset dir="${testreports.dir}">
 			<include name="TEST-*.xml" />
 		</fileset>
 		<report format="frames" todir="${testhtml.dir}" />
-	</junitreport>
+	</junitreport> -->
 	</target>
 	
 	<!-- Create Jar file for  distribution-->
-	<target name="jar" depends ="tests" description="Create the Jar file for distribution">
+	<target name="jar" depends="build" description="Create the Jar file for distribution">
 
 		<jar jarfile="${distrib.dir}/${name}.jar" compress="true">
 			<fileset dir="${build.dir}">

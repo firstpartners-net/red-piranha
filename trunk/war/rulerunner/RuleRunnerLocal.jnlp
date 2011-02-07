@@ -2,8 +2,8 @@
 <!-- JNLP File Red Piranha Rule Player - local version for testing -->
 <jnlp
   spec="1.0+"
-  codebase="http://localhost:8888/rulerunner"
-  href="RuleRunner.jnlp">
+  codebase="http://localhost:8888/rulerunner/"
+  href="RuleRunnerLocal.jnlp">
   <information>
     <title>Red Piranha Rule Player</title>
     <vendor>Red Piranha</vendor>

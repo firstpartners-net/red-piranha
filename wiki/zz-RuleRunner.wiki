@@ -1,0 +1,67 @@
+
+
+
+
+==  Power User Running Rule Runner Webstart-Dev-Full-Local/ Local Zip / Exe==
+  * The three jnlp files
+  * Running RuleRunner main build / local build (and the dependencies)
+  
+  URL
+  ** running local using Google App Engine
+  ** Url http://localhost:8888/ruleplayer/RulePlayer.jnlp
+  ** http://red-piranha.appspot.com/ruleplayer/RulePlayer.jnlp  
+  ** Local
+  ** Exe
+  
+  * [DroolsPowerUser] info on launching the ruleplayer at http://red-piranha.appspot.com/rulerunner/RuleRunner.jnlp
+  * download as zip
+  * jnlp (*3) , bat & sh, exe
+  ** What if JNLP Fails
+  ** No Java fo rBat or Sh
+  ** Exe
+  
+== Project Layout ==
+  * Update wiki [ProjectLayout] with new structure
+  * add script folder
+  
+== Developer Notes ==
+
+  * test in eclipse - right click and 'run as applet'
+  * ant build will build jar, copy into red-piranha/war
+  * more info at http://people.cs.uchicago.edu/~amr/121/labs/eclipsetute/applet.html
+
+  * Note on Junit Libs (from http://www.junit.org) 
+  * Note on Servlet.jar from (from Tomcat) 
+
+  * note about dependencies; RedPlayer depends on 
+  ** (Todo put both of these into sub projects?_
+  * Checkout trunk, checkout red-player
+
+
+
+
+ 
+== Developer RulePlayer build ==  
+  * Document both build file targets
+  * Document Main Targets that you'll actually use (and what they do)
+  * red-applet project expects to paralell to red-piranha (i.e. both share same parent folder)
+    * both for classpath and deploy  
+  * build.xml within the ruleplayer
+  * repackaging of dependicings
+  * security and signing jars using the jar-signer script 
+
+
+
+Removal of signing (manifest
+re jar all in one
+Resign using jar signer)
+_ todo - update build with this solution_
+note about jre version used   
+
+== Developer signing ruleplayer jars ==
+
+# Run this command to sign the jar with your own key
+# http://java.sun.com/developer/Books/javaprogramming/JAR/sign/signing.html
+#
+# Make sure you are in the war/ruleplayer/lib folder
+jarsigner -keystore ~/.keystore *.jar mykey   

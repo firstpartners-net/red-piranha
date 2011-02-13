@@ -1,6 +1,0 @@
-Notes - move or use
-
-  * test in eclipse - right click and 'run as applet'
-  * more info at http://people.cs.uchicago.edu/~amr/121/labs/eclipsetute/applet.html
-  
-  

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- JNLP File Red Piranha Rule Player -->
+<jnlp
+  spec="1.0+"
+  codebase="http://red-piranha.appspot.com/rulerunner"
+  href="RuleRunner.jnlp">
+  <information>
+    <title>Red Piranha Rule Player</title>
+    <icon href="http://code.google.com/p/red-piranha/logo?cct=1296042255"/>
+    <vendor>Red Piranha</vendor>
+    <homepage href="http://code.google.com/p/red-piranha/"/>
+    <description>Local Compilation of Rules</description>
+    <description kind="short">Red Piranha Demo.</description>
+    <offline-allowed/>
+  </information>
+  
+  <security>
+      <all-permissions/>
+  </security>
+  <resources>
+    <j2se version="1.6.0_18"  href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="lib/red-player.jar"/>
+  </resources>
+  <application-desc main-class="net.firstpartners.player.RulePlayer"/>
+</jnlp> 

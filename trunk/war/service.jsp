@@ -36,7 +36,7 @@
 <%
     } else {
 %>
-<p>Hello!
+<p>Red Piranha Online Samples
 <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
 using a Google / Gmail Account to run the samples. Signin goes directly to Google.</p>
 <%

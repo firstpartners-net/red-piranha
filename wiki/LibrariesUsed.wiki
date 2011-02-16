@@ -1,9 +1,11 @@
 #sidebar SideBarDeveloper
 #labels tidy
 
+
+
 = Project Libraries and Dependencies =
 
-_to tidy_. Note what these Libraries are and where they come from. Please check the respective websites for licence terms.
+_TODO_ Tidy this page. Note what these Libraries are and where they come from. Please check the respective websites for licence terms.
 
 
 ===Apache POI - Excel Manipulation===
@@ -39,6 +41,12 @@ _To restore_
   * geronimo-jpa_3.0_spec-1.1.1.jar
   * geronimo-jta_1.1_spec-1.1.1.jar
   * jdo2-api-2.3-ea.jar
+
+
+=== Other ===
+  * Note on Junit Libs (from http://www.junit.org) 
+  * Note on Servlet.jar from (from Tomcat) 
+
   
  = From Drools docs = 
  

@@ -1,6 +1,11 @@
 #labels Featuredtidy,Featured
 #sidebar SideBarDeveloper
 
+_TODO_ Tidy this page
+# Update with notes on how to checkout rulerunner
+# Update with ant build file
+# Update with deploy to GAE
+
 == Instructions for developers on how to start using Red-Piranha ==
 
   * [#Setup_the_environment Setup the environment]
@@ -39,10 +44,40 @@ Background Information on Subversion (SVN) source control, hosted at Google code
 If you're logged in with google,
 [http://code.google.com/p/red-piranha/source/checkout This page] will give you more detailled instructions on how to Checkout the code
 
+_TODO_ Details on checking out both projects
+
+  * red-applet project expects to paralell to red-piranha (i.e. both share same parent folder)
+    * both for classpath and deploy  
+
+
 == Building the code ==
 
   * For the moment right click on the Red Piranha project name, resolve the build errors, let Eclipse carry out an automated build.
   * _work in progress_ an ant build file
+  
+   
+=== Developer RulePlayer build ===
+_TODO_  
+  * Document both build file targets
+  * Document Main Targets that you'll actually use (and what they do)
+  * build.xml within the ruleplayer
+  ** RulePlayer ant build will build jar, copy into red-piranha/war
+
+  
+  * repackaging of dependicings
+  * security and signing jars using the jar-signer script 
+ 
+ ** test in eclipse - right click and 'run as applet'
+  
+  
+  
+=== Developer signing RulePlayer jars ===
+
+  * Explain Why - Webstart security (what is 
+  * Jarsigner - file in rp/scripts
+  * More info at http://java.sun.com/developer/Books/javaprogramming/JAR/sign/signing.html
+  * Command similar to {{{jarsigner -keystore ~/.keystore *.jar mykey}}} but make sure that you are in
+  red-piranha/war/ruleplayer/lib folder when you execute this.
 
 == Deploying to App Engine ==
 
@@ -52,6 +87,9 @@ If you're logged in with google,
   * _work in progress_ automated tools
 
 == Building your own rules ==
+
+This is for building your rules in the Dev environment. [PowerUserGettingStarted] details how most users will build the rules
+
   * _work in progress_  For the moment, you need to 
   # Write your rule (similar to [http://code.google.com/p/red-piranha/source/browse/trunk/war/sampleresources/ExcelDataRules/log-then-modify-rules.drl log-then-modify-rule.drl]
   # Add you new rule using [http://code.google.com/p/red-piranha/source/browse/trunk/src/net/firstpartners/drools/PreCompileRuleList.properties PreCompileRuleList.properties]

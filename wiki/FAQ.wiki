@@ -6,9 +6,12 @@
 = Frequently asked Questions=
 
 _(Still in progress)_
+_TODO_ Answer Questions
+
 
 === Questions to Answer ===
   * What's the problem with Excel?
+  * What are Google S
   * What is Drools?
   * What is a rule engine?
   * What's wrong with VBA?

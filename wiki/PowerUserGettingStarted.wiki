@@ -1,10 +1,52 @@
 #labels Featured
 #sidebar sidebar
-#Information on how Power Users can get started.
 
+
+Information on how Power Users can get started.
 
 Still a _work in progress_ - probably good to look at [RedPiranhaExamples] and start working through them
  start working through the examples. [DeveloperGettingStarted] is another useful start point.
+
+
+_TODO_ Tidy this page
+
+== Target User Experience ==
+
+  # Refer to User, running existing rules
+  # What if want to run your own
+  # Edit rules online - e.g. using Google Docs
+  # Running the RuleRunner - screenshot
+  ## Webstart Local, Webstart Dev, Local JNLP, Local Shell
+  ### Talk through background to each
+  ### Make sure have Java installed
+  ## Settings
+  ### Online Page - auto generate JNLP
+  ### Offline - setting rulerunner.properties
+  ### Offline - setting proxy
+  ## Download rules - entering password
+  ## Compile
+  ## Upload to Google Docs
+  ## Option to Deploy to GAE
+  ### See if user / otherwise deploy page  
+
+===  Power User Running Rule Runner Webstart-Dev-Full-Local/ Local Zip / Exe===
+  * The three jnlp files
+  * Running RuleRunner main build / local build (and the dependencies)
+  
+  URL
+  ** running local using Google App Engine
+  ** Url http://localhost:8888/ruleplayer/RulePlayer.jnlp
+  ** http://red-piranha.appspot.com/ruleplayer/RulePlayer.jnlp  
+  ** Local
+  ** Double click to run jar
+  
+  * [DroolsPowerUser] info on launching the ruleplayer at http://red-piranha.appspot.com/rulerunner/RuleRunner.jnlp
+  * download as zip (jnlp bat & sh)
+  * jnlp (*3) ,  exe
+  ** What if JNLP Fails
+  ** No Java fo rBat or Sh
+
+  
  
    
 _ Items to create in code and document here _

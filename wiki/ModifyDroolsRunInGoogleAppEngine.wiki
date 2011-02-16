@@ -1,4 +1,18 @@
 #sidebar SideBarDeveloper
+
+  * [#Modifications_to_Third_Party_Jars Modifications to Third Party Jars] 
+  * [#Modifications_to_allow_Drools_to_run_in_Google_App_Engine Modifications to allow Drools to run in Google App Engine] 
+
+= Modifications to Third Party Jars =
+
+The following Jars have signatures / manifest that interfere with the signing of RulePlayer.jar
+Versions that are checking in have the following changes made;
+
+_TODO_ Go through and doc libs missing
+
+  *
+  
+
 = Modifications to allow Drools to run in Google App Engine =
 
 By default Red Piranha comes with modified Drools libraries needed to run within Google app engine.

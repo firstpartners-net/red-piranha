@@ -1,6 +1,8 @@
 #labels Featured
 #sidebar sidebar
 
+_TODO_ Tidy this page
+
 Still a _work in progress_- probably good to look at [RedPiranhaExamples] and start working through them
  start working through the examples
  
@@ -11,5 +13,21 @@ Still a _work in progress_- probably good to look at [RedPiranhaExamples] and st
    * How to run the examples [RedPiranhaExamples]
    * How to run your own data in an examples
    * What's going on behind the scenes
+   
+   
+   
+# Add Link to Red Piranha 
+   (note if on different server, may have differet url   
+# Add screenshot
+# Talk through screenshot
+## Two 
+
+1) Document Sample working
+- links from sample back to wiki
+- screenshot and add to wiki
+- explain what sample does
+- explain what sample doesn't do
+- what's happening behind the scenes
+
    
    

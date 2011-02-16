@@ -1,10 +1,14 @@
 #Summary of the main folders in the project
 #sidebar SideBarDeveloper
 
+_TODO_ Match this against the updated project layout
+
 = Project Layout= 
 
 If you're [http://code.google.com/p/red-piranha/source/browse/#svn%2Ftrunk browsing the code] or
 have [DeveloperGettingStarted the code checked out] these are some useful start points.
+
+(add RulePlayer Layout)
 
 
 The project is intended to be used in the following ways, hence the project layout
@@ -19,8 +23,11 @@ The project is intended to be used in the following ways, hence the project layo
  * src/net/firstpartners/ui/Drools/PreCompileRuleBuilder - Main method rebuilds the packages as listed in PreCompileRuleBuilder.properties 
  * test/net/firstpartners/rp2/Drools/PreCompileRuleBuilderTest - Also rebuilds the packages
   
+== Project Layout ==
+  * Update wiki [ProjectLayout] with new structure
+  * add script folder
 
-== Main folders and useful files==
+== Red Piranha Main folders and useful files==
 
   * Root of project ; Scripts and project files
   * .classes

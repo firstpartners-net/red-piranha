@@ -27,21 +27,28 @@ the target to "sign"
 	<!-- Destination and other RP (main project) info -->
 	<property name="red-player-dest" value="../red-piranha/war/ruleplayer/" />
 	<property name="red-player-lib" value="${red-player-dest}/lib" />
+	
 	<property name="red-main-scripts" value="../red-piranha/scripts" />
 	<property name="red-main-lib" value="../red-piranha/war/WEB-INF/lib" />
 
 	<!-- Compilation options -->
 	<property name="compile.debug" value="true" />
-	<property name="compile.deprecation" value="false" />
+	<property name="compile.deprecation" value="false" /> 
 	<property name="compile.optimize" value="true" />
 
 	<!-- Compilation classpath -->
 	<path id="compile.classpath">
 
-		<fileset dir="${red-player-lib}">
+		<!-- Include the Red-Piranha dependencies when we compile -->
+		<fileset dir="${red-main-lib}">
 			<include name="**/*.jar" />
 		</fileset>
-
+		
+		<!-- Include the Red-Piranha Core when we compile the player-->
+		<fileset dir="${red-player-lib}">
+			<include name="red-piranha.jar" />
+		</fileset>
+		
 	</path>
 
 	<!-- Clean target -->

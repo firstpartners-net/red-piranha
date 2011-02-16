@@ -13,20 +13,22 @@ Note that if you want a signed applet, you will need to
 add properties pointing to the keystore, etc, and change
 the target to "sign"
 -->
-<project name="web-start" default="package_zip" basedir=".">
+<project name="web-start" default="jar-ruleplayer" basedir=".">
 
 
-	<property name="src.home" value="${basedir}/src-applet" />
-	<property name="build.home" value="${basedir}/build-applet" />
+	<property name="src.home" value="${basedir}/src-player" />
+	<property name="build.home" value="${basedir}/build-player" />
 	<property name="classes.home" value="${build.home}/classes" />
-	<property name="jar.name" value="red-player.jar" />
+
+	<!-- Jar and Zip names -->
+	<property name="player.jar.name" value="red-player.jar" />
+	<property name="player.zip.name" value="red-player.zip" />
 
 	<!-- Destination and other RP (main project) info -->
-	<property name="destination" value="../red-piranha/war" />
-	<property name="red-player-lib" value="../red-piranha/war/ruleplayer/lib" />
-	<property name="red-main" value="../red-piranha" />
-	<property name="red-main-lib" value="${red-main}/war/WEB-INF/lib" />
-	<property name="drools-repackaged" value="drools-combined.jar" />
+	<property name="red-player-dest" value="../red-piranha/war/ruleplayer/" />
+	<property name="red-player-lib" value="${red-player-dest}/lib" />
+	<property name="red-main-scripts" value="../red-piranha/scripts" />
+	<property name="red-main-lib" value="../red-piranha/war/WEB-INF/lib" />
 
 	<!-- Compilation options -->
 	<property name="compile.debug" value="true" />
@@ -44,14 +46,13 @@ the target to "sign"
 
 	<!-- Clean target -->
 	<target name="clean" description="Delete old build directories">
-		<delete file="${red-player-lib}/${jar.name}" />
+		<delete file="${red-player-lib}/${player.jar.name}" />
+		<delete file="${red-player-dest}/${player.zip.name}" />
 		<delete dir="${classes.home}" />
 	</target>
 
-
-
 	<!-- Ensure we are working against the very latest version of the main Red-Piranha project -->
-	<target name="build-red-piranha" description="Make sure we build the main Red Piranha project">
+	<target name="build-red-piranha" depends="clean" description="Make sure we build the main Red Piranha project">
 		<echo message="Call main Red_Piranha build file" />
 		<ant antfile="../red-piranha/build.xml" dir="../red-piranha/" target="jar" />
 		<echo message="Returned to Red Player build file" />
@@ -63,7 +64,7 @@ the target to "sign"
 		<mkdir dir="${build.home}" />
 		<mkdir dir="${classes.home}" />
 	</target>
-	
+
 	<!-- Compile target -->
 	<target name="compile" depends="prepare" description="Compile Java sources">
 		<!-- Compile Java classes as necessary -->
@@ -78,18 +79,20 @@ the target to "sign"
 
 	<!-- Jar target -->
 	<target name="jar-ruleplayer" depends="compile" description="Make the jar">
-		<jar jarfile="${red-player-lib}/${jar.name}" basedir="${classes.home}">
+		
+
+		<echo message ="Including Drools Dependencies from ${red-main-lib}"/>
+		
+		<jar jarfile="${red-player-lib}/${player.jar.name}" basedir="${classes.home}">
 
 			<!-- include the required libs -->
-			<zipfileset includes="**/*.class" src="${red-player-lib}/red-piranha.jar" />
-
-			<zipfileset includes="**/*.class" src="${red-main-lib}/drools-api-5.1.1.jar" />
-			<zipfileset includes="**/*.class" src="${red-main-lib}/drools-core-5.1.1.jar" />
-			<zipfileset includes="**/*.class" src="${red-main-lib}/drools-compiler-5.1.1.jar" />
-			<zipfileset includes="**/*.class" src="${red-main-lib}/mvel2-2.0.15.jar" />
-			<zipfileset includes="**/*.class" src="${red-main-lib}/core-3.4.2.v_883_R34x.jar" />
-			<zipfileset includes="**/*.class" src="${red-main-lib}/antlr-runtime-3.1.1.jar" />
-
+			<zipfileset includes="**/*.*" src="${red-player-lib}/red-piranha.jar" />
+			<zipfileset includes="**/*.*" src="${red-main-lib}/drools-api-5.1.1.jar"  />
+			<zipfileset includes="**/*.*" src="${red-main-lib}/drools-core-5.1.1.jar"  />
+			<zipfileset includes="**/*.*" src="${red-main-lib}/drools-compiler-5.1.1.jar"  />
+			<zipfileset includes="**/*.*" src="${red-main-lib}/mvel2-2.0.15.jar" />
+			<zipfileset includes="**/*.*" src="${red-main-lib}/core-3.4.2.v_883_R34x.jar"  />
+			<zipfileset includes="**/*.*" src="${red-main-lib}/antlr-runtime-3.1.1.jar" />
 
 			<!-- Manifest details - allows us to run from the command line -->
 			<manifest>
@@ -110,33 +113,32 @@ the target to "sign"
 		-->
 		<!-- Resign this file -->
 		<!-- Call script based on which OS you are running -->
-		<exec dir="${red-main}/scripts" executable="jar-sign.cmd" osfamily="Windows" />
-		<exec dir="${red-main}/scripts" executable="jar-sign.sh" osfamily="Unix" />
-		
+		<exec dir="${red-main-scripts}" executable="jar-sign.cmd" osfamily="Windows" />
+		<exec dir="${red-main-scripts}" executable="jar-sign.sh" osfamily="Unix" />
+
 	</target>
 
 
 	<!-- build the webstart into the jnlp package-->
 	<target name="package_webstart" depends="sign" description="package into Red-Piranha as a JNLP file" />
 
-	<!-- package up as an exe -->
-	<target name="package_exe" depends="jar-ruleplayer" description="">
-	</target>
 
 	<!-- Just zip it up for future download-->
-	<target name="package_zip" depends="sign" description="make a zip available for download">
+	<target name="package_zip" description="make a zip available for download">
 		
-		<zip destfile="./rule-player.zip">
-		    <fileset file="RulePlayer.bat"/>
-			<fileset file="RulePlayer.sh"/>
-			<fileset file="${red-player-lib}/${jar.name}"/>
-		  </zip>
+		<echo message="zipping files (signed or not) already in the download dir" />
+		
+		<zip destfile="${red-player-dest}/${player.zip.name}">
+			<fileset file="${red-player-lib}/RulePlayer.bat" />
+			<fileset file="${red-player-lib}/RulePlayer.sh" />
+			<fileset file="${red-player-lib}/RulePlayerLocal.jnlp" />
+			<fileset file="${red-player-lib}/${player.jar.name}" />
+		</zip>
 
-		
 	</target>
 
 	<!-- Package Webstart, Zip, and exe-->
-	<target name="package_all" depends="package_zip,package_exe,package_webstart" description="build all the deployment options" />
+	<target name="package_all" depends="package_zip,package_webstart" description="build all the deployment options" />
 
 
 </project>

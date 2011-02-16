@@ -12,7 +12,16 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/antlr-runtime-3.1.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/mvel2-2.0.15.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-compiler-5.1.1.jar"/>
-	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/paul/software/eclipse_3_5/plugins/com.google.gwt.eclipse.sdkbundle.2.0.0_2.0.0.v200912062003/gwt-2.0.0/gwt-user.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/paul/software/eclipse_3_5/plugins/com.google.gwt.eclipse.sdkbundle.2.0.0_2.0.0.v200912062003/gwt-2.0.0/doc/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/paul/software/eclipse_3_5/plugins/com.google.gwt.eclipse.sdkbundle.2.0.0_2.0.0.v200912062003/gwt-2.0.0/gwt-dev.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/paul/software/eclipse_3_5/plugins/com.google.gwt.eclipse.sdkbundle.2.0.0_2.0.0.v200912062003/gwt-2.0.0/doc/javadoc/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-decisiontables-5.1.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-templates-5.1.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>

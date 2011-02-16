@@ -21,7 +21,7 @@
 	<property name="src.dir" value="src" />
 	<property name="build.dir" value="build" />
 	<property name="docs.dir" value="docs" />
-	<property name="distrib.dir" value="war/rulerunner/lib" />
+	<property name="distrib.dir" value="war/ruleplayer/lib" />
 	<property name="testsrc.dir" value="test" />
 	<property name="testbuild.dir" value="testbuild" />
 	<property name="testreports.dir" value="junit-test-reports" />

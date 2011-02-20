@@ -1,7 +1,9 @@
 #Summary of the main folders in the project
 #sidebar SideBarDeveloper
 
-_TODO_ Match this against the updated project layout
+_TODO Match this against the updated project layout_
+_TODO Insert Screenshot_
+
 
 = Project Layout= 
 
@@ -45,6 +47,15 @@ The project is intended to be used in the following ways, hence the project layo
   * war - Compiled code, setup for deployment as a Web archive (war file). This folder also con
   ** rpproto2 - GWT compiled code for deployment on the front end
   ** WEB-INF
+
+
+
+
+
+
+
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
   
 
   

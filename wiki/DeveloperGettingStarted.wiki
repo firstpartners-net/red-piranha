@@ -7,6 +7,11 @@ You've already checked out the [RedPiranhaExamples Online Examples] . And you've
 
 But what if there is something that Red-Piranha doesn't yet do, a feature you want to add? This page shows you how to get started.
 
+There are two parts to the Red-Piranha Project
+  * Red Piranha - the core project, deployable to Google App Engine (GAE) that takes excel spreadsheets and runs pre-compiled rules against them. While this is a command line and other interace, mostly this project runs on the web.
+  * Rule Player - A GUI used by Power Users (see [PowerUserGettingStarted] in order to compile the rules for running in GAE. This runs (via Java Webstart, or local Java) on the Users PC (Windows, Mac, Linux or other). This local compile is needed as Google currently do not whitelist some of the code Drools needs to compile. Once compiled, the rule package is loaded into Google App Engine where normal users to can use them.
+
+
 == Instructions for developers on how to start using Red-Piranha ==
 
   * [#Setup_the_environment Setup the environment]
@@ -35,7 +40,7 @@ Other useful pages
 
 == Checking out the code ==
 
-Background Information on Subversion (SVN) source control, hosted at Google code
+The source code for Red Piranha is hosted by Google using Subversion. Background Information on Subversion (SVN) source control, hosted at Google code can be found at:
   * Google FAQ on using Subversion; http://code.google.com/p/support/wiki/SubversionFAQ
   * [http://internetducttape.com/2007/0/03/howto_google_code_hosting_subversion_tortoisesvn/ This post] is a good description of how to checkout the Google code. 
   * Browse the source at [http://code.google.com/p/red-piranha/source/checkout source]. 
@@ -43,9 +48,6 @@ Background Information on Subversion (SVN) source control, hosted at Google code
 If you're logged in with google,
 [http://code.google.com/p/red-piranha/source/checkout This page] will give you more detailed instructions on how to Checkout the code
 
-There are two parts to the Red-Piranha Project
-  * Red Piranha - the core project, deployable to Google App Engine (GAE) that takes excel spreadsheets and runs pre-compiled rules against them. While this is a command line and other interace, mostly this project runs on the web.
-  * Rule Player - A GUI used by Power Users (see [PowerUserGettingStarted] in order to compile the rules for running in GAE. This runs (via Java Webstart, or local Java) on the Users PC (Windows, Mac, Linux or other). This local compile is needed as Google currently do not whitelist some of the code Drools needs to compile. Once compiled, the rule package is loaded into Google App Engine where normal users to can use them.
 
 When checking out the two projects, they should end up in two parallel folders i.e.
   * 'parent_dir'/red-piranha
@@ -61,16 +63,16 @@ Take care, as the structure in subversion differs slightly from the way the shou
 
 == Building the code ==
 
-Personally, I use Eclipse to edit and build the code (hence the reason why 
-
-
-However, [http://ant.apache.org/ Ant build] files are provided so that the project can build from the terminal or command line, and the project files modified using your favourite editor.
+[http://ant.apache.org/ Ant build] files are provided so that the project can build from the terminal or command line, and the project files modified using your favourite editor.
 
 
 
 _TODO_ blurb on the options Eclipse to test, Eclipse to build & deploy GAE, Ant build x2, Ant deploy GAE
 
 === How to run in Eclipse ===  
+
+
+Personally, I use Eclipse to edit and build the code (hence the reason why Eclipse build files are 
 
 If you don't yet have Eclipse to edit the Java Code that Red-Piranha is built in, you can download it from [http://www.eclipse.org Eclipse.org]
 

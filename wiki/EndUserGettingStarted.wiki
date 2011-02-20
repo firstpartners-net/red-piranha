@@ -1,11 +1,12 @@
 #labels Featured
 #sidebar sidebar
 
-_TODO_ Tidy this page
+_TODO Tidy this page_
+
+|| <img src="http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png"/> || You've already checked out the [RedPiranhaExamples Online Examples] . But how do you try out those examples with your own information. This page shows you how.||
 
 
-You've already checked out the [RedPiranhaExamples Online Examples] . But how do you try out those examples
-with your own informaiton. This page shows you how.
+== Notes to get Started ==
 
 - go to this page (get URL)
   - This page may be different if somebody else is looking after your server

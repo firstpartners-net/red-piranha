@@ -22,7 +22,7 @@ There are two parts to the Red-Piranha Project
   * [#Extending_Red_Piranha Extending Red Piranha]
   * [#Red_Piranha_for_Drools_Developers Red Piranha for Drools Developers]
 
-Other useful pages
+=== Other useful pages ===
 
   * [ProjectLayout]
   * [LibrariesUsed] 

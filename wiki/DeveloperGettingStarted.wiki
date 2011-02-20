@@ -46,26 +46,30 @@ If you're logged in with google,
 
 There are two parts to the Red-Piranha Project
   * Red Piranha - the core project, deployable to Google App Engine (GAE) that takes excel spreadsheets and runs pre-compiled rules against them. While this is a command line and other interace, mostly this project runs on the web.
-  * RulePlayer - A GUI used by Power Users (see [PowerUserGettingStarted] in order to compile the rules for running in GAE. This runs (via Java Webstart, or local Java) on the Users PC (Windows, Mac, Linux or other). This is needed as Google currently do not allow some of the Code Drools needs to compile. Once compiled, the rule package is loaded into Google App Engine where normal users to can use tehm.
+  * RulePlayer - A GUI used by Power Users (see [PowerUserGettingStarted] in order to compile the rules for running in GAE. This runs (via Java Webstart, or local Java) on the Users PC (Windows, Mac, Linux or other). This is needed as Google currently do not whitelist some of the code Drools needs to compile. Once compiled, the rule package is loaded into Google App Engine where normal users to can use them.
 
-When checking out the two projects, they should end up in two paralel folders i.e.
+When checking out the two projects, they should end up in two parallel folders i.e.
   * 'parent_dir'/red-piranha
   * 'parent_dir'/rule-player
 
-This is because the rule-player build depends on some items from the 'core' red-piranha project (e.g. Drools Libraries, the Core Red Piranha code) and puts the result (e.g. the Jar with JNLP files) in the 
+This is because the rule-player build depends on some items from the 'core' red-piranha project (e.g. Drools Libraries, the Core Red Piranha code) and puts the result (e.g. the Jar with JNLP files) back into the Red-Piranha project. Once deployed to the App Engine, Users / PowerUsers can download and run the RulePlayer as part of the deployed project. 
 
-_TODO_ Details on checking out both projects
+Source folders for both projects are:
+  * red-piranha - checkout from http://code.google.com/p/red-piranha/source/browse/#svn%2Ftrunk
+  * rule-player - checkout from http://code.google.com/p/red-piranha/source/browse/#svn%2Fred-player
 
-  * red-applet project expects to paralell to red-piranha (i.e. both share same parent folder)
-    * both for classpath and deploy  
-
+Take care, as the structure in subversion differs slightly from the way the should be on your local disk after check out (see previous paragraph).
 
 == Building the code ==
+
+
 
 
 _TODO_ blurb on the options Eclipse to test, Eclipse to build & deploy GAE, Ant build x2, Ant deploy GAE
 
 === How to run in Eclipse ===  
+
+If you don't yet have Eclipse to edit the Java Code that Red-Piranha is built in, you can download it from [http://www.eclipse.org Eclipse.org]
 
   * For the moment right click on the Red Piranha project name, resolve the build errors, let Eclipse carry out an automated build.
   * _work in progress_ an ant build file
@@ -95,6 +99,11 @@ _TODO_
   * More info at http://java.sun.com/developer/Books/javaprogramming/JAR/sign/signing.html
   * Command similar to {{{jarsigner -keystore ~/.keystore *.jar mykey}}} but make sure that you are in
   red-piranha/war/ruleplayer/lib folder when you execute this.
+
+
+=== Developer Core Red Piranha build ===
+
+
 
 == Deploying to App Engine ==
 

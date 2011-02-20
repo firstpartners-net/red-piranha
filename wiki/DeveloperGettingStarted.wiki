@@ -2,9 +2,14 @@
 #sidebar SideBarDeveloper
 
 _TODO_ Tidy this page
-# Update with notes on how to checkout rulerunner
-# Update with ant build file
-# Update with deploy to GAE
+
+
+You've already checked out the [RedPiranhaExamples Online Examples] . And you've looked at the
+ [EndUserGettingStarted] and [PowerUserGettingStarted] to see how to add your own information and new
+ rules to these samples. 
+
+But what if there is something that Red-Piranha doesn't yet do, a feature you want to add? This page
+shows you how to get started.
 
 == Instructions for developers on how to start using Red-Piranha ==
 
@@ -52,9 +57,17 @@ _TODO_ Details on checking out both projects
 
 == Building the code ==
 
+
+_TODO_ blurb on the options Eclipse to test, Eclipse to build & deploy GAE, Ant build x2, Ant deploy GAE
+
+=== How to run in Eclipse ===  
+
   * For the moment right click on the Red Piranha project name, resolve the build errors, let Eclipse carry out an automated build.
   * _work in progress_ an ant build file
-  
+  * RulePlayer Console
+  * Red Piranha Junit Tests (see [ProjectLayout])
+  * Red Piaranha Main methods (See [ProjectLayout]
+    
    
 === Developer RulePlayer build ===
 _TODO_  
@@ -68,7 +81,6 @@ _TODO_
   * security and signing jars using the jar-signer script 
  
  ** test in eclipse - right click and 'run as applet'
-  
   
   
 === Developer signing RulePlayer jars ===

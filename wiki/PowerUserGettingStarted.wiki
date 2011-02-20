@@ -1,11 +1,11 @@
 #labels Featured
 #sidebar sidebar
 
-
 Information on how Power Users can get started.
 
-Still a _work in progress_ - probably good to look at [RedPiranhaExamples] and start working through them
- start working through the examples. [DeveloperGettingStarted] is another useful start point.
+You've already checked out the [RedPiranhaExamples Online Examples] . And you've looked at the
+ [EndUserGettingStarted] to see how you can put your own information into these examples. But
+what if you want to write your own business rules? This page shows you how.
 
 
 _TODO_ Tidy this page
@@ -55,3 +55,5 @@ _ Items to create in code and document here _
   * How to host this in (Examples)
   * How to host this in your own Server
   * What can you do with it ...
+  
+  [DeveloperGettingStarted] is another useful start point.

@@ -3,9 +3,40 @@
 
 _TODO_ Tidy this page
 
-Still a _work in progress_- probably good to look at [RedPiranhaExamples] and start working through them
- start working through the examples
- 
+
+You've already checked out the [RedPiranhaExamples Online Examples] . But how do you try out those examples
+with your own informaiton. This page shows you how.
+
+- go to this page (get URL)
+  - This page may be different if somebody else is looking after your server
+
+- Screenshot _TODO_
+
+- Select the examples you want to run from the drop down
+
+	- Three pieces
+		- Format of data is always excel
+		- source data; Excel spreadsheet hosted online. Currently these docs are all hardcoded, but soon giving you the chance to use another 
+		 loaction. You can view this source yourself by
+		 
+		 _TODO_ (Screenshot of this information) e.g. Blank Excel page
+		 
+		- Location of Rules; a package of rules that somebody else has already build [PowerUserGettingStarted] if you want to do this yourself 
+
+	- Choose and press button 
+	
+	- What you should see
+		- Spreadsheet downloads. Results will differ for each of the [RedPiranhaExamples] but in this s
+		 _TODO_ (Screenshot of this information) e.g. Excel Page with 
+		
+	
+	- What happens
+		- red piranha uploads the excel file to the server
+		- red piranha applies the [BusinessRules Business Rules] to it
+		- Red piranha shows you the result
+	   
+
+
  
  _Things to add when coded_
  
@@ -15,19 +46,6 @@ Still a _work in progress_- probably good to look at [RedPiranhaExamples] and st
    * What's going on behind the scenes
    
    
-   
-# Add Link to Red Piranha 
-   (note if on different server, may have differet url   
-# Add screenshot
-# Talk through screenshot
-## Two 
-
-1) Document Sample working
-- links from sample back to wiki
-- screenshot and add to wiki
-- explain what sample does
-- explain what sample doesn't do
-- what's happening behind the scenes
-
+[PowerUserGettingStarted] is a good next step
    
    

@@ -1,12 +1,11 @@
-#sidebar sidebar
-#labels Featured
 #labels tidy
+#sidebar sidebar
 
 
 = Frequently asked Questions=
 
 _(Still in progress)_
-_TODO_ Answer Questions
+_TODO Answer Questions_
 
 
 === Questions to Answer ===
@@ -23,3 +22,11 @@ _TODO_ Answer Questions
   * Can I set it up myself?
   
   
+
+
+
+
+
+
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

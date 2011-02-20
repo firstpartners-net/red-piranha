@@ -4,12 +4,9 @@
 _TODO_ Tidy this page
 
 
-You've already checked out the [RedPiranhaExamples Online Examples] . And you've looked at the
- [EndUserGettingStarted] and [PowerUserGettingStarted] to see how to add your own information and new
- rules to these samples. 
+You've already checked out the [RedPiranhaExamples Online Examples] . And you've looked at the  [EndUserGettingStarted] and [PowerUserGettingStarted] to see how to add your own information and new rules to these samples. 
 
-But what if there is something that Red-Piranha doesn't yet do, a feature you want to add? This page
-shows you how to get started.
+But what if there is something that Red-Piranha doesn't yet do, a feature you want to add? This page shows you how to get started.
 
 == Instructions for developers on how to start using Red-Piranha ==
 
@@ -37,8 +34,6 @@ Other useful pages
   # Get the [http://code.google.com/eclipse/docs/download.htmlGoogle App Engine Plugin for Eclipse] 
   # Get the [http://www.jboss.org/drools/downloads.html Drools Eclipse Plugin]
 
-
-
 == Checking out the code ==
 
 Background Information on Subversion (SVN) source control, hosted at Google code
@@ -47,7 +42,17 @@ Background Information on Subversion (SVN) source control, hosted at Google code
   * Browse the source at [http://code.google.com/p/red-piranha/source/checkout source]. 
 
 If you're logged in with google,
-[http://code.google.com/p/red-piranha/source/checkout This page] will give you more detailled instructions on how to Checkout the code
+[http://code.google.com/p/red-piranha/source/checkout This page] will give you more detailed instructions on how to Checkout the code
+
+There are two parts to the Red-Piranha Project
+  * Red Piranha - the core project, deployable to Google App Engine (GAE) that takes excel spreadsheets and runs pre-compiled rules against them. While this is a command line and other interace, mostly this project runs on the web.
+  * RulePlayer - A GUI used by Power Users (see [PowerUserGettingStarted] in order to compile the rules for running in GAE. This runs (via Java Webstart, or local Java) on the Users PC (Windows, Mac, Linux or other). This is needed as Google currently do not allow some of the Code Drools needs to compile. Once compiled, the rule package is loaded into Google App Engine where normal users to can use tehm.
+
+When checking out the two projects, they should end up in two paralel folders i.e.
+  * 'parent_dir'/red-piranha
+  * 'parent_dir'/rule-player
+
+This is because the rule-player build depends on some items from the 'core' red-piranha project (e.g. Drools Libraries, the Core Red Piranha code) and puts the result (e.g. the Jar with JNLP files) in the 
 
 _TODO_ Details on checking out both projects
 

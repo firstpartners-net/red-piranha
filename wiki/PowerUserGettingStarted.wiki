@@ -6,6 +6,7 @@ Information on how Power Users can get started.
 You've already checked out the [RedPiranhaExamples Online Examples] . And you've looked at the [EndUserGettingStarted] to see how you can put your own information into these examples. But what if you want to write your own business rules? This page shows you how.
 
 _TODO put in Table of Contents of Level 2 Headings_
+<br/>
 _TODO_ Tidy this page_
 
 

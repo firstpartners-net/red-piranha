@@ -1,8 +1,7 @@
 #labels Featuredtidy,Featured
 #sidebar SideBarDeveloper
 
-_TODO_ Tidy this page
-
+_TODO Tidy this page_
 
 You've already checked out the [RedPiranhaExamples Online Examples] . And you've looked at the  [EndUserGettingStarted] and [PowerUserGettingStarted] to see how to add your own information and new rules to these samples. 
 
@@ -46,13 +45,13 @@ If you're logged in with google,
 
 There are two parts to the Red-Piranha Project
   * Red Piranha - the core project, deployable to Google App Engine (GAE) that takes excel spreadsheets and runs pre-compiled rules against them. While this is a command line and other interace, mostly this project runs on the web.
-  * RulePlayer - A GUI used by Power Users (see [PowerUserGettingStarted] in order to compile the rules for running in GAE. This runs (via Java Webstart, or local Java) on the Users PC (Windows, Mac, Linux or other). This is needed as Google currently do not whitelist some of the code Drools needs to compile. Once compiled, the rule package is loaded into Google App Engine where normal users to can use them.
+  * Rule Player - A GUI used by Power Users (see [PowerUserGettingStarted] in order to compile the rules for running in GAE. This runs (via Java Webstart, or local Java) on the Users PC (Windows, Mac, Linux or other). This local compile is needed as Google currently do not whitelist some of the code Drools needs to compile. Once compiled, the rule package is loaded into Google App Engine where normal users to can use them.
 
 When checking out the two projects, they should end up in two parallel folders i.e.
   * 'parent_dir'/red-piranha
   * 'parent_dir'/rule-player
 
-This is because the rule-player build depends on some items from the 'core' red-piranha project (e.g. Drools Libraries, the Core Red Piranha code) and puts the result (e.g. the Jar with JNLP files) back into the Red-Piranha project. Once deployed to the App Engine, Users / PowerUsers can download and run the RulePlayer as part of the deployed project. 
+This is because the rule-player build depends on some items from the 'core' red-piranha project (e.g. Drools Libraries, the Core Red Piranha code) and puts the result (e.g. the Jar with JNLP files) back into the Red-Piranha project. Once deployed to the App Engine, Power Users can download and run the completed Rule Player as part of the deployed project. 
 
 Source folders for both projects are:
   * red-piranha - checkout from http://code.google.com/p/red-piranha/source/browse/#svn%2Ftrunk
@@ -62,6 +61,10 @@ Take care, as the structure in subversion differs slightly from the way the shou
 
 == Building the code ==
 
+Personally, I use Eclipse to edit and build the code (hence the reason why 
+
+
+However, [http://ant.apache.org/ Ant build] files are provided so that the project can build from the terminal or command line, and the project files modified using your favourite editor.
 
 
 

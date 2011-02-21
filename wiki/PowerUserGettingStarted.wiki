@@ -6,10 +6,6 @@ Information on how Power Users can get started.
 || <img src="http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png"/> || You've already checked out the [RedPiranhaExamples Online Examples] . And you've looked at the [EndUserGettingStarted User Getting Started] to see how you can put your own information into these examples. But what if you want to write your own business rules? This page shows you how.||
 
 
-_TODO Tie this doc to the community_
-  * How do I get help 
-  * Where do I find more examples?
-  * Where can I show off my example?
 
 _TODO put in Table of Contents of Level 2 Headings_
 <br/>
@@ -100,8 +96,10 @@ _TODO Complete Section_
 
 === Errors when running the Rule Player ===
 
-  * Refer to 
-  * Errors getting started
+  * Refer to [FAQ]
+  * Errors getting started (Java, download etc)
+  * Errors in compiling rules
+  * Errors in uploading
 
 
 
@@ -118,6 +116,16 @@ _TODO Complete Section_
 
   * Link to [RedPiranhaExamples] & Community pages
   * [DeveloperGettingStarted] provides additional information, at a more technical level.
+
+== Sharing and teh community
+_TODO Tie this doc to the community_
+  * How do I get help 
+  * Where do I find more examples?
+  * Where can I show off my example?
+  * Auto submit of successful deploys
+  * why your email is added to email list (and how to remove?)
+  * Gallery
+
 
 
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

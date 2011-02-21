@@ -25,9 +25,9 @@ There are two parts to the Red-Piranha Project
 
 === Other useful pages ===
 
-  * [ProjectLayout]
-  * [LibrariesUsed] 
-  * [RoadMap]
+  * [ProjectLayout] - How the project is organised, important files, places to start reading the code.
+  * [LibrariesUsed] - Libraries that Red Piranha uses, and thanks to the projects that we've built on.
+  * [RoadMap] - When Red Piranha is going , and how you can help.
   * [RedPiranhaExamples Running the Examples]
   
   

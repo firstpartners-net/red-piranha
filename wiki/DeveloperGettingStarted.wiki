@@ -131,7 +131,7 @@ This is for building your rules in the Eclipse Development environment. [PowerUs
   # Modify the [http://code.google.com/p/red-piranha/source/browse/trunk/war/service.jsp Service.jsp] to include the option of selecting your newly created knowledgebase.
   # Deploy to Google App Engine and enjoy!
 
-== More Options on running the Rule Player ==
+=== More Options on running the Rule Player ===
 
 _TODO Complete Section_
   * Refer to online in [PowerUserGettingStarted]

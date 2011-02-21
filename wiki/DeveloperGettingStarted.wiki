@@ -1,4 +1,4 @@
-#labels Featuredtidy,Featured
+#labels tidy,Featured
 #sidebar SideBarDeveloper
 
 _TODO Tidy this page_
@@ -19,6 +19,7 @@ There are two parts to the Red-Piranha Project
   * [#Building_the_code Building the code] 
   * [#Deploying_to_App_Engine Deploying to App Engine]
   * [#Building_your_own_rules Building your own rules]
+  * [#More_Options_on_running_the_Rule_Player More Options on running the Rule Player]
   * [#Extending_Red_Piranha Extending Red Piranha]
   * [#Red_Piranha_for_Drools_Developers Red Piranha for Drools Developers]
 
@@ -108,7 +109,7 @@ _TODO_
 
 === Developer Core Red Piranha build ===
 
-_TODO - spec this_
+_TODO -Complete this section _
 
 == Deploying to App Engine ==
 
@@ -130,9 +131,22 @@ This is for building your rules in the Eclipse Development environment. [PowerUs
   # Modify the [http://code.google.com/p/red-piranha/source/browse/trunk/war/service.jsp Service.jsp] to include the option of selecting your newly created knowledgebase.
   # Deploy to Google App Engine and enjoy!
 
+== More Options on running the Rule Player ==
+
+_TODO Complete Section_
+  * Refer to online in [PowerUserGettingStarted]
+  * But some more options 
+       ** Url http://localhost:8888/ruleplayer/RulePlayer.jnlp
+       ** Running through Eclipse
+
+
+
+
 == Extending Red Piranha ==
 
-_work in progress_ for the moment you'll have to explore the code!
+_TODO Complete Section_
+
+for the moment you'll have to explore the code!
 
 *[http://code.google.com/p/red-piranha/source/browse/trunk/src/net/firstpartners/drools/PreCompileRuleBuilder.java Link to Builder]* The code that builds the pre-compiled rule packages. Start with the main[] method.
 

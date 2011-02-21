@@ -22,7 +22,7 @@ _TODO - Table of Contents about the section below_
 == How does it work ==
 _TODO Complete Section_
 
-We're not going to actually Run any rules using Ruleplayer (see [EndUserGettingStarted End User Getting Started for that]. What this page shows you how to do is; 
+We're not going to actually Run any rules using Ruleplayer (see [EndUserGettingStarted End User Getting Started for that]). What this page shows you how to do is; 
 
   # What you'll need before you get started
   # Write your rules somewhere

@@ -13,17 +13,42 @@ _TODO_ Tidy this page_
 
 There are two ways of interacting with Red-Piranha to the Red-Piranha Project
   * Red Piranha - the Web Interface for applying rules to your speadsheet. You saw this in the [RedPiranhaExamples Online Examples], and used it as part of the [EndUserGettingStarted]. These samples allow you to change the information in the spreadsheets, but not the rules that run in them.
-  * Rule Player; If you want to build your own rules, you'll need the RulePlayer. The Rule Player is downloaded from the web, but uses the power of your local machine. After it packages the rules, it uploads the finished package to the web, where we can share it with other users via Red Piranha.
+  * Rule Player; If you want to build your own rules, you'll need the Rule Player. The Rule Player is downloaded from the web, but uses the power of your local machine. After it packages the rules, it uploads the finished package to the web, where we can share it with other users via Red Piranha.
 
-(Actually, there is a third way if you're a [DeveloperGettingStarted] developer, but we'll leave that more detailld explanation for later)
+(Actually, there is a third way if you're a [DeveloperGettingStarted] developer, but we'll leave that more detailled explanation for later)
+
+_TODO - Table of Contents about the section below)
+
+== How does it work ==
+_TODO Complete Section ==
+
+We're not going to actually Run any rules using Ruleplayer (see [EndUserGettingStarted End User Getting Started for that]. What this page shows you how to do is; 
+
+  # What you'll need before you get started
+  # Write your rules somewhere
+  # Getting the RulePlayer
+  # Start the RulePlayer to check and package these rules
+  # (Optional) Create a new space on Google App Engine to run Red-Piranha
+  # Share your rules online so that you and other people can run them.
 
 
-== Target User Experience ==
 
-  # Refer to User, running existing rules
-  # What if want to run your own
-  # Edit rules online - e.g. using Google Docs
-  # Running the RuleRunner - screenshot
+== What you'll need ==
+
+|| Google Docs Account ||_TODO Complete Section_ ||
+|| Google App Engine Account ||_TODO Complete Section_ ||
+
+
+== Writing your own Rules ==
+_TODO Complete Section_
+
+ # Edit rules online - e.g. using Google Docs
+ 
+
+== Getting the Rule Player ==
+_TODO Complete Section_
+
+ # Running the RuleRunner - screenshot
   ## Webstart Local, Webstart Dev, Local JNLP, Local Shell
   ### Talk through background to each
   ### Make sure have Java installed
@@ -31,19 +56,16 @@ There are two ways of interacting with Red-Piranha to the Red-Piranha Project
   ### Online Page - auto generate JNLP
   ### Offline - setting rulerunner.properties
   ### Offline - setting proxy
-  ## Download rules - entering password
-  ## Compile
-  ## Upload to Google Docs
-  ## Option to Deploy to GAE
-  ### See if user / otherwise deploy page  
+ 
+=== Other options ===
+_TODO Complete Section_
 
-===  Power User Running Rule Runner Webstart-Dev-Full-Local/ Local Zip / Exe===
+Power User Running Rule Runner Webstart-Dev-Full-Local/ Local Zip / Exe
   * The three jnlp files
   * Running RuleRunner main build / local build (and the dependencies)
   
   URL
   ** running local using Google App Engine
-  ** Url http://localhost:8888/ruleplayer/RulePlayer.jnlp
   ** http://red-piranha.appspot.com/ruleplayer/RulePlayer.jnlp  
   ** Local
   ** Double click to run jar
@@ -54,15 +76,30 @@ There are two ways of interacting with Red-Piranha to the Red-Piranha Project
   ** What if JNLP Fails
   ** No Java fo rBat or Sh
 
+== Running the Rule Player ==
+_TODO Complete Section_
+
+  # Screenshot; Should start automatically
+  # Run again if press the big green button
+
+== Deploying to Google App Engine ==
+_TODO Complete Section_
+
+  * Existing Deployment - if you have access rights
+  * (Optional) New Deployment of RP on exisitng App Engine
+  * Doc how to get Google App engine, what it is etc.
+
+
+== Using your New Rules ==
+_TODO Complete Section_
+
+  * By default rules are shared (explain how)
+  * Link to rules directory
   
- 
-   
-_ Items to create in code and document here _
-  * How to get the RulePlayer
-  * What the RulePlayer Needs (Excel Sheet, Rule, Output)
-  * How to host this in (Examples)
-  * How to host this in your own Server
-  * What can you do with it ...
-  
-  [DeveloperGettingStarted] is another useful start point.
+== Now What can I do with this ==
+
+  * Link to [RedPiranhaExamples] & Community pages
+  * [DeveloperGettingStarted] provides additional information, at a more technical level.
+
+
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

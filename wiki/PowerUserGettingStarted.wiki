@@ -5,6 +5,12 @@ Information on how Power Users can get started.
 
 || <img src="http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png"/> || You've already checked out the [RedPiranhaExamples Online Examples] . And you've looked at the [EndUserGettingStarted User Getting Started] to see how you can put your own information into these examples. But what if you want to write your own business rules? This page shows you how.||
 
+
+_TODO Tie this doc to the community_
+  * How do I get help 
+  * Where do I find more examples?
+  * Where can I show off my example?
+
 _TODO put in Table of Contents of Level 2 Headings_
 <br/>
 _TODO_ Tidy this page_
@@ -45,6 +51,7 @@ _TODO Complete Section_
  # Edit rules online - e.g. using Google Docs
  # Must be publically available
  # Helps if links to red-piranha project
+ # Suggest copy existing template
 
 == Getting the Rule Player ==
 _TODO Complete Section_
@@ -91,14 +98,23 @@ _TODO Complete Section_
   * (Optional) New Deployment of RP on exisitng App Engine
   * Doc how to get Google App engine, what it is etc.
 
+=== Errors when running the Rule Player ===
+
+  * Refer to 
+  * Errors getting started
+
+
 
 == Using your New Rules ==
 _TODO Complete Section_
 
   * By default rules are shared (explain how)
   * Link to rules directory
+  * Highlight differences in running rules from [EndUserGettingStarted]
   
 == Now What can I do with this ==
+
+_TODO Complete Section_
 
   * Link to [RedPiranhaExamples] & Community pages
   * [DeveloperGettingStarted] provides additional information, at a more technical level.

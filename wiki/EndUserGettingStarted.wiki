@@ -6,48 +6,76 @@ _TODO Tidy this page_
 || <img src="http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png"/> || You've already checked out the [RedPiranhaExamples Online Examples] . But how do you try out those examples with your own information? This page shows you how.||
 
 
-== Notes to get Started ==
+_TODO Complete Section _
+Reminder of why people want to use this - specific examples
 
-- go to this page (get URL)
-  - This page may be different if somebody else is looking after your server
+== How does it work ==
 
-- Screenshot _TODO_
+_TODO Complete Section_
 
-- Select the examples you want to run from the drop down
+When you're finished this section, you should be able to 
 
-	- Three pieces
-		- Format of data is always excel
-		- source data; Excel spreadsheet hosted online. Currently these docs are all hardcoded, but soon giving you the chance to use another 
-		 loaction. You can view this source yourself by
-		 
-		 _TODO_ (Screenshot of this information) e.g. Blank Excel page
-		 
-		- Location of Rules; a package of rules that somebody else has already build [PowerUserGettingStarted] if you want to do this yourself 
+  # Tell Red Piranha where the Spreadsheet is, containing all your information, numbers and other data.
+  # Tell Red Piranha where the [BusinessRules Business Rules] are that you want to apply to this spreadsheet.
+  # Run the Rules
+  # View the Result
 
-	- Choose and press button 
-	
-	- What you should see
-		- Spreadsheet downloads. Results will differ for each of the [RedPiranhaExamples] but in this s
-		 _TODO_ (Screenshot of this information) e.g. Excel Page with 
-		
-	
-	- What happens
-		- red piranha uploads the excel file to the server
-		- red piranha applies the [BusinessRules Business Rules] to it
-		- Red piranha shows you the result
-	   
+_ TODO Diagram ; Excel File + Rules = Output_
 
 
- 
- _Things to add when coded_
- 
-   * [EndUserGettingStarted]
-   * How to run the examples [RedPiranhaExamples]
-   * How to run your own data in an examples
-   * What's going on behind the scenes
-   
-   
-[PowerUserGettingStarted] is a good next step
+== What you'll need ==
+
+|| Google Docs Account ||_TODO Complete Section_ ||
+|| Pointer to Red-Piranha on the Web ||_TODO Complete Section_ If you don't already have one, you can use ours ... ||
+
+== Remind me how this is different ==
+
+_TODO complete Section_
+
+  * From Excel Formula
+  * From Excel Macros
+  * From Same in Google Spreadsheets
+  * Shameless plug as to security and other features from home page
+
+
+== Step by Step Guide ==
+
+_TODO complete Section_
+
+
+  # Create your spreadsheet
+    * Google Docs
+    * Excel
+    * Screenshot of example _TODO shot of blank page_
+  # Open The Page
+    * Give URL 
+    * _TODO Screenshot_
+    * Select the spreadsheet you want to run
+    * Select the rules you want to run
+       * Location of Rules; a package of rules that somebody else has already built [PowerUserGettingStarted] if you want to do this yourself. Make reference to the samples that come with this. 
+
+  # Hit the Go Button
+  # View the Result
+    * Screenshot of example
+
+
+== What just happened ==
+
+_TODO complete Section_
+  
+  * Link to section in [BusinessRules] for more detailled theory
+  * Very lightweith run through,
+  
+
+
+== What do I do next ==
+
+
+_TODO complete Section_
+
+
+  * Suggestions on how to play with the data
+  * Suggestions on how to write your own business rules - [PowerUserGettingStarted] is a good next step as it shows 
    
    
 

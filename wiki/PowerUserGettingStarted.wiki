@@ -20,14 +20,14 @@ There are two ways of interacting with Red-Piranha to the Red-Piranha Project
 _TODO - Table of Contents about the section below)
 
 == How does it work ==
-_TODO Complete Section ==
+_TODO Complete Section_
 
 We're not going to actually Run any rules using Ruleplayer (see [EndUserGettingStarted End User Getting Started for that]. What this page shows you how to do is; 
 
   # What you'll need before you get started
   # Write your rules somewhere
-  # Getting the RulePlayer
-  # Start the RulePlayer to check and package these rules
+  # Getting the Rule Player
+  # Start the Rule Player to check and package these rules
   # (Optional) Create a new space on Google App Engine to run Red-Piranha
   # Share your rules online so that you and other people can run them.
 
@@ -43,7 +43,8 @@ We're not going to actually Run any rules using Ruleplayer (see [EndUserGettingS
 _TODO Complete Section_
 
  # Edit rules online - e.g. using Google Docs
- 
+ # Must be publically available
+ # Helps if links to red-piranha project
 
 == Getting the Rule Player ==
 _TODO Complete Section_

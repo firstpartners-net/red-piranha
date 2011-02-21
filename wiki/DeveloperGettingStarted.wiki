@@ -84,7 +84,7 @@ Personally, I use Eclipse to edit and build the code (hence the reason why Eclip
   * Red Piaranha Main methods (See [ProjectLayout]
     
    
-=== Developer RulePlayer build ===
+=== Developer Rule Player build ===
 _TODO_  
   * Document both build file targets
   * Document Main Targets that you'll actually use (and what they do)
@@ -98,7 +98,7 @@ _TODO_
  ** test in eclipse - right click and 'run as applet'
   
   
-=== Developer signing RulePlayer jars ===
+=== Developer signing Rule Player jars ===
 
   * Explain Why - Webstart security (what is 
   * Jarsigner - file in rp/scripts

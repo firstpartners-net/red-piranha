@@ -82,7 +82,7 @@ upload your own. Watch this space.||
     * Screenshot of example
     
 <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-after.jpg">Click to Enlarge<br/>
-<img width="300" height="200" alt="excel after" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-after.jpg"/>
+<img width="420" height="300" alt="excel after" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-after.jpg"/>
 </a>
 
 

@@ -5,13 +5,14 @@ _TODO Tidy this page_
 
 || <img src="http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png"/> || You've already checked out the [RedPiranhaExamples Online Examples] . But how do you try out those examples with your own information? This page shows you how.||
 
+http://red-piranha.appspot.com/ruleplayer/RulePlayer.jnlp
 
-<img alt="excel after" src="http://code.google.com/p/red-piranha/source/browse/wiki/images/screenshots/excel-after.jpg"/>
-<img alt="excel before" src="http://code.google.com/p/red-piranha/source/browse/wiki/images/screenshots/excel-before.jpg"/>
-<img alt="Red Piranha Signin Screen 1" src="http://code.google.com/p/red-piranha/source/browse/wiki/images/screenshots/screen1-signin.jpg"/>
-<img alt="Red Piranha Signin Screen 2" src="http://code.google.com/p/red-piranha/source/browse/wiki/images/screenshots/screen2-signin.jpg"/>
-<img alt="Red Piranha Screen 3 - run rules " src="http://code.google.com/p/red-piranha/source/browse/wiki/images/screenshots/screen3-run-rules-online.jpg"/>
-<img alt="RulePlayer Console" src="http://code.google.com/p/red-piranha/source/browse/wiki/images/screenshots/screenshot-rule-running.png"/>
+<img alt="excel after" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-after.jpg"/>
+<img alt="excel before" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-before.jpg"/>
+<img alt="Red Piranha Signin Screen 1" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen1-signin.jpg"/>
+<img alt="Red Piranha Signin Screen 2" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen2-signin.jpg"/>
+<img alt="Red Piranha Screen 3 - run rules " src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshots/screen3-run-rules-online.jpg"/>
+<img alt="RulePlayer Console" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-running.png"/>
 
 
 

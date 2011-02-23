@@ -47,7 +47,7 @@ _TODO complete Section_
 <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-named-ranges.jpg">Click to Enlarge<br/>
 <img alt="excel named ranges" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-named-ranges.jpg"/>
 </a>
-    
+<br/><br/>    
 Sample Screenshot of Excel Spreadsheet before rules are run  
 <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-before.jpg">Click to Enlarge<br/>
 <img width="450" height="300" alt="excel before" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-before.jpg"/>
@@ -89,11 +89,15 @@ upload your own. Watch this space.||
 
 == What just happened ==
 
+|| Another a work in progress. Sample uses full Drools language, being upgraded to use a DSL (i.e. a clearer, more 'English' like language).||
+
 _TODO complete Section_
+_TODO move this section to 'power rules'
   
-  * Link to section in [BusinessRules] for more detailed theory
-  * Very lightweight run through
-  * Rules that just ran
+  * These rules match against (when) every *named range* in the spreadsheet and  (then) turns the rules orange.
+  * Rules that just ran are below
+  
+
   {{{
   package net.firstpartners.sample.ExcelDataRules;
 
@@ -106,8 +110,8 @@ _TODO complete Section_
 
   rule "log then modify cell values" 
 
-	when
-		$cell : Cell(modified==false)
+   when
+	$cell : Cell(modified==false)
        
     then
         	   
@@ -122,7 +126,7 @@ _TODO complete Section_
   
   }}}
   
-  These rules match against every *named range* in the spreadsheet and turns the rules orange.
+
 
 == What do I do next ==
 

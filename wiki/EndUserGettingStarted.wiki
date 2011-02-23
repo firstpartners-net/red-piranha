@@ -92,7 +92,7 @@ upload your own. Watch this space.||
 || Another a work in progress. Sample uses full Drools language, being upgraded to use a DSL (i.e. a clearer, more 'English' like language).||
 
 _TODO complete Section_ <br/>
-_TODO move this section to 'power rules'
+_TODO move this section to 'power rules' _
   
   * These rules match against (when) every *named range* in the spreadsheet and  (then) turns the rules orange.
   * Rules that just ran are below

@@ -5,12 +5,16 @@ _TODO Tidy this page_
 
 || <img src="http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png"/> || You've already checked out the [RedPiranhaExamples Online Examples] . But how do you try out those examples with your own information? This page shows you how.||
 
+This section shows you how to apply [BusinessRules Business Rules] to your spreadsheets. 
 
+  * Spreadsheet + Business Rules = Result
 
+Why would we want to do this?
 
-
-_TODO Complete Section _
-Reminder of why people want to use this - specific examples
+  * *Excel Formulas* can get too complicated. Rules are more simple.
+  * Same for *Excel Macros* - and they have security concerns. You can tightly control the rules.
+  * Google Spreadsheets are like Excel online, but don't have all the power. Rules add them back. 
+  * You control the rules. Who changes the Excel file when you're not looking?
 
 == How does it work ==
 
@@ -23,67 +27,62 @@ When you're finished this section, you should be able to
   # Run the Rules
   # View the Result
 
-_ TODO Diagram ; Excel File + Rules = Output_
+|| This sample is a work in progress. So for the moment you can use the existing excel spreadsheets, but not
+upload your own. Watch this space.||
 
 
 == What you'll need ==
 
-|| Google Docs Account ||_TODO Complete Section_ ||
-|| Pointer to Red-Piranha on the Web ||_TODO Complete Section_ If you don't already have one, you can use ours ... ||
-
-== Remind me how this is different ==
-
-_TODO complete Section_
-
-  * From Excel Formula
-  * From Excel Macros
-  * From Same in Google Spreadsheets
-  * Shameless plug as to security and other features from home page
-
+|| Google Account || So that you can sign in (via Google) to run the example ||
+|| Pointer to Red-Piranha on the Web || Unless you've been told otherwise, use this web link: http://red-piranha.appspot.com/ ||
 
 == Step by Step Guide ==
 
 _TODO complete Section_
 
+  # Create your spreadsheet using Google Docs or Excel
+    # Make sure it has 'named ranges' - Insert ... Name ... Define
+    # Sample is at http://red-piranha.appspot.com/sampleresources/SpreadSheetServlet/chocolate-data.xls
 
-  # Create your spreadsheet
-    * Google Docs
-    * Excel
-    * Screenshot of example _TODO shot of blank page_
-
-<a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-before.jpg">Click to Enlarge<br/>
-<img width="300" height="200" alt="excel before" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-before.jpg"/>
+<a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-named-ranges.jpg">Click to Enlarge<br/>
+<img alt="excel named ranges" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-named-ranges.jpg"/>
 </a>
     
-  # Open The Page
-    * Give URL 
+Sample Screenshot of Excel Spreadsheet before rules are run  
+<a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-before.jpg">Click to Enlarge<br/>
+<img width="450" height="300" alt="excel before" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-before.jpg"/>
+</a>
+    
+  # Open The Red Piranha Webpage
+    * Give URL http://red-piranha.appspot.com/
 <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen1-signin.jpg">Click to Enlarge<br/>
-<img width="280" height="200" alt="Red Piranha Signin Screen 1" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen1-signin.jpg"/>
+<img width="450" height="300" alt="Red Piranha Signin Screen 1" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen1-signin.jpg"/>
 </a>
 
-    * Sign In
+    * Sign In to Google
 <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen2-signin.jpg">Click to Enlarge<br/>
-<img width="280" height="200" alt="Red Piranha Signin Screen 2" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen2-signin.jpg"/>
+<img width="420" height="300" alt="Red Piranha Signin Screen 2" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen2-signin.jpg"/>
 </a>
 
-
-    * Select the spreadsheet you want to run
+    * Select the spreadsheet you want to run from the Dropdown
       * Screenshot before http://red-piranha.appspot.com/sampleresources/SpreadSheetServlet/chocolate-data.xls
 <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshots/screen3-run-rules-online.jpg">Click to Enlarge<br/>
-<img width="280" height="200" alt="Red Piranha Screen 3 - run rules " src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshots/screen3-run-rules-online.jpg"/>
+<img width="420" height="300" alt="Red Piranha Screen 3 - run rules " src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshots/screen3-run-rules-online.jpg"/>
 </a>
 
-
-      
-    * Select the rules you want to run
+    * Select the rules you want to run from the drop down
        * Location of Rules; a package of rules that somebody else has already built [PowerUserGettingStarted] if you want to do this yourself. Make reference to the samples that come with this. 
 
-  # Hit the Go Button
+|| This sample is a work in progress. So for the moment you can use the existing rules, but not yet
+upload your own. Watch this space.||
+
+
+  # Hit the Go Button ('Run Sample')
   # View the Result
     * Screenshot of example
     
 <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-after.jpg">Click to Enlarge<br/>
-<img width="300" height="200" alt="excel after" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-after.jpg"/></a>
+<img width="300" height="200" alt="excel after" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-after.jpg"/>
 </a>
 
 
@@ -93,15 +92,41 @@ _TODO complete Section_
 _TODO complete Section_
   
   * Link to section in [BusinessRules] for more detailed theory
-  * Very lightweith run through,
-  
+  * Very lightweight run through
+  * Rules that just ran
+  {{{
+  package net.firstpartners.sample.ExcelDataRules;
 
+  import net.firstpartners.drools.log.ILogger
+
+  import net.firstpartners.spreadsheet.Cell;
+  import net.firstpartners.spreadsheet.Range;
+
+  global ILogger log;
+
+  rule "log then modify cell values" 
+
+	when
+		$cell : Cell(modified==false)
+       
+    then
+        	   
+    	//Note: use the 'modify' block instead 
+    	//want to give the rule engine a chance to react to these changes
+    	$cell.setModified(true);
+    	
+    	 //Logging message
+    	log.info("initial cell value:"+$cell);
+    	
+ end
+  
+  }}}
+  
+  These rules match against every *named range* in the spreadsheet and turns the rules orange.
 
 == What do I do next ==
 
-
 _TODO complete Section_
-
 
   * Suggestions on how to play with the data
   * Suggestions on how to write your own business rules - [PowerUserGettingStarted] is a good next step as it shows 

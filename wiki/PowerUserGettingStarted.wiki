@@ -64,8 +64,8 @@ _TODO Complete Section_
   ### Offline - setting proxy
  
  
- <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-running.png">Click to Enlarge
- <img width="280" height="200" alt="RulePlayer Console" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-running.png"/>
+ <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png">Click to Enlarge
+ <img width="420" height="300" alt="RulePlayer Console" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png"/>
  </a>
  
 

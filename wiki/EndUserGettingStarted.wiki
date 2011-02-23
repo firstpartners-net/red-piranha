@@ -66,8 +66,8 @@ Sample Screenshot of Excel Spreadsheet before rules are run
 
     * Select the spreadsheet you want to run from the Dropdown
       * Screenshot before http://red-piranha.appspot.com/sampleresources/SpreadSheetServlet/chocolate-data.xls
-<a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshots/screen3-run-rules-online.jpg">Click to Enlarge<br/>
-<img width="420" height="300" alt="Red Piranha Screen 3 - run rules " src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshots/screen3-run-rules-online.jpg"/>
+<a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen3-run-rules-online.jpg">Click to Enlarge<br/>
+<img width="420" height="300" alt="Red Piranha Screen 3 - run rules " src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen3-run-rules-online.jpg"/>
 </a>
 
     * Select the rules you want to run from the drop down

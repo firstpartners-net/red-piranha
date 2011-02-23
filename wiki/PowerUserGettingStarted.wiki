@@ -54,6 +54,7 @@ _TODO Complete Section_
 
  # Running the RuleRunner - screenshot
    ## http://red-piranha.appspot.com/rulerunner/RuleRunner.jnlp or similar url
+   ### alternative http://red-piranha.googlecode.com/svn/red-player/release/red-player.zip
   ## Webstart Local, Webstart Dev, Local JNLP, Local Shell
   ### Talk through background to each
   ### Make sure have Java installed
@@ -61,6 +62,13 @@ _TODO Complete Section_
   ### Online Page - auto generate JNLP
   ### Offline - setting rulerunner.properties
   ### Offline - setting proxy
+ 
+ 
+ <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-running.png">Click to Enlarge
+ <img width="280" height="200" alt="RulePlayer Console" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-running.png"/>
+ </a>
+ 
+
  
 === Other options ===
 _TODO Complete Section_

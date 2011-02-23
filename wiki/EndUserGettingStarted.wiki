@@ -50,26 +50,26 @@ _TODO complete Section_
     * Google Docs
     * Excel
     * Screenshot of example _TODO shot of blank page_
-    
-<a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-after.jpg">Click to Enlarge
-<img width="300" height="200" alt="excel after" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-after.jpg"/></a>
+
+<a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-before.jpg">Click to Enlarge<br/>
+<img width="300" height="200" alt="excel before" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-before.jpg"/>
 </a>
     
   # Open The Page
     * Give URL 
-<a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen1-signin.jpg">Click to Enlarge
+<a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen1-signin.jpg">Click to Enlarge<br/>
 <img width="280" height="200" alt="Red Piranha Signin Screen 1" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen1-signin.jpg"/>
 </a>
 
     * Sign In
-<a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen2-signin.jpg">Click to Enlarge
+<a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen2-signin.jpg">Click to Enlarge<br/>
 <img width="280" height="200" alt="Red Piranha Signin Screen 2" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen2-signin.jpg"/>
 </a>
 
 
     * Select the spreadsheet you want to run
       * Screenshot before http://red-piranha.appspot.com/sampleresources/SpreadSheetServlet/chocolate-data.xls
-<a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshots/screen3-run-rules-online.jpg">Click to Enlarge
+<a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshots/screen3-run-rules-online.jpg">Click to Enlarge<br/>
 <img width="280" height="200" alt="Red Piranha Screen 3 - run rules " src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshots/screen3-run-rules-online.jpg"/>
 </a>
 
@@ -81,16 +81,18 @@ _TODO complete Section_
   # Hit the Go Button
   # View the Result
     * Screenshot of example
-<a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-before.jpg">Click to Enlarge
-<img width="300" height="200" alt="excel before" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-before.jpg"/>
+    
+<a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-after.jpg">Click to Enlarge<br/>
+<img width="300" height="200" alt="excel after" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-after.jpg"/></a>
 </a>
+
 
 
 == What just happened ==
 
 _TODO complete Section_
   
-  * Link to section in [BusinessRules] for more detailled theory
+  * Link to section in [BusinessRules] for more detailed theory
   * Very lightweith run through,
   
 

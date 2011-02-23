@@ -40,9 +40,9 @@ upload your own. Watch this space.||
 
 _TODO complete Section_
 
-  # Create your spreadsheet using Google Docs or Excel
-    # Make sure it has 'named ranges' - Insert ... Name ... Define
-    # Sample is at http://red-piranha.appspot.com/sampleresources/SpreadSheetServlet/chocolate-data.xls
+  * Create your spreadsheet using Google Docs or Excel
+    * Make sure it has 'named ranges' - Insert ... Name ... Define
+    * Sample is at http://red-piranha.appspot.com/sampleresources/SpreadSheetServlet/chocolate-data.xls
 
 <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-named-ranges.jpg">Click to Enlarge<br/>
 <img alt="excel named ranges" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-named-ranges.jpg"/>
@@ -53,7 +53,7 @@ Sample Screenshot of Excel Spreadsheet before rules are run
 <img width="450" height="300" alt="excel before" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-before.jpg"/>
 </a>
     
-  # Open The Red Piranha Webpage
+  * Open The Red Piranha Webpage
     * Give URL http://red-piranha.appspot.com/
 <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen1-signin.jpg">Click to Enlarge<br/>
 <img width="450" height="300" alt="Red Piranha Signin Screen 1" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screen1-signin.jpg"/>
@@ -77,8 +77,8 @@ Sample Screenshot of Excel Spreadsheet before rules are run
 upload your own. Watch this space.||
 
 
-  # Hit the Go Button ('Run Sample')
-  # View the Result
+  * Hit the Go Button ('Run Sample')
+  * View the Result
     * Screenshot of example
     
 <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/excel-after.jpg">Click to Enlarge<br/>
@@ -91,7 +91,7 @@ upload your own. Watch this space.||
 
 || Another a work in progress. Sample uses full Drools language, being upgraded to use a DSL (i.e. a clearer, more 'English' like language).||
 
-_TODO complete Section_
+_TODO complete Section_ <br/>
 _TODO move this section to 'power rules'
   
   * These rules match against (when) every *named range* in the spreadsheet and  (then) turns the rules orange.

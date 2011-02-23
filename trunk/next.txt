@@ -1,6 +1,8 @@
 
 1) Upgrade wiki documentation and mark _TODO_ section for inital user experience
-2) Update Own Google Docs
+
+
+2) Update Own Google Docs - milestones and how to hit initial revenue
 
 3) Start working through end-user experience (what do I need to book samples / community?)
 4) Submit Drools patch

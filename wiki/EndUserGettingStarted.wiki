@@ -6,6 +6,16 @@ _TODO Tidy this page_
 || <img src="http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png"/> || You've already checked out the [RedPiranhaExamples Online Examples] . But how do you try out those examples with your own information? This page shows you how.||
 
 
+<img alt="excel after" src="http://code.google.com/p/red-piranha/source/browse/wiki/images/screenshots/excel-after.jpg"/>
+<img alt="excel before" src="http://code.google.com/p/red-piranha/source/browse/wiki/images/screenshots/excel-before.jpg"/>
+<img alt="Red Piranha Signin Screen 1" src="http://code.google.com/p/red-piranha/source/browse/wiki/images/screenshots/screen1-signin.jpg"/>
+<img alt="Red Piranha Signin Screen 2" src="http://code.google.com/p/red-piranha/source/browse/wiki/images/screenshots/screen2-signin.jpg"/>
+<img alt="Red Piranha Screen 3 - run rules " src="http://code.google.com/p/red-piranha/source/browse/wiki/images/screenshots/screen3-run-rules-online.jpg"/>
+<img alt="RulePlayer Console" src="http://code.google.com/p/red-piranha/source/browse/wiki/images/screenshots/screenshot-rule-running.png"/>
+
+
+
+
 _TODO Complete Section _
 Reminder of why people want to use this - specific examples
 
@@ -51,6 +61,8 @@ _TODO complete Section_
     * Give URL 
     * _TODO Screenshot_
     * Select the spreadsheet you want to run
+      * Screenshot before http://red-piranha.appspot.com/sampleresources/SpreadSheetServlet/chocolate-data.xls
+      
     * Select the rules you want to run
        * Location of Rules; a package of rules that somebody else has already built [PowerUserGettingStarted] if you want to do this yourself. Make reference to the samples that come with this. 
 

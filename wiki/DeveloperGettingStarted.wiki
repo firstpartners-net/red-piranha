@@ -3,9 +3,9 @@
 
 _TODO Tidy this page_
 
-||  <img src="http://icons.iconarchive.com/icons/mart/glaze/48/source-j-icon.png"> || You've already checked out the [RedPiranhaExamples Online Examples] . And you've looked at the  [EndUserGettingStarted] and [PowerUserGettingStarted] to see how to add your own information and new rules to these samples. ||
+||  <img src="http://icons.iconarchive.com/icons/mart/glaze/48/source-j-icon.png"> || You've already checked out the [RedPiranhaExamples Online Examples] . And you've looked at the  [EndUserGettingStarted] and [PowerUserGettingStarted] to see how to add your own information and new rules to these samples.But what if there is something that Red-Piranha doesn't yet do, a feature you want to add? This page shows you how to get started.
+ ||
 
-But what if there is something that Red-Piranha doesn't yet do, a feature you want to add? This page shows you how to get started.
 
 There are two parts to the Red-Piranha Project
   * *Red Piranha* - the core project, deployable to Google App Engine (GAE) that takes excel spreadsheets and runs pre-compiled rules against them. While this is a command line and other interace, mostly this project runs on the web.
@@ -114,7 +114,7 @@ _TODO -Complete this section _
 == Deploying to App Engine ==
 
   * use the Google App Engine Toolbar in Eclipse
-<img src="./images/google_app_engine_eclipse_button.png"/>
+<img src="http://code.google.com/p/red-piranha/source/browse/wiki/images/google_app_engine_eclipse_button.png"/>
   * _work in progress_ an ant build file
   * _work in progress_ automated tools
 

@@ -7,7 +7,7 @@
 
 _TODO put in Table of Contents of Level 2 Headings_
 <br/>
-_TODO_ Tidy this page_
+_TODO Tidy this page_
 
 == Introduction to the Rule Player ==
 
@@ -22,7 +22,7 @@ _TODO - Table of Contents about the section below_
 == How does it work ==
 _TODO Complete Section_
 
-We're not going to actually Run any rules using Ruleplayer (see [EndUserGettingStarted End User Getting Started for that]). What this page shows you how to do is; 
+We're not going to actually run any rules using Ruleplayer (see [EndUserGettingStarted End User Getting Started for that]). What this page shows you how to do is; 
 
   # What you'll need before you get started
   # Write your rules somewhere
@@ -35,17 +35,15 @@ We're not going to actually Run any rules using Ruleplayer (see [EndUserGettingS
 
 == What you'll need ==
 
-|| Google Docs Account ||_TODO Complete Section_ ||
-|| Google App Engine Account ||_TODO Complete Section_ ||
-
+|| Google Docs Account || The completed, packaged rules are loaded as a file into Google docs. Obviously you'll need to create a [http://docs.google.com Google account] if you don't already have one. ||
 
 == Writing your own Rules ==
 _TODO Complete Section_
 
- # Edit rules online - e.g. using Google Docs
- # Must be publically available
- # Helps if links to red-piranha project
- # Suggest copy existing template
+ # Edit rules online - e.g. using Google Docs, or host them anywhere on the web (e.g. Google Sites, file on webserver _TODO instructions for these_
+ # Make the rules publicly available (so Red-Piranha can find them)
+ # _TODO Helps if links to red-piranha project_
+ # _TODOSuggest copy existing template_
 
 == Getting the Rule Player ==
 _TODO Complete Section_
@@ -58,11 +56,16 @@ There are three options for running the Rule Player. More information on each is
 Either way, if successful, you should see a screen similar to the following;
 
 
- <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png">Click to Enlarge
- <img width="420" height="300" alt="RulePlayer Console" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png"/>
+ <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png">Click to Enlarge<br/>
+ <img alt="RulePlayer Console" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png"/>
  </a>
 
 
+=== Running the Rule Player Locally ===
+
+
+
+=== Running the Rule Player Directly from Web Start ===
 
 
  # Running the RuleRunner - screenshot

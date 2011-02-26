@@ -27,7 +27,7 @@ We're not going to actually run any rules using Ruleplayer (see [EndUserGettingS
 
   * [#What_you'll_need What you'll need before you get started]
   * How to [#Writing_your_own_Rules Write your rules somewhere]
-  * [# Getting_the_Rule_Player Getting the Rule Player]
+  * [#Getting_the_Rule_Player Getting the Rule Player]
   * [#Running_the_Rule_Player Start the Rule Player to check and package these rules]
   * [#Deploying_to_Your_Own_Google_App_Engine (Optional)Deploying to Your Own Google App Engine]
   * [#Sharing_and_the_Community How to share your rules online] so that you and other people can run them.

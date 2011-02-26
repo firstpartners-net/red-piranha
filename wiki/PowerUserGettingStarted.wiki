@@ -25,12 +25,12 @@ _TODO Complete Section_
 
 We're not going to actually run any rules using Ruleplayer (see [EndUserGettingStarted End User Getting Started for that]). What this page shows you how to do is; 
 
-  # What you'll need before you get started
-  # Write your rules somewhere
-  # Getting the Rule Player
-  # Start the Rule Player to check and package these rules
-  # (Optional) Create a new space on Google App Engine to run Red-Piranha
-  # Share your rules online so that you and other people can run them.
+  * [#What_you'll_need What you'll need before you get started]
+  * [#Writing_your_own_Rules Write your rules somewhere]
+  * [# Getting_the_Rule_Player Getting the Rule Player]
+  * [#Running_the_Rule_Player] Start the Rule Player to check and package these rules
+  * [#Deploying_to_Your_Own_Google_App_Engine (Optional)Deploying to Your Own Google App Engine]
+  * Share your rules online so that you and other people can run them.
 
 
 
@@ -107,7 +107,7 @@ _TODO Complete Section_
   # Screenshot; Should start automatically
   # Run again if press the big green button
 
-== Deploying to Google App Engine ==
+== Deploying to Your Own Google App Engine ==
 _TODO Complete Section_
 
   * Existing Deployment - if you have access rights
@@ -134,10 +134,10 @@ _TODO Complete Section_
 
 _TODO Complete Section_
 
-  * Link to [RedPiranhaExamples] & Community pages
+  * Link to [RedPiranhaExamples] & [KeyConcepts#Community] Community pages
   * [DeveloperGettingStarted] provides additional information, at a more technical level.
 
-== Sharing and teh community
+== Sharing and The community
 _TODO Tie this doc to the community_
   * How do I get help 
   * Where do I find more examples?

@@ -51,8 +51,7 @@ There are three options for running the Rule Player. More information on each is
 
   * *Local Download, Batch (.bat) or Shell (.sh) file* Same as the previous option, but click on RulePlayer.bat / RulePlayer.sh to start the Rule Player. The main difference is that is is 'one less thing to go wrong' (i.e. Java Webstart), but you lose the automatic install of Java that Webstart gives you. 
 
-  * *WebStart from AppEngine* - Start the RulePlayer http://red-piranha.appspot.com/rulerunner/RuleRunner.jnlp  directly from Red Piranha running on Google App Engine.For more information see later on in this page 
-[#Running_the_Rule_Player_Directly_from_Web_Start Running the Rule Player Directly from Web Start]
+  * *WebStart from AppEngine* - Start the RulePlayer http://red-piranha.appspot.com/rulerunner/RuleRunner.jnlp  directly from Red Piranha running on Google App Engine.For more information see later on in this page [#Running_the_Rule_Player_Directly_from_Web_Start Running the Rule Player Directly from Web Start]
 
 Either way, if successful, you should see a screen similar to the following;
 
@@ -65,60 +64,41 @@ Either way, if successful, you should see a screen similar to the following;
 _TODO Complete_ <BR/>
 
 
+  * Cover both local JNLP, Local Shell
+  * Url : http://red-piranha.googlecode.com/svn/red-player/release/red-player.zip
+  * Configuring via rulerunner.properties
+  * Confgiure Proxy
+  * Run
 
-  * Url
-  * Configuring
 
-
-_TODO metnion
+_TODO mention_ 
 
 
 === Running the Rule Player Directly from Web Start ===
 _TODO Complete_
 
-_Note that this may not currently work on your Machine due to_Click on the following link 
+_Note that this may not currently work on your Machine due to_
   # The way the Jar (download) is packaged_
-  # The need to figure the JNLP file, and the nee_
+  # The need to configure the JNLP file_
 
- # Running the RuleRunner - screenshot
-   ## or similar url
-   ### alternative 
-  ## Webstart Local, Webstart Dev, Local JNLP, Local Shell
-  ### Talk through background to each
-  ### Make sure have Java installed
-  ## Settings
-  ### Online Page - auto generate JNLP
-  ### Offline - setting rulerunner.properties
-  ### Offline - setting proxy 
+_Work in progress to resolve this issue_
 
- 
-=== Other options ===
-_TODO Complete Section_
-
-Power User Running Rule Runner Webstart-Dev-Full-Local/ Local Zip / Exe
-  * The three jnlp files
-  * Running RuleRunner main build / local build (and the dependencies)
-  
-  URL
-  ** running local using Google App Engine
-  ** http://red-piranha.appspot.com/ruleplayer/RulePlayer.jnlp  
-  ** Local
-  ** Double click to run jar
-  
-  * [DroolsPowerUser] info on launching the ruleplayer at 
-  * download as zip (jnlp bat & sh)
-  * jnlp (*3) ,  exe
-  ** What if JNLP Fails
-  ** No Java fo rBat or Sh
+  * Url: http://red-piranha.appspot.com/rulerunner/RuleRunner.jnlp
+  * Form to configure _TODO Implement - as this is not there yet_
+  * Splash screen
+  * (If version of Jav not installed) - Java Install
+  * Run
 
 == Running the Rule Player ==
 _TODO Complete Section_
 
   # Screenshot; Should start automatically
   # Run again if press the big green button
+  # Should see the following txt
 
 == Deploying to Your Own Google App Engine ==
-_TODO Complete Section_
+_TODO Complete Section_ <br/>
+_TODO Code for this not yet implemented. For the moment use ours - see [EndUserGettingStarted]
 
   * Existing Deployment - if you have access rights
   * (Optional) New Deployment of RP on exisitng App Engine
@@ -126,7 +106,10 @@ _TODO Complete Section_
 
 === Errors when running the Rule Player ===
 
+_TODO Complete section_
+
   * Refer to [FAQ]
+  * No Java Installed
   * Errors getting started (Java, download etc)
   * Errors in compiling rules
   * Errors in uploading

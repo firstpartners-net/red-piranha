@@ -1,7 +1,7 @@
 #labels Featured
 #sidebar sidebar
 
-|| <img src="http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png"/> ||What if you want to write your own business rules? This page shows you how. <br/> We assume that you've already checked out the [RedPiranhaExamples Online Examples] . And you've looked at the [EndUserGettingStarted User Getting Started] to see how you can put your own information into these examples. ||
+|| <img src="http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png"/> ||What if you want to write your own business rules? This page shows you how. <br/> <br/> We assume that you've already checked out the [RedPiranhaExamples Online Examples] . And you've looked at the [EndUserGettingStarted User Getting Started] to see how you can put your own information into these examples. ||
 
 
 
@@ -26,11 +26,11 @@ _TODO Complete Section_
 We're not going to actually run any rules using Ruleplayer (see [EndUserGettingStarted End User Getting Started for that]). What this page shows you how to do is; 
 
   * [#What_you'll_need What you'll need before you get started]
-  * [#Writing_your_own_Rules Write your rules somewhere]
+  * How to [#Writing_your_own_Rules Write your rules somewhere]
   * [# Getting_the_Rule_Player Getting the Rule Player]
-  * [#Running_the_Rule_Player] Start the Rule Player to check and package these rules
+  * [#Running_the_Rule_Player Start the Rule Player to check and package these rules]
   * [#Deploying_to_Your_Own_Google_App_Engine (Optional)Deploying to Your Own Google App Engine]
-  * Share your rules online so that you and other people can run them.
+  * [#Sharing_and_the_Community How to share your rules online] so that you and other people can run them.
 
 
 
@@ -130,14 +130,8 @@ _TODO Complete Section_
   * Link to rules directory
   * Highlight differences in running rules from [EndUserGettingStarted]
   
-== Now What can I do with this ==
 
-_TODO Complete Section_
-
-  * Link to [RedPiranhaExamples] & [KeyConcepts#Community] Community pages
-  * [DeveloperGettingStarted] provides additional information, at a more technical level.
-
-== Sharing and The community
+== Sharing and the Community ==
 _TODO Tie this doc to the community_
   * How do I get help 
   * Where do I find more examples?
@@ -145,6 +139,13 @@ _TODO Tie this doc to the community_
   * Auto submit of successful deploys
   * why your email is added to email list (and how to remove?)
   * Gallery
+
+=== Now What can I do with this ===
+
+_TODO Complete Section_
+
+  * Link to [RedPiranhaExamples] & [KeyConcepts#Community] Community pages
+  * [DeveloperGettingStarted] provides additional information, at a more technical level.
 
 
 

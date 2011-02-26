@@ -1,4 +1,3 @@
-_TODO Explain what business rules are_
 
 == Community ==
 

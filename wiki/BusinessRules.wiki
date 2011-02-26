@@ -1,8 +1,10 @@
 _TODO Explain what business rules are_
 
+== Community ==
 
+_TODO Explain the nature of sharing and the community_
 
-*Problem Domain – Business Rules*
+== Business Rules ==
 
 A business rule is a compact and simple statement that represents some important aspect of a business. By capturing the rules for your business--the logic that governs its operation-- you gain the ability to create systems fully aligned with your
 business needs.

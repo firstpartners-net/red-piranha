@@ -39,7 +39,7 @@ _TODO Complete Section_
  # Edit rules online - e.g. using Google Docs, or host them anywhere on the web (e.g. Google Sites, file on webserver _TODO instructions for these_
  # Make the rules publicly available (so Red-Piranha can find them)
  # _TODO Helps if links to red-piranha project_
- # _TODOSuggest copy existing template_
+ # _TODO Suggest copy existing template_
 
 == Getting the Rule Player ==
 _TODO Complete Section_
@@ -51,10 +51,9 @@ There are three options for running the Rule Player. More information on each is
 
   * *Local Download, Batch (.bat) or Shell (.sh) file* Same as the previous option, but click on RulePlayer.bat / RulePlayer.sh to start the Rule Player. The main difference is that is is 'one less thing to go wrong' (i.e. Java Webstart), but you lose the automatic install of Java that Webstart gives you. 
 
-  * *WebStart from AppEngine* - Start the RulePlayer http://red-piranha.appspot.com/rulerunner/RuleRunner.jnlp  directly from Red Piranha running on Google App Engine.For more information see later on in this page [#Running_the_Rule_Player_Directly_from_Web_Start Running the Rule Player Directly from Web Start]
+  * *Web Start from Google App Engine* - Start the RulePlayer http://red-piranha.appspot.com/rulerunner/RuleRunner.jnlp  directly from Red Piranha running on Google App Engine.For more information see [#Running_the_Rule_Player_Directly_from_Web_Start later on in this page]. 
 
-Either way, if successful, you should see a screen similar to the following;
-
+Either of these methods, if successful, you should see a screen similar to the following;
 
  <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png">
  <img alt="RulePlayer Console" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png"/>

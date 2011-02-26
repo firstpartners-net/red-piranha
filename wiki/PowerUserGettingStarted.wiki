@@ -1,8 +1,6 @@
 #labels Featured
 #sidebar sidebar
 
-Information on how Power Users can get started.
-
 || <img src="http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png"/> || You've already checked out the [RedPiranhaExamples Online Examples] . And you've looked at the [EndUserGettingStarted User Getting Started] to see how you can put your own information into these examples. But what if you want to write your own business rules? This page shows you how.||
 
 
@@ -52,22 +50,31 @@ _TODO Complete Section_
 == Getting the Rule Player ==
 _TODO Complete Section_
 
+There are three options for running the Rule Player. More information on each is provided in the next sections.
+
+  # *Local Download* Download the [http://red-piranha.googlecode.com/svn/red-player/release/red-player.zip Player as a Zip file from here] , extract (using Winzip or similar tool) then double click on RulePlayerLocal.jnlp or RulePlayer.bat / RulePlayer.sh to start it [ More Instructions here].
+  # *WebStart from AppEngine* - Start the RulePlayer http://red-piranha.appspot.com/rulerunner/RuleRunner.jnlp  directly from Red Piranha running on Google App Engine. Click on the following link   _Note that this may not currently work on your Machine_
+
+Either way, if successful, you should see a screen similar to the following;
+
+
+ <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png">Click to Enlarge
+ <img width="420" height="300" alt="RulePlayer Console" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png"/>
+ </a>
+
+
+
+
  # Running the RuleRunner - screenshot
-   ## http://red-piranha.appspot.com/rulerunner/RuleRunner.jnlp or similar url
-   ### alternative http://red-piranha.googlecode.com/svn/red-player/release/red-player.zip
+   ## or similar url
+   ### alternative 
   ## Webstart Local, Webstart Dev, Local JNLP, Local Shell
   ### Talk through background to each
   ### Make sure have Java installed
   ## Settings
   ### Online Page - auto generate JNLP
   ### Offline - setting rulerunner.properties
-  ### Offline - setting proxy
- 
- 
- <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png">Click to Enlarge
- <img width="420" height="300" alt="RulePlayer Console" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png"/>
- </a>
- 
+  ### Offline - setting proxy 
 
  
 === Other options ===

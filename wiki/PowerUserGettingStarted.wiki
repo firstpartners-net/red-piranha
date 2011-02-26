@@ -46,12 +46,12 @@ _TODO Complete Section_
 
 There are three options for running the Rule Player. More information on each is provided in the next sections.
 
-  # *Local Download JNLP* Download the [http://red-piranha.googlecode.com/svn/red-player/release/red-player.zip Player as a Zip file from here] , extract (using Winzip or similar tool) then double click on RulePlayerLocal.jnlp. or to start it [ More Instructions here].<br/><br/> For more information see later on in this page 
+  * *Local Download JNLP* Download the [http://red-piranha.googlecode.com/svn/red-player/release/red-player.zip Player as a Zip file from here] , extract (using Winzip or similar tool) then double click on RulePlayerLocal.jnlp. or to start it [ More Instructions here].For more information see later on in this page 
 [#Running_the_Rule_Player_Locally_From_a_Download_Running the Rule Player Locally From a Download]
-  # *Local Download, Batch (.bat) or Shell (.sh) file* Same as the previous option, but click on RulePlayer.bat / RulePlayer.sh to start the Rule Player. The main difference is that is is 'one less thing to go wrong' (i.e. Java Webstart), but you lose the automatic install of Java that Webstart gives you. 
 
-  # *WebStart from AppEngine* - Start the RulePlayer http://red-piranha.appspot.com/rulerunner/RuleRunner.jnlp  directly from Red Piranha running on Google App Engine. 
-<br/><br/> For more information see later on in this page 
+  * *Local Download, Batch (.bat) or Shell (.sh) file* Same as the previous option, but click on RulePlayer.bat / RulePlayer.sh to start the Rule Player. The main difference is that is is 'one less thing to go wrong' (i.e. Java Webstart), but you lose the automatic install of Java that Webstart gives you. 
+
+  * *WebStart from AppEngine* - Start the RulePlayer http://red-piranha.appspot.com/rulerunner/RuleRunner.jnlp  directly from Red Piranha running on Google App Engine.For more information see later on in this page 
 [#Running_the_Rule_Player_Directly_from_Web_Start Running the Rule Player Directly from Web Start]
 
 Either way, if successful, you should see a screen similar to the following;

@@ -25,8 +25,8 @@ the target to "sign"
 	<property name="player.zip.name" value="red-player.zip" />
 
 	<!-- Destination and other RP (main project) info -->
-	<property name="red-player-dest" value="../red-piranha/war/ruleplayer/" />
-	<property name="red-player-lib" value="${red-player-dest}/lib" />
+	<property name="red-player-dest" value="./release/" />
+	<property name="red-player-lib" value="../red-piranha/war/ruleplayer/lib" />
 	
 	<property name="red-main-scripts" value="../red-piranha/scripts" />
 	<property name="red-main-lib" value="../red-piranha/war/WEB-INF/lib" />

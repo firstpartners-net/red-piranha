@@ -24,7 +24,7 @@ We're not going to actually run any rules using Ruleplayer (see [EndUserGettingS
   * How to [#Writing_your_own_Rules Write your rules somewhere]
   * [#Getting_the_Rule_Player Getting the Rule Player]
   * [#Running_the_Rule_Player Start the Rule Player to check and package these rules]
-  * [#Deploying_to_Your_Own_Google_App_Engine (Optional)Deploying to Your Own Google App Engine]
+  * (Optional)[#Deploying_to_Your_Own_Google_App_Engine Deploying to Your Own Google App Engine]
   * [#Sharing_and_the_Community How to share your rules online] so that you and other people can run them.
 
 
@@ -66,7 +66,7 @@ _TODO Complete_ <BR/>
   * Cover both local JNLP, Local Shell
   * Url : http://red-piranha.googlecode.com/svn/red-player/release/red-player.zip
   * Configuring via rulerunner.properties
-  * Confgiure Proxy
+  * Configure Proxy
   * Run
 
 

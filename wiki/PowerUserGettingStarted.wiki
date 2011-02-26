@@ -1,8 +1,7 @@
 #labels Featured
 #sidebar sidebar
 
-|| <img src="http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png"/> ||What if you want to write your own business rules? This page shows you how. <br/>
-We assume that you've already checked out the [RedPiranhaExamples Online Examples] . And you've looked at the [EndUserGettingStarted User Getting Started] to see how you can put your own information into these examples. ||
+|| <img src="http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png"/> ||What if you want to write your own business rules? This page shows you how. <br/> We assume that you've already checked out the [RedPiranhaExamples Online Examples] . And you've looked at the [EndUserGettingStarted User Getting Started] to see how you can put your own information into these examples. ||
 
 
 

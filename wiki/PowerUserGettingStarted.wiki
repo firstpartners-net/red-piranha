@@ -18,7 +18,7 @@ There are two ways of interacting with Red-Piranha to the Red-Piranha Project
 
 == How does it work ==
 
-We're not going to actually run any rules using Ruleplayer (see [EndUserGettingStarted End User Getting Started for that]). What this page shows you how to do is; 
+We're not going to actually run any rules using Ruleplayer (see [EndUserGettingStarted End User Getting Started for that]). What this page shows you how to do is how to prepare your rules so that other people can use them.
 
   * [#What_you'll_need What you'll need before you get started]
   * How to [#Writing_your_own_Rules Write your rules somewhere]
@@ -46,24 +46,39 @@ _TODO Complete Section_
 
 There are three options for running the Rule Player. More information on each is provided in the next sections.
 
-  # *Local Download* Download the [http://red-piranha.googlecode.com/svn/red-player/release/red-player.zip Player as a Zip file from here] , extract (using Winzip or similar tool) then double click on RulePlayerLocal.jnlp or RulePlayer.bat / RulePlayer.sh to start it [ More Instructions here].<br/><br/> For more information see later on in this page 
+  # *Local Download JNLP* Download the [http://red-piranha.googlecode.com/svn/red-player/release/red-player.zip Player as a Zip file from here] , extract (using Winzip or similar tool) then double click on RulePlayerLocal.jnlp. or to start it [ More Instructions here].<br/><br/> For more information see later on in this page 
 [#Running_the_Rule_Player_Locally_From_a_Download_Running the Rule Player Locally From a Download]
-  # *WebStart from AppEngine* - Start the RulePlayer http://red-piranha.appspot.com/rulerunner/RuleRunner.jnlp  directly from Red Piranha running on Google App Engine. Click on the following link   _Note that this may not currently work on your Machine_
+  # *Local Download, Batch (.bat) or Shell (.sh) file* Same as the previous option, but click on RulePlayer.bat / RulePlayer.sh to start the Rule Player. The main difference is that is is 'one less thing to go wrong' (i.e. Java Webstart), but you lose the automatic install of Java that Webstart gives you. 
+
+  # *WebStart from AppEngine* - Start the RulePlayer http://red-piranha.appspot.com/rulerunner/RuleRunner.jnlp  directly from Red Piranha running on Google App Engine. 
 <br/><br/> For more information see later on in this page 
 [#Running_the_Rule_Player_Directly_from_Web_Start Running the Rule Player Directly from Web Start]
 
 Either way, if successful, you should see a screen similar to the following;
 
 
- <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png">Click to Enlarge<br/>
+ <a target="_blank" href="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png">
  <img alt="RulePlayer Console" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png"/>
  </a>
 
 === Running the Rule Player Locally From a Download ===
+_TODO Complete_ <BR/>
+
+
+
+  * Url
+  * Configuring
+
+
+_TODO metnion
 
 
 === Running the Rule Player Directly from Web Start ===
+_TODO Complete_
 
+_Note that this may not currently work on your Machine due to_Click on the following link 
+  # The way the Jar (download) is packaged_
+  # The need to figure the JNLP file, and the nee_
 
  # Running the RuleRunner - screenshot
    ## or similar url

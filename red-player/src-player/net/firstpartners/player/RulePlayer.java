@@ -20,30 +20,33 @@ import net.firstpartners.drools.PreCompileRuleBuilder;
 import org.drools.compiler.DroolsParserException;
 
 /**
- * Java client to allow compilition (outside of GAE) of rules
- * Some console code from RJHM van den Bergh , rvdb@comweb.nl
- * 
+ * Java client to allow compilation (outside of GAE) of rules Some console code
+ * from RJHM van den Bergh , rvdb@comweb.nl
  * 
  * @author paul
  * 
  */
 
 public class RulePlayer extends WindowAdapter implements WindowListener,
-		ActionListener, Runnable {
+		ActionListener, Runnable, RulePlayerConfigurable {
 
-	
 	private JFrame frame;
 	private JTextArea textArea;
+
+	private String ruleFile =null;
+	private String googleUser=null;
 	
-	private boolean quit =false;
+	
+
+
+	private boolean quit = false;
 
 	void compileRules() {
 
-		String ruleFile = "http://red-piranha.googlecode.com/svn/trunk/war/sampleresources/SpreadSheetServlet/log-then-modify-rules.drl";
-		
-		
+
 		if (ruleFile == null) {
-			textArea.append("Please set 'rule' as a param pointing at the rule file you wish to compile ");
+			textArea
+					.append("Please set 'rule' as a param pointing at the rule file you wish to compile ");
 
 		} else {
 			textArea.append("Compiling Rules...\n");
@@ -53,13 +56,14 @@ public class RulePlayer extends WindowAdapter implements WindowListener,
 			try {
 				rulebuilder.cacheRule(ruleFile, null);
 			} catch (DroolsParserException e) {
-				textArea.append("DroolsParserException:" + e+"\n");
+				textArea.append("DroolsParserException:" + e + "\n");
 				e.printStackTrace();
 			} catch (IOException e) {
-				textArea.append("IOException:" + e.getMessage()+"\n");
+				textArea.append("IOException:" + e.getMessage() + "\n");
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
-				textArea.append("ClassNotFoundException:" + e.getMessage()+"\n");
+				textArea.append("ClassNotFoundException:" + e.getMessage()
+						+ "\n");
 				e.printStackTrace();
 			}
 			textArea.append("Compiling complete\n");
@@ -69,7 +73,8 @@ public class RulePlayer extends WindowAdapter implements WindowListener,
 
 	public RulePlayer() {
 		// create all components and add them
-		frame = new JFrame("Java Console");
+
+		frame = new JFrame("Red-Piranha RulePlayer - Package and Deploy your Business rules");
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize = new Dimension((int) (screenSize.width / 2),
 				(int) (screenSize.height / 2));
@@ -79,7 +84,9 @@ public class RulePlayer extends WindowAdapter implements WindowListener,
 
 		textArea = new JTextArea();
 		textArea.setEditable(false);
-		JButton button = new JButton("clear");
+		textArea.setLineWrap(true);
+
+		JButton button = new JButton("Run Again");
 
 		frame.getContentPane().setLayout(new BorderLayout());
 		frame.getContentPane().add(new JScrollPane(textArea),
@@ -90,9 +97,7 @@ public class RulePlayer extends WindowAdapter implements WindowListener,
 		frame.addWindowListener(this);
 		button.addActionListener(this);
 
-	
 		quit = false; // signals the Threads that they should exit
-
 
 	}
 
@@ -112,39 +117,69 @@ public class RulePlayer extends WindowAdapter implements WindowListener,
 
 	public synchronized void actionPerformed(ActionEvent evt) {
 		textArea.setText("");
+
+		// Start new thread to keep window open
+		Runnable readRun = new Thread(this);
+		readRun.run();
+
 	}
 
 	/**
 	 * This method is called by new Runnable
 	 */
 	public synchronized void run() {
-		
-		try{
-		    //Loop , but pause to let the user do something!
-			
-			while(this.quit=false){
-				  Thread.sleep(1000);
+
+		try {
+			// Loop , but pause to let the user do something!
+
+			while (this.quit = false) {
+				Thread.sleep(1000);
 
 			}
-			
- }    catch(java.lang.InterruptedException ex) {}
 
-	
+		} catch (java.lang.InterruptedException ex) {
+			textArea.append(ex.toString());
+		} catch (Throwable t) {
+			textArea.append(t.toString());
+		}
+
 	}
 
 	public static void main(String[] arg) {
 
 		RulePlayer player = new RulePlayer();
+
+		//Load the settings if available
+		SettingsLoader settingsLoader = new SettingsLoader();
+		settingsLoader.load(player);
 		
-		//Start a thread to keep window open
-		 Runnable readRun = new Thread(player);
-		 readRun.run();
-	     
-		       
 		
+		// Start a thread to keep window open
+		Runnable readRun = new Thread(player);
+		readRun.run();
+
 		player.compileRules();
-		System.out.println("RulePlayer Complete");
+		System.out.println("RulePlayer Complete");	
 
+	}
+	
+	@Override
+	public String getRuleFile() {
+		return ruleFile;
+	}
 
+	@Override
+	public void setRuleFile(String ruleFile) {
+		this.ruleFile = ruleFile;
+	}
+	
+	@Override
+	public String getGoogleUser() {
+		return googleUser;
+	}
+
+	@Override
+	public void setGoogleUser(String googleUser) {
+		this.googleUser = googleUser;
 	}
 }

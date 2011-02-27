@@ -77,10 +77,11 @@ _TODO_ blurb on the options Eclipse to test, Eclipse to build & deploy GAE, Ant 
 Personally, I use Eclipse to edit and build the code (hence the reason why Eclipse build files are 
 
   * For the moment right click on the Red Piranha project name, resolve the build errors, let Eclipse carry out an automated build.
-  * _work in progress_ an ant build file
   * RulePlayer Console
   * Red Piranha Junit Tests (see [ProjectLayout])
-  * Red Piaranha Main methods (See [ProjectLayout]
+  * Red Piaranha Main methods (See [ProjectLayout])
+     * RulePlayer - can be run directly in Eclipse _TODO More Info_
+     * Google App Engine, then go to local host _TODO More Info_
     
    
 === Developer Rule Player build ===

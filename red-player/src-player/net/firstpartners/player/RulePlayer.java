@@ -182,4 +182,32 @@ public class RulePlayer extends WindowAdapter implements WindowListener,
 	public void setGoogleUser(String googleUser) {
 		this.googleUser = googleUser;
 	}
+
+	@Override
+	public String getProxyHost() {
+		return System.getProperty("http.proxyHost");
+	}
+
+	@Override
+	public void setProxyHost(String proxyHost) {
+		if(proxyHost!=null){
+			System.setProperty("http.proxyHost", proxyHost);
+		}
+		
+	}
+
+	@Override
+	public String getProxyPort() {
+		return System.getProperty("http.proxyHost");
+	}
+
+	@Override
+	public void setProxyPort(String proxyPort) {
+		if(proxyPort!=null){
+			System.setProperty("http.proxyPort", proxyPort);
+		}
+		
+	}
+
+	
 }

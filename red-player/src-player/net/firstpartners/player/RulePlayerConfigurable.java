@@ -14,4 +14,9 @@ public interface RulePlayerConfigurable {
 	public String getGoogleUser();
 	public void setGoogleUser(String googleUser) ;
 	
+	public String getProxyHost();
+	public void setProxyHost(String proxyHost);
+	public String getProxyPort() ;
+	public void setProxyPort(String proxyPort);
+	
 }

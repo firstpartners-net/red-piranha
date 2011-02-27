@@ -64,11 +64,16 @@ public class SettingsLoader {
 						.getProperty("RuleFile"));
 				configurablePlayer.setGoogleUser(myProperties
 						.getProperty("GoogleUser"));
+				configurablePlayer.setProxyHost(myProperties
+						.getProperty("ProxyHost"));
+				configurablePlayer.setProxyPort(myProperties
+						.getProperty("ProxyPort"));
 
 			}
 		} catch (IOException ioe) {
-
+			log.info("Recovering from error:"+ioe.getMessage()+" by using default propery settings");
 		}
+		
 	}
 
 	/**

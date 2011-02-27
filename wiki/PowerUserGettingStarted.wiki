@@ -14,7 +14,7 @@ There are two ways of interacting with Red-Piranha to build and run your busines
   * Rule Player; If you want to build your own rules, you'll need the Rule Player. The Rule Player is downloaded from the web, but uses the power of your local machine. After it packages the rules, it uploads the finished package to the web, where we can share it with other users via Red Piranha.
 <br/>
 
-There is a third way if you're a [DeveloperGettingStarted developer], but we'll leave that more detailed explanation for later.
+There is a third way if you're a [DeveloperGettingStarted developer, as set out here], 
 
 
 == How does it work ==
@@ -135,6 +135,7 @@ _TODO Complete Section_
 
   * Link to [RedPiranhaExamples] & [KeyConcepts#Community] Community pages
   * [DeveloperGettingStarted] provides additional information, at a more technical level.
+  * _TODO Loop back to [EndUserGettingStarted], only this time run your own rules
 
 
 

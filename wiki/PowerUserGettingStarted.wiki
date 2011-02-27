@@ -60,6 +60,14 @@ Either of these methods, if successful, you should see a screen similar to the f
  <img alt="RulePlayer Console" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/screenshot-rule-runner.png"/>
  </a>
 
+Using the defaults (as set in the properties file - next section), you should see the following text;
+
+{{{
+Compiling Rules...
+Using file:http://red-piranha.googlecode.com/svn/trunk/war/sampleresources/SpreadSheetServlet/log-then-modify-rules.drl
+Compiling complete
+}}}
+
 === Running the Rule Player Locally From a Download ===
 _TODO Complete_ <BR/>
 

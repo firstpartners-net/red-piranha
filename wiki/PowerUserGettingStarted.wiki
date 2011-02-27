@@ -75,7 +75,7 @@ _TODO Complete_ <BR/>
   * Cover both local JNLP, Local Shell
   * Url : http://red-piranha.googlecode.com/svn/red-player/release/red-player.zip
   * Configuring via rulerunner.properties
-  * Configure Proxy
+  * Configure Proxy - edit the rulerunner.properties file to contain the Proxy Host and Proxy Port that you use to reach the Internet (check your web browser / Internext explorer settings as they are likely to use same values).
 
 
 === Running the Rule Player Directly from Web Start ===

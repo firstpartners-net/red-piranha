@@ -9,11 +9,6 @@ import org.junit.Test;
 
 public class SettingsLoaderTest implements RulePlayerConfigurable {
 
-	@Test
-	public void testLogLocation(){
-		File file=new File(".");
-		System.out.println("Current Location:"+file.getAbsolutePath());
-	}
 	
 	
 	@Test
@@ -26,6 +21,11 @@ public class SettingsLoaderTest implements RulePlayerConfigurable {
 		assertNotNull(this.getRuleFile());
 		assertNotNull(this.getGoogleUser());
 		
+		//These are null / empty in the default properties file
+		assertNull(this.getProxyHost());
+		assertNull(this.getProxyPort());
+		
+		
 	}
 	
 	
@@ -33,6 +33,9 @@ public class SettingsLoaderTest implements RulePlayerConfigurable {
 	
 	String ruleFile=null;
 	String googleUser=null;
+	String proxyHost=null;
+	String proxyPort=null;
+	
 	
 	@Override
 	public String getRuleFile() {
@@ -52,5 +55,30 @@ public class SettingsLoaderTest implements RulePlayerConfigurable {
 	@Override
 	public void setGoogleUser(String googleUser) {
 		this.googleUser = googleUser;
+	}
+
+
+	@Override
+	public String getProxyHost() {
+		return proxyHost;
+	}
+
+
+	@Override
+	public String getProxyPort() {
+		return proxyPort;
+	}
+
+	@Override
+	public void setProxyHost(String proxyHost) {
+		this.proxyHost=proxyHost;
+		
+	}
+
+
+	@Override
+	public void setProxyPort(String proxyPort) {
+		this.proxyPort =proxyPort;
+		
 	}
 }

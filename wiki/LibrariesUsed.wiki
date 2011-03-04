@@ -47,6 +47,11 @@ _To restore_
   * Note on Junit Libs (from http://www.junit.org) 
   * Note on Servlet.jar from (from Tomcat) 
 
+=== May be backed out ===
+
+  * Apache Commons Codec - encode kb as characters
+
+
 === To tidy ===
 
   *antlr-runtime-3.1.1.jar

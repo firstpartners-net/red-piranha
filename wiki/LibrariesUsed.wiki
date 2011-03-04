@@ -49,7 +49,7 @@ _To restore_
 
 === May be backed out ===
 
-  * Apache Commons Codec - encode kb as characters
+  * Commons-Codec-1.4.jar Apache Commons Codec - encode kb as characters
 
 
 === To tidy ===

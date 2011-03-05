@@ -6,9 +6,6 @@ and is made available under the MIT Licence
 To rebuild the applet, right-click on this file and
 and Run As Ant Build...
 
-Then be sure to refresh the "lib" folder to get the
-changes from the file system.
-
 Note that if you want a signed applet, you will need to
 add properties pointing to the keystore, etc, and change
 the target to "sign"
@@ -100,6 +97,7 @@ the target to "sign"
 			<zipfileset includes="**/*.*" src="${red-main-lib}/mvel2-2.0.15.jar" />
 			<zipfileset includes="**/*.*" src="${red-main-lib}/core-3.4.2.v_883_R34x.jar"  />
 			<zipfileset includes="**/*.*" src="${red-main-lib}/antlr-runtime-3.1.1.jar" />
+			<zipfileset includes="**/*.*" src="${red-main-lib}/commons-codec-1.4.jar" />
 
 			<!-- Manifest details - allows us to run from the command line -->
 			<manifest>

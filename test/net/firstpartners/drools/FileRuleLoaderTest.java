@@ -1,10 +1,14 @@
 package net.firstpartners.drools;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.IOException;
 import java.util.logging.Logger;
 
 import net.firstpartners.drools.data.RuleSource;
 
+import org.drools.KnowledgeBase;
+import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
 
 public class FileRuleLoaderTest {
@@ -23,7 +27,9 @@ public class FileRuleLoaderTest {
 		ruleSource.setKnowledgeBaseLocation("war/sampleresources/SpreadSheetServlet/log-then-modify-rules.KnowledgeBase");
 
 		//do the call
-		ruleLoader.loadKnowledgeBase(ruleSource);
+		KnowledgeBase kb = ruleLoader.loadKnowledgeBase(ruleSource);
+		assertNotNull(kb);
+		StatefulKnowledgeSession sks = kb.newStatefulKnowledgeSession();
 
 	}
 

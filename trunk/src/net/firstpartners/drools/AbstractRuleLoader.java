@@ -1,5 +1,8 @@
 package net.firstpartners.drools;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
@@ -11,6 +14,7 @@ import net.firstpartners.RedConstants;
 import net.firstpartners.drools.data.RuleSource;
 import net.firstpartners.security.RedSecurityManager;
 
+import org.apache.commons.codec.binary.Base64;
 import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
 import org.drools.builder.KnowledgeBuilder;
@@ -25,11 +29,8 @@ import org.drools.io.ResourceFactory;
 
 public abstract class AbstractRuleLoader implements IRuleLoader {
 
-
-
 	private static final Logger log = Logger.getLogger(AbstractRuleLoader.class
 			.getName());
-
 
 	/**
 	 * Load multiple rules, with optional dsl and ruleflow file
@@ -46,8 +47,8 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 	public KnowledgeBase loadRules(RuleSource ruleSource)
 	throws DroolsParserException, IOException, ClassNotFoundException {
 
-		//Use cached rules if possible
-		if(ruleSource.getKnowledgeBaseLocation()!=null){
+		// Use cached rules if possible
+		if (ruleSource.getKnowledgeBaseLocation() != null) {
 
 			return loadKnowledgeBase(ruleSource);
 
@@ -68,7 +69,8 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 			} else {
 
 				log.info("Loading Drl file: " + ruleFile);
-				loadDrlRules(ruleFile, ruleSource.getDslFileLocation(), ruleSource.getRuleFlowFileUrl() , localBuilder);
+				loadDrlRules(ruleFile, ruleSource.getDslFileLocation(),
+						ruleSource.getRuleFlowFileUrl(), localBuilder);
 			}
 
 		}
@@ -101,7 +103,8 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 					+ localBuilder.getErrors().toString());
 			log.severe("****/nEnd Drools Errors");
 
-			throw new RuntimeException("Error in Rules File:"+localBuilder.getErrors().toString());
+			throw new RuntimeException("Error in Rules File:"
+					+ localBuilder.getErrors().toString());
 
 		} else {
 			log.info("No Drools Errors");
@@ -116,7 +119,6 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 
 		log.info("Adding packages to localBase");
 		localBase.addKnowledgePackages(localBuilder.getKnowledgePackages());
-
 
 		return localBase;
 	}
@@ -209,6 +211,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 
 	/**
 	 * Abstract methods, implented in sub classes
+	 * 
 	 * @param excelRuleFileUrl
 	 * @return
 	 * @throws IOException
@@ -217,6 +220,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 
 	/**
 	 * Get a reader for a given resource
+	 * 
 	 * @param ruleFlowFileUrl
 	 * @return
 	 * @throws IOException
@@ -225,40 +229,52 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 
 	/**
 	 * Get an InputStream for a given resource
-	 * @param resource to find
+	 * 
+	 * @param resource
+	 *            to find
 	 * @return
 	 * @throws IOException
 	 */
 	abstract InputStream getInputStream(String resource) throws IOException;
 
-
 	/**
-	 * Load a previously cached resource
+	 * Load a previously cached resource (that has been saved using Base64)
+	 * 
+	 * 
 	 * @param cacheResourceUnderName
 	 * @return - the first serialized Knowledgebase in the file
 	 * @throws DroolsParserException
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	KnowledgeBase loadKnowledgeBase(RuleSource ruleSource)
-	throws IOException, ClassNotFoundException, SecurityException{
+	KnowledgeBase loadKnowledgeBase(RuleSource ruleSource) throws IOException,
+	ClassNotFoundException, SecurityException {
 
 		RedSecurityManager.checkUrl(ruleSource);
 
-		//DeSerialize the Object
-		//	ObjectInputStream in = new ObjectInputStream(getInputStream( ruleSource.getKnowledgeBaseLocation()));
-		DroolsObjectInputStream in = new DroolsObjectInputStream(getInputStream( ruleSource.getKnowledgeBaseLocation()));
+		BufferedInputStream inStream = new BufferedInputStream(
+				getInputStream(ruleSource.getKnowledgeBaseLocation()));
+
+		StringBuffer inString = new StringBuffer();
+		ByteArrayOutputStream holdStream = new ByteArrayOutputStream();
+
+		// _TODO Optimize this read_
+		while (inStream.available() != 0) {
+			holdStream.write(inStream.read());
+		}
+
+		// Convert this string from Base64 t0 binary
+		byte[] base64Bytes = holdStream.toByteArray();
+		byte[] binaryBytes = Base64.decodeBase64(base64Bytes);
+
+		DroolsObjectInputStream in = new DroolsObjectInputStream(
+				new ByteArrayInputStream(binaryBytes));
 
 		Object inObject = in.readObject();
-		log.info("inObject:"+inObject.getClass());
+		log.info("inObject:" + inObject.getClass());
 
-		return (KnowledgeBase)inObject;
-
-
+		return (KnowledgeBase) inObject;
 
 	}
 
-
-
 }
-

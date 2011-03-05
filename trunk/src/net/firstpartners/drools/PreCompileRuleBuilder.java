@@ -1,5 +1,6 @@
 package net.firstpartners.drools;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.util.logging.Logger;
 
 import net.firstpartners.drools.data.RuleSource;
 
+import org.apache.commons.codec.binary.Base64;
 import org.drools.KnowledgeBase;
 import org.drools.compiler.DroolsParserException;
 
@@ -36,17 +38,23 @@ public class PreCompileRuleBuilder {
 	public static String LIST_OF_DRL_FILES_TO_COMPILE="src/net/firstpartners/drools/PreCompileRuleList.properties";
 
 	/**
-	 * Cache the pre built knowledgebase
+	 * Cache the pre built knowledgebase.
+	 * 
+	 * We encode using base64 (instead of Binary) so that it can be treated as a normal text file
 	 */
 	void cacheKnowledgeBase(KnowledgeBase kbToCache,
 			String cacheResourceUnderName) throws IOException {
 
-		org.drools.common.DroolsObjectOutputStream out = new org.drools.common.DroolsObjectOutputStream( new FileOutputStream( cacheResourceUnderName ));
-		out.writeObject( kbToCache );
+		ByteArrayOutputStream bytes= new ByteArrayOutputStream();
+		org.drools.common.DroolsObjectOutputStream outBytes = new org.drools.common.DroolsObjectOutputStream(bytes);
+		outBytes.writeObject( kbToCache );
+
+		Base64 base64Code = new Base64();
+		byte[] base64Bytes = base64Code.encode(bytes.toByteArray());
+
+		FileOutputStream out = new FileOutputStream( cacheResourceUnderName );
+		out.write(base64Bytes);
 		out.close();
-
-
-
 
 	}
 

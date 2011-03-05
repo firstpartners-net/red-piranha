@@ -1,6 +1,9 @@
+1) Google Docs UpLoad - stub prototype 
+1.1 Try with embedded binary object (rules) - manual, then red apache docs
+1.2 Try GAE deploy (embedded)
+1.3 try as character (test, then complete in, try running)
 
-1) Upgrade wiki documentation and mark _TODO_ section for inital user experience
-
+Grab red-piranha.gmail.com
 
 2) Update Own Google Docs - milestones and how to hit initial revenue
 
@@ -8,3 +11,10 @@
 4) Submit Drools patch
 
  
+===
+
+Later Make RP easier
+- document API
+- list available documents & rule files
+- Community links
+

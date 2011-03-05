@@ -3,6 +3,7 @@ package net.firstpartners.drools;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -51,6 +52,8 @@ public class URLRuleLoaderTest {
 
 		} catch (SecurityException se){
 			// do nothing - we need the security exception to be thrown for the test to pass
+		} catch (FileNotFoundException fnfe){
+			// do nothing - we need the security exception to be thrown for the test to pass
 		}
 	}
 
@@ -68,6 +71,8 @@ public class URLRuleLoaderTest {
 			fail("Expected Security Exception not thrown");
 
 		} catch (SecurityException se){
+			// do nothing - we need the security exception to be thrown for the test to pass
+		}catch (FileNotFoundException fnfe){
 			// do nothing - we need the security exception to be thrown for the test to pass
 		}
 	}

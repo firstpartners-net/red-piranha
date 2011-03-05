@@ -81,4 +81,16 @@ public class SettingsLoaderTest implements RulePlayerConfigurable {
 		this.proxyPort =proxyPort;
 		
 	}
+
+	@Override
+	public String getKbFileName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setKbFileName(String kbFileName) {
+		// TODO Auto-generated method stub
+		
+	}
 }

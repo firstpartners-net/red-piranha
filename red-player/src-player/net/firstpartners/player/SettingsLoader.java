@@ -62,12 +62,16 @@ public class SettingsLoader {
 				// set the relevant properties
 				configurablePlayer.setRuleFile(myProperties
 						.getProperty("RuleFile"));
+				configurablePlayer.setKbFileName(myProperties.getProperty("KbFileName"));
+				
 				configurablePlayer.setGoogleUser(myProperties
 						.getProperty("GoogleUser"));
 				configurablePlayer.setProxyHost(myProperties
 						.getProperty("ProxyHost"));
 				configurablePlayer.setProxyPort(myProperties
 						.getProperty("ProxyPort"));
+				
+				
 
 			}
 		} catch (IOException ioe) {

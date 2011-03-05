@@ -19,4 +19,8 @@ public interface RulePlayerConfigurable {
 	public String getProxyPort() ;
 	public void setProxyPort(String proxyPort);
 	
+
+	public String getKbFileName();
+	public void setKbFileName(String kbFileName);
+	
 }

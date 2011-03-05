@@ -36,6 +36,8 @@ public class RulePlayer extends WindowAdapter implements WindowListener,
 	private String ruleFile =null;
 	private String googleUser=null;
 	
+	private String KbFileName=null;
+	
 	
 
 
@@ -54,7 +56,8 @@ public class RulePlayer extends WindowAdapter implements WindowListener,
 
 			PreCompileRuleBuilder rulebuilder = new PreCompileRuleBuilder();
 			try {
-				rulebuilder.cacheRule(ruleFile, null);
+				rulebuilder.cacheRule(ruleFile, this.getKbFileName());
+				
 			} catch (DroolsParserException e) {
 				textArea.append("DroolsParserException:" + e + "\n");
 				e.printStackTrace();
@@ -67,6 +70,9 @@ public class RulePlayer extends WindowAdapter implements WindowListener,
 				e.printStackTrace();
 			}
 			textArea.append("Compiling complete\n");
+			textArea.append("Packaged Knowledgebase stored in:"+this.getKbFileName());
+			
+			
 		}
 
 	}
@@ -208,6 +214,17 @@ public class RulePlayer extends WindowAdapter implements WindowListener,
 		}
 		
 	}
+	
+	@Override
+	public String getKbFileName() {
+		return KbFileName;
+	}
+
+	@Override
+	public void setKbFileName(String kbFileName) {
+		KbFileName = kbFileName;
+	}
+
 
 	
 }

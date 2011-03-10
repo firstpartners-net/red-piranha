@@ -137,8 +137,9 @@ ant -f ant-gae.xml update
 }}}
 
   * If you have not logged in before, or not loggedin in the previous 24 hours you may get the error {{{   Your authentication credentials can't be found and may have expired. Please run appcfg directly from the command line to re-establish your credentials.}}}
-  * To solve this , run the script [http://code.google.com/p/red-piranha/source/browse/trunk/scripts/login-to-google-apps.sh login-to-google-apps.sh] (in the scripts folder of Red-Piranha) - you may need to edit this to run on Windows / point to where you have the GAE tools installed on your PC. It will prompt you for a email / password - Google will remember this for 24 hours.
+  * To solve this , run the script [http://code.google.com/p/red-piranha/source/browse/trunk/scripts/login-to-google-apps.sh login-to-google-apps.sh] (in the scripts folder of Red-Piranha) - you may need to edit this to run on Windows / point to where you have the GAE tools installed on your PC. It will prompt you for a email / password - Google will remember this for 24 hours. 
   * you may need to run this script from the main Red-Piranha folder so that it knows which project to deploy e.g. on Linux {{{./scripts/ login-to-google-apps.sh}}}
+  * More info on the [http://code.google.com/appengine/docs/java/tools/uploadinganapp.html GAE command line tools used by this script]
  
   * Run the Ant script again, it should now work.
 

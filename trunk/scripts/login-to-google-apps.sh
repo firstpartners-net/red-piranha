@@ -14,4 +14,3 @@ echo $APP_ENGINE_ECLIPSE_PLUGIN_DIR
 
 #Use the App engine code to upload war (and force login)
 $APP_ENGINE_ECLIPSE_PLUGIN_DIR/bin/appcfg.sh update war
-$APP_ENGINE_ECLIPSE_PLUGIN_DIR/bin/appcfg.sh --severity=0 request_logs output.txt

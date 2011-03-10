@@ -128,10 +128,15 @@ In general, most people will only want to deploy the packaged rules. These instr
   * Find and edit ant-gae.xml in the Red-Piranha project. One of the first lines 
   * Open a command prompt (terminal window or Dos shell) go to the same folder as the ant file, check everything is working by typing {{{ant -f ant-gae.xml}}}
   * Some useful Ant Commands
-# Run the local 
+{{{
+# Run the Red Piranha on a local Webserver - http://localhost:8888/ 
 ant -f ant-gae.xml runserver
 
-#
+# Upload the Current build to the 'Real' Google App Engine 
+ant -f ant-gae.xml update
+
+}}}
+
 
  Where to find in project , commands
   * _TODO_ How to edit properties files

@@ -46,6 +46,7 @@ _To restore_
 === Other ===
   * Note on Junit Libs (from http://www.junit.org) 
   * Note on Servlet.jar from (from Tomcat) 
+/home/paul/tmp/apache-tomcat-6.0.32/lib/servlet-api.jar
 
 === May be backed out ===
 

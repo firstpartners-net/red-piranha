@@ -113,10 +113,26 @@ _TODO -Complete this section _
 
 == Deploying to App Engine ==
 
-  * use the Google App Engine Toolbar in Eclipse
-<img src="http://code.google.com/p/red-piranha/source/browse/wiki/images/google_app_engine_eclipse_button.png"/>
-  * _work in progress_ an ant build file
-  * _work in progress_ automated tools
+In general, most people will only want to deploy the packaged rules. These instructions are only if you are editing the Java Code in the Core Red Piranha build, or if you want to have your own instance of Red Piranha on the Google App Engine 
+
+=== Deploying Red Piranha to GAE Via Eclipse ===
+
+  * Install [http://code.google.com/appengine/docs/java/tools/eclipse.html#Installing_the_Google_Plugin_for_Eclipse The Google App Engine Toolbar in Eclipse]
+  * Ensure the Red-Piranha project in Eclipse is setup as a GAE Project (similar to [http://code.google.com/appengine/docs/java/tools/eclipse.html#Creating_a_Project Creating a new App Engine Project]
+  * Upload the Project to GAE ([http://code.google.com/appengine/docs/java/tools/eclipse.html#Uploading_to_Google_App_Engine Instructions here]) by pressing the GAE button in Eclipse.
+<img src="http://red-piranha.googlecode.com/svn/wiki/images/google_app_engine_eclipse_button.png"/>
+
+=== Deploying Red Piranha to GAE Via Ant ===
+  * Ensure that you have [http://http://ant.apache.org/ Apache Ant] installed.
+  * [http://code.google.com/appengine/docs/java/tools/ant.html Information from Google on Using Ant to deploy]
+  * ant-gae.xml Where to find in project , commands
+  * _TODO_ How to edit properties files
+  * _TODO_  Most commonly used commands
+
+=== Deploying Red Piranha to GAE Via Rule Player ===
+  * Feature not implemented yet _TODO_ Document when done
+
+
 
 == Building your own rules ==
 

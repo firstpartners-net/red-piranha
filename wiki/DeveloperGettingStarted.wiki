@@ -125,7 +125,15 @@ In general, most people will only want to deploy the packaged rules. These instr
 === Deploying Red Piranha to GAE Via Ant ===
   * Ensure that you have [http://http://ant.apache.org/ Apache Ant] installed.
   * [http://code.google.com/appengine/docs/java/tools/ant.html Information from Google on Using Ant to deploy]
-  * ant-gae.xml Where to find in project , commands
+  * Find and edit ant-gae.xml in the Red-Piranha project. One of the first lines 
+  * Open a command prompt (terminal window or Dos shell) go to the same folder as the ant file, check everything is working by typing {{{ant -f ant-gae.xml}}}
+  * Some useful Ant Commands
+# Run the local 
+ant -f ant-gae.xml runserver
+
+#
+
+ Where to find in project , commands
   * _TODO_ How to edit properties files
   * _TODO_  Most commonly used commands
 

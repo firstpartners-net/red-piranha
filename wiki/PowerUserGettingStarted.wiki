@@ -74,8 +74,31 @@ _TODO Complete_ <BR/>
 
   * Cover both local JNLP, Local Shell
   * Url : http://red-piranha.googlecode.com/svn/red-player/release/red-player.zip
-  * Configuring via rulerunner.properties
+  * Configuring via rulerunner.properties - find and open this file in your favourite editor
+
+{{{
+# Properties file for when the RulePlayer is unpackaged / run locally
+
+# The Url (Web Address) of the Rule File we wish to package 
+RuleFile=http://red-piranha.googlecode.com/svn/trunk/war/sampleresources/SpreadSheetServlet/log-then-modify-rules.drl
+
+# Where we store the packaged rule file locally before uploading
+KbFileName=LocalRuleFile.kb
+
+# Your Google UserName - you'll be asked for your password later when the RulePlayer runs
+GoogleUser=SOME-GOOGLE-USER@GMAIL.COM
+
+# Only set these if you are having difficulty connecting to the internet (e.g. in a corporate environment)
+# Uncomment (remove # at start of line) first
+# Ask your friendly IT staff the values that you should use
+# ProxyHost=SomeCorporateProxy
+# ProxyPort=80
+
+}}}
+
   * Configure Proxy - edit the rulerunner.properties file to contain the Proxy Host and Proxy Port that you use to reach the Internet (check your web browser / Internext explorer settings as they are likely to use same values).
+
+
 
 
 === Running the Rule Player Directly from Web Start ===

@@ -27,7 +27,7 @@ _TODO Tidy this page. Note what these Libraries are and where they come from. Pl
 
   * core-3.4.2.v_883_R34x.jar - Eclipse Compiler (to compile rules)
   * antlr-runtime-3.1.1.jar - For parsing rules files
-  * *mvel2-2.0.15.jar for rule compilation 
+  * mvel2-2.0.15.jar for rule compilation 
 
 
 === Google App Engine ===

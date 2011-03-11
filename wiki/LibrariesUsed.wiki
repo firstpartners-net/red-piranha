@@ -3,7 +3,10 @@
 
 = Project Libraries and Dependencies =
 
-_TODO Tidy this page. Note what these Libraries are and where they come from. Please check the respective websites for licence terms._
+_TODO Tidy this page.
+ Note what these Libraries are and where they come from._ 
+
+Please check the respective websites for licence terms.
 
 
 === Apache POI - Excel Manipulation ===

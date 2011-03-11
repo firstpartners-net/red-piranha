@@ -42,6 +42,17 @@ _To restore_
   * geronimo-jta_1.1_spec-1.1.1.jar
   * jdo2-api-2.3-ea.jar
 
+=== Google Docs ===
+  * gdata-client-1.0.jar
+  * gdata-core-1.0.jar
+  * gdata-docs-3.0.jar
+  * gdata-docs-meta-3.0.jar
+  * gdata-media-1.0.jar
+  * gdata-spreadsheet-3.0.jar
+  * google-collect-1.0-rc1.jar
+  * jsr305.jar
+  * mail.jar
+
 
 === Other ===
   * Note on Junit Libs (from http://www.junit.org) 

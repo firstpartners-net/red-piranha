@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="classes" path="src-applet"/>
+	<classpathentry kind="src" path="src-player"/>
 	<classpathentry kind="var" path="JRE_LIB" sourcepath="JRE_SRC"/>
 	<classpathentry kind="con" path="/home/paul/projects/red-piranha/applet/lib"/>
 	<classpathentry kind="src" path="/red-piranha"/>

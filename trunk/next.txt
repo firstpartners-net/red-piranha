@@ -1,11 +1,8 @@
+0) Read Latest docs, update any docs
 
-0) Synch ruleplayer - "Resolved missing servlet.jar and google-api.jar compile issue"
+1) Do Interim code drop
 
-1) Google Docs (KB) UpLoad - move prototype to ruleplayer
-1.1 Try with embedded binary object (rules) - manual, then red apache docs
 
-2) Update Servlet; Select KB and Docs from list of files / public files
-2b) Make note to start grabbing this to somewhere public
 
 
 

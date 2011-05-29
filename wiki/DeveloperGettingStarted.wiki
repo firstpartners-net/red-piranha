@@ -77,9 +77,9 @@ Personally, I use Eclipse to edit and build the code (hence the reason why Eclip
 The Eclipse file should work once you check it out (as all the libs are provided), but right clicking on the Red Piranha will allow you
 to resolve them.
 
-*RulePlayer Console*
+*Rule Player Console*
 
-The RulePlayer - can be run directly in Eclipse
+The Rule Player - can be run directly in Eclipse
   # Right click on RulePlayer Project in Eclipse, select 'Run as Java Application'
   # In the Dialog that follows, select the 'RulePlayer' Class - its under net.firstpartners.player
   # If this works ok, you should see the Rule Rule Console appear, similar to the following
@@ -88,11 +88,15 @@ The RulePlayer - can be run directly in Eclipse
 *Red Piranha Junit Tests*
  (see [ProjectLayout]), right click and run as JUnit test.
 
-
-  * Red Piranha Main methods (See [ProjectLayout])
-
-     * Google App Engine, then go to local host _TODO More Info_
-    
+*Red Piranha Main*
+  # Find the Rp2CommandLine file (it's under net.firstpartners.ui)
+  # Right click on this file, select 'Run Configurations ...'
+  # Add any Arguments under the 'Arguments' tab
+  # Click Run
+  
+*Google App Engine Local*
+  # Make sure you have Google App Engine plugin for Eclipse installed.
+  # _TODO_ more detailled instructions
    
 === Developer Rule Player build ===
 _TODO_  

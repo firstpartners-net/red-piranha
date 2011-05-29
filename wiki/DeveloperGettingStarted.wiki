@@ -74,7 +74,7 @@ _TODO_ blurb on the options Eclipse to test, Eclipse to build & deploy GAE, Ant 
 === How to run in Eclipse ===  
 
 
-Personally, I use Eclipse to edit and build the code (hence the reason why Eclipse build files are 
+Personally, I use Eclipse to edit and build the code (hence the reason why Eclipse build files are included when you check out the code).
 
   * For the moment right click on the Red Piranha project name, resolve the build errors, let Eclipse carry out an automated build.
   * RulePlayer Console

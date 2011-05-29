@@ -81,6 +81,8 @@ Personally, I use Eclipse to edit and build the code (hence the reason why Eclip
   * Red Piranha Junit Tests (see [ProjectLayout])
   * Red Piaranha Main methods (See [ProjectLayout])
      * RulePlayer - can be run directly in Eclipse _TODO More Info_
+         * Right click on RulePlayer Project in Eclipse, select 'Run as Java Application'
+         * In the Dialog that follows, select the 'RulePlayer' Class - its under net.firstpartners.player
      * Google App Engine, then go to local host _TODO More Info_
     
    

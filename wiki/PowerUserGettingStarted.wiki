@@ -19,7 +19,7 @@ There is a third way if you're a [DeveloperGettingStarted developer, as set out 
 
 == How does it work ==
 
-We're not going to actually run any rules using Ruleplayer (see [EndUserGettingStarted End User Getting Started for that]). What this page shows you how to do is how to prepare your rules so that other people can use them.
+We're not going to actually run any rules using Ruleplayer (see [EndUserGettingStarted End User Getting Started for that]). What this page shows you how to do is how to write and prepare your rules so that other people can use them.
 
   * [#What_you'll_need What you'll need before you get started]
   * How to [#Writing_your_own_Rules Write your rules somewhere]
@@ -119,9 +119,12 @@ _Work in progress to resolve this issue_
 == Running the Rule Player ==
 _TODO Complete Section_
 
+For the moment , take a look at the DeveloperGettingStarted to see how to run the Rule Player through eclipse 
+
   # Screenshot; Should start automatically
   # Run again if press the big green button
   # Should see the following txt
+
 
 == Deploying to Your Own Google App Engine ==
 _TODO Complete Section_ <br/>

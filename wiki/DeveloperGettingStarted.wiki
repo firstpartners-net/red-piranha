@@ -83,6 +83,10 @@ Personally, I use Eclipse to edit and build the code (hence the reason why Eclip
      * RulePlayer - can be run directly in Eclipse _TODO More Info_
          * Right click on RulePlayer Project in Eclipse, select 'Run as Java Application'
          * In the Dialog that follows, select the 'RulePlayer' Class - its under net.firstpartners.player
+         * If this works ok, you should see the Rule Rule Console appear, similar to the following
+ <img alt="RulePlayer Console" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/console-after.png"/>
+
+
      * Google App Engine, then go to local host _TODO More Info_
     
    

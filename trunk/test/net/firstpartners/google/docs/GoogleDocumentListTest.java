@@ -29,7 +29,6 @@ import java.util.logging.Logger;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.google.gdata.data.Link;
 import com.google.gdata.data.acl.AclEntry;
 import com.google.gdata.data.acl.AclRole;
 import com.google.gdata.data.acl.AclScope;
@@ -113,7 +112,7 @@ public class GoogleDocumentListTest {
 
 		DocumentListEntry entry = demo.uploadFile(SAMPLE_EXCEL_TO_UPLOAD_PATH, SAMPLE_EXCEL_TO_UPLOAD_NAME);
 		assertNotNull("Google Docs should return an ID for the entry ",entry);
-		printDocumentEntry(entry);
+		demo.printDocumentEntry(entry);
 		assertNotNull("Google Docs should return a resourceID as part of the entry",entry.getResourceId());
 
 
@@ -133,7 +132,7 @@ public class GoogleDocumentListTest {
 
 		DocumentListEntry entry = demo.uploadFile(SAMPLE_KB_TO_UPLOAD_PATH, SAMPLE_KB_TO_UPLOAD_NAME);
 		assertNotNull("Google Docs should return an ID for the entry ",entry);
-		printDocumentEntry(entry);
+		demo.printDocumentEntry(entry);
 		assertNotNull("Google Docs should return a resourceID as part of the entry",entry.getResourceId());
 
 		uploadedKbDocumentID = entry.getResourceId();
@@ -159,7 +158,7 @@ public class GoogleDocumentListTest {
 		if (feed != null) {
 
 			for (DocumentListEntry entry : feed.getEntries()) {
-				printDocumentEntry(entry);
+				demo.printDocumentEntry(entry);
 			}
 		}
 
@@ -267,24 +266,6 @@ public class GoogleDocumentListTest {
 
 	}
 
-	/**
-	 * Prints out the specified document entry.
-	 * 
-	 * @param doc
-	 *            the document entry to print.
-	 */
-	public void printDocumentEntry(DocumentListEntry doc) {
-		StringBuffer output = new StringBuffer();
 
-		output.append(" -- " + doc.getTitle().getPlainText() + " ");
-		if (!doc.getParentLinks().isEmpty()) {
-			for (Link link : doc.getParentLinks()) {
-				output.append("[" + link.getTitle() + "] ");
-			}
-		}
-		output.append(doc.getResourceId());
-
-		log.info(output.toString());
-	}
 
 }

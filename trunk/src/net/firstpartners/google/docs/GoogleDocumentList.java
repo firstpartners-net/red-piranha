@@ -26,11 +26,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
-import com.google.gdata.client.GoogleAuthTokenFactory.UserToken;
 import com.google.gdata.client.GoogleService;
 import com.google.gdata.client.Query;
+import com.google.gdata.client.GoogleAuthTokenFactory.UserToken;
 import com.google.gdata.client.docs.DocsService;
+import com.google.gdata.data.Link;
 import com.google.gdata.data.MediaContent;
 import com.google.gdata.data.PlainTextConstruct;
 import com.google.gdata.data.acl.AclEntry;
@@ -52,11 +54,13 @@ import com.google.gdata.util.ServiceException;
  * An application that serves as a sample to show how the Documents List Service
  * can be used to search your documents, upload and download files, change
  * sharing permission, file documents in folders, and view revisions history.
- *
- * 
- * 
  */
 public class GoogleDocumentList {
+
+	// Handle to logger
+	private static final Logger log = Logger.getLogger(GoogleDocumentList.class
+			.getName());
+
 	public DocsService service;
 	public GoogleService spreadsheetsService;
 
@@ -948,4 +952,25 @@ public class GoogleDocumentList {
 
 		return new URL(url.toString());
 	}
+
+	/**
+	 * Prints out the specified document entry.
+	 * 
+	 * @param doc
+	 *            the document entry to print.
+	 */
+	public void printDocumentEntry(DocumentListEntry doc) {
+		StringBuffer output = new StringBuffer();
+
+		output.append(" -- " + doc.getTitle().getPlainText() + " ");
+		if (!doc.getParentLinks().isEmpty()) {
+			for (Link link : doc.getParentLinks()) {
+				output.append("[" + link.getTitle() + "] ");
+			}
+		}
+		output.append(doc.getResourceId());
+
+		log.info(output.toString());
+	}
+
 }

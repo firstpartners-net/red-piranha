@@ -2,13 +2,7 @@
 
 1) Do Interim code drop
 
-
-
-
-
-Grab red-piranha.gmail.com
-
-B2) Update Own Google Docs - milestones and how to hit initial revenue
+B2) Update Own Google Docs - milestones
 
 B3) Start working through end-user experience (what do I need to book samples / community?)
 B4) Submit Drools patch

@@ -6,5 +6,12 @@
 	<classpathentry kind="src" path="/red-piranha"/>
 	<classpathentry kind="lib" path="/red-piranha/war/WEB-INF/lib/drools-compiler-5.1.1.jar"/>
 	<classpathentry kind="lib" path="/red-piranha/war/WEB-INF/lib/drools-core-5.1.1.jar"/>
+	<classpathentry kind="lib" path="/red-piranha/war/WEB-INF/lib/gdata-client-1.0.jar"/>
+	<classpathentry kind="lib" path="/red-piranha/war/WEB-INF/lib/gdata-core-1.0.jar"/>
+	<classpathentry kind="lib" path="/red-piranha/war/WEB-INF/lib/gdata-docs-3.0.jar"/>
+	<classpathentry kind="lib" path="/red-piranha/war/WEB-INF/lib/gdata-docs-meta-3.0.jar"/>
+	<classpathentry kind="lib" path="/red-piranha/war/WEB-INF/lib/gdata-media-1.0.jar"/>
+	<classpathentry kind="lib" path="/red-piranha/war/WEB-INF/lib/gdata-spreadsheet-3.0.jar"/>
+	<classpathentry kind="lib" path="/red-piranha/war/WEB-INF/lib/google-collect-1.0-rc1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

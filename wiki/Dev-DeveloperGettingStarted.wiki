@@ -24,11 +24,11 @@ There are two parts to the Red-Piranha Project
 
 === Other useful pages ===
 
-  * [ProjectLayout] - How the project is organised, important files, places to start reading the code.
+  * [Dev-ProjectLayout] - How the project is organised, important files, places to start reading the code.
   * [Dev-LibrariesUsed] - Libraries that Red Piranha uses, and thanks to the projects that we've built on.
   * [RoadMap] - When Red Piranha is going , and how you can help.
   * [RedPiranhaExamples Running the Examples]
-  * [AntBuildFile - How to build Red Piranha and Red Player from source using Ant]
+  * [Dev-AntBuildFile - How to build Red Piranha and Red Player from source using Ant]
   
   
 == Setup the environment ==
@@ -87,7 +87,7 @@ The Rule Player - can be run directly in Eclipse
  <img alt="RulePlayer Console" src="http://red-piranha.googlecode.com/svn/wiki/images/screenshots/console-after.png"/>
 
 *Red Piranha Junit Tests*
- (see [ProjectLayout]), right click and run as JUnit test.
+ (see [Dev-ProjectLayout]), right click and run as JUnit test.
 
 *Red Piranha Main*
   # Find the Rp2CommandLine file (it's under net.firstpartners.ui)

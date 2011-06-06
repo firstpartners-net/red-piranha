@@ -8,7 +8,7 @@ _TODO Insert Screenshot_
 
 === Other useful pages ===
 
-  * [ProjectLayout] - How the project is organised, important files, places to start reading the code.
+  * [Dev-ProjectLayout] - How the project is organised, important files, places to start reading the code.
   * [Dev-LibrariesUsed] - Libraries that Red Piranha uses, and thanks to the projects that we've built on.
   * [RoadMap] - When Red Piranha is going , and how you can help.
   * [RedPiranhaExamples Running the Examples]
@@ -34,7 +34,7 @@ The project is intended to be used in the following ways, hence the project layo
  * test/net/firstpartners/rp2/Drools/PreCompileRuleBuilderTest - Also rebuilds the packages
   
 == Project Layout ==
-  * Update wiki [ProjectLayout] with new structure
+  * Update wiki [Dev-ProjectLayout] with new structure
   * add script folder
 
 == Red Piranha Main folders and useful files==

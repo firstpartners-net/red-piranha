@@ -21,7 +21,7 @@ These samples are similar, but differ in several key aspects to the book samples
 == How to use the Red - Piranha Examples ==
 
 _For the moment this page presumes that you've followed the instructions on the 
-[DeveloperGettingStarted] page.
+[Dev-DeveloperGettingStarted] page.
 
 === Where are the samples ===
   * Located In the folder src/net/firstpartners/samples

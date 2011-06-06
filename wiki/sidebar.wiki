@@ -9,7 +9,7 @@
     * [BookFeedback Book Feedback]  
 
 *Developer*    
-  * [DeveloperGettingStarted Developer Getting Started]
+  * [Dev-DeveloperGettingStarted Developer Getting Started]
     * [CommonErrorMessages]
     * [Dev-LibrariesUsed]
     * [ModifyDroolsRunInGoogleAppEngine Changes to Drools to run in App Engine]

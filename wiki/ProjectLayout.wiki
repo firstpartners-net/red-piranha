@@ -16,7 +16,7 @@ _TODO Insert Screenshot_
 = Project Layout= 
 
 If you're [http://code.google.com/p/red-piranha/source/browse/#svn%2Ftrunk browsing the code] or
-have [DeveloperGettingStarted the code checked out] these are some useful start points.
+have [Dev-DeveloperGettingStarted the code checked out] these are some useful start points.
 
 (add RulePlayer Layout)
 

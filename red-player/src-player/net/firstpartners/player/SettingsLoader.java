@@ -60,10 +60,10 @@ public class SettingsLoader {
 				myProperties.load(input);
 
 				// set the relevant properties
-				configurablePlayer.setRuleFile(myProperties
+				configurablePlayer.setSourceRuleFile(myProperties
 						.getProperty("RuleFile"));
 
-				configurablePlayer.setGoogleUser(myProperties
+				configurablePlayer.setGoogleUserName(myProperties
 						.getProperty("GoogleUser"));
 				
 				configurablePlayer.setKbFileName(myProperties

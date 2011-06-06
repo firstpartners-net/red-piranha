@@ -8,13 +8,17 @@ package net.firstpartners.player;
  */
 public interface RulePlayerConfigurable {
 
-	public String getRuleFile();
+	public String getSourceRuleFile();
 
-	public void setRuleFile(String ruleFile);
+	public void setSourceRuleFile(String ruleFile);
 
-	public String getGoogleUser();
+	public String getGoogleUserName();
 
-	public void setGoogleUser(String googleUser);
+	public void setGoogleUserName(String googleUser);
+	
+	public String getGooglePassword();
+
+	public void setGooglePassword(String password);
 
 	public String getProxyHost();
 

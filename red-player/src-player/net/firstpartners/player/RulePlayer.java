@@ -50,13 +50,14 @@ public class RulePlayer extends WindowAdapter implements WindowListener,
 	// Class level variables, populated from properties file
 	private String ruleFile = null;
 	private String googleUser = null;
+	private String password;
 	private String applicationName = null;
 	private String googleHost = null;
 	private String KbFileName = null;
 
 	// Detect if user has press stopped
 	private boolean quit = false;
-
+	
 	// Main App method, called when GUI has loaded
 	void compileRules() {
 
@@ -64,6 +65,10 @@ public class RulePlayer extends WindowAdapter implements WindowListener,
 		// Handle to the google uploader
 		GoogleDocumentList googleUploader;
 
+		//Confirm our configuration
+		ConfigurationPrompt.confirmConfiguration(this);
+
+		
 		if (ruleFile == null) {
 			textArea
 					.append("Please set 'rule' as a param pointing at the rule file you wish to compile ");
@@ -93,17 +98,12 @@ public class RulePlayer extends WindowAdapter implements WindowListener,
 
 			// Signin
 			try {
-
-				String password = getPassword(
-						"please enter the google password for:"
-								+ this.getGoogleUser(),
-						" (edit RulePlayer.properties if this is not your Google username)",
-						"Rule Player will not store this password");
+			
 
 				googleUploader = new GoogleDocumentList(this
 						.getApplicationName(), this.getGoogleHost());
 
-				googleUploader.login(this.getGoogleUser(), password);
+				googleUploader.login(this.getGoogleUserName(), this.getGooglePassword());
 
 				// Upload
 				textArea.append("Starting Document Upload to Google Docs\n");
@@ -146,35 +146,7 @@ public class RulePlayer extends WindowAdapter implements WindowListener,
 
 	}
 
-	/**
-	 * Request the password from the user
-	 * 
-	 * @param messageToUser
-	 * @return
-	 * @throws InterruptedException
-	 */
-	String getPassword(String messageToUser1, String messageToUser2,
-			String messageToUser3) {
 
-		JTextField message1 = new JTextField(messageToUser1);
-		message1.setEditable(false);
-		
-		JTextField message2 = new JTextField(messageToUser2);
-		message2.setEditable(false);
-
-		JTextField message3 = new JTextField(messageToUser3);
-		message3.setEditable(false);
-
-		JPasswordField password = new JPasswordField();
-		final JComponent[] inputs = new JComponent[] { message1, message2,
-				message3, new JLabel("Password"), password };
-		JOptionPane.showMessageDialog(null, inputs, "Password Request",
-				JOptionPane.QUESTION_MESSAGE);
-
-		PasswordPrompt prompt = new PasswordPrompt(this.frame);
-
-		return password.getText();
-	}
 
 	public RulePlayer() {
 		// create all components and add them
@@ -269,25 +241,33 @@ public class RulePlayer extends WindowAdapter implements WindowListener,
 	}
 
 	@Override
-	public String getRuleFile() {
+	public String getSourceRuleFile() {
 		return ruleFile;
 	}
 
 	@Override
-	public void setRuleFile(String ruleFile) {
+	public void setSourceRuleFile(String ruleFile) {
 		this.ruleFile = ruleFile;
 	}
 
 	@Override
-	public String getGoogleUser() {
+	public String getGoogleUserName() {
 		return googleUser;
 	}
 
 	@Override
-	public void setGoogleUser(String googleUser) {
+	public void setGoogleUserName(String googleUser) {
 		this.googleUser = googleUser;
 	}
 
+	public String getGooglePassword(){
+		return this.password;
+	}
+
+	public void setGooglePassword(String password){
+		this.password=password;
+	}
+	
 	@Override
 	public String getProxyHost() {
 		return System.getProperty("http.proxyHost");

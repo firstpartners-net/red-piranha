@@ -6,6 +6,13 @@ _TODO Match this against the updated project layout_
 _TODO Insert Screenshot_
 
 
+=== Other useful pages ===
+
+  * [ProjectLayout] - How the project is organised, important files, places to start reading the code.
+  * [Dev-LibrariesUsed] - Libraries that Red Piranha uses, and thanks to the projects that we've built on.
+  * [RoadMap] - When Red Piranha is going , and how you can help.
+  * [RedPiranhaExamples Running the Examples]
+
 = Project Layout= 
 
 If you're [http://code.google.com/p/red-piranha/source/browse/#svn%2Ftrunk browsing the code] or

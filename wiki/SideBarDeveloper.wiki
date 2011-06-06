@@ -11,7 +11,8 @@
 *Developer*    
   * [DeveloperGettingStarted Developer Getting Started]
     * [CommonErrorMessages]
-    * [LibrariesUsed]
+    * [Dev-AntBuildFile]
+    * [Dev-LibrariesUsed]
     * [ModifyDroolsRunInGoogleAppEngine Changes to Drools to run in App Engine]
     * [ProjectLayout]
     * [RoadMap]

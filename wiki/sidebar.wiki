@@ -1,7 +1,7 @@
 
 *Home*
   * [BusinessRules Business Rules]
-  * [EndUserGettingStarted User Getting Started]
+  * [User-EndUserGettingStarted User Getting Started]
   * [PowerUserGettingStarted PowerUser Getting Started]
   * [RedPiranhaExamples Examples]
   * [FAQ FAQ]

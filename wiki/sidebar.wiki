@@ -1,17 +1,17 @@
 
 *Home*
   * [BusinessRules Business Rules]
-  * [User-EndUserGettingStarted User Getting Started]
-  * [Power-PowerUserGettingStarted PowerUser Getting Started]
+  * [UserEndUserGettingStarted User Getting Started]
+  * [PowerPowerUserGettingStarted PowerUser Getting Started]
   * [RedPiranhaExamples Examples]
   * [FAQ FAQ]
   * [Book Book]
     * [BookFeedback Book Feedback]  
 
 *Developer*    
-  * [Dev-DeveloperGettingStarted Developer Getting Started]
+  * [DevDeveloperGettingStarted Developer Getting Started]
     * [CommonErrorMessages]
-    * [Dev-LibrariesUsed]
+    * [DevLibrariesUsed]
     * [ModifyDroolsRunInGoogleAppEngine Changes to Drools to run in App Engine]
-    * [Dev-ProjectLayout]
+    * [DevProjectLayout]
     * [RoadMap]

@@ -1,10 +1,10 @@
 == Instructions for developers on how to start using Red-Piranha ==
 
-  * [Dev-ProjectLayout] - How the project is organised, important files, places to start reading the code.
-  * [Dev-LibrariesUsed] - Libraries that Red Piranha uses, and thanks to the projects that we've built on.
+  * [DevProjectLayout] - How the project is organised, important files, places to start reading the code.
+  * [DevLibrariesUsed] - Libraries that Red Piranha uses, and thanks to the projects that we've built on.
   * [RoadMap] - When Red Piranha is going , and how you can help.
   * [RedPiranhaExamples Running the Examples]
-  * [Dev-AntBuildFile - How to build Red Piranha and Red Player from source using Ant]
+  * [DevAntBuildFile - How to build Red Piranha and Red Player from source using Ant]
   
  == Other Useful Files ==
   

@@ -8,15 +8,15 @@ _TODO Insert Screenshot_
 
 === Other useful pages ===
 
-  * [Dev-ProjectLayout] - How the project is organised, important files, places to start reading the code.
-  * [Dev-LibrariesUsed] - Libraries that Red Piranha uses, and thanks to the projects that we've built on.
+  * [DevProjectLayout] - How the project is organised, important files, places to start reading the code.
+  * [DevLibrariesUsed] - Libraries that Red Piranha uses, and thanks to the projects that we've built on.
   * [RoadMap] - When Red Piranha is going , and how you can help.
   * [RedPiranhaExamples Running the Examples]
 
 = Project Layout= 
 
 If you're [http://code.google.com/p/red-piranha/source/browse/#svn%2Ftrunk browsing the code] or
-have [Dev-DeveloperGettingStarted the code checked out] these are some useful start points.
+have [DevDeveloperGettingStarted the code checked out] these are some useful start points.
 
 (add RulePlayer Layout)
 
@@ -34,7 +34,7 @@ The project is intended to be used in the following ways, hence the project layo
  * test/net/firstpartners/rp2/Drools/PreCompileRuleBuilderTest - Also rebuilds the packages
   
 == Project Layout ==
-  * Update wiki [Dev-ProjectLayout] with new structure
+  * Update wiki [DevProjectLayout] with new structure
   * add script folder
 
 == Red Piranha Main folders and useful files==

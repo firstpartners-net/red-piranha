@@ -43,7 +43,7 @@ _TODO Complete Section_
  # _TODO Suggest copy existing template_
 
 == Getting the Rule Player ==
-_TODO Complete Section_
+_TODO Complete Section and update in line with new screenshots / configuration_
 
 There are three options for running the Rule Player. More information on each is provided in the next sections.
 

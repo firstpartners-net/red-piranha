@@ -28,8 +28,6 @@ We're not going to actually run any rules using Ruleplayer (see [UserEndUserGett
   * (Optional)[#Deploying_to_Your_Own_Google_App_Engine Deploying to Your Own Google App Engine]
   * [#Sharing_and_the_Community How to share your rules online] so that you and other people can run them.
 
-
-
 == What you'll need ==
 
 || Google Docs Account || The completed, packaged rules are loaded as a file into Google docs. Obviously you'll need to create a [http://docs.google.com Google account] if you don't already have one. ||
@@ -130,9 +128,9 @@ For the moment , take a look at the DevDeveloperGettingStarted to see how to run
 _TODO Complete Section_ <br/>
 _TODO Code for this not yet implemented. For the moment use ours - see [UserEndUserGettingStarted]
 
-  * Existing Deployment - if you have access rights
-  * (Optional) New Deployment of RP on exisitng App Engine
-  * Doc how to get Google App engine, what it is etc.
+  * Link to Google App Engine Launcher
+  * Link to where to get the WAR file to deploy
+  * Doc how to get Google App engine account, what it is etc.
 
 === Errors when running the Rule Player ===
 

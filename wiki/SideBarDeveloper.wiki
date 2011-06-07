@@ -1,4 +1,3 @@
-
 *Home*
   * [BusinessRules Business Rules]
   * [UserEndUserGettingStarted User Getting Started]
@@ -17,4 +16,4 @@
   * [ModifyDroolsRunInGoogleAppEngine Changes to Drools to run in App Engine]
   * [DevProjectLayout]
   * [DevRedPiranhaForDroolsDevelopers Red Piranha for Drools Developers]
-  * [DevOfficialReleaseProcedure]  Official Release Procedure
+  * [DevOfficialReleaseProcedure Official Release Procedure]

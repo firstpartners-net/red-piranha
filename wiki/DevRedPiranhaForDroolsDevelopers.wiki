@@ -10,7 +10,7 @@
   * [RoadMap] - When Red Piranha is going , and how you can help.
   * [RedPiranhaExamples Running the Examples]
   * [DevAntBuildFile] How to build Red Piranha and Red Player from source using Ant
-  * [DevRedPiranhaForDroolsDevelopers Red Piranha for Drools Developers]
+
   
 == Red Piranha for Drools Develpers == 
 

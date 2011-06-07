@@ -1,3 +1,5 @@
+#labels tidy,Featured
+#sidebar SideBarDeveloper
 
 
 

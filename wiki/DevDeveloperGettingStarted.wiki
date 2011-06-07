@@ -8,7 +8,7 @@ _TODO Tidy this page_
 
 There are two parts to the Red-Piranha Project
   * *Red Piranha* - the core project, deployable to Google App Engine (GAE) that takes excel spreadsheets and runs pre-compiled rules against them. While this is a command line and other interace, mostly this project runs on the web.
-  * *Rule Player* - A simple GUI used by Power Users (see [PowerPowerUserGettingStarted] in order to compile the rules for running in GAE. This runs (via Java Webstart, or local Java) on the Users PC (Windows, Mac, Linux or other). This local compile is needed as Google currently do not whitelist some of the code Drools needs to compile. Once compiled, the rule package is loaded into Google App Engine where normal users to can use them.
+  * *Rule Player* - A simple program used by Power Users (see [PowerPowerUserGettingStarted] in order to compile the rules for running in GAE. This runs (via Java Webstart, or local Java) on the Users PC (Windows, Mac, Linux or other). This local compile is needed as Google currently do not whitelist some of the code Drools needs to compile. Once compiled, the rule package is loaded into Google App Engine where normal users to can use them.
 
 
 == Instructions for developers on how to start using Red-Piranha ==
@@ -16,11 +16,11 @@ There are two parts to the Red-Piranha Project
   * [#Setup_the_environment Setup the environment]
   * [#Checking_out_the_code Checking out the code]
   * [#Building_the_code Building the code] 
+  * [#Running_the_code_locally Running the code locally]
   * [#Deploying_to_App_Engine Deploying to App Engine]
   * [#Building_your_own_rules Building your own rules]
   * [#More_Options_on_running_the_Rule_Player More Options on running the Rule Player]
   * [#Extending_Red_Piranha Extending Red Piranha]
-  * [#Red_Piranha_for_Drools_Developers Red Piranha for Drools Developers]
 
 === Other useful pages ===
 
@@ -29,6 +29,7 @@ There are two parts to the Red-Piranha Project
   * [RoadMap] - When Red Piranha is going , and how you can help.
   * [RedPiranhaExamples Running the Examples]
   * [DevAntBuildFile - How to build Red Piranha and Red Player from source using Ant]
+  * [DevRedPiranhaForDroolsDevelopers Red Piranha for Drools Developers]
   
   
 == Setup the environment ==
@@ -66,17 +67,20 @@ Take care, as the structure in subversion differs slightly from the way the shou
 
 _TODO Complete these instructions_
 
-[http://ant.apache.org/ Ant build] files are provided so that the project can build from the terminal or command line, and the project files modified using your favourite editor.
 
+There two ways to build the Red Piranha Code - Via the supplied ant build files, or via Eclipse.
 
+=== How to build in Ant ==
 
-_TODO_ blurb on the options Eclipse to test, Eclipse to build & deploy GAE, Ant build x2, Ant deploy GAE
+[DevAntBuildFile] gives details on how to build the Red Piranha Project via Ant.
 
-=== How to run in Eclipse ===  
+=== How to build  in Eclipse ===  
 
 Personally, I use Eclipse to edit and build the code (hence the reason why Eclipse build files are included when you check out the code). 
 The Eclipse file should work once you check it out (as all the libs are provided), but right clicking on the Red Piranha will allow you
 to resolve them.
+
+== Running the code locally ==
 
 *Rule Player Console*
 
@@ -99,18 +103,6 @@ The Rule Player - can be run directly in Eclipse
   # Make sure you have Google App Engine plugin for Eclipse installed.
   # _TODO_ more detailled instructions
    
-=== Developer Rule Player build ===
-_TODO_  
-  * Document both build file targets
-  * Document Main Targets that you'll actually use (and what they do)
-  * build.xml within the ruleplayer
-  ** RulePlayer ant build will build jar, copy into red-piranha/war
-
-  
-  * repackaging of dependicings
-  * security and signing jars using the jar-signer script 
- 
- ** test in eclipse - right click and 'run as applet'
   
   
 === Developer signing Rule Player jars ===
@@ -122,9 +114,6 @@ _TODO_
   red-piranha/war/ruleplayer/lib folder when you execute this.
 
 
-=== Developer Core Red Piranha build ===
-
-_TODO -Complete this section _
 
 == Deploying to App Engine ==
 
@@ -137,28 +126,8 @@ In general, most people will only want to deploy the packaged rules. These instr
   * Upload the Project to GAE ([http://code.google.com/appengine/docs/java/tools/eclipse.html#Uploading_to_Google_App_Engine Instructions here]) by pressing the GAE button in Eclipse. <img src="http://red-piranha.googlecode.com/svn/wiki/images/google_app_engine_eclipse_button.png"/>
 
 === Deploying Red Piranha to GAE Via Ant ===
-  * Ensure that you have [http://http://ant.apache.org/ Apache Ant] installed.
-  * [http://code.google.com/appengine/docs/java/tools/ant.html Information from Google on Using Ant to deploy]
-  * Find and edit ant-gae.xml in the Red-Piranha project. One of the first lines will begin {{{<property name="sdk.dir" location="...}}} this needs to match with the Google App Engine tools are installed on your maachine
-  * Open a command prompt (terminal window or Dos shell) go to the Red Piranaha main folder (which contains the ant-gae.xml file), check everything is working by typing {{{ant -f ant-gae.xml}}}
-  * Some useful Ant Commands
-{{{
-# Run the Red Piranha on a local Webserver - http://localhost:8888/ 
-ant -f ant-gae.xml runserver
 
-# Upload the Current build to the 'Real' Google App Engine 
-ant -f ant-gae.xml update
-
-}}}
-
-  * If you have not logged in before, or not loggedin in the previous 24 hours you may get the error {{{   Your authentication credentials can't be found and may have expired. Please run appcfg directly from the command line to re-establish your credentials.}}}
-  * To solve this , run the script [http://code.google.com/p/red-piranha/source/browse/trunk/scripts/login-to-google-apps.sh login-to-google-apps.sh] (in the scripts folder of Red-Piranha) - you may need to edit this to run on Windows / point to where you have the GAE tools installed on your PC. It will prompt you for a email / password - Google will remember this for 24 hours. 
-  * you may need to run this script from the main Red-Piranha folder so that it knows which project to deploy e.g. on Linux {{{./scripts/ login-to-google-apps.sh}}} If successful (after a lot of other updates) you should see the message 
-{{{Update completed successfully.
-Success.}}}
-  * More info on the [http://code.google.com/appengine/docs/java/tools/uploadinganapp.html GAE command line tools used by this script]
- 
-  * Run the Ant script again, it should now work.
+More info at [DevAntBuildFile]
 
 
 === Deploying Red Piranha to GAE Via Rule Player ===
@@ -168,7 +137,7 @@ Success.}}}
 
 == Building your own rules ==
 
-_TODO - complete this section_
+_TODO - complete or remove this section_
 
 This is for building your rules in the Eclipse Development environment. [PowerPowerUserGettingStarted] details how most users will build their rules and then share them via the web
 
@@ -188,8 +157,6 @@ _TODO Complete Section_
        ** Running through Eclipse
 
 
-
-
 == Extending Red Piranha ==
 
 _TODO Complete Section_
@@ -199,21 +166,6 @@ for the moment you'll have to explore the code!
 *[http://code.google.com/p/red-piranha/source/browse/trunk/src/net/firstpartners/drools/PreCompileRuleBuilder.java Link to Builder]* The code that builds the pre-compiled rule packages. Start with the main[] method.
 
 *[http://code.google.com/p/red-piranha/source/browse/trunk/src/net/firstpartners/ui/Rp2Servlet.java Link to Servlet]* The code that calls the pre-compiled rule packages. Start with the service() method that runs in response to the form submitted by the jsp submission.
-
-
-
-== Red Piranha for Drools Developers ==
-
-If you've used [http://www.jboss.org/drools] JBoss Drools, you'll be pretty familiar with most of the concepts. This sections explain what Red-Piranha does (and does not) do compared to JBoss Drools.
-
-Most business users are more comfortable with Excel and the Web than with Java. Red-Piranha packages Java based Drools so that they can start writing and using business rules straight away. Red-Piranha allows them to put your rules and data in Excel, then call Drools in a simple package to do the hard work.
-
-
-  * Red Piranha uses [http://www.jboss.org/drools] as a key library. It's focus is more on Excel and Google Docs users looking to add the power of a rule engine to their documents.
-  * Google App Engine (GAE) is a key deployment target, and enforces key limitations on the code; For examples rules cannot be 'compiled' in the normal Drools way, hence the offline package step, before you deploy.
-  * With Drools, you normally supply (1) The rules file (2) A Model (or data structure) holding the information that the rules act on (3) Java code to tie it all together. 
-  * With Red-Piranha all you need is 1) the rules file. The Data structure is always excel, and there is standard Java code to combine the Rules and the excel spreadsheet. This makes it easier, although Drools gives you more flexibility (with a bit more work!).
-
 
 
 

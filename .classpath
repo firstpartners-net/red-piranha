@@ -27,7 +27,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jsr107cache-1.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jsr305.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/log4j-1.2.13.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/mvel2-2.0.15.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-3.2-FINAL-20081019.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-contrib-3.2-FINAL-20081019.jar"/>

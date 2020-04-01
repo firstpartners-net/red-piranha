@@ -16,34 +16,28 @@ Excel is great for collecting data. But once things get more complicated, are yo
 * Are you looking for a better way to share and publish your knowledge?
 * Do you need more power to extend what Excel or Google Spreadsheets already provide?
 
-
 Even better, it's all open source and free to get started. And it works with Google Spreadsheet as well as Excel.
 
 ## What Next?
 
-| ![Man Icon](http://icons.iconarchive.com/icons/mart/glaze/48/man-icon.png) | **[Have you just bought the book?](Book.md)** - Beginning Business rules with JBoss Drools. <br /> Where to download the samples and other useful information. |
+| ![Man Icon](http://icons.iconarchive.com/icons/mart/glaze/48/man-icon.png) | **[Have you just bought the book?](docs/Book.md)** - Beginning Business rules with JBoss Drools. <br /> Where to download the samples and other useful information. |
 |:----------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <img src='http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png' /> | **[I dabble with Excel - what do I do now? ](UserEndUserGettingStarted.md)** User getting started <br /> including how to run the samples online, how to use with your own Excel / Google Spreadsheets|
-| <img src='http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png' /> | **[I'm an Excel power user - what do I do now?](PowerPowerUserGettingStarted.md)** Power User Getting Started. <br /> How to build your own rules against these spreadsheets and share them with other people.|
-|  <img src='http://icons.iconarchive.com/icons/mart/glaze/48/source-j-icon.png'>| href='DevDeveloperGettingStarted.md'>I'm a developer - what next?</a></b> Developer Getting Started.<br /> How to extend Red Piranha to get it to do exactly what you want.</th></thead><tbody></tbody></table>
+| ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png) | **[I dabble with Excel - what do I do now? ](docs/UserEndUserGettingStarted.md)** User getting started <br /> including how to run the samples online, how to use with your own Excel / Google Spreadsheets|
+| ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png) | **[I'm an Excel power user - what do I do now?](docs/PowerPowerUserGettingStarted.md)** Power User Getting Started. <br /> How to build your own rules against these spreadsheets and share them with other people.|
+|  ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/source-j-icon.png) | **[I'm a developer - what next?](docs/DevDeveloperGettingStarted.md) ** How to extend Red Piranha to get it to do exactly what you want.|
 
-(images from <a href='http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html'>here under GPL</a>)<br>
-<br>
-<br>
-<h3>Look at the Examples</h3>
-<a href='RedPiranha.md'>Examples Online examples</a> are a work in progress. For the moment, you can look at the <a href='RedPiranhaExamples.md'>Downloadable Java examples</a>. The <a href='Book.md'>Book</a> page also contains samples on how to use Drools.<br>
-<br/>
+(images from [here under GPL](http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html)
 
-**Quick Start 
+## Look at the Examples
+[Examples Online]examples(docs/RedPiranha.md)) are a work in progress. For the moment, you can look at the [Downloadable Java examples](docs/RedPiranhaExamples.md). The [Book](docs/Book.md) page also contains samples on how to use Drools
 
-- run as 'Web application'
-- GWT: http://localhost:8888/rpproto2.html
-- Servlet: http://localhost:8888/
+## Quick Start 
 
+1. run as 'Web application'
+1. [GWT:]( http://localhost:8888/rpproto2.html)
+1. [Servlet:] http://localhost:8888/)
 
-
-
-**Home
+## Links 
 
 * [Business Rules](BusinessRules.md)
 * [User Getting Started](UserEndUserGettingStarted.md)
@@ -54,7 +48,7 @@ Even better, it's all open source and free to get started. And it works with Goo
 * [Book](Book.md)
 * [Book Feedback](BookFeedback.md)
 
-**Developer
+## Links - Developer
 
 * [Developer Getting Started](DevDeveloperGettingStarted.md)
 * [CommonErrorMessages](CommonErrorMessages.md)

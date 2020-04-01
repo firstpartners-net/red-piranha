@@ -28,7 +28,7 @@
 	<property name="testhtml.dir" value="${testreports.dir}/html" />
 	<property name="app.root" value="." />
 	<property name="testlib.dir" value="${app.root}/testlib" />
-		<property name="lib.root" value="war/WEB-INF" />
+	<property name="lib.root" value="war/WEB-INF" />
 
 
 	<!-- The Main classpath we use when compiling -->

@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/antlr-runtime-3.1.1.jar"/>
@@ -15,19 +14,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-appengine-1.0.8.final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-core-1.1.5.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-jpa-1.1.5.jar"/>
-
-	<classpathentry kind="lib" path="drools-beliefs-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="drools-compiler-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="drools-core-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="drools-core-dynamic-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="drools-core-reflective-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="drools-decisiontables-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="drools-persistence-api-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="drools-persistence-jpa-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="drools-ruleunit-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="drools-scorecards-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="drools-templates-7.35.0.Final.jar"/>
-
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gdata-client-1.0.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gdata-core-1.0.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gdata-docs-3.0.jar"/>
@@ -40,14 +26,29 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jdo2-api-2.3-eb.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jsr107cache-1.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jsr305.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/LICENSE-ASL-2.0.txt"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/log4j-1.2.13.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/mvel2-2.0.15.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-3.2-FINAL-20081019.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-contrib-3.2-FINAL-20081019.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-scratchpad-3.2-FINAL-20081019.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/readme.txt"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-beliefs-7.35.0.Final.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-compiler-7.35.0.Final.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-core-7.35.0.Final.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-core-dynamic-7.35.0.Final.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-core-reflective-7.35.0.Final.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-decisiontables-7.35.0.Final.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-persistence-api-7.35.0.Final.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-persistence-jpa-7.35.0.Final.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-ruleunit-7.35.0.Final.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-scorecards-7.35.0.Final.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-templates-7.35.0.Final.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-12.0.1">
+		<attributes>
+			<attribute name="module" value="true"/>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

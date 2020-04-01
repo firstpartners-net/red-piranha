@@ -16,7 +16,7 @@ Excel is great for collecting data. But once things get more complicated, are yo
 * Are you looking for a better way to share and publish your knowledge?
 * Do you need more power to extend what Excel or Google Spreadsheets already provide?
 
-Even better, it's all open source and free to get started. And it works with Google Spreadsheet as well as Excel.
+Even better, it's all open source and free to get started. And it works with Google Spreadsheets as well as Excel.
 
 ## What Next?
 
@@ -33,9 +33,9 @@ Even better, it's all open source and free to get started. And it works with Goo
 
 ## Quick Start 
 
-1. run as 'Web application'
-1. [GWT:]( http://localhost:8888/rpproto2.html)
-1. [Servlet:] http://localhost:8888/)
+1. Click on run as 'Web application'
+1. GWT: open url http://localhost:8888/rpproto2.html)
+1. Normal Tomcat: open url http://localhost:8888/)
 
 ## Links 
 

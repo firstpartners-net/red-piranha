@@ -160,7 +160,7 @@
 	</target>
 
 	<!-- Create Javadoc for application-->
-	<target name="docs" description="Create complete Javadoc documentation">
+	<target name="javadoc" description="Create complete Javadoc documentation">
 		<delete dir="${docs.dir}" />
 		<mkdir dir="${docs.dir}" />
 		<javadoc sourcepath="${src.dir}" destdir="${docs.dir}" windowtitle="Tiles Example" source="1.3" author="true" version="true" use="true" packagenames="*">

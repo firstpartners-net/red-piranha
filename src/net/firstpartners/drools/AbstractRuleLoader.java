@@ -10,22 +10,22 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
-import net.firstpartners.RedConstants;
-import net.firstpartners.drools.data.RuleSource;
-import net.firstpartners.security.RedSecurityManager;
-
 import org.apache.commons.codec.binary.Base64;
-import org.drools.KnowledgeBase;
-import org.drools.KnowledgeBaseFactory;
-import org.drools.builder.KnowledgeBuilder;
+import org.datanucleus.ResourceType;
 import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderErrors;
 import org.drools.builder.KnowledgeBuilderFactory;
-import org.drools.builder.ResourceType;
-import org.drools.common.DroolsObjectInputStream;
-import org.drools.compiler.DroolsParserException;
+import org.drools.compiler.compiler.DroolsParserException;
+import org.drools.core.builder.KnowledgeBuilder;
+import org.drools.core.common.DroolsObjectInputStream;
+import org.drools.core.impl.KnowledgeBaseFactory;
+import org.drools.core.marshalling.impl.ProtobufMessages.KnowledgeBase;
 import org.drools.definition.KnowledgePackage;
 import org.drools.io.ResourceFactory;
+
+import net.firstpartners.RedConstants;
+import net.firstpartners.drools.data.RuleSource;
+import net.firstpartners.security.RedSecurityManager;
 
 public abstract class AbstractRuleLoader implements IRuleLoader {
 
@@ -34,7 +34,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 
 	/**
 	 * Load multiple rules, with optional dsl and ruleflow file
-	 * 
+	 *
 	 * @param rulesUrl
 	 * @param dslFileUrl
 	 * @param ruleFlowUrl
@@ -45,7 +45,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 	 * @throws Exception
 	 */
 	public KnowledgeBase loadRules(RuleSource ruleSource)
-	throws DroolsParserException, IOException, ClassNotFoundException {
+			throws DroolsParserException, IOException, ClassNotFoundException {
 
 		// Use cached rules if possible
 		if (ruleSource.getKnowledgeBaseLocation() != null) {
@@ -56,7 +56,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 
 		// Load the rules
 		KnowledgeBuilder localBuilder = KnowledgeBuilderFactory
-		.newKnowledgeBuilder();
+				.newKnowledgeBuilder();
 
 		for (String ruleFile : ruleSource.getRulesLocation()) {
 			log.info("Loading file: " + ruleFile);
@@ -125,12 +125,12 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 
 	/**
 	 * Print out what we know of the built packages
-	 * 
+	 *
 	 * @param localBuilder
 	 */
 	void logKnowledgePackages(KnowledgeBuilder localBuilder) {
 		Collection<KnowledgePackage> kpCollection = localBuilder
-		.getKnowledgePackages();
+				.getKnowledgePackages();
 		log.info("Number of packages" + kpCollection.size());
 
 		// Loop through and log
@@ -143,7 +143,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 
 	/**
 	 * Load the rule (i.e. non Excel) file
-	 * 
+	 *
 	 * @param ruleUrl
 	 * @param dslFileUrl
 	 * @param ruleFlowFileUrl
@@ -153,7 +153,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 	 */
 	private void loadDrlRules(String ruleUrl, String dslFileUrl,
 			String ruleFlowFileUrl, KnowledgeBuilder addRulesToThisBuilder)
-	throws DroolsParserException, IOException {
+					throws DroolsParserException, IOException {
 
 		// Load the main rule file
 		log.info("Loading Main rule file");
@@ -191,7 +191,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 
 	/**
 	 * Load Excel Rules
-	 * 
+	 *
 	 * @param excelRuleFileUrl
 	 * @param addRulesToThisBuilder
 	 * @throws DroolsParserException
@@ -199,7 +199,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 	 */
 	private void loadExcelRules(String excelRuleFileUrl,
 			KnowledgeBuilder addRulesToThisBuilder)
-	throws DroolsParserException, IOException {
+					throws DroolsParserException, IOException {
 
 		// //same as previous - we add the excel to our package
 		byte[] excelAsBytes = getFile(excelRuleFileUrl);
@@ -211,7 +211,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 
 	/**
 	 * Abstract methods, implented in sub classes
-	 * 
+	 *
 	 * @param excelRuleFileUrl
 	 * @return
 	 * @throws IOException
@@ -220,7 +220,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 
 	/**
 	 * Get a reader for a given resource
-	 * 
+	 *
 	 * @param ruleFlowFileUrl
 	 * @return
 	 * @throws IOException
@@ -229,7 +229,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 
 	/**
 	 * Get an InputStream for a given resource
-	 * 
+	 *
 	 * @param resource
 	 *            to find
 	 * @return
@@ -239,8 +239,8 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 
 	/**
 	 * Load a previously cached resource (that has been saved using Base64)
-	 * 
-	 * 
+	 *
+	 *
 	 * @param cacheResourceUnderName
 	 * @return - the first serialized Knowledgebase in the file
 	 * @throws DroolsParserException

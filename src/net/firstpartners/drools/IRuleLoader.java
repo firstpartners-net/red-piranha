@@ -2,10 +2,10 @@ package net.firstpartners.drools;
 
 import java.io.IOException;
 
-import net.firstpartners.drools.data.RuleSource;
+import org.drools.compiler.compiler.DroolsParserException;
+import org.drools.core.marshalling.impl.ProtobufMessages.KnowledgeBase;
 
-import org.drools.KnowledgeBase;
-import org.drools.compiler.DroolsParserException;
+import net.firstpartners.drools.data.RuleSource;
 
 public interface IRuleLoader {
 

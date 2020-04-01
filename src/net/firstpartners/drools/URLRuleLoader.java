@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * @author paul
  * 
  */
-public class URLRuleLoader extends AbstractRuleLoader implements IRuleLoader {
+public class URLRuleLoader extends AbstractRuleLoader {
 
 	private static final Logger log = Logger.getLogger(URLRuleLoader.class
 			.getName());

@@ -1,60 +1,60 @@
-Start points 
-- run as 'Web application'
-- GWT: http://localhost:8888/rpproto2.html
-- Servlet: http://localhost:8888/
 
+# Red Piranha 
 
-**Home**
-  * [Business Rules](docs/BusinessRules.md)
-  * [User Getting Started](docs/UserEndUserGettingStarted.md)
-  * [PowerUser Getting Started](docs/PowerPowerUserGettingStarted.md)
-  * [Examples](docs/RedPiranhaExamples.md)
-  * [FAQ](docs/FAQ.md)
-  * [Book](docs/Book.md)
-    * [Book Feedback](BookFeedback.md)
+![Red Piranha Logo](/site/images/top/02.gif)
 
-**Developer**
-  * [Developer Getting Started](docs/DevDeveloperGettingStarted.md)
-    * [CommonErrorMessages](docs/CommonErrorMessages.md)
-    * [DevLibrariesUsed](docs/DevLibrariesUsed.md)
-    * [Changes to Drools to run in App Engine](docs/ModifyDroolsRunInGoogleAppEngine.md)
-    * [DevProjectLayout](docs/DevProjectLayout.md)
-    * [RoadMap](docs/RoadMap.md)
+## More powerful Excel, Google Docs and Spreadsheets using JBoss Rules and Google App Engine
 
-# Red Piranha #
-### More powerful Excel, Google Docs and Spreadsheets using JBoss Rules and Google App Engine ###
-
-Powered by [Drools](http://www.jboss.org/drools), Red-Piranha allows you to state your Excel business rules in a simple **when ... then** format that everybody can understand.<br />
-Instead of having your knowledge 'disappear' into complicated formulas that you can't read, Drools keeps things in a simple 'English' like format.<br />
+Powered by [Drools](http://www.jboss.org/drools), Red-Piranha allows you to state your Excel business rules in a simple **when ... then** format that everybody can understand.
+Instead of having your knowledge 'disappear' into complicated formulas that you can't read, Drools keeps things in a simple 'English' like format.
 Even better, because of the way it works 'under the covers' it is faster and more powerful than code translated into a technical language.
-
-[Jump to the 'What Next' Section](#What_Next?.md)
 
 Excel is great for collecting data. But once things get more complicated, are your spreadsheets missing something?
 
-  * Your excel calculations are good. Maybe too good - now you can't follow what is going on. Wouldn't something a little bit clearer be better?
-  * Are you sharing your spreadsheets? What if somebody changes a formula without you noticing?
-  * Are you looking for a better way to share and publish your knowledge?
-  * Do you need more power to extend what Excel or Google Spreadsheets already provide?
-
-
-<img src='http://red-piranha.googlecode.com/svn/wiki/images/red-cloud-wikipedia-credit.jpg' />
+* Your excel calculations are good. Maybe too good - now you can't follow what is going on. Wouldn't something a little bit clearer be better?
+* Are you sharing your spreadsheets? What if somebody changes a formula without you noticing?
+* Are you looking for a better way to share and publish your knowledge?
+* Do you need more power to extend what Excel or Google Spreadsheets already provide?
 
 Even better, it's all open source and free to get started. And it works with Google Spreadsheets as well as Excel.
 
-### What Next? ###
+## What Next?
 
-<a href='Hidden comment: TODO icon tidy'></a>
-
-| <img src='http://icons.iconarchive.com/icons/mart/glaze/48/man-icon.png' /> | **[Have you just bought the book?](docs/Book.md)** - Beginning Business rules with JBoss Drools. <br /> Where to download the samples and other useful information. |
+| ![Man Icon](http://icons.iconarchive.com/icons/mart/glaze/48/man-icon.png) | **[Have you just bought the book?](docs/Book.md)** - Beginning Business rules with JBoss Drools. <br /> Where to download the samples and other useful information. |
 |:----------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <img src='http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png' /> | **[I dabble with Excel - what do I do now? ](docs/UserEndUserGettingStarted.md)** User getting started <br /> including how to run the samples online, how to use with your own Excel / Google Spreadsheets|
-| <img src='http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png' /> | **[I'm an Excel power user - what do I do now?](docsPowerPowerUserGettingStarted.md)** Power User Getting Started. <br /> How to build your own rules against these spreadsheets and share them with other people.|
-|  <img src='http://icons.iconarchive.com/icons/mart/glaze/48/source-j-icon.png'> <table><thead><th> <b><a href='DevDeveloperGettingStarted.md'>I'm a developer - what next?</a></b> Developer Getting Started.<br /> How to extend Red Piranha to get it to do exactly what you want.</th></thead><tbody></tbody></table>
+| ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png) | **[I dabble with Excel - what do I do now? ](docs/UserEndUserGettingStarted.md)** User getting started <br /> including how to run the samples online, how to use with your own Excel / Google Spreadsheets|
+| ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png) | **[I'm an Excel power user - what do I do now?](docs/PowerPowerUserGettingStarted.md)** Power User Getting Started. <br /> How to build your own rules against these spreadsheets and share them with other people.|
+|  ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/source-j-icon.png) | **[I'm a developer - what next?](docs/DevDeveloperGettingStarted.md)** How to extend Red Piranha to get it to do exactly what you want.|
 
-(images from <a href='http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html'>here under GPL</a>)<br>
-<br>
-<br>
-<h3>Look at the Examples</h3>
-<a href='RedPiranha.md'>Examples Online examples</a> are a work in progress. For the moment, you can look at the <a href='RedPiranhaExamples.md'>Downloadable Java examples</a>. The <a href='Book.md'>Book</a> page also contains samples on how to use Drools.<br>
-<br>
+(images from [here under GPL](http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html)
+
+## Look at the Examples
+[Examples Online](docs/RedPiranha.md) are a work in progress. For the moment, you can look at the [Downloadable Java examples](docs/RedPiranhaExamples.md). The [Book](docs/Book.md) page also contains samples on how to use Drools
+
+## Quick Start 
+
+1. Click on run as 'Web application'
+1. GWT: open url http://localhost:8888/rpproto2.html)
+1. Normal Tomcat: open url http://localhost:8888/)
+
+## Links 
+
+* [Business Rules](BusinessRules.md)
+* [User Getting Started](UserEndUserGettingStarted.md)
+* [PowerUser Getting Started](PowerPowerUserGettingStarted.md)
+* [Examples](RedPiranhaExamples.md)
+* [FAQ](FAQ.md)
+* [RoadMap](RoadMap.md)
+* [Book](Book.md)
+* [Book Feedback](BookFeedback.md)
+
+## Links - Developer
+
+* [Developer Getting Started](DevDeveloperGettingStarted.md)
+* [CommonErrorMessages](CommonErrorMessages.md)
+* [DevAntBuildFile](DevAntBuildFile.md)
+* [DevLibrariesUsed](DevLibrariesUsed.md)
+* [Changes to Drools to run in App Engine](ModifyDroolsRunInGoogleAppEngine.md)
+* [DevProjectLayout](DevProjectLayout.md)
+* [Red Piranha for Drools Developers](DevRedPiranhaForDroolsDevelopers.md)
+* [Official Release Procedure](DevOfficialReleaseProcedure.md)

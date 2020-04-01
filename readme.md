@@ -16,7 +16,7 @@ Excel is great for collecting data. But once things get more complicated, are yo
 * Are you looking for a better way to share and publish your knowledge?
 * Do you need more power to extend what Excel or Google Spreadsheets already provide?
 
-Even better, it's all open source and free to get started. And it works with Google Spreadsheet as well as Excel.
+Even better, it's all open source and free to get started. And it works with Google Spreadsheets as well as Excel.
 
 ## What Next?
 
@@ -58,3 +58,4 @@ Even better, it's all open source and free to get started. And it works with Goo
 * [DevProjectLayout](DevProjectLayout.md)
 * [Red Piranha for Drools Developers](DevRedPiranhaForDroolsDevelopers.md)
 * [Official Release Procedure](DevOfficialReleaseProcedure.md)
+

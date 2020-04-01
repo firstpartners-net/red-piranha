@@ -1,27 +1,8 @@
-Start points 
-- run as 'Web application'
-- GWT: http://localhost:8888/rpproto2.html
-- Servlet: http://localhost:8888/
 
+# Red Piranha 
 
-**Home**
-  * [Business Rules](docs/BusinessRules.md)
-  * [User Getting Started](docs/UserEndUserGettingStarted.md)
-  * [PowerUser Getting Started](docs/PowerPowerUserGettingStarted.md)
-  * [Examples](docs/RedPiranhaExamples.md)
-  * [FAQ](docs/FAQ.md)
-  * [Book](docs/Book.md)
-    * [Book Feedback](BookFeedback.md)
+![Red Piranha Logo](/site/images/top/02.gif)
 
-**Developer**
-  * [Developer Getting Started](docs/DevDeveloperGettingStarted.md)
-    * [CommonErrorMessages](docs/CommonErrorMessages.md)
-    * [DevLibrariesUsed](docs/DevLibrariesUsed.md)
-    * [Changes to Drools to run in App Engine](docs/ModifyDroolsRunInGoogleAppEngine.md)
-    * [DevProjectLayout](docs/DevProjectLayout.md)
-    * [RoadMap](docs/RoadMap.md)
-
-# Red Piranha #
 ### More powerful Excel, Google Docs and Spreadsheets using JBoss Rules and Google App Engine ###
 
 Powered by [Drools](http://www.jboss.org/drools), Red-Piranha allows you to state your Excel business rules in a simple **when ... then** format that everybody can understand.<br />
@@ -57,4 +38,35 @@ Even better, it's all open source and free to get started. And it works with Goo
 <br>
 <h3>Look at the Examples</h3>
 <a href='RedPiranha.md'>Examples Online examples</a> are a work in progress. For the moment, you can look at the <a href='RedPiranhaExamples.md'>Downloadable Java examples</a>. The <a href='Book.md'>Book</a> page also contains samples on how to use Drools.<br>
-<br>
+<br/>
+
+**Quick Start 
+
+- run as 'Web application'
+- GWT: http://localhost:8888/rpproto2.html
+- Servlet: http://localhost:8888/
+
+
+
+
+**Home
+
+* [Business Rules](BusinessRules.md)
+* [User Getting Started](UserEndUserGettingStarted.md)
+* [PowerUser Getting Started](PowerPowerUserGettingStarted.md)
+* [Examples](RedPiranhaExamples.md)
+* [FAQ](FAQ.md)
+* [RoadMap](RoadMap.md)
+* [Book](Book.md)
+* [Book Feedback](BookFeedback.md)
+
+**Developer
+
+* [Developer Getting Started](DevDeveloperGettingStarted.md)
+* [CommonErrorMessages](CommonErrorMessages.md)
+* [DevAntBuildFile](DevAntBuildFile.md)
+* [DevLibrariesUsed](DevLibrariesUsed.md)
+* [Changes to Drools to run in App Engine](ModifyDroolsRunInGoogleAppEngine.md)
+* [DevProjectLayout](DevProjectLayout.md)
+* [Red Piranha for Drools Developers](DevRedPiranhaForDroolsDevelopers.md)
+* [Official Release Procedure](DevOfficialReleaseProcedure.md)

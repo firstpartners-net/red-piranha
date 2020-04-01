@@ -40,16 +40,16 @@ Excel is great for collecting data. But once things get more complicated, are yo
 
 <img src='http://red-piranha.googlecode.com/svn/wiki/images/red-cloud-wikipedia-credit.jpg' />
 
-Even better, it's all open source and free to get started. And it works with Google Spreadsheet as well as Excel.
+Even better, it's all open source and free to get started. And it works with Google Spreadsheets as well as Excel.
 
 ### What Next? ###
 
 <a href='Hidden comment: TODO icon tidy'></a>
 
-| <img src='http://icons.iconarchive.com/icons/mart/glaze/48/man-icon.png' /> | **[Have you just bought the book?](Book.md)** - Beginning Business rules with JBoss Drools. <br /> Where to download the samples and other useful information. |
+| <img src='http://icons.iconarchive.com/icons/mart/glaze/48/man-icon.png' /> | **[Have you just bought the book?](docs/Book.md)** - Beginning Business rules with JBoss Drools. <br /> Where to download the samples and other useful information. |
 |:----------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <img src='http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png' /> | **[I dabble with Excel - what do I do now? ](UserEndUserGettingStarted.md)** User getting started <br /> including how to run the samples online, how to use with your own Excel / Google Spreadsheets|
-| <img src='http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png' /> | **[I'm an Excel power user - what do I do now?](PowerPowerUserGettingStarted.md)** Power User Getting Started. <br /> How to build your own rules against these spreadsheets and share them with other people.|
+| <img src='http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png' /> | **[I dabble with Excel - what do I do now? ](docs/UserEndUserGettingStarted.md)** User getting started <br /> including how to run the samples online, how to use with your own Excel / Google Spreadsheets|
+| <img src='http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png' /> | **[I'm an Excel power user - what do I do now?](docsPowerPowerUserGettingStarted.md)** Power User Getting Started. <br /> How to build your own rules against these spreadsheets and share them with other people.|
 |  <img src='http://icons.iconarchive.com/icons/mart/glaze/48/source-j-icon.png'> <table><thead><th> <b><a href='DevDeveloperGettingStarted.md'>I'm a developer - what next?</a></b> Developer Getting Started.<br /> How to extend Red Piranha to get it to do exactly what you want.</th></thead><tbody></tbody></table>
 
 (images from <a href='http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html'>here under GPL</a>)<br>

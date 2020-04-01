@@ -6,17 +6,17 @@ Start points
 
 **Home**
   * [Business Rules](docs/BusinessRules.md)
-  * [User Getting Started](UserEndUserGettingStarted.md)
-  * [PowerUser Getting Started](PowerPowerUserGettingStarted.md)
-  * [Examples](RedPiranhaExamples.md)
-  * [FAQ](FAQ.md)
-  * [Book](Book.md)
+  * [User Getting Started](docs/UserEndUserGettingStarted.md)
+  * [PowerUser Getting Started](docs/PowerPowerUserGettingStarted.md)
+  * [Examples](docs/RedPiranhaExamples.md)
+  * [FAQ](docs/FAQ.md)
+  * [Book](docs/Book.md)
     * [Book Feedback](BookFeedback.md)
 
 **Developer**
-  * [Developer Getting Started](DevDeveloperGettingStarted.md)
-    * [CommonErrorMessages](CommonErrorMessages.md)
-    * [DevLibrariesUsed](DevLibrariesUsed.md)
-    * [Changes to Drools to run in App Engine](ModifyDroolsRunInGoogleAppEngine.md)
-    * [DevProjectLayout](DevProjectLayout.md)
-    * [RoadMap](RoadMap.md)
+  * [Developer Getting Started](docs/DevDeveloperGettingStarted.md)
+    * [CommonErrorMessages](docs/CommonErrorMessages.md)
+    * [DevLibrariesUsed](docs/DevLibrariesUsed.md)
+    * [Changes to Drools to run in App Engine](docs/ModifyDroolsRunInGoogleAppEngine.md)
+    * [DevProjectLayout](docs/DevProjectLayout.md)
+    * [RoadMap](docs/RoadMap.md)

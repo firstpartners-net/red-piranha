@@ -67,7 +67,8 @@
 	<target name="build" description="Compile main source tree java files into class files, generate build folder">
 		<delete dir="${build.dir}" />
 		<mkdir dir="${build.dir}" />
-		<javac destdir="${build.dir}" source="1.5" target="1.5" debug="true" deprecation="false" optimize="false" failonerror="true">
+		<javac destdir="${build.dir}" debug="true" deprecation="false" optimize="false" failonerror="true">
+
 
 			<!-- Source path-->
 			<src path="${src.dir}" />

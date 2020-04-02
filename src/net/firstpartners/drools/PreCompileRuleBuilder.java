@@ -10,22 +10,22 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import net.firstpartners.drools.data.RuleSource;
-
 import org.apache.commons.codec.binary.Base64;
 import org.drools.KnowledgeBase;
-import org.drools.compiler.DroolsParserException;
+import org.drools.compiler.compiler.DroolsParserException;
+
+import net.firstpartners.drools.data.RuleSource;
 
 
 
 /**
  * Load Rules, build into Drools Knowledge Packages.
- * 
+ *
  * This package is designed to be run from the command line, not from Google App Engine
  * To pre-build the rules
- * 
+ *
  * @author paul
- * 
+ *
  */
 public class PreCompileRuleBuilder {
 
@@ -39,7 +39,7 @@ public class PreCompileRuleBuilder {
 
 	/**
 	 * Cache the pre built knowledgebase.
-	 * 
+	 *
 	 * We encode using base64 (instead of Binary) so that it can be treated as a normal text file
 	 */
 	void cacheKnowledgeBase(KnowledgeBase kbToCache,
@@ -73,7 +73,7 @@ public class PreCompileRuleBuilder {
 	 * Entry points that allows rebuilding all the rule files into packages
 	 * @param args - standard Java params passed from command line. Contains name of
 	 * directory to start in.
-	 * 
+	 *
 	 * Method opens the property file, pre compiles the resources listed there
 	 * @throws IOException
 	 * @throws DroolsParserException
@@ -130,7 +130,7 @@ public class PreCompileRuleBuilder {
 
 	}
 	/**
-	 * 
+	 *
 	 */
 	private IRuleLoader  getRuleLoader(String ruleLocation){
 

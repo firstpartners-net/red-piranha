@@ -5,7 +5,7 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.drools.compiler.DroolsParserException;
+import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.Test;
 
 public class ExcelDataExampleTest {

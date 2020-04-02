@@ -7,6 +7,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.drools.compiler.compiler.DroolsParserException;
+
 import net.firstpartners.drools.data.RuleSource;
 import net.firstpartners.drools.log.SpreadSheetLogger;
 import net.firstpartners.spreadsheet.Range;
@@ -14,21 +20,15 @@ import net.firstpartners.spreadsheet.RangeConvertor;
 import net.firstpartners.spreadsheet.RangeHolder;
 import net.firstpartners.spreadsheet.SpreadSheetOutputter;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.drools.compiler.DroolsParserException;
-
 /**
  * Sample showing how we can read both data and rules from Excel
- * 
+ *
  * Read Ranges from Excel, Convert to a format that rules can use
- * 
+ *
  * Based on Sample from Apache POI
- * 
+ *
  * @author paulbrowne
- * 
+ *
  */
 public class RuleRunnerExcelTest {
 
@@ -42,7 +42,7 @@ public class RuleRunnerExcelTest {
 	private static final String EXCEL_LOG_WORKSHEET_NAME = "log";
 
 	private static final String[] RULES_FILES = new String[] {
-		"war/sampleresources/ExcelDataRules/log-rules.drl", "war/sampleresources/ExcelDataRules/TradingRules.xls" };
+			"war/sampleresources/ExcelDataRules/log-rules.drl", "war/sampleresources/ExcelDataRules/TradingRules.xls" };
 
 
 

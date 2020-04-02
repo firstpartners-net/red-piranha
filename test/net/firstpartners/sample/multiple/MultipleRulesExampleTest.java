@@ -5,12 +5,9 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
 
-import net.firstpartners.sample.multiple.CustomerOrder;
-import net.firstpartners.sample.multiple.MultipleRulesExample;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.drools.compiler.DroolsParserException;
+import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.Test;
 
 

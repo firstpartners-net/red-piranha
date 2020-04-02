@@ -3,26 +3,26 @@ package net.firstpartners.sample.ExcelDataRules;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.drools.compiler.compiler.DroolsParserException;
+
 import net.firstpartners.drools.FileRuleLoader;
 import net.firstpartners.drools.IRuleLoader;
 import net.firstpartners.drools.SpreadSheetRuleRunner;
 import net.firstpartners.drools.data.RuleSource;
 import net.firstpartners.spreadsheet.SpreadSheetOutputter;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.drools.compiler.DroolsParserException;
-
 /**
  * Sample showing how we can read both data and rules from Excel
- * 
+ *
  * Read Ranges from Excel, Convert to a format that rules can use
- * 
+ *
  * Based on Sample from Apache POI
- * 
+ *
  * @author paulbrowne
- * 
+ *
  */
 public class ExcelDataRulesExample {
 
@@ -36,11 +36,11 @@ public class ExcelDataRulesExample {
 	private static final String EXCEL_LOG_WORKSHEET_NAME = "log";
 
 	private static final String[] RULES_FILES = new String[] {
-		"war/sampleresources/ExcelDataRules/log-rules.drl", "war/sampleresources/ExcelDataRules/TradingRules.xls" };
+			"war/sampleresources/ExcelDataRules/log-rules.drl", "war/sampleresources/ExcelDataRules/TradingRules.xls" };
 
 	/**
 	 * Read an excel file and spit out what we find.
-	 * 
+	 *
 	 * @param args
 	 *            Expect one argument that is the file to read.
 	 * @throws Exception

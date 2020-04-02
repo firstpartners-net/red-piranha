@@ -5,10 +5,7 @@ import static org.junit.Assert.fail;
 
 import java.io.IOException;
 
-import net.firstpartners.sample.EventRules.CustomerOrder;
-import net.firstpartners.sample.EventRules.EventRulesExample;
-
-import org.drools.compiler.DroolsParserException;
+import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.Test;
 
 public class EventRulesExampleTest {

@@ -5,19 +5,19 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
-import net.firstpartners.drools.data.RuleSource;
-import net.firstpartners.drools.log.ILogger;
-
 import org.drools.KnowledgeBase;
-import org.drools.compiler.DroolsParserException;
+import org.drools.compiler.compiler.DroolsParserException;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.StatelessKnowledgeSession;
 
+import net.firstpartners.drools.data.RuleSource;
+import net.firstpartners.drools.log.ILogger;
+
 /**
  * Load rules
- * 
+ *
  * @author paul
- * 
+ *
  */
 public class RuleRunner {
 
@@ -36,7 +36,7 @@ public class RuleRunner {
 
 	/**
 	 * Run the rules
-	 * 
+	 *
 	 * @param rulesUrl
 	 *            - array of rule files that we need to load
 	 * @param dslFileUrl
@@ -53,7 +53,7 @@ public class RuleRunner {
 	 * @throws Exception
 	 */
 	public void runStatelessRules(RuleSource ruleSource, ILogger logger)
-	throws DroolsParserException, IOException, ClassNotFoundException {
+			throws DroolsParserException, IOException, ClassNotFoundException {
 
 		// The most common operation on a rulebase is to create a new rule
 		// session; either stateful or stateless.
@@ -68,7 +68,7 @@ public class RuleRunner {
 
 	/**
 	 * Run Stateless rules using a prebuilt knowledgebase
-	 * 
+	 *
 	 * @param preBuiltKnowledgeBase
 	 * @param facts
 	 * @param globals
@@ -83,7 +83,7 @@ public class RuleRunner {
 		// Create a new stateless session
 		log.info("Creating new working memory");
 		StatelessKnowledgeSession workingMemory = preBuiltKnowledgeBase
-		.newStatelessKnowledgeSession();
+				.newStatelessKnowledgeSession();
 
 		log.info("Checking for globals");
 		if (globals != null) {
@@ -111,7 +111,7 @@ public class RuleRunner {
 
 	/**
 	 * Run the rules
-	 * 
+	 *
 	 * @param rulesUrl
 	 *            - array of rule files that we need to load
 	 * @param dslFileUrl
@@ -131,7 +131,7 @@ public class RuleRunner {
 	 */
 	public StatefulKnowledgeSession getStatefulSession(RuleSource ruleSource,
 			ILogger logger) throws DroolsParserException, IOException,
-			ClassNotFoundException {
+	ClassNotFoundException {
 
 		// The most common operation on a rulebase is to create a new rule
 		// session; either stateful or stateless.
@@ -144,7 +144,7 @@ public class RuleRunner {
 
 	/**
 	 * Get a Stateful Session for a pre built knowledgebase
-	 * 
+	 *
 	 * @param preBuiltKnowledgeBase
 	 * @param globals
 	 * @param logger
@@ -155,10 +155,10 @@ public class RuleRunner {
 	public StatefulKnowledgeSession getStatefulSession(
 			KnowledgeBase preBuiltKnowledgeBase,
 			HashMap<String, Object> globals, ILogger logger)
-	throws DroolsParserException, IOException {
+					throws DroolsParserException, IOException {
 		// Create a new stateful session
 		StatefulKnowledgeSession workingMemory = preBuiltKnowledgeBase
-		.newStatefulKnowledgeSession();
+				.newStatefulKnowledgeSession();
 
 		for (String o : globals.keySet()) {
 			log

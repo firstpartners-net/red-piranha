@@ -9,16 +9,31 @@ import org.apache.poi.hssf.usermodel.HSSFName;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.AreaReference;
+import org.apache.poi.hssf.util.
 import org.apache.poi.hssf.util.CellReference;
+
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DataFormat;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.PrintSetup;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  * Read Ranges from Excel, Convert to a format that rules can use
- * 
+ *
  * Based on Sample from Apache POI
- * 
+ *
  * @author paulbrowne
- * 
+ *
  */
 public class RangeConvertor {
 
@@ -27,7 +42,7 @@ public class RangeConvertor {
 
 	/**
 	 * Read an excel file and spit out what we find.
-	 * 
+	 *
 	 * @param args
 	 *            Expect one argument that is the file to read.
 	 * @throws IOException
@@ -72,7 +87,7 @@ public class RangeConvertor {
 				//and that it should pass on property change events to it
 				redCell.setHoldingRange(redRange);
 				redCell.addPropertyChangeListener(redRange);
-				
+
 				// Add the list of cells to a range
 				redRange.put(cellHandle, redCell);
 
@@ -87,13 +102,13 @@ public class RangeConvertor {
 
 	/**
 	 * Update an excel file with our new values
-	 * 
+	 *
 	 */
 	public static void convertCellsToExcel(HSSFWorkbook wb,	RangeHolder updatedValues) throws IOException {
 
 		// retrieve the named range
 		int numberOfNames = wb.getNumberOfNames();
-		
+
 		//Get all names of *all* the cells in *all* the ranges
 		Map<String,Cell> allCells =updatedValues.getAllCells();
 
@@ -119,7 +134,7 @@ public class RangeConvertor {
 					String cellHandle = Range.getUniqueCellName(aNamedCell
 							.getNameName(), thisCellinRange);
 
-					
+
 					if (allCells.containsKey(cellHandle)) {
 						CellConvertor.convertCellToExcel(wb, excelCell,
 								allCells.get(cellHandle));

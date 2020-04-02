@@ -46,7 +46,7 @@ public class PreCompileRuleBuilder {
 			String cacheResourceUnderName) throws IOException {
 
 		ByteArrayOutputStream bytes= new ByteArrayOutputStream();
-		org.drools.common.DroolsObjectOutputStream outBytes = new org.drools.common.DroolsObjectOutputStream(bytes);
+		org.drools.core.common.DroolsObjectOutputStream outBytes = new org.drools.core.common.DroolsObjectOutputStream(bytes);
 		outBytes.writeObject( kbToCache );
 
 		Base64 base64Code = new Base64();

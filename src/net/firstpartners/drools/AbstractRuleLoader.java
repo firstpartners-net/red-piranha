@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 import org.apache.commons.codec.binary.Base64;
 import org.datanucleus.ResourceType;
+import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderErrors;
 import org.drools.builder.KnowledgeBuilderFactory;
@@ -42,7 +43,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
-	public KnowledgeBase loadRules(RuleSource ruleSource)
+	public org.drools.KnowledgeBase loadRules(RuleSource ruleSource)
 			throws DroolsParserException, IOException, ClassNotFoundException {
 
 		// Use cached rules if possible
@@ -113,7 +114,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 
 		// Use these
 		log.info("Creating new knowledgebase");
-		KnowledgeBase localBase = KnowledgeBaseFactory.newKnowledgeBase();
+		org.drools.KnowledgeBase localBase = org.drools.KnowledgeBaseFactory.newKnowledgeBase();
 
 		log.info("Adding packages to localBase");
 		localBase.addKnowledgePackages(localBuilder.getKnowledgePackages());

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package net.firstpartners.drools;
 
@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import org.drools.compiler.DroolsParserException;
+import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.Test;
 
 /**

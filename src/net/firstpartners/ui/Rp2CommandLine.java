@@ -6,12 +6,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.drools.compiler.compiler.DroolsParserException;
+
 import net.firstpartners.drools.FileRuleLoader;
 import net.firstpartners.drools.SpreadSheetRuleRunner;
 import net.firstpartners.drools.data.RuleSource;
-
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.drools.compiler.DroolsParserException;
 
 public class Rp2CommandLine {
 
@@ -29,7 +29,7 @@ public class Rp2CommandLine {
 	 * Usage from command line java -jar [jarName.jar]
 	 * net.firstpartners.rp2.Rp2CommandLine ExcelFile OutputFile rulesfile1
 	 * rulesfile2 ...
-	 * 
+	 *
 	 * @param args
 	 * @throws IOException
 	 * @throws DroolsParserException
@@ -68,7 +68,7 @@ public class Rp2CommandLine {
 	/**
 	 * Get the 3rd and subsequent argument passed from the command line - these
 	 * are the rule file names
-	 * 
+	 *
 	 * @param commandLineArgs
 	 * @return
 	 */
@@ -91,7 +91,7 @@ public class Rp2CommandLine {
 
 	/**
 	 * Delete the output file if it already exists
-	 * 
+	 *
 	 * @param outputFile
 	 */
 	private static void deleteOutputFileIfExists(String outputFileName) {

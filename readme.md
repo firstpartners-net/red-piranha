@@ -59,3 +59,4 @@ Even better, it's all open source and free to get started. And it works with Goo
 * [DevProjectLayout](DevProjectLayout.md)
 * [Red Piranha for Drools Developers](DevRedPiranhaForDroolsDevelopers.md)
 * [Official Release Procedure](DevOfficialReleaseProcedure.md)
+

@@ -1,5 +1,5 @@
 # Beginning Business rules with JBoss Drools #
-
+ 
 
 | <img src='http://icons.iconarchive.com/icons/mart/glaze/48/man-icon.png' /> | You don't need the book to get started with Red-Piranha, but it might help explain some core Rule-Engine concepts. |
 |:----------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------|

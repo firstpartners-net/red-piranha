@@ -35,8 +35,8 @@ Even better, it's all open source and free to get started. And it works with Goo
 ## Quick Start 
 
 1. Click on run as 'Web application'
-1. GWT: open url http://localhost:8888/rpproto2.html)
-1. Normal Tomcat: open url http://localhost:8888/)
+1. GWT: open url http://localhost:8888/rpproto2.html
+1. Normal Tomcat: open url http://localhost:8888/
  
 ## Links 
 

@@ -100,7 +100,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-soup-project-datamodel-commons-7.35.0.Final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-spring-7.35.0.Final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/knowledge-api-6.5.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/log4j-1.2.13.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/maven-aether-provider-3.2.5.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/maven-artifact-3.2.5.jar"/>
@@ -159,5 +158,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/xpp3_min-1.2.0.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/xstream-1.4.11.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/xstream-1.4.9.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/log4j-core-2.13.1.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

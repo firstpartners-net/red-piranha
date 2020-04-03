@@ -11,11 +11,11 @@ import java.util.Iterator;
 import java.util.logging.Logger;
 
 import org.apache.commons.codec.binary.Base64;
-import org.datanucleus.ResourceType;
 import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderErrors;
 import org.drools.builder.KnowledgeBuilderFactory;
+import org.drools.builder.ResourceType;
 import org.drools.compiler.compiler.DroolsParserException;
 import org.drools.core.common.DroolsObjectInputStream;
 import org.drools.definition.KnowledgePackage;

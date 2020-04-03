@@ -9,8 +9,8 @@ import org.apache.poi.hssf.usermodel.HSSFName;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.CellReference;
-import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.util.AreaReference;
+import org.apache.poi.ss.util.CellReference;
 
 /**
  * Read Ranges from Excel, Convert to a format that rules can use
@@ -41,13 +41,46 @@ public class RangeConvertor {
 		// retrieve the named range
 		int numberOfNames = wb.getNumberOfNames();
 
+
+		/*
+
+
+// setup code
+String cname = "TestName";
+Workbook wb = getMyWorkbook(); // retrieve workbook
+
+// retrieve the named range
+int namedCellIdx = wb.getNameIndex(cellName);
+Name aNamedCell = wb.getNameAt(namedCellIdx);
+
+// retrieve the cell at the named range and test its contents
+AreaReference aref = new AreaReference(aNamedCell.getRefersToFormula());
+CellReference[] crefs = aref.getAllReferencedCells();
+
+
+for (int i=0; i<crefs.length; i++) {
+
+
+    Sheet s = wb.getSheet(crefs[i].getSheetName());
+    Row r = sheet.getRow(crefs[i].getRow());
+    Cell c = r.getCell(crefs[i].getCol());
+
+
+    // extract the cell contents based on cell type etc.
+
+
+}
+
+		 */
+
 		// Get all the named ranges in our spreadsheet
 		for (int namedRangeIdx = 0; namedRangeIdx < numberOfNames; namedRangeIdx++) {
 			HSSFName aNamedRage = wb.getNameAt(namedRangeIdx);
 
 			// retrieve the cell at the named range and test its contents
+
 			AreaReference aref = new AreaReference(aNamedRage.getReference());
-			CellReference[] crefs = aref.getAllReferencedCells();
+			org.apache.poi.ss.util.CellReference[] crefs = aref.getAllReferencedCells();
 
 			// A Range that we will put the new cells into
 			Range redRange = new Range(aNamedRage.getNameName());

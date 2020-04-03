@@ -6,13 +6,11 @@ import java.io.File;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import net.firstpartners.drools.SpreadSheetRuleRunner;
-import net.firstpartners.drools.URLRuleLoader;
-import net.firstpartners.drools.data.RuleSource;
-import net.firstpartners.sample.SpreadsheetServlet.SpreadsheetServletSample;
-
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.junit.Test;
+
+import net.firstpartners.drools.data.RuleSource;
+import net.firstpartners.sample.SpreadsheetServlet.SpreadsheetServletSample;
 
 public class SpreadsheetRuleRunnerTest {
 
@@ -41,9 +39,6 @@ public class SpreadsheetRuleRunnerTest {
 
 		HSSFWorkbook wb;
 		wb = commonUtils.callRules(url,ruleSource, SpreadsheetServletSample.getExcelLogWorksheetName());
-
-
-
 
 	}
 

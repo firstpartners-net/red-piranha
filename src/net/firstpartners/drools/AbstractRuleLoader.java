@@ -18,7 +18,6 @@ import org.drools.builder.KnowledgeBuilderErrors;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.compiler.compiler.DroolsParserException;
 import org.drools.core.common.DroolsObjectInputStream;
-import org.drools.core.marshalling.impl.ProtobufMessages.KnowledgeBase;
 import org.drools.definition.KnowledgePackage;
 import org.drools.io.ResourceFactory;
 
@@ -86,7 +85,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 				KnowledgeBuilderError thisError = itErrors.next();
 				log.severe(thisError.getMessage());
 				log.severe(thisError.toString());
-				errorLines = thisError.getErrorLines();
+				errorLines = thisError.getLines();
 				errorLineMessage = new StringBuffer();
 				if (errorLines != null) {
 					for (int errorLine : errorLines) {
@@ -246,7 +245,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	KnowledgeBase loadKnowledgeBase(RuleSource ruleSource) throws IOException,
+	org.drools.KnowledgeBase loadKnowledgeBase(RuleSource ruleSource) throws IOException,
 	ClassNotFoundException, SecurityException {
 
 		RedSecurityManager.checkUrl(ruleSource);
@@ -272,7 +271,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 		Object inObject = in.readObject();
 		log.info("inObject:" + inObject.getClass());
 
-		return (KnowledgeBase) inObject;
+		return (org.drools.KnowledgeBase) inObject;
 
 	}
 

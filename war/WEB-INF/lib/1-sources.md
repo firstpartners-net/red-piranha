@@ -1,0 +1,1 @@
+Drools and supporting libs - JBoss Drools 6.5

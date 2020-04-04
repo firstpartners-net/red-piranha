@@ -2,10 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/CDC-1.0%Foundation-1.0">
 		<attributes>
 			<attribute name="module" value="true"/>
-			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
@@ -20,28 +19,13 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/ant-1.8.3.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/ant-launcher-1.8.3.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/antlr-runtime-3.5.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/antlr4-runtime-4.7.2.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/aopalliance-1.0.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-1.0-sdk-1.4.0.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-api-labs-1.4.0.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/appengine-jsr107cache-1.4.0.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/big-math-2.0.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/blueprint-parser-1.4.0.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/cdi-api-1.0-SP4.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-codec-1.11.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-collections4-4.4.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-compress-1.19.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-codec-1.4.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-math3-3.4.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/core-3.4.2.v_883_R34x.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/curvesapi-1.06.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-appengine-1.0.8.final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-core-1.1.5.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/datanucleus-jpa-1.1.5.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-beliefs-6.5.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-canonical-model-7.35.0.Final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-compiler-6.5.0.Final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-core-6.5.0.Final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-decisiontables-6.5.0.Final.jar"/>
@@ -53,54 +37,25 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-templates-6.5.0.Final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-verifier-6.5.0.Final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/ecj-4.4.2.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/gdata-client-1.0.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/gdata-core-1.0.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/gdata-docs-3.0.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/gdata-docs-meta-3.0.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/gdata-media-1.0.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/gdata-spreadsheet-3.0.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/geronimo-jpa_3.0_spec-1.1.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/geronimo-jta_1.1_spec-1.1.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/google-collect-1.0-rc1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/guava-13.0.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-servlet.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/httpclient-4.3.6.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/httpcore-4.3.3.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/itext-2.1.2.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/javaparser-core-3.13.10.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/javassist-3.18.1-GA.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/javax.inject-1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jaxb-core-2.2.11.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jaxb-impl-2.2.11.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jboss-interceptors-api_1.1_spec-1.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/jbpm-flow-7.35.0.Final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jcl-over-slf4j-1.7.2.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/jdo2-api-2.3-eb.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jsoup-1.8.3.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/jsr107cache-1.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jsr250-api-1.0.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/jsr305.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jsr94-1.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-api-6.5.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-api-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-aries-blueprint-7.35.0.Final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-ci-6.5.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-dmn-api-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-dmn-backend-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-dmn-core-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-dmn-feel-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-dmn-model-7.35.0.Final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-internal-6.5.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-internal-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-soup-commons-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-soup-maven-support-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-soup-project-datamodel-api-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-soup-project-datamodel-commons-7.35.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/kie-spring-7.35.0.Final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/knowledge-api-6.5.0.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/maven-aether-provider-3.2.5.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/maven-artifact-3.2.5.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/maven-compat-3.2.5.jar"/>
@@ -112,52 +67,28 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/maven-settings-3.2.5.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/maven-settings-builder-3.2.5.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/mvel2-2.2.8.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/mvel2-2.4.7.Final.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/org.apache.aries.blueprint.api-1.0.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/org.eclipse.sisu.inject-0.3.0.M1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/org.eclipse.sisu.plexus-0.3.0.M1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/org.osgi.core-4.3.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/plexus-cipher-1.7.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/plexus-classworlds-2.5.2.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/plexus-component-annotations-1.5.5.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/plexus-interpolation-1.21.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/plexus-sec-dispatcher-1.3.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/plexus-utils-3.0.20.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/pmml-agent-1.4.11.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/pmml-model-1.4.11.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-3.13.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-4.1.2.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-ooxml-3.13.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-ooxml-4.1.2.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-ooxml-schemas-3.13.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-ooxml-schemas-4.1.2.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/protobuf-java-2.6.0.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/protobuf-java-3.6.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/sisu-guice-3.2.3-no_aop.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/slf4j-api-1.7.2.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/slf4j-api-1.7.26.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/SparseBitSet-1.2.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-aop-5.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-beans-5.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-context-5.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-core-5.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-expression-5.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-jcl-5.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-tx-5.2.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/stax-api-1.0.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/wagon-http-2.6.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/wagon-http-shared-2.6.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/wagon-provider-api-2.6.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/xml-apis-1.3.04.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/xmlbeans-2.3.0.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/xmlbeans-3.1.0.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/xmlpull-1.1.3.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/xmlpull-1.2.0.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/xpp3_min-1.1.4c.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/xpp3_min-1.2.0.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/xstream-1.4.11.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/xstream-1.4.9.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/log4j-core-2.13.1.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

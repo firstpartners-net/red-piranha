@@ -2,3 +2,5 @@
 build
 log
 war/WEB-INF/classes/
+junit-test-reports/T*
+testbuild

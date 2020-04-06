@@ -9,16 +9,16 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.drools.compiler.compiler.DroolsParserException;
+
 import net.firstpartners.drools.data.RuleSource;
 import net.firstpartners.drools.log.ILogger;
 import net.firstpartners.drools.log.SpreadSheetLogger;
 import net.firstpartners.spreadsheet.Range;
 import net.firstpartners.spreadsheet.RangeConvertor;
 import net.firstpartners.spreadsheet.RangeHolder;
-
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.drools.compiler.DroolsParserException;
 
 /**
  * Common Entry point to both Servlet and command line,
@@ -39,7 +39,7 @@ public class SpreadSheetRuleRunner {
 
 
 	/**
-	 * 
+	 *
 	 * @param spreadsheetRange - Red Piranha representation of the spreadsheet format
 	 * @param args
 	 * @param nameOfLogSheet
@@ -76,7 +76,7 @@ public class SpreadSheetRuleRunner {
 
 
 	/**
-	 * 
+	 *
 	 * @param inputFromExcel
 	 *            - the excel data sheet as already opened as a Java Stream
 	 * @param args
@@ -117,9 +117,9 @@ public class SpreadSheetRuleRunner {
 
 	/**
 	 * Read an excel file and spit out what we find.
-	 * 
+	 *
 	 * Method is protected (not private) to allow for unit testing
-	 * 
+	 *
 	 * @param args
 	 *            Expect one argument that is the file to read.
 	 * @throws ClassNotFoundException
@@ -157,9 +157,9 @@ public class SpreadSheetRuleRunner {
 
 	/**
 	 * Read an excel file and spit out what we find.
-	 * 
+	 *
 	 * Method is protected (not private) to allow for unit testing
-	 * 
+	 *
 	 * @param args
 	 *            Expect one argument that is the file to read.
 	 * @throws IOException

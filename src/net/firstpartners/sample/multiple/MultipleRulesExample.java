@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * (c) Paul Browne, FirstPartners.net
  * Contains sample code from FIT and Drools
  */
@@ -8,14 +8,14 @@ package net.firstpartners.sample.multiple;
 import java.io.IOException;
 import java.util.HashMap;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.drools.compiler.compiler.DroolsParserException;
+
 import net.firstpartners.drools.FileRuleLoader;
 import net.firstpartners.drools.RuleRunner;
 import net.firstpartners.drools.data.RuleSource;
 import net.firstpartners.drools.log.ConsoleLogger;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.drools.compiler.DroolsParserException;
 
 
 /**

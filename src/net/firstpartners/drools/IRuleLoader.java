@@ -2,14 +2,13 @@ package net.firstpartners.drools;
 
 import java.io.IOException;
 
-import net.firstpartners.drools.data.RuleSource;
+import org.drools.compiler.compiler.DroolsParserException;
 
-import org.drools.KnowledgeBase;
-import org.drools.compiler.DroolsParserException;
+import net.firstpartners.drools.data.RuleSource;
 
 public interface IRuleLoader {
 
-	KnowledgeBase loadRules(RuleSource ruleSource) throws DroolsParserException, IOException, ClassNotFoundException;
+	org.drools.KnowledgeBase loadRules(RuleSource ruleSource) throws DroolsParserException, IOException, ClassNotFoundException;
 
 
 }

@@ -7,11 +7,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import net.firstpartners.drools.data.RuleSource;
-
 import org.drools.KnowledgeBase;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
+
+import net.firstpartners.drools.data.RuleSource;
 
 public class URLRuleLoaderTest {
 
@@ -30,7 +30,7 @@ public class URLRuleLoaderTest {
 
 
 		//Check that we can read rules from remote location
-		KnowledgeBase kb = ruleLoader.loadKnowledgeBase(ruleSource);
+		org.drools.KnowledgeBase kb = ruleLoader.loadKnowledgeBase(ruleSource);
 
 		//Check that we can do things with the retrieved knowledgebase
 		assertNotNull(kb);

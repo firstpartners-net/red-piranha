@@ -3,25 +3,25 @@ package net.firstpartners.sample.ExcelDataRules;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.drools.compiler.compiler.DroolsParserException;
+
 import net.firstpartners.drools.FileRuleLoader;
 import net.firstpartners.drools.IRuleLoader;
 import net.firstpartners.drools.SpreadSheetRuleRunner;
 import net.firstpartners.drools.data.RuleSource;
 import net.firstpartners.spreadsheet.SpreadSheetOutputter;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.drools.compiler.DroolsParserException;
-
 /**
  * Sample showing how we can read and manipulate data from excel
  * Read Ranges from Excel, Convert to a format that rules can use
- * 
+ *
  * Based on Sample from Apache POI
- * 
+ *
  * @author paulbrowne
- * 
+ *
  */
 public class ExcelDataExample {
 
@@ -44,7 +44,7 @@ public class ExcelDataExample {
 
 	/**
 	 * Read an excel file and spit out what we find.
-	 * 
+	 *
 	 * @param args
 	 *            Expect one argument that is the file to read.
 	 * @throws Exception

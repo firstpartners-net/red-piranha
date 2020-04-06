@@ -1,4 +1,5 @@
 
+
 # Red Piranha 
 
 ![Red Piranha Logo](/site/images/top/02.gif)
@@ -29,14 +30,15 @@ Even better, it's all open source and free to get started. And it works with Goo
 (images from [here under GPL](http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html)
 
 ## Look at the Examples
+
 [Examples Online](docs/RedPiranha.md) are a work in progress. For the moment, you can look at the [Downloadable Java examples](docs/RedPiranhaExamples.md). The [Book](docs/Book.md) page also contains samples on how to use Drools
 
 ## Quick Start 
 
 1. Click on run as 'Web application'
-1. GWT: open url http://localhost:8888/rpproto2.html)
-1. Normal Tomcat: open url http://localhost:8888/)
-
+1. GWT: open url http://localhost:8888/rpproto2.html
+1. Normal Tomcat: open url http://localhost:8888/
+ 
 ## Links 
 
 * [Business Rules](BusinessRules.md)

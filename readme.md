@@ -20,17 +20,17 @@ Even better, it's all open source and free to get started. And it works with Goo
 
 ## What Next?
 
-| ![Man Icon](http://icons.iconarchive.com/icons/mart/glaze/48/man-icon.png) | **[Have you just bought the book?](docs/Book.md)** - Beginning Business rules with JBoss Drools. <br /> Where to download the samples and other useful information. |
+| ![Man Icon](http://icons.iconarchive.com/icons/mart/glaze/48/man-icon.png) | **[Have you just bought the book?](site-docs/Book.md)** - Beginning Business rules with JBoss Drools. <br /> Where to download the samples and other useful information. |
 |:----------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png) | **[I dabble with Excel - what do I do now? ](docs/UserEndUserGettingStarted.md)** User getting started <br /> including how to run the samples online, how to use with your own Excel / Google Spreadsheets|
-| ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png) | **[I'm an Excel power user - what do I do now?](docs/PowerPowerUserGettingStarted.md)** Power User Getting Started. <br /> How to build your own rules against these spreadsheets and share them with other people.|
-|  ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/source-j-icon.png) | **[I'm a developer - what next?](docs/DevDeveloperGettingStarted.md)** How to extend Red Piranha to get it to do exactly what you want.|
+| ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png) | **[I dabble with Excel - what do I do now? ](site-docs/UserEndUserGettingStarted.md)** User getting started <br /> including how to run the samples online, how to use with your own Excel / Google Spreadsheets|
+| ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png) | **[I'm an Excel power user - what do I do now?](site-docs/PowerPowerUserGettingStarted.md)** Power User Getting Started. <br /> How to build your own rules against these spreadsheets and share them with other people.|
+|  ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/source-j-icon.png) | **[I'm a developer - what next?](site-docs/DevDeveloperGettingStarted.md)** How to extend Red Piranha to get it to do exactly what you want.|
 
 (images from [here under GPL](http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html)
 
 ## Look at the Examples
 
-[Examples Online](docs/RedPiranha.md) are a work in progress. For the moment, you can look at the [Downloadable Java examples](docs/RedPiranhaExamples.md). The [Book](docs/Book.md) page also contains samples on how to use Drools
+[Examples Online](site-docs/RedPiranha.md) are a work in progress. For the moment, you can look at the [Downloadable Java examples](site-docs/RedPiranhaExamples.md). The [Book](site-docs/Book.md) page also contains samples on how to use Drools
 
 ## Quick Start 
 
@@ -40,23 +40,23 @@ Even better, it's all open source and free to get started. And it works with Goo
  
 ## Links 
 
-* [Business Rules](BusinessRules.md)
-* [User Getting Started](UserEndUserGettingStarted.md)
-* [PowerUser Getting Started](PowerPowerUserGettingStarted.md)
-* [Examples](RedPiranhaExamples.md)
-* [FAQ](FAQ.md)
-* [RoadMap](RoadMap.md)
-* [Book](Book.md)
-* [Book Feedback](BookFeedback.md)
+* [Business Rules](site-docs/BusinessRules.md)
+* [User Getting Started](site-docs/UserEndUserGettingStarted.md)
+* [PowerUser Getting Started](site-docs/PowerUserGettingStarted.md)
+* [Examples](site-docs/RedPiranhaExamples.md)
+* [FAQ](site-docs/FAQ.md)
+* [RoadMap](site-docs/RoadMap.md)
+* [Book](site-docs/Book.md)
+* [Book Feedback](site-docs/BookFeedback.md)
 
 ## Links - Developer
 
-* [Developer Getting Started](DevDeveloperGettingStarted.md)
-* [CommonErrorMessages](CommonErrorMessages.md)
-* [DevAntBuildFile](DevAntBuildFile.md)
-* [DevLibrariesUsed](DevLibrariesUsed.md)
-* [Changes to Drools to run in App Engine](ModifyDroolsRunInGoogleAppEngine.md)
-* [DevProjectLayout](DevProjectLayout.md)
-* [Red Piranha for Drools Developers](DevRedPiranhaForDroolsDevelopers.md)
-* [Official Release Procedure](DevOfficialReleaseProcedure.md)
+* [Developer Getting Started](site-docs/DevDeveloperGettingStarted.md)
+* [CommonErrorMessages](site-docs/CommonErrorMessages.md)
+* [DevAntBuildFile](site-docs/DevAntBuildFile.md)
+* [DevLibrariesUsed](site-docs/DevLibrariesUsed.md)
+* [Changes to Drools to run in App Engine](site-docs/ModifyDroolsRunInGoogleAppEngine.md)
+* [DevProjectLayout](site-docs/DevProjectLayout.md)
+* [Red Piranha for Drools Developers](site-docs/DevRedPiranhaForDroolsDevelopers.md)
+* [Official Release Procedure](site-docs/DevOfficialReleaseProcedure.md)
 

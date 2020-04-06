@@ -1,5 +1,3 @@
-
-
 # Red Piranha 
 
 ![Red Piranha Logo](/site/images/top/02.gif)

@@ -1,6 +1,3 @@
-## Community ##
-
-_TODO Explain the nature of sharing and the community_
 
 ## Business Rules ##
 

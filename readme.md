@@ -25,19 +25,15 @@ Even better, it's all open source and free to get started. And it works with Goo
 | ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png) | **[I'm an Excel power user - what do I do now?](docs/PowerUserGettingStarted.md)** Power User Getting Started. <br /> How to build your own rules against these spreadsheets and share them with other people.|
 |  ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/source-j-icon.png) | **[I'm a developer - what next?](docs/DevDeveloperGettingStarted.md)** How to extend Red Piranha to get it to do exactly what you want.|
 
-Images from [here under GPL](http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html)
 
 ## Look at the Examples
 
 [Examples Online](docs/RedPiranha.md) are a work in progress. For the moment, you can look at the [Downloadable Java examples](docs/RedPiranhaExamples.md). The [Book](docs/Book.md) page also contains samples on how to use Drools
 
-To Cover (figure out how to do sections - read wikisyntax)
-  * Link to Sample
-  * Picture of example
-  * why need to login
-  * what is happening
-  * (drools/excel/
-  * calling from url
+### Where are the samples ###
+  * Located In the folder src/net/firstpartners/samples
+  * Unit tests (to call) are in the folder test/net/firstpartners/samples
+  * Each Unit test contains a 'Main' Method so that they can be called from the command line
 
 
 ## How these sample differ from the book ##
@@ -50,11 +46,6 @@ These samples are similar, but differ in several key aspects to the book samples
 
 _For the moment this page presumes that you've followed the instructions on the
 [DevDeveloperGettingStarted](DevDeveloperGettingStarted.md) page._
-
-### Where are the samples ###
-  * Located In the folder src/net/firstpartners/samples
-  * Unit tests (to call) are in the folder test/net/firstpartners/samples
-  * Each Unit test contains a 'Main' Method so that they can be called from the command line
 
 
 
@@ -79,3 +70,4 @@ We have snapshotted the [code that the book was written on here](https://github.
 
 
 
+Images from [here under GPL](http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html)

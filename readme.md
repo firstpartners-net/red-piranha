@@ -31,6 +31,9 @@ Even better, it's all open source and free to get started. And it works with Goo
 
 [Examples Online](docs/RedPiranha.md) are a work in progress. For the moment, you can look at the [Downloadable Java examples](docs/RedPiranhaExamples.md). The [Book](docs/Book.md) page also contains samples on how to use Drools
 
+## Looking for Book Code
+We have snapshotted the [code that the book was written on here](https://github.com/paulbrowne-irl/red-piranha/tree/v0.9). You probably don't want this, the libraties this code is based on are now deprecated. The code in the rest of this site is much more up to date.
+
 ## Quick Start 
 
 1. Click on run as 'Web application'

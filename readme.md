@@ -47,17 +47,9 @@ These samples are similar, but differ in several key aspects to the book samples
 _For the moment this page presumes that you've followed the instructions on the
 [DevDeveloperGettingStarted](DevDeveloperGettingStarted.md) page._
 
-
-
 ## Looking for Book Code
 We have snapshotted the [code that the book was written on here](https://github.com/paulbrowne-irl/red-piranha/tree/v0.9). You probably don't want this, the libraties this code is based on are now deprecated. The code in the rest of this site is much more up to date.
 
-## Quick Start 
-
-1. Click on run as 'Web application'
-1. GWT: open url http://localhost:8888/rpproto2.html
-1. Normal Tomcat: open url http://localhost:8888/
- 
 ## Links 
 
 * [Business Rules](docs/BusinessRules.md)
@@ -68,6 +60,11 @@ We have snapshotted the [code that the book was written on here](https://github.
 * [Book](docs/Book.md)
 * [Developer Notes](docs/DeveloperNotes.md)
 
+## Quick Start 
 
+1. Click on run as 'Web application'
+1. GWT: open url http://localhost:8888/rpproto2.html
+1. Normal Tomcat: open url http://localhost:8888/
+ 
 
 Images from [here under GPL](http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html)

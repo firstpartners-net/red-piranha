@@ -1,6 +1,7 @@
 *.class
 build
 log
-war/WEB-INF/classes/
+war/*
+war/WEB-INF
 junit-test-reports/T*
 testbuild

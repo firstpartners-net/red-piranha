@@ -20,7 +20,7 @@
 	<property name="src.dir" value="src" />
 	<property name="build.dir" value="build" /> <!-- build wipes-->
 	<property name="docs.dir" value="javadocs" /> <!-- build wipes-->
-	<property name="distrib.dir" value="war/ruleplayer/lib" />
+	<property name="distrib.dir" value="dist" /> 
 	<property name="testsrc.dir" value="test" />
 	<property name="testbuild.dir" value="testbuild" /> <!-- build wipes-->
 	<property name="testreports.dir" value="junit-test-reports" />
@@ -28,8 +28,10 @@
 	<property name="app.root" value="." />
 	<property name="testlib.dir" value="${app.root}/testlib" />
 	<property name="lib.root" value="war/WEB-INF" />
+	<property name="deploy.dir" value="scripts/jetty/webapps" />
 
-
+	
+	
 	<!-- The Main classpath we use when compiling -->
 	<path id="master-classpath">
 		<fileset dir="${lib.root}/lib/">
@@ -150,6 +152,11 @@
 	<target name="jar" depends="build" description="Create the Jar file for distribution">
 
 		<jar jarfile="${distrib.dir}/${name}.jar" compress="true">
+			
+			<manifest>
+			      <attribute name = "Main-Class" value = "net.firstpartners.ui.Rp2CommandLine"/>
+			   </manifest>
+			
 			<fileset dir="${build.dir}">
 				<include name="**" />
 			</fileset>
@@ -161,10 +168,14 @@
 	<!-- Create War file for  distribution-->
 	<target name="war" depends="jar" description="Create the War file for distribution">
 
-		<war warfile="${name}.war" basedir="${distrib.dir}" needxmlfile="false"/>
+		<!-- copy in Red Piranha jars -->
+		<copy file="${distrib.dir}/${name}.jar" tofile="war/WEB-INF/lib/${name}.jar"/> 
+		
+		<war warfile="${deploy.dir}/${name}.war" basedir="${distrib.dir}" needxmlfile="false"
+		    webxml="${lib.root}/web.xml"/>
 
 	</target>
-
+	
 
 	<!-- Create Javadoc for application-->
 	<target name="javadoc" description="Create complete Javadoc documentation">

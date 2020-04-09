@@ -157,6 +157,14 @@
 
 
 	</target>
+	
+	<!-- Create War file for  distribution-->
+	<target name="war" depends="jar" description="Create the War file for distribution">
+
+		<war warfile="${name}.war" basedir="${distrib.dir}" needxmlfile="false"/>
+
+	</target>
+
 
 	<!-- Create Javadoc for application-->
 	<target name="javadoc" description="Create complete Javadoc documentation">

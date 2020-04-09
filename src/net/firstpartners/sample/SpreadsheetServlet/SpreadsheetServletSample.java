@@ -67,8 +67,10 @@ public class SpreadsheetServletSample extends HttpServlet {
 	throws IOException, ServletException {
 
 
-		UserService userService = UserServiceFactory.getUserService();
-		User user = userService.getCurrentUser();
+		//UserService userService = UserServiceFactory.getUserService();
+		//User user = userService.getCurrentUser();
+		User user =null;
+		
 		logEnvironment();
 
 		//Identify where the rules are stored
@@ -98,7 +100,7 @@ public class SpreadsheetServletSample extends HttpServlet {
 
 		} else {
 
-			resp.sendRedirect(userService.createLoginURL(req.getRequestURI()));
+			//resp.sendRedirect(userService.createLoginURL(req.getRequestURI()));
 		}
 	}
 
@@ -108,3 +110,5 @@ public class SpreadsheetServletSample extends HttpServlet {
 
 
 }
+
+class User {}

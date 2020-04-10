@@ -39,7 +39,7 @@ public class Rp2CommandLine {
 		// check incoming args
 		if ((args == null) || (args.length < 3)) {
 			log
-			.info("Usage: java -jar [jarName.jar] net.firstpartners.rp2.Rp2CommandLine ExcelFile OutputFile rulesfile1 rulesfile2 ...");
+			.info("Usage: java -jar [jarName.jar] ExcelFile OutputFile rulesfile1 rulesfile2 ...");
 			return;
 		}
 

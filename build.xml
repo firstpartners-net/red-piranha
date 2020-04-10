@@ -19,7 +19,7 @@
 	<property name="name" value="red-piranha" />
 	<property name="src.dir" value="src" />
 	<property name="build.dir" value="build" /> <!-- build wipes-->
-	<property name="docs.dir" value="javadocs" /> <!-- build wipes-->
+	<property name="javadocs.dir" value="javadocs" /> <!-- build wipes-->
 	<property name="distrib.dir" value="dist" /> 
 	<property name="testsrc.dir" value="test" />
 	<property name="testbuild.dir" value="testbuild" /> <!-- build wipes-->
@@ -58,7 +58,7 @@
 	<target name="clean" description="Clean output dirs (build, docs, dist)">
 		<delete dir="${build.dir}" />
 		<delete dir="${testbuild.dir}" />
-		<delete dir="${docs.dir}" />
+		<delete dir="${javadocs.dir}" />
 		<delete file="${distrib.dir}/${name}.jar" />
 	</target>
 
@@ -179,11 +179,11 @@
 
 	<!-- Create Javadoc for application-->
 	<target name="javadoc" description="Create complete Javadoc documentation">
-		<delete dir="${docs.dir}" />
-		<mkdir dir="${docs.dir}" />
-		<javadoc sourcepath="${src.dir}" destdir="${docs.dir}" windowtitle="Tiles Example" author="true" version="true" use="true" packagenames="*">
+		<delete dir="${javadocs.dir}" />
+		<mkdir dir="${javadocs.dir}" />
+		<javadoc sourcepath="${src.dir}" destdir="${javadocs.dir}" windowtitle="Tiles Example" author="true" version="true" use="true" packagenames="*">
 			<doctitle>
-				<![CDATA[<h1>Red-Piranha</h1>]]>
+				<![CDATA[<h1>Red-Piranha - Java Power tools for Excel</h1>]]>
 			</doctitle>
 			<bottom>
 				<![CDATA[<i>FirstPartners.net 2010-2020.</i>]]>

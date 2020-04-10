@@ -1,0 +1,17 @@
+net.firstpartners
+net.firstpartners.drools
+net.firstpartners.drools.data
+net.firstpartners.drools.log
+net.firstpartners.sample
+net.firstpartners.sample.brms
+net.firstpartners.sample.DslRuleflow
+net.firstpartners.sample.EventRules
+net.firstpartners.sample.ExcelDataRules
+net.firstpartners.sample.multiple
+net.firstpartners.sample.repository
+net.firstpartners.sample.SalesModel
+net.firstpartners.sample.SpreadsheetServlet
+net.firstpartners.security
+net.firstpartners.spreadsheet
+net.firstpartners.ui
+net.firstpartners.ui.hold

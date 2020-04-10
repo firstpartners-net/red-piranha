@@ -27,7 +27,10 @@ public class Rp2CommandLine {
 
 	/**
 	 * Usage from command line java -jar [jarName.jar]
-	 * net.firstpartners.rp2.Rp2CommandLine ExcelFile OutputFile rulesfile1
+	 * Usage: java -jar [jarName.jar] ExcelFile OutputFile rulesfile1 rulesfile2 ..
+	 * As manifest setup to point to this file
+	 * 
+	 * If no args specificed, show Rp2Gui
 	 * rulesfile2 ...
 	 *
 	 * @param args
@@ -40,9 +43,15 @@ public class Rp2CommandLine {
 		if ((args == null) || (args.length < 3)) {
 			log
 			.info("Usage: java -jar [jarName.jar] ExcelFile OutputFile rulesfile1 rulesfile2 ...");
+			
+			log.info("Defaulting to GUI");
+			Rp2Gui.main(args);
+			
 			return;
 		}
 
+		//Normally the Args are
+		
 		// Get the params
 		String excelFile = args[0];
 		String outputFileName = args[1];

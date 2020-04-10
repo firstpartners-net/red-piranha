@@ -12,10 +12,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.drools.compiler.compiler.DroolsParserException;
 
-import net.firstpartners.drools.FileRuleLoader;
-import net.firstpartners.drools.RuleRunner;
-import net.firstpartners.drools.data.RuleSource;
-import net.firstpartners.drools.log.ConsoleLogger;
+import net.firstpartners.core.drools.FileRuleLoader;
+import net.firstpartners.core.drools.RuleRunner;
+import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.drools.log.ConsoleLogger;
 
 
 /**

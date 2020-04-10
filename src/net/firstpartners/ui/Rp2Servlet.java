@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.firstpartners.RedConstants;
-import net.firstpartners.drools.SpreadSheetRuleRunner;
-import net.firstpartners.drools.URLRuleLoader;
-import net.firstpartners.drools.data.RuleSource;
-import net.firstpartners.security.RedSecurityManager;
-import net.firstpartners.spreadsheet.SpreadSheetOutputter;
+import net.firstpartners.core.drools.SpreadSheetRuleRunner;
+import net.firstpartners.core.drools.URLRuleLoader;
+import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.security.RedSecurityManager;
+import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 /*

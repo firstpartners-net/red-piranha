@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.firstpartners.drools.FileRuleLoader;
-import net.firstpartners.drools.SpreadSheetRuleRunner;
-import net.firstpartners.drools.data.RuleSource;
-import net.firstpartners.spreadsheet.SpreadSheetOutputter;
+import net.firstpartners.core.drools.FileRuleLoader;
+import net.firstpartners.core.drools.SpreadSheetRuleRunner;
+import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 

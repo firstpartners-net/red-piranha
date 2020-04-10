@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import net.firstpartners.drools.PreCompileRuleBuilder;
+import net.firstpartners.core.drools.PreCompileRuleBuilder;
 import org.drools.compiler.compiler.DroolsParserException;
 
 /**

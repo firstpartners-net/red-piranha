@@ -8,11 +8,11 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.drools.compiler.compiler.DroolsParserException;
 
-import net.firstpartners.drools.FileRuleLoader;
-import net.firstpartners.drools.IRuleLoader;
-import net.firstpartners.drools.SpreadSheetRuleRunner;
-import net.firstpartners.drools.data.RuleSource;
-import net.firstpartners.spreadsheet.SpreadSheetOutputter;
+import net.firstpartners.core.drools.FileRuleLoader;
+import net.firstpartners.core.drools.IRuleLoader;
+import net.firstpartners.core.drools.SpreadSheetRuleRunner;
+import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
 
 /**
  * Sample showing how we can read both data and rules from Excel

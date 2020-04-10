@@ -9,9 +9,9 @@ import java.util.logging.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.drools.compiler.compiler.DroolsParserException;
 
-import net.firstpartners.drools.FileRuleLoader;
-import net.firstpartners.drools.SpreadSheetRuleRunner;
-import net.firstpartners.drools.data.RuleSource;
+import net.firstpartners.core.drools.FileRuleLoader;
+import net.firstpartners.core.drools.SpreadSheetRuleRunner;
+import net.firstpartners.core.drools.data.RuleSource;
 
 public class Rp2CommandLine {
 

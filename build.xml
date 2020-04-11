@@ -15,7 +15,11 @@
 	<taskdef name="rulepackage" classname="net.firstpartners.drools.AntRuleBuilder"/>
     -->
 
-	<!-- Define Variables used in the build script -->
+	<!-- General Variables -->
+	<property name="application.title" value="Red Piranha" />
+	<property name="main.class" value="net.firstpartners.ui.Rp2CommandLine" />
+	
+	<!-- Define locations used in the build script -->
 	<property name="name" value="red-piranha" />
 	<property name="app.root" value="." />
 	<property name="src.dir" value="src" />
@@ -99,7 +103,7 @@
 	</target>
 
 	<!-- Run the Junit tests in the application -->
-	<target name="tests" depends="build">
+	<target name="tests" depends="build" description="run Junit tests">
 		<property name="rp.root" value="${testreports.dir}" />
 		<delete dir="${testbuild.dir}" />
 		<mkdir dir="${testbuild.dir}" />
@@ -154,13 +158,13 @@
 	</target>
 
 
-	<!-- Create Jar file for  distribution-->
+	<!-- Create Jar file-->
 	<target name="jar" depends="build" description="Create the Jar file for distribution">
 
 		<jar jarfile="${distrib.dir}/${name}.jar" compress="true">
 
 			<manifest>
-				<attribute name="Main-Class" value="net.firstpartners.ui.Rp2CommandLine" />
+				<attribute name="Main-Class" value="${main.class}" />
 			</manifest>
 
 			<fileset dir="${build.dir}">
@@ -169,17 +173,20 @@
 		</jar>
 
 
+
 	</target>
+
+
 
 	<!-- Create War file for  distribution-->
 	<target name="war" depends="jar" description="Create the War file for distribution">
 
 		<!-- copy in Red Piranha jars to WEB-INF lib for later packaign-->
-		<copy file="${distrib.dir}/${name}.jar" tofile="war/WEB-INF/lib/${name}.jar" />
+		<copy file="${distrib.dir}/${name}.jar" tofile="${lib.root}/lib/${name}.jar" />
 
 		<war warfile="${distrib.dir}/${name}.war" basedir="war" needxmlfile="false" webxml="${lib.root}/web.xml">
 
-			<lib dir="war/WEB-INF/lib/" />
+			<lib dir="${lib.root}/lib/" />
 
 		</war>
 
@@ -190,6 +197,55 @@
 	<target name="deploy-jetty" depends="war" description="Deploy the War file to local Jetty">
 
 		<copy file="${distrib.dir}/${name}.war" tofile="${deploy.dir}/${name}.war" />
+
+	</target>
+
+	<!-- Create a standalone exe file with all needed classes -->
+	<target name="jar-single" depends="jar" description="create a single jar with all required libs">
+
+
+		<!-- Change the value of this property to be the name of your JAR,
+		             minus the .jar extension. It should not have spaces.
+		             <property name="store.jar.name" value="MyJarName"/>
+		        -->
+		<property name="store.jar.name" value="${name}-single" />
+		<property name="tmp.dir" value="${distrib.dir}/tmp" />
+		<property name="store.jar" value="${tmp.dir}/${store.jar.name}.jar" />
+
+		<echo message="Packaging ${application.title} into a single JAR at ${store.jar}" />
+
+		<!-- clear out any tmp dir hanging around -->
+		<delete dir="${tmp.dir}" />
+		<mkdir dir="${tmp.dir}" />
+
+		<!-- do the actual combo-->
+		<jar destfile="${tmp.dir}/temp_final.jar" filesetmanifest="skip">
+			<zipgroupfileset dir="dist" includes="*.jar" />
+			<zipgroupfileset dir="${lib.root}/lib" includes="*.jar" />
+			<manifest>
+				<attribute name="Main-Class" value="${main.class}" />
+			</manifest>
+		</jar>
+
+		<zip destfile="${store.jar}">
+			<zipfileset src="${tmp.dir}/temp_final.jar" excludes="META-INF/*.SF, META-INF/*.DSA, META-INF/*.RSA" />
+		</zip>
+		
+		<!-- move to distrib delte temp -->
+		<copy file="${store.jar}" tofile="${distrib.dir}/${store.jar.name}.jar" />
+		<delete dir="${tmp.dir}" />
+
+
+	</target>
+
+	<!-- Uses Launch4j to create a standalone exe file with all needed jars -->
+	<target name="exe" depends="jar-single" description="create standalone exe">
+
+		<!-- TODO - call the launch4j -->
+		
+		<!-- Copy the debug batch file into dist-->
+		<copy file="${src.dir}/red-piranha-debug.bat" tofile="${distrib.dir}/red-piranha-debug.bat" />
+
 
 	</target>
 

@@ -1,18 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.google.appengine.api.users.User" %>
-<%@ page import="com.google.appengine.api.users.UserService" %>
-<%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
+<%@ page import="net.firstpartners.*" %>
+
 
 <html>
   <body>
-
-<%
-    UserService userService = UserServiceFactory.getUserService();
-    User user = userService.getCurrentUser();
-    if (user != null) {
-%>
-<p>Hello, <%= user.getNickname() %>! (You can
-<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
 
  <form action="/rp2" method="get">
   <div>Excel Data File
@@ -33,16 +24,7 @@
  
     <div><input type="submit" value="Run Sample" /></div>
   </form>
-<%
-    } else {
-%>
-<p>Red Piranha Online Samples
-<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-using a Google / Gmail Account to run the samples. Signin goes directly to Google.</p>
-<%
-    }
-%>
- 
+
   </body>
 
 </html>

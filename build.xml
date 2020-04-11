@@ -17,28 +17,33 @@
 
 	<!-- Define Variables used in the build script -->
 	<property name="name" value="red-piranha" />
-	<property name="src.dir" value="src" />
-	<property name="build.dir" value="build" /> <!-- build wipes-->
-	<property name="javadocs.dir" value="javadocs" /> <!-- build wipes-->
-	<property name="distrib.dir" value="dist" /> 
-	<property name="testsrc.dir" value="test" />
-	<property name="testbuild.dir" value="testbuild" /> <!-- build wipes-->
-	<property name="testreports.dir" value="junit-test-reports" />
-	<property name="testhtml.dir" value="${testreports.dir}/html" />
 	<property name="app.root" value="." />
-	<property name="testlib.dir" value="${app.root}/testlib" />
+	<property name="src.dir" value="src" />
 	<property name="lib.root" value="war/WEB-INF" />
+
+	<!-- Distrub and deploy -->
+	<property name="distrib.dir" value="dist" />
 	<property name="deploy.dir" value="scripts/jetty/webapps" />
 
-	
-	
+	<!-- For Testing -->
+	<property name="testsrc.dir" value="test" />
+	<property name="testreports.dir" value="junit-test-reports" />
+	<property name="testhtml.dir" value="${testreports.dir}/html" />
+	<property name="testlib.dir" value="${app.root}/testlib" />
+
+
+	<!-- build wipes-->
+	<property name="javadocs.dir" value="javadocs" />
+	<property name="build.dir" value="build" />
+	<property name="testbuild.dir" value="testbuild" />
+
+
 	<!-- The Main classpath we use when compiling -->
 	<path id="master-classpath">
 		<fileset dir="${lib.root}/lib/">
 			<include name="**/*.jar" />
 			<include name="**/*.zip" />
 		</fileset>
-
 
 	</path>
 
@@ -148,6 +153,7 @@
 	</junitreport> -->
 	</target>
 
+
 	<!-- Create Jar file for  distribution-->
 	<target name="jar" depends="build" description="Create the Jar file for distribution">
 
@@ -175,7 +181,15 @@
 		    webxml="${lib.root}/web.xml"/>
 
 	</target>
-	
+
+
+	<!-- Deploy War to Jetty-->
+	<target name="deploy-jetty" depends="war">
+
+		<copy file="${distrib.dir}/${name}.war" tofile="${deploy.dir}/${name}.war" />
+
+	</target>
+
 
 	<!-- Create Javadoc for application-->
 	<target name="javadoc" description="Create complete Javadoc documentation">
@@ -185,12 +199,14 @@
 			<doctitle>
 				<![CDATA[<h1>Red-Piranha - Java Power tools for Excel</h1>]]>
 			</doctitle>
-			<bottom>
-				<![CDATA[<i>FirstPartners.net 2010-2020.</i>]]>
+		<bottom>
+			<![CDATA[<i>FirstPartners.net 2010-2020.</i>]]>
 			</bottom>
-			<classpath refid="master-classpath" />
-		</javadoc>
-	</target>
+	<classpath refid="master-classpath" />
+			
+			
+</javadoc>
+</target>
 
 
 </project>

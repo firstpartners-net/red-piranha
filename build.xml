@@ -10,15 +10,14 @@
       Ant Build file - compile, build, test , package the Red-Piranha project
     </description>
 
-	<!-- Define additional ant tasks -->
-	<!--
-	<taskdef name="rulepackage" classname="net.firstpartners.drools.AntRuleBuilder"/>
-    -->
 
 	<!-- General Variables -->
 	<property name="application.title" value="Red Piranha" />
 	<property name="main.class" value="net.firstpartners.ui.Rp2CommandLine" />
-	
+
+	<!--Extensions -->
+	<property name="launch4j.dir" location="scripts/launch4j" />
+
 	<!-- Define locations used in the build script -->
 	<property name="name" value="red-piranha" />
 	<property name="app.root" value="." />
@@ -36,11 +35,17 @@
 	<property name="testlib.dir" value="${app.root}/testlib" />
 
 
-	<!-- build wipes-->
+	<!-- build wipes these dirs-->
 	<property name="javadocs.dir" value="javadocs" />
 	<property name="build.dir" value="build" />
 	<property name="testbuild.dir" value="testbuild" />
+	<property name="distrib.dir" value="dist" />
 
+	<!-- Define additional ant tasks -->
+	<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar" />
+	<!--
+		<taskdef name="rulepackage" classname="net.firstpartners.drools.AntRuleBuilder"/>
+	    -->
 
 	<!-- The Main classpath we use when compiling -->
 	<path id="master-classpath">
@@ -68,7 +73,7 @@
 		<delete dir="${build.dir}" />
 		<delete dir="${testbuild.dir}" />
 		<delete dir="${javadocs.dir}" />
-		<delete file="${distrib.dir}/${name}.jar" />
+		<delete dir="${distrib.dir}" />
 	</target>
 
 	<!-- Compile Java Classes into build folder-->
@@ -230,7 +235,7 @@
 		<zip destfile="${store.jar}">
 			<zipfileset src="${tmp.dir}/temp_final.jar" excludes="META-INF/*.SF, META-INF/*.DSA, META-INF/*.RSA" />
 		</zip>
-		
+
 		<!-- move to distrib delte temp -->
 		<copy file="${store.jar}" tofile="${distrib.dir}/${store.jar.name}.jar" />
 		<delete dir="${tmp.dir}" />
@@ -238,11 +243,13 @@
 
 	</target>
 
+
 	<!-- Uses Launch4j to create a standalone exe file with all needed jars -->
 	<target name="exe" depends="jar-single" description="create standalone exe">
 
-		<!-- TODO - call the launch4j -->
-		
+		<!-- call the launch4j to wrap as standalone exe-->
+		<launch4j configFile="launch4j.xml" />
+
 		<!-- Copy the debug batch file into dist-->
 		<copy file="${src.dir}/red-piranha-debug.bat" tofile="${distrib.dir}/red-piranha-debug.bat" />
 

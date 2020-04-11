@@ -1,9 +1,9 @@
 package net.firstpartners.sample.ExcelDataRules;
 
-import net.firstpartners.drools.log.ILogger
+import net.firstpartners.core.drools.log.ILogger
 
-import net.firstpartners.spreadsheet.Cell;
-import net.firstpartners.spreadsheet.Range;
+import net.firstpartners.core.spreadsheet.Cell;
+import net.firstpartners.core.spreadsheet.Range;
 
 global ILogger log;
 

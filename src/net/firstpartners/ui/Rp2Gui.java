@@ -1,6 +1,5 @@
 package net.firstpartners.ui;
 
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -9,52 +8,38 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.IOException;
+import java.util.logging.Logger;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import net.firstpartners.core.drools.PreCompileRuleBuilder;
-import org.drools.compiler.compiler.DroolsParserException;
+
+import net.firstpartners.core.drools.log.ILogger;
 
 /**
  * Previously released as 'RulePlayer', Desktop GUI for Red Piranha
+ * 
  * @author PBrowne
  *
  */
-public class Rp2Gui extends WindowAdapter implements WindowListener, ActionListener, Runnable {
-	private JFrame frame = new JFrame("Red-Piranha RulePlayer - Build your rules");
+public class Rp2Gui extends WindowAdapter implements WindowListener, ActionListener, Runnable, ILogger {
+
+	// Logger
+	private static final Logger log = Logger.getLogger(Rp2Gui.class.getName());
+
+	// Class level GUI Elements
+	private JFrame frame = new JFrame("Red-Piranha - Java Power Tools for Excel");
 	private JTextArea textArea;
 	private boolean quit = false;
 
-	void compileRules() {
-		String ruleFile = "http://red-piranha.googlecode.com/svn/trunk/war/sampleresources/SpreadSheetServlet/log-then-modify-rules.drl";
-		if (ruleFile == null) {
-			this.textArea.append("Please set 'rule' as a param pointing at the rule file you wish to compile ");
-		} else {
-			this.textArea.append("Compiling Rules...\n");
-			this.textArea.append("Using file:" + ruleFile + "\n");
-			PreCompileRuleBuilder rulebuilder = new PreCompileRuleBuilder();
+	// Hold the property level for the class
 
-			try {
-				rulebuilder.cacheRule(ruleFile, (String) null);
-			} catch (DroolsParserException var4) {
-				this.textArea.append("DroolsParserException:" + var4 + "\n");
-				var4.printStackTrace();
-			} catch (IOException var5) {
-				this.textArea.append("IOException:" + var5.getMessage() + "\n");
-				var5.printStackTrace();
-			} catch (ClassNotFoundException var6) {
-				this.textArea.append("ClassNotFoundException:" + var6.getMessage() + "\n");
-				var6.printStackTrace();
-			}
-
-			this.textArea.append("Compiling complete\n");
-		}
-
-	}
-
+	/**
+	 * Constructor, builds a simple GUI
+	 */
 	public Rp2Gui() {
+
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize = new Dimension(screenSize.width / 2, screenSize.height / 2);
 		int x = frameSize.width / 2;
@@ -73,23 +58,35 @@ public class Rp2Gui extends WindowAdapter implements WindowListener, ActionListe
 		this.quit = false;
 	}
 
-	public synchronized void windowClosed(WindowEvent evt) {
-		this.quit = true;
-		this.notifyAll();
-		System.exit(0);
-	}
-
+	/**
+	 * Event Handler - window closing
+	 */
 	public synchronized void windowClosing(WindowEvent evt) {
 		this.frame.setVisible(false);
 		this.frame.dispose();
 	}
 
+	/**
+	 * Even Handler - button pushed
+	 */
 	public synchronized void actionPerformed(ActionEvent evt) {
 		this.textArea.setText("");
 		Runnable readRun = new Thread(this);
 		readRun.run();
 	}
 
+	/**
+	 * Event handler - once window is closed
+	 */
+	public synchronized void windowClosed(WindowEvent evt) {
+		this.quit = true;
+		this.notifyAll();
+		System.exit(0);
+	}
+
+	/**
+	 * Make this class threadable
+	 */
 	public synchronized void run() {
 		while (true) {
 			try {
@@ -107,11 +104,32 @@ public class Rp2Gui extends WindowAdapter implements WindowListener, ActionListe
 		}
 	}
 
-	public static void main(String[] arg) {
-		Rp2Gui player = new Rp2Gui();
-		Runnable readRun = new Thread(player);
-		readRun.run();
-		player.compileRules();
-		System.out.println("RulePlayer Complete");
+	/**
+	 * Allows us to Log to the GUI
+	 * 
+	 * @param message to log
+	 */
+	public void debug(String message) {
+		this.textArea.append("DEBUG:" + message+"\n");
 	}
+
+	/**
+	 * Allows us to Log to the GUI
+	 * 
+	 * @param message
+	 */
+	public void info(String message) {
+		this.textArea.append("INFO:" + message+"\n");
+	}
+
+	/**
+	 * Allows us to Log to the GUI
+	 * 
+	 * @param message
+	 * @param t
+	 */
+	public void exception(String message, Throwable t) {
+		this.textArea.append("EXCEPTION:" + message+"\n"+t.toString()+"\n");
+	}
+
 }

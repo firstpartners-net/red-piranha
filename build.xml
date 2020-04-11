@@ -247,6 +247,9 @@
 	<!-- Uses Launch4j to create a standalone exe file with all needed jars -->
 	<target name="exe" depends="jar-single" description="create standalone exe">
 
+		<!-- Delete any previous exe-->
+		<delete file="${distrib.dir}/red-piranha.exe"/>
+		
 		<!-- call the launch4j to wrap as standalone exe-->
 		<launch4j configFile="launch4j.xml" />
 

@@ -37,5 +37,10 @@ public class Rp2CommandLineTest {
 
 
 	}
+	
+	@Test
+	public final void testReadConfig() {
+		Rp2CommandLine.readConfig();
+	}
 
 }

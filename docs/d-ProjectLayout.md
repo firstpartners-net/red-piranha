@@ -6,12 +6,7 @@ _TODO Match this against the updated project layout_
 _TODO Insert Screenshot_
 
 
-### Other useful pages ###
 
-  * [DevProjectLayout](DevProjectLayout.md) - How the project is organised, important files, places to start reading the code.
-  * [DevLibrariesUsed](DevLibrariesUsed.md) - Libraries that Red Piranha uses, and thanks to the projects that we've built on.
-  * [RoadMap](RoadMap.md) - When Red Piranha is going , and how you can help.
-  * [Running the Examples](RedPiranhaExamples.md)
 
 # Project Layout #
 
@@ -55,14 +50,3 @@ The project is intended to be used in the following ways, hence the project layo
   * war - Compiled code, setup for deployment as a Web archive (war file). This folder also con
   * rpproto2 - GWT compiled code for deployment on the front end
   * WEB-INF
-
-
-
-
-
-
-
-
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-

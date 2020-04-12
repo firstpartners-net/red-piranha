@@ -15,6 +15,7 @@ _TODO Note that the_
 
 
 Please check the respective websites for licence terms.
+* http://launch4j.sourceforge.net/ - Wrapper to generate exe from jar file
 
 
 ### Apache POI - Excel Manipulation ###

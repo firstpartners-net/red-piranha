@@ -48,7 +48,7 @@ _For the moment this page presumes that you've followed the instructions on the
 [DevDeveloperGettingStarted](DevDeveloperGettingStarted.md) page._
 
 ## Looking for Book Code
-We have snapshotted the [code that the book was written on here](https://github.com/paulbrowne-irl/red-piranha/tree/v0.9). You probably don't want this, the libraties this code is based on are now deprecated. The code in the rest of this site is much more up to date.
+We have snapshotted the [code that the book was written on here](https://github.com/paulbrowne-irl/red-piranha/tree/v0.9). You probably don't want this, the libraries this code is based on are now deprecated. The code in the rest of this site is much more up to date.
 
 ## Links 
 

@@ -1,3 +1,7 @@
+# Power User Getting Starteds
+
+
+
 | <img src='http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png' /> |What if you want to write your own business rules? This page shows you how. We assume that you've already checked out the [Online Examples](RedPiranhaExamples.md) . And you've looked at the [User Getting Started](UserEndUserGettingStarted.md) to see how you can put your own information into these examples. |
 |:--------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 

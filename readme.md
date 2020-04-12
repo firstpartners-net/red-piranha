@@ -18,13 +18,14 @@ Excel is great for collecting data. But once things get more complicated, are yo
 Even better, it's all open source and free to get started. And it works with Google Spreadsheets as well as Excel.
 
 ## What Next?
-
+|:----------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png) | **[I dabble with Excel - what do I do now? ](docs/u-GettingStarted.md)** User getting started <br /> including how to run the samples online, how to use with your own Excel / Google Spreadsheets|
 | ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png) | **[I'm an Excel power user - what do I do now?](docs/p-GettingStarted.md)** Power User Getting Started. <br /> How to build your own rules against these spreadsheets and share them with other people.|
 |  ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/source-j-icon.png) | **[I'm a developer - what next?](docs/d-GettingStarted.md)** How to extend Red Piranha to get it to do exactly what you want.|
 
 ## Look at the Examples
 
+* [More detailed Examples](examples/examples.md)
 
 
 ## Looking for the Book Examples?

@@ -22,6 +22,7 @@ import net.firstpartners.core.drools.PreCompileRuleBuilder;
 import net.firstpartners.core.drools.SpreadSheetRuleRunner;
 import net.firstpartners.core.drools.data.RuleSource;
 import net.firstpartners.core.log.ILogger;
+import net.firstpartners.core.log.RpLogger;
 
 /**
  * Main Entry Point for Red-Piranha
@@ -33,8 +34,7 @@ public class Rp2CommandLine {
 
 	// Location of config file
 	private static final String RED_PIRANHA_CONFIG = "red-piranha.config";
-	private static final String RED_PIRANHA_LOG = "red-piranha.log";
-
+	
 	// names of params to read from properties files
 	static final String EXCEL_INPUT = "EXCEL_INPUT";
 	static final String EXCEL_OUTPUT = "EXCEL_OUTPUT";
@@ -46,7 +46,7 @@ public class Rp2CommandLine {
 	// the name of the sheet the we log files to
 	private static final String EXCEL_LOG_WORKSHEET_NAME = "log";
 
-	private static final Logger log = Logger.getLogger(Rp2CommandLine.class.getName());
+	private static final Logger log = RpLogger.getLogger(Rp2CommandLine.class.getName());
 
 	// Handle to common utility file
 	private static final SpreadSheetRuleRunner commonUtils = new SpreadSheetRuleRunner(new FileRuleLoader());
@@ -64,8 +64,9 @@ public class Rp2CommandLine {
 		// read the properties file
 		Properties prop = readConfig();
 
-		// Check logging
-		checkForceLogging(prop);
+		// Check and force logging
+		Object logFileName = prop.get(LOG_FILE_NAME);
+		RpLogger.forceLogToFile(logFileName);
 
 		// Get the params
 		String excelFile = prop.getProperty(EXCEL_INPUT);
@@ -177,34 +178,7 @@ public class Rp2CommandLine {
 
 	}
 
-	/**
-	 * Check if we need to force turn of of logging
-	 * 
-	 * @param prop - looking for FORCE_LOGGING key
-	 * @return true - if
-	 * @throws IOException
-	 * @throws SecurityException
-	 */
-	static void checkForceLogging(Properties prop) throws SecurityException, IOException {
 
-		Object logFileName = prop.get(LOG_FILE_NAME);
-
-		if (logFileName != null) {
-
-			log.warning("RP Config Forcing Logging to:" + logFileName);
-
-			LogManager logMan = LogManager.getLogManager();
-
-			log.setLevel(Level.FINE);
-			FileHandler fileHandler = new FileHandler(logFileName.toString());
-			fileHandler.setFormatter(new SimpleFormatter());
-
-			log.addHandler(fileHandler);
-
-			log.info("Added forced logging");
-
-		}
-	}
 
 	/**
 	 * Compile the rules using the values that we have been passed

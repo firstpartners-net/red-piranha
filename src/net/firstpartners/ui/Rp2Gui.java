@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import net.firstpartners.core.log.ILogger;
+import net.firstpartners.core.log.RpLogger;
 
 /**
  * Previously released as 'RulePlayer', Desktop GUI for Red Piranha
@@ -26,7 +27,7 @@ import net.firstpartners.core.log.ILogger;
 public class Rp2Gui extends WindowAdapter implements WindowListener, ActionListener, Runnable, ILogger {
 
 	// Logger
-	private static final Logger log = Logger.getLogger(Rp2Gui.class.getName());
+	private static final Logger log = RpLogger.getLogger(Rp2Gui.class.getName());
 
 	// Class level GUI Elements
 	private JFrame frame = new JFrame("Red-Piranha - Java Power Tools for Excel");
@@ -111,6 +112,7 @@ public class Rp2Gui extends WindowAdapter implements WindowListener, ActionListe
 	 */
 	public void debug(String message) {
 		this.textArea.append("DEBUG:" + message+"\n");
+		log.fine(message);
 	}
 
 	/**
@@ -120,6 +122,7 @@ public class Rp2Gui extends WindowAdapter implements WindowListener, ActionListe
 	 */
 	public void info(String message) {
 		this.textArea.append("INFO:" + message+"\n");
+		log.info(message);
 	}
 
 	/**
@@ -130,6 +133,7 @@ public class Rp2Gui extends WindowAdapter implements WindowListener, ActionListe
 	 */
 	public void exception(String message, Throwable t) {
 		this.textArea.append("EXCEPTION:" + message+"\n"+t.toString()+"\n");
+		log.severe(message+"\n"+t.toString());
 	}
 
 }

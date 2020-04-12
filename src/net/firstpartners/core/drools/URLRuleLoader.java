@@ -8,6 +8,8 @@ import java.io.Reader;
 import java.net.URL;
 import java.util.logging.Logger;
 
+import net.firstpartners.core.log.RpLogger;
+
 /**
  * Load rules
  * 
@@ -16,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class URLRuleLoader extends AbstractRuleLoader {
 
-	private static final Logger log = Logger.getLogger(URLRuleLoader.class
+	private static final Logger log = RpLogger.getLogger(URLRuleLoader.class
 			.getName());
 
 	public URLRuleLoader() {

@@ -16,6 +16,7 @@ import net.firstpartners.RedConstants;
 import net.firstpartners.core.drools.SpreadSheetRuleRunner;
 import net.firstpartners.core.drools.URLRuleLoader;
 import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.security.RedSecurityManager;
 import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
 
@@ -33,7 +34,7 @@ public class Rp2Servlet extends HttpServlet {
 
 	private static final String PARAM_KNOWLEDGE_BASE = "knowledgeBase";
 
-	private static final Logger log = Logger.getLogger(Rp2Servlet.class
+	private static final Logger log = RpLogger.getLogger(Rp2Servlet.class
 			.getName());
 
 

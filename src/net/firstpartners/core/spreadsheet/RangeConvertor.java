@@ -12,6 +12,8 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.util.AreaReference;
 import org.apache.poi.ss.util.CellReference;
 
+import net.firstpartners.core.log.RpLogger;
+
 /**
  * Read Ranges from Excel, Convert to a format that rules can use
  *
@@ -22,7 +24,7 @@ import org.apache.poi.ss.util.CellReference;
  */
 public class RangeConvertor {
 
-	private static final Logger log = Logger.getLogger(RangeConvertor.class.getName());
+	private static final Logger log = RpLogger.getLogger(RangeConvertor.class.getName());
 
 
 	/**

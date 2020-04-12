@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.util.logging.Logger;
 
+import net.firstpartners.core.log.RpLogger;
+
 /**
  * Load rules, assume that resources are
  * 
@@ -17,7 +19,7 @@ import java.util.logging.Logger;
 public class FileRuleLoader extends AbstractRuleLoader implements IRuleLoader {
 
 
-	private static final Logger log = Logger.getLogger(FileRuleLoader.class
+	private static final Logger log = RpLogger.getLogger(FileRuleLoader.class
 			.getName());
 
 	public FileRuleLoader() {

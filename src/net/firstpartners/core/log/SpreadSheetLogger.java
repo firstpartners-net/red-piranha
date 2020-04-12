@@ -22,7 +22,7 @@ public class SpreadSheetLogger implements ILogger {
 	List<String> loggedItems = new ArrayList<String>();  
 	
 	//We also allow this to be configured to log to console
-	private static final Logger log = Logger.getLogger(SpreadSheetLogger.class.getName());
+	private static final Logger log = RpLogger.getLogger(SpreadSheetLogger.class.getName());
 
 
 	

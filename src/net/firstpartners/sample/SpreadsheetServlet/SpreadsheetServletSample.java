@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.firstpartners.core.drools.FileRuleLoader;
 import net.firstpartners.core.drools.SpreadSheetRuleRunner;
 import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -26,7 +27,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 @SuppressWarnings("serial")
 public class SpreadsheetServletSample extends HttpServlet {
 
-	private static final Logger log = Logger.getLogger(SpreadsheetServletSample.class
+	private static final Logger log = RpLogger.getLogger(SpreadsheetServletSample.class
 			.getName());
 
 	//Tmp rules and data file names

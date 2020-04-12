@@ -10,12 +10,14 @@ import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 
+import net.firstpartners.core.log.RpLogger;
+
 //Convert from POI Cell into our type of cell
 
 public class CellConvertor {
 
 	private static final String EXCEL_DATE_STYLE = "m/d/yy";
-	private static final Logger log = Logger.getLogger(CellConvertor.class.getName());
+	private static final Logger log = RpLogger.getLogger(CellConvertor.class.getName());
 
 
 

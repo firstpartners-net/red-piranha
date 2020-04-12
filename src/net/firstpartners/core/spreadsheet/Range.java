@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import net.firstpartners.core.log.RpLogger;
+
 
 /**
  * A range is just a holder for a group of named cells
@@ -30,7 +32,7 @@ public class Range implements Map<String, Cell>, PropertyChangeListener {
 
 	private String rangeName = null;
 
-	private static final Logger log = Logger.getLogger(Range.class.getName());
+	private static final Logger log =RpLogger.getLogger(Range.class.getName());
 
 
 	public Range() {

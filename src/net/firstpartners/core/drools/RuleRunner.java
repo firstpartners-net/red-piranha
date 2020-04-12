@@ -12,6 +12,7 @@ import org.drools.runtime.StatelessKnowledgeSession;
 
 import net.firstpartners.core.drools.data.RuleSource;
 import net.firstpartners.core.log.ILogger;
+import net.firstpartners.core.log.RpLogger;
 
 /**
  * Load rules
@@ -25,7 +26,7 @@ public class RuleRunner {
 	private final IRuleLoader loader;
 
 	// Handle to logger
-	private static final Logger log = Logger.getLogger(RuleRunner.class
+	private static final Logger log = RpLogger.getLogger(RuleRunner.class
 			.getName());
 
 	public RuleRunner(IRuleLoader ruleLoader) {

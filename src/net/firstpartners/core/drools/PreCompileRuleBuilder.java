@@ -15,6 +15,7 @@ import org.drools.KnowledgeBase;
 import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.log.RpLogger;
 
 
 
@@ -29,7 +30,7 @@ import net.firstpartners.core.drools.data.RuleSource;
  */
 public class PreCompileRuleBuilder {
 
-	private static final Logger log = Logger.getLogger(PreCompileRuleBuilder.class
+	private static final Logger log = RpLogger.getLogger(PreCompileRuleBuilder.class
 			.getName());
 
 

@@ -23,11 +23,12 @@ import org.drools.io.ResourceFactory;
 
 import net.firstpartners.RedConstants;
 import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.security.RedSecurityManager;
 
 public abstract class AbstractRuleLoader implements IRuleLoader {
 
-	private static final Logger log = Logger.getLogger(AbstractRuleLoader.class
+	private static final Logger log = RpLogger.getLogger(AbstractRuleLoader.class
 			.getName());
 
 	/**

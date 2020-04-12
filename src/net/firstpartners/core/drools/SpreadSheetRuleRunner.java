@@ -15,6 +15,7 @@ import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.core.drools.data.RuleSource;
 import net.firstpartners.core.log.ILogger;
+import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.core.spreadsheet.Range;
 import net.firstpartners.core.spreadsheet.RangeConvertor;
@@ -27,7 +28,7 @@ import net.firstpartners.core.spreadsheet.RangeHolder;
 public class SpreadSheetRuleRunner {
 
 	//Handle to the logger
-	private static final Logger log = Logger.getLogger(SpreadSheetRuleRunner.class
+	private static final Logger log = RpLogger.getLogger(SpreadSheetRuleRunner.class
 			.getName());
 
 	//Handle to the Rule Runner we use

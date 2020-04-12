@@ -8,6 +8,7 @@ import java.util.Properties;
 import java.util.logging.Logger;
 
 import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.log.RpLogger;
 
 /**
  * Simple gatekeeper to ensure we only load resources from known safe locations
@@ -17,7 +18,7 @@ import net.firstpartners.core.drools.data.RuleSource;
  */
 public class RedSecurityManager {
 
-	private static final Logger log = Logger.getLogger(RedSecurityManager.class
+	private static final Logger log = RpLogger.getLogger(RedSecurityManager.class
 			.getName());
 
 	public static String PROPERTY_FILE_OF_URL_PREFIXES = "net/firstpartners/security/UrlWhiteList.properties";

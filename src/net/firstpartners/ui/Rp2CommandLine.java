@@ -102,6 +102,9 @@ public class Rp2CommandLine {
 				FileOutputStream excelOutput = new FileOutputStream(outputFileName);
 
 				wb.write(excelOutput);
+				
+				player.info("Complete");
+				
 			} catch (Throwable t) {
 				player.exception("Uncaught Exception", t);
 			}

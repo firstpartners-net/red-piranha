@@ -1,7 +1,10 @@
 package net.firstpartners.ui;
 
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.File;
+import java.util.Properties;
 import java.util.logging.Logger;
 
 import net.firstpartners.ui.Rp2CommandLine;
@@ -40,7 +43,13 @@ public class Rp2CommandLineTest {
 	
 	@Test
 	public final void testReadConfig() {
-		Rp2CommandLine.readConfig();
+		Properties prop = Rp2CommandLine.readConfig();
+		assertNotNull(prop.get(Rp2CommandLine.DRL1));
+		assertNotNull(prop.get(Rp2CommandLine.DRL2));
+		assertNotNull(prop.get(Rp2CommandLine.DRL3));
+		assertNotNull(prop.get(Rp2CommandLine.EXCEL_INPUT));
+		assertNotNull(prop.get(Rp2CommandLine.EXCEL_OUTPUT));
+		assertNotNull(prop.get(Rp2CommandLine.LOG_FILE_NAME));
 	}
 
 }

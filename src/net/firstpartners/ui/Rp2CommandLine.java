@@ -8,7 +8,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.drools.compiler.compiler.DroolsParserException;
@@ -29,6 +33,7 @@ public class Rp2CommandLine {
 
 	// Location of config file
 	private static final String RED_PIRANHA_CONFIG = "red-piranha.config";
+	private static final String RED_PIRANHA_LOG = "red-piranha.log";
 
 	// names of params to read from properties files
 	static final String EXCEL_INPUT = "EXCEL_INPUT";
@@ -36,6 +41,7 @@ public class Rp2CommandLine {
 	static final String DRL1 = "DRL1";
 	static final String DRL2 = "DRL2";
 	static final String DRL3 = "DRL3";
+	static final String LOG_FILE_NAME = "LOG_FILE_NAME";
 
 	// the name of the sheet the we log files to
 	private static final String EXCEL_LOG_WORKSHEET_NAME = "log";
@@ -55,7 +61,11 @@ public class Rp2CommandLine {
 	 */
 	public static void main(String[] inforedArgs) throws Exception {
 
+		// read the properties file
 		Properties prop = readConfig();
+
+		// Check logging
+		checkForceLogging(prop);
 
 		// Get the params
 		String excelFile = prop.getProperty(EXCEL_INPUT);
@@ -92,7 +102,7 @@ public class Rp2CommandLine {
 
 				wb.write(excelOutput);
 			} catch (Throwable t) {
-				player.exception("Uncaught Exception",t);
+				player.exception("Uncaught Exception", t);
 			}
 		}
 
@@ -104,7 +114,7 @@ public class Rp2CommandLine {
 	 * @param Properties to convert
 	 * @return
 	 */
-	private static RuleSource convertSourceToRuleArgs(Properties prop) {
+	static RuleSource convertSourceToRuleArgs(Properties prop) {
 
 		ArrayList<String> ruleFileLocations = new ArrayList<String>();
 		if (prop.getProperty(DRL1) != null) {
@@ -130,7 +140,7 @@ public class Rp2CommandLine {
 	 *
 	 * @param outputFile
 	 */
-	private static void deleteOutputFileIfExists(String outputFileName) {
+	static void deleteOutputFileIfExists(String outputFileName) {
 
 		File outputFile = new File(outputFileName);
 		if (outputFile.exists()) {
@@ -168,10 +178,38 @@ public class Rp2CommandLine {
 	}
 
 	/**
+	 * Check if we need to force turn of of logging
+	 * 
+	 * @param prop - looking for FORCE_LOGGING key
+	 * @return true - if
+	 * @throws IOException
+	 * @throws SecurityException
+	 */
+	static void checkForceLogging(Properties prop) throws SecurityException, IOException {
+
+		Object logFileName = prop.get(LOG_FILE_NAME);
+
+		if (logFileName != null) {
+
+			log.warning("RP Config Forcing Logging to:" + logFileName);
+
+			LogManager logMan = LogManager.getLogManager();
+
+			log.setLevel(Level.FINE);
+			FileHandler fileHandler = new FileHandler(logFileName.toString());
+			fileHandler.setFormatter(new SimpleFormatter());
+
+			log.addHandler(fileHandler);
+
+			log.info("Added forced logging");
+
+		}
+	}
+
+	/**
 	 * Compile the rules using the values that we have been passed
 	 */
-	void compileRules(ILogger gui) {
-		String ruleFile = null;
+	void compileRules(ILogger gui, String ruleFile) {
 
 		if (ruleFile == null) {
 			gui.info("Please set 'rule' as a param pointing at the rule file you wish to compile ");

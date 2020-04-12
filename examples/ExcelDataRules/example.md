@@ -20,3 +20,8 @@ To Cover (figure out how to do sections - read wikisyntax)
   * calling from url
 
 
+## Technical Notes
+
+* Located In the folder src/net/firstpartners/samples
+* Unit tests (to call) are in the folder test/net/firstpartners/samples
+* Each Unit test contains a 'Main' Method so that they can be called from the command line

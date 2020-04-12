@@ -27,6 +27,7 @@ Even better, it's all open source and free to get started. And it works with Goo
 ## Look at the Examples
 
 * [More detailed Examples](examples/examples.md)
+* [Validating Excel Spreadsheets using Business Rules](examples/ExcelDataRules/example.md)
 
 
 ## Looking for the Book Examples?
@@ -43,7 +44,7 @@ Even better, it's all open source and free to get started. And it works with Goo
 * [More detailed Examples](examples/examples.md)
 * [Poweruser - Getting Started](docs/p-GettingStarted.md)
 
-## Links - Developrs and Site Admin
+## Links - Developers and Site Admin
 
 * [Getting Started as Developer](docs/d-GettingStarted.md)
 * [Project Layout](docs/d-ProjectLayout.md)

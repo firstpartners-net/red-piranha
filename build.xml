@@ -36,7 +36,7 @@
 
 
 	<!-- build wipes these dirs-->
-	<property name="javadocs.dir" value="javadocs" />
+	<property name="javadocs.dir" value="docs/javadocs" />
 	<property name="build.dir" value="build" />
 	<property name="testbuild.dir" value="testbuild" />
 	<property name="distrib.dir" value="dist" />

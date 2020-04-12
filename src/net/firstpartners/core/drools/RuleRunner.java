@@ -11,7 +11,7 @@ import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.StatelessKnowledgeSession;
 
 import net.firstpartners.core.drools.data.RuleSource;
-import net.firstpartners.core.drools.log.ILogger;
+import net.firstpartners.core.log.ILogger;
 
 /**
  * Load rules

@@ -173,35 +173,35 @@ extends java.lang.Object</pre>
 <tbody>
 <tr class="altColor" id="i0">
 <td class="colFirst"><code>org.drools.runtime.StatefulKnowledgeSession</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStatefulSession(net.firstpartners.core.drools.data.RuleSource,net.firstpartners.core.drools.log.ILogger)">getStatefulSession</a></span>&#8203;(<a href="data/RuleSource.html" title="class in net.firstpartners.core.drools.data">RuleSource</a>&nbsp;ruleSource,
-                  <a href="log/ILogger.html" title="interface in net.firstpartners.core.drools.log">ILogger</a>&nbsp;logger)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStatefulSession(net.firstpartners.core.drools.data.RuleSource,net.firstpartners.core.log.ILogger)">getStatefulSession</a></span>&#8203;(<a href="data/RuleSource.html" title="class in net.firstpartners.core.drools.data">RuleSource</a>&nbsp;ruleSource,
+                  <a href="log/ILogger.html" title="interface in net.firstpartners.core.log">ILogger</a>&nbsp;logger)</code></th>
 <td class="colLast">
 <div class="block">Run the rules</div>
 </td>
 </tr>
 <tr class="rowColor" id="i1">
 <td class="colFirst"><code>org.drools.runtime.StatefulKnowledgeSession</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStatefulSession(org.drools.KnowledgeBase,java.util.HashMap,net.firstpartners.core.drools.log.ILogger)">getStatefulSession</a></span>&#8203;(org.drools.KnowledgeBase&nbsp;preBuiltKnowledgeBase,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStatefulSession(org.drools.KnowledgeBase,java.util.HashMap,net.firstpartners.core.log.ILogger)">getStatefulSession</a></span>&#8203;(org.drools.KnowledgeBase&nbsp;preBuiltKnowledgeBase,
                   java.util.HashMap&lt;java.lang.String,&#8203;java.lang.Object&gt;&nbsp;globals,
-                  <a href="log/ILogger.html" title="interface in net.firstpartners.core.drools.log">ILogger</a>&nbsp;logger)</code></th>
+                  <a href="log/ILogger.html" title="interface in net.firstpartners.core.log">ILogger</a>&nbsp;logger)</code></th>
 <td class="colLast">
 <div class="block">Get a Stateful Session for a pre built knowledgebase</div>
 </td>
 </tr>
 <tr class="altColor" id="i2">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#runStatelessRules(net.firstpartners.core.drools.data.RuleSource,net.firstpartners.core.drools.log.ILogger)">runStatelessRules</a></span>&#8203;(<a href="data/RuleSource.html" title="class in net.firstpartners.core.drools.data">RuleSource</a>&nbsp;ruleSource,
-                 <a href="log/ILogger.html" title="interface in net.firstpartners.core.drools.log">ILogger</a>&nbsp;logger)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#runStatelessRules(net.firstpartners.core.drools.data.RuleSource,net.firstpartners.core.log.ILogger)">runStatelessRules</a></span>&#8203;(<a href="data/RuleSource.html" title="class in net.firstpartners.core.drools.data">RuleSource</a>&nbsp;ruleSource,
+                 <a href="log/ILogger.html" title="interface in net.firstpartners.core.log">ILogger</a>&nbsp;logger)</code></th>
 <td class="colLast">
 <div class="block">Run the rules</div>
 </td>
 </tr>
 <tr class="rowColor" id="i3">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#runStatelessRules(org.drools.KnowledgeBase,java.util.Collection,java.util.HashMap,net.firstpartners.core.drools.log.ILogger)">runStatelessRules</a></span>&#8203;(org.drools.KnowledgeBase&nbsp;preBuiltKnowledgeBase,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#runStatelessRules(org.drools.KnowledgeBase,java.util.Collection,java.util.HashMap,net.firstpartners.core.log.ILogger)">runStatelessRules</a></span>&#8203;(org.drools.KnowledgeBase&nbsp;preBuiltKnowledgeBase,
                  java.util.Collection&lt;java.lang.Object&gt;&nbsp;facts,
                  java.util.HashMap&lt;java.lang.String,&#8203;java.lang.Object&gt;&nbsp;globals,
-                 <a href="log/ILogger.html" title="interface in net.firstpartners.core.drools.log">ILogger</a>&nbsp;logger)</code></th>
+                 <a href="log/ILogger.html" title="interface in net.firstpartners.core.log">ILogger</a>&nbsp;logger)</code></th>
 <td class="colLast">
 <div class="block">Run Stateless rules using a prebuilt knowledgebase</div>
 </td>
@@ -252,14 +252,14 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="runStatelessRules(net.firstpartners.core.drools.data.RuleSource,net.firstpartners.core.drools.log.ILogger)">
+<a id="runStatelessRules(net.firstpartners.core.drools.data.RuleSource,net.firstpartners.core.log.ILogger)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>runStatelessRules</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;runStatelessRules&#8203;(<a href="data/RuleSource.html" title="class in net.firstpartners.core.drools.data">RuleSource</a>&nbsp;ruleSource,
-                              <a href="log/ILogger.html" title="interface in net.firstpartners.core.drools.log">ILogger</a>&nbsp;logger)
+                              <a href="log/ILogger.html" title="interface in net.firstpartners.core.log">ILogger</a>&nbsp;logger)
                        throws org.drools.compiler.compiler.DroolsParserException,
                               java.io.IOException,
                               java.lang.ClassNotFoundException</pre>
@@ -279,7 +279,7 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="runStatelessRules(org.drools.KnowledgeBase,java.util.Collection,java.util.HashMap,net.firstpartners.core.drools.log.ILogger)">
+<a id="runStatelessRules(org.drools.KnowledgeBase,java.util.Collection,java.util.HashMap,net.firstpartners.core.log.ILogger)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -288,7 +288,7 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public&nbsp;void&nbsp;runStatelessRules&#8203;(org.drools.KnowledgeBase&nbsp;preBuiltKnowledgeBase,
                               java.util.Collection&lt;java.lang.Object&gt;&nbsp;facts,
                               java.util.HashMap&lt;java.lang.String,&#8203;java.lang.Object&gt;&nbsp;globals,
-                              <a href="log/ILogger.html" title="interface in net.firstpartners.core.drools.log">ILogger</a>&nbsp;logger)
+                              <a href="log/ILogger.html" title="interface in net.firstpartners.core.log">ILogger</a>&nbsp;logger)
                        throws org.drools.compiler.compiler.DroolsParserException,
                               java.io.IOException</pre>
 <div class="block">Run Stateless rules using a prebuilt knowledgebase</div>
@@ -304,14 +304,14 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="getStatefulSession(net.firstpartners.core.drools.data.RuleSource,net.firstpartners.core.drools.log.ILogger)">
+<a id="getStatefulSession(net.firstpartners.core.drools.data.RuleSource,net.firstpartners.core.log.ILogger)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getStatefulSession</h4>
 <pre class="methodSignature">public&nbsp;org.drools.runtime.StatefulKnowledgeSession&nbsp;getStatefulSession&#8203;(<a href="data/RuleSource.html" title="class in net.firstpartners.core.drools.data">RuleSource</a>&nbsp;ruleSource,
-                                                                      <a href="log/ILogger.html" title="interface in net.firstpartners.core.drools.log">ILogger</a>&nbsp;logger)
+                                                                      <a href="log/ILogger.html" title="interface in net.firstpartners.core.log">ILogger</a>&nbsp;logger)
                                                                throws org.drools.compiler.compiler.DroolsParserException,
                                                                       java.io.IOException,
                                                                       java.lang.ClassNotFoundException</pre>
@@ -332,7 +332,7 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="getStatefulSession(org.drools.KnowledgeBase,java.util.HashMap,net.firstpartners.core.drools.log.ILogger)">
+<a id="getStatefulSession(org.drools.KnowledgeBase,java.util.HashMap,net.firstpartners.core.log.ILogger)">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -340,7 +340,7 @@ extends java.lang.Object</pre>
 <h4>getStatefulSession</h4>
 <pre class="methodSignature">public&nbsp;org.drools.runtime.StatefulKnowledgeSession&nbsp;getStatefulSession&#8203;(org.drools.KnowledgeBase&nbsp;preBuiltKnowledgeBase,
                                                                       java.util.HashMap&lt;java.lang.String,&#8203;java.lang.Object&gt;&nbsp;globals,
-                                                                      <a href="log/ILogger.html" title="interface in net.firstpartners.core.drools.log">ILogger</a>&nbsp;logger)
+                                                                      <a href="log/ILogger.html" title="interface in net.firstpartners.core.log">ILogger</a>&nbsp;logger)
                                                                throws org.drools.compiler.compiler.DroolsParserException,
                                                                       java.io.IOException</pre>
 <div class="block">Get a Stateful Session for a pre built knowledgebase</div>

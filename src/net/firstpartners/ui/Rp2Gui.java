@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import net.firstpartners.core.drools.log.ILogger;
+import net.firstpartners.core.log.ILogger;
 
 /**
  * Previously released as 'RulePlayer', Desktop GUI for Red Piranha

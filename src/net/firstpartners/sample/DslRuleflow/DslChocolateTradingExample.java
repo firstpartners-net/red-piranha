@@ -7,7 +7,7 @@ import java.util.HashMap;
 import net.firstpartners.core.drools.FileRuleLoader;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.data.RuleSource;
-import net.firstpartners.core.drools.log.SpreadSheetLogger;
+import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.core.spreadsheet.Range;
 import net.firstpartners.core.spreadsheet.RangeConvertor;
 import net.firstpartners.core.spreadsheet.RangeHolder;

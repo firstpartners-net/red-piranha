@@ -1,7 +1,7 @@
 net.firstpartners
 net.firstpartners.core.drools
 net.firstpartners.core.drools.data
-net.firstpartners.core.drools.log
+net.firstpartners.core.log
 net.firstpartners.core.security
 net.firstpartners.core.spreadsheet
 net.firstpartners.sample

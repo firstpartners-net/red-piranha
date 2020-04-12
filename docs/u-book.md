@@ -15,9 +15,3 @@ But hey, stick around - Red-Piranha is a more powerful version of the samples us
   * To use the book examples, simply download the code samples and follow the instructions. (the book is available from [Amazon](http://www.amazon.co.uk/dp/1847196063?tag=firstparnet-21&camp=1406&creative=6394&linkCode=as1&creativeASIN=1847196063&adid=0559JR8EAMSMXZ5S3ZWC&)). Some more notes for end users are taking shape on the [UserEndUserGettingStarted](UserEndUserGettingStarted.md) page
   * The [RedPiranhaExamples](RedPiranhaExamples.md) are an updated version of the book samples , but using the latest codebase (i.e. the samples will do the same things, and some additional actions).
 
-
-
-
-
-
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

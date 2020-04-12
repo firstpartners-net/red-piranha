@@ -22,22 +22,3 @@ they are much more meaningful to non-technical domain experts. In this format, t
 knowledge they contain is easier to manage, maintain and share. They also carry the
 advantage of separating the meaning of the business from the actual technical
 implementation.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

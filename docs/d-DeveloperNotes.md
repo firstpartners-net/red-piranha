@@ -11,8 +11,8 @@
 
 # Project Libraries and Dependencies #
 
-_TODO Tidy this page.
-> Note what these Libraries are and where they come from._
+_TODO Note that the_
+
 
 Please check the respective websites for licence terms.
 
@@ -82,7 +82,3 @@ Please check the respective websites for licence terms.
   * Commons-Codec-1.4.jar Apache Commons Codec - encode kb as characters
 
 
-
-
-
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

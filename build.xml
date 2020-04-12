@@ -13,7 +13,7 @@
 
 	<!-- General Variables -->
 	<property name="application.title" value="Red Piranha" />
-	<property name="main.class" value="net.firstpartners.ui.Rp2CommandLine" />
+	<property name="main.class" value="net.firstpartners.ui.RedCommandLine" />
 
 	<!--Extensions -->
 	<property name="launch4j.dir" location="scripts/launch4j" />

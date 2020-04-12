@@ -24,10 +24,10 @@ import net.firstpartners.core.log.RpLogger;
  * @author PBrowne
  *
  */
-public class Rp2Gui extends WindowAdapter implements WindowListener, ActionListener, Runnable, ILogger {
+public class RedGui extends WindowAdapter implements WindowListener, ActionListener, Runnable, ILogger {
 
 	// Logger
-	private static final Logger log = RpLogger.getLogger(Rp2Gui.class.getName());
+	private static final Logger log = RpLogger.getLogger(RedGui.class.getName());
 
 	// Class level GUI Elements
 	private JFrame frame = new JFrame("Red-Piranha - Java Power Tools for Excel");
@@ -39,7 +39,7 @@ public class Rp2Gui extends WindowAdapter implements WindowListener, ActionListe
 	/**
 	 * Constructor, builds a simple GUI
 	 */
-	public Rp2Gui() {
+	public RedGui() {
 
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize = new Dimension(screenSize.width / 2, screenSize.height / 2);

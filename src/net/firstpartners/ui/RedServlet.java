@@ -28,13 +28,13 @@ import com.google.appengine.api.users.UserServiceFactory;
 */
 
 @SuppressWarnings("serial")
-public class Rp2Servlet extends HttpServlet {
+public class RedServlet extends HttpServlet {
 
 	private static final String PARAM_EXCEL_DATA_FILE = "excelDataFile";
 
 	private static final String PARAM_KNOWLEDGE_BASE = "knowledgeBase";
 
-	private static final Logger log = RpLogger.getLogger(Rp2Servlet.class
+	private static final Logger log = RpLogger.getLogger(RedServlet.class
 			.getName());
 
 

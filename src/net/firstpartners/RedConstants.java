@@ -12,4 +12,6 @@ public class RedConstants{
 
 	public static final String XLS_FILE_EXTENSION = ".xls";
 
+	
+	public static final String RED_PIRANHA_CONFIG = "red-piranha.config";
 }

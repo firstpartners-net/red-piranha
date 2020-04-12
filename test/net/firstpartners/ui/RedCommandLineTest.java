@@ -7,14 +7,14 @@ import java.io.File;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import net.firstpartners.ui.Rp2CommandLine;
+import net.firstpartners.ui.RedCommandLine;
 
 import org.junit.Test;
 
-public class Rp2CommandLineTest {
+public class RedCommandLineTest {
 
 	//Logger
-	private static final Logger log = Logger.getLogger(Rp2CommandLineTest.class.getName());
+	private static final Logger log = Logger.getLogger(RedCommandLineTest.class.getName());
 
 	//Test file locations
 	private static final String[] args = new String[] {"war/sampleresources/ExcelDataRules/chocolate-data.xls",
@@ -32,7 +32,7 @@ public class Rp2CommandLineTest {
 
 		//Call test
 		try{
-			Rp2CommandLine.main(args);
+			RedCommandLine.main(args);
 		} catch (Throwable t){
 			t.printStackTrace();
 			throw t;
@@ -41,15 +41,5 @@ public class Rp2CommandLineTest {
 
 	}
 	
-	@Test
-	public final void testReadConfig() {
-		Properties prop = Rp2CommandLine.readConfig();
-		assertNotNull(prop.get(Rp2CommandLine.DRL1));
-		assertNotNull(prop.get(Rp2CommandLine.DRL2));
-		assertNotNull(prop.get(Rp2CommandLine.DRL3));
-		assertNotNull(prop.get(Rp2CommandLine.EXCEL_INPUT));
-		assertNotNull(prop.get(Rp2CommandLine.EXCEL_OUTPUT));
-		assertNotNull(prop.get(Rp2CommandLine.LOG_FILE_NAME));
-	}
-
+	
 }

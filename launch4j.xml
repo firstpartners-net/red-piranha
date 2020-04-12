@@ -15,7 +15,7 @@
   <manifest></manifest>
   <icon>C:\Users\pbrowne\projects\red-piranha\src\RP.ico</icon>
   <classPath>
-    <mainClass>net.firstpartners.ui.Rp2CommandLine</mainClass>
+    <mainClass>net.firstpartners.ui.RedCommandLine</mainClass>
     <cp>lib-app/*.jar</cp>
   </classPath>
   <jre>

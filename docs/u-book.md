@@ -1,5 +1,7 @@
 # Book - Beginning Business rules with JBoss Drools
 
+We have snapshotted the [code that the book was written on here](https://github.com/paulbrowne-irl/red-piranha/tree/v0.9). You probably don't want this, the libraries this code is based on are now deprecated. The code in the rest of this site is much more up to date.
+
 
 | <img src='http://icons.iconarchive.com/icons/mart/glaze/48/man-icon.png' /> | You don't need the book to get started with Red-Piranha, but it might help explain some core Rule-Engine concepts. |
 |:----------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------|

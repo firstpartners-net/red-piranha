@@ -1,3 +1,5 @@
+# Frequently Asked Questions
+
 _TODO Explain what business rules are_
 
 ## Community ##

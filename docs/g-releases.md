@@ -1,3 +1,3 @@
-# Official Release Procedure #
+# Official Release Procedure
 
 _TODO_

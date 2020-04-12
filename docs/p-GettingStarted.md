@@ -1,4 +1,4 @@
-# Power User Getting Starteds
+# Power User Getting Started
 
 
 

@@ -1,7 +1,4 @@
-#Summary of the main folders in the project
-#sidebar SideBarDeveloper
-
-_TODO Match this against the updated project layout_
+# Summary of the main folders in the project
 
 _TODO Insert Screenshot_
 

@@ -1,4 +1,5 @@
-# Common Error Messages #
+# Common Error Messages
+
 Common error messages from Red Piranha and how to solve them
 
 | **Error Message** | **Possible Cause and Solution** |

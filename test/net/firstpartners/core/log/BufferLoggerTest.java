@@ -2,9 +2,6 @@ package net.firstpartners.core.log;
 
 import org.junit.Test;
 
-import net.firstpartners.core.log.BufferLogger;
-import net.firstpartners.core.log.ConsoleLogger;
-
 public class BufferLoggerTest {
 
 	@Test

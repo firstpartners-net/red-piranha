@@ -1,28 +1,18 @@
 package net.firstpartners.ui;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Properties;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.RedConstants;
 import net.firstpartners.core.drools.FileRuleLoader;
-import net.firstpartners.core.drools.PreCompileRuleBuilder;
 import net.firstpartners.core.drools.SpreadSheetRuleRunner;
 import net.firstpartners.core.drools.data.RuleSource;
-import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 
 /**

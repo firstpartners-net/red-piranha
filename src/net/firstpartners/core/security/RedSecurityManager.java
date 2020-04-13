@@ -24,9 +24,9 @@ public class RedSecurityManager {
 	public static String PROPERTY_FILE_OF_URL_PREFIXES = "net/firstpartners/security/UrlWhiteList.properties";
 	public static String PROPERTY_FILE_OF_RESOURCE_SUFFIXES = "net/firstpartners/security/ResourceWhiteList.properties";
 
-	private static Map resourceSuffixes;
+	private static Map<?, ?> resourceSuffixes;
 
-	private static Map urlPrefixes;
+	private static Map<?, ?> urlPrefixes;
 
 	/**
 	 * Checks if the Url is Ok or not
@@ -50,8 +50,8 @@ public class RedSecurityManager {
 	IOException {
 
 		Object thisKey;
-		Map urlPreFix = getUrlPrefixes();
-		Iterator loopList = urlPreFix.keySet().iterator();
+		Map<?, ?> urlPreFix = getUrlPrefixes();
+		Iterator<?> loopList = urlPreFix.keySet().iterator();
 
 		while (loopList.hasNext()) {
 			thisKey = loopList.next();
@@ -71,8 +71,8 @@ public class RedSecurityManager {
 	throws SecurityException, IOException {
 
 		Object thisKey;
-		Map suffix = getResourceSuffixes();
-		Iterator loopList = suffix.keySet().iterator();
+		Map<?, ?> suffix = getResourceSuffixes();
+		Iterator<?> loopList = suffix.keySet().iterator();
 
 		while (loopList.hasNext()) {
 			thisKey = loopList.next();
@@ -92,7 +92,7 @@ public class RedSecurityManager {
 
 	}
 
-	public static Map getResourceSuffixes() throws IOException {
+	public static Map<?, ?> getResourceSuffixes() throws IOException {
 
 		if (resourceSuffixes == null) {
 			resourceSuffixes = readResourceSuffixes();
@@ -100,7 +100,7 @@ public class RedSecurityManager {
 		return resourceSuffixes;
 	}
 
-	public static Map getUrlPrefixes() throws IOException {
+	public static Map<?, ?> getUrlPrefixes() throws IOException {
 
 		// check and load propers
 		if (urlPrefixes == null) {
@@ -110,7 +110,7 @@ public class RedSecurityManager {
 		return urlPrefixes;
 	}
 
-	static Map readResourceSuffixes() throws IOException {
+	static Map<?, ?> readResourceSuffixes() throws IOException {
 
 		// Read properties file.
 		InputStream resourceAsStream = RedSecurityManager.class
@@ -123,7 +123,7 @@ public class RedSecurityManager {
 		return properties;
 	}
 
-	static Map readUrlPrefixes() throws IOException {
+	static Map<?, ?> readUrlPrefixes() throws IOException {
 
 		// Read properties file.
 		InputStream resourceAsStream = RedSecurityManager.class

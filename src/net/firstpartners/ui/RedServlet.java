@@ -56,7 +56,7 @@ public class RedServlet extends HttpServlet {
 
 		//UserService userService = UserServiceFactory.getUserService();
 		//User user = userService.getCurrentUser();
-		//	logEnvironment();
+		logEnvironment();
 
 		String knowledgeBaseFile = req.getParameter(PARAM_KNOWLEDGE_BASE);
 		String excelFile = req.getParameter(PARAM_EXCEL_DATA_FILE);
@@ -108,12 +108,12 @@ public class RedServlet extends HttpServlet {
 		StringBuffer output = new StringBuffer();
 
 		Properties pr = System.getProperties();
-		TreeSet propKeys = new TreeSet(pr.keySet());  // TreeSet sorts keys
-		for (Iterator it = propKeys.iterator(); it.hasNext(); ) {
+		TreeSet<?> propKeys = new TreeSet<Object>(pr.keySet());  // TreeSet sorts keys
+		for (Iterator<?> it = propKeys.iterator(); it.hasNext(); ) {
 			String key = (String)it.next();
 			output.append("" + key + "=" + pr.get(key) + "\n");
 		}
-		log.info(output.toString());
+		log.fine(output.toString());
 
 
 	}

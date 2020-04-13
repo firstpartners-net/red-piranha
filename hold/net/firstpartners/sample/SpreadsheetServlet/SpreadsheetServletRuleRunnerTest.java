@@ -12,10 +12,10 @@ import org.junit.Test;
 import net.firstpartners.core.drools.data.RuleSource;
 import net.firstpartners.sample.SpreadsheetServlet.SpreadsheetServletSample;
 
-public class SpreadsheetRuleRunnerTest {
+public class SpreadsheetServletRuleRunnerTest {
 
 	//Logger
-	private static final Logger log = Logger.getLogger(SpreadsheetRuleRunnerTest.class.getName());
+	private static final Logger log = Logger.getLogger(SpreadsheetServletRuleRunnerTest.class.getName());
 
 	//Handle to common utility file
 	private final  SpreadSheetRuleRunner commonUtils = new SpreadSheetRuleRunner(new URLRuleLoader());

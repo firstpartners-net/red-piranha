@@ -51,6 +51,7 @@ public class ExcelDataExample {
 	 */
 	public static void main(String[] args) throws Exception {
 
+		log.debug("Starting Sample");
 		ExcelDataExample thisSample = new ExcelDataExample();
 		thisSample.runExcelDataExample();
 	}

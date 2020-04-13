@@ -1,13 +1,8 @@
 package net.firstpartners.ui;
 
 
-import static org.junit.Assert.assertNotNull;
-
 import java.io.File;
-import java.util.Properties;
 import java.util.logging.Logger;
-
-import net.firstpartners.ui.RedCommandLine;
 
 import org.junit.Test;
 

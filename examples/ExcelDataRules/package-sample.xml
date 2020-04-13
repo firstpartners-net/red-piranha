@@ -13,7 +13,7 @@
 
 
 	<!-- General Variables -->
-	<property name="name" value="example-ExcelDataRules.zip" />
+	<property name="name" value="example-ExcelDataRules" />
 	<property name="distrib.dir" value="../../dist" />
 
 

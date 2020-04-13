@@ -7,3 +7,5 @@ war/WEB-INF
 junit-test-reports/T*
 testbuild
 red-piranha.log.lck
+private/
+example-private.zip

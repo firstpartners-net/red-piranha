@@ -1,4 +1,3 @@
-
 #Cell Selection Rules
 [when]There is a Cell = $cell: Cell()
 [when]-unmodified = modified==false

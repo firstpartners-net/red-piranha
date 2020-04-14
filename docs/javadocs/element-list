@@ -12,6 +12,5 @@ net.firstpartners.sample.ExcelDataRules
 net.firstpartners.sample.multiple
 net.firstpartners.sample.repository
 net.firstpartners.sample.SalesModel
-net.firstpartners.sample.SpreadsheetServlet
 net.firstpartners.ui
 net.firstpartners.ui.hold

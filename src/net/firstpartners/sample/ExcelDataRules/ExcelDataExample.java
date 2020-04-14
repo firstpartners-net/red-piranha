@@ -5,7 +5,8 @@ import java.io.IOException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.core.drools.FileRuleLoader;
@@ -62,8 +63,9 @@ public class ExcelDataExample {
 	 * @throws IOException
 	 * @throws DroolsParserException
 	 * @throws ClassNotFoundException
+	 * @throws InvalidFormatException 
 	 */
-	public HSSFWorkbook runExcelDataExample() throws IOException, DroolsParserException, ClassNotFoundException{
+	public Workbook runExcelDataExample() throws IOException, DroolsParserException, ClassNotFoundException, InvalidFormatException{
 
 		//Handle to the Spreadsheet Rule Runner and Rule file loader
 		IRuleLoader ruleLoader = new FileRuleLoader();
@@ -79,7 +81,7 @@ public class ExcelDataExample {
 		File excelDataFile = new File(EXCEL_DATA_FILE);
 
 		//Call the rule engine passing in the excel data file, the rules we want to use, and name of the spreadsheet that we log rules to
-		HSSFWorkbook wb = ruleRunner.callRules(excelDataFile,ruleSource, EXCEL_LOG_WORKSHEET_NAME);
+		Workbook wb = ruleRunner.callRules(excelDataFile,ruleSource, EXCEL_LOG_WORKSHEET_NAME);
 
 
 		//Output the workbook as a file,

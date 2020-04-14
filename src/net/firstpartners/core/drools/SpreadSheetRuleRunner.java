@@ -9,8 +9,9 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.core.drools.data.RuleSource;
@@ -86,24 +87,25 @@ public class SpreadSheetRuleRunner {
 	 * @throws DroolsParserException
 	 * @throws IOException
 	 * @throws ClassNotFoundException
+	 * @throws InvalidFormatException 
 	 */
-	public HSSFWorkbook callRules(InputStream inputFromExcel, RuleSource ruleSource,
-			String nameOfLogSheet) throws DroolsParserException, IOException, ClassNotFoundException {
+	public Workbook callRules(InputStream inputFromExcel, RuleSource ruleSource,
+			String nameOfLogSheet) throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
 		// Create a new Excel Logging object
 		SpreadSheetLogger spreadsheetLogger = new SpreadSheetLogger();
 
 		// Convert this into a (POI) Workbook
-		HSSFWorkbook wb = new HSSFWorkbook(new POIFSFileSystem(inputFromExcel));
-
+		Workbook wb=WorkbookFactory.create(inputFromExcel);
+		
 		// Convert the cell
-		RangeHolder ranges = RangeConvertor.convertExcelToCells(wb);
+		RangeHolder ranges = RangeConvertor.convertPoiWorkbookIntoRedRange(wb);
 
 		//Call the overloaded method to actually run the rules
 		callRules(ranges,ruleSource,nameOfLogSheet,spreadsheetLogger);
 
 		// update the excel spreadsheet with the result of our rules
-		RangeConvertor.convertCellsToExcel(wb, ranges);
+		RangeConvertor.updateRedRangeintoPoiExcel(wb, ranges);
 
 		// update the excel spreadsheet with our log file
 		spreadsheetLogger.flush(wb, nameOfLogSheet);
@@ -117,20 +119,18 @@ public class SpreadSheetRuleRunner {
 	}
 
 	/**
-	 * Read an excel file and spit out what we find.
-	 *
-	 * Method is protected (not private) to allow for unit testing
-	 *
-	 * @param args
-	 *            Expect one argument that is the file to read.
-	 * @throws ClassNotFoundException
-	 * @throws IOException
+	 * Call Rules against and Excel data file, then return workbook 
+	 * @param urlOfExcelDataFile
+	 * @param ruleSource
+	 * @param excelLogSheet
+	 * @return
 	 * @throws DroolsParserException
-	 * @throws Exception
-	 * @throws Exception
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 * @throws InvalidFormatException 
 	 */
-	public HSSFWorkbook callRules(URL urlOfExcelDataFile, RuleSource ruleSource,
-			String excelLogSheet) throws DroolsParserException, IOException, ClassNotFoundException  {
+	public Workbook callRules(URL urlOfExcelDataFile, RuleSource ruleSource,
+			String excelLogSheet) throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException  {
 
 		InputStream inputFromExcel = null;
 
@@ -157,20 +157,18 @@ public class SpreadSheetRuleRunner {
 	}
 
 	/**
-	 * Read an excel file and spit out what we find.
-	 *
-	 * Method is protected (not private) to allow for unit testing
-	 *
-	 * @param args
-	 *            Expect one argument that is the file to read.
+	 * Call Rules against and Excel data file, then return workbook 
+	 * @param locationOfExcelDataFile
+	 * @param ruleSource
+	 * @param excelLogSheet
+	 * @return
 	 * @throws IOException
-	 * @throws ClassNotFoundException
 	 * @throws DroolsParserException
-	 * @throws Exception
-	 * @throws Exception
+	 * @throws ClassNotFoundException
+	 * @throws InvalidFormatException 
 	 */
-	public HSSFWorkbook callRules(File locationOfExcelDataFile, RuleSource ruleSource,
-			String excelLogSheet) throws IOException, DroolsParserException, ClassNotFoundException {
+	public Workbook callRules(File locationOfExcelDataFile, RuleSource ruleSource,
+			String excelLogSheet) throws IOException, DroolsParserException, ClassNotFoundException, InvalidFormatException {
 
 		InputStream inputFromExcel = null;
 

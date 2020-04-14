@@ -4,15 +4,16 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.drools.compiler.compiler.DroolsParserException;
 
 public class RuleflowExampleTest {
 
-	public final void testRunRuleflowExample() throws DroolsParserException, IOException, ClassNotFoundException {
+	public final void testRunRuleflowExample() throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
 		RuleflowExample thisSample =new RuleflowExample();
-		HSSFWorkbook wb = thisSample.runRuleflowExample();
+		Workbook wb = thisSample.runRuleflowExample();
 
 		assertNotNull(wb);
 

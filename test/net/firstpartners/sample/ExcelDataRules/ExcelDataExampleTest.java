@@ -2,16 +2,17 @@ package net.firstpartners.sample.ExcelDataRules;
 
 import java.io.IOException;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.Test;
 
 public class ExcelDataExampleTest {
 
 	@Test
-	public final void testRunExcelDataExample() throws DroolsParserException, IOException, ClassNotFoundException {
+	public final void testRunExcelDataExample() throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
-		HSSFWorkbook hsWorkbook = new ExcelDataExample().runExcelDataExample();
+		Workbook hsWorkbook = new ExcelDataExample().runExcelDataExample();
 
 	}
 

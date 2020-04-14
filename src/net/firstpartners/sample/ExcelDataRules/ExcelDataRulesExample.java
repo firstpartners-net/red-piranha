@@ -5,7 +5,8 @@ import java.io.IOException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.core.drools.FileRuleLoader;
@@ -35,14 +36,13 @@ public class ExcelDataRulesExample {
 	// the name of the sheet the we log files to
 	private static final String EXCEL_LOG_WORKSHEET_NAME = "log";
 
-	private static final String[] RULES_FILES = new String[] {
-			"war/sampleresources/ExcelDataRules/log-rules.drl", "war/sampleresources/ExcelDataRules/TradingRules.xls" };
+	private static final String[] RULES_FILES = new String[] { "war/sampleresources/ExcelDataRules/log-rules.drl",
+			"war/sampleresources/ExcelDataRules/TradingRules.xls" };
 
 	/**
 	 * Read an excel file and spit out what we find.
 	 *
-	 * @param args
-	 *            Expect one argument that is the file to read.
+	 * @param args Expect one argument that is the file to read.
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
@@ -51,31 +51,30 @@ public class ExcelDataRulesExample {
 		thisSample.runExcelDataRulesExample();
 	}
 
-	public  HSSFWorkbook runExcelDataRulesExample() throws IOException, DroolsParserException, ClassNotFoundException{
+	public Workbook runExcelDataRulesExample()
+			throws IOException, DroolsParserException, ClassNotFoundException, InvalidFormatException {
 
-		//Handle to the Spreadsheet Rule Runner and Rule file loader
+		// Handle to the Spreadsheet Rule Runner and Rule file loader
 		IRuleLoader ruleLoader = new FileRuleLoader();
 		SpreadSheetRuleRunner ruleRunner = new SpreadSheetRuleRunner(ruleLoader);
 
-		//Start Integrate in new RuleRunner
-		//Identify where the rules are stored
+		// Start Integrate in new RuleRunner
+		// Identify where the rules are stored
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setRulesLocation(RULES_FILES);
 
-
-		//Get the URL
+		// Get the URL
 		File excelDataFile = new File(EXCEL_DATA_FILE);
 
-		//Call the rule engine passing in the excel data file, the rules we want to use, and name of the spreadsheet that we log rules to
-		HSSFWorkbook wb = ruleRunner.callRules(excelDataFile,ruleSource, EXCEL_LOG_WORKSHEET_NAME);
+		// Call the rule engine passing in the excel data file, the rules we want to
+		// use, and name of the spreadsheet that we log rules to
+		Workbook wb = ruleRunner.callRules(excelDataFile, ruleSource, EXCEL_LOG_WORKSHEET_NAME);
 
-
-		//Output the workbook as a file,
+		// Output the workbook as a file,
 		SpreadSheetOutputter.outputToFile(wb, EXCEL_LOG_WORKSHEET_NAME);
 
-		//Return the same workbook to the calling method
+		// Return the same workbook to the calling method
 		return wb;
-
 
 	}
 

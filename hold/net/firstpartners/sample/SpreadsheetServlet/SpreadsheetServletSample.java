@@ -18,7 +18,7 @@ import net.firstpartners.core.drools.data.RuleSource;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 
 //import com.google.appengine.api.users.User;
 //import com.google.appengine.api.users.UserService;
@@ -88,7 +88,7 @@ public class SpreadsheetServletSample extends HttpServlet {
 			//Get the URL
 			URL url = new URL(EXCEL_DATA_FILE);
 
-			HSSFWorkbook wb;
+			Workbook wb;
 			try {
 				wb = commonSpreadsheetUtils.callRules(url,ruleSource, getExcelLogWorksheetName());
 

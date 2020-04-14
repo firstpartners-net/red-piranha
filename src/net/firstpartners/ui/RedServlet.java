@@ -20,7 +20,7 @@ import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.security.RedSecurityManager;
 import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 /*
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
@@ -82,11 +82,9 @@ public class RedServlet extends HttpServlet {
 
 			URL url = new URL(excelFile);
 
-			HSSFWorkbook wb;
+			Workbook wb;
 			try {
 				wb = commonSpreadsheetUtils.callRules(url,ruleSource, RedConstants.EXCEL_LOG_WORKSHEET_NAME);
-
-
 
 
 				SpreadSheetOutputter.outputToStream(wb, resp.getOutputStream());

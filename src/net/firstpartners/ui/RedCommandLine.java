@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.RedConstants;
@@ -70,7 +70,7 @@ public class RedCommandLine {
 
 				// Call the rules using this Excel datafile
 				player.info("Running Rules:" + ruleFiles);
-				HSSFWorkbook wb = commonUtils.callRules(excelInput, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME);
+				Workbook wb = commonUtils.callRules(excelInput, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME);
 
 				// delete the outputFile if it exists
 				UiUtils.deleteOutputFileIfExists(outputFileName);

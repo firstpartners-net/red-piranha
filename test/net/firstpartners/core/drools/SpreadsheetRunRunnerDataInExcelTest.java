@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
@@ -35,8 +35,7 @@ public class SpreadsheetRunRunnerDataInExcelTest {
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 
-		HSSFWorkbook wb;
-		wb = commonUtils.callRules(excelInput, ruleSource, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
+		Workbook wb = commonUtils.callRules(excelInput, ruleSource, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
 
 	}
 
@@ -58,8 +57,7 @@ public class SpreadsheetRunRunnerDataInExcelTest {
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 
-		HSSFWorkbook wb;
-		wb = commonUtils.callRules(excelInput, ruleSource, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
+		Workbook wb = commonUtils.callRules(excelInput, ruleSource, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
 
 	}
 
@@ -73,8 +71,7 @@ public class SpreadsheetRunRunnerDataInExcelTest {
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 
-		HSSFWorkbook wb;
-		wb = commonUtils.callRules(url, ruleSource, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
+		Workbook wb = commonUtils.callRules(url, ruleSource, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
 
 	}
 

@@ -14,8 +14,9 @@ import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
 
 /**
  * Sample showing how we can read and manipulate data from excel
@@ -69,10 +70,10 @@ public class NoRuleflowExample {
 		}
 
 		// Convert this into a (POI) Workbook
-		HSSFWorkbook wb = new HSSFWorkbook(new POIFSFileSystem(inputFromExcel));
+		Workbook wb=WorkbookFactory.create(inputFromExcel);
 
 		// Convert the cell
-		RangeHolder ranges = RangeConvertor.convertExcelToCells(wb);
+		RangeHolder ranges = RangeConvertor.convertPoiWorkbookIntoRedRange(wb);
 		HashMap<String, Object> globals = new HashMap<String, Object>();
 
 		// Create a new Excel Logging object
@@ -90,7 +91,7 @@ public class NoRuleflowExample {
 
 
 		// update the excel spreadsheet with the result of our rules
-		RangeConvertor.convertCellsToExcel(wb, ranges);
+		RangeConvertor.updateRedRangeintoPoiExcel(wb, ranges);
 
 		// update the excel spreadsheet with our log file
 		excelLogger.flush(wb, EXCEL_LOG_WORKSHEET_NAME);

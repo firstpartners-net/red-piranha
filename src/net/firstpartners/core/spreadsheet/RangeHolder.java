@@ -10,12 +10,13 @@ import java.util.Map;
 
 /**
  * Holder of all multiple Ranges
+ * 
  * @author paul
  *
  */
-public class RangeHolder implements List<Range>{
+public class RangeHolder implements List<Range> {
 
-	List<Range> allRanges = new ArrayList<Range> ();
+	List<Range> allRanges = new ArrayList<Range>();
 
 	public void add(int arg0, Range arg1) {
 		allRanges.add(arg0, arg1);
@@ -118,54 +119,49 @@ public class RangeHolder implements List<Range>{
 	}
 
 	/**
-	 * Returns all Ranges , and the cells within those ranges
-	 * As a flattened collection
+	 * Returns all Ranges , and the cells within those ranges As a flattened
+	 * collection
+	 * 
 	 * @return
 	 */
 	public Collection<Object> getAllRangesAndCells() {
-		
+
 		Collection<Object> returnValues = new ArrayList<Object>();
-		
+
 		for (Range range : allRanges) {
-			
-			//Add the range to the flattened collection
+
+			// Add the range to the flattened collection
 			returnValues.add(range);
-			
-			//Add the cells within the range
-			
-			for (Cell cell: range.values()){
+
+			// Add the cells within the range
+
+			for (net.firstpartners.core.spreadsheet.Cell cell : range.values()) {
 				returnValues.add(cell);
 			}
-			
-		
+
 		}
-		
-		
+
 		return returnValues;
-		
+
 	}
 
 	/**
 	 * Returns a map of Cells, with the unique handle we've associate with them
 	 */
-	public Map<String,Cell> getAllCells() {
-		
-		HashMap<String,Cell> returnValues = new HashMap<String,Cell>();
-		
+	public Map<String, net.firstpartners.core.spreadsheet.Cell> getAllCells() {
+
+		HashMap<String, Cell> returnValues = new HashMap<String, Cell>();
+
 		for (Range range : allRanges) {
-			
-			
-			
-			for (Cell cell: range.values()){
-				returnValues.put(cell.getCellName(),cell);
+
+			for (net.firstpartners.core.spreadsheet.Cell cell : range.values()) {
+				returnValues.put(cell.getCellName(), cell);
 			}
-			
-			
+
 		}
-		
-		
+
 		return returnValues;
-		
+
 	}
-	
+
 }

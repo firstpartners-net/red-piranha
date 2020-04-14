@@ -6,7 +6,7 @@ import java.io.OutputStream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 
 /**
  * Convenience Class for Output of Spreadhsheets
@@ -23,7 +23,7 @@ public class SpreadSheetOutputter {
 	 * @param fileName
 	 * @throws IOException
 	 */
-	public static void outputToFile(HSSFWorkbook wb, String fileName) throws IOException{
+	public static void outputToFile(Workbook wb, String fileName) throws IOException{
 
 		// Write out modified Excel sheet
 		try {
@@ -45,7 +45,7 @@ public class SpreadSheetOutputter {
 	 * @param stream
 	 * @throws IOException
 	 */
-	public static void outputToStream(HSSFWorkbook wb,OutputStream stream) throws IOException{
+	public static void outputToStream(Workbook wb,OutputStream stream) throws IOException{
 
 		wb.write(stream);
 	}
@@ -55,9 +55,9 @@ public class SpreadSheetOutputter {
 	 * @param wb
 	 * @throws IOException
 	 */
-	public static void outputToConsole(HSSFWorkbook wb) throws IOException{
+	public static void outputToConsole(Workbook wb) throws IOException{
 
-		RangeHolder ranges = RangeConvertor.convertExcelToCells(wb);
+		RangeHolder ranges = RangeConvertor.convertPoiWorkbookIntoRedRange(wb);
 		outputToConsole(ranges);
 
 	}

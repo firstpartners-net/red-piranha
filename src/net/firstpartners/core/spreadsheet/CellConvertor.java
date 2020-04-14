@@ -3,12 +3,10 @@ package net.firstpartners.core.spreadsheet;
 import java.util.Date;
 import java.util.logging.Logger;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFDataFormat;
-import org.apache.poi.hssf.usermodel.HSSFRichTextString;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.RichTextString;
 
 import net.firstpartners.core.log.RpLogger;
 
@@ -19,16 +17,17 @@ public class CellConvertor {
 	private static final String EXCEL_DATE_STYLE = "m/d/yy";
 	private static final Logger log = RpLogger.getLogger(CellConvertor.class.getName());
 
-
-
 	/**
-	 * Convert from Excel to Standard JavaBea
-	 * @param rangeName
+	 * Convert from Excel(Apache) to RedPiranha - Javabean version of a Cell
+	 * 
+	 * @param uniqueCellHandle
 	 * @param poiCell
 	 * @return
 	 */
-	public static Cell convertExcelToCell(String uniqueCellHandle, HSSFCell poiCell) {
-		Cell redCell = new Cell();
+	public static net.firstpartners.core.spreadsheet.Cell convertPoiCellToRedCell(String uniqueCellHandle,
+			org.apache.poi.ss.usermodel.Cell poiCell) {
+
+		net.firstpartners.core.spreadsheet.Cell redCell = new net.firstpartners.core.spreadsheet.Cell();
 		redCell.setCellName(uniqueCellHandle);
 		Object value = null;
 
@@ -37,24 +36,24 @@ public class CellConvertor {
 
 			switch (cellType) {
 
-			case HSSFCell.CELL_TYPE_BLANK:
+			case Cell.CELL_TYPE_BLANK:
 				value = "blank";
 				break;
-			case HSSFCell.CELL_TYPE_BOOLEAN:
+			case Cell.CELL_TYPE_BOOLEAN:
 				value = poiCell.getBooleanCellValue();
 				break;
-			case HSSFCell.CELL_TYPE_ERROR:
+			case Cell.CELL_TYPE_ERROR:
 				value = "error";
 				break;
-			case HSSFCell.CELL_TYPE_FORMULA:
+			case Cell.CELL_TYPE_FORMULA:
 				value = "formula";
-			case HSSFCell.CELL_TYPE_NUMERIC:
+			case Cell.CELL_TYPE_NUMERIC:
 				value = poiCell.getNumericCellValue();
 				break;
-			case HSSFCell.CELL_TYPE_STRING:
-				HSSFRichTextString hssfValue = poiCell.getRichStringCellValue();
-				if(hssfValue!=null){
-					value = hssfValue.getString();
+			case Cell.CELL_TYPE_STRING:
+				RichTextString richValue = poiCell.getRichStringCellValue();
+				if (richValue != null) {
+					value = richValue.getString();
 				}
 				break;
 			default:
@@ -66,7 +65,7 @@ public class CellConvertor {
 
 		redCell.setValue(value);
 
-		//Reset the modified flag
+		// Reset the modified flag
 		redCell.setModified(false);
 
 		return redCell;
@@ -74,97 +73,88 @@ public class CellConvertor {
 
 	/**
 	 * Convert from Standard JavaBean to Excel
+	 * 
 	 * @param rangeName
 	 * @param poiCell
 	 * @param cell
 	 */
-	public static void convertCellToExcel(HSSFWorkbook wb, HSSFCell poiCell,Cell cell) {
+	public static void convertRedCellToPoiCell(org.apache.poi.ss.usermodel.Workbook wb,
+			org.apache.poi.ss.usermodel.Cell poiCell, net.firstpartners.core.spreadsheet.Cell cell) {
 
-		//If the cell has no value , then it is null
-		//We should create the cell, as we have a value to update into it
+		// If the cell has no value , then it is null
+		// We should create the cell, as we have a value to update into it
 		// but for now we just ignfore the update
-		if(poiCell==null){
+		if (poiCell == null) {
 			return;
 		}
 
-		HSSFCellStyle style = getExcelCellStyle(wb);
+		CellStyle style = getExcelCellStyle(wb);
 
-		if(cell.isModified()){
+		if (cell.isModified()) {
 
-			//Set the generic updated style
+			// Set the generic updated style
 			poiCell.setCellStyle(style);
 
-			Object value= cell.getValue();
+			Object value = cell.getValue();
 
-			//Ugly, but we can't switch on objects and
-			//operator overloading breaks down as we have a handle to a generic 'object'
-			if(value!=null &&value instanceof String){
+			// Ugly, but we can't switch on objects and
+			// operator overloading breaks down as we have a handle to a generic 'object'
+			if (value != null && value instanceof String) {
 
-				log.finest("UpdatingCell:"+cell.getCellName()+" value:"+value+" as String");
-				HSSFRichTextString textValue=new HSSFRichTextString(value.toString());
-				poiCell.setCellValue(textValue);
-				poiCell.setCellType(HSSFCell.CELL_TYPE_STRING);
+				log.finest("UpdatingCell:" + cell.getCellName() + " value:" + value + " as String");
+				poiCell.setCellValue(value.toString());
+				poiCell.setCellType(Cell.CELL_TYPE_STRING);
 
+			} else if (value != null && value instanceof Boolean) {
+				log.finest("UpdatingCell:" + cell.getCellName() + " value:" + value + " as Boolean");
+				poiCell.setCellValue((Boolean) cell.getValue());
+				poiCell.setCellType(Cell.CELL_TYPE_BOOLEAN);
 
-			} else if(value!=null &&value instanceof Boolean){
-				log.finest("UpdatingCell:"+cell.getCellName()+" value:"+value+" as Boolean");
-				poiCell.setCellValue((Boolean)cell.getValue());
-				poiCell.setCellType(HSSFCell.CELL_TYPE_BOOLEAN);
-
-
-			} else if(value!=null &&value instanceof Number){
-				log.finest("UpdatingCell:"+cell.getCellName()+" value:"+value+" as Number");
-				Double number = ((Number)value).doubleValue();
+			} else if (value != null && value instanceof Number) {
+				log.finest("UpdatingCell:" + cell.getCellName() + " value:" + value + " as Number");
+				Double number = ((Number) value).doubleValue();
 				poiCell.setCellValue(number);
-				poiCell.setCellType(HSSFCell.CELL_TYPE_NUMERIC);
+				poiCell.setCellType(Cell.CELL_TYPE_NUMERIC);
 
+			} else if (value != null && value instanceof Date) {
 
-			} else if(value!=null &&value instanceof Date){
-
-				//Excel dates are numbers with a special style
-				log.finest("UpdatingCell:"+cell.getCellName()+" value:"+value+" as Date");
-				Double number = ((Number)value).doubleValue();
+				// Excel dates are numbers with a special style
+				// We rely on the cell being in the correct date format already!
+				log.finest("UpdatingCell:" + cell.getCellName() + " value:" + value + " as Date");
+				Double number = ((Number) value).doubleValue();
 				poiCell.setCellValue(number);
-				poiCell.setCellType(HSSFCell.CELL_TYPE_NUMERIC);
+				poiCell.setCellType(Cell.CELL_TYPE_NUMERIC);
 
-				poiCell.getCellStyle().setDataFormat(HSSFDataFormat.getBuiltinFormat(EXCEL_DATE_STYLE));
+			} else if (value != null) {
 
-
-			} else if(value!=null){
-
-				//Treat as object, use toString() method
-				log.finest("UpdatingCell:"+cell.getCellName()+" value:"+value+" as Generic Object");
-				HSSFRichTextString textValue=new HSSFRichTextString(value.toString());
-
-				poiCell.setCellValue(textValue);
-				poiCell.setCellType(HSSFCell.CELL_TYPE_STRING);
+				// Treat as object, use toString() method
+				log.finest("UpdatingCell:" + cell.getCellName() + " value:" + value + " as Generic Object");
+				poiCell.setCellValue(value.toString());
+				poiCell.setCellType(Cell.CELL_TYPE_STRING);
 
 			} else {
 
-				//value is null, blank cell
-				log.finest("UpdatingCell:"+cell.getCellName()+" value is null");
+				// value is null, blank cell
+				log.finest("UpdatingCell:" + cell.getCellName() + " value is null");
 				poiCell.setCellValue("");
-				poiCell.setCellType(HSSFCell.CELL_TYPE_BLANK);
+				poiCell.setCellType(org.apache.poi.ss.usermodel.Cell.CELL_TYPE_BLANK);
 
 			}
-
 
 		}
 
 	}
 
-
-
-
-
 	/**
-	 * Get the 'updated' style that we use to show that a cell value has been changed
+	 * Get the 'updated' style that we use to show that a cell value has been
+	 * changed
+	 * 
 	 * @return
 	 */
-	protected static HSSFCellStyle getExcelCellStyle(HSSFWorkbook wb) {
-		HSSFCellStyle style = wb.createCellStyle();
-		style.setFillForegroundColor(HSSFColor.ORANGE.index);
-		style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+	protected static org.apache.poi.ss.usermodel.CellStyle getExcelCellStyle(org.apache.poi.ss.usermodel.Workbook wb) {
+		CellStyle style = wb.createCellStyle();
+		style.setFillForegroundColor(IndexedColors.ORANGE.index);
+		style.setFillPattern(CellStyle.SOLID_FOREGROUND);
 
 		return style;
 

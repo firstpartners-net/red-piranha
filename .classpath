@@ -88,7 +88,7 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/xpp3_min-1.1.4c.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/xstream-1.4.9.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/servlet-api-3.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-3.9-20121203.jar" sourcepath="C:/Users/pbrowne/.m2/repository/org/apache/poi/poi/3.9/poi-3.9-sources.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-ooxml-3.9-20121203.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-ooxml-schemas-3.9-20121203.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>

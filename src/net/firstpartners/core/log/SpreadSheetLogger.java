@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.logging.Logger;
 
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 
 /**
  * An Adaptor that allows us to log to An Excel File
@@ -49,7 +49,7 @@ public class SpreadSheetLogger implements ILogger {
 	 * Flush all the items that we have noted in the log into the workbook
 	 * @param wb
 	 */
-	public void flush(HSSFWorkbook wb,String logWorkSheetName) {
+	public void flush(Workbook wb,String logWorkSheetName) {
 		
 		
 		
@@ -57,7 +57,7 @@ public class SpreadSheetLogger implements ILogger {
 		deleteCreateWorksheet(wb,logWorkSheetName);
 		
 		//Get our sheet
-		HSSFSheet sheet= wb.getSheet(logWorkSheetName);
+		Sheet sheet= wb.getSheet(logWorkSheetName);
 		
 		//Start at A1, now work our way down , adding the logging output
 		
@@ -67,10 +67,10 @@ public class SpreadSheetLogger implements ILogger {
 		 for (String s : loggedItems){
 		        
 		        // Create a row and put some cells in it. Rows are 0 based.
-		        HSSFRow row = sheet.createRow(currentRow);
+		        Row row = sheet.createRow(currentRow);
 		        
 		        // Create a cell and put a value in it.
-		        HSSFCell cell = row.createCell((short)0);
+		        Cell cell = row.createCell((short)0);
 		        cell.setCellValue(s);
 
 		        currentRow++;
@@ -81,7 +81,12 @@ public class SpreadSheetLogger implements ILogger {
 		 
 	}
 	
-	private void deleteCreateWorksheet(HSSFWorkbook wb,String worksheetName){
+	/**
+	 * Delete then recreate a sheet in a workbook
+	 * @param wb
+	 * @param worksheetName
+	 */
+	private void deleteCreateWorksheet(Workbook wb,String worksheetName){
 		
 		
 		try{
@@ -90,7 +95,7 @@ public class SpreadSheetLogger implements ILogger {
 			
 			
 			//worksheet already exists , so remove it
-			HSSFSheet sheet = wb.getSheet(worksheetName);
+			Sheet sheet = wb.getSheet(worksheetName);
 			
 			int sheetIndex= wb.getSheetIndex(sheet); 
 			

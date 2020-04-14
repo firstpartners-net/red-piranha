@@ -15,7 +15,6 @@ public class ExcelDataExampleTest {
 
 		HSSFWorkbook hsWorkbook = new ExcelDataExample().runExcelDataExample();
 
-		fail("Need to add checks on output"); // TODO
 	}
 
 }

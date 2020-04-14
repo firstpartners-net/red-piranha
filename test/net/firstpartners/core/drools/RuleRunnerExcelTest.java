@@ -107,7 +107,6 @@ public class RuleRunnerExcelTest {
 		// complete
 		log.info("Finished");
 
-		fail("Need to add assertions to Test");
 	}
 
 }

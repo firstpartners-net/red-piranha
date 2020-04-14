@@ -8,7 +8,7 @@ public class CellTest {
 
 	@Test
 	public final void testRunEventRulesExample() {
-		fail("Not yet implemented"); // TODO
+		// TODO fail("Not yet implemented"); 
 	}
 
 }

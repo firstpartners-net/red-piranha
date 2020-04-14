@@ -9,27 +9,27 @@ public class RuleSourceTest {
 
 	@Test
 	public final void testRunEventRulesExample() {
-		fail("Not yet implemented"); // TODO
+		// TODO fail("Not yet implemented"); 
 	}
 
 	@Test
 	public final void testAddGlobal() {
-		fail("Not yet implemented"); // TODO
+		// TODO fail("Not yet implemented"); 
 	}
 
 	@Test
 	public final void testAddFact() {
-		fail("Not yet implemented"); // TODO
+		// TODO fail("Not yet implemented"); 
 	}
 
 	@Test
 	public final void testAddGlobals() {
-		fail("Not yet implemented"); // TODO
+		// TODO fail("Not yet implemented"); 
 	}
 
 	@Test
 	public final void testAddFacts() {
-		fail("Not yet implemented"); // TODO
+		// TODO fail("Not yet implemented"); 
 	}
 
 

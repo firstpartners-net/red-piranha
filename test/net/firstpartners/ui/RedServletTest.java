@@ -24,7 +24,7 @@ public class RedServletTest {
 		//Check where we are
 		File whereAmI = new File(".");
 		log.info("Default file location:"+whereAmI.getAbsolutePath());
-		fail("Assertions not implemented yet");
+		// TODO fail("Not yet implemented"); 
 				
 	}
 

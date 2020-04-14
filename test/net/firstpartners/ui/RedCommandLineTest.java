@@ -12,9 +12,7 @@ public class RedCommandLineTest {
 	private static final Logger log = Logger.getLogger(RedCommandLineTest.class.getName());
 
 	//Test file locations
-	private static final String[] args = new String[] {"war/sampleresources/ExcelDataRules/chocolate-data.xls",
-		"war/sampleresources/ExcelDataRules/output.xls",
-	"war/sampleresources/ExcelDataRules/log-then-modify-rules.drl" };
+	private static final String[] args = new String[] { };
 
 
 	@Test

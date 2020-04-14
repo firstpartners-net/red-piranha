@@ -16,7 +16,6 @@ public class RuleflowExampleTest {
 
 		assertNotNull(wb);
 
-		//fail("Test needs further assertions"); // TODO
 	}
 
 }

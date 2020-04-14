@@ -20,10 +20,8 @@ import net.firstpartners.core.log.RpLogger;
 
 
 /**
- * Load Rules, build into Drools Knowledge Packages.
+ * Pre compile rules, build into Drools Knowledge Packages.
  *
- * This package is designed to be run from the command line, not from Google App Engine
- * To pre-build the rules
  *
  * @author paul
  *

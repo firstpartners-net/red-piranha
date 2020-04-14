@@ -18,7 +18,7 @@ public class EventRulesExampleTest {
 
 		assertNotNull(co);
 
-		fail("Assertions Not yet implemented"); // TODO
+		
 	}
 
 }

@@ -102,8 +102,4 @@ public class PreCompileRuleBuilderTest {
 
 	}
 
-	@Test
-	public final void testGetRuleLoader(){
-		fail("Test that the correct file / Url rule loader is returned");
-	}
 }

@@ -9,14 +9,21 @@ package net.firstpartners;
 public class TestConstants {
 
 	// Tmp rules and data file names
-	public static final String EXCEL_DATA_FILE = "war/sampleresources/ExcelDataRules/chocolate-data.xls";
+	public static final String XLS_DATA_FILE = "test/testdata/chocolate-data.xls";
+	public static final String XLS_DATA_FILE_AS_URL = "file:./test/testdata/chocolate-data.xls";
+	
+	public static final String XLSX_DATA_FILE = "test/testdata/chocolate-data.xlsx";
 
 	public static final String[] RULES_FILES = new String[] {
-			"http://red-piranha.appspot.com/sampleresources/SpreadSheetServlet/log-then-modify-rules.drl" };
+			"test/testrules/log-then-modify-rules.drl" };
 
-	public static final String EXCEL_OUTPUT_FILE = "war/sampleresources/ExcelDataRules/chocolate-output.xls";
+	
+	public static final String[] RULES_FILES_EXCEL = new String[] {
+			"test/testrules/log-rules.drl", "test/testrules/TradingRules.xls" };
 
-	public static final String KNOWLEDGE_BASE_FILE = "war/sampleresources/SpreadSheetServlet/log-then-modify-rules.KnowledgeBase";
+	public static final String EXCEL_OUTPUT_FILE = "test/testdata/chocolate-output.xls";
+
+	public static final String KNOWLEDGE_BASE_FILE = "test/testrules/log-then-modify-rules.KnowledgeBase";
 
 	// the name of the sheet the we log files to
 	public static final String EXCEL_LOG_WORKSHEET_NAME = "log";

@@ -10,10 +10,10 @@ import org.junit.Test;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.drools.data.RuleSource;
 
-public class DataInExcelRunRunnerTest {
+public class SpreadsheetRunRunnerDataInExcelTest {
 
 	// Logger
-	private static final Logger log = Logger.getLogger(DataInExcelRunRunnerTest.class.getName());
+	private static final Logger log = Logger.getLogger(SpreadsheetRunRunnerDataInExcelTest.class.getName());
 
 	// Handle to common utility file
 	private final SpreadSheetRuleRunner commonUtils = new SpreadSheetRuleRunner(new URLRuleLoader());
@@ -23,7 +23,7 @@ public class DataInExcelRunRunnerTest {
 	public final void testCompileRunDrlFromUrl() throws Exception {
 
 		// Get the URL
-		URL url = new URL(TestConstants.EXCEL_DATA_FILE);
+		URL url = new URL(TestConstants.XLS_DATA_FILE_AS_URL);
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 
@@ -43,7 +43,7 @@ public class DataInExcelRunRunnerTest {
 		log.info("Default file location:" + whereAmI.getAbsolutePath());
 
 		// Get the URL
-		URL url = new URL(TestConstants.EXCEL_DATA_FILE);
+		URL url = new URL(TestConstants.XLS_DATA_FILE);
 
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);

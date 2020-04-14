@@ -35,24 +35,20 @@ public class RulesWrittenInExcelRuleRunnerTest {
 
 
 
-	private static final String[] RULES_FILES = new String[] {
-			"war/sampleresources/ExcelDataRules/log-rules.drl", "war/sampleresources/ExcelDataRules/TradingRules.xls" };
-
-
 
 	public void testRunRulesWithXlsFileInput() throws IOException, DroolsParserException, ClassNotFoundException{
 
 		FileRuleLoader ruleLoader = new FileRuleLoader();
-		InputStream inputFromExcel = ruleLoader.getInputStream(TestConstants.EXCEL_DATA_FILE);
+		InputStream inputFromExcel = ruleLoader.getInputStream(TestConstants.XLS_DATA_FILE);
 
 		// Open our Excel file using Apache Poi
 		// This method searches for our file in a number of places on disk
 
 		if (null == inputFromExcel) {
 			throw new FileNotFoundException("Cannot find file:"
-					+ TestConstants.EXCEL_DATA_FILE);
+					+ TestConstants.XLS_DATA_FILE);
 		} else {
-			log.info("found file:" + TestConstants.EXCEL_DATA_FILE);
+			log.info("found file:" + TestConstants.XLS_DATA_FILE);
 		}
 
 		// Convert this into a (POI) Workbook
@@ -73,7 +69,7 @@ public class RulesWrittenInExcelRuleRunnerTest {
 
 		//Setup our parameters
 		RuleSource ruleSource = new RuleSource();
-		ruleSource.setRulesLocation(RULES_FILES);
+		ruleSource.setRulesLocation(TestConstants.RULES_FILES_EXCEL);
 		ruleSource.setFacts(ranges.getAllRangesAndCells());
 		ruleSource.setGlobals(globals);
 

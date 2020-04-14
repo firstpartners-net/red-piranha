@@ -23,7 +23,7 @@ import net.firstpartners.core.spreadsheet.RangeHolder;
 
 /**
  * Common Entry point to both Servlet and command line,
- * Unit Tests and samples for calling for rules manipulating Spreadsheet data
+ * Call JBoss Drools (Rules Engine) passing in Spreadsheet data as Java Objects
  */
 public class SpreadSheetRuleRunner {
 

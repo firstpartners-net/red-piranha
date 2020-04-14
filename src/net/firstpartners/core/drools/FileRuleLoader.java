@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import net.firstpartners.core.log.RpLogger;
 
 /**
- * Load rules, assume that resources are
+ * Load rules, assume that resources are available on the local file system
  * 
  * @author paul
  * 

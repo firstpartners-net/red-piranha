@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
 
+import net.firstpartners.TestConstants;
 import net.firstpartners.core.drools.data.RuleSource;
 
 public class FileRuleLoaderTest {
@@ -21,14 +22,17 @@ public class FileRuleLoaderTest {
 	@Test
 	public final void testLoadCachedRules() throws IOException, ClassNotFoundException {
 
+		log.fine("starting test");
+		
 		//Set the rule source
 		RuleSource ruleSource = new RuleSource();
-		ruleSource.setKnowledgeBaseLocation("war/sampleresources/SpreadSheetServlet/log-then-modify-rules.KnowledgeBase");
+		ruleSource.setKnowledgeBaseLocation(TestConstants.KNOWLEDGE_BASE_FILE);
 
-		//do the call
+		// do the call
 		org.drools.KnowledgeBase kb = ruleLoader.loadKnowledgeBase(ruleSource);
 		assertNotNull(kb);
 		StatefulKnowledgeSession sks = kb.newStatefulKnowledgeSession();
+		assertNotNull(sks);
 
 	}
 

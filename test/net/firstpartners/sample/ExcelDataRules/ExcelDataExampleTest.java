@@ -1,7 +1,5 @@
 package net.firstpartners.sample.ExcelDataRules;
 
-import static org.junit.Assert.fail;
-
 import java.io.IOException;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;

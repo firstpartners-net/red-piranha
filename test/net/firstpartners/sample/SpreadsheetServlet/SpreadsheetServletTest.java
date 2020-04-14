@@ -1,7 +1,5 @@
 package net.firstpartners.sample.SpreadsheetServlet;
 
-import static org.junit.Assert.fail;
-
 import java.io.IOException;
 
 import org.drools.compiler.compiler.DroolsParserException;

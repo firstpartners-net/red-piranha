@@ -1,7 +1,5 @@
 package net.firstpartners.core.drools;
 
-import static org.junit.Assert.fail;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +11,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.drools.compiler.compiler.DroolsParserException;
 
+import net.firstpartners.TestConstants;
 import net.firstpartners.core.drools.data.RuleSource;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.core.spreadsheet.Range;
@@ -30,35 +29,30 @@ import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
  * @author paulbrowne
  *
  */
-public class RuleRunnerExcelTest {
+public class RulesWrittenInExcelRuleRunnerTest {
 
-	private static Log log = LogFactory.getLog(RuleRunnerExcelTest.class);
+	private static Log log = LogFactory.getLog(RulesWrittenInExcelRuleRunnerTest.class);
 
-	private static final String EXCEL_DATA_FILE = "war/sampleresources/ExcelDataRules/chocolate-data.xls";
 
-	private static final String EXCEL_OUTPUT_FILE = "war/sampleresources/ExcelDataRules/chocolate-output.xls";
-
-	// the name of the sheet the we log files to
-	private static final String EXCEL_LOG_WORKSHEET_NAME = "log";
 
 	private static final String[] RULES_FILES = new String[] {
 			"war/sampleresources/ExcelDataRules/log-rules.drl", "war/sampleresources/ExcelDataRules/TradingRules.xls" };
 
 
 
-	public  void testRunRulesWithExcelFileInput() throws IOException, DroolsParserException, ClassNotFoundException{
+	public void testRunRulesWithXlsFileInput() throws IOException, DroolsParserException, ClassNotFoundException{
 
 		FileRuleLoader ruleLoader = new FileRuleLoader();
-		InputStream inputFromExcel = ruleLoader.getInputStream(EXCEL_DATA_FILE);
+		InputStream inputFromExcel = ruleLoader.getInputStream(TestConstants.EXCEL_DATA_FILE);
 
 		// Open our Excel file using Apache Poi
 		// This method searches for our file in a number of places on disk
 
 		if (null == inputFromExcel) {
 			throw new FileNotFoundException("Cannot find file:"
-					+ EXCEL_DATA_FILE);
+					+ TestConstants.EXCEL_DATA_FILE);
 		} else {
-			log.info("found file:" + EXCEL_DATA_FILE);
+			log.info("found file:" + TestConstants.EXCEL_DATA_FILE);
 		}
 
 		// Convert this into a (POI) Workbook
@@ -96,10 +90,10 @@ public class RuleRunnerExcelTest {
 		RangeConvertor.convertCellsToExcel(wb, ranges);
 
 		// update the excel spreadsheet with our log file
-		excelLogger.flush(wb, EXCEL_LOG_WORKSHEET_NAME);
+		excelLogger.flush(wb, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
 
 		// Write out modified Excel sheet
-		SpreadSheetOutputter.outputToFile(wb, EXCEL_OUTPUT_FILE);
+		SpreadSheetOutputter.outputToFile(wb, TestConstants.EXCEL_OUTPUT_FILE);
 
 		// Close our input work book
 		inputFromExcel.close();

@@ -44,7 +44,7 @@ public class RedCommandLine {
 
 		// Check and force logging
 		Object logFileName = prop.get(UiUtils.LOG_FILE_NAME);
-		RpLogger.forceLogToFile(logFileName);
+		RpLogger.checkForceLogToFile(logFileName);
 
 		// Get the params
 		String excelFile = prop.getProperty(UiUtils.EXCEL_INPUT);

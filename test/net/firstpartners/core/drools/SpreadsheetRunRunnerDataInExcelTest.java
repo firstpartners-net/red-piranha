@@ -1,6 +1,7 @@
 package net.firstpartners.core.drools;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.net.URL;
 import java.util.logging.Logger;
 
@@ -15,20 +16,27 @@ public class SpreadsheetRunRunnerDataInExcelTest {
 	// Logger
 	private static final Logger log = Logger.getLogger(SpreadsheetRunRunnerDataInExcelTest.class.getName());
 
-	// Handle to common utility file
-	private final SpreadSheetRuleRunner commonUtils = new SpreadSheetRuleRunner(new URLRuleLoader());
-
-
+	/**
+	 * Just check that the rules can run, throws no exception
+	 */
 	@Test
-	public final void testCompileRunDrlFromUrl() throws Exception {
+	public final void testXlsCallRulesFromFile() throws Exception {
 
-		// Get the URL
-		URL url = new URL(TestConstants.XLS_DATA_FILE_AS_URL);
+		SpreadSheetRuleRunner commonUtils = new SpreadSheetRuleRunner(new FileRuleLoader());
+
+		// Check where we are
+		File whereAmI = new File(".");
+		log.info("Default file location:" + whereAmI.getAbsolutePath());
+
+		// Get the XLS DAta file
+
+		FileInputStream excelInput = new FileInputStream(TestConstants.XLS_DATA_FILE);
+
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 
 		HSSFWorkbook wb;
-		wb = commonUtils.callRules(url, ruleSource, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
+		wb = commonUtils.callRules(excelInput, ruleSource, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
 
 	}
 
@@ -36,15 +44,32 @@ public class SpreadsheetRunRunnerDataInExcelTest {
 	/**
 	 * Just check that the rules can run, throws no exception
 	 */
-	public final void testCallRules() throws Exception {
+	public final void testXlsXCallRulesFromFile() throws Exception {
+
+		SpreadSheetRuleRunner commonUtils = new SpreadSheetRuleRunner(new FileRuleLoader());
 
 		// Check where we are
 		File whereAmI = new File(".");
 		log.info("Default file location:" + whereAmI.getAbsolutePath());
 
-		// Get the URL
-		URL url = new URL(TestConstants.XLS_DATA_FILE);
+		// Get the XLSX Datafile
+		FileInputStream excelInput = new FileInputStream(TestConstants.XLSX_DATA_FILE);
 
+		RuleSource ruleSource = new RuleSource();
+		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
+
+		HSSFWorkbook wb;
+		wb = commonUtils.callRules(excelInput, ruleSource, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
+
+	}
+
+	@Test
+	public final void testXlsCallRulesFromUrl() throws Exception {
+
+		SpreadSheetRuleRunner commonUtils = new SpreadSheetRuleRunner(new URLRuleLoader());
+
+		// Get the URL
+		URL url = new URL(TestConstants.XLS_DATA_FILE_AS_URL);
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 

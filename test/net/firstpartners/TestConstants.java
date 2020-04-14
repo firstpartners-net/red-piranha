@@ -10,7 +10,7 @@ public class TestConstants {
 
 	// Tmp rules and data file names
 	public static final String XLS_DATA_FILE = "test/testdata/chocolate-data.xls";
-	public static final String XLS_DATA_FILE_AS_URL = "file:./test/testdata/chocolate-data.xls";
+	public static final String XLS_DATA_FILE_AS_URL = "https://github.com/paulbrowne-irl/red-piranha/blob/master/test/testdata/chocolate-data.xls?raw=true";
 	
 	public static final String XLSX_DATA_FILE = "test/testdata/chocolate-data.xlsx";
 

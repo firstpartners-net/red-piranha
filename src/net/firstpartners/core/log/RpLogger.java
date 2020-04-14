@@ -57,7 +57,7 @@ public class RpLogger extends Logger {
 	 * @throws IOException
 	 * @throws SecurityException
 	 */
-	public static void forceLogToFile(Object logFileName) throws SecurityException, IOException {
+	public static void checkForceLogToFile(Object logFileName) throws SecurityException, IOException {
 
 		if (logFileName != null) {
 			fileHandler = new FileHandler(logFileName.toString(), true);

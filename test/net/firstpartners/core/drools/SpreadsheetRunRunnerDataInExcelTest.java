@@ -61,18 +61,5 @@ public class SpreadsheetRunRunnerDataInExcelTest {
 
 	}
 
-	@Test
-	public final void testXlsCallRulesFromUrl() throws Exception {
-
-		SpreadSheetRuleRunner commonUtils = new SpreadSheetRuleRunner(new URLRuleLoader());
-
-		// Get the URL
-		URL url = new URL(TestConstants.XLS_DATA_FILE_AS_URL);
-		RuleSource ruleSource = new RuleSource();
-		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
-
-		Workbook wb = commonUtils.callRules(url, ruleSource, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
-
-	}
-
+	
 }

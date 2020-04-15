@@ -24,7 +24,7 @@
 	<property name="src.dir" value="src" />
 	<property name="lib.root" value="war/WEB-INF" />
 
-	<!-- Distrub and deploy -->
+	<!-- Distri	b and deploy -->
 	<property name="distrib.dir" value="dist" />
 	<property name="deploy.dir" value="scripts/jetty/webapps" />
 

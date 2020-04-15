@@ -85,6 +85,7 @@ public class RedCommandLine {
 
 			} catch (Throwable t) {
 				player.exception("Uncaught Exception", t);
+				
 			}
 		}
 

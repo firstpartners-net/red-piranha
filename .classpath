@@ -24,7 +24,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-codec-1.4.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-beliefs-6.5.0.Final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-compiler-6.5.0.Final.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/drools-core-6.5.0.Final.jar"/>
@@ -91,5 +90,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-3.9-20121203.jar" sourcepath="C:/Users/pbrowne/.m2/repository/org/apache/poi/poi/3.9/poi-3.9-sources.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-ooxml-3.9-20121203.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-ooxml-schemas-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/dom4j-2.0.3.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

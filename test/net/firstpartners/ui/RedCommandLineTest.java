@@ -6,6 +6,12 @@ import java.util.logging.Logger;
 
 import org.junit.Test;
 
+/**
+ * Test to call the main method
+ * 
+ * @author PBrowne
+ *
+ */
 public class RedCommandLineTest {
 
 	//Logger
@@ -24,13 +30,8 @@ public class RedCommandLineTest {
 
 
 		//Call test
-		try{
-			RedCommandLine.main(args);
-		} catch (Throwable t){
-			t.printStackTrace();
-			throw t;
-		}
-
+		RedCommandLine.main(args);
+		
 
 	}
 	

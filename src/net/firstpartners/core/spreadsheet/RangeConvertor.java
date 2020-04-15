@@ -1,11 +1,13 @@
 package net.firstpartners.core.spreadsheet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Name;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -27,38 +29,57 @@ public class RangeConvertor {
 	private static final Logger log = RpLogger.getLogger(RangeConvertor.class.getName());
 
 	/**
-	 * Read an excel file and spit out what we find.
-	 *
-	 * @param args Expect one argument that is the file to read.
-	 * @throws IOException When there is an error processing the file.
+	 * Read an excel file and return what we find as a set of simple JavaBeans
+	 * 
+	 * @param wb  - Apache Poi workbook to convert
+	 * @return
+	 * @throws IOException
 	 */
 	public static RangeHolder convertPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook wb) throws IOException {
 
 		RangeHolder returnValues = new RangeHolder();
 
-		// retrieve the named range
+		// retrieve the named range - Iterator not available
 		int numberOfNames = wb.getNumberOfNames();
+		
 
 		// Get all the named ranges in our spreadsheet
 		for (int namedRangeIdx = 0; namedRangeIdx < numberOfNames; namedRangeIdx++) {
 			org.apache.poi.ss.usermodel.Name aNamedRange = wb.getNameAt(namedRangeIdx);
 
-			// retrieve the cell at the named range and test its contents
-
-			AreaReference aref = new AreaReference(aNamedRange.getRefersToFormula()); //was getReference
-			org.apache.poi.ss.util.CellReference[] crefs = aref.getAllReferencedCells();
+			// Older code - only dealt with contig ranges
+			// AreaReference aref = new AreaReference(aNamedRange.getRefersToFormula()); //
+			// was getReference
+			
+			// retrieve the cells at the named range
+			log.log(Level.INFO,"Processing range:"+aNamedRange.getNameName());
+			AreaReference aRef[] = AreaReference.generateContiguous(aNamedRange.getRefersToFormula());
+			ArrayList<CellReference> cellArray = new ArrayList<CellReference>();
+			for (int a = 0; a < aRef.length; a++) {
+				Collections.addAll(cellArray, aRef[a].getAllReferencedCells());
+			}
 
 			// A Range that we will put the new cells into
 			Range redRange = new Range(aNamedRange.getNameName());
 
-			for (int thisCellinRange = 0; thisCellinRange < crefs.length; thisCellinRange++) {
-				Sheet sheet = wb.getSheet(crefs[thisCellinRange].getSheetName());
-				Row r = sheet.getRow(crefs[thisCellinRange].getRow());
+			// Iterator to loop over POI Cells
+			Iterator<CellReference> loop = cellArray.iterator();
+			int thisCellinRange = 0;
+
+			while (loop.hasNext()) {
+
+				CellReference thisCellRef = loop.next();
+				thisCellinRange++;
+
+				Sheet sheet = wb.getSheet(thisCellRef.getSheetName());
+				Row r = sheet.getRow(thisCellRef.getRow());
 
 				org.apache.poi.ss.usermodel.Cell thisExcelCell = null;
 				if (r != null) {
-					thisExcelCell = r.getCell(crefs[thisCellinRange].getCol());
+
 					// extract the cell contents based on cell type etc.
+					thisExcelCell = r.getCell(thisCellRef.getCol());
+
 				}
 
 				// Create our JavaBean representing the cell
@@ -99,7 +120,7 @@ public class RangeConvertor {
 			org.apache.poi.ss.usermodel.Name aNamedCell = wb.getNameAt(namedCellIdx);
 
 			// retrieve the cell at the named range and test its contents
-			AreaReference aref = new AreaReference(aNamedCell.getRefersToFormula()); //was getReference
+			AreaReference aref = new AreaReference(aNamedCell.getRefersToFormula()); // was getReference
 			CellReference[] crefs = aref.getAllReferencedCells();
 
 			for (int thisCellinRange = 0; thisCellinRange < crefs.length; thisCellinRange++) {

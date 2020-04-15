@@ -52,6 +52,7 @@ public class RedCommandLine {
 		RuleSource ruleFiles = UiUtils.convertSourceToRuleArgs(prop);
 
 		// Open the GUI
+		log.fine("Opening GUI");
 		RedGui player = new RedGui();
 		Runnable readRun = new Thread(player);
 		readRun.run();

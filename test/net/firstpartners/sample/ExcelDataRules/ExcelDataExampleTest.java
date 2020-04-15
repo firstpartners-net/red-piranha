@@ -1,5 +1,7 @@
 package net.firstpartners.sample.ExcelDataRules;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.IOException;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -13,6 +15,7 @@ public class ExcelDataExampleTest {
 	public final void testRunExcelDataExample() throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
 		Workbook hsWorkbook = new ExcelDataExample().runExcelDataExample();
+		assertNotNull(hsWorkbook);
 
 	}
 

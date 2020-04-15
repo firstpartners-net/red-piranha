@@ -31,32 +31,41 @@ public class RangeConvertor {
 	/**
 	 * Read an excel file and return what we find as a set of simple JavaBeans
 	 * 
-	 * @param wb  - Apache Poi workbook to convert
+	 * @param wb - Apache Poi workbook to convert
 	 * @return
 	 * @throws IOException
 	 */
-	public static RangeHolder convertPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook wb) throws IOException {
+	public static RangeHolder convertPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook wb)
+			throws IOException {
 
 		RangeHolder returnValues = new RangeHolder();
 
 		// retrieve the named range - Iterator not available
 		int numberOfNames = wb.getNumberOfNames();
-		
 
 		// Get all the named ranges in our spreadsheet
 		for (int namedRangeIdx = 0; namedRangeIdx < numberOfNames; namedRangeIdx++) {
 			org.apache.poi.ss.usermodel.Name aNamedRange = wb.getNameAt(namedRangeIdx);
 
-			// Older code - only dealt with contig ranges
-			// AreaReference aref = new AreaReference(aNamedRange.getRefersToFormula()); //
-			// was getReference
-			
 			// retrieve the cells at the named range
-			log.log(Level.INFO,"Processing range:"+aNamedRange.getNameName());
-			AreaReference aRef[] = AreaReference.generateContiguous(aNamedRange.getRefersToFormula());
+			log.log(Level.INFO, "Processing named range:" + aNamedRange.getNameName());
+
+			AreaReference aRef[] = new AreaReference[0];
+
+			try {
+				aRef = AreaReference.generateContiguous(aNamedRange.getRefersToFormula());
+			} catch (IllegalArgumentException iae) {
+
+				// It is possible that a named range exists in excel but, the actual cell as
+				// been deleted
+				log.info("Ignoring invalid range ref:" + iae);
+			}
+
 			ArrayList<CellReference> cellArray = new ArrayList<CellReference>();
 			for (int a = 0; a < aRef.length; a++) {
+
 				Collections.addAll(cellArray, aRef[a].getAllReferencedCells());
+
 			}
 
 			// A Range that we will put the new cells into
@@ -65,14 +74,22 @@ public class RangeConvertor {
 			// Iterator to loop over POI Cells
 			Iterator<CellReference> loop = cellArray.iterator();
 			int thisCellinRange = 0;
-
+			Row r =null;
+			
+			
 			while (loop.hasNext()) {
 
 				CellReference thisCellRef = loop.next();
 				thisCellinRange++;
 
 				Sheet sheet = wb.getSheet(thisCellRef.getSheetName());
-				Row r = sheet.getRow(thisCellRef.getRow());
+				try {
+					r = sheet.getRow(thisCellRef.getRow());
+				} catch (NullPointerException npe) {
+					System.out.println(npe);
+					throw (npe);
+
+				}
 
 				org.apache.poi.ss.usermodel.Cell thisExcelCell = null;
 				if (r != null) {

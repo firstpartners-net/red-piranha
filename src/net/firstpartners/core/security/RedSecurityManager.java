@@ -67,7 +67,7 @@ public class RedSecurityManager {
 
 	}
 
-	private static void checkResourceSuffix(String url)
+	static void checkResourceSuffix(String url)
 	throws SecurityException, IOException {
 
 		Object thisKey;

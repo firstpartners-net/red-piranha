@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import org.drools.KnowledgeBase;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
 
@@ -30,11 +29,13 @@ public class URLRuleLoaderTest {
 
 
 		//Check that we can read rules from remote location
+		log.fine("Attempting to load rules from:"+ruleSource);
 		org.drools.KnowledgeBase kb = ruleLoader.loadKnowledgeBase(ruleSource);
 
 		//Check that we can do things with the retrieved knowledgebase
 		assertNotNull(kb);
 		StatefulKnowledgeSession sks = kb.newStatefulKnowledgeSession();
+		assertNotNull(sks);
 	}
 
 	@Test
@@ -47,7 +48,7 @@ public class URLRuleLoaderTest {
 
 		//Check that we cannot read rules from remote location
 		try{
-			KnowledgeBase kb = ruleLoader.loadKnowledgeBase(ruleSource);
+			ruleLoader.loadKnowledgeBase(ruleSource);
 			fail("Expected Security Exception not thrown");
 
 		} catch (SecurityException se){
@@ -67,7 +68,7 @@ public class URLRuleLoaderTest {
 
 		//Check that we cannoread rules from remote location
 		try{
-			KnowledgeBase kb = ruleLoader.loadKnowledgeBase(ruleSource);
+			ruleLoader.loadKnowledgeBase(ruleSource);
 			fail("Expected Security Exception not thrown");
 
 		} catch (SecurityException se){

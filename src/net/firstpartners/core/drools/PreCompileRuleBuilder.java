@@ -57,6 +57,8 @@ public class PreCompileRuleBuilder {
 
 	}
 
+	
+	@SuppressWarnings("rawtypes")
 	public Map readProperties() throws IOException{
 
 		// Read properties file.
@@ -77,12 +79,14 @@ public class PreCompileRuleBuilder {
 	 * @throws IOException
 	 * @throws DroolsParserException
 	 */
+	@SuppressWarnings("unchecked")
 	public static void main(Object[] args) throws Exception {
 
 		PreCompileRuleBuilder ruleBuilder = new PreCompileRuleBuilder();
-		Map fileList = ruleBuilder.readProperties();
+		
+		Map<String, ?> fileList = ruleBuilder.readProperties();
 
-		Set keys = fileList.keySet();
+		Set<String> keys = fileList.keySet();
 		if(keys!=null){
 			Iterator<String> it = keys.iterator();
 			while (it.hasNext()){

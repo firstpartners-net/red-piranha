@@ -14,7 +14,6 @@ import net.firstpartners.core.log.RpLogger;
 
 public class CellConvertor {
 
-	private static final String EXCEL_DATE_STYLE = "m/d/yy";
 	private static final Logger log = RpLogger.getLogger(CellConvertor.class.getName());
 
 	/**
@@ -85,6 +84,7 @@ public class CellConvertor {
 		// We should create the cell, as we have a value to update into it
 		// but for now we just ignfore the update
 		if (poiCell == null) {
+			log.fine("Ignoring null value:");
 			return;
 		}
 

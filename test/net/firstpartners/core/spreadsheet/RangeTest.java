@@ -4,20 +4,24 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.logging.Logger;
+
+import net.firstpartners.core.log.*;
+
 import org.junit.Test;
 
 
 public class RangeTest  {
 
 
-	private Log log = LogFactory.getLog(Range.class);
+	private Logger log = RpLogger.getLogger(Range.class.getName());
 
 	
 	@Test
 	public void testCellSearch() throws Exception {
 
+		log.fine("starting test");
+		
 		//Create the test object
 		Range testRange = new Range();
 		

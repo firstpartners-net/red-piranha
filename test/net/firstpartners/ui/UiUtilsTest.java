@@ -15,7 +15,10 @@ public class UiUtilsTest {
 
 	@Test
 	public final void testReadConfig() {
+		
 		Properties prop = UiUtils.readConfig();
+		log.fine(prop.toString());
+		
 		assertNotNull(prop.get(UiUtils.DRL1));
 		assertNull(prop.get(UiUtils.DRL2));
 		assertNull(prop.get(UiUtils.DRL3));

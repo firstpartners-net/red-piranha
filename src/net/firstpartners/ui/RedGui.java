@@ -33,7 +33,7 @@ public class RedGui extends WindowAdapter implements WindowListener, ActionListe
 	// Class level GUI Elements
 	private JFrame frame = new JFrame("Red-Piranha - Java Power Tools for Excel");
 	private JTextArea textArea;
-	private boolean quit = false;
+	static boolean quit = false;
 
 	// Hold the property level for the class
 
@@ -57,7 +57,9 @@ public class RedGui extends WindowAdapter implements WindowListener, ActionListe
 		this.frame.setVisible(true);
 		this.frame.addWindowListener(this);
 		button.addActionListener(this);
-		this.quit = false;
+		
+		//open until finished
+		RedGui.quit = false;
 	}
 
 	/**
@@ -81,7 +83,7 @@ public class RedGui extends WindowAdapter implements WindowListener, ActionListe
 	 * Event handler - once window is closed
 	 */
 	public synchronized void windowClosed(WindowEvent evt) {
-		this.quit = true;
+		RedGui.quit = true;
 		this.notifyAll();
 		System.exit(0);
 	}
@@ -92,7 +94,7 @@ public class RedGui extends WindowAdapter implements WindowListener, ActionListe
 	public synchronized void run() {
 		while (true) {
 			try {
-				if (this.quit = false) {
+				if (RedGui.quit = false) {
 					Thread.sleep(1000L);
 					continue;
 				}

@@ -31,7 +31,6 @@ public class ExcelDataRulesExample {
 
 	private static final String EXCEL_DATA_FILE = "war/sampleresources/ExcelDataRules/chocolate-data.xls";
 
-	private static final String EXCEL_OUTPUT_FILE = "war/sampleresources/ExcelDataRules/chocolate-output.xls";
 
 	// the name of the sheet the we log files to
 	private static final String EXCEL_LOG_WORKSHEET_NAME = "log";
@@ -68,6 +67,7 @@ public class ExcelDataRulesExample {
 
 		// Call the rule engine passing in the excel data file, the rules we want to
 		// use, and name of the spreadsheet that we log rules to
+		log.info("Calling example");
 		Workbook wb = ruleRunner.callRules(excelDataFile, ruleSource, EXCEL_LOG_WORKSHEET_NAME);
 
 		// Output the workbook as a file,

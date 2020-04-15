@@ -254,10 +254,9 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 		BufferedInputStream inStream = new BufferedInputStream(
 				getInputStream(ruleSource.getKnowledgeBaseLocation()));
 
-		StringBuffer inString = new StringBuffer();
 		ByteArrayOutputStream holdStream = new ByteArrayOutputStream();
 
-		// _TODO Optimize this read_
+		// Write stream
 		while (inStream.available() != 0) {
 			holdStream.write(inStream.read());
 		}

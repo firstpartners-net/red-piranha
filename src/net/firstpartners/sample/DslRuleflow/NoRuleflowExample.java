@@ -42,10 +42,7 @@ public class NoRuleflowExample {
 	private static final String[] RULES_FILES = new String[] {
 	"ruleflow-rules.drl"};
 
-	//Change from the other version
-	private static final String RULEFLOW_FILE=null;
 
-	private static final String RULEFLOW_ID = "ruleflow-sample";
 
 
 	/**

@@ -1,8 +1,9 @@
 package net.firstpartners.core.drools;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.File;
 import java.io.FileInputStream;
-import java.net.URL;
 import java.util.logging.Logger;
 
 import org.apache.poi.ss.usermodel.Workbook;
@@ -36,6 +37,7 @@ public class SpreadsheetRunRunnerDataInExcelTest {
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 
 		Workbook wb = commonUtils.callRules(excelInput, ruleSource, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
+		assertNotNull(wb);
 
 	}
 
@@ -58,6 +60,7 @@ public class SpreadsheetRunRunnerDataInExcelTest {
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 
 		Workbook wb = commonUtils.callRules(excelInput, ruleSource, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
+		assertNotNull(wb);
 
 	}
 

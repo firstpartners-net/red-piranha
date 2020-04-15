@@ -4,6 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
 import net.firstpartners.core.drools.FileRuleLoader;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.data.RuleSource;
@@ -12,12 +17,6 @@ import net.firstpartners.core.spreadsheet.Range;
 import net.firstpartners.core.spreadsheet.RangeConvertor;
 import net.firstpartners.core.spreadsheet.RangeHolder;
 import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 /**
  * Sample showing how we can read and manipulate data from excel

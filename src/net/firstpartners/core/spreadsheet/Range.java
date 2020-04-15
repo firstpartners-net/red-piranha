@@ -16,6 +16,7 @@ import net.firstpartners.core.log.RpLogger;
 
 /**
  * A range is just a holder for a group of named cells
+ * We use it as a convenience for loading our values into working memory
  * 
  * @author paul
  */
@@ -26,7 +27,7 @@ public class Range implements Map<String, Cell>, PropertyChangeListener {
 
 	public static final String CELLNAME_NUM_SEPARATOR = "_";
 
-	private static final long serialVersionUID = 1L;
+	static final long serialVersionUID = 1L;
 
 	private Map<String, Cell> cells = new HashMap<String, Cell>();
 
@@ -123,7 +124,7 @@ public class Range implements Map<String, Cell>, PropertyChangeListener {
 	 */
 	public Cell getCell(int newCellPosition) {
 
-		// log.debug("base range name:"+rangeName);
+		log.finest("base range name:"+rangeName);
 
 		// The last "_" is to fool the cell based algorithm into working when
 		// we supply the range name only
@@ -131,7 +132,7 @@ public class Range implements Map<String, Cell>, PropertyChangeListener {
 
 		String requestedCellName = getCellName(rangeName + "_", newCellPosition);
 
-		// log.debug("Looking up Cell value"+requestedCellName);
+		log.finest("Looking up Cell value"+requestedCellName);
 
 		return cells.get(requestedCellName);
 

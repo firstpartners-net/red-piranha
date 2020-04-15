@@ -39,6 +39,8 @@ public class PreCompileRuleBuilderTest {
 	@Test
 	public final void testMain() throws Exception {
 
+		log.info("Calling example");
+		
 		clearPreviousPackages();
 
 		//Call the main method with it
@@ -50,10 +52,11 @@ public class PreCompileRuleBuilderTest {
 	}
 
 	private void testForNewPackages() throws IOException {
-		Map fileList = preCompileRuleBuilder.readProperties();
+		@SuppressWarnings("unchecked")
+		Map<String, ?> fileList = preCompileRuleBuilder.readProperties();
 		File currentFile =null;
 
-		Set keys = fileList.keySet();
+		Set<String>keys = fileList.keySet();
 		if(keys!=null){
 			Iterator<String> it = keys.iterator();
 			while (it.hasNext()){
@@ -71,10 +74,11 @@ public class PreCompileRuleBuilderTest {
 	private void clearPreviousPackages() throws IOException {
 
 
-		Map fileList = preCompileRuleBuilder.readProperties();
+		@SuppressWarnings("unchecked")
+		Map<String, ?> fileList = preCompileRuleBuilder.readProperties();
 		File currentFile =null;
 
-		Set keys = fileList.keySet();
+		Set <String>keys = fileList.keySet();
 		if(keys!=null){
 			Iterator<String> it = keys.iterator();
 			while (it.hasNext()){
@@ -94,7 +98,8 @@ public class PreCompileRuleBuilderTest {
 	@Test
 	public final void testPropertyRead() throws IOException {
 
-		Map preLoadRules = preCompileRuleBuilder.readProperties();
+		@SuppressWarnings("unchecked")
+		Map<String, ?> preLoadRules = preCompileRuleBuilder.readProperties();
 		assertNotNull(preLoadRules);
 		assertTrue(!preLoadRules.isEmpty());
 		assertTrue(preLoadRules.get("war/sampleresources/SpreadSheetServlet/log-then-modify-rules.drl")!=null);

@@ -2,9 +2,8 @@ package net.firstpartners.sample.ExcelDataRules;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.drools.compiler.compiler.DroolsParserException;
@@ -13,6 +12,7 @@ import net.firstpartners.core.drools.FileRuleLoader;
 import net.firstpartners.core.drools.IRuleLoader;
 import net.firstpartners.core.drools.SpreadSheetRuleRunner;
 import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
 
 /**
@@ -27,7 +27,8 @@ import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
  */
 public class ExcelDataRulesExample {
 
-	private static Log log = LogFactory.getLog(ExcelDataRulesExample.class);
+	//Logging
+	private static final Logger log = RpLogger.getLogger(ExcelDataRulesExample.class.getName());
 
 	private static final String EXCEL_DATA_FILE = "war/sampleresources/ExcelDataRules/chocolate-data.xls";
 

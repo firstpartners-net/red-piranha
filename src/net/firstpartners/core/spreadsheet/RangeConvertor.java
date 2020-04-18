@@ -4,10 +4,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.poi.ss.usermodel.Name;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -17,7 +20,7 @@ import org.apache.poi.ss.util.CellReference;
 import net.firstpartners.core.log.RpLogger;
 
 /**
- * Read Ranges from Excel, Convert to a format that rules find easier use
+ * Read Ranges from Excel, Convert to a format (JavaBeans) that rules find easier use
  *
  * Based on Sample from Apache POI
  *
@@ -26,34 +29,46 @@ import net.firstpartners.core.log.RpLogger;
  */
 public class RangeConvertor {
 
+	//Logging
 	private static final Logger log = RpLogger.getLogger(RangeConvertor.class.getName());
 
 	/**
 	 * Read an excel file and return what we find as a set of simple JavaBeans
 	 * 
 	 * @param wb - Apache Poi workbook to convert
-	 * @return
+	 * @return RangeHolder - can be empty if no names are definded
 	 * @throws IOException
 	 */
-	public static RangeHolder convertPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook wb)
+	public static RangeHolder convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook wb)
 			throws IOException {
 
 		RangeHolder returnValues = new RangeHolder();
 
 		// retrieve the named range - Iterator not available
-		int numberOfNames = wb.getNumberOfNames();
-
-		// Get all the named ranges in our spreadsheet
-		for (int namedRangeIdx = 0; namedRangeIdx < numberOfNames; namedRangeIdx++) {
-			org.apache.poi.ss.usermodel.Name aNamedRange = wb.getNameAt(namedRangeIdx);
+		List<? extends Name> namedRanges = wb.getAllNames();
+		if(namedRanges ==null) {
+			log.info("No Named Ranges in workbook- skipping");
+			return returnValues;
+		}
+		
+		//Setup loop through named ranges
+		int namedRangeIdx =0;
+		org.apache.poi.ss.usermodel.Name aNamedRange =null;
+		ListIterator<? extends Name> loopList = namedRanges.listIterator();
+		
+		while (loopList.hasNext()) {
+			namedRangeIdx++;
+			
+			aNamedRange = loopList.next(); //wb.getNameAt(namedRangeIdx);
 
 			// retrieve the cells at the named range
 			log.log(Level.INFO, "Processing named range:" + aNamedRange.getNameName());
 
+			//Reset to empty array - so we're covered even if an exception is through
 			AreaReference aRef[] = new AreaReference[0];
 
 			try {
-				aRef = AreaReference.generateContiguous(aNamedRange.getRefersToFormula());
+				aRef = AreaReference.generateContiguous(wb.getSpreadsheetVersion(),aNamedRange.getRefersToFormula());
 			} catch (IllegalArgumentException iae) {
 
 				// It is possible that a named range exists in excel but, the actual cell as
@@ -74,9 +89,8 @@ public class RangeConvertor {
 			// Iterator to loop over POI Cells
 			Iterator<CellReference> loop = cellArray.iterator();
 			int thisCellinRange = 0;
-			Row r =null;
-			
-			
+			Row r = null;
+
 			while (loop.hasNext()) {
 
 				CellReference thisCellRef = loop.next();
@@ -84,7 +98,7 @@ public class RangeConvertor {
 
 				Sheet sheet = wb.getSheet(thisCellRef.getSheetName());
 				try {
-					r = sheet.getRow(thisCellRef.getRow());
+					r = sheet.getRow(thisCellRef.getRow()); //ISSUE HERE
 				} catch (NullPointerException npe) {
 					System.out.println(npe);
 					throw (npe);
@@ -92,6 +106,7 @@ public class RangeConvertor {
 				}
 
 				org.apache.poi.ss.usermodel.Cell thisExcelCell = null;
+				
 				if (r != null) {
 
 					// extract the cell contents based on cell type etc.
@@ -101,6 +116,7 @@ public class RangeConvertor {
 
 				// Create our JavaBean representing the cell
 				String cellHandle = redRange.getUniqueCellName(thisCellinRange);
+
 				net.firstpartners.core.spreadsheet.Cell redCell = CellConvertor.convertPoiCellToRedCell(cellHandle,
 						thisExcelCell);
 
@@ -108,6 +124,8 @@ public class RangeConvertor {
 				// and that it should pass on property change events to it
 				redCell.setHoldingRange(redRange);
 				redCell.addPropertyChangeListener(redRange);
+				
+				log.fine("Converted Cell:"+redCell);
 
 				// Add the list of cells to a range
 				redRange.put(cellHandle, redCell);
@@ -127,17 +145,41 @@ public class RangeConvertor {
 	 */
 	public static void updateRedRangeintoPoiExcel(Workbook wb, RangeHolder updatedValues) throws IOException {
 
+		
+		throw new NullPointerException ("TODO implmement");
+	/**	
 		// retrieve the named range
 		int numberOfNames = wb.getNumberOfNames();
 
-		// Get all names of *all* the cells in *all* the ranges
+		// Get all the Cells that we have been keeping track of
 		Map<String, net.firstpartners.core.spreadsheet.Cell> allCells = updatedValues.getAllCells();
-
+		
+		//Loop through the cells
+		Iterator<net.firstpartners.core.spreadsheet.Cell> redCells = allCells.values().iterator();
+		while (redCells.hasNext()) {
+			
+			Cell thisRedCell = redCells.next();
+			String originalPoiRef = thisRedCell.getOriginalCellReference();
+			
+			if(originalPoiRef==null) {
+				log.info("Cells has no ref to original sheet - ignoring:"+originalPoiRef);
+			} else {
+				wb.get
+			}
+			
+			
+		}
+	
+		
+		
+		
+//====
 		for (int namedCellIdx = 0; namedCellIdx < numberOfNames; namedCellIdx++) {
 			org.apache.poi.ss.usermodel.Name aNamedCell = wb.getNameAt(namedCellIdx);
 
 			// retrieve the cell at the named range and test its contents
-			AreaReference aref = new AreaReference(aNamedCell.getRefersToFormula()); // was getReference
+			AreaReference aref = new AreaReference(aNamedCell.getRefersToFormula()); // was getReference //ISSUE HERE
+			
 			CellReference[] crefs = aref.getAllReferencedCells();
 
 			for (int thisCellinRange = 0; thisCellinRange < crefs.length; thisCellinRange++) {
@@ -166,7 +208,7 @@ public class RangeConvertor {
 
 			}
 		}
-
+*/
 	}
 
 }

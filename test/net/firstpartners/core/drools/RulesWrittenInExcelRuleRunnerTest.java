@@ -4,9 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -15,6 +14,7 @@ import org.junit.Test;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.core.spreadsheet.Range;
 import net.firstpartners.core.spreadsheet.RangeConvertor;
@@ -33,7 +33,8 @@ import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
  */
 public class RulesWrittenInExcelRuleRunnerTest {
 
-	private static Log log = LogFactory.getLog(RulesWrittenInExcelRuleRunnerTest.class);
+	//Logging
+		private static final Logger log = RpLogger.getLogger(RulesWrittenInExcelRuleRunnerTest.class.getName());
 
 
 
@@ -57,16 +58,16 @@ public class RulesWrittenInExcelRuleRunnerTest {
 		Workbook wb=WorkbookFactory.create(inputFromExcel);
 
 		// Convert the cell
-		RangeHolder ranges = RangeConvertor.convertPoiWorkbookIntoRedRange(wb);
+		RangeHolder ranges = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		HashMap<String, Object> globals = new HashMap<String, Object>();
 
 		// Create a new Excel Logging object
 		SpreadSheetLogger excelLogger = new SpreadSheetLogger();
 
 		// Log the cell contents
-		log.debug("============ Excel Cell Contents In =========");
+		log.fine("============ Excel Cell Contents In =========");
 		for (Range r : ranges) {
-			log.debug(r);
+			log.fine(r.toString());
 		}
 
 		//Setup our parameters
@@ -79,9 +80,9 @@ public class RulesWrittenInExcelRuleRunnerTest {
 		new RuleRunner(new FileRuleLoader()).runStatelessRules(ruleSource,excelLogger);
 
 		// Log the cell contents
-		log.debug("============ Excel Cell Contents Out =========");
+		log.fine("============ Excel Cell Contents Out =========");
 		for (Range r : ranges) {
-			log.debug(r);
+			log.fine(r.toString());
 		}
 
 		// update the excel spreadsheet with the result of our rules

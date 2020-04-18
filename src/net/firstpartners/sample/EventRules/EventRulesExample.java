@@ -5,15 +5,15 @@
 package net.firstpartners.sample.EventRules;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.core.drools.FileRuleLoader;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.data.RuleSource;
 import net.firstpartners.core.log.ConsoleLogger;
+import net.firstpartners.core.log.RpLogger;
 
 
 /**
@@ -26,7 +26,8 @@ import net.firstpartners.core.log.ConsoleLogger;
  */
 public class EventRulesExample {
 
-	private static Log log = LogFactory.getLog(EventRulesExample.class);
+	//Logging
+	private static final Logger log = RpLogger.getLogger(EventRulesExample.class.getName());
 
 	private static final String NEXT_AVAILABLE_SHIPMENT_DATE = "nextAvailableShipmentDate";
 
@@ -74,7 +75,7 @@ public class EventRulesExample {
 
 		//Look at the results
 		log.info("======= Results - shipping schedule =======");
-		log.info(candyBarOrder);
+		log.info(candyBarOrder.toString());
 
 		return candyBarOrder;
 

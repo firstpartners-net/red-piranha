@@ -1,7 +1,7 @@
 package net.firstpartners.core.log;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * An Adaptor that allows us to log to An Excel File
@@ -11,9 +11,8 @@ import org.apache.commons.logging.LogFactory;
 public class ConsoleLogger implements ILogger {
 
 	
-	//We also allow this to be configured to log to console
-	private Log log = LogFactory.getLog(getClass());
-	
+	// Logger
+	private static final Logger log = RpLogger.getLogger(ConsoleLogger.class.getName());
 
 	
 	public ConsoleLogger(){
@@ -21,15 +20,15 @@ public class ConsoleLogger implements ILogger {
 	}
 	
 	public void debug(String output){
-		log.debug(output);
+		log.finest(output);
 	}
 	
 	public void info(String output){
-		log.info(output);
+		log.fine(output);
 	}
 	
 	public void exception(String output, Throwable t){
-		log.error(output,t);
+		log.log(Level.SEVERE, output,t);
 	}
 
 

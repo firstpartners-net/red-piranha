@@ -4,11 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.Test;
+
+import net.firstpartners.core.log.RpLogger;
 
 
 /**
@@ -18,7 +19,9 @@ import org.junit.Test;
  */
 public class MultipleRulesExampleTest {
 
-	private static Log log = LogFactory.getLog(MultipleRulesExampleTest.class);
+	
+	// Logging
+	private static final Logger log = RpLogger.getLogger(MultipleRulesExampleTest.class.getName());
 
 	@Test
 	public final void testRunMultipleRulesExample() throws DroolsParserException, IOException, ClassNotFoundException {

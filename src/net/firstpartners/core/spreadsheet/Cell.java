@@ -6,8 +6,7 @@ import java.beans.PropertyChangeSupport;
 
 public class Cell implements PropertyChangeListener {
 
-	private final PropertyChangeSupport changes = new PropertyChangeSupport(
-			this);
+	private final PropertyChangeSupport changes = new PropertyChangeSupport(this);
 
 	private String cellName = null;
 
@@ -18,6 +17,8 @@ public class Cell implements PropertyChangeListener {
 	private Object value;
 
 	private Range holdingRange = null;
+	
+	private String originalCellReference =null;
 
 	// Default constructor - needed to keep this a Javabean
 	public Cell() {
@@ -48,35 +49,36 @@ public class Cell implements PropertyChangeListener {
 	public Object getValue() {
 		return value;
 	}
-	
-	public Integer getIntValue(){
-		if((value!=null)&&(value instanceof Number)){
-			return ((Number)value).intValue();
+
+	public Integer getIntValue() {
+		if ((value != null) && (value instanceof Number)) {
+			return ((Number) value).intValue();
 		}
-		
-		//Default
+
+		// Default
 		return null;
 	}
-	
-	public Boolean getBooleanValue(){
-		if((value!=null)&&(value instanceof Boolean)){
-			return ((Boolean)value);
+
+	public Boolean getBooleanValue() {
+		if ((value != null) && (value instanceof Boolean)) {
+			return ((Boolean) value);
 		}
-		
-		//Default
+
+		// Default
 		return null;
 	}
-	
+
 	/**
 	 * Convenience method
+	 * 
 	 * @return
 	 */
-	public String getValueAsText(){
-		if(value!=null){
+	public String getValueAsText() {
+		if (value != null) {
 			return value.toString();
 		}
-		
-		//default
+
+		// default
 		return null;
 	}
 
@@ -113,16 +115,14 @@ public class Cell implements PropertyChangeListener {
 
 	@Override
 	public String toString() {
-		return "cellName:" + cellName + " value:" + value + " comment:"
-				+ comment + " modified:" + modified;
+		return "cellName:" + cellName + " value:" + value + " comment:" + comment + " modified:" + modified;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((cellName == null) ? 0 : cellName.hashCode());
+		result = prime * result + ((cellName == null) ? 0 : cellName.hashCode());
 		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
 		result = prime * result + (modified ? 1231 : 1237);
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
@@ -171,6 +171,22 @@ public class Cell implements PropertyChangeListener {
 
 	public void removePropertyChangeListener(final PropertyChangeListener l) {
 		this.changes.removePropertyChangeListener(l);
+	}
+
+	/**
+	 * Get the original Cell reference (if available) - e.g. the Cell address from the Original (Apache Poi) Spreadsheet
+	 * @return
+	 */
+	public String getOriginalCellReference() {
+		return originalCellReference;
+	}
+
+	/**
+	 * set the original Cell reference (if available) - e.g. the Cell address from the Original (Apache Poi) Spreadsheet
+	 * @return
+	 */
+	public void setOriginalCellReference(String originalCellReference) {
+		this.originalCellReference = originalCellReference;
 	}
 
 }

@@ -48,6 +48,7 @@ public class RpLogger extends Logger {
 		return log;
 
 	}
+	
 
 	/**
 	 * Check if we need to force turn of of logging
@@ -68,4 +69,7 @@ public class RpLogger extends Logger {
 
 	}
 
+
+	
+	
 }

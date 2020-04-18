@@ -3,10 +3,11 @@ package net.firstpartners.core.spreadsheet;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.logging.Logger;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.poi.ss.usermodel.Workbook;
+
+import net.firstpartners.core.log.RpLogger;
 
 /**
  * Convenience Class for Output of Spreadhsheets
@@ -15,7 +16,8 @@ import org.apache.poi.ss.usermodel.Workbook;
  */
 public class SpreadSheetOutputter {
 
-	private static Log log = LogFactory.getLog(SpreadSheetOutputter.class);
+	// Logger
+	private static final Logger log = RpLogger.getLogger(SpreadSheetOutputter.class.getName());
 
 	/**
 	 * Outputs an Apache POI Workbook to a file
@@ -33,7 +35,7 @@ public class SpreadSheetOutputter {
 			fileOutputStream.close();
 		} catch (java.security.AccessControlException ace){
 			//Unable to output file (e.g. as in Google App Engine) - drop back and log via console instea
-			log.error("Unable to output to file - logging to console instead");
+			log.warning("Unable to output to file - logging to console instead");
 			outputToConsole(wb);
 		}
 
@@ -57,7 +59,7 @@ public class SpreadSheetOutputter {
 	 */
 	public static void outputToConsole(Workbook wb) throws IOException{
 
-		RangeHolder ranges = RangeConvertor.convertPoiWorkbookIntoRedRange(wb);
+		RangeHolder ranges = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		outputToConsole(ranges);
 
 	}
@@ -68,7 +70,7 @@ public class SpreadSheetOutputter {
 	 */
 	public static void outputToConsole(RangeHolder ranges ){
 		for (Range r : ranges) {
-			log.info(r);
+			log.info(r.toString());
 		}
 	}
 

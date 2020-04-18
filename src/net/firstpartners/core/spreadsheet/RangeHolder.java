@@ -147,6 +147,7 @@ public class RangeHolder implements List<Range> {
 
 	/**
 	 * Returns a map of Cells, with the unique handle we've associate with them
+	 * @return
 	 */
 	public Map<String, net.firstpartners.core.spreadsheet.Cell> getAllCells() {
 

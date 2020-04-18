@@ -99,7 +99,7 @@ public class SpreadSheetRuleRunner {
 		Workbook wb=WorkbookFactory.create(inputFromExcel);
 		
 		// Convert the cell
-		RangeHolder ranges = RangeConvertor.convertPoiWorkbookIntoRedRange(wb);
+		RangeHolder ranges = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 
 		//Call the overloaded method to actually run the rules
 		callRules(ranges,ruleSource,nameOfLogSheet,spreadsheetLogger);

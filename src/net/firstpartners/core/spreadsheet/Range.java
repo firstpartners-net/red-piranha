@@ -3,6 +3,7 @@ package net.firstpartners.core.spreadsheet;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -20,21 +21,37 @@ import net.firstpartners.core.log.RpLogger;
  * 
  * @author paul
  */
-public class Range implements Map<String, Cell>, PropertyChangeListener {
+public class Range implements Map<String, Cell>, PropertyChangeListener,Serializable {
+
+	public static final String CELLNAME_NUM_SEPARATOR = "_";
+
+	private static final Logger log =RpLogger.getLogger(Range.class.getName());
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2208591825859424164L;
+
+
+	/**
+	 * Generate cell name based on supplied string
+	 * 
+	 * @param cellInRange
+	 * @return
+	 */
+	public static String getUniqueCellName(String rangeNameExt, int cellInRange) {
+
+		return rangeNameExt + CELLNAME_NUM_SEPARATOR + cellInRange;
+
+	}
+
+	private Map<String, Cell> cells = new HashMap<String, Cell>();
 
 	private final PropertyChangeSupport changes = new PropertyChangeSupport(
 			this);
 
-	public static final String CELLNAME_NUM_SEPARATOR = "_";
-
-	static final long serialVersionUID = 1L;
-
-	private Map<String, Cell> cells = new HashMap<String, Cell>();
 
 	private String rangeName = null;
-
-	private static final Logger log =RpLogger.getLogger(Range.class.getName());
-
 
 	public Range() {
 		super();
@@ -44,16 +61,12 @@ public class Range implements Map<String, Cell>, PropertyChangeListener {
 		this.rangeName = rangeName;
 	}
 
+	public void addPropertyChangeListener(final PropertyChangeListener l) {
+		this.changes.addPropertyChangeListener(l);
+	}
+
 	public void clear() {
 		cells.clear();
-	}
-
-	public String getRangeName() {
-		return rangeName;
-	}
-
-	public void setRangeName(String rangeName) {
-		this.rangeName = rangeName;
 	}
 
 	public boolean containsKey(Object arg0) {
@@ -69,8 +82,70 @@ public class Range implements Map<String, Cell>, PropertyChangeListener {
 		return cells.entrySet();
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Range other = (Range) obj;
+		if (cells == null) {
+			if (other.cells != null)
+				return false;
+		} else if (!cells.equals(other.cells))
+			return false;
+		if (rangeName == null) {
+			if (other.rangeName != null)
+				return false;
+		} else if (!rangeName.equals(other.rangeName))
+			return false;
+		return true;
+	}
+
 	public Cell get(Object arg0) {
 		return cells.get(arg0);
+	}
+
+	/**
+	 * Get the Actual Cell of a position cell in the range e.g. if the cell name
+	 * is range_8 then , we can ask for the first cell range_0
+	 * 
+	 * @param currentCellName
+	 * @param newCellPosition
+	 * @return
+	 */
+	public Cell getCell(int newCellPosition) {
+
+		log.finest("base range name:"+rangeName);
+
+		// The last "_" is to fool the cell based algorithm into working when
+		// we supply the range name only
+		// e.g. cell name range_0 , range is called 'range'
+
+		String requestedCellName = getCellName(rangeName + "_", newCellPosition);
+
+		log.finest("Looking up Cell value"+requestedCellName);
+
+		return cells.get(requestedCellName);
+
+	}
+
+	/**
+	 * Get the Actual Cell of a position cell in the range e.g. if the cell name
+	 * is range_8 then , we can ask for the first cell range_0
+	 * 
+	 * @param currentCellName
+	 * @param newCellPosition
+	 * @return
+	 */
+	public Cell getCellInRange(String currentFullCellName, int newCellPosition) {
+
+		String requestedCellName = getCellName(currentFullCellName,
+				newCellPosition);
+		return cells.get(requestedCellName);
+
 	}
 
 	/**
@@ -106,46 +181,6 @@ public class Range implements Map<String, Cell>, PropertyChangeListener {
 	 * @param newCellPosition
 	 * @return
 	 */
-	public Cell getCellInRange(String currentFullCellName, int newCellPosition) {
-
-		String requestedCellName = getCellName(currentFullCellName,
-				newCellPosition);
-		return cells.get(requestedCellName);
-
-	}
-
-	/**
-	 * Get the Actual Cell of a position cell in the range e.g. if the cell name
-	 * is range_8 then , we can ask for the first cell range_0
-	 * 
-	 * @param currentCellName
-	 * @param newCellPosition
-	 * @return
-	 */
-	public Cell getCell(int newCellPosition) {
-
-		log.finest("base range name:"+rangeName);
-
-		// The last "_" is to fool the cell based algorithm into working when
-		// we supply the range name only
-		// e.g. cell name range_0 , range is called 'range'
-
-		String requestedCellName = getCellName(rangeName + "_", newCellPosition);
-
-		log.finest("Looking up Cell value"+requestedCellName);
-
-		return cells.get(requestedCellName);
-
-	}
-
-	/**
-	 * Get the Actual Cell of a position cell in the range e.g. if the cell name
-	 * is range_8 then , we can ask for the first cell range_0
-	 * 
-	 * @param currentCellName
-	 * @param newCellPosition
-	 * @return
-	 */
 	public Object getCellValue(int newCellPosition) {
 
 		Cell thisCell = getCell(newCellPosition);
@@ -157,6 +192,12 @@ public class Range implements Map<String, Cell>, PropertyChangeListener {
 
 		// Default
 		return null;
+
+	}
+
+	public Object[] getCellValueArray() {
+
+		return getCellValueList().toArray();
 
 	}
 
@@ -175,12 +216,6 @@ public class Range implements Map<String, Cell>, PropertyChangeListener {
 
 	}
 
-	public Object[] getCellValueArray() {
-
-		return getCellValueList().toArray();
-
-	}
-
 	/**
 	 * Matches on contents of cells, unlike conventional containsValue method
 	 * that matches exact objects
@@ -192,6 +227,10 @@ public class Range implements Map<String, Cell>, PropertyChangeListener {
 
 		return getCellValueList().contains(value);
 
+	}
+
+	public String getRangeName() {
+		return rangeName;
 	}
 
 	/**
@@ -206,16 +245,14 @@ public class Range implements Map<String, Cell>, PropertyChangeListener {
 
 	}
 
-	/**
-	 * Generate cell name based on supplied string
-	 * 
-	 * @param cellInRange
-	 * @return
-	 */
-	public static String getUniqueCellName(String rangeNameExt, int cellInRange) {
-
-		return rangeNameExt + CELLNAME_NUM_SEPARATOR + cellInRange;
-
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cells == null) ? 0 : cells.hashCode());
+		result = prime * result
+				+ ((rangeName == null) ? 0 : rangeName.hashCode());
+		return result;
 	}
 
 	public boolean isEmpty() {
@@ -226,8 +263,17 @@ public class Range implements Map<String, Cell>, PropertyChangeListener {
 		return cells.keySet();
 	}
 
-	public Cell put(String arg0, Cell arg1) {
-		return cells.put(arg0, arg1);
+	public void propertyChange(PropertyChangeEvent arg0) {
+
+		// Pass on the event to the registered listener
+		changes.firePropertyChange(arg0);
+
+	}
+
+	public Cell put(String rangeName, Cell cell) {
+		assert rangeName !=null;
+		assert cell !=null;
+		return cells.put(rangeName, cell);
 	}
 
 	public void putAll(Map<? extends String, ? extends Cell> arg0) {
@@ -238,12 +284,22 @@ public class Range implements Map<String, Cell>, PropertyChangeListener {
 		return cells.remove(arg0);
 	}
 
+	public void removePropertyChangeListener(final PropertyChangeListener l) {
+		this.changes.removePropertyChangeListener(l);
+	}
+
+	public void setRangeName(String rangeName) {
+		this.rangeName = rangeName;
+	}
+
 	public int size() {
 		return cells.size();
 	}
 
-	public Collection<Cell> values() {
-		return cells.values();
+	public String toShortString() {
+
+		return "Range:" + rangeName;
+
 	}
 
 	public String toString() {
@@ -258,57 +314,8 @@ public class Range implements Map<String, Cell>, PropertyChangeListener {
 		return returnString.toString();
 	}
 
-	public String toShortString() {
-
-		return "Range:" + rangeName;
-
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cells == null) ? 0 : cells.hashCode());
-		result = prime * result
-				+ ((rangeName == null) ? 0 : rangeName.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Range other = (Range) obj;
-		if (cells == null) {
-			if (other.cells != null)
-				return false;
-		} else if (!cells.equals(other.cells))
-			return false;
-		if (rangeName == null) {
-			if (other.rangeName != null)
-				return false;
-		} else if (!rangeName.equals(other.rangeName))
-			return false;
-		return true;
-	}
-
-	public void propertyChange(PropertyChangeEvent arg0) {
-
-		// Pass on the event to the registered listener
-		changes.firePropertyChange(arg0);
-
-	}
-
-	public void addPropertyChangeListener(final PropertyChangeListener l) {
-		this.changes.addPropertyChangeListener(l);
-	}
-
-	public void removePropertyChangeListener(final PropertyChangeListener l) {
-		this.changes.removePropertyChangeListener(l);
+	public Collection<Cell> values() {
+		return cells.values();
 	}
 
 }

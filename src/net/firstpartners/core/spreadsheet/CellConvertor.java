@@ -5,15 +5,12 @@ import java.util.logging.Logger;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.Comment;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Drawing;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.RichTextString;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import net.firstpartners.core.log.RpLogger;
@@ -46,6 +43,7 @@ public class CellConvertor {
 
 		// Keep a reference to the original cell location
 		redCell.setOriginalCellReference(poiCell.getAddress().toString());
+		redCell.setOriginalSheetReference(poiCell.getSheet().getSheetName());
 
 		// The name makes them as a ranage
 		redCell.setCellName(cellNameFromRange);

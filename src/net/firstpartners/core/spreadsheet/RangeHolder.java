@@ -1,5 +1,6 @@
 package net.firstpartners.core.spreadsheet;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -7,15 +8,24 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.logging.Logger;
+
+import net.firstpartners.core.log.RpLogger;
 
 /**
- * Holder of all multiple Ranges
+ * Holder of all multiple Ranges from a spreadshet
  * 
  * @author paul
  *
  */
-public class RangeHolder implements List<Range> {
+public class RangeHolder implements List<Range>, Serializable {
 
+	private static final Logger log = RpLogger.getLogger(RangeHolder.class.getName());
+
+	/**
+	 * needed for serialization
+	 */
+	private static final long serialVersionUID = -4130443874933187650L;
 	List<Range> allRanges = new ArrayList<Range>();
 
 	public void add(int arg0, Range arg1) {
@@ -147,6 +157,7 @@ public class RangeHolder implements List<Range> {
 
 	/**
 	 * Returns a map of Cells, with the unique handle we've associate with them
+	 * 
 	 * @return
 	 */
 	public Map<String, net.firstpartners.core.spreadsheet.Cell> getAllCells() {
@@ -156,7 +167,10 @@ public class RangeHolder implements List<Range> {
 		for (Range range : allRanges) {
 
 			for (net.firstpartners.core.spreadsheet.Cell cell : range.values()) {
-				returnValues.put(cell.getCellName(), cell);
+				if (cell.getCellName() != null) {
+					returnValues.put(cell.getCellName(), cell);
+				}
+
 			}
 
 		}

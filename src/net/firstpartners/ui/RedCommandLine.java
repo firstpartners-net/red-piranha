@@ -19,7 +19,7 @@ import net.firstpartners.core.log.RpLogger;
 
 /**
  * Main Entry Point for Red-Piranha
- * 
+ * Looks for red-piranha.config to decide what mode it should run in
  * @author PBrowne
  *
  */
@@ -75,7 +75,7 @@ public class RedCommandLine {
 		// Get the params
 		String excelFile = prop.getProperty(UiUtils.EXCEL_INPUT);
 		String outputFileName = prop.getProperty(UiUtils.EXCEL_OUTPUT);
-		RuleSource ruleFiles = UiUtils.convertSourceToRuleArgs(prop);
+		RuleSource ruleFiles = UiUtils.getRuleFiles(prop);
 
 		
 		if (excelFile.equalsIgnoreCase(outputFileName)) {

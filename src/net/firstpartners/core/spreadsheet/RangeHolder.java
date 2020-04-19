@@ -163,6 +163,7 @@ public class RangeHolder implements List<Range>, Serializable {
 	public Map<String, net.firstpartners.core.spreadsheet.Cell> getAllCells() {
 
 		HashMap<String, Cell> returnValues = new HashMap<String, Cell>();
+		log.info("combining all cells in all ranges, returning as Hashmap");
 
 		for (Range range : allRanges) {
 

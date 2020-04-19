@@ -289,7 +289,7 @@ public class RedGui extends WindowAdapter
 			outputFileName = StringUtils.escape(copyOfProperties.getProperty(UiUtils.EXCEL_OUTPUT));
 
 			// build multiple rules files
-			String rulesFiles[] = UiUtils.convertSourceToRuleArgs(copyOfProperties).getRulesLocation();
+			String rulesFiles[] = UiUtils.getRuleFiles(copyOfProperties).getRulesLocation();
 			StringBuilder ruleFile = new StringBuilder();
 			for (int a = 0; a < rulesFiles.length; a++) {
 				ruleFile.append(StringUtils.escape(rulesFiles[a]) + " | ");
@@ -331,10 +331,10 @@ public class RedGui extends WindowAdapter
 		assert percentProgressMade<=100;
 		this.homePageProgressBar.setValue(percentProgressMade);
 		
-		if(percentProgressMade==100) {
-			homePageStartAgainButton.setEnabled(true);
-		}
-	
+//		if(percentProgressMade==100) {
+//			homePageStartAgainButton.setEnabled(true);
+//		}
+//	
 		
 	}
 
@@ -374,7 +374,7 @@ public class RedGui extends WindowAdapter
 	 */
 	@Override
 	public void showPostRulesSnapShot(Object message) {
-		this.tab3TextArea.setText(message.toString());
+		this.tab3TextArea.setText(UiUtils.deepMapObjectToString(message));
 
 	}
 		
@@ -386,7 +386,7 @@ public class RedGui extends WindowAdapter
 	 */
 	@Override
 	public void showPreRulesSnapShot(Object message) {
-		this.tab2TextArea.setText(message.toString());
+		this.tab2TextArea.setText(UiUtils.deepMapObjectToString(message));
 
 	}
 

@@ -44,7 +44,7 @@ public class UiUtils {
 	 * @param Properties to convert
 	 * @return
 	 */
-	static RuleSource convertSourceToRuleArgs(Properties prop) {
+	static RuleSource getRuleFiles(Properties prop) {
 
 		ArrayList<String> ruleFileLocations = new ArrayList<String>();
 		if (prop.getProperty(DRL1) != null) {
@@ -110,7 +110,7 @@ public class UiUtils {
 	/**
 	 * Compile the rules using the values that we have been passed
 	 */
-	void compileRules(ILogger gui, String ruleFile) {
+	static void compileRules(ILogger gui, String ruleFile) {
 
 		if (ruleFile == null) {
 			gui.info("Please set 'rule' as a param pointing at the rule file you wish to compile ");
@@ -134,4 +134,13 @@ public class UiUtils {
 
 	}
 
+	/**
+	 * Map an Object (including our JavaBeans) to String
+	 * @param objectToMap - should be a rell cell, red range or red range holder
+	 * @return
+	 */
+	static String deepMapObjectToString(Object objectToMap) {
+		assert objectToMap!=null: "Object to map to String should not be null";
+		return objectToMap.toString();
+	}
 }

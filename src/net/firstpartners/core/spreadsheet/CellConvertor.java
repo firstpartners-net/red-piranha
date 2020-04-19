@@ -17,7 +17,7 @@ import net.firstpartners.core.log.RpLogger;
 
 /**
  * Convert from Excel values (as represented by Apache POI) to Javaeans (used by
- * RedPiranha / Rules)
+ * RedPiranha / Rules) and vice versa
  */
 public class CellConvertor {
 

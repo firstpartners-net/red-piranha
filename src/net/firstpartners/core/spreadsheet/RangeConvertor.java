@@ -40,6 +40,7 @@ public class RangeConvertor {
 	 * @return RangeHolder - can be empty if no names are definded
 	 * @throws IOException
 	 */
+	@SuppressWarnings("unused")
 	public static RangeHolder convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook wb)
 			throws IOException {
 

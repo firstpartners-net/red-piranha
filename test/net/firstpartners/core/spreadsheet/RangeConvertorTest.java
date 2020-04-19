@@ -27,7 +27,7 @@ public class RangeConvertorTest {
 	private static final Logger log = RpLogger.getLogger(RangeConvertorTest.class.getName());
 
 	//Save Range and Cell Data
-	final static String SAVED_RANGEHOLDER_DATA="test/testdata/RANGEHOLDER_RANGE_CELLS.testdata";
+	public final static String SAVED_RANGEHOLDER_DATA="test/testdata/RANGEHOLDER_RANGE_CELLS.testdata";
 	
 	/** 
 	 * Convenience method - serialize testdata for use by Cell Tasts

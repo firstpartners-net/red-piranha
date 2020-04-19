@@ -104,8 +104,7 @@ public class RangeConvertor {
 				try {
 					r = sheet.getRow(thisCellRef.getRow()); // ISSUE HERE
 				} catch (NullPointerException npe) {
-					System.out.println(npe);
-					throw (npe);
+					log.log(Level.SEVERE,"Excel Read error on Cell:"+thisCellRef,npe);
 
 				}
 

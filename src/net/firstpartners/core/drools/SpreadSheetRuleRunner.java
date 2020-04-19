@@ -15,6 +15,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.log.IDataSnapshot;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
@@ -76,21 +77,39 @@ public class SpreadSheetRuleRunner {
 		return spreadsheetRange;
 	}
 
-
 	/**
-	 *
+	 * Call the rules engine - using the Excel Data provided
 	 * @param inputFromExcel
-	 *            - the excel data sheet as already opened as a Java Stream
-	 * @param args
+	 * @param ruleSource
 	 * @param nameOfLogSheet
 	 * @return
 	 * @throws DroolsParserException
 	 * @throws IOException
 	 * @throws ClassNotFoundException
-	 * @throws InvalidFormatException 
+	 * @throws InvalidFormatException
 	 */
 	public Workbook callRules(InputStream inputFromExcel, RuleSource ruleSource,
 			String nameOfLogSheet) throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
+		
+			return callRules(inputFromExcel,ruleSource,nameOfLogSheet,null);
+	}
+
+	/**
+	 * Call the rules engine - using the Excel Data provided
+	 * @param inputFromExcel
+	 *            - the excel data sheet as already opened as a Java Stream
+	 * @param args
+	 * @param nameOfLogSheet
+	 * @param userDataDisplay - if not null, we can log log items back to the user (such as pre and post excel data)
+	 * @return
+	 * @throws DroolsParserException
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 * @throws InvalidFormatException 
+	 * 
+	 */
+	public Workbook callRules(InputStream inputFromExcel, RuleSource ruleSource,
+			String nameOfLogSheet, IDataSnapshot userDataDisplay) throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
 		// Create a new Excel Logging object
 		SpreadSheetLogger spreadsheetLogger = new SpreadSheetLogger();
@@ -98,11 +117,18 @@ public class SpreadSheetRuleRunner {
 		// Convert this into a (POI) Workbook
 		Workbook wb=WorkbookFactory.create(inputFromExcel);
 		
-		// Convert the cell
+		// Convert the cell and log if we have a handle
 		RangeHolder ranges = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
+		if(userDataDisplay!=null) {
+			userDataDisplay.showPreRulesSnapShot(ranges);
+		}
 
-		//Call the overloaded method to actually run the rules
+		//Call the overloaded method to actually run the rules and log output if we have a handle
 		callRules(ranges,ruleSource,nameOfLogSheet,spreadsheetLogger);
+		if(userDataDisplay!=null) {
+			userDataDisplay.showPostRulesSnapShot(ranges);
+		}
+		
 
 		// update the excel spreadsheet with the result of our rules
 		RangeConvertor.updateRedRangeintoPoiExcel(wb, ranges);

@@ -56,8 +56,7 @@ public class RedCommandLine {
 		RedGui player = new RedGui();
 		Runnable readRun = new Thread(player);
 		readRun.run();
-		// player.compileRules();
-		// Sanity check
+
 
 		if (excelFile.equalsIgnoreCase(outputFileName)) {
 			player.info("Stopping - Input and output files should not be the same");
@@ -68,10 +67,10 @@ public class RedCommandLine {
 				// Open the inputfile as a stream
 				player.info("Opening Excel Input file:" + excelFile);
 				FileInputStream excelInput = new FileInputStream(excelFile);
-
+				
 				// Call the rules using this Excel datafile
 				player.info("Running Rules:" + ruleFiles);
-				Workbook wb = commonUtils.callRules(excelInput, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME);
+				Workbook wb = commonUtils.callRules(excelInput, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME,player);
 
 				// delete the outputFile if it exists
 				UiUtils.deleteOutputFileIfExists(outputFileName);

@@ -15,7 +15,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.core.drools.data.RuleSource;
-import net.firstpartners.core.log.IDataSnapshot;
+import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
@@ -109,36 +109,50 @@ public class SpreadSheetRuleRunner {
 	 * 
 	 */
 	public Workbook callRules(InputStream inputFromExcel, RuleSource ruleSource,
-			String nameOfLogSheet, IDataSnapshot userDataDisplay) throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
+			String nameOfLogSheet, IGiveFeedbackToUsers userDataDisplay) throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
 		// Create a new Excel Logging object
 		SpreadSheetLogger spreadsheetLogger = new SpreadSheetLogger();
 
 		// Convert this into a (POI) Workbook
 		Workbook wb=WorkbookFactory.create(inputFromExcel);
+		if(userDataDisplay!=null) {
+			userDataDisplay.notifyProgress(10);
+		}
+
 		
 		// Convert the cell and log if we have a handle
 		RangeHolder ranges = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		if(userDataDisplay!=null) {
 			userDataDisplay.showPreRulesSnapShot(ranges);
+			userDataDisplay.notifyProgress(45);
 		}
 
 		//Call the overloaded method to actually run the rules and log output if we have a handle
 		callRules(ranges,ruleSource,nameOfLogSheet,spreadsheetLogger);
 		if(userDataDisplay!=null) {
 			userDataDisplay.showPostRulesSnapShot(ranges);
+			userDataDisplay.notifyProgress(65);
 		}
 		
 
 		// update the excel spreadsheet with the result of our rules
 		RangeConvertor.updateRedRangeintoPoiExcel(wb, ranges);
-
+		if(userDataDisplay!=null) {
+			userDataDisplay.notifyProgress(85);
+		}
+		
+		
 		// update the excel spreadsheet with our log file
 		spreadsheetLogger.flush(wb, nameOfLogSheet);
 
 		// Close our input work book
 		inputFromExcel.close();
-
+		if(userDataDisplay!=null) {
+			userDataDisplay.notifyProgress(100);
+		}
+		
+		
 		// Return the workbook
 		return wb;
 

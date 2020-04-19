@@ -13,6 +13,8 @@ import net.firstpartners.RedConstants;
 import net.firstpartners.core.drools.FileRuleLoader;
 import net.firstpartners.core.drools.SpreadSheetRuleRunner;
 import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.log.IGiveFeedbackToUsers;
+import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 
 /**
@@ -33,11 +35,11 @@ public class RedCommandLine {
 	 * Usage from command line java -jar [jarName.jar] all args are ignored - we
 	 * load from config rulesfile2 ...
 	 *
-	 * @param args - not used
+	 * @param ignoredArgs - not used
 	 * @throws IOException
 	 * @throws DroolsParserException
 	 */
-	public static void main(String[] inforedArgs) throws Exception {
+	public static void main(String[] ignoredArgs) throws Exception {
 
 		// read the properties file
 		Properties prop = UiUtils.readConfig();
@@ -46,49 +48,66 @@ public class RedCommandLine {
 		Object logFileName = prop.get(UiUtils.LOG_FILE_NAME);
 		RpLogger.checkForceLogToFile(logFileName);
 
+		// Open the GUI
+		log.fine("Opening GUI");
+		RedGui player = new RedGui();
+		player.setGUIProperties(prop);
+		Runnable readRun = new Thread(player);
+		readRun.run();
+		Thread.sleep(100L); // pause this thread to give the GUI time to display
+
+
+		runRules(prop, player,player);
+
+	}
+
+	/**
+	 * @param excelFile
+	 * @param outputFileName
+	 * @param ruleFiles
+	 * @param player
+	 * @throws IllegalArgumentException
+	 */
+	static void runRules(Properties prop, ILogger playerAsLogger,IGiveFeedbackToUsers userUpdates)
+			throws IllegalArgumentException {
+		
+		
 		// Get the params
 		String excelFile = prop.getProperty(UiUtils.EXCEL_INPUT);
 		String outputFileName = prop.getProperty(UiUtils.EXCEL_OUTPUT);
 		RuleSource ruleFiles = UiUtils.convertSourceToRuleArgs(prop);
 
-		// Open the GUI
-		log.fine("Opening GUI");
-		RedGui player = new RedGui();
-		Runnable readRun = new Thread(player);
-		readRun.run();
-
-
+		
 		if (excelFile.equalsIgnoreCase(outputFileName)) {
-			player.info("Stopping - Input and output files should not be the same");
+			playerAsLogger.info("Stopping - Input and output files should not be the same");
 			throw new IllegalArgumentException("Input and output files should not be the same");
 		} else {
 
 			try {
 				// Open the inputfile as a stream
-				player.info("Opening Excel Input file:" + excelFile);
+				playerAsLogger.info("Opening Excel Input file:" + excelFile);
 				FileInputStream excelInput = new FileInputStream(excelFile);
 				
 				// Call the rules using this Excel datafile
-				player.info("Running Rules:" + ruleFiles);
-				Workbook wb = commonUtils.callRules(excelInput, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME,player);
+				playerAsLogger.info("Running Rules:" + ruleFiles);
+				Workbook wb = commonUtils.callRules(excelInput, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME,userUpdates);
 
 				// delete the outputFile if it exists
 				UiUtils.deleteOutputFileIfExists(outputFileName);
 
 				// Open the outputfile as a stream
-				player.info("Opening Excel Output file:" + outputFileName);
+				playerAsLogger.info("Opening Excel Output file:" + outputFileName);
 				FileOutputStream excelOutput = new FileOutputStream(outputFileName);
 
 				wb.write(excelOutput);
 
-				player.info("Complete");
+				playerAsLogger.info("Complete");
 
 			} catch (Throwable t) {
-				player.exception("Uncaught Exception", t);
+				playerAsLogger.exception("Uncaught Exception", t);
 				
 			}
 		}
-
 	}
 
 

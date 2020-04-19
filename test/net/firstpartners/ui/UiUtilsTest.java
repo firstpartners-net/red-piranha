@@ -33,9 +33,16 @@ public class UiUtilsTest {
 		fileIn.close();
 	}
 	
-	@Test void testDeepMapObjectToString(){
-		assertNotNull()
+	@Test void testDeepMapObjectToStringFail(){
+		assertNotNull(redData);
+		UiUtils.deepMapObjectToString(redData);
 		
+	}
+	
+	@Test void testDeepMapObjectToString(){
+		assertNotNull(redData);
+		String desc = UiUtils.deepMapObjectToString(redData);
+		assertNotNull(desc);
 	}
 
 	@Test

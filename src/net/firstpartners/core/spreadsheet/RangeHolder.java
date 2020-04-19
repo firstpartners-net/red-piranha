@@ -10,6 +10,8 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 import net.firstpartners.core.log.RpLogger;
 
@@ -154,6 +156,20 @@ public class RangeHolder implements List<Range>, Serializable {
 
 		return returnValues;
 
+	}
+	/**
+	 * toString method, lists all the cells we hold
+	 */
+	@Override
+	public String toString() {
+		StringBuilder returnText = new StringBuilder(ToStringBuilder.reflectionToString(this,ToStringStyle.MULTI_LINE_STYLE));
+		
+		getAllRangesAndCells().forEach((cell) -> {
+			returnText.append("  "+cell+"\n");
+		});
+		
+		return returnText.toString();
+	   
 	}
 
 	/**

@@ -90,7 +90,7 @@ public class RedCommandLine {
 				
 				// Call the rules using this Excel datafile
 				playerAsLogger.info("Running Rules:" + ruleFiles);
-				Workbook wb = commonUtils.callRules(excelInput, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME,userUpdates);
+				Workbook wb = commonUtils.callRules(excelInput, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME,userUpdates,playerAsLogger);
 
 				// delete the outputFile if it exists
 				UiUtils.deleteOutputFileIfExists(outputFileName);

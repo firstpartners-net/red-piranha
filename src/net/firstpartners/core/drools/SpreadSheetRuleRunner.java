@@ -19,7 +19,6 @@ import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
-import net.firstpartners.core.spreadsheet.Range;
 import net.firstpartners.core.spreadsheet.RangeConvertor;
 import net.firstpartners.core.spreadsheet.RangeHolder;
 
@@ -41,41 +40,7 @@ public class SpreadSheetRuleRunner {
 	}
 
 
-	/**
-	 *
-	 * @param rangeHolder - Red Piranha representation of the spreadsheet format
-	 * @param args
-	 * @param nameOfLogSheet
-	 * @return
-	 * @throws DroolsParserException
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 */
-	public RangeHolder callRules(RangeHolder rangeHolder, RuleSource ruleSource,
-			String nameOfLogSheet,ILogger logger) throws DroolsParserException, IOException, ClassNotFoundException {
 
-
-		// Log the cell contents
-		log.finer("============ Spreadsheet Cell Contents In =========");
-		for (Range r : rangeHolder) {
-			log.finer(r.toString());
-		}
-
-		//Add the Spreadsheet contents as facts
-		ruleSource.addFacts(rangeHolder.getAllRangesAndCells());
-
-		// Load and fire our rules files against the data
-		ruleRunner.runStatelessRules(ruleSource, logger);
-
-		// Log the cell contents
-		log.finer("============ Spreadsheet Cell Contents Out =========");
-		for (Range r : rangeHolder) {
-			log.finer(r.toString());
-		}
-
-
-		return rangeHolder;
-	}
 
 	/**
 	 * Call the rules engine - using the Excel Data provided
@@ -91,9 +56,11 @@ public class SpreadSheetRuleRunner {
 	public Workbook callRules(InputStream inputFromExcel, RuleSource ruleSource,
 			String nameOfLogSheet) throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 		
-			return callRules(inputFromExcel,ruleSource,nameOfLogSheet,null);
+			return callRules(inputFromExcel,ruleSource,nameOfLogSheet,null,null);
 	}
 
+	
+	
 	/**
 	 * Call the rules engine - using the Excel Data provided
 	 * @param inputFromExcel
@@ -109,7 +76,7 @@ public class SpreadSheetRuleRunner {
 	 * 
 	 */
 	public Workbook callRules(InputStream inputFromExcel, RuleSource ruleSource,
-			String nameOfLogSheet, IGiveFeedbackToUsers userDataDisplay) throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
+			String nameOfLogSheet, IGiveFeedbackToUsers userDataDisplay,ILogger logger) throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
 		// Create a new Excel Logging object
 		SpreadSheetLogger spreadsheetLogger = new SpreadSheetLogger();
@@ -124,14 +91,21 @@ public class SpreadSheetRuleRunner {
 		// Convert the cell and log if we have a handle
 		RangeHolder ranges = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		if(userDataDisplay!=null) {
-			userDataDisplay.showPreRulesSnapShot(ranges);
+			userDataDisplay.showPreRulesSnapShot(ranges.toString());
 			userDataDisplay.notifyProgress(45);
 		}
 
 		//Call the overloaded method to actually run the rules and log output if we have a handle
-		callRules(ranges,ruleSource,nameOfLogSheet,spreadsheetLogger);
+		// Log the cell contents
+
+		//Add the Spreadsheet contents as facts
+		ruleSource.addFacts(ranges.getAllRangesAndCells());
+
+		// Load and fire our rules files against the data
+		ruleRunner.runStatelessRules(ruleSource, logger);
+		
 		if(userDataDisplay!=null) {
-			userDataDisplay.showPostRulesSnapShot(ranges);
+			userDataDisplay.showPostRulesSnapShot(ranges.toString());
 			userDataDisplay.notifyProgress(65);
 		}
 		
@@ -145,7 +119,8 @@ public class SpreadSheetRuleRunner {
 		
 		// update the excel spreadsheet with our log file
 		spreadsheetLogger.flush(wb, nameOfLogSheet);
-
+		spreadsheetLogger.flush(logger);
+		
 		// Close our input work book
 		inputFromExcel.close();
 		if(userDataDisplay!=null) {

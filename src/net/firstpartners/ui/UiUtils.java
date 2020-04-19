@@ -9,22 +9,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-
 import org.drools.compiler.compiler.DroolsParserException;
-
-import com.google.gson.Gson;
 
 import net.firstpartners.RedConstants;
 import net.firstpartners.core.drools.PreCompileRuleBuilder;
 import net.firstpartners.core.drools.data.RuleSource;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.core.spreadsheet.Cell;
-import net.firstpartners.core.spreadsheet.RangeHolder;
 /**
  * Set of common functions used by GUI / Command Line / Servlet
  * 
@@ -139,35 +133,5 @@ public class UiUtils {
 
 	}
 
-	/**
-	 * Map an Object (including our JavaBeans) to String
-	 * 
-	 * @param objectToMap - should be a rell cell, red range or red range holder
-	 * @return
-	 * @throws JAXBException 
-	 */
-	static String deepMapObjectToJSonString(Object objectToMap)  {
-		
-		assert objectToMap != null : "Object to map should not be null";
-		return objectToMap.toString();
-		
-		
-//		//Local Vars
-//		Gson gson = new Gson();
-//		String returnString ="";
-//		
-//		if(objectToMap instanceof RangeHolder) {
-//			RangeHolder re = (RangeHolder)objectToMap;
-//			Collection<Cell> facts = 	re.getAllRangesAndCells();
-//			
-//			log.info("Mapping Object to Collection of Cells and Jsonifing");
-//			returnString = gson.toJson(facts);
-//		} else {
-//			log.info("Mapping Generic Object and Jsonifying");
-//			returnString = gson.toJson(objectToMap);
-//		}
-//
-//		
-//		return returnString;
-	}
+
 }

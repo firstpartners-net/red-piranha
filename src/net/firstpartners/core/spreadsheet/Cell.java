@@ -5,6 +5,9 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 
 /**
  * JavaBean equivalent of a cell in an Excel Spreadsheet
@@ -213,8 +216,8 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	@Override
 	public String toString() {
-		return "cellName:" + cellName + " value:" + value + " comment:" + comment + " modified:" + modified
-				+ " originalSheetRef:" + originalSheetReference + " originalCellRef:" + originalCellReference;
+		
+		return "Cell "+ToStringBuilder.reflectionToString(this,ToStringStyle.MULTI_LINE_STYLE);
 	}
 
 }

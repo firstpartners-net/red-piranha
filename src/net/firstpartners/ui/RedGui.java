@@ -91,11 +91,12 @@ public class RedGui extends WindowAdapter
 	// the IGiveFeedbackToUsers interface
 	private JFrame frame = new JFrame("Red-Piranha - Java Power Tools for Excel");
 	private JProgressBar homePageProgressBar;
-	private JButton homePageStartAgainButton;
+	private JButton homePageCloseButton;
 	private JEditorPane htmlHomePane;
 	private JTextArea tab2TextArea;
 	private JTextArea tab3TextArea;
 	private JTextArea tab4TextArea;
+	
 
 	/**
 	 * Constructor, builds a simple GUI
@@ -131,22 +132,22 @@ public class RedGui extends WindowAdapter
 
 		JPanel jp1 = new JPanel();// This will create the first tab
 		JPanel jp2 = new JPanel();// This will create the second tab
-		JPanel jp3 = new JPanel();// This will create the third tab
-		JPanel jp4 = new JPanel();// This will create the fourth tab
+		JPanel jp3 = new JPanel();// This will create the fourth tab
+		JPanel jp4 = new JPanel();// This will create the third tab
 
 		// add the tabs
 		updateFontSize(jtp);
 
 		jtp.addTab("  Home  ", jp1);
 		jtp.addTab("  Excel Data before rules  ", jp2);
-		jtp.addTab("  Data after business rules applied	  ", jp3);
-		jtp.addTab("  Log	  ", jp4);
+		jtp.addTab("  Rules Engine Log ", jp3);
+		jtp.addTab("  Data after business rules applied	  ", jp4);
 
 		// Panel 1 button
-		homePageStartAgainButton = new JButton("Run Again"); // held at class level
-		homePageStartAgainButton.setEnabled(false);
-		updateFontSize(homePageStartAgainButton);
-		homePageStartAgainButton.addActionListener(this);
+		homePageCloseButton = new JButton("  Exit  "); // held at class level
+		homePageCloseButton.setEnabled(false);
+		updateFontSize(homePageCloseButton);
+		homePageCloseButton.addActionListener(this);
 
 		// Panel 1 Progress Bar
 		homePageProgressBar = new JProgressBar();
@@ -160,7 +161,7 @@ public class RedGui extends WindowAdapter
 		jp1.setLayout(new BorderLayout());
 		JPanel subPanel = new JPanel();
 		subPanel.setLayout(new BorderLayout());
-		subPanel.add(homePageStartAgainButton, "East");
+		subPanel.add(homePageCloseButton, "East");
 		subPanel.add(homePageProgressBar, "Center");
 		jp1.add(homePane, "Center");
 		jp1.add(subPanel, "South");
@@ -176,9 +177,9 @@ public class RedGui extends WindowAdapter
 		jp2.add(new JScrollPane(this.tab2TextArea), "Center");
 		jp2.add(label2, "North");
 
-		// Panel 3
+		// panel 3
 		JLabel label3 = new JLabel();
-		label3.setText("This the information updated by the business rules, before we save it to Excel\n");
+		label3.setText("Updates as the system runs - more details in red-piranha.log and in the 'log' table of the workbook\n");
 		updateFontSize(label3);
 		this.tab3TextArea = new JTextArea();
 		this.tab3TextArea.setEditable(false);
@@ -187,9 +188,9 @@ public class RedGui extends WindowAdapter
 		jp3.add(new JScrollPane(this.tab3TextArea), "Center");
 		jp3.add(label3, "North");
 
-		// panel 4
+		// Panel 4
 		JLabel label4 = new JLabel();
-		label4.setText("Updates as the system runs - more details in red-piranha.log\n");
+		label4.setText("This the information updated by the business rules, before we save it to Excel\n");
 		updateFontSize(label4);
 		this.tab4TextArea = new JTextArea();
 		this.tab4TextArea.setEditable(false);
@@ -197,7 +198,7 @@ public class RedGui extends WindowAdapter
 		jp4.setLayout(new BorderLayout());
 		jp4.add(new JScrollPane(this.tab4TextArea), "Center");
 		jp4.add(label4, "North");
-
+		
 		// make the window visible
 		this.frame.setVisible(true);
 		frame.addWindowListener(this);
@@ -214,11 +215,8 @@ public class RedGui extends WindowAdapter
 	 */
 	public synchronized void actionPerformed(ActionEvent evt) {
 		log.info("Notified of Action:" + evt);
-		this.tab4TextArea.setText("");
-		this.homePageStartAgainButton.setEnabled(false);
-		this.notifyProgress(0);
-		RedCommandLine.runRules(copyOfProperties, this, this);
-		;
+		System.exit(0);
+		
 	}
 
 	/**
@@ -227,7 +225,7 @@ public class RedGui extends WindowAdapter
 	 * @param message to log
 	 */
 	public void debug(String message) {
-		this.tab4TextArea.append("DEBUG:" + message + "\n");
+		this.tab3TextArea.append("DEBUG:" + message + "\n");
 		log.fine(message);
 	}
 
@@ -238,7 +236,7 @@ public class RedGui extends WindowAdapter
 	 * @param t
 	 */
 	public void exception(String message, Throwable t) {
-		this.tab4TextArea.append("EXCEPTION:" + message + "\n" + t.toString() + "\n");
+		this.tab3TextArea.append("EXCEPTION:" + message + "\n" + t.toString() + "\n");
 		log.severe(message + "\n" + t.toString());
 		log.log(Level.SEVERE, "Error", t);
 	}
@@ -321,7 +319,7 @@ public class RedGui extends WindowAdapter
 	 * @param message
 	 */
 	public void info(String message) {
-		this.tab4TextArea.append("INFO:" + message + "\n");
+		this.tab3TextArea.append("INFO:" + message + "\n");
 		log.info(message);
 	}
 
@@ -335,10 +333,10 @@ public class RedGui extends WindowAdapter
 		assert percentProgressMade <= 100;
 		this.homePageProgressBar.setValue(percentProgressMade);
 
-//		if(percentProgressMade==100) {
-//			homePageStartAgainButton.setEnabled(true);
-//		}
-//	
+		if(percentProgressMade==100) {
+			homePageCloseButton.setEnabled(true);
+		}
+	
 
 	}
 
@@ -358,9 +356,9 @@ public class RedGui extends WindowAdapter
 					continue;
 				}
 			} catch (InterruptedException var2) {
-				this.tab4TextArea.append(var2.toString());
+				this.tab3TextArea.append(var2.toString());
 			} catch (Throwable var3) {
-				this.tab4TextArea.append(var3.toString());
+				this.tab3TextArea.append(var3.toString());
 			}
 
 			return;
@@ -378,9 +376,9 @@ public class RedGui extends WindowAdapter
 	 * @param message
 	 */
 	@Override
-	public void showPostRulesSnapShot(Object message) {
+	public void showPostRulesSnapShot(String message) {
 
-		this.tab3TextArea.setText(UiUtils.deepMapObjectToJSonString(message));
+		this.tab4TextArea.setText(message);
 
 	}
 
@@ -391,9 +389,9 @@ public class RedGui extends WindowAdapter
 	 * @param message
 	 */
 	@Override
-	public void showPreRulesSnapShot(Object message) {
+	public void showPreRulesSnapShot(String message) {
 
-		this.tab3TextArea.setText(UiUtils.deepMapObjectToJSonString(message));
+		this.tab2TextArea.setText(message);
 
 	}
 

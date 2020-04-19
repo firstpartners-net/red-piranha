@@ -43,7 +43,7 @@ public class SpreadSheetRuleRunner {
 
 	/**
 	 *
-	 * @param spreadsheetRange - Red Piranha representation of the spreadsheet format
+	 * @param rangeHolder - Red Piranha representation of the spreadsheet format
 	 * @param args
 	 * @param nameOfLogSheet
 	 * @return
@@ -51,30 +51,30 @@ public class SpreadSheetRuleRunner {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public RangeHolder callRules(RangeHolder spreadsheetRange, RuleSource ruleSource,
+	public RangeHolder callRules(RangeHolder rangeHolder, RuleSource ruleSource,
 			String nameOfLogSheet,ILogger logger) throws DroolsParserException, IOException, ClassNotFoundException {
 
 
 		// Log the cell contents
 		log.finer("============ Spreadsheet Cell Contents In =========");
-		for (Range r : spreadsheetRange) {
+		for (Range r : rangeHolder) {
 			log.finer(r.toString());
 		}
 
 		//Add the Spreadsheet contents as facts
-		ruleSource.addFacts(spreadsheetRange.getAllRangesAndCells());
+		ruleSource.addFacts(rangeHolder.getAllRangesAndCells());
 
 		// Load and fire our rules files against the data
 		ruleRunner.runStatelessRules(ruleSource, logger);
 
 		// Log the cell contents
 		log.finer("============ Spreadsheet Cell Contents Out =========");
-		for (Range r : spreadsheetRange) {
+		for (Range r : rangeHolder) {
 			log.finer(r.toString());
 		}
 
 
-		return spreadsheetRange;
+		return rangeHolder;
 	}
 
 	/**

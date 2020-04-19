@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
+import net.firstpartners.core.spreadsheet.Cell;
+
 /**
  * Cargo object to hold information about the type of rules that we are working with
  * @author paul
@@ -13,20 +15,103 @@ import java.util.List;
  */
 public class RuleSource {
 
+	private String dslFileLocation;
+
+	private Collection<Cell> facts = new ArrayList<Cell>();
+
+	private HashMap<String, Cell> globals = new HashMap<String, Cell> ();
+
+	private String knowledgeBaseLocation;
+
+	private String ruleFlowFileUrl;
+
+
+	private String[] rulesLocation;
+
+	public void addFact(Cell fact) {
+
+		if(facts ==null){
+			facts = new ArrayList<Cell>();
+		}
+
+		facts.add(fact);
+	}
+
+	public void addFacts(Collection<Cell> facts) {
+
+		if(this.facts ==null){
+			this.facts = new ArrayList<Cell>();
+		}
+
+		this.facts.addAll(facts);
+	}
+
+	public void addGlobal(String globalName, Cell global) {
+
+		if(globals==null){
+			globals = new HashMap<String, Cell> ();
+		}
+		globals.put(globalName,global);
+	}
+
+	public void addGlobals(HashMap<String, Cell> globals) {
+
+		if(this.globals==null){
+			this.globals = new HashMap<String, Cell> ();
+		}
+		this.globals.putAll(globals);
+	}
+
+	public String getDslFileLocation() {
+		return dslFileLocation;
+	}
+
+
+	public Collection<Cell> getFacts() {
+		return facts;
+	}
+
+	public HashMap<String, Cell> getGlobals() {
+		return globals;
+	}
+
 	public String getKnowledgeBaseLocation() {
 		return knowledgeBaseLocation;
 	}
 
-	public void setKnowledgeBaseLocation(String knowledgeBaseLocation) {
-		this.knowledgeBaseLocation = knowledgeBaseLocation;
+	public String getRuleFlowFileUrl() {
+		return ruleFlowFileUrl;
 	}
 
 	public String[] getRulesLocation() {
 		return rulesLocation;
 	}
 
-	public void setRulesLocation(String[] rulesLocation) {
-		this.rulesLocation = rulesLocation;
+
+	public void setDslFileLocation(String dslFileLocation) {
+		this.dslFileLocation = dslFileLocation;
+	}
+
+	public void setFacts(Cell[] facts) {
+		List<Cell> factsCollection = Arrays.asList(facts);
+		setFacts(factsCollection);
+
+	}
+
+	public void setFacts(Collection<Cell> facts) {
+		this.facts = facts;
+	}
+
+	public void setGlobals(HashMap<String, Cell> globals) {
+		this.globals = globals;
+	}
+
+	public void setKnowledgeBaseLocation(String knowledgeBaseLocation) {
+		this.knowledgeBaseLocation = knowledgeBaseLocation;
+	}
+
+	public void setRuleFlowFileUrl(String ruleFlowFileUrl) {
+		this.ruleFlowFileUrl = ruleFlowFileUrl;
 	}
 
 	/**
@@ -41,92 +126,9 @@ public class RuleSource {
 		rulesLocation = tmpArray;
 	}
 
-
-	public String getDslFileLocation() {
-		return dslFileLocation;
+	public void setRulesLocation(String[] rulesLocation) {
+		this.rulesLocation = rulesLocation;
 	}
-
-	public void setDslFileLocation(String dslFileLocation) {
-		this.dslFileLocation = dslFileLocation;
-	}
-
-	public Collection<Object> getFacts() {
-		return facts;
-	}
-
-	public void addFact(Object fact) {
-
-		if(facts ==null){
-			facts = new ArrayList<Object>();
-		}
-
-		facts.add(fact);
-	}
-
-	public void addFacts(Collection<Object> facts) {
-
-		if(this.facts ==null){
-			this.facts = new ArrayList<Object>();
-		}
-
-		this.facts.addAll(facts);
-	}
-
-	public void setFacts(Collection<Object> facts) {
-		this.facts = facts;
-	}
-
-
-	public void setFacts(Object[] facts) {
-		List<Object> factsCollection = Arrays.asList(facts);
-		setFacts(factsCollection);
-
-	}
-
-	public HashMap<String, Object> getGlobals() {
-		return globals;
-	}
-
-	public void addGlobal(String globalName, Object global) {
-
-		if(globals==null){
-			globals = new HashMap<String, Object> ();
-		}
-		globals.put(globalName,global);
-	}
-
-	public void addGlobals(HashMap<String, Object> globals) {
-
-		if(this.globals==null){
-			this.globals = new HashMap<String, Object> ();
-		}
-		this.globals.putAll(globals);
-	}
-
-	public void setGlobals(HashMap<String, Object> globals) {
-		this.globals = globals;
-	}
-
-
-	public String getRuleFlowFileUrl() {
-		return ruleFlowFileUrl;
-	}
-
-	public void setRuleFlowFileUrl(String ruleFlowFileUrl) {
-		this.ruleFlowFileUrl = ruleFlowFileUrl;
-	}
-
-	private String knowledgeBaseLocation;
-
-	private String[] rulesLocation;
-
-	private String dslFileLocation;
-
-	private Collection<Object> facts = new ArrayList<Object>();
-
-	private HashMap<String, Object> globals = new HashMap<String, Object> ();
-
-	private String ruleFlowFileUrl;
 
 
 

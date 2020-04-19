@@ -13,6 +13,7 @@ import org.drools.runtime.StatelessKnowledgeSession;
 import net.firstpartners.core.drools.data.RuleSource;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
+import net.firstpartners.core.spreadsheet.Cell;
 
 /**
  * Load rules
@@ -78,7 +79,7 @@ public class RuleRunner {
 	 * @throws IOException
 	 */
 	public void runStatelessRules(KnowledgeBase preBuiltKnowledgeBase,
-			Collection<Object> facts, HashMap<String, Object> globals,
+			Collection<Cell> facts, HashMap<String, Cell> globals,
 			ILogger logger) throws DroolsParserException, IOException {
 
 		// Create a new stateless session
@@ -155,7 +156,7 @@ public class RuleRunner {
 	 */
 	public StatefulKnowledgeSession getStatefulSession(
 			KnowledgeBase preBuiltKnowledgeBase,
-			HashMap<String, Object> globals, ILogger logger)
+			HashMap<String, Cell> globals, ILogger logger)
 					throws DroolsParserException, IOException {
 		// Create a new stateful session
 		StatefulKnowledgeSession workingMemory = preBuiltKnowledgeBase

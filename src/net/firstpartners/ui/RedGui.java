@@ -36,8 +36,10 @@ import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 
 /**
- * Previously released as 'RulePlayer', Desktop GUI for Red Piranha
- * Desktop User interface to ease calling of Rules / running the webserver needed for the office plugin
+ * Previously released as 'RulePlayer', Desktop GUI for Red Piranha Desktop User
+ * interface to ease calling of Rules / running the webserver needed for the
+ * office plugin
+ * 
  * @author PBrowne
  *
  */
@@ -72,18 +74,20 @@ public class RedGui extends WindowAdapter
 
 	/**
 	 * Helper method to update font size
-	 * @param swingComponent 
+	 * 
+	 * @param swingComponent
 	 */
 	static void updateFontSize(JComponent swingComponent) {
 		Font currentFont = swingComponent.getFont();
 		Font updatedFont = currentFont.deriveFont(currentFont.getSize() * 1.4F);
 		swingComponent.setFont(updatedFont);
-		
+
 	}
 
 	// Handle to the Properties
 	Properties copyOfProperties = null;
-	// Class level GUI Elements - we update these as we get notification from the system via
+	// Class level GUI Elements - we update these as we get notification from the
+	// system via
 	// the IGiveFeedbackToUsers interface
 	private JFrame frame = new JFrame("Red-Piranha - Java Power Tools for Excel");
 	private JProgressBar homePageProgressBar;
@@ -132,35 +136,34 @@ public class RedGui extends WindowAdapter
 
 		// add the tabs
 		updateFontSize(jtp);
-		
+
 		jtp.addTab("  Home  ", jp1);
 		jtp.addTab("  Excel Data before rules  ", jp2);
 		jtp.addTab("  Data after business rules applied	  ", jp3);
 		jtp.addTab("  Log	  ", jp4);
 
-		
-		//Panel 1 button
+		// Panel 1 button
 		homePageStartAgainButton = new JButton("Run Again"); // held at class level
 		homePageStartAgainButton.setEnabled(false);
 		updateFontSize(homePageStartAgainButton);
 		homePageStartAgainButton.addActionListener(this);
-		
-		//Panel 1 Progress Bar
-		homePageProgressBar= new JProgressBar();
-		homePageProgressBar.setPreferredSize(new Dimension(x,50));
+
+		// Panel 1 Progress Bar
+		homePageProgressBar = new JProgressBar();
+		homePageProgressBar.setPreferredSize(new Dimension(x, 50));
 		homePageProgressBar.setMinimum(0);
 		homePageProgressBar.setMaximum(100);
 		homePageProgressBar.setStringPainted(true);
-		
+
 		// Panel 1
 		JComponent homePane = getHomePanel();
 		jp1.setLayout(new BorderLayout());
 		JPanel subPanel = new JPanel();
 		subPanel.setLayout(new BorderLayout());
 		subPanel.add(homePageStartAgainButton, "East");
-		subPanel.add(homePageProgressBar,"Center");
+		subPanel.add(homePageProgressBar, "Center");
 		jp1.add(homePane, "Center");
-		jp1.add(subPanel,"South");
+		jp1.add(subPanel, "South");
 
 		// Panel 2
 		JLabel label2 = new JLabel();
@@ -204,7 +207,7 @@ public class RedGui extends WindowAdapter
 
 		frame.setVisible(true); // otherwise you won't "see" it/
 	}
-	
+
 	/**
 	 * Event Handler - button pushed
 	 * 
@@ -212,9 +215,10 @@ public class RedGui extends WindowAdapter
 	public synchronized void actionPerformed(ActionEvent evt) {
 		log.info("Notified of Action:" + evt);
 		this.tab4TextArea.setText("");
-		this.homePageStartAgainButton.setEnabled(false);	
+		this.homePageStartAgainButton.setEnabled(false);
 		this.notifyProgress(0);
-		RedCommandLine.runRules(copyOfProperties, this, this);;
+		RedCommandLine.runRules(copyOfProperties, this, this);
+		;
 	}
 
 	/**
@@ -245,7 +249,7 @@ public class RedGui extends WindowAdapter
 	JScrollPane getHomePanel() {
 
 		// create home pnael
-		 htmlHomePane = new JEditorPane();
+		htmlHomePane = new JEditorPane();
 
 		// make it read-only
 		htmlHomePane.setEditable(false);
@@ -322,20 +326,20 @@ public class RedGui extends WindowAdapter
 	}
 
 	/**
-	 * Update the GUI Progress Bar
-	 * Callback via IGiveFeedbacktoUsers interface
+	 * Update the GUI Progress Bar Callback via IGiveFeedbacktoUsers interface
+	 * 
 	 * @param percentProgressMade 0 to 100
 	 */
 	public void notifyProgress(int percentProgressMade) {
-		assert percentProgressMade>=0;
-		assert percentProgressMade<=100;
+		assert percentProgressMade >= 0;
+		assert percentProgressMade <= 100;
 		this.homePageProgressBar.setValue(percentProgressMade);
-		
+
 //		if(percentProgressMade==100) {
 //			homePageStartAgainButton.setEnabled(true);
 //		}
 //	
-		
+
 	}
 
 	/**
@@ -366,27 +370,30 @@ public class RedGui extends WindowAdapter
 	public void setGUIProperties(Properties copyOfProperties) {
 		this.copyOfProperties = copyOfProperties;
 	}
-	
+
 	/**
-	 * Allows us to Log to the GUI a snapshot pre rules
-	 * Callback via IGiveFeedbacktoUsers interface
+	 * Allows us to Log to the GUI a snapshot pre rules Callback via
+	 * IGiveFeedbacktoUsers interface
+	 * 
 	 * @param message
 	 */
 	@Override
 	public void showPostRulesSnapShot(Object message) {
-		this.tab3TextArea.setText(UiUtils.deepMapObjectToString(message));
+
+		this.tab3TextArea.setText(UiUtils.deepMapObjectToJSonString(message));
 
 	}
-		
 
 	/**
-	 * Allows us to Log to the GUI a snapshot pre rules
-	 * Callback via IGiveFeedbacktoUsers interface
+	 * Allows us to Log to the GUI a snapshot pre rules Callback via
+	 * IGiveFeedbacktoUsers interface
+	 * 
 	 * @param message
 	 */
 	@Override
 	public void showPreRulesSnapShot(Object message) {
-		this.tab2TextArea.setText(UiUtils.deepMapObjectToString(message));
+
+		this.tab3TextArea.setText(UiUtils.deepMapObjectToJSonString(message));
 
 	}
 

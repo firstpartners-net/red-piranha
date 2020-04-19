@@ -57,7 +57,7 @@ public class EventRulesExample {
 		ruleSource.setRulesLocation(RULES_FILES);
 
 		//Add the globals
-		ruleSource.addGlobal(NEXT_AVAILABLE_SHIPMENT_DATE, new OoompaLoompaDate(2009,02,03));
+		ruleSource.addGlobal(NEXT_AVAILABLE_SHIPMENT_DATE, new Cell( new OoompaLoompaDate(2009,02,03)));
 
 		//Add the facts
 		ruleSource.addFact(candyBarOrder);

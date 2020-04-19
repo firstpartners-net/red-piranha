@@ -10,6 +10,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.logging.Logger;
 
+
 import net.firstpartners.core.log.RpLogger;
 
 /**
@@ -134,14 +135,14 @@ public class RangeHolder implements List<Range>, Serializable {
 	 * 
 	 * @return
 	 */
-	public Collection<Object> getAllRangesAndCells() {
+	public Collection<Cell> getAllRangesAndCells() {
 
-		Collection<Object> returnValues = new ArrayList<Object>();
+		Collection<Cell> returnValues = new ArrayList<Cell>();
 
 		for (Range range : allRanges) {
 
 			// Add the range to the flattened collection
-			returnValues.add(range);
+			//returnValues.add(range);
 
 			// Add the cells within the range
 

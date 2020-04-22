@@ -43,6 +43,7 @@
 
 	<!-- Define additional ant tasks -->
 	<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar" />
+	<taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties" classpath="testlib/checkstyle-8.31-all.jar" />
 	<!--
 		<taskdef name="rulepackage" classname="net.firstpartners.drools.AntRuleBuilder"/>
 	    -->
@@ -248,8 +249,8 @@
 	<target name="exe" depends="jar-single" description="create standalone exe">
 
 		<!-- Delete any previous exe-->
-		<delete file="${distrib.dir}/red-piranha.exe"/>
-		
+		<delete file="${distrib.dir}/red-piranha.exe" />
+
 		<!-- call the launch4j to wrap as standalone exe-->
 		<launch4j configFile="launch4j.xml" />
 
@@ -273,9 +274,24 @@
 			</bottom>
 	<classpath refid="master-classpath" />
 
-
 </javadoc>
 </target>
+
+<!-- check Javadoc for application-->
+<target name="check-javadoc" description="Check Javadoc documentation">
+
+
+<checkstyle config="/test/checkstyle_checks.xml" failureProperty="checkstyle.failure"
+    failOnViolation="false">
+	<fileset dir="${src.dir}" includes="**/*.java" />
+	<formatter type="xml" tofile="checkstyle_report.xml"/>
+	<path id="test-classpath"/>
+</checkstyle>
+
+	<style in="checkstyle_report.xml" out="checkstyle_report.html" style="checkstyle.xsl" />
+
+</target>
+
 
 
 </project>

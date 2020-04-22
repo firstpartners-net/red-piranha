@@ -1,6 +1,3 @@
-/**
- * 
- */
 package net.firstpartners.core.log;
 
 import java.io.IOException;
@@ -10,7 +7,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 /**
- * Extender logging so that we can control logging in an exe environment
+ * Extender logging so that we can control logging in an exe environment.
  * 
  * @author PBrowne
  */

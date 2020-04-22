@@ -21,7 +21,7 @@ import net.firstpartners.core.log.RpLogger;
 
 /**
  * Read Ranges from Excel, Convert to a format (JavaBeans) that rules find
- * easier use
+ * easier use.
  *
  * Based on Sample from Apache POI
  *

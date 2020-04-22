@@ -91,7 +91,7 @@ public class SpreadSheetRuleRunner {
 		// Convert the cell and log if we have a handle
 		RangeHolder ranges = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		if(userDataDisplay!=null) {
-			userDataDisplay.showPreRulesSnapShot(ranges.toString());
+			//userDataDisplay.showPreRulesSnapShot(ranges.toString());
 			userDataDisplay.notifyProgress(45);
 		}
 

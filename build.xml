@@ -44,10 +44,7 @@
 	<!-- Define additional ant tasks -->
 	<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar" />
 	<taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties" classpath="testlib/checkstyle-8.31-all.jar" />
-	<!--
-		<taskdef name="rulepackage" classname="net.firstpartners.drools.AntRuleBuilder"/>
-	    -->
-
+	
 	<!-- The Main classpath we use when compiling -->
 	<path id="master-classpath">
 		<fileset dir="${lib.root}/lib/">
@@ -120,7 +117,7 @@
 		<javac srcdir="${testsrc.dir}" destdir="${testbuild.dir}" deprecation="true">
 			<classpath path="${build.dir}" />
 			<classpath refid="master-classpath" />
-			<classpath path="${app.root}/lib/junit/junit.jar" />
+			<classpath path="${app.root}/testlib/*.jar" />
 			<classpath refid="test-classpath" />
 		</javac>
 

@@ -130,8 +130,10 @@ public class RangeConvertor {
 				redCell.setHoldingRange(redRange);
 				redCell.addPropertyChangeListener(redRange);
 
-				log.info("Converted Cell:" + redCell);
+				//log.info("Converted Cell:" + redCell);
+				log.info("Converted Number:" + thisCellinRange +" of "+cellArray.size());
 
+				
 				// Add the list of cells to a range
 				redRange.put(cellHandle, redCell);
 

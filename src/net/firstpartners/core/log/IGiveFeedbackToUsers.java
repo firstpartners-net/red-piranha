@@ -24,6 +24,11 @@ public interface IGiveFeedbackToUsers {
 	 * @param percentProgressMade 0 to 100
 	 */
 	public void notifyProgress(int percentProgressMade);
+	
+	/**
+	 * Notifies us if we want Provide a visual notification that an Exception has occured
+	 */
+	public void notifyExceptionOccured();
 
 	
 

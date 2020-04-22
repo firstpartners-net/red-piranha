@@ -105,6 +105,7 @@ public class RedCommandLine {
 
 			} catch (Throwable t) {
 				playerAsLogger.exception("Uncaught Exception", t);
+				userUpdates.notifyExceptionOccured();
 				
 			}
 		}

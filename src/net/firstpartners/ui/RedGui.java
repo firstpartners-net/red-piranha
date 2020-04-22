@@ -1,6 +1,8 @@
 package net.firstpartners.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -90,12 +92,14 @@ public class RedGui extends WindowAdapter
 	// system via
 	// the IGiveFeedbackToUsers interface
 	private JFrame frame = new JFrame("Red-Piranha - Java Power Tools for Excel");
-	private JProgressBar homePageProgressBar;
 	private JButton homePageCloseButton;
+	private JLabel homePageErrorMessage;
+	private JProgressBar homePageProgressBar;
 	private JEditorPane htmlHomePane;
 	private JTextArea tab2TextArea;
 	private JTextArea tab3TextArea;
 	private JTextArea tab4TextArea;
+	
 	
 
 	/**
@@ -149,12 +153,13 @@ public class RedGui extends WindowAdapter
 		updateFontSize(homePageCloseButton);
 		homePageCloseButton.addActionListener(this);
 
-		// Panel 1 Progress Bar
+		// Panel 1 Progress Bar and error message holder
 		homePageProgressBar = new JProgressBar();
 		homePageProgressBar.setPreferredSize(new Dimension(x, 50));
 		homePageProgressBar.setMinimum(0);
 		homePageProgressBar.setMaximum(100);
 		homePageProgressBar.setStringPainted(true);
+		homePageErrorMessage = new JLabel();
 
 		// Panel 1
 		JComponent homePane = getHomePanel();
@@ -163,6 +168,7 @@ public class RedGui extends WindowAdapter
 		subPanel.setLayout(new BorderLayout());
 		subPanel.add(homePageCloseButton, "East");
 		subPanel.add(homePageProgressBar, "Center");
+		subPanel.add(homePageErrorMessage,"South"); //placeholder if needed for later
 		jp1.add(homePane, "Center");
 		jp1.add(subPanel, "South");
 
@@ -239,8 +245,9 @@ public class RedGui extends WindowAdapter
 		this.tab3TextArea.append("EXCEPTION:" + message + "\n" + t.toString() + "\n");
 		log.severe(message + "\n" + t.toString());
 		log.log(Level.SEVERE, "Error", t);
+		
 	}
-
+	
 	/**
 	 * Construct the HTML Based Home panel the user sees at startup
 	 */
@@ -321,6 +328,25 @@ public class RedGui extends WindowAdapter
 	public void info(String message) {
 		this.tab3TextArea.append("INFO:" + message + "\n");
 		log.info(message);
+	}
+
+	/**
+	 * Notifies us if we want Provide a visual notification that an Exception has occured
+	 */
+	public void notifyExceptionOccured() {
+		
+		log.info("Updating GUI State");
+		
+		//Replace Progress bar state
+		Container parent = homePageProgressBar.getParent();
+		parent.remove(homePageProgressBar);
+		parent.remove(homePageCloseButton);
+		parent.repaint();
+		
+		homePageErrorMessage.setText("Houston we may have a problem ... check tabs and logs for more details");
+		updateFontSize (homePageErrorMessage);
+		homePageErrorMessage.setBackground(Color.RED);;
+		homePageErrorMessage.repaint();
 	}
 
 	/**

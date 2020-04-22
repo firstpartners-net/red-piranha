@@ -214,10 +214,15 @@ public class Cell implements PropertyChangeListener, Serializable {
 		this.changes.firePropertyChange("value", oldValue, value);
 	}
 
+	/**
+	 * Print an internal representation of the Cell contents
+	 */
 	@Override
 	public String toString() {
 		
-		return "Cell "+ToStringBuilder.reflectionToString(this,ToStringStyle.MULTI_LINE_STYLE);
+		return ToStringBuilder.reflectionToString(this);
 	}
+
+
 
 }

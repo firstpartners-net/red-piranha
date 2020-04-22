@@ -163,10 +163,10 @@ public class RangeHolder implements List<Range>, Serializable {
 	
 	@Override
 	public String toString() {
-		StringBuilder returnText = new StringBuilder(ToStringBuilder.reflectionToString(this,ToStringStyle.MULTI_LINE_STYLE));
+		StringBuilder returnText = new StringBuilder(ToStringBuilder.reflectionToString(this));
 		
 		getAllRangesAndCells().forEach((cell) -> {
-			returnText.append("  "+cell+"\n");
+			returnText.append(cell.toString()+"\n");
 		});
 		
 		return returnText.toString();

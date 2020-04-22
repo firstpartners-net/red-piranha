@@ -91,7 +91,8 @@ public class SpreadSheetRuleRunner {
 		// Convert the cell and log if we have a handle
 		RangeHolder ranges = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		if(userDataDisplay!=null) {
-			//userDataDisplay.showPreRulesSnapShot(ranges.toString());
+			userDataDisplay.notifyProgress(25);
+			userDataDisplay.showPreRulesSnapShot(ranges.toString());
 			userDataDisplay.notifyProgress(45);
 		}
 
@@ -100,20 +101,24 @@ public class SpreadSheetRuleRunner {
 
 		//Add the Spreadsheet contents as facts
 		ruleSource.addFacts(ranges.getAllRangesAndCells());
+		if(userDataDisplay!=null) {
+			userDataDisplay.notifyProgress(65);
+		}
+		
 
 		// Load and fire our rules files against the data
 		ruleRunner.runStatelessRules(ruleSource, logger);
 		
 		if(userDataDisplay!=null) {
 			userDataDisplay.showPostRulesSnapShot(ranges.toString());
-			userDataDisplay.notifyProgress(65);
+			userDataDisplay.notifyProgress(80);
 		}
 		
 
 		// update the excel spreadsheet with the result of our rules
 		RangeConvertor.updateRedRangeintoPoiExcel(wb, ranges);
 		if(userDataDisplay!=null) {
-			userDataDisplay.notifyProgress(85);
+			userDataDisplay.notifyProgress(90);
 		}
 		
 		

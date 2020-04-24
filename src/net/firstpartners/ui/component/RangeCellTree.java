@@ -43,7 +43,9 @@ public class RangeCellTree extends JPanel {
 		add(new JScrollPane(tree), BorderLayout.CENTER);
 
 		selectedLabel = new JLabel();
+		
 		add(selectedLabel, BorderLayout.SOUTH);
+		
 		tree.getSelectionModel().addTreeSelectionListener(new TreeSelectionListener() {
 			@Override
 			public void valueChanged(TreeSelectionEvent e) {

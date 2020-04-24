@@ -1,16 +1,19 @@
 package net.firstpartners.ui.component;
 
 import java.awt.BorderLayout;
+import java.util.logging.Logger;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTree;
+import javax.swing.UIManager;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
+import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.spreadsheet.Cell;
 import net.firstpartners.core.spreadsheet.Range;
 import net.firstpartners.core.spreadsheet.RangeHolder;
@@ -22,37 +25,69 @@ import net.firstpartners.core.spreadsheet.RangeHolder;
  */
 public class RangeCellTree extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2126146342089903866L;
 	private JTree tree;
 	private DefaultMutableTreeNode treeRoot; // need to keep a handle to it later
-	private JLabel selectedLabel;
+	//private JLabel selectedLabel;
 
 	public RangeCellTree() {
-		
-		treeRoot = new DefaultMutableTreeNode("Name of Ranges in Excel. Select Node for moore details");
+
+		// Logger
+		final Logger log = RpLogger.getLogger(RangeCellTree.class.getName());
+
+		treeRoot = new DefaultMutableTreeNode("Name of Ranges in Excel. Select Node for more details");
 
 		// create the tree by passing in the treeRoot node
 		tree = new JTree(treeRoot);
 		tree.setShowsRootHandles(true);
 		tree.setRootVisible(true);
 
-		setLayout(new BorderLayout());
+		setLayout(new BorderLayout(2, 2));
 		add(new JScrollPane(tree), BorderLayout.CENTER);
 
-		selectedLabel = new JLabel();
 		
-		add(selectedLabel, BorderLayout.SOUTH);
+		//details of selected node
+	    JTextArea textArea = new JTextArea(2, 30);
+	    textArea.setText(" ");
+	    textArea.setWrapStyleWord(true);
+	    textArea.setLineWrap(true);
+	    textArea.setOpaque(false);
+	    textArea.setEditable(false);
+	    textArea.setFocusable(false);
+	    textArea.setBackground(UIManager.getColor("Label.background"));
+	    textArea.setFont(UIManager.getFont("Label.font"));
+	    textArea.setBorder(UIManager.getBorder("Label.border"));
 		
+		//selectedLabel = new JLabel(" ");
+		SwingGuiUtils.updateFontSize(textArea);
+		add(new JScrollPane(textArea), BorderLayout.EAST);
+
+		// Add the default tree listener
 		tree.getSelectionModel().addTreeSelectionListener(new TreeSelectionListener() {
 			@Override
 			public void valueChanged(TreeSelectionEvent e) {
+
+				log.info(e.toString());
+				Object thisNodeObject =""; // default value
 				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-				selectedLabel.setText(selectedNode.getUserObject().toString());
+				
+				if(selectedNode!=null) {
+					thisNodeObject = selectedNode.getUserObject();
+				}
+				
+				
+				if (thisNodeObject instanceof Cell) {
+					Cell thisNodeCell = (Cell) thisNodeObject;
+					textArea.setText(thisNodeCell.toLongString());
+
+				} else {
+					textArea.setText(thisNodeObject.toString());
+				}
+
 			}
 		});
+
+		tree.setSelectionRow(0);
 
 	}
 

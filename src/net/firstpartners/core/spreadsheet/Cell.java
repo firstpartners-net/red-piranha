@@ -6,6 +6,7 @@ import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 
 /**
@@ -216,19 +217,21 @@ public class Cell implements PropertyChangeListener, Serializable {
 	/**
 	 * Print an internal representation of the Cell contents
 	 */
-	public String toStringViaBuilder() {
+	public String toLongString() {
 		
-		return ToStringBuilder.reflectionToString(this);
+//		return ToStringBuilder.reflectionToString(this,ToStringStyle.MULTI_LINE_STYLE);
+		
+		return "Cell [cellName=" + cellName + ", changes=" + changes + ", comment=" + comment + ", holdingRange="
+		+ holdingRange + ", modified=" + modified + ", originalCellReference=" + originalCellReference
+		+ ", originalSheetReference=" + originalSheetReference + ", value=" + value + "]";
+
 	}
 
 
 	@Override
 	public String toString() {
-//		return "Cell [cellName=" + cellName + ", changes=" + changes + ", comment=" + comment + ", holdingRange="
-//				+ holdingRange + ", modified=" + modified + ", originalCellReference=" + originalCellReference
-//				+ ", originalSheetReference=" + originalSheetReference + ", value=" + value + "]";
-		
-		return "Cell [cellName=" + cellName;
+
+		return "Cell [cellName=" + cellName+"]";
 	}
 
 

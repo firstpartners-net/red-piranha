@@ -11,13 +11,13 @@ public interface IGiveFeedbackToUsers {
 	 * Allows us to notify the user of a snapshot post rules
 	 * @param message
 	 */
-	void showPreRulesSnapShot(String dataToSnapshotToUser);
+	void showPreRulesSnapShot(Object dataToSnapshotToUser);
 
 	/**
 	 * Allows us to notify the user of a snapshot post rules
 	 * @param message
 	 */
-	void showPostRulesSnapShot(String dataToSnapshotToUser);
+	void showPostRulesSnapShot(Object dataToSnapshotToUser);
 	
 	/**
 	 * Notifies the user of percentage progress made

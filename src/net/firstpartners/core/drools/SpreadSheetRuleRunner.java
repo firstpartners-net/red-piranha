@@ -92,7 +92,7 @@ public class SpreadSheetRuleRunner {
 		RangeHolder ranges = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		if(userDataDisplay!=null) {
 			userDataDisplay.notifyProgress(25);
-			userDataDisplay.showPreRulesSnapShot(ranges.toString());
+			userDataDisplay.showPreRulesSnapShot(ranges);
 			userDataDisplay.notifyProgress(45);
 		}
 

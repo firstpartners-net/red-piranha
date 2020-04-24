@@ -26,4 +26,5 @@ public interface ILogger {
 	 * @param t
 	 */
 	public void exception(String output, Throwable t);
+
 }

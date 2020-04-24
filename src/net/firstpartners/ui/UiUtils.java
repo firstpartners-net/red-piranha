@@ -30,8 +30,8 @@ public class UiUtils {
 	private static final Logger log = RpLogger.getLogger(UiUtils.class.getName());
 
 	// names of params to read from properties files
-	static final String EXCEL_INPUT = "EXCEL_INPUT";
-	static final String EXCEL_OUTPUT = "EXCEL_OUTPUT";
+	public static final String EXCEL_INPUT = "EXCEL_INPUT";
+	public static final String EXCEL_OUTPUT = "EXCEL_OUTPUT";
 	static final String DRL1 = "DRL1";
 	static final String DRL2 = "DRL2";
 	static final String DRL3 = "DRL3";
@@ -43,7 +43,7 @@ public class UiUtils {
 	 * @param Properties to convert
 	 * @return
 	 */
-	static RuleSource getRuleFiles(Properties prop) {
+	public static RuleSource getRuleFiles(Properties prop) {
 
 		ArrayList<String> ruleFileLocations = new ArrayList<String>();
 		if (prop.getProperty(DRL1) != null) {

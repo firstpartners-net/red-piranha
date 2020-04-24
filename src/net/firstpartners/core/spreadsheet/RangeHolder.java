@@ -10,9 +10,6 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
-
 import net.firstpartners.core.log.RpLogger;
 
 /**
@@ -163,8 +160,8 @@ public class RangeHolder implements List<Range>, Serializable {
 	
 	@Override
 	public String toString() {
-		StringBuilder returnText = new StringBuilder(ToStringBuilder.reflectionToString(this));
-		
+		//StringBuilder returnText = new StringBuilder(ToStringBuilder.reflectionToString(this));
+		StringBuilder returnText = new StringBuilder();
 		getAllRangesAndCells().forEach((cell) -> {
 			returnText.append(cell.toString()+"\n");
 		});
@@ -173,6 +170,8 @@ public class RangeHolder implements List<Range>, Serializable {
 	   
 	}
 
+	
+	
 	/**
 	 * Returns a map of Cells, with the unique handle we've associate with them
 	 * 

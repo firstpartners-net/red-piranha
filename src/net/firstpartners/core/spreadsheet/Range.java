@@ -195,11 +195,11 @@ public class Range implements Map<String, Cell>, PropertyChangeListener,Serializ
 
 	}
 
-	public Object[] getCellValueArray() {
-
-		return getCellValueList().toArray();
-
-	}
+//	public Cell[] getCellValueArray() {
+//
+//		return getCellValueList().toArray();
+//
+//	}
 
 	public List<Object> getCellValueList() {
 
@@ -314,8 +314,11 @@ public class Range implements Map<String, Cell>, PropertyChangeListener,Serializ
 		return returnString.toString();
 	}
 
+
+	@Override
 	public Collection<Cell> values() {
 		return cells.values();
 	}
+
 
 }

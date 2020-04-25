@@ -1,7 +1,7 @@
 /**
  * 
  * Classes to hold Table Data 
- * Terminonology is similar to excel - Ranges (named groups of Cells) and Cells.
+ * Terminology is similar to MS Excel - Ranges (named groups of Cells) and Cells.
  * 
  * Classes in this package are the only ones injected into the Working Knowledge of the Rule Engine
  *  

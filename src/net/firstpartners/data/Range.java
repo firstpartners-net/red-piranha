@@ -16,9 +16,9 @@ import net.firstpartners.core.log.RpLogger;
 
 
 /**
- * A range is just a holder for a group of named cells
+ * A range is just a holder for a group of named cells - maps to a similar Concept in MS Excel
  * We use it as a convenience for loading our values into working memory
- * 
+ * @see Map which it implmements for convenience
  * @author paul
  */
 public class Range implements Map<String, Cell>, PropertyChangeListener,Serializable {
@@ -27,9 +27,6 @@ public class Range implements Map<String, Cell>, PropertyChangeListener,Serializ
 
 	private static final Logger log =RpLogger.getLogger(Range.class.getName());
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2208591825859424164L;
 
 

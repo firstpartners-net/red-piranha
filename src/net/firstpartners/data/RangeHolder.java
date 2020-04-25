@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import net.firstpartners.core.log.RpLogger;
 
 /**
- * Holder of all multiple Ranges from a spreadshet
+ * Holder of all multiple Named Ranges from a spreadsheet. Also provides convenience methods to access all the Cells (avoid the intermediate step of getting the Ranges)
  * 
  * @author paul
  *

@@ -5,17 +5,14 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
-
 /**
  * JavaBean equivalent of a cell in an Excel Spreadsheet
+ * 
  * @param cellName
  * @param value
  */
 public class Cell implements PropertyChangeListener, Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -763504507901540819L;
 
 	private String cellName = null;
@@ -35,9 +32,8 @@ public class Cell implements PropertyChangeListener, Serializable {
 	private Object value;
 
 	// Default constructor - needed to keep this a Javabean
-	public Cell()  {
+	public Cell() {
 	}
-
 
 	public Cell(String cellName, Object value) {
 		super();
@@ -49,6 +45,9 @@ public class Cell implements PropertyChangeListener, Serializable {
 		this.changes.addPropertyChangeListener(l);
 	}
 
+	/**
+	 * Check for equality with another Object / cell
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -95,6 +94,10 @@ public class Cell implements PropertyChangeListener, Serializable {
 		return comment;
 	}
 
+	/**
+	 * Cells can hold a reference to the Named Range that they (might) sit withing
+	 * @return
+	 */
 	public Range getHoldingRange() {
 		return holdingRange;
 	}
@@ -118,6 +121,12 @@ public class Cell implements PropertyChangeListener, Serializable {
 		return originalCellReference;
 	}
 
+	/**
+	 * Get the original Sheet reference (if available) - e.g.from
+	 * the Original (Apache Poi) Spreadsheet if this is linked
+	 * 
+	 * @return
+	 */
 	public String getOriginalSheetReference() {
 		return originalSheetReference;
 	}
@@ -151,6 +160,10 @@ public class Cell implements PropertyChangeListener, Serializable {
 		return result;
 	}
 
+	/**
+	 * Flag that allows us to signal if we have modified the cell
+	 * @return
+	 */
 	public boolean isModified() {
 		return modified;
 	}
@@ -212,25 +225,27 @@ public class Cell implements PropertyChangeListener, Serializable {
 	}
 
 	/**
-	 * Print an internal representation of the Cell contents
+	 * Print an internal representation of the Cell contents.
+	 * This is the long version. If used for every cell in a large dataset it could cause an OutOfMemoryError
+	 * @see toString()
 	 */
 	public String toLongString() {
-		
-//		return ToStringBuilder.reflectionToString(this,ToStringStyle.MULTI_LINE_STYLE);
-		
+
+
 		return "Cell [cellName=" + cellName + ", changes=" + changes + ", comment=" + comment + ", holdingRange="
-		+ holdingRange + ", modified=" + modified + ", originalCellReference=" + originalCellReference
-		+ ", originalSheetReference=" + originalSheetReference + ", value=" + value + "]";
+				+ holdingRange + ", modified=" + modified + ", originalCellReference=" + originalCellReference
+				+ ", originalSheetReference=" + originalSheetReference + ", value=" + value + "]";
 
 	}
 
-
+	/**
+	 * @see toLongString() if more comprehensive data needed
+	 * This is the short version.
+	 */
 	@Override
 	public String toString() {
 
-		return "Cell [cellName=" + cellName+"]";
+		return "Cell [cellName=" + cellName + "]";
 	}
-
-
 
 }

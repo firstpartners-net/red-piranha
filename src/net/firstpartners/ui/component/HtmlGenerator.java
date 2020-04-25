@@ -1,7 +1,5 @@
 package net.firstpartners.ui.component;
 
-import java.util.Properties;
-
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
@@ -11,6 +9,7 @@ import net.firstpartners.ui.utils.Config;
 
 /**
  * Utility class for generating HTML used by the GUI
+ * 
  * @author PBrowne
  *
  */
@@ -18,12 +17,13 @@ public class HtmlGenerator {
 
 	/**
 	 * Get a HTMLEditor Kit with a standard CSS
+	 * 
 	 * @return HTMLEditorKit with the CSS configured in it
 	 */
 	public static HTMLEditorKit getCssKit() {
-		
+
 		// add some styles to the html
-		
+
 		HTMLEditorKit kit = new HTMLEditorKit();
 		StyleSheet styleSheet = kit.getStyleSheet();
 		styleSheet.addRule("body {color:#000; font-family:times; margin: 4px; }");
@@ -33,15 +33,13 @@ public class HtmlGenerator {
 
 		return kit;
 	}
-	
-	
 
 	/**
 	 * Create HTML with our current system status as home page
-	 * @param copyOfProperties
-	 * @return
+	 * 
+	 * @return String containing the HTML we want to display on the home screen
 	 */
-	public static String getupdatedHomeSreenHtml(Properties copyOfProperties) {
+	public static String getupdatedHomeSreenHtml() {
 
 		// Default if we are running standalone
 		String excelFile = "";
@@ -49,19 +47,19 @@ public class HtmlGenerator {
 		String ruleFileAsString = "";
 
 		// Get UserSpecifc information we need to display
-		if (copyOfProperties != null) {
-			excelFile = StringUtils.escape(copyOfProperties.getProperty(Config.EXCEL_INPUT));
-			outputFileName = StringUtils.escape(copyOfProperties.getProperty(Config.EXCEL_OUTPUT));
 
-			// build multiple rules files
-			String rulesFiles[] = Config.getRuleFiles(copyOfProperties).getRulesLocation();
-			StringBuilder ruleFile = new StringBuilder();
-			for (int a = 0; a < rulesFiles.length; a++) {
-				ruleFile.append(StringUtils.escape(rulesFiles[a]) + " | ");
-			}
-			ruleFile.setLength(ruleFile.length() - 2); // otherwise we have a hanging |
-			ruleFileAsString = ruleFile.toString();
+		excelFile = StringUtils.escape(Config.getExcelInputFile());
+		outputFileName = StringUtils.escape(Config.getExcelOutputFile());
+
+		// build multiple rules files
+		String rulesFiles[] = Config.getRuleFiles().getRulesLocation();
+		StringBuilder ruleFile = new StringBuilder();
+		for (int a = 0; a < rulesFiles.length; a++) {
+			ruleFile.append(StringUtils.escape(rulesFiles[a]) + " | ");
 		}
+		ruleFile.setLength(ruleFile.length() - 2); // otherwise we have a hanging |
+		ruleFileAsString = ruleFile.toString();
+
 		// create some simple html as a string
 		String htmlString = "<html>\n" + "<body>\n" + "<h1>Red Piranha - Business Rules for Excel</h1>\n"
 				+ "<p>Applying Business rules to your Data. "
@@ -75,6 +73,5 @@ public class HtmlGenerator {
 
 		return htmlString;
 	}
-
 
 }

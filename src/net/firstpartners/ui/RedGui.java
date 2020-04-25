@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -56,8 +55,6 @@ public class RedGui extends WindowAdapter
 
 	private JLabel frontPageMessage;
 
-	// Handle to the Properties
-	Properties copyOfProperties = null;
 	
 	// Class level GUI Elements - we update these as we get notification from the
 	// system via the IGiveFeedbackToUsers interface
@@ -241,7 +238,7 @@ public class RedGui extends WindowAdapter
 		// create a document, set it on the jeditorpane, then add the html
 		Document doc = kit.createDefaultDocument();
 		htmlHomePane.setDocument(doc);
-		htmlHomePane.setText(HtmlGenerator.getupdatedHomeSreenHtml(copyOfProperties));
+		htmlHomePane.setText(HtmlGenerator.getupdatedHomeSreenHtml());
 
 		return scrollPane;
 
@@ -298,7 +295,7 @@ public class RedGui extends WindowAdapter
 
 		// Update the Home panel with what we know about the input / output fies
 		// this.homeScreen= getHomePanel();
-		htmlHomePane.setText(HtmlGenerator.getupdatedHomeSreenHtml(copyOfProperties));
+		htmlHomePane.setText(HtmlGenerator.getupdatedHomeSreenHtml());
 
 		while (true) {
 			try {
@@ -326,9 +323,6 @@ public class RedGui extends WindowAdapter
 		this.frontPageMessage.repaint();
 	}
 
-	public void setGUIProperties(Properties copyOfProperties) {
-		this.copyOfProperties = copyOfProperties;
-	}
 
 	/**
 	 * Allows us to Log to the GUI a snapshot pre rules Callback via

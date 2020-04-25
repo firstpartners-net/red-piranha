@@ -2,9 +2,8 @@ package net.firstpartners.ui;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Properties;
-import org.apache.log4j.Logger;
 
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.drools.compiler.compiler.DroolsParserException;
 
@@ -19,16 +18,16 @@ import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
 import net.firstpartners.ui.utils.Config;
 
 /**
- * Main Entry Point for Red-Piranha
- * Looks for red-piranha.config to decide what mode it should run in
+ * Main Entry Point for Red-Piranha Looks for red-piranha.config to decide what
+ * mode it should run in
  * 
- * By default, loads data from excel, executes business rules against it, saves into another Excel file.
+ * By default, loads data from excel, executes business rules against it, saves
+ * into another Excel file.
  * 
  * @author PBrowne
  *
  */
 public class RedCommandLine {
-
 
 	private static final Logger log = RpLogger.getLogger(RedCommandLine.class.getName());
 
@@ -45,23 +44,18 @@ public class RedCommandLine {
 	 */
 	public static void main(String[] ignoredArgs) throws Exception {
 
-
 		// Check and force logging
 		String logFileName = Config.getForcedLogFileName();
 		RpLogger.checkForceLogToFile(logFileName);
 
-		Properties p = Config.readConfig();
-		
 		// Open the GUI
 		log.debug("Opening GUI");
 		RedGui player = new RedGui();
-		player.setGUIProperties(p);
 		Runnable readRun = new Thread(player);
 		readRun.run();
 		Thread.sleep(100L); // pause this thread to give the GUI time to display
 
-
-		runRules(p, player,player);
+		runRules(player, player);
 
 	}
 
@@ -72,46 +66,38 @@ public class RedCommandLine {
 	 * @param player
 	 * @throws IllegalArgumentException
 	 */
-	static void runRules(Properties prop, ILogger playerAsLogger,IGiveFeedbackToUsers userUpdates)
-			throws IllegalArgumentException {
-		
-		
+	static void runRules(ILogger playerAsLogger, IGiveFeedbackToUsers userUpdates) throws IllegalArgumentException {
+
 		// Get the params
-		String excelFile = prop.getProperty(Config.EXCEL_INPUT);
-		String outputFileName = prop.getProperty(Config.EXCEL_OUTPUT);
-		RuleSource ruleFiles = Config.getRuleFiles(prop);
+		String excelFile = Config.getExcelOutputFile();
+		String outputFileName = Config.getExcelOutputFile();
+		RuleSource ruleFiles = Config.getRuleFiles();
 
-		
-		if (excelFile.equalsIgnoreCase(outputFileName)) {
-			playerAsLogger.info("Stopping - Input and output files should not be the same");
-			throw new IllegalArgumentException("Input and output files should not be the same");
-		} else {
+		try {
+			// Open the input file as a stream
+			playerAsLogger.info("Opening Excel Input file:" + excelFile);
+			FileInputStream excelInput = new FileInputStream(excelFile);
 
-			try {
-				// Open the input file as a stream
-				playerAsLogger.info("Opening Excel Input file:" + excelFile);
-				FileInputStream excelInput = new FileInputStream(excelFile);
-				
-				// Call the rules using this Excel datafile
-				playerAsLogger.info("Running Rules:" + ruleFiles);
-				Workbook wb = commonUtils.callRules(excelInput, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME,userUpdates,playerAsLogger);
+			// Call the rules using this Excel datafile
+			playerAsLogger.info("Running Rules:" + ruleFiles);
+			Workbook wb = commonUtils.callRules(excelInput, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME,
+					userUpdates, playerAsLogger);
 
-				// delete the outputFile if it exists
-				SpreadSheetOutputter.deleteOutputFileIfExists(outputFileName);
+			// delete the outputFile if it exists
+			SpreadSheetOutputter.deleteOutputFileIfExists(outputFileName);
 
-				// Open the outputfile as a stream
-				playerAsLogger.info("Write to Excel Output file:" + outputFileName);
-				SpreadSheetOutputter.outputToFile(wb, outputFileName);
-				
-				playerAsLogger.info("Complete");
+			// Open the outputfile as a stream
+			playerAsLogger.info("Write to Excel Output file:" + outputFileName);
+			SpreadSheetOutputter.outputToFile(wb, outputFileName);
 
-			} catch (Throwable t) {
-				playerAsLogger.exception("Uncaught Exception", t);
-				userUpdates.notifyExceptionOccured();
-				
-			}
+			playerAsLogger.info("Complete");
+
+		} catch (Throwable t) {
+			playerAsLogger.exception("Uncaught Exception", t);
+			userUpdates.notifyExceptionOccured();
+
 		}
-	}
 
+	}
 
 }

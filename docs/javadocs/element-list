@@ -1,4 +1,5 @@
 net.firstpartners
+net.firstpartners.core
 net.firstpartners.core.drools
 net.firstpartners.core.drools.loader
 net.firstpartners.core.log

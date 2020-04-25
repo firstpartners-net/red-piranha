@@ -21,4 +21,4 @@
    <jar href="lib/red-player.jar"/>
   </resources>
   <application-desc main-class="net.firstpartners.player.RulePlayer"/>
-</jnlp> 
+</jnlp>  

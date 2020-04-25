@@ -50,7 +50,7 @@ public class CellConvertorTest {
 
 		Workbook wb = WorkbookFactory.create(true); // create new boolean
 
-		// loop through and chesck ranges
+		// loop through and check ranges
 		Map<String, Cell> map = redData.getAllCells();
 		for (Map.Entry<String, Cell> entry : map.entrySet()) {
 
@@ -64,9 +64,11 @@ public class CellConvertorTest {
 
 			// Get a handle to the Excel cell at Sheet / reference
 			// TODO this will likely fail since we don't have the matching 'chocolate' sheet - update code to create as needed
-			org.apache.poi.ss.usermodel.Sheet thisSheet = wb.getSheet(thisRedCell.getOriginalSheetReference());
+			org.apache.poi.ss.usermodel.Sheet thisSheet = CellConvertor.getOrCreateSheet(wb, thisRedCell);
 			CellReference cellReference = new CellReference(thisRedCell.getOriginalCellReference());
-			Row row = thisSheet.getRow(cellReference.getRow());
+			Row row = CellConvertor.getOrCreateRow(thisSheet,cellReference);
+			
+			log.info("found Row:"+row);
 			org.apache.poi.ss.usermodel.Cell poiCell = row.getCell(cellReference.getCol());
 
 			//
@@ -77,6 +79,7 @@ public class CellConvertorTest {
 		//Save the Excel data - we will need it later
 		excelData = wb;
 	}
+
 
 	@Test
 	public final void testConvertPoiCellToRedCell() {

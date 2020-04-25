@@ -11,7 +11,10 @@ import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Drawing;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellReference;
 
 import net.firstpartners.core.log.RpLogger;
 
@@ -130,20 +133,18 @@ public class CellConvertor {
 		// Update the cell style to modified
 		CellStyle style = getUpdatedPoiCellStyle(wb);
 		poiCell.setCellStyle(style);
-		
-		//Update comment if specified
-		if(redCell.getComment()!=null&& redCell.getComment()!="") {
-			setPoiCellComment(wb,poiCell,"", redCell.getComment());
-			
+
+		// Update comment if specified
+		if (redCell.getComment() != null && redCell.getComment() != "") {
+			setPoiCellComment(wb, poiCell, "", redCell.getComment());
+
 		}
-		
-		
+
 		// copy over the comments
 		Comment anyComment = poiCell.getCellComment();
-		if(anyComment!=null) {
+		if (anyComment != null) {
 			redCell.setComment(anyComment.getString().toString());
 		}
-		
 
 		// Update the cell value
 		Object redCellValue = redCell.getValue();
@@ -230,6 +231,50 @@ public class CellConvertor {
 		style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
 		return style;
+
+	}
+
+	/**
+	 * Get or create a sheet in a workbook, if is not found
+	 * 
+	 * @param wb
+	 * @param thisRedCell
+	 * @return
+	 */
+	final static Sheet getOrCreateSheet(Workbook wb, net.firstpartners.data.Cell thisRedCell) {
+
+		log.info("trying to find sheet:" + thisRedCell.getOriginalSheetReference());
+
+		Sheet thisSheet = wb.getSheet(thisRedCell.getOriginalSheetReference());
+
+		if (thisSheet == null) {
+			thisSheet = wb.createSheet(thisRedCell.getOriginalSheetReference());
+		}
+
+		log.info("Found:" + thisSheet.getSheetName());
+		return thisSheet;
+	}
+
+	/**
+	 * Get or create a row in a sheet, if it is not found
+	 * 
+	 * @param thisSheet
+	 * @param cellReference
+	 * @return
+	 */
+	final static Row getOrCreateRow(Sheet thisSheet, CellReference cellReference) {
+
+		log.info("Looking for:"+cellReference);
+		
+		Row row = thisSheet.getRow(cellReference.getRow());
+		
+		if(row ==null) {
+			row =thisSheet.createRow(cellReference.getRow());
+		}
+		
+		log.info("found:"+row.getRowNum());
+
+		return row;
 
 	}
 

@@ -70,7 +70,6 @@
 	<target name="clean" description="Clean output dirs (build, docs, dist)">
 		<delete dir="${build.dir}" />
 		<delete dir="${testbuild.dir}" />
-		<delete dir="${javadocs.dir}" />
 		<delete dir="${distrib.dir}" />
 	</target>
 

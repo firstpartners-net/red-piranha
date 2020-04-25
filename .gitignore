@@ -10,3 +10,9 @@ red-piranha.log.lck
 private/
 example-private.zip
 private.md
+dist/*.jar
+dist/example-ExcelDataRules.zip
+dist/red-piranha-single.jar
+dist/red-piranha.jar
+dist/example-ExcelDataRules.zip
+dist/red-piranha.exe

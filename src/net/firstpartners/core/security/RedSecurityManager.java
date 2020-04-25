@@ -21,11 +21,22 @@ public class RedSecurityManager {
 	private static final Logger log = RpLogger.getLogger(RedSecurityManager.class
 			.getName());
 
-	public static String PROPERTY_FILE_OF_URL_PREFIXES = "net/firstpartners/security/UrlWhiteList.properties";
-	public static String PROPERTY_FILE_OF_RESOURCE_SUFFIXES = "net/firstpartners/security/ResourceWhiteList.properties";
+	private String propertyFileOfUrlPrexfixes;
 
+	private String propertyFileOfResourceSuffixes;
+
+
+	public RedSecurityManager (String propertyFileOfUrlPrefixes, String propertyFileOfResourceSuffixes) {
+		
+		this.propertyFileOfUrlPrexfixes = propertyFileOfUrlPrexfixes;
+		
+		this.propertyFileOfResourceSuffixes = propertyFileOfResourceSuffixes;
+	}
+	
+	//Cache
 	private static Map<?, ?> resourceSuffixes;
 
+	//Cache
 	private static Map<?, ?> urlPrefixes;
 
 	/**
@@ -34,7 +45,7 @@ public class RedSecurityManager {
 	 * @param url
 	 * @throws IOException
 	 */
-	public static void checkUrl(String url) throws SecurityException,
+	public void checkUrl(String url) throws SecurityException,
 	IOException {
 
 		if((url==null)||(url.equals(""))){
@@ -46,7 +57,7 @@ public class RedSecurityManager {
 
 	}
 
-	private static void checkUrlPrefix(String url) throws SecurityException,
+	private void checkUrlPrefix(String url) throws SecurityException,
 	IOException {
 
 		Object thisKey;
@@ -67,7 +78,7 @@ public class RedSecurityManager {
 
 	}
 
-	static void checkResourceSuffix(String url)
+	void checkResourceSuffix(String url)
 	throws SecurityException, IOException {
 
 		Object thisKey;
@@ -92,7 +103,7 @@ public class RedSecurityManager {
 
 	}
 
-	public static Map<?, ?> getResourceSuffixes() throws IOException {
+	public Map<?, ?> getResourceSuffixes() throws IOException {
 
 		if (resourceSuffixes == null) {
 			resourceSuffixes = readResourceSuffixes();
@@ -100,7 +111,7 @@ public class RedSecurityManager {
 		return resourceSuffixes;
 	}
 
-	public static Map<?, ?> getUrlPrefixes() throws IOException {
+	public  Map<?, ?> getUrlPrefixes() throws IOException {
 
 		// check and load propers
 		if (urlPrefixes == null) {
@@ -110,12 +121,12 @@ public class RedSecurityManager {
 		return urlPrefixes;
 	}
 
-	static Map<?, ?> readResourceSuffixes() throws IOException {
+	 Map<?, ?> readResourceSuffixes() throws IOException {
 
 		// Read properties file.
 		InputStream resourceAsStream = RedSecurityManager.class
 		.getClassLoader().getResourceAsStream(
-				PROPERTY_FILE_OF_RESOURCE_SUFFIXES);
+				this.propertyFileOfResourceSuffixes);
 
 		Properties properties = new Properties();
 		properties.load(resourceAsStream);
@@ -123,12 +134,12 @@ public class RedSecurityManager {
 		return properties;
 	}
 
-	static Map<?, ?> readUrlPrefixes() throws IOException {
+	Map<?, ?> readUrlPrefixes() throws IOException {
 
 		// Read properties file.
 		InputStream resourceAsStream = RedSecurityManager.class
 		.getClassLoader().getResourceAsStream(
-				PROPERTY_FILE_OF_URL_PREFIXES);
+				this.propertyFileOfUrlPrexfixes);
 
 		Properties properties = new Properties();
 		properties.load(resourceAsStream);
@@ -136,7 +147,7 @@ public class RedSecurityManager {
 		return properties;
 	}
 
-	public static void checkUrl(RuleSource ruleSource) throws SecurityException, IOException {
+	public void checkUrl(RuleSource ruleSource) throws SecurityException, IOException {
 
 		//Check all the components listed in the ruleSource - if there are not null or empty (which they are allowed to be)
 		if(ruleSource.getDslFileLocation()!=null){
@@ -158,7 +169,7 @@ public class RedSecurityManager {
 
 	}
 
-	private static void checkUrl(String[] rulesLocation) throws SecurityException, IOException {
+	private void checkUrl(String[] rulesLocation) throws SecurityException, IOException {
 
 		if(rulesLocation!=null){
 			for (String element : rulesLocation) {

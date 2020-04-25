@@ -25,7 +25,7 @@ public class URLRuleLoaderTest {
 
 		//Set the rule source
 		RuleSource ruleSource = new RuleSource();
-		ruleSource.setKnowledgeBaseLocation("http://red-piranha.appspot.com/sampleresources/SpreadSheetServlet/log-then-modify-rules.KnowledgeBase");
+		ruleSource.setKnowledgeBaseLocation("https://raw.githubusercontent.com/paulbrowne-irl/red-piranha/master/test/testdata/log-then-modify-rules.KnowledgeBase");
 
 
 		//Check that we can read rules from remote location

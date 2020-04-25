@@ -8,8 +8,12 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import net.firstpartners.TestConstants;
+
 public class RedSecurityManagerTest {
 
+	RedSecurityManager redSecurity = new RedSecurityManager(TestConstants.PROPERTY_FILE_OF_URL_PREFIXES, TestConstants.PROPERTY_FILE_OF_RESOURCE_SUFFIXES);
+	
 	//Handle to class under Test
 	RedSecurityManager testManager = null;
 
@@ -18,12 +22,12 @@ public class RedSecurityManagerTest {
 
 
 		//Check that we have loaded the list of OK URL types
-		assertNotNull(RedSecurityManager.getUrlPrefixes());
-		assertTrue(RedSecurityManager.getUrlPrefixes().size()>0);
+		assertNotNull(redSecurity.getUrlPrefixes());
+		assertTrue(redSecurity.getUrlPrefixes().size()>0);
 
 		//Check that we have loaded the list of OK package types
-		assertNotNull(RedSecurityManager.getResourceSuffixes());
-		assertTrue(RedSecurityManager.getResourceSuffixes().size()>0);
+		assertNotNull(redSecurity.getResourceSuffixes());
+		assertTrue(redSecurity.getResourceSuffixes().size()>0);
 
 	}
 
@@ -31,11 +35,11 @@ public class RedSecurityManagerTest {
 	public final void testcheckResourcePermitted() throws SecurityException, IOException{
 
 		//These should pass
-		RedSecurityManager.checkUrl("http://localhost:.KnowledgeBase");
-		RedSecurityManager.checkUrl("http://localhost:.xls");
+		redSecurity.checkUrl("http://localhost:.KnowledgeBase");
+		redSecurity.checkUrl("http://localhost:.xls");
 
-		RedSecurityManager.checkUrl("http://localhost:blahblahblah.KnowledgeBase");
-		RedSecurityManager.checkUrl("http://localhost:blahblahblah.xls");
+		redSecurity.checkUrl("http://localhost:blahblahblah.KnowledgeBase");
+		redSecurity.checkUrl("http://localhost:blahblahblah.xls");
 
 	}
 
@@ -44,7 +48,7 @@ public class RedSecurityManagerTest {
 
 		try {
 
-			RedSecurityManager.checkUrl("http://www.bbc.co.uk");
+			redSecurity.checkUrl("http://www.bbc.co.uk");
 			fail("Previous Call should not have passed");
 
 		} catch (SecurityException se){
@@ -59,9 +63,9 @@ public class RedSecurityManagerTest {
 	public final void testCheckUrlLocationOk() throws SecurityException, IOException{
 
 		//These should all pass
-		RedSecurityManager.checkUrl("http://localhost/somefile.xls");
-		RedSecurityManager.checkUrl("http://red-piranha.appspot.com/somefile.xls");
-		RedSecurityManager.checkUrl("http://red-piranha.googlecode.com/somefile.xls");
+		redSecurity.checkUrl("http://localhost/somefile.xls");
+		redSecurity.checkUrl("http://red-piranha.appspot.com/somefile.xls");
+		redSecurity.checkUrl("http://red-piranha.googlecode.com/somefile.xls");
 
 
 	}
@@ -71,7 +75,7 @@ public class RedSecurityManagerTest {
 
 		try {
 
-			RedSecurityManager.checkUrl("http://red-piranha.appspot.com/somerules.ThisIsNotAnAllowedResource");
+			redSecurity.checkUrl("http://red-piranha.appspot.com/somerules.ThisIsNotAnAllowedResource");
 			fail("Previous Call should not have passed");
 
 		} catch (SecurityException se){

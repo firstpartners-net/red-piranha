@@ -30,4 +30,8 @@ public class TestConstants {
 
 	// the name of the sheet the we log files to
 	public static final String EXCEL_LOG_WORKSHEET_NAME = "log";
+	
+	//For security implementation testing
+	public static String PROPERTY_FILE_OF_URL_PREFIXES = "test/testdata/UrlWhiteList.properties";
+	public static String PROPERTY_FILE_OF_RESOURCE_SUFFIXES = "test/testdata/ResourceWhiteList.properties";
 }

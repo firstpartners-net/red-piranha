@@ -27,7 +27,10 @@ public class FileRuleLoaderTest {
 		//Set the rule source
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setKnowledgeBaseLocation(TestConstants.KNOWLEDGE_BASE_FILE);
-
+		log.fine("will try to load:"+ruleSource.getKnowledgeBaseLocation());
+		
+		
+		
 		// do the call
 		org.drools.KnowledgeBase kb = ruleLoader.loadKnowledgeBase(ruleSource);
 		assertNotNull(kb);

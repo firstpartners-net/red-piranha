@@ -42,7 +42,7 @@ public class SheetConvertor {
 	}
 
 	/**
-	 * Get or create a row in a sheet, if it is not found
+	 * Get or create a row in a sheet, if it is not found,
 	 * 
 	 * @param thisSheet
 	 * @param cellReference
@@ -65,7 +65,7 @@ public class SheetConvertor {
 	}
 
 	/**
-	 * Get or create a sheet in a workbook, if is not found
+	 * Get or create a sheet in a workbook, if is not found.
 	 * 
 	 * @param wb
 	 * @param thisRedCell

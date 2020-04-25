@@ -23,7 +23,7 @@ import net.firstpartners.data.RangeHolder;
 
 /**
  * Read Ranges from Excel, Convert to a format (JavaBeans) that rules find
- * easier use.
+ * easier to use.
  *
  * Based on Sample from Apache POI
  *
@@ -149,7 +149,10 @@ public class RangeConvertor {
 	/**
 	 * Update an excel file with our new values uses the original sheet and original
 	 * cell reference within the red cell to copy backk
-	 *
+	 * 
+	 * @param wb
+	 * @param updatedValues
+	 * @throws IOException
 	 */
 	public static void updateRedRangeintoPoiExcel(Workbook wb, RangeHolder updatedValues) throws IOException {
 
@@ -183,46 +186,6 @@ public class RangeConvertor {
 
 		}
 
-		/**
-		 * Previous code - remove later
-		 * 
-		 * 
-		 * // retrieve the named range int numberOfNames = wb.getNumberOfNames();
-		 * 
-		 * 
-		 * for (int namedCellIdx = 0; namedCellIdx < numberOfNames; namedCellIdx++) {
-		 * org.apache.poi.ss.usermodel.Name aNamedCell = wb.getNameAt(namedCellIdx);
-		 * 
-		 * // retrieve the cell at the named range and test its contents AreaReference
-		 * aref = new AreaReference(aNamedCell.getRefersToFormula()); // was
-		 * getReference //ISSUE HERE
-		 * 
-		 * CellReference[] crefs = aref.getAllReferencedCells();
-		 * 
-		 * for (int thisCellinRange = 0; thisCellinRange < crefs.length;
-		 * thisCellinRange++) { org.apache.poi.ss.usermodel.Sheet sheet =
-		 * wb.getSheet(crefs[thisCellinRange].getSheetName());
-		 * 
-		 * org.apache.poi.ss.usermodel.Row r =
-		 * sheet.getRow(crefs[thisCellinRange].getRow());
-		 * 
-		 * // Get the cell that is referred to org.apache.poi.ss.usermodel.Cell
-		 * excelCell = null; if (r != null) { excelCell =
-		 * r.getCell(crefs[thisCellinRange].getCol());
-		 * 
-		 * // Check that the range name is on our list String cellHandle =
-		 * Range.getUniqueCellName(aNamedCell.getNameName(), thisCellinRange);
-		 * 
-		 * if (allCells.containsKey(cellHandle)) {
-		 * CellConvertor.convertRedCellToPoiCell(wb, excelCell,
-		 * allCells.get(cellHandle));
-		 * 
-		 * } else { log.finest("Name not found in facts:" + cellHandle); }
-		 * 
-		 * } else { log.info("Null"); }
-		 * 
-		 * } }
-		 */
 	}
 
 }

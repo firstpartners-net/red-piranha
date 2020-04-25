@@ -105,7 +105,7 @@ public class CellConvertor {
 	}
 
 	/**
-	 * Convert from Standard JavaBean to Excel
+	 * Convert from Standard JavaBean to Excel (Apache Poi) Cells
 	 * 
 	 * @param rangeName
 	 * @param poiCell
@@ -205,7 +205,7 @@ public class CellConvertor {
 	}
 
 	/**
-	 * Add a comment to the Poi Workbook
+	 * Add a comment to the Poi Workbook Cell
 	 * 
 	 * @param workbook
 	 * @param cell

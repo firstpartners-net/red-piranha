@@ -13,7 +13,7 @@ import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeHolder;
 
 /**
- * Convenience Class for Output of Spreadhsheets
+ * Convenience Class for Output of Spreadhsheets.
  * @author paul
  *
  */

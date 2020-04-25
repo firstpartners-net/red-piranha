@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import net.firstpartners.RedConstants;
 import net.firstpartners.core.drools.loader.RuleSource;
 import net.firstpartners.core.log.RpLogger;
+
 /**
  * Set of common functions used by GUI / Command Line / Servlet
  * 
@@ -30,7 +31,9 @@ public class Config {
 	static final String DRL1 = "DRL1";
 	static final String DRL2 = "DRL2";
 	static final String DRL3 = "DRL3";
-	public static final String LOG_FILE_NAME = "LOG_FILE_NAME";
+	static final String LOG_FILE_NAME = "LOG_FILE_NAME";
+
+	private static Properties prop = null;
 
 	/**
 	 * Get the rule file names from the command line
@@ -59,7 +62,6 @@ public class Config {
 		return ruleSource;
 	}
 
-
 	/**
 	 * Read the configuration file
 	 * 
@@ -67,28 +69,40 @@ public class Config {
 	 */
 	public static Properties readConfig() {
 
-		Properties prop = new Properties();
-		String fileName = RedConstants.RED_PIRANHA_CONFIG;
-		InputStream is = null;
+		if (prop == null) {
 
-		try {
-			is = new FileInputStream(fileName);
-		} catch (FileNotFoundException ex) {
-			log.error(ex.getStackTrace().toString());
+			log.debug("loading config");
+			prop = new Properties();
+			
+			
+			String fileName = RedConstants.RED_PIRANHA_CONFIG;
+			InputStream is = null;
+
+			try {
+				is = new FileInputStream(fileName);
+			} catch (FileNotFoundException ex) {
+				log.error(ex.getStackTrace().toString());
+			}
+
+			try {
+				prop.load(is);
+			} catch (IOException ex) {
+				log.error(ex.getStackTrace().toString());
+			}
+			log.info("Properties file:" + prop.toString());
+
+			return prop;
+
+		} else {
+			log.debug("using previously loaded config");
+
+			return prop;
 		}
-
-		try {
-			prop.load(is);
-		} catch (IOException ex) {
-			log.error(ex.getStackTrace().toString());
-		}
-		log.info(prop.toString());
-
-		return prop;
 
 	}
 
-
-
+	public static String getForcedLogFileName() {
+		return (String) readConfig().get(Config.LOG_FILE_NAME);
+	}
 
 }

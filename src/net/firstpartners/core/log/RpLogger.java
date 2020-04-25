@@ -2,27 +2,32 @@ package net.firstpartners.core.log;
 
 import java.io.IOException;
 
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PatternLayout;
+
+import net.firstpartners.ui.RedCommandLine;
 
 /**
- * Extend logging so that we can control logging in an exe environment where we may not have full control of config
+ * Extend logging so that we can control logging in an exe environment where we
+ * may not have full control of config
  * 
  * @author PBrowne
  */
 public class RpLogger extends Logger {
 
-	// the name of the log file
-	//private static FileHandler fileHandler = null;
+	// the handle to the log file
+	 private static FileAppender fileHandler = null;
 
 	/**
 	 * @param name
 	 * @param resourceBundleName
 	 */
 	public RpLogger(String name) {
-		
+
 		super(name);
 	}
-	
 
 	/**
 	 * Get a handle to a logger, with our additions (if set)
@@ -34,39 +39,42 @@ public class RpLogger extends Logger {
 	public static Logger getLogger(String name) {
 
 		Logger log = Logger.getLogger(name);
+		
 
-//		if (fileHandler != null) {
-//
-//			log.setLevel(Level.FINE);
-//			fileHandler.setFormatter(new SimpleFormatter());
-//			log.addHandler(fileHandler);
-//		}
+		if (fileHandler != null) {
+			log.addAppender(fileHandler);
+		}
 
 		return log;
 
 	}
-	
 
 	/**
 	 * Check if we need to force turn of of logging
 	 * 
-	 * @param prop - looking for FORCE_LOGGING key
-	 * @return true - if
-	 * @throws IOException
+	 * @param logFileName
 	 * @throws SecurityException
+	 * @throws IOException
 	 */
-	public static void checkForceLogToFile(Object logFileName) throws SecurityException, IOException {
+	public static void checkForceLogToFile(String logFileName) throws SecurityException, IOException {
 
-//		if (logFileName != null) {
-//			fileHandler = new FileHandler(logFileName.toString(), true);
-//			Logger tmpLog = getLogger(RpLogger.class.getName());
-//			tmpLog.warning("RP Config Forcing Logging to:" + logFileName);
-//
-//		}
+		if (logFileName != null & logFileName !="") {
+			fileHandler = new FileAppender();
+			fileHandler.setName("FileLogger");
+			fileHandler.setFile("mylog.log");
+			fileHandler.setLayout(new PatternLayout("%d %-5p [%c{1}] %m%n"));
+			fileHandler.setThreshold(Level.DEBUG);
+			fileHandler.setAppend(true);
+			fileHandler.activateOptions();
+
+			// add appender to any Logger (here is root)
+			Logger.getRootLogger().addAppender(fileHandler);
+			
+			//Log 
+			Logger thisLog = getLogger(RedCommandLine.class.getName());
+			thisLog.info("Forced Log to:"+logFileName);
+		}
 
 	}
 
-
-	
-	
 }

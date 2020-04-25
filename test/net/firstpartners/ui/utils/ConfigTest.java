@@ -47,5 +47,12 @@ public class ConfigTest {
 		assertNotNull(prop.get(Config.EXCEL_OUTPUT));
 		assertNotNull(prop.get(Config.LOG_FILE_NAME));
 	}
+	
+	@Test
+	public final void testReadLogFileName() {
+		String testLog = Config.getForcedLogFileName();
+		assertNotNull(testLog);
+		
+	}
 
 }

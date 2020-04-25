@@ -45,23 +45,23 @@ public class RedCommandLine {
 	 */
 	public static void main(String[] ignoredArgs) throws Exception {
 
-		// read the properties file
-		Properties prop = Config.readConfig();
 
 		// Check and force logging
-		Object logFileName = prop.get(Config.LOG_FILE_NAME);
+		String logFileName = Config.getForcedLogFileName();
 		RpLogger.checkForceLogToFile(logFileName);
 
+		Properties p = Config.readConfig();
+		
 		// Open the GUI
 		log.debug("Opening GUI");
 		RedGui player = new RedGui();
-		player.setGUIProperties(prop);
+		player.setGUIProperties(p);
 		Runnable readRun = new Thread(player);
 		readRun.run();
 		Thread.sleep(100L); // pause this thread to give the GUI time to display
 
 
-		runRules(prop, player,player);
+		runRules(p, player,player);
 
 	}
 

@@ -1,7 +1,7 @@
 package net.firstpartners.core.log;
 
 /**
- * An Adaptor that allows us and hold Loggin in Memory Useful for Testing
+ * An Adaptor that allows us and hold Logs in Memory Useful for Testing
  * 
  * @author paulbrowne
  *

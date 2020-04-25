@@ -4,8 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * An Adaptor that allows us to log to An Excel File
- * @author paulbrowne
+ * An Adaptor that allows us to log to the consoles
  *
  */
 public class ConsoleLogger implements ILogger {

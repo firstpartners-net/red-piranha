@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 /**
- * Extender logging so that we can control logging in an exe environment.
+ * Extend logging so that we can control logging in an exe environment where we may not have full control of config
  * 
  * @author PBrowne
  */

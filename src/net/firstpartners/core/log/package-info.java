@@ -1,6 +1,6 @@
 /**
  * 
- * Classes that can be injected into Rule engine working memory for logging
+ * Classes to supporting Logging - both to users, and for system
  *  
  * @since 1.0
  * @author pbrowne

@@ -1,7 +1,9 @@
 package net.firstpartners.core.log;
 
 /**
- * Marks as class as being able to display a pre and post rules snapshot of Data as feedback to users
+ * Marks as class as being able to display a pre and post rules snapshot of Data as feedback to users.
+ * Often this is used as to update a GUI or something similar.
+ * 
  * @author PBrowne
  *
  */

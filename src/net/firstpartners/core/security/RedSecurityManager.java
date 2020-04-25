@@ -25,7 +25,11 @@ public class RedSecurityManager {
 
 	private String propertyFileOfResourceSuffixes;
 
-
+	/**
+	 * Create an instance of the manager, configure what to whitelist
+	 * @param propertyFileOfUrlPrexfixes
+	 * @param propertyFileOfResourceSuffixes
+	 */
 	public RedSecurityManager (String propertyFileOfUrlPrexfixes, String propertyFileOfResourceSuffixes ) {
 		
 		this.propertyFileOfUrlPrexfixes = propertyFileOfUrlPrexfixes ;
@@ -103,7 +107,7 @@ public class RedSecurityManager {
 
 	}
 
-	public Map<?, ?> getResourceSuffixes() throws IOException {
+	Map<?, ?> getResourceSuffixes() throws IOException {
 
 		if (resourceSuffixes == null) {
 			resourceSuffixes = readResourceSuffixes();
@@ -111,9 +115,9 @@ public class RedSecurityManager {
 		return resourceSuffixes;
 	}
 
-	public  Map<?, ?> getUrlPrefixes() throws IOException {
+	 Map<?, ?> getUrlPrefixes() throws IOException {
 
-		// check and load propers
+		// check and load properties
 		if (urlPrefixes == null) {
 			urlPrefixes = readUrlPrefixes();
 		}
@@ -147,7 +151,7 @@ public class RedSecurityManager {
 		return properties;
 	}
 
-	public void checkUrl(RuleSource ruleSource) throws SecurityException, IOException {
+	void checkUrl(RuleSource ruleSource) throws SecurityException, IOException {
 
 		//Check all the components listed in the ruleSource - if there are not null or empty (which they are allowed to be)
 		if(ruleSource.getDslFileLocation()!=null){
@@ -169,7 +173,7 @@ public class RedSecurityManager {
 
 	}
 
-	private void checkUrl(String[] rulesLocation) throws SecurityException, IOException {
+	void checkUrl(String[] rulesLocation) throws SecurityException, IOException {
 
 		if(rulesLocation!=null){
 			for (String element : rulesLocation) {

@@ -2,8 +2,8 @@ package net.firstpartners.sample.ExcelDataRules;
 
 import net.firstpartners.core.log.ILogger
 
-import net.firstpartners.core.spreadsheet.Cell;
-import net.firstpartners.core.spreadsheet.Range;
+import net.firstpartners.data.Cell;
+import net.firstpartners.data.Range;
 
 global ILogger log;
 

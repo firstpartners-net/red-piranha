@@ -5,6 +5,7 @@ package net.firstpartners.core.drools;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +16,9 @@ import java.util.logging.Logger;
 
 import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.Test;
+
+import net.firstpartners.TestConstants;
+import net.firstpartners.core.log.ConsoleLogger;
 
 /**
  * @author paul
@@ -105,5 +109,15 @@ public class PreCompileRuleBuilderTest {
 		assertTrue(preLoadRules.get("war/sampleresources/SpreadSheetServlet/log-then-modify-rules.drl")!=null);
 
 	}
+	
+	@Test
+	public final void testpreCompileRules() {
+		
+		
+		preCompileRuleBuilder.compileRules(new ConsoleLogger(), TestConstants.RULES_FILES[0]);
+		fail("need to implement tests");	
+			
+			
+}
 
 }

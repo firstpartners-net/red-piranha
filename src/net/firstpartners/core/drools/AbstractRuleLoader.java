@@ -22,7 +22,7 @@ import org.drools.definition.KnowledgePackage;
 import org.drools.io.ResourceFactory;
 
 import net.firstpartners.RedConstants;
-import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.drools.config.RuleSource;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.security.RedSecurityManager;
 

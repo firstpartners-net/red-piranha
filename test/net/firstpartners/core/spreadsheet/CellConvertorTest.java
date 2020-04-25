@@ -20,6 +20,8 @@ import org.junit.Test;
 import org.junit.jupiter.api.MethodOrderer.Alphanumeric;
 
 import net.firstpartners.core.log.RpLogger;
+import net.firstpartners.data.Cell;
+import net.firstpartners.data.RangeHolder;
 
 import org.junit.jupiter.api.TestMethodOrder;
 

@@ -9,7 +9,7 @@ import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.drools.config.RuleSource;
 
 public class FileRuleLoaderTest {
 
@@ -35,5 +35,8 @@ public class FileRuleLoaderTest {
 		assertNotNull(sks);
 
 	}
+	
+
+	
 
 }

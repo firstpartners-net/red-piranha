@@ -1,5 +1,6 @@
 package net.firstpartners.core.spreadsheet;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -8,6 +9,8 @@ import java.util.logging.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import net.firstpartners.core.log.RpLogger;
+import net.firstpartners.data.Range;
+import net.firstpartners.data.RangeHolder;
 
 /**
  * Convenience Class for Output of Spreadhsheets
@@ -18,6 +21,42 @@ public class SpreadSheetOutputter {
 
 	// Logger
 	private static final Logger log = RpLogger.getLogger(SpreadSheetOutputter.class.getName());
+
+	/**
+	 * Delete the output file if it already exists
+	 *
+	 * @param outputFile
+	 */
+	public static void deleteOutputFileIfExists(String outputFileName) {
+
+		File outputFile = new File(outputFileName);
+		if (outputFile.exists()) {
+			outputFile.delete();
+		}
+
+	}
+
+	/**
+	 * Outputs Red-Piranha's own internal format to a Logging Console
+	 * @param ranges
+	 */
+	public static void outputToConsole(RangeHolder ranges ){
+		for (Range r : ranges) {
+			log.info(r.toString());
+		}
+	}
+
+	/**
+	 * Outputs an Apache POI Workbook to a Logging Console
+	 * @param wb
+	 * @throws IOException
+	 */
+	public static void outputToConsole(Workbook wb) throws IOException{
+
+		RangeHolder ranges = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
+		outputToConsole(ranges);
+
+	}
 
 	/**
 	 * Outputs an Apache POI Workbook to a file
@@ -41,6 +80,7 @@ public class SpreadSheetOutputter {
 
 	}
 
+	
 	/**
 	 * Outputs an Apache POI Workbook to a Stream (e.g Servlet response)
 	 * @param wb
@@ -50,28 +90,6 @@ public class SpreadSheetOutputter {
 	public static void outputToStream(Workbook wb,OutputStream stream) throws IOException{
 
 		wb.write(stream);
-	}
-
-	/**
-	 * Outputs an Apache POI Workbook to a Logging Console
-	 * @param wb
-	 * @throws IOException
-	 */
-	public static void outputToConsole(Workbook wb) throws IOException{
-
-		RangeHolder ranges = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
-		outputToConsole(ranges);
-
-	}
-
-	/**
-	 * Outputs Red-Piranha's own internal format to a Logging Console
-	 * @param ranges
-	 */
-	public static void outputToConsole(RangeHolder ranges ){
-		for (Range r : ranges) {
-			log.info(r.toString());
-		}
 	}
 
 }

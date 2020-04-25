@@ -31,7 +31,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.core.spreadsheet.RangeHolder;
+import net.firstpartners.data.RangeHolder;
 import net.firstpartners.ui.component.HtmlGenerator;
 import net.firstpartners.ui.component.RangeCellTree;
 import net.firstpartners.ui.component.SwingGuiUtils;
@@ -166,7 +166,7 @@ public class RedGui extends WindowAdapter
 
 		// Panel 4
 		JLabel label4 = new JLabel();
-		label4.setText("This the information updated by the business rules, before we save it to Excel\n");
+		label4.setText("This the information updated by the business rules, that we are about to save to Excel\n");
 		SwingGuiUtils.updateFontSize(label4);
 		this.postRangeCellTree = new RangeCellTree();
 		jp4.setLayout(new BorderLayout());

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.firstpartners.RedConstants;
 import net.firstpartners.core.drools.SpreadSheetRuleRunner;
 import net.firstpartners.core.drools.URLRuleLoader;
-import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.drools.config.RuleSource;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.security.RedSecurityManager;
 import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;

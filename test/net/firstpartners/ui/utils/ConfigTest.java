@@ -1,4 +1,4 @@
-package net.firstpartners.ui;
+package net.firstpartners.ui.utils;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -13,13 +13,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import net.firstpartners.core.spreadsheet.RangeConvertorTest;
-import net.firstpartners.core.spreadsheet.RangeHolder;
+import net.firstpartners.data.RangeHolder;
 
-public class UiUtilsTest {
+public class ConfigTest {
 
 	
 	// Logger
-	private static final Logger log = Logger.getLogger(UiUtilsTest.class.getName());
+	private static final Logger log = Logger.getLogger(ConfigTest.class.getName());
 	@SuppressWarnings("unused")
 	private static RangeHolder redData=null;
 
@@ -37,15 +37,15 @@ public class UiUtilsTest {
 	@Test
 	public final void testReadConfig() {
 		
-		Properties prop = UiUtils.readConfig();
+		Properties prop = Config.readConfig();
 		log.fine(prop.toString());
 		
-		assertNotNull(prop.get(UiUtils.DRL1));
-		assertNull(prop.get(UiUtils.DRL2));
-		assertNull(prop.get(UiUtils.DRL3));
-		assertNotNull(prop.get(UiUtils.EXCEL_INPUT));
-		assertNotNull(prop.get(UiUtils.EXCEL_OUTPUT));
-		assertNotNull(prop.get(UiUtils.LOG_FILE_NAME));
+		assertNotNull(prop.get(Config.DRL1));
+		assertNull(prop.get(Config.DRL2));
+		assertNull(prop.get(Config.DRL3));
+		assertNotNull(prop.get(Config.EXCEL_INPUT));
+		assertNotNull(prop.get(Config.EXCEL_OUTPUT));
+		assertNotNull(prop.get(Config.LOG_FILE_NAME));
 	}
 
 }

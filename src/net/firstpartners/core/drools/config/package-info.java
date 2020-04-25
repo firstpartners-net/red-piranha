@@ -6,4 +6,4 @@
  * @author pbrowne
  * @version 1.1
  */
-package net.firstpartners.core.drools.data;
+package net.firstpartners.core.drools.config;

@@ -30,16 +30,16 @@ public class CellConvertor {
 	 * @param poiCell
 	 * @return
 	 */
-	public static net.firstpartners.core.spreadsheet.Cell convertPoiCellToRedCell(String cellNameFromRange,
+	public static net.firstpartners.data.Cell convertPoiCellToRedCell(String cellNameFromRange,
 			org.apache.poi.ss.usermodel.Cell poiCell) {
 
 		// Check for null paramater
 		if (poiCell == null) {
-			return new net.firstpartners.core.spreadsheet.Cell();
+			return new net.firstpartners.data.Cell();
 		}
 
 		// Start building our new (Red) Cell
-		net.firstpartners.core.spreadsheet.Cell redCell = new net.firstpartners.core.spreadsheet.Cell();
+		net.firstpartners.data.Cell redCell = new net.firstpartners.data.Cell();
 
 		// Keep a reference to the original cell location
 		redCell.setOriginalCellReference(poiCell.getAddress().toString());
@@ -112,7 +112,7 @@ public class CellConvertor {
 	 * @param redCell
 	 */
 	public static void convertRedCellToPoiCell(org.apache.poi.ss.usermodel.Workbook wb,
-			org.apache.poi.ss.usermodel.Cell poiCell, net.firstpartners.core.spreadsheet.Cell redCell) {
+			org.apache.poi.ss.usermodel.Cell poiCell, net.firstpartners.data.Cell redCell) {
 
 		// If the cell has no value , then it is null
 		// We should create the cell, as we have a value to update into it
@@ -132,7 +132,7 @@ public class CellConvertor {
 		poiCell.setCellStyle(style);
 		
 		//Update comment if specified
-		if(redCell.getComment()!=null) {
+		if(redCell.getComment()!=null&& redCell.getComment()!="") {
 			setPoiCellComment(wb,poiCell,"", redCell.getComment());
 			
 		}

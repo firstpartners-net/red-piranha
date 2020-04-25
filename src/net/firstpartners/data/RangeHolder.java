@@ -1,4 +1,4 @@
-package net.firstpartners.core.spreadsheet;
+package net.firstpartners.data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -145,7 +145,7 @@ public class RangeHolder implements List<Range>, Serializable {
 
 			// Add the cells within the range
 
-			for (net.firstpartners.core.spreadsheet.Cell cell : range.values()) {
+			for (net.firstpartners.data.Cell cell : range.values()) {
 				returnValues.add(cell);
 			}
 
@@ -177,14 +177,14 @@ public class RangeHolder implements List<Range>, Serializable {
 	 * 
 	 * @return
 	 */
-	public Map<String, net.firstpartners.core.spreadsheet.Cell> getAllCells() {
+	public Map<String, net.firstpartners.data.Cell> getAllCells() {
 
 		HashMap<String, Cell> returnValues = new HashMap<String, Cell>();
 		log.info("combining all cells in all ranges, returning as Hashmap");
 
 		for (Range range : allRanges) {
 
-			for (net.firstpartners.core.spreadsheet.Cell cell : range.values()) {
+			for (net.firstpartners.data.Cell cell : range.values()) {
 				if (cell.getCellName() != null) {
 					returnValues.put(cell.getCellName(), cell);
 				}

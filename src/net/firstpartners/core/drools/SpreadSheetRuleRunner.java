@@ -14,13 +14,13 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.drools.compiler.compiler.DroolsParserException;
 
-import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.drools.config.RuleSource;
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.core.spreadsheet.RangeConvertor;
-import net.firstpartners.core.spreadsheet.RangeHolder;
+import net.firstpartners.data.RangeHolder;
 
 /**
  * Common Entry point to both Servlet and command line,
@@ -110,7 +110,7 @@ public class SpreadSheetRuleRunner {
 		ruleRunner.runStatelessRules(ruleSource, logger);
 		
 		if(userDataDisplay!=null) {
-			userDataDisplay.showPostRulesSnapShot(ranges.toString());
+			userDataDisplay.showPostRulesSnapShot(ranges);
 			userDataDisplay.notifyProgress(80);
 		}
 		

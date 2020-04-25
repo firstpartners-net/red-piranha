@@ -12,10 +12,12 @@ import org.drools.compiler.compiler.DroolsParserException;
 import net.firstpartners.RedConstants;
 import net.firstpartners.core.drools.FileRuleLoader;
 import net.firstpartners.core.drools.SpreadSheetRuleRunner;
-import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.drools.config.RuleSource;
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
+import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
+import net.firstpartners.ui.utils.Config;
 
 /**
  * Main Entry Point for Red-Piranha
@@ -42,10 +44,10 @@ public class RedCommandLine {
 	public static void main(String[] ignoredArgs) throws Exception {
 
 		// read the properties file
-		Properties prop = UiUtils.readConfig();
+		Properties prop = Config.readConfig();
 
 		// Check and force logging
-		Object logFileName = prop.get(UiUtils.LOG_FILE_NAME);
+		Object logFileName = prop.get(Config.LOG_FILE_NAME);
 		RpLogger.checkForceLogToFile(logFileName);
 
 		// Open the GUI
@@ -73,9 +75,9 @@ public class RedCommandLine {
 		
 		
 		// Get the params
-		String excelFile = prop.getProperty(UiUtils.EXCEL_INPUT);
-		String outputFileName = prop.getProperty(UiUtils.EXCEL_OUTPUT);
-		RuleSource ruleFiles = UiUtils.getRuleFiles(prop);
+		String excelFile = prop.getProperty(Config.EXCEL_INPUT);
+		String outputFileName = prop.getProperty(Config.EXCEL_OUTPUT);
+		RuleSource ruleFiles = Config.getRuleFiles(prop);
 
 		
 		if (excelFile.equalsIgnoreCase(outputFileName)) {
@@ -84,7 +86,7 @@ public class RedCommandLine {
 		} else {
 
 			try {
-				// Open the inputfile as a stream
+				// Open the input file as a stream
 				playerAsLogger.info("Opening Excel Input file:" + excelFile);
 				FileInputStream excelInput = new FileInputStream(excelFile);
 				
@@ -93,14 +95,12 @@ public class RedCommandLine {
 				Workbook wb = commonUtils.callRules(excelInput, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME,userUpdates,playerAsLogger);
 
 				// delete the outputFile if it exists
-				UiUtils.deleteOutputFileIfExists(outputFileName);
+				SpreadSheetOutputter.deleteOutputFileIfExists(outputFileName);
 
 				// Open the outputfile as a stream
-				playerAsLogger.info("Opening Excel Output file:" + outputFileName);
-				FileOutputStream excelOutput = new FileOutputStream(outputFileName);
-
-				wb.write(excelOutput);
-
+				playerAsLogger.info("Write to Excel Output file:" + outputFileName);
+				SpreadSheetOutputter.outputToFile(wb, outputFileName);
+				
 				playerAsLogger.info("Complete");
 
 			} catch (Throwable t) {

@@ -14,9 +14,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.core.spreadsheet.Cell;
-import net.firstpartners.core.spreadsheet.Range;
-import net.firstpartners.core.spreadsheet.RangeHolder;
+import net.firstpartners.data.Cell;
+import net.firstpartners.data.Range;
+import net.firstpartners.data.RangeHolder;
 
 /**
  * Component we use on our panels to display Ranges and Cells Based on example

@@ -7,7 +7,7 @@ import javax.swing.text.html.StyleSheet;
 
 import org.apache.commons.lang.StringUtils;
 
-import net.firstpartners.ui.UiUtils;
+import net.firstpartners.ui.utils.Config;
 
 /**
  * Utility class for generating HTML used by the GUI
@@ -48,11 +48,11 @@ public class HtmlGenerator {
 
 		// Get UserSpecifc information we need to display
 		if (copyOfProperties != null) {
-			excelFile = StringUtils.escape(copyOfProperties.getProperty(UiUtils.EXCEL_INPUT));
-			outputFileName = StringUtils.escape(copyOfProperties.getProperty(UiUtils.EXCEL_OUTPUT));
+			excelFile = StringUtils.escape(copyOfProperties.getProperty(Config.EXCEL_INPUT));
+			outputFileName = StringUtils.escape(copyOfProperties.getProperty(Config.EXCEL_OUTPUT));
 
 			// build multiple rules files
-			String rulesFiles[] = UiUtils.getRuleFiles(copyOfProperties).getRulesLocation();
+			String rulesFiles[] = Config.getRuleFiles(copyOfProperties).getRulesLocation();
 			StringBuilder ruleFile = new StringBuilder();
 			for (int a = 0; a < rulesFiles.length; a++) {
 				ruleFile.append(StringUtils.escape(rulesFiles[a]) + " | ");

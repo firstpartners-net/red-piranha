@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
 
-import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.drools.config.RuleSource;
 
 public class URLRuleLoaderTest {
 

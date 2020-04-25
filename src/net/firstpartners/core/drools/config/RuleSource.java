@@ -1,4 +1,4 @@
-package net.firstpartners.core.drools.data;
+package net.firstpartners.core.drools.config;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-import net.firstpartners.core.spreadsheet.Cell;
+import net.firstpartners.data.Cell;
 
 /**
  * Cargo object to hold information about the type of rules that we are working with

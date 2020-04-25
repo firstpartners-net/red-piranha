@@ -1,55 +1,48 @@
 package net.firstpartners.core.log;
 
-
 /**
- * An Adaptor that allows us and hold sample in Memory
- * Useful for Testing
+ * An Adaptor that allows us and hold Loggin in Memory Useful for Testing
+ * 
  * @author paulbrowne
  *
  */
 public class BufferLogger implements ILogger {
 
+	ILogger nestedLogger = null;
 
-	ILogger nestedLogger =null;
-
-
-
-	//We also allow this to be configured to log to memory
+	// We also allow this to be configured to log to memory
 	final StringBuffer buffer = new StringBuffer();
 
-
-
-
-	public BufferLogger(){
+	public BufferLogger() {
 
 	}
 
-	public BufferLogger(ILogger nestedLogger){
+	public BufferLogger(ILogger nestedLogger) {
 		this.nestedLogger = nestedLogger;
 	}
 
-	public void debug(String output){
-		buffer.append("DEBUG:"+output+"\n");
+	public void debug(String output) {
+		buffer.append("DEBUG:" + output + "\n");
 
-		if(nestedLogger!=null){
+		if (nestedLogger != null) {
 			nestedLogger.debug(output);
 		}
 	}
 
-	public void info(String output){
-		buffer.append("INFO:"+output+"\n");
+	public void info(String output) {
+		buffer.append("INFO:" + output + "\n");
 
-		if(nestedLogger!=null){
+		if (nestedLogger != null) {
 			nestedLogger.info(output);
 		}
 	}
 
-	public void exception(String output, Throwable t){
-		buffer.append("EXCEPTION:"+output+"\n");
+	public void exception(String output, Throwable t) {
+		buffer.append("EXCEPTION:" + output + "\n");
 		buffer.append(t.fillInStackTrace());
 
-		if(nestedLogger!=null){
-			nestedLogger.exception(output,t);
+		if (nestedLogger != null) {
+			nestedLogger.exception(output, t);
 		}
 	}
 

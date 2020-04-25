@@ -18,6 +18,8 @@ import org.junit.Test;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.log.RpLogger;
+import net.firstpartners.data.Cell;
+import net.firstpartners.data.RangeHolder;
 
 public class RangeConvertorTest {
 

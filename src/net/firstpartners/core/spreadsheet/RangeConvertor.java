@@ -18,6 +18,8 @@ import org.apache.poi.ss.util.AreaReference;
 import org.apache.poi.ss.util.CellReference;
 
 import net.firstpartners.core.log.RpLogger;
+import net.firstpartners.data.Range;
+import net.firstpartners.data.RangeHolder;
 
 /**
  * Read Ranges from Excel, Convert to a format (JavaBeans) that rules find
@@ -122,7 +124,7 @@ public class RangeConvertor {
 				String cellHandle = redRange.getUniqueCellName(thisCellinRange);
 				assert cellHandle != null;
 
-				net.firstpartners.core.spreadsheet.Cell redCell = CellConvertor.convertPoiCellToRedCell(cellHandle,
+				net.firstpartners.data.Cell redCell = CellConvertor.convertPoiCellToRedCell(cellHandle,
 						thisExcelCell);
 
 				// Give the cell information about who is holding it
@@ -154,13 +156,13 @@ public class RangeConvertor {
 	public static void updateRedRangeintoPoiExcel(Workbook wb, RangeHolder updatedValues) throws IOException {
 
 		// Get all the Cells that we have been keeping track of
-		Map<String, net.firstpartners.core.spreadsheet.Cell> allCells = updatedValues.getAllCells();
+		Map<String, net.firstpartners.data.Cell> allCells = updatedValues.getAllCells();
 
 		// Loop through the cells
-		Iterator<net.firstpartners.core.spreadsheet.Cell> redCells = allCells.values().iterator();
+		Iterator<net.firstpartners.data.Cell> redCells = allCells.values().iterator();
 		while (redCells.hasNext()) {
 
-			net.firstpartners.core.spreadsheet.Cell thisRedCell = redCells.next();
+			net.firstpartners.data.Cell thisRedCell = redCells.next();
 			String orignalSheetRef = thisRedCell.getOriginalSheetReference();
 			String originalPoiRef = thisRedCell.getOriginalCellReference();
 

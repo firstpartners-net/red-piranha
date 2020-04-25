@@ -14,7 +14,8 @@ import org.apache.commons.codec.binary.Base64;
 import org.drools.KnowledgeBase;
 import org.drools.compiler.compiler.DroolsParserException;
 
-import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.drools.config.RuleSource;
+import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 
 
@@ -150,4 +151,34 @@ public class PreCompileRuleBuilder {
 		return ruleLoader;
 	}
 
+	/**
+	 * Compile the rules using the values that we have been passed
+	 * 
+	 * @param gui
+	 * @param ruleFile
+	 */
+	public void compileRules(ILogger gui, String ruleFile) {
+
+		if (ruleFile == null) {
+			gui.info("Please set 'rule' as a param pointing at the rule file you wish to compile ");
+		} else {
+			gui.info("Compiling Rules...\n");
+			gui.info("Using file:" + ruleFile + "\n");
+			PreCompileRuleBuilder rulebuilder = new PreCompileRuleBuilder();
+
+			try {
+				rulebuilder.cacheRule(ruleFile, (String) null);
+			} catch (DroolsParserException ex) {
+				gui.exception("DroolsParserException:" + ex + "\n", ex);
+			} catch (IOException ex) {
+				gui.exception("IOException:" + ex + "\n", ex);
+			} catch (ClassNotFoundException ex) {
+				gui.exception("ClassNotFoundException:" + ex + "\n", ex);
+			}
+
+			gui.info("Compiling complete\n");
+		}
+
+	}
+	
 }

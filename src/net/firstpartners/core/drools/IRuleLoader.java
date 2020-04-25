@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.drools.compiler.compiler.DroolsParserException;
 
-import net.firstpartners.core.drools.data.RuleSource;
+import net.firstpartners.core.drools.config.RuleSource;
 
 /**
  * Marks a class as being able to load rules on behalf of the system

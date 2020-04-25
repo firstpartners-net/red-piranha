@@ -7,6 +7,8 @@ import static org.junit.Assert.assertTrue;
 import java.util.logging.Logger;
 
 import net.firstpartners.core.log.*;
+import net.firstpartners.data.Cell;
+import net.firstpartners.data.Range;
 
 import org.junit.Test;
 

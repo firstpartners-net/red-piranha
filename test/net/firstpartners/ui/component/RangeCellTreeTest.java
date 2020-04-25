@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import net.firstpartners.core.spreadsheet.RangeConvertorTest;
-import net.firstpartners.core.spreadsheet.RangeHolder;
+import net.firstpartners.data.RangeHolder;
 
 /**
  * Test to call the main method

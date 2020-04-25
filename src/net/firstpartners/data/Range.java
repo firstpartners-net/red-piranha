@@ -1,4 +1,4 @@
-package net.firstpartners.core.spreadsheet;
+package net.firstpartners.data;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

@@ -107,7 +107,7 @@ public class RangeConvertor {
 				try {
 					r = sheet.getRow(thisCellRef.getRow()); // ISSUE HERE
 				} catch (NullPointerException npe) {
-					log.log(Level.SEVERE,"Excel Read error on Cell:"+thisCellRef,npe);
+					log.log(Level.SEVERE, "Excel Read error on Cell:" + thisCellRef, npe);
 
 				}
 
@@ -124,18 +124,16 @@ public class RangeConvertor {
 				String cellHandle = redRange.getUniqueCellName(thisCellinRange);
 				assert cellHandle != null;
 
-				net.firstpartners.data.Cell redCell = CellConvertor.convertPoiCellToRedCell(cellHandle,
-						thisExcelCell);
+				net.firstpartners.data.Cell redCell = CellConvertor.convertPoiCellToRedCell(cellHandle, thisExcelCell);
 
 				// Give the cell information about who is holding it
 				// and that it should pass on property change events to it
 				redCell.setHoldingRange(redRange);
 				redCell.addPropertyChangeListener(redRange);
 
-				//log.info("Converted Cell:" + redCell);
-				log.info("Converted Number:" + thisCellinRange +" of "+cellArray.size());
+				// log.info("Converted Cell:" + redCell);
+				log.info("Converted Number:" + thisCellinRange + " of " + cellArray.size());
 
-				
 				// Add the list of cells to a range
 				redRange.put(cellHandle, redCell);
 
@@ -166,15 +164,17 @@ public class RangeConvertor {
 			String orignalSheetRef = thisRedCell.getOriginalSheetReference();
 			String originalPoiRef = thisRedCell.getOriginalCellReference();
 
-			if (originalPoiRef == null||orignalSheetRef==null) {
+			if (originalPoiRef == null || orignalSheetRef == null) {
 				log.info("Cells has no ref to original sheet or cell - ignoring:" + thisRedCell);
 			} else {
 
 				// Get a handle to the Excel cell at Sheet / reference
-				org.apache.poi.ss.usermodel.Sheet thisSheet = wb.getSheet(thisRedCell.getOriginalSheetReference());
+				org.apache.poi.ss.usermodel.Sheet thisSheet = SheetConvertor.getOrCreateSheet(wb, thisRedCell);
+
 				CellReference cellReference = new CellReference(thisRedCell.getOriginalCellReference());
-				Row row = thisSheet.getRow(cellReference.getRow());
-				org.apache.poi.ss.usermodel.Cell excelCell = row.getCell(cellReference.getCol());
+				Row row = SheetConvertor.getOrCreateRow(thisSheet, cellReference);
+
+				org.apache.poi.ss.usermodel.Cell excelCell = SheetConvertor.getOrCreateCell(row, cellReference);
 
 				// update the values into the cell
 				CellConvertor.convertRedCellToPoiCell(wb, excelCell, thisRedCell);

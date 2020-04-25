@@ -4,10 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 import java.util.logging.Logger;
 
 import org.apache.commons.codec.binary.Base64;
@@ -34,40 +32,7 @@ public class PreCompileRuleBuilder {
 	private static final Logger log = RpLogger.getLogger(PreCompileRuleBuilder.class
 			.getName());
 
-	/**
-	 * Entry points that allows rebuilding all the rule files into packages
-	 * @param args - standard Java params passed from command line. Contains name of
-	 * directory to start in.
-	 *
-	 * Method opens the property file, pre compiles the resources listed there
-	 * @throws IOException
-	 * @throws DroolsParserException
-	 */
-	@SuppressWarnings("unchecked")
-	public static void main(Object[] args) throws Exception {
 
-		PreCompileRuleBuilder ruleBuilder = new PreCompileRuleBuilder();
-		
-		Map<String, ?> fileList = ruleBuilder.readProperties();
-
-		Set<String> keys = fileList.keySet();
-		if(keys!=null){
-			Iterator<String> it = keys.iterator();
-			while (it.hasNext()){
-				Object key = it.next();
-				Object outputFile = fileList.get(key);
-
-				if((key!=null)&&(outputFile!=null)){
-					ruleBuilder.compileRule(key.toString(),outputFile.toString());
-				}
-
-			}
-		}
-
-
-	}
-
-	
 	/**
 	 * Cache the pre built knowledgebase.
 	 *

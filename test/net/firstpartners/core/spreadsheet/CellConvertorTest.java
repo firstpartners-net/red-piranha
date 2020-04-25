@@ -1,5 +1,6 @@
 package net.firstpartners.core.spreadsheet;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
@@ -18,12 +19,11 @@ import org.apache.poi.ss.util.CellReference;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.MethodOrderer.Alphanumeric;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeHolder;
-
-import org.junit.jupiter.api.TestMethodOrder;
 
 @TestMethodOrder(Alphanumeric.class)
 public class CellConvertorTest {
@@ -63,50 +63,56 @@ public class CellConvertorTest {
 			assertNotNull(thisRedCell);
 
 			// Get a handle to the Excel cell at Sheet / reference
-			// TODO this will likely fail since we don't have the matching 'chocolate' sheet - update code to create as needed
-			org.apache.poi.ss.usermodel.Sheet thisSheet = CellConvertor.getOrCreateSheet(wb, thisRedCell);
+			// TODO this will likely fail since we don't have the matching 'chocolate' sheet
+			// - update code to create as needed
+			org.apache.poi.ss.usermodel.Sheet thisSheet = SheetConvertor.getOrCreateSheet(wb, thisRedCell);
 			CellReference cellReference = new CellReference(thisRedCell.getOriginalCellReference());
-			Row row = CellConvertor.getOrCreateRow(thisSheet,cellReference);
-			
-			log.info("found Row:"+row);
-			org.apache.poi.ss.usermodel.Cell poiCell = row.getCell(cellReference.getCol());
+			Row row = SheetConvertor.getOrCreateRow(thisSheet, cellReference);
 
-			//
+			log.info("found Row:" + row);
+			org.apache.poi.ss.usermodel.Cell poiCell = SheetConvertor.getOrCreateCell(row, cellReference);
+
 			CellConvertor.convertRedCellToPoiCell(wb, poiCell, thisRedCell);
-			fail("Add tests to compare before and after on each Poi Cell");
+			assertNotNull(poiCell);
+			assertNotNull(thisRedCell);
+			String tmp = thisRedCell.getValueAsText();
+			
+			//Excel stores booleann in a differt way
+			if(!("[false]".contains(tmp))) {
+				assertEquals(tmp, poiCell.getStringCellValue());
+			}
+			
 		}
-		
-		//Save the Excel data - we will need it later
+
+		// Save the Excel data - we will need it later
 		excelData = wb;
+		subTestConvertPoiCellToRedCell();
 	}
 
-
-	@Test
-	public final void testConvertPoiCellToRedCell() {
+	
+	public final void subTestConvertPoiCellToRedCell() {
 		assertNotNull(excelData);
-		
-		 Sheet sheet = excelData.getSheetAt(0);
-         
-         // Iterate over each row in the sheet
-         Iterator<?> rows = sheet.rowIterator(); 
-         while( rows.hasNext() ) {           
-             Row row = (Row) rows.next();
-             log.info( "Row #" + row.getRowNum() );
 
-             // Iterate over each cell in the row and print out the cell's content
-             Iterator<?> cells = row.cellIterator();
-             while( cells.hasNext() ) {
-            	 org.apache.poi.ss.usermodel.Cell poiCell = (org.apache.poi.ss.usermodel.Cell) cells.next();
-            	 Cell redCell = CellConvertor.convertPoiCellToRedCell("", poiCell);
-                
-            	 
-            	 assertNotNull(redCell);
-            	 fail("additional tests that data has been copied over etc");
-               
-                 
-             }
-             
-         }
+		Sheet sheet = excelData.getSheetAt(0);
+
+		// Iterate over each row in the sheet
+		Iterator<?> rows = sheet.rowIterator();
+		while (rows.hasNext()) {
+			Row row = (Row) rows.next();
+			log.info("Row #" + row.getRowNum());
+
+			// Iterate over each cell in the row and print out the cell's content
+			Iterator<?> cells = row.cellIterator();
+			while (cells.hasNext()) {
+				org.apache.poi.ss.usermodel.Cell poiCell = (org.apache.poi.ss.usermodel.Cell) cells.next();
+				Cell redCell = CellConvertor.convertPoiCellToRedCell("", poiCell);
+
+				assertNotNull(redCell);
+				fail("additional tests that data has been copied over etc");
+
+			}
+
+		}
 
 	}
 

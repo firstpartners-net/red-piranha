@@ -11,10 +11,7 @@ import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Drawing;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.util.CellReference;
 
 import net.firstpartners.core.log.RpLogger;
 
@@ -121,7 +118,7 @@ public class CellConvertor {
 		// We should create the cell, as we have a value to update into it
 		// but for now we just ignfore the update
 		if (poiCell == null) {
-			log.fine("Ignoring null value:");
+			log.fine("Ignoring null Poi Cell:");
 			return;
 		}
 
@@ -189,6 +186,24 @@ public class CellConvertor {
 
 	}
 
+
+
+	/**
+	 * Get the 'updated' style that we use to show that a cell value has been
+	 * changed
+	 * 
+	 * @return
+	 */
+	protected static org.apache.poi.ss.usermodel.CellStyle getUpdatedPoiCellStyle(
+			org.apache.poi.ss.usermodel.Workbook wb) {
+		CellStyle style = wb.createCellStyle();
+		style.setFillForegroundColor(IndexedColors.ORANGE.index);
+		style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+		return style;
+
+	}
+
 	/**
 	 * Add a comment to the Poi Workbook
 	 * 
@@ -216,66 +231,6 @@ public class CellConvertor {
 		comment.setString(factory.createRichTextString(commentText));
 		comment.setAuthor(author);
 		cell.setCellComment(comment);
-	}
-
-	/**
-	 * Get the 'updated' style that we use to show that a cell value has been
-	 * changed
-	 * 
-	 * @return
-	 */
-	protected static org.apache.poi.ss.usermodel.CellStyle getUpdatedPoiCellStyle(
-			org.apache.poi.ss.usermodel.Workbook wb) {
-		CellStyle style = wb.createCellStyle();
-		style.setFillForegroundColor(IndexedColors.ORANGE.index);
-		style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-
-		return style;
-
-	}
-
-	/**
-	 * Get or create a sheet in a workbook, if is not found
-	 * 
-	 * @param wb
-	 * @param thisRedCell
-	 * @return
-	 */
-	final static Sheet getOrCreateSheet(Workbook wb, net.firstpartners.data.Cell thisRedCell) {
-
-		log.info("trying to find sheet:" + thisRedCell.getOriginalSheetReference());
-
-		Sheet thisSheet = wb.getSheet(thisRedCell.getOriginalSheetReference());
-
-		if (thisSheet == null) {
-			thisSheet = wb.createSheet(thisRedCell.getOriginalSheetReference());
-		}
-
-		log.info("Found:" + thisSheet.getSheetName());
-		return thisSheet;
-	}
-
-	/**
-	 * Get or create a row in a sheet, if it is not found
-	 * 
-	 * @param thisSheet
-	 * @param cellReference
-	 * @return
-	 */
-	final static Row getOrCreateRow(Sheet thisSheet, CellReference cellReference) {
-
-		log.info("Looking for:"+cellReference);
-		
-		Row row = thisSheet.getRow(cellReference.getRow());
-		
-		if(row ==null) {
-			row =thisSheet.createRow(cellReference.getRow());
-		}
-		
-		log.info("found:"+row.getRowNum());
-
-		return row;
-
 	}
 
 }

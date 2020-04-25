@@ -7,7 +7,7 @@ import javax.swing.JComponent;
 public class SwingGuiUtils {
 
 	/**
-	 * Helper method to update font size
+	 * Helper method to update font size of a Swing Component
 	 * 
 	 * @param swingComponent
 	 */

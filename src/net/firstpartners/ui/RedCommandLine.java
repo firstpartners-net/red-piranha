@@ -21,6 +21,9 @@ import net.firstpartners.ui.utils.Config;
 /**
  * Main Entry Point for Red-Piranha
  * Looks for red-piranha.config to decide what mode it should run in
+ * 
+ * By default, loads data from excel, executes business rules against it, saves into another Excel file.
+ * 
  * @author PBrowne
  *
  */
@@ -34,7 +37,7 @@ public class RedCommandLine {
 
 	/**
 	 * Usage from command line java -jar [jarName.jar] all args are ignored - we
-	 * load from config rulesfile2 ...
+	 * load from red-piranha.config
 	 *
 	 * @param ignoredArgs - not used
 	 * @throws IOException

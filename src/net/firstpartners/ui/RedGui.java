@@ -37,9 +37,10 @@ import net.firstpartners.ui.component.RangeCellTree;
 import net.firstpartners.ui.component.SwingGuiUtils;
 
 /**
- * Previously released as 'RulePlayer', Desktop GUI for Red Piranha Desktop User
- * interface to ease calling of Rules / running the webserver needed for the
- * office plugin
+ * Desktop GUI for Red Piranha Desktop User interface to ease calling of Rules / running the webserver needed for the
+ * office plugin.
+ * 
+ * This is just a facade, called by RedCommandLine (unless the user has configured it not to)
  * 
  * @author PBrowne
  *
@@ -56,9 +57,9 @@ public class RedGui extends WindowAdapter
 
 	// Handle to the Properties
 	Properties copyOfProperties = null;
+	
 	// Class level GUI Elements - we update these as we get notification from the
-	// system via
-	// the IGiveFeedbackToUsers interface
+	// system via the IGiveFeedbackToUsers interface
 	private JFrame frame = new JFrame("Red-Piranha - Java Power Tools for Excel");
 	private JButton homePageCloseButton;
 
@@ -364,8 +365,6 @@ public class RedGui extends WindowAdapter
 			info("Data Extracted from Excel Spreadsheet");
 			info(message.toString());
 		}
-
-		
 
 	}
 

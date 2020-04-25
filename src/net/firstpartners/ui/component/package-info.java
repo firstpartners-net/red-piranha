@@ -1,6 +1,6 @@
 /**
  * 
- * Sub compomnents supporting the main UI Interfaces
+ * Sub components supporting the main UI Interfaces
  *  
  * @since 1.0
  * @author pbrowne

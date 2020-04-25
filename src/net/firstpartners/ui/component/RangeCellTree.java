@@ -20,7 +20,7 @@ import net.firstpartners.data.RangeHolder;
 
 /**
  * Component we use on our panels to display Ranges and Cells Based on example
- * from @author
+ * from @link
  * https://www.codejava.net/java-se/swing/jtree-basic-tutorial-and-examples
  */
 public class RangeCellTree extends JPanel {
@@ -28,7 +28,7 @@ public class RangeCellTree extends JPanel {
 	private static final long serialVersionUID = 2126146342089903866L;
 	private JTree tree;
 	private DefaultMutableTreeNode treeRoot; // need to keep a handle to it later
-	//private JLabel selectedLabel;
+	// private JLabel selectedLabel;
 
 	public RangeCellTree() {
 
@@ -45,20 +45,19 @@ public class RangeCellTree extends JPanel {
 		setLayout(new BorderLayout(2, 2));
 		add(new JScrollPane(tree), BorderLayout.CENTER);
 
-		
-		//details of selected node
-	    JTextArea textArea = new JTextArea(2, 30);
-	    textArea.setText(" ");
-	    textArea.setWrapStyleWord(true);
-	    textArea.setLineWrap(true);
-	    textArea.setOpaque(false);
-	    textArea.setEditable(false);
-	    textArea.setFocusable(false);
-	    textArea.setBackground(UIManager.getColor("Label.background"));
-	    textArea.setFont(UIManager.getFont("Label.font"));
-	    textArea.setBorder(UIManager.getBorder("Label.border"));
-		
-		//selectedLabel = new JLabel(" ");
+		// details of selected node
+		JTextArea textArea = new JTextArea(2, 30);
+		textArea.setText(" ");
+		textArea.setWrapStyleWord(true);
+		textArea.setLineWrap(true);
+		textArea.setOpaque(false);
+		textArea.setEditable(false);
+		textArea.setFocusable(false);
+		textArea.setBackground(UIManager.getColor("Label.background"));
+		textArea.setFont(UIManager.getFont("Label.font"));
+		textArea.setBorder(UIManager.getBorder("Label.border"));
+
+		// selectedLabel = new JLabel(" ");
 		SwingGuiUtils.updateFontSize(textArea);
 		add(new JScrollPane(textArea), BorderLayout.EAST);
 
@@ -68,14 +67,13 @@ public class RangeCellTree extends JPanel {
 			public void valueChanged(TreeSelectionEvent e) {
 
 				log.info(e.toString());
-				Object thisNodeObject =""; // default value
+				Object thisNodeObject = ""; // default value
 				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-				
-				if(selectedNode!=null) {
+
+				if (selectedNode != null) {
 					thisNodeObject = selectedNode.getUserObject();
 				}
-				
-				
+
 				if (thisNodeObject instanceof Cell) {
 					Cell thisNodeCell = (Cell) thisNodeObject;
 					textArea.setText(thisNodeCell.toLongString());
@@ -92,7 +90,8 @@ public class RangeCellTree extends JPanel {
 	}
 
 	/**
-	 * Set the Data
+	 * Set the DataModel into our component, it will update the display
+	 * automatically
 	 * 
 	 * @param redRange
 	 */

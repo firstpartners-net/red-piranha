@@ -18,7 +18,7 @@ public class HtmlGenerator {
 
 	/**
 	 * Get a HTMLEditor Kit with a standard CSS
-	 * @return
+	 * @return HTMLEditorKit with the CSS configured in it
 	 */
 	public static HTMLEditorKit getCssKit() {
 		
@@ -38,6 +38,8 @@ public class HtmlGenerator {
 
 	/**
 	 * Create HTML with our current system status as home page
+	 * @param copyOfProperties
+	 * @return
 	 */
 	public static String getupdatedHomeSreenHtml(Properties copyOfProperties) {
 

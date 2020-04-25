@@ -1,6 +1,6 @@
 /**
  * 
- * Classes for interacting with the JBoss Drools Business Rules management system
+ * Classes for interacting with the JBoss Drools Business Rules Management system
  *  
  * @since 1.0
  * @author pbrowne

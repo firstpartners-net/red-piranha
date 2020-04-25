@@ -25,6 +25,8 @@ import net.firstpartners.data.RangeHolder;
 /**
  * Common Entry point to both Servlet and command line,
  * Call JBoss Drools (Rules Engine) passing in Spreadsheet data as Java Objects
+ * 
+ * This classe specialises in data from excel
  */
 public class SpreadSheetRuleRunner {
 

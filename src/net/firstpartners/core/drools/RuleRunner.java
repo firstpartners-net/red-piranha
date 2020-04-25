@@ -16,7 +16,7 @@ import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
 
 /**
- * Load rules
+ * Load and Execute business rules
  *
  * @author paul
  *

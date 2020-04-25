@@ -28,7 +28,7 @@ public class FileRuleLoader extends AbstractRuleLoader implements IRuleLoader {
 
 
 	/**
-	 * Get a file given a file name
+	 * Get a file given a file name (inc directories from current working directory)
 	 * 
 	 * @param fileResource
 	 * @return

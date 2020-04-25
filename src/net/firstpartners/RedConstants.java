@@ -1,7 +1,7 @@
 package net.firstpartners;
 
 /**
- * Place holder for Constants
+ * Place holder for System wide Constants
  * @author paul
  *
  */

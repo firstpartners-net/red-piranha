@@ -25,6 +25,11 @@ import net.firstpartners.RedConstants;
 import net.firstpartners.core.drools.config.RuleSource;
 import net.firstpartners.core.log.RpLogger;
 
+/**
+ * Base class to support loading Rules Related files
+ * @author PBrowne
+ *
+ */
 public abstract class AbstractRuleLoader implements IRuleLoader {
 
 	private static final Logger log = RpLogger.getLogger(AbstractRuleLoader.class
@@ -140,7 +145,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 	}
 
 	/**
-	 * Load the rule (i.e. non Excel) file
+	 * Load the rule file (non Excel)
 	 *
 	 * @param ruleUrl
 	 * @param dslFileUrl
@@ -188,7 +193,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 	}
 
 	/**
-	 * Load Excel Rules
+	 * Load Excel Rules (where the rules are stored in Excel)
 	 *
 	 * @param excelRuleFileUrl
 	 * @param addRulesToThisBuilder
@@ -238,14 +243,13 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 	/**
 	 * Load a previously cached resource (that has been saved using Base64)
 	 *
-	 *
 	 * @param cacheResourceUnderName
 	 * @return - the first serialized Knowledgebase in the file
 	 * @throws DroolsParserException
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	@SuppressWarnings("unused")
+	
 	org.drools.KnowledgeBase loadKnowledgeBase(RuleSource ruleSource) throws IOException,
 	ClassNotFoundException, SecurityException {
 

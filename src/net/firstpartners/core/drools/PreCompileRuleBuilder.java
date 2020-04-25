@@ -18,7 +18,7 @@ import net.firstpartners.core.log.RpLogger;
 
 
 /**
- * Pre compile rules, build into Drools Knowledge Packages.
+ * Pre compile rules, and save them as Drools Knowledge Packages for later (faster) use)
  *
  *
  * @author paul
@@ -26,7 +26,7 @@ import net.firstpartners.core.log.RpLogger;
  */
 public class PreCompileRuleBuilder {
 
-	public static String LIST_OF_DRL_FILES_TO_COMPILE="src/net/firstpartners/drools/PreCompileRuleList.properties";
+	public static String LIST_OF_DRL_FILES_TO_COMPILE="src/PreCompileRuleList.properties";
 
 
 	private static final Logger log = RpLogger.getLogger(PreCompileRuleBuilder.class
@@ -87,7 +87,7 @@ public class PreCompileRuleBuilder {
 	}
 
 	/**
-	 *
+	 * Get a handle to the rule loader we will be using
 	 */
 	private IRuleLoader  getRuleLoader(String ruleLocation){
 
@@ -103,8 +103,13 @@ public class PreCompileRuleBuilder {
 		//Default - url rule loader
 		return ruleLoader;
 	}
-	@SuppressWarnings("rawtypes")
-	public Map readProperties() throws IOException{
+	
+	/**
+	 * Read a properties fille
+	 * @return
+	 * @throws IOException
+	 */
+	 Map<?,?> readProperties() throws IOException{
 
 		// Read properties file.
 		Properties properties = new Properties();

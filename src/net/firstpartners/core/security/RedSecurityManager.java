@@ -26,9 +26,9 @@ public class RedSecurityManager {
 	private String propertyFileOfResourceSuffixes;
 
 
-	public RedSecurityManager (String propertyFileOfUrlPrefixes, String propertyFileOfResourceSuffixes) {
+	public RedSecurityManager (String propertyFileOfUrlPrexfixes, String propertyFileOfResourceSuffixes ) {
 		
-		this.propertyFileOfUrlPrexfixes = propertyFileOfUrlPrexfixes;
+		this.propertyFileOfUrlPrexfixes = propertyFileOfUrlPrexfixes ;
 		
 		this.propertyFileOfResourceSuffixes = propertyFileOfResourceSuffixes;
 	}

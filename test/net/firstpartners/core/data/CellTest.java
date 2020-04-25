@@ -1,4 +1,4 @@
-package net.firstpartners.core.spreadsheet;
+package net.firstpartners.core.data;
 
 import org.junit.Test;
 

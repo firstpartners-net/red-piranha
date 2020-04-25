@@ -22,6 +22,7 @@ public class TestConstants {
 			"test/testrules/log-rules.drl", "test/testrules/TradingRules.xls" };
 
 	public static final String EXCEL_OUTPUT_FILE = "test/testdata/chocolate-output.xls";
+	public static final String EXCEL_TMP_FILE = "test/testdata/tmp.xls";
 
 	public static final String KNOWLEDGE_BASE_FILE = "test/testrules/log-then-modify-rules.KnowledgeBase";
 

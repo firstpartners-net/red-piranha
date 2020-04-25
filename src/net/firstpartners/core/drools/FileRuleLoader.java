@@ -8,9 +8,6 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.util.logging.Logger;
 
-import org.drools.compiler.compiler.DroolsParserException;
-
-import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 
 /**

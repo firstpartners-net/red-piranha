@@ -5,7 +5,7 @@
 package net.firstpartners.sample.EventRules;
 
 import java.io.IOException;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.drools.compiler.compiler.DroolsParserException;
 

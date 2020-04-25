@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import net.firstpartners.core.log.RpLogger;
 

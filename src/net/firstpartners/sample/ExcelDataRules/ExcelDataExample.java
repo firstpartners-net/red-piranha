@@ -2,7 +2,7 @@ package net.firstpartners.sample.ExcelDataRules;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -48,7 +48,7 @@ public class ExcelDataExample {
 	 */
 	public static void main(String[] args) throws Exception {
 
-		log.fine("Starting Sample");
+		log.debug("Starting Sample");
 		ExcelDataExample thisSample = new ExcelDataExample();
 		thisSample.runExcelDataExample();
 	}

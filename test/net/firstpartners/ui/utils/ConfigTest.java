@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Properties;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -38,7 +38,7 @@ public class ConfigTest {
 	public final void testReadConfig() {
 		
 		Properties prop = Config.readConfig();
-		log.fine(prop.toString());
+		log.debug(prop.toString());
 		
 		assertNotNull(prop.get(Config.DRL1));
 		assertNull(prop.get(Config.DRL2));

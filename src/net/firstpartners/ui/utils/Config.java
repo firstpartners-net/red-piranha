@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import net.firstpartners.RedConstants;
 import net.firstpartners.core.drools.loader.RuleSource;
@@ -74,13 +74,13 @@ public class Config {
 		try {
 			is = new FileInputStream(fileName);
 		} catch (FileNotFoundException ex) {
-			log.warning(ex.getStackTrace().toString());
+			log.error(ex.getStackTrace().toString());
 		}
 
 		try {
 			prop.load(is);
 		} catch (IOException ex) {
-			log.warning(ex.getStackTrace().toString());
+			log.error(ex.getStackTrace().toString());
 		}
 		log.info(prop.toString());
 

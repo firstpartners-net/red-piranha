@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.apache.poi.ss.usermodel.Workbook;
 
@@ -74,7 +74,7 @@ public class SpreadSheetOutputter {
 			fileOutputStream.close();
 		} catch (java.security.AccessControlException ace){
 			//Unable to output file (e.g. as in Google App Engine) - drop back and log via console instea
-			log.warning("Unable to output to file - logging to console instead");
+			log.error("Unable to output to file - logging to console instead");
 			outputToConsole(wb);
 		}
 

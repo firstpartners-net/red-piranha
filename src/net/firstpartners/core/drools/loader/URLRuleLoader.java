@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.drools.loader.URLRuleLoader;

@@ -1,6 +1,6 @@
 package net.firstpartners.core.spreadsheet;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;

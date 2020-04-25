@@ -3,7 +3,7 @@ package net.firstpartners.sample.DslRuleflow;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -73,9 +73,9 @@ public class DslChocolateTradingExample {
 		SpreadSheetLogger excelLogger = new SpreadSheetLogger();
 
 		// Log the cell contents
-		log.fine("============ Excel Cell Contents In =========");
+		log.debug("============ Excel Cell Contents In =========");
 		for (Range r : ranges) {
-			log.fine(r.toString());
+			log.debug(r.toString());
 		}
 
 		// Set Paramaters
@@ -89,9 +89,9 @@ public class DslChocolateTradingExample {
 		new RuleRunner(new FileRuleLoader()).runStatelessRules(ruleSource, excelLogger);
 
 		// Log the cell contents
-		log.fine("============ Excel Cell Contents Out =========");
+		log.debug("============ Excel Cell Contents Out =========");
 		for (Range r : ranges) {
-			log.fine(r.toString());
+			log.debug(r.toString());
 		}
 
 		// update the excel spreadsheet with the result of our rules

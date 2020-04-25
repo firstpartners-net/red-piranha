@@ -5,7 +5,7 @@ import static org.junit.Assert.fail;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
@@ -27,7 +27,7 @@ public class URLRuleLoaderTest {
 
 
 		//Check that we can read rules from remote location
-		log.fine("Attempting to load rules from:"+ruleSource);
+		log.debug("Attempting to load rules from:"+ruleSource);
 		org.drools.KnowledgeBase kb = ruleLoader.loadKnowledgeBase(ruleSource);
 
 		//Check that we can do things with the retrieved knowledgebase

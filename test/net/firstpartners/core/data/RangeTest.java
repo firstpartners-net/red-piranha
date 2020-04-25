@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import net.firstpartners.core.log.*;
 import net.firstpartners.data.Cell;
@@ -22,7 +22,7 @@ public class RangeTest  {
 	@Test
 	public void testCellSearch() throws Exception {
 
-		log.fine("starting test");
+		log.debug("starting test");
 		
 		//Create the test object
 		Range testRange = new Range();

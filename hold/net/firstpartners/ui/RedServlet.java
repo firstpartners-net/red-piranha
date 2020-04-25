@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.TreeSet;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -111,7 +111,7 @@ public class RedServlet extends HttpServlet {
 			String key = (String)it.next();
 			output.append("" + key + "=" + pr.get(key) + "\n");
 		}
-		log.fine(output.toString());
+		log.debug(output.toString());
 
 
 	}

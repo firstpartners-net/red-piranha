@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -51,7 +51,7 @@ public class RedGuiTest {
 			IllegalAccessException, UnsupportedLookAndFeelException, IOException {
 
 		// Open the GUI
-		log.fine("Opening GUI");
+		log.debug("Opening GUI");
 		RedGui player = new RedGui();
 
 		// Get the test data

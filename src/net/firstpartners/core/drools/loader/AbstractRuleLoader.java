@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.apache.commons.codec.binary.Base64;
 import org.drools.builder.KnowledgeBuilder;
@@ -80,15 +80,15 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 		// check that there are no errors
 		if (localBuilder.hasErrors()) {
 
-			log.severe("Drools Errors");
+			log.warn("Drools Errors");
 			KnowledgeBuilderErrors errors = localBuilder.getErrors();
 			Iterator<KnowledgeBuilderError> itErrors = errors.iterator();
 			int[] errorLines;
 			StringBuffer errorLineMessage;
 			while (itErrors.hasNext()) {
 				KnowledgeBuilderError thisError = itErrors.next();
-				log.severe(thisError.getMessage());
-				log.severe(thisError.toString());
+				log.warn(thisError.getMessage());
+				log.warn(thisError.toString());
 				errorLines = thisError.getLines();
 				errorLineMessage = new StringBuffer();
 				if (errorLines != null) {
@@ -96,14 +96,14 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 						errorLineMessage.append(errorLine);
 						errorLineMessage.append(",");
 					}
-					log.severe("Error Lines:" + errorLineMessage.toString());
+					log.warn("Error Lines:" + errorLineMessage.toString());
 				}
 
 			}
 
-			log.severe("****/nDrools Errors:"
+			log.warn("****/nDrools Errors:"
 					+ localBuilder.getErrors().toString());
-			log.severe("****/nEnd Drools Errors");
+			log.warn("****/nEnd Drools Errors");
 
 			throw new RuntimeException("Error in Rules File:"
 					+ localBuilder.getErrors().toString());

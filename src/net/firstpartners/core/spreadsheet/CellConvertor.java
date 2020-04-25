@@ -1,7 +1,7 @@
 package net.firstpartners.core.spreadsheet;
 
 import java.util.Date;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -118,12 +118,12 @@ public class CellConvertor {
 		// We should create the cell, as we have a value to update into it
 		// but for now we just ignfore the update
 		if (poiCell == null) {
-			log.fine("Ignoring null Poi Cell:");
+			log.debug("Ignoring null Poi Cell:");
 			return;
 		}
 
 		if (!redCell.isModified()) {
-			log.fine("Ignoring unmodified cell");
+			log.debug("Ignoring unmodified cell");
 			return;
 		}
 
@@ -150,34 +150,34 @@ public class CellConvertor {
 		// operator overloading breaks down as we have a handle to a generic 'object'
 		if (redCellValue instanceof String) {
 
-			log.finest("UpdatingCell:" + redCell.getCellName() + " value:" + redCellValue + " as String");
+			log.debug("UpdatingCell:" + redCell.getCellName() + " value:" + redCellValue + " as String");
 			poiCell.setCellValue(redCellValue.toString());
 
 		} else if (redCellValue instanceof Boolean) {
-			log.finest("UpdatingCell:" + redCell.getCellName() + " value:" + redCellValue + " as Boolean");
+			log.debug("UpdatingCell:" + redCell.getCellName() + " value:" + redCellValue + " as Boolean");
 			poiCell.setCellValue((Boolean) redCellValue);
 
 		} else if (redCellValue instanceof Number) {
 
-			log.finest("UpdatingCell:" + redCell.getCellName() + " value:" + redCellValue + " as Number");
+			log.debug("UpdatingCell:" + redCell.getCellName() + " value:" + redCellValue + " as Number");
 			Double number = ((Number) redCellValue).doubleValue();
 			poiCell.setCellValue(number);
 
 		} else if (redCellValue instanceof Date) {
 
-			log.finest("UpdatingCell:" + redCell.getCellName() + " value:" + redCellValue + " as Date");
+			log.debug("UpdatingCell:" + redCell.getCellName() + " value:" + redCellValue + " as Date");
 			poiCell.setCellValue((Date) redCellValue);
 
 		} else if (redCellValue != null) {
 
 			// Treat as object, use toString() method
-			log.finest("UpdatingCell:" + redCell.getCellName() + " value:" + redCellValue + " as Generic Object");
+			log.debug("UpdatingCell:" + redCell.getCellName() + " value:" + redCellValue + " as Generic Object");
 			poiCell.setCellValue(redCellValue.toString());
 
 		} else {
 
 			// value is null, blank cell
-			log.finest("UpdatingCell:" + redCell.getCellName() + " value is null, treating as empty string");
+			log.debug("UpdatingCell:" + redCell.getCellName() + " value is null, treating as empty string");
 			poiCell.setCellValue("");
 
 		}

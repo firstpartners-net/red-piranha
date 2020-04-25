@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.Priority;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -166,11 +166,11 @@ public class SpreadSheetRuleRunner {
 
 		} catch (MalformedURLException e) {
 
-			log.log(Level.SEVERE, "Malformed URL Exception Loading rules", e);
+			log.log(Priority.WARN, "Malformed URL Exception Loading rules", e);
 			throw e;
 
 		} catch (IOException e) {
-			log.log(Level.SEVERE, "IO Exception Loading rules", e);
+			log.log(Priority.WARN, "IO Exception Loading rules", e);
 			throw e;
 
 		}
@@ -214,7 +214,7 @@ public class SpreadSheetRuleRunner {
 
 
 		} catch (IOException e) {
-			log.log(Level.SEVERE, "IO Exception Loading rules", e);
+			log.log(Priority.WARN, "IO Exception Loading rules", e);
 			throw e;
 
 		}

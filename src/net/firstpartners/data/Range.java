@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import net.firstpartners.core.log.RpLogger;
 
@@ -115,7 +115,7 @@ public class Range implements Map<String, Cell>, PropertyChangeListener,Serializ
 	 */
 	public Cell getCell(int newCellPosition) {
 
-		log.finest("base range name:"+rangeName);
+		log.debug("base range name:"+rangeName);
 
 		// The last "_" is to fool the cell based algorithm into working when
 		// we supply the range name only
@@ -123,7 +123,7 @@ public class Range implements Map<String, Cell>, PropertyChangeListener,Serializ
 
 		String requestedCellName = getCellName(rangeName + "_", newCellPosition);
 
-		log.finest("Looking up Cell value"+requestedCellName);
+		log.debug("Looking up Cell value"+requestedCellName);
 
 		return cells.get(requestedCellName);
 

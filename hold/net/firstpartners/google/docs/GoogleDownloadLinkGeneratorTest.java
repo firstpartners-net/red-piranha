@@ -2,7 +2,7 @@ package net.firstpartners.google.docs;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.junit.Test;
 

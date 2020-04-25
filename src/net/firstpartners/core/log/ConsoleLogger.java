@@ -1,7 +1,7 @@
 package net.firstpartners.core.log;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
+import org.apache.log4j.Priority;
 
 /**
  * An Adaptor that allows us to log to the consoles
@@ -19,15 +19,15 @@ public class ConsoleLogger implements ILogger {
 	}
 	
 	public void debug(String output){
-		log.finest(output);
+		log.debug(output);
 	}
 	
 	public void info(String output){
-		log.fine(output);
+		log.debug(output);
 	}
 	
 	public void exception(String output, Throwable t){
-		log.log(Level.SEVERE, output,t);
+		log.log(Priority.WARN, output,t);
 	}
 
 

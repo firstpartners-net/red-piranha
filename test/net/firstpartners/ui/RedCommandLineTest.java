@@ -2,7 +2,7 @@ package net.firstpartners.ui;
 
 
 import java.io.File;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.junit.Test;
 

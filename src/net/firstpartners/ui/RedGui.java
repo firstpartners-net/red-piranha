@@ -10,8 +10,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -27,6 +25,9 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.Priority;
 
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
@@ -89,7 +90,7 @@ public class RedGui extends WindowAdapter
 
 		} catch (Exception e) {
 
-			log.severe(e.toString());
+			log.warn(e.toString());
 		}
 
 		// Overall Screen
@@ -202,7 +203,7 @@ public class RedGui extends WindowAdapter
 	 */
 	public void debug(String message) {
 		this.tab3TextArea.append("DEBUG:" + message + "\n");
-		log.fine(message);
+		log.debug(message);
 	}
 
 	/**
@@ -213,8 +214,8 @@ public class RedGui extends WindowAdapter
 	 */
 	public void exception(String message, Throwable t) {
 		this.tab3TextArea.append("EXCEPTION:" + message + "\n" + t.toString() + "\n");
-		log.severe(message + "\n" + t.toString());
-		log.log(Level.SEVERE, "Error", t);
+		log.warn(message + "\n" + t.toString());
+		log.log(Priority.WARN, "Error", t);
 
 	}
 

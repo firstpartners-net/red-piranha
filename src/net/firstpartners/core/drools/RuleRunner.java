@@ -3,7 +3,7 @@ package net.firstpartners.core.drools;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.drools.KnowledgeBase;
 import org.drools.compiler.compiler.DroolsParserException;

@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import net.firstpartners.core.drools.loader.RuleSource;
 import net.firstpartners.core.log.RpLogger;
@@ -91,7 +91,7 @@ public class RedSecurityManager {
 
 		while (loopList.hasNext()) {
 			thisKey = loopList.next();
-			log.fine("Comparing Key:" + thisKey + " to:" + url);
+			log.debug("Comparing Key:" + thisKey + " to:" + url);
 
 			if (url.endsWith(thisKey.toString())) {
 

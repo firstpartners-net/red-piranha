@@ -3,7 +3,7 @@ package net.firstpartners.core.log;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -25,7 +25,7 @@ public class SpreadSheetLogger implements ILogger {
 	List<String> loggedItems = new ArrayList<String>();
 
 	public void debug(String output) {
-		log.finest(output);
+		log.debug(output);
 		loggedItems.add("finest:" + output);
 	}
 
@@ -59,7 +59,7 @@ public class SpreadSheetLogger implements ILogger {
 	 * Log an Exception
 	 */
 	public void exception(String output, Throwable t) {
-		log.warning(output + t);
+		log.error(output + t);
 		loggedItems.add("exception:" + output + " " + t.getMessage());
 	}
 

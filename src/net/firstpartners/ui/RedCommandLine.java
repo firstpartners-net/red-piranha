@@ -3,7 +3,7 @@ package net.firstpartners.ui;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.drools.compiler.compiler.DroolsParserException;
@@ -53,7 +53,7 @@ public class RedCommandLine {
 		RpLogger.checkForceLogToFile(logFileName);
 
 		// Open the GUI
-		log.fine("Opening GUI");
+		log.debug("Opening GUI");
 		RedGui player = new RedGui();
 		player.setGUIProperties(prop);
 		Runnable readRun = new Thread(player);

@@ -1,7 +1,7 @@
 package net.firstpartners.ui.component;
 
 import java.awt.BorderLayout;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;

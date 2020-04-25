@@ -1,10 +1,8 @@
 package net.firstpartners.core.log;
 
 import java.io.IOException;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+
+import org.apache.log4j.Logger;
 
 /**
  * Extend logging so that we can control logging in an exe environment where we may not have full control of config
@@ -14,15 +12,17 @@ import java.util.logging.SimpleFormatter;
 public class RpLogger extends Logger {
 
 	// the name of the log file
-	private static FileHandler fileHandler = null;
+	//private static FileHandler fileHandler = null;
 
 	/**
 	 * @param name
 	 * @param resourceBundleName
 	 */
-	public RpLogger(String name, String resourceBundleName) {
-		super(name, resourceBundleName);
+	public RpLogger(String name) {
+		
+		super(name);
 	}
+	
 
 	/**
 	 * Get a handle to a logger, with our additions (if set)
@@ -35,12 +35,12 @@ public class RpLogger extends Logger {
 
 		Logger log = Logger.getLogger(name);
 
-		if (fileHandler != null) {
-
-			log.setLevel(Level.FINE);
-			fileHandler.setFormatter(new SimpleFormatter());
-			log.addHandler(fileHandler);
-		}
+//		if (fileHandler != null) {
+//
+//			log.setLevel(Level.FINE);
+//			fileHandler.setFormatter(new SimpleFormatter());
+//			log.addHandler(fileHandler);
+//		}
 
 		return log;
 
@@ -57,12 +57,12 @@ public class RpLogger extends Logger {
 	 */
 	public static void checkForceLogToFile(Object logFileName) throws SecurityException, IOException {
 
-		if (logFileName != null) {
-			fileHandler = new FileHandler(logFileName.toString(), true);
-			Logger tmpLog = getLogger(RpLogger.class.getName());
-			tmpLog.warning("RP Config Forcing Logging to:" + logFileName);
-
-		}
+//		if (logFileName != null) {
+//			fileHandler = new FileHandler(logFileName.toString(), true);
+//			Logger tmpLog = getLogger(RpLogger.class.getName());
+//			tmpLog.warning("RP Config Forcing Logging to:" + logFileName);
+//
+//		}
 
 	}
 

@@ -3,7 +3,7 @@ package net.firstpartners.core.drools.loader;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
@@ -21,12 +21,12 @@ public class FileRuleLoaderTest {
 	@Test
 	public final void testLoadCachedRules() throws IOException, ClassNotFoundException {
 
-		log.fine("starting test");
+		log.debug("starting test");
 		
 		//Set the rule source
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setKnowledgeBaseLocation(TestConstants.KNOWLEDGE_BASE_FILE);
-		log.fine("will try to load:"+ruleSource.getKnowledgeBaseLocation());
+		log.debug("will try to load:"+ruleSource.getKnowledgeBaseLocation());
 		
 		
 		

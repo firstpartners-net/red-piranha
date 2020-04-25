@@ -109,14 +109,14 @@ public class PreCompileRuleBuilderTest {
 	@Test
 	public final void testpreCompileRules() throws ClassNotFoundException, DroolsParserException, IOException {
 
-		preCompileRuleBuilder.compileRule(TestConstants.RULES_FILES[0], TestConstants.RULES_FILES_COMPILED_TMP);
+		preCompileRuleBuilder.compileRule(TestConstants.RULES_FILES[0], TestConstants.KNOWLEDGE_BASE_FILE_TMP);
 
 		// check that this exists
-		File f = new File(TestConstants.RULES_FILES_COMPILED_TMP);
+		File f = new File(TestConstants.KNOWLEDGE_BASE_FILE_TMP);
 		assertTrue("Cannot find file that should exist", f.exists());
 		f = null; // avoid any interference in the next step
 
-		SpreadSheetOutputter.deleteOutputFileIfExists(TestConstants.RULES_FILES_COMPILED_TMP);
+		SpreadSheetOutputter.deleteOutputFileIfExists(TestConstants.KNOWLEDGE_BASE_FILE_TMP);
 
 	}
 

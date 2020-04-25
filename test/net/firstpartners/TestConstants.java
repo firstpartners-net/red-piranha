@@ -17,7 +17,7 @@ public class TestConstants {
 	public static final String[] RULES_FILES = new String[] {
 			"test/testrules/log-then-modify-rules.drl" };
 	
-	public static final String RULES_FILES_COMPILED_TMP ="test/testrules/tmp.KnowledgeBase";
+	
 
 	
 	public static final String[] RULES_FILES_EXCEL = new String[] {
@@ -27,6 +27,7 @@ public class TestConstants {
 	public static final String EXCEL_TMP_FILE = "test/testdata/tmp.xls";
 
 	public static final String KNOWLEDGE_BASE_FILE = "test/testrules/log-then-modify-rules.KnowledgeBase";
+	public static final String KNOWLEDGE_BASE_FILE_TMP ="test/testrules/tmp.KnowledgeBase";
 
 	// the name of the sheet the we log files to
 	public static final String EXCEL_LOG_WORKSHEET_NAME = "log";

@@ -250,11 +250,6 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 	org.drools.KnowledgeBase loadKnowledgeBase(RuleSource ruleSource) throws IOException,
 	ClassNotFoundException, SecurityException {
 
-		//RedSecurityManager.checkUrl(ruleSource);
-		if(true) {
-			throw new SecurityException("Loading of pre-built rules needs security checks reinstated in source code");
-		}
-		
 		BufferedInputStream inStream = new BufferedInputStream(
 				getInputStream(ruleSource.getKnowledgeBaseLocation()));
 

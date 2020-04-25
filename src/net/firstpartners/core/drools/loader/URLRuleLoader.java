@@ -12,7 +12,7 @@ import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.drools.loader.URLRuleLoader;
 
 /**
- * Load rules
+ * Load rules from a Web URL
  * 
  * @author paul
  * 

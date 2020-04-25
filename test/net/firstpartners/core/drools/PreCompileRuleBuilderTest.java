@@ -5,7 +5,6 @@ package net.firstpartners.core.drools;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +17,7 @@ import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.log.ConsoleLogger;
+import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
 
 /**
  * @author paul
@@ -26,17 +25,17 @@ import net.firstpartners.core.log.ConsoleLogger;
  */
 public class PreCompileRuleBuilderTest {
 
-	//Class under test
+	// Class under test
 	private final PreCompileRuleBuilder preCompileRuleBuilder = new PreCompileRuleBuilder();
 
-	//Handle to Logger
-	private static final Logger log = Logger.getLogger(PreCompileRuleBuilderTest.class
-			.getName());
-
+	// Handle to Logger
+	private static final Logger log = Logger.getLogger(PreCompileRuleBuilderTest.class.getName());
 
 	/**
-	 * Test method for {@link net.firstpartners.drools.PreCompileRuleBuilder#main(java.lang.Object[])}.
+	 * Test method for
+	 * {@link net.firstpartners.drools.PreCompileRuleBuilder#main(java.lang.Object[])}.
 	 * This has the good side-effect of reloading all the rules
+	 * 
 	 * @throws IOException
 	 * @throws DroolsParserException
 	 */
@@ -44,26 +43,25 @@ public class PreCompileRuleBuilderTest {
 	public final void testMain() throws Exception {
 
 		log.info("Calling example");
-		
+
 		clearPreviousPackages();
 
-		//Call the main method with it
+		// Call the main method with it
 		PreCompileRuleBuilder.main(null);
 
 		testForNewPackages();
-
 
 	}
 
 	private void testForNewPackages() throws IOException {
 		@SuppressWarnings("unchecked")
 		Map<String, ?> fileList = preCompileRuleBuilder.readProperties();
-		File currentFile =null;
+		File currentFile = null;
 
-		Set<String>keys = fileList.keySet();
-		if(keys!=null){
+		Set<String> keys = fileList.keySet();
+		if (keys != null) {
 			Iterator<String> it = keys.iterator();
-			while (it.hasNext()){
+			while (it.hasNext()) {
 				Object key = it.next();
 				Object outputFile = fileList.get(key);
 				currentFile = new File(outputFile.toString());
@@ -72,25 +70,23 @@ public class PreCompileRuleBuilderTest {
 			}
 		}
 
-
 	}
 
 	private void clearPreviousPackages() throws IOException {
 
-
 		@SuppressWarnings("unchecked")
 		Map<String, ?> fileList = preCompileRuleBuilder.readProperties();
-		File currentFile =null;
+		File currentFile = null;
 
-		Set <String>keys = fileList.keySet();
-		if(keys!=null){
+		Set<String> keys = fileList.keySet();
+		if (keys != null) {
 			Iterator<String> it = keys.iterator();
-			while (it.hasNext()){
+			while (it.hasNext()) {
 				Object inputFile = it.next();
 				Object outputFile = fileList.get(inputFile.toString());
 
-				if(outputFile!=null){
-					currentFile=new File(outputFile.toString());
+				if (outputFile != null) {
+					currentFile = new File(outputFile.toString());
 					currentFile.delete();
 				}
 
@@ -106,18 +102,22 @@ public class PreCompileRuleBuilderTest {
 		Map<String, ?> preLoadRules = preCompileRuleBuilder.readProperties();
 		assertNotNull(preLoadRules);
 		assertTrue(!preLoadRules.isEmpty());
-		assertTrue(preLoadRules.get("war/sampleresources/SpreadSheetServlet/log-then-modify-rules.drl")!=null);
+		assertTrue(preLoadRules.get("war/sampleresources/SpreadSheetServlet/log-then-modify-rules.drl") != null);
 
 	}
-	
+
 	@Test
-	public final void testpreCompileRules() {
-		
-		
-		preCompileRuleBuilder.compileRules(new ConsoleLogger(), TestConstants.RULES_FILES[0]);
-		fail("need to implement tests");	
-			
-			
-}
+	public final void testpreCompileRules() throws ClassNotFoundException, DroolsParserException, IOException {
+
+		preCompileRuleBuilder.compileRule(TestConstants.RULES_FILES[0], TestConstants.RULES_FILES_COMPILED_TMP);
+
+		// check that this exists
+		File f = new File(TestConstants.RULES_FILES_COMPILED_TMP);
+		assertTrue("Cannot find file that should exist", f.exists());
+		f = null; // avoid any interference in the next step
+
+		SpreadSheetOutputter.deleteOutputFileIfExists(TestConstants.RULES_FILES_COMPILED_TMP);
+
+	}
 
 }

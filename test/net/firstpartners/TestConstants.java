@@ -16,6 +16,8 @@ public class TestConstants {
 
 	public static final String[] RULES_FILES = new String[] {
 			"test/testrules/log-then-modify-rules.drl" };
+	
+	public static final String RULES_FILES_COMPILED_TMP ="test/testrules/tmp.KnowledgeBase";
 
 	
 	public static final String[] RULES_FILES_EXCEL = new String[] {

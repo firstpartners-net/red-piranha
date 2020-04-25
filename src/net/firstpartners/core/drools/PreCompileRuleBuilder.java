@@ -15,7 +15,6 @@ import org.drools.KnowledgeBase;
 import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.core.drools.config.RuleSource;
-import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 
 
@@ -29,47 +28,11 @@ import net.firstpartners.core.log.RpLogger;
  */
 public class PreCompileRuleBuilder {
 
-	private static final Logger log = RpLogger.getLogger(PreCompileRuleBuilder.class
-			.getName());
-
-
-
-
 	public static String LIST_OF_DRL_FILES_TO_COMPILE="src/net/firstpartners/drools/PreCompileRuleList.properties";
 
-	/**
-	 * Cache the pre built knowledgebase.
-	 *
-	 * We encode using base64 (instead of Binary) so that it can be treated as a normal text file
-	 */
-	void cacheKnowledgeBase(KnowledgeBase kbToCache,
-			String cacheResourceUnderName) throws IOException {
 
-		ByteArrayOutputStream bytes= new ByteArrayOutputStream();
-		org.drools.core.common.DroolsObjectOutputStream outBytes = new org.drools.core.common.DroolsObjectOutputStream(bytes);
-		outBytes.writeObject( kbToCache );
-
-		Base64 base64Code = new Base64();
-		byte[] base64Bytes = base64Code.encode(bytes.toByteArray());
-
-		FileOutputStream out = new FileOutputStream( cacheResourceUnderName );
-		out.write(base64Bytes);
-		out.close();
-
-	}
-
-	
-	@SuppressWarnings("rawtypes")
-	public Map readProperties() throws IOException{
-
-		// Read properties file.
-		Properties properties = new Properties();
-		properties.load(new FileInputStream(LIST_OF_DRL_FILES_TO_COMPILE));
-
-		return properties;
-	}
-
-
+	private static final Logger log = RpLogger.getLogger(PreCompileRuleBuilder.class
+			.getName());
 
 	/**
 	 * Entry points that allows rebuilding all the rule files into packages
@@ -95,7 +58,7 @@ public class PreCompileRuleBuilder {
 				Object outputFile = fileList.get(key);
 
 				if((key!=null)&&(outputFile!=null)){
-					ruleBuilder.cacheRule(key.toString(),outputFile.toString());
+					ruleBuilder.compileRule(key.toString(),outputFile.toString());
 				}
 
 			}
@@ -104,15 +67,39 @@ public class PreCompileRuleBuilder {
 
 	}
 
+	
 	/**
-	 * Load and cache the rule
+	 * Cache the pre built knowledgebase.
+	 *
+	 * We encode using base64 (instead of Binary) so that it can be treated as a normal text file
+	 */
+	void cacheKnowledgeBase(KnowledgeBase kbToCache,
+			String cacheResourceUnderName) throws IOException {
+
+		ByteArrayOutputStream bytes= new ByteArrayOutputStream();
+		org.drools.core.common.DroolsObjectOutputStream outBytes = new org.drools.core.common.DroolsObjectOutputStream(bytes);
+		outBytes.writeObject( kbToCache );
+
+		Base64 base64Code = new Base64();
+		byte[] base64Bytes = base64Code.encode(bytes.toByteArray());
+
+		FileOutputStream out = new FileOutputStream( cacheResourceUnderName );
+		out.write(base64Bytes);
+		out.close();
+
+	}
+
+
+
+	/**
+	 * Load and cache the rule to a file
 	 * @param key
 	 * @param outputFile
 	 * @throws IOException
 	 * @throws DroolsParserException
 	 * @throws ClassNotFoundException
 	 */
-	public void cacheRule(String ruleLocation, String outputFile) throws DroolsParserException, IOException, ClassNotFoundException {
+	public void compileRule(String ruleLocation, String outputFile) throws DroolsParserException, IOException, ClassNotFoundException {
 
 
 		log.info("Loading Knowledgebase from "+ruleLocation);
@@ -133,6 +120,7 @@ public class PreCompileRuleBuilder {
 		}
 
 	}
+
 	/**
 	 *
 	 */
@@ -150,35 +138,15 @@ public class PreCompileRuleBuilder {
 		//Default - url rule loader
 		return ruleLoader;
 	}
+	@SuppressWarnings("rawtypes")
+	public Map readProperties() throws IOException{
 
-	/**
-	 * Compile the rules using the values that we have been passed
-	 * 
-	 * @param gui
-	 * @param ruleFile
-	 */
-	public void compileRules(ILogger gui, String ruleFile) {
+		// Read properties file.
+		Properties properties = new Properties();
+		properties.load(new FileInputStream(LIST_OF_DRL_FILES_TO_COMPILE));
 
-		if (ruleFile == null) {
-			gui.info("Please set 'rule' as a param pointing at the rule file you wish to compile ");
-		} else {
-			gui.info("Compiling Rules...\n");
-			gui.info("Using file:" + ruleFile + "\n");
-			PreCompileRuleBuilder rulebuilder = new PreCompileRuleBuilder();
-
-			try {
-				rulebuilder.cacheRule(ruleFile, (String) null);
-			} catch (DroolsParserException ex) {
-				gui.exception("DroolsParserException:" + ex + "\n", ex);
-			} catch (IOException ex) {
-				gui.exception("IOException:" + ex + "\n", ex);
-			} catch (ClassNotFoundException ex) {
-				gui.exception("ClassNotFoundException:" + ex + "\n", ex);
-			}
-
-			gui.info("Compiling complete\n");
-		}
-
+		return properties;
 	}
+
 	
 }

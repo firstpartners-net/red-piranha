@@ -8,10 +8,10 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.drools.compiler.compiler.DroolsParserException;
 
-import net.firstpartners.core.drools.FileRuleLoader;
-import net.firstpartners.core.drools.IRuleLoader;
+import net.firstpartners.core.drools.loader.FileRuleLoader;
+import net.firstpartners.core.drools.loader.IRuleLoader;
 import net.firstpartners.core.drools.SpreadSheetRuleRunner;
-import net.firstpartners.core.drools.config.RuleSource;
+import net.firstpartners.core.drools.loader.RuleSource;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
 

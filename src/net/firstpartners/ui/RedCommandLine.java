@@ -9,9 +9,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.RedConstants;
-import net.firstpartners.core.drools.FileRuleLoader;
 import net.firstpartners.core.drools.SpreadSheetRuleRunner;
-import net.firstpartners.core.drools.config.RuleSource;
+import net.firstpartners.core.drools.loader.FileRuleLoader;
+import net.firstpartners.core.drools.loader.RuleSource;
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;

@@ -1,4 +1,4 @@
-package net.firstpartners.core.drools;
+package net.firstpartners.core.drools.loader;
 
 import java.io.BufferedReader;
 import java.io.File;

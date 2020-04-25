@@ -12,9 +12,11 @@ import org.apache.commons.codec.binary.Base64;
 import org.drools.KnowledgeBase;
 import org.drools.compiler.compiler.DroolsParserException;
 
-import net.firstpartners.core.drools.config.RuleSource;
+import net.firstpartners.core.drools.loader.FileRuleLoader;
+import net.firstpartners.core.drools.loader.IRuleLoader;
+import net.firstpartners.core.drools.loader.RuleSource;
+import net.firstpartners.core.drools.loader.URLRuleLoader;
 import net.firstpartners.core.log.RpLogger;
-
 
 
 /**

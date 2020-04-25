@@ -12,7 +12,7 @@ import java.util.Properties;
 import java.util.logging.Logger;
 
 import net.firstpartners.RedConstants;
-import net.firstpartners.core.drools.config.RuleSource;
+import net.firstpartners.core.drools.loader.RuleSource;
 import net.firstpartners.core.log.RpLogger;
 /**
  * Set of common functions used by GUI / Command Line / Servlet

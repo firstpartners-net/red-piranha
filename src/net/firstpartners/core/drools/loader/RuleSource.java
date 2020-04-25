@@ -1,4 +1,4 @@
-package net.firstpartners.core.drools.config;
+package net.firstpartners.core.drools.loader;
 
 import java.util.ArrayList;
 import java.util.Arrays;

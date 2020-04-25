@@ -1,4 +1,4 @@
-package net.firstpartners.core.drools;
+package net.firstpartners.core.drools.loader;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -22,7 +22,6 @@ import org.drools.definition.KnowledgePackage;
 import org.drools.io.ResourceFactory;
 
 import net.firstpartners.RedConstants;
-import net.firstpartners.core.drools.config.RuleSource;
 import net.firstpartners.core.log.RpLogger;
 
 /**

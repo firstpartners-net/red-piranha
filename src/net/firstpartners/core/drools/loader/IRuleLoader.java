@@ -1,10 +1,8 @@
-package net.firstpartners.core.drools;
+package net.firstpartners.core.drools.loader;
 
 import java.io.IOException;
 
 import org.drools.compiler.compiler.DroolsParserException;
-
-import net.firstpartners.core.drools.config.RuleSource;
 
 /**
  * Marks a class as being able to load rules on behalf of the system

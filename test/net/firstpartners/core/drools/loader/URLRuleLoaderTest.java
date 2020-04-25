@@ -1,4 +1,4 @@
-package net.firstpartners.core.drools;
+package net.firstpartners.core.drools.loader;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
@@ -9,8 +9,6 @@ import java.util.logging.Logger;
 
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
-
-import net.firstpartners.core.drools.config.RuleSource;
 
 public class URLRuleLoaderTest {
 

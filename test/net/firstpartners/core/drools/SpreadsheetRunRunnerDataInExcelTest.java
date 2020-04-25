@@ -10,7 +10,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.drools.config.RuleSource;
+import net.firstpartners.core.drools.loader.FileRuleLoader;
+import net.firstpartners.core.drools.loader.RuleSource;
 
 public class SpreadsheetRunRunnerDataInExcelTest {
 

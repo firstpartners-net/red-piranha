@@ -1,4 +1,4 @@
-package net.firstpartners.core.drools;
+package net.firstpartners.core.drools.loader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.logging.Logger;
 
 import net.firstpartners.core.log.RpLogger;
+import net.firstpartners.core.drools.loader.URLRuleLoader;
 
 /**
  * Load rules

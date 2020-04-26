@@ -12,8 +12,7 @@ import net.firstpartners.TestConstants;
 
 public class FileRuleLoaderTest {
 
-	//Class Under Test
-	FileRuleLoader ruleLoader = new FileRuleLoader();
+
 
 	private static final Logger log = Logger.getLogger(FileRuleLoaderTest.class
 			.getName());
@@ -21,6 +20,8 @@ public class FileRuleLoaderTest {
 	@Test
 	public final void testLoadCachedRules() throws IOException, ClassNotFoundException {
 
+		
+		
 		log.debug("starting test");
 		
 		//Set the rule source
@@ -31,6 +32,8 @@ public class FileRuleLoaderTest {
 		
 		
 		// do the call
+		//Class Under Test
+		FileRuleLoader ruleLoader = new FileRuleLoader(ruleSource);
 		org.drools.KnowledgeBase kb = ruleLoader.loadKnowledgeBase(ruleSource);
 		assertNotNull(kb);
 		StatefulKnowledgeSession sks = kb.newStatefulKnowledgeSession();

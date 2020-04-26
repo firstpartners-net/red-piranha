@@ -69,13 +69,13 @@ public class RedCommandLine {
 
 		// Handle to common utility file
 		//The Factory auto-generates the input and output strategy based on the filenames
-		RuleRunner runner = RuleRunnerFactory.getRuleRunner(inputFileName,outputFileName);
+		RuleRunner runner = RuleRunnerFactory.getRuleRunner(inputFileName,ruleFiles,outputFileName);
 		
 		try {
 
 			// Call the rules using this Excel datafile
 			playerAsLogger.info("Running Rules:" + ruleFiles);
-			runner.callRules(ruleFiles, userUpdates, playerAsLogger);
+			runner.callRules(/*ruleFiles,*/ userUpdates, playerAsLogger);
 
 			
 			playerAsLogger.info("Complete");

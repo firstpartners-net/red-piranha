@@ -11,7 +11,21 @@ import org.drools.compiler.compiler.DroolsParserException;
  */
 public interface IRuleLoader {
 
+	/**
+	 * loads the rules, using the source provided
+	 * @param ruleSource
+	 * @return
+	 * @throws DroolsParserException
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	org.drools.KnowledgeBase loadRules(RuleSource ruleSource) throws DroolsParserException, IOException, ClassNotFoundException;
+	
+	/**
+	 * gets the original rule source
+	 * @return
+	 */
+	RuleSource getRuleSource();
 
 
 }

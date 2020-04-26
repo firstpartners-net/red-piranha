@@ -6,16 +6,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
-import org.apache.log4j.Logger;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.log4j.Logger;
 import org.drools.KnowledgeBase;
 import org.drools.compiler.compiler.DroolsParserException;
 
-import net.firstpartners.core.drools.loader.FileRuleLoader;
 import net.firstpartners.core.drools.loader.IRuleLoader;
 import net.firstpartners.core.drools.loader.RuleSource;
-import net.firstpartners.core.drools.loader.URLRuleLoader;
 import net.firstpartners.core.log.RpLogger;
 
 
@@ -72,7 +70,7 @@ public class PreCompileRuleBuilder {
 		log.info("Loading Knowledgebase from "+ruleLocation);
 
 		//Get a handle to the rule loader that we will use
-		IRuleLoader ruleLoader = getRuleLoader(ruleLocation);
+		IRuleLoader ruleLoader = RuleRunnerFactory.getRuleLoader(ruleLocation);
 
 		//Setup the source
 		RuleSource ruleSource = new RuleSource();
@@ -88,26 +86,10 @@ public class PreCompileRuleBuilder {
 
 	}
 
-	/**
-	 * Get a handle to the rule loader we will be using
-	 */
-	private IRuleLoader  getRuleLoader(String ruleLocation){
 
-
-		IRuleLoader ruleLoader;
-
-		if(ruleLocation.startsWith("http")){
-			ruleLoader = new URLRuleLoader();
-		} else {
-			ruleLoader = new FileRuleLoader();
-		}
-
-		//Default - url rule loader
-		return ruleLoader;
-	}
 	
 	/**
-	 * Read a properties fille
+	 * Read a properties file
 	 * @return
 	 * @throws IOException
 	 */

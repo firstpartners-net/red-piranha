@@ -55,88 +55,48 @@ public class RuleRunner {
 	protected RuleRunner(IDocumentInStrategy documentStrategy, IRuleLoader ruleLoader,
 			ExcelOutputStrategy outputStrategy) {
 		this.ruleLoader = ruleLoader;
-		inputStrategy = documentStrategy;
+		this.inputStrategy = documentStrategy;
 		this.outputStrategy = outputStrategy;
 	}
 
-//	/**
-//	 * Call Rules against and Excel data file, then return workbook
-//	 * 
-//	 * @param locationOfExcelDataFile
-//	 * @param ruleSource
-//	 * @param excelLogSheet
-//	 * @throws IOException
-//	 * @throws DroolsParserException
-//	 * @throws ClassNotFoundException
-//	 * @throws InvalidFormatException
-//	 */
-//	public void callRules(File locationOfExcelDataFile, RuleSource ruleSource, String excelLogSheet)
-//			throws IOException, DroolsParserException, ClassNotFoundException, InvalidFormatException {
-//
-//		InputStream inputFromExcel = null;
-//
-//		// Sanity checks on the incoming file
-//		if (locationOfExcelDataFile == null) {
-//			throw new IOException("java.io.File cannot be null");
-//		}
-//
-//		if (!locationOfExcelDataFile.exists()) {
-//			throw new IOException("no file at location:" + locationOfExcelDataFile.getAbsolutePath());
-//		}
-//
-//		try {
-//
-//			log.info("Looking for file:" + locationOfExcelDataFile.getAbsolutePath());
-//			inputFromExcel = new FileInputStream(locationOfExcelDataFile);
-//
-//			log.info("found file:" + locationOfExcelDataFile);
-//
-//		} catch (IOException e) {
-//			log.log(Priority.WARN, "IO Exception Loading rules", e);
-//			throw e;
-//
-//		}
-//
-//		callRules(inputFromExcel, ruleSource, excelLogSheet);
-//
-//	}
-//	
+
 	/**
-	 * Call the rules engine - using the Excel Data provided
+	 * call the rule Engine - data input / output has already been set during the
+	 * creation of this class
 	 * 
-	 * @param ruleSource
 	 * @param nameOfLogSheet
 	 * @throws DroolsParserException
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 * @throws InvalidFormatException
 	 */
-	public void callRules(RuleSource ruleSource)
+	public void callRules()
 			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
-		callRules(ruleSource, null, null);
+		callRules(null, null);
 	}
 
-/**
- * Call the rule Engine - data input / output has already been set during the creation of this class
- * @param ruleSource
- * @param userDataDisplay - feedback e.g. to GUI
- * @param userMessages - to display
- * @throws DroolsParserException
- * @throws IOException
- * @throws ClassNotFoundException
- * @throws InvalidFormatException
- */
-	public void callRules(RuleSource ruleSource, IGiveFeedbackToUsers userDataDisplay, ILogger userMessages)
+	/**
+	 * Call the rule Engine - data input / output has already been set during the
+	 * creation of this class
+	 * 
+	 * @param userDataDisplay - feedback e.g. to GUI
+	 * @param userMessages    - to display
+	 * @throws DroolsParserException
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 * @throws InvalidFormatException
+	 */
+	public void callRules(IGiveFeedbackToUsers userDataDisplay, ILogger userMessages)
 			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
-		userMessages.info("Opening Input :" + this.inputStrategy.getInputName());
-
 		
+
 		// Create a new Excel Logging object
 		inputStrategy.setDocumentLogger(new SpreadSheetLogger());
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(10);
+			userMessages.info("Opening Input :" + this.inputStrategy.getInputName());
 		}
 
 		// Convert the cell and log if we have a handle
@@ -153,6 +113,7 @@ public class RuleRunner {
 		// Log the cell contents
 
 		// Add the Spreadsheet contents as facts
+		RuleSource ruleSource = ruleLoader.getRuleSource();
 		ruleSource.addFacts(ranges.getAllRangesAndCells());
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(65);
@@ -166,7 +127,8 @@ public class RuleRunner {
 			userDataDisplay.notifyProgress(80);
 		}
 
-		// update the origial document (to be saved as copy) with the result of our rules
+		// update the origial document (to be saved as copy) with the result of our
+		// rules
 		inputStrategy.updateOriginalDocument(ranges);
 
 		if (userDataDisplay != null) {
@@ -181,52 +143,11 @@ public class RuleRunner {
 			userDataDisplay.notifyProgress(100);
 		}
 
-		
-		
 		// Process our output
 		userMessages.info("Write to Excel Output file:" + outputStrategy.getOutputDestination());
 		outputStrategy.processOutput(inputStrategy.getExcelWorkBook());
-		
 
 	}
-//
-//	/**
-//	 * Call Rules against and Excel data file, then return workbook
-//	 * 
-//	 * @param urlOfDataFile
-//	 * @param ruleSource
-//	 * @param excelLogSheet
-//	 * @throws DroolsParserException
-//	 * @throws IOException
-//	 * @throws ClassNotFoundException
-//	 * @throws InvalidFormatException
-//	 */
-//	public void callRules(URL urlOfDataFile, RuleSource ruleSource, String excelLogSheet)
-//			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
-//
-//		InputStream inputFromExcel = null;
-//
-//		try {
-//			log.info("Looking for url:" + urlOfDataFile);
-//
-//			inputFromExcel = urlOfDataFile.openStream();
-//
-//			log.info("found url:" + urlOfDataFile);
-//
-//		} catch (MalformedURLException e) {
-//
-//			log.log(Priority.WARN, "Malformed URL Exception Loading rules", e);
-//			throw e;
-//
-//		} catch (IOException e) {
-//			log.log(Priority.WARN, "IO Exception Loading rules", e);
-//			throw e;
-//
-//		}
-//
-//		callRules(inputFromExcel, ruleSource, excelLogSheet);
-//
-//	}
 
 	/**
 	 * Handle to the the Strategy Delegate we use for outputting
@@ -367,7 +288,7 @@ public class RuleRunner {
 
 	}
 
-	public void setOutputStrategy (IDocumentOutStrategy newStrategy) {
+	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {
 		this.outputStrategy = newStrategy;
 	}
 

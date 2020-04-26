@@ -21,9 +21,26 @@ public class FileRuleLoader extends AbstractRuleLoader implements IRuleLoader {
 
 	private static final Logger log = RpLogger.getLogger(FileRuleLoader.class
 			.getName());
+	
+	private RuleSource ruleSource;
 
-	public FileRuleLoader() {
+	/**
+	 * 
+	 * @param ruleSource
+	 */
+	public FileRuleLoader(RuleSource ruleSource) {
+		this.ruleSource = ruleSource;
 	}
+	
+	/** 
+	 * Constructor - convenience - takes single ruleLocation
+	 * @param ruleLocation
+	 */
+	public FileRuleLoader(String ruleLocation) {
+		this.ruleSource = new RuleSource();
+		this.ruleSource.setRulesLocation(ruleLocation);
+	}
+
 
 
 
@@ -58,6 +75,18 @@ public class FileRuleLoader extends AbstractRuleLoader implements IRuleLoader {
 	}
 
 
+
+	/**
+	 * Get an Input Stream suitable for this class
+	 */
+	@Override
+	InputStream getInputStream(String resource) throws IOException {
+
+		return new FileInputStream(resource);
+	}
+
+
+
 	/**
 	 * Get a file from a String URL - takes advantage of the App engine ability
 	 * to fetch a url
@@ -84,15 +113,18 @@ public class FileRuleLoader extends AbstractRuleLoader implements IRuleLoader {
 
 	}
 
+	/**
+	 * gets the original rule source
+	 * @return
+	 */
+	public RuleSource getRuleSource() {
+		return ruleSource;
+	}
+
 	
 
-	/**
-	 * Get an Input Stream suitable for this class
-	 */
-	@Override
-	InputStream getInputStream(String resource) throws IOException {
-
-		return new FileInputStream(resource);
+	public void setRuleSource(RuleSource ruleSource) {
+		this.ruleSource = ruleSource;
 	}
 
 

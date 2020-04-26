@@ -109,6 +109,13 @@ public class URLRuleLoader extends AbstractRuleLoader {
 
 	}
 
+	/**
+	 * gets the original rule source
+	 * @return
+	 */
+	public RuleSource getRuleSource() {
+		return null;
+	}
 
 
 

@@ -3,8 +3,6 @@ package net.firstpartners.core.spreadsheet;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
-
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
@@ -25,23 +23,19 @@ public class ExcelInputStrategyTest {
 	@Test
 	public final void testXlsCallRulesFromFile() throws Exception {
 
-		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLS_DATA_FILE,"some-dummy.xls");
+		RuleSource ruleSource = new RuleSource();
+		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
+		
+		log.debug("rule source created");
+		
+		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLS_DATA_FILE,ruleSource,"some-dummy.xls");
 		assertTrue (runner.geDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
 		
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 		runner.setOutputStrategy(outputStrategy);
 
-		// Check where we are
-		File whereAmI = new File(".");
-		log.info("Default file location:" + whereAmI.getAbsolutePath());
-
-		// Get the XLS DAta file
-
-		RuleSource ruleSource = new RuleSource();
-		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
-
-		runner.callRules(ruleSource);
+		runner.callRules();
 		assertNotNull(outputStrategy.getWorkbook());
 
 	}
@@ -51,23 +45,20 @@ public class ExcelInputStrategyTest {
 	 * Just check that the rules can run, throws no exception
 	 */
 	public final void testXlsXCallRulesFromFile() throws Exception {
+		
+		RuleSource ruleSource = new RuleSource();
+		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 
-		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLSX_DATA_FILE,"some-dummy.xls");
+		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLSX_DATA_FILE,ruleSource,"some-dummy.xls");
 		assertTrue (runner.geDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
 		
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 		runner.setOutputStrategy(outputStrategy);
 
-		// Check where we are
-		File whereAmI = new File(".");
-		log.info("Default file location:" + whereAmI.getAbsolutePath());
 
 
-		RuleSource ruleSource = new RuleSource();
-		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
-
-		runner.callRules(ruleSource);
+		runner.callRules();
 		assertNotNull(outputStrategy.getWorkbook());
 
 	}

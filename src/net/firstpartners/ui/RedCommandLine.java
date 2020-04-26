@@ -66,7 +66,7 @@ public class RedCommandLine {
 
 		
 		// Get the params
-		String excelFile = Config.getInputFileName();
+		String inputFileName = Config.getInputFileName();
 		String outputFileName = Config.getOutputFileName();
 		RuleSource ruleFiles = Config.getRuleFiles();
 
@@ -76,12 +76,12 @@ public class RedCommandLine {
 		
 		try {
 			// Open the input file as a stream
-			playerAsLogger.info("Opening Input file:" + excelFile);
-			FileInputStream excelInput = new FileInputStream(excelFile);
+			playerAsLogger.info("Opening Input file:" + inputFileName);
+			FileInputStream inputStream = new FileInputStream(inputFileName);
 
 			// Call the rules using this Excel datafile
 			playerAsLogger.info("Running Rules:" + ruleFiles);
-			runner.callRules(excelInput, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME,
+			runner.callRules(inputStream, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME,
 					userUpdates, playerAsLogger);
 
 			

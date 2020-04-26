@@ -90,7 +90,7 @@ public class RuleRunner {
 	/**
 	 * Call the rules engine - using the Excel Data provided
 	 * 
-	 * @param inputFromExcel  - the excel data sheet as already opened as a Java
+	 * @param inputAsStream  - the data sheet as already opened as a Java
 	 *                        Stream
 	 * @param args
 	 * @param nameOfLogSheet
@@ -102,7 +102,7 @@ public class RuleRunner {
 	 * @throws InvalidFormatException
 	 * 
 	 */
-	public void callRules(InputStream inputFromExcel, RuleSource ruleSource, String nameOfLogSheet,
+	public void callRules(InputStream inputAsStream, RuleSource ruleSource, String nameOfLogSheet,
 			IGiveFeedbackToUsers userDataDisplay, ILogger userMessages)
 			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
@@ -113,7 +113,7 @@ public class RuleRunner {
 		}
 
 		// Convert the cell and log if we have a handle
-		RangeHolder ranges = strategyIn.getJavaBeansFromStream(inputFromExcel);
+		RangeHolder ranges = strategyIn.getJavaBeansFromStream(inputAsStream);
 
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(25);
@@ -139,19 +139,19 @@ public class RuleRunner {
 			userDataDisplay.notifyProgress(80);
 		}
 
-		// update the excel spreadsheet with the result of our rules
+		// update the origial document (to be saved as copy) with the result of our rules
 		strategyIn.updateOriginalDocument(ranges);
 
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(90);
 		}
 
-		// update the excel spreadsheet with our log file
+		// update the document (e.g. excel spreadsheet) with our log file as appropriate
 		strategyIn.flush(nameOfLogSheet);
 		strategyIn.flush(userMessages);
 
 		// Close our input work book
-		inputFromExcel.close();
+		inputAsStream.close();
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(100);
 		}
@@ -185,7 +185,7 @@ public class RuleRunner {
 	/**
 	 * Call Rules against and Excel data file, then return workbook
 	 * 
-	 * @param urlOfExcelDataFile
+	 * @param urlOfDataFile
 	 * @param ruleSource
 	 * @param excelLogSheet
 	 * @throws DroolsParserException
@@ -193,17 +193,17 @@ public class RuleRunner {
 	 * @throws ClassNotFoundException
 	 * @throws InvalidFormatException
 	 */
-	public void callRules(URL urlOfExcelDataFile, RuleSource ruleSource, String excelLogSheet)
+	public void callRules(URL urlOfDataFile, RuleSource ruleSource, String excelLogSheet)
 			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
 		InputStream inputFromExcel = null;
 
 		try {
-			log.info("Looking for url:" + urlOfExcelDataFile);
+			log.info("Looking for url:" + urlOfDataFile);
 
-			inputFromExcel = urlOfExcelDataFile.openStream();
+			inputFromExcel = urlOfDataFile.openStream();
 
-			log.info("found url:" + urlOfExcelDataFile);
+			log.info("found url:" + urlOfDataFile);
 
 		} catch (MalformedURLException e) {
 

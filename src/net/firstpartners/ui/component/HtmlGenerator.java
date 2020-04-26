@@ -42,13 +42,13 @@ public class HtmlGenerator {
 	public static String getupdatedHomeSreenHtml() {
 
 		// Default if we are running standalone
-		String excelFile = "";
+		String inputFileName = "";
 		String outputFileName = "";
 		String ruleFileAsString = "";
 
 		// Get UserSpecifc information we need to display
 
-		excelFile = StringUtils.escape(Config.getInputFileName());
+		inputFileName = StringUtils.escape(Config.getInputFileName());
 		outputFileName = StringUtils.escape(Config.getOutputFileName());
 
 		// build multiple rules files
@@ -65,7 +65,7 @@ public class HtmlGenerator {
 				+ "<p>Applying Business rules to your Data. "
 				+ "More Information and guides at <a href=\"https://github.com/paulbrowne-irl/red-piranha\">https://github.com/paulbrowne-irl/red-piranha</a>."
 				+ "<br/>Clicking the tabs at the bottom of the app will show more detailled information.</p><br/>"
-				+ "<h3>Settings</h3>\n" + "<p><I>&nbsp;&nbsp;&nbsp;Input File:" + excelFile + "</I></p>"
+				+ "<h3>Settings</h3>\n" + "<p><I>&nbsp;&nbsp;&nbsp;Input File:" + inputFileName + "</I></p>"
 				+ "<p><I>&nbsp;&nbsp;&nbsp;Rules we will apply:" + ruleFileAsString + "</I></p>"
 				+ "<p><I>&nbsp;&nbsp;&nbsp;Output File:" + outputFileName + "</I></p><br/>"
 				+ "<p>These values can be set in red-piranha.config</p><br/>" + "<h3>Progress</h3>\n"

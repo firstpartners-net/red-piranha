@@ -19,7 +19,7 @@ import net.firstpartners.ui.utils.Config;
  * Main Entry Point for Red-Piranha. Looks for red-piranha.config to decide what
  * mode it should run in
  * 
- * By default, loads data from excel, executes business rules against it, saves
+ * Main use case, loads data from excel (or word doc), executes business rules against it, saves
  * into another Excel file.
  * 
  * @author PBrowne
@@ -56,10 +56,9 @@ public class RedCommandLine {
 	}
 
 	/**
-	 * @param excelFile
-	 * @param outputFileName
-	 * @param ruleFiles
-	 * @param player
+	 * Run the Rules
+	 * @param playerAsLogger - for logging to GUI
+	 * @param userUpdates - for progress feedback to GUI
 	 * @throws IllegalArgumentException
 	 */
 	static void runRules(ILogger playerAsLogger, IGiveFeedbackToUsers userUpdates) throws IllegalArgumentException {

@@ -42,7 +42,7 @@ public interface IDocumentInStrategy {
 	void flush(ILogger logger);
 
 	/**
-	 * Access a Stream, convert it to Red JavaBeans (representing Excel Ojbects)
+	 * Access a Stream, convert it to Red JavaBeans (representing Excel Objects)
 	 * @param inputFromExcel
 	 * @return
 	 * @throws EncryptedDocumentException

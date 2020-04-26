@@ -1,12 +1,10 @@
 package net.firstpartners.ui;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 
 import org.apache.log4j.Logger;
 import org.drools.compiler.compiler.DroolsParserException;
 
-import net.firstpartners.RedConstants;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.drools.loader.RuleSource;
@@ -71,17 +69,13 @@ public class RedCommandLine {
 
 		// Handle to common utility file
 		//The Factory auto-generates the input and output strategy based on the filenames
-		RuleRunner runner = RuleRunnerFactory.getRuleRunner(outputFileName);
+		RuleRunner runner = RuleRunnerFactory.getRuleRunner(inputFileName,outputFileName);
 		
 		try {
-			// Open the input file as a stream
-			playerAsLogger.info("Opening Input file:" + inputFileName);
-			FileInputStream inputStream = new FileInputStream(inputFileName);
 
 			// Call the rules using this Excel datafile
 			playerAsLogger.info("Running Rules:" + ruleFiles);
-			runner.callRules(inputStream, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME,
-					userUpdates, playerAsLogger);
+			runner.callRules(ruleFiles, userUpdates, playerAsLogger);
 
 			
 			playerAsLogger.info("Complete");

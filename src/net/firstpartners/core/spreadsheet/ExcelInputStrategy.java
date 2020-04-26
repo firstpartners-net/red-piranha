@@ -1,5 +1,6 @@
 package net.firstpartners.core.spreadsheet;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -8,6 +9,7 @@ import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+import net.firstpartners.RedConstants;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
@@ -26,18 +28,69 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	private static final Logger log = RpLogger.getLogger(ExcelInputStrategy.class
 			.getName());
 	
-	private SpreadSheetLogger spreadSheetLogger;
+	private String excelInputFileName =null;
 	private Workbook excelWorkBook =null;
+	private SpreadSheetLogger spreadSheetLogger;
+	
+	/**
+	 * Construct a new Strategy Object
+	 * @param excelInputFileName
+	 */
+	public ExcelInputStrategy(String excelInputFileName) {
+		this.excelInputFileName=excelInputFileName;
+	}
 	
 	
+	/**
+	 * Write out any documents we hold to anybody else interested
+	 * @param logger
+	 */
+	@Override
+	public void flush(ILogger logger) {
+		this.flush();
+		this.spreadSheetLogger.flush(logger);
+		
+	}
+
+	/**
+	 * Write out and logs we hold to the document
+	 * @param excelWorkBook
+	 * @param nameOfLogSheet
+	 */
+	@Override
+	public void flush() {
+		this.spreadSheetLogger.flush(excelWorkBook,RedConstants.EXCEL_LOG_WORKSHEET_NAME);
+		
+	}
+
+	public String getInputName() {
+		return excelInputFileName;
+	}
+
 	@Override
 	public Workbook getExcelWorkBook() {
 		return excelWorkBook;
 	}
 
+	/**
+	 * Access a Stream, convert it to Red JavaBeans (representing Excel Ojbects)
+	 * @param inputFromExcel
+	 * @return
+	 * @throws EncryptedDocumentException
+	 * @throws IOException
+	 */
 	@Override
-	public void setExcelWorkBook(Workbook excelWorkBook) {
-		this.excelWorkBook = excelWorkBook;
+	
+	public RangeHolder getJavaBeansFromSource()  throws EncryptedDocumentException, IOException {
+		
+		InputStream inputAsStream = new FileInputStream(this.excelInputFileName);
+		
+		log.debug("converting incoming excel stream to Javabeans");
+		excelWorkBook=WorkbookFactory.create(inputAsStream);
+		RangeHolder myRange= RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(excelWorkBook);
+		inputAsStream.close();
+		return myRange;
+		
 	}
 
 	/**
@@ -50,38 +103,12 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 		
 	}
 
-	/**
-	 * Write out and logs we hold to the document
-	 * @param excelWorkBook
-	 * @param nameOfLogSheet
-	 */
-	@Override
-	public void flush(String nameOfLogSheet) {
-		this.spreadSheetLogger.flush(excelWorkBook,nameOfLogSheet);
-		
+	public void setExcelInputFileName(String excelInputFileName) {
+		this.excelInputFileName = excelInputFileName;
 	}
-
-	/**
-	 * Write out any documents we hold to anybody else interested
-	 * @param logger
-	 */
 	@Override
-	public void flush(ILogger logger) {
-		this.spreadSheetLogger.flush(logger);
-		
-	}
-	/**
-	 * Access a Stream, convert it to Red JavaBeans (representing Excel Ojbects)
-	 * @param inputFromExcel
-	 * @return
-	 * @throws EncryptedDocumentException
-	 * @throws IOException
-	 */
-	@Override
-	public RangeHolder getJavaBeansFromStream(InputStream inputFromExcel) throws EncryptedDocumentException, IOException {
-		log.debug("converting incoming excel stream to Javabeans");
-		excelWorkBook=WorkbookFactory.create(inputFromExcel);
-		return RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(excelWorkBook);
+	public void setExcelWorkBook(Workbook excelWorkBook) {
+		this.excelWorkBook = excelWorkBook;
 	}
 
 	/**

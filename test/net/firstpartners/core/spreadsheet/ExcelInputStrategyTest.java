@@ -4,7 +4,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.io.FileInputStream;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -26,8 +25,8 @@ public class ExcelInputStrategyTest {
 	@Test
 	public final void testXlsCallRulesFromFile() throws Exception {
 
-		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLS_DATA_FILE);
-		assertTrue (runner.getOutputStrategy() instanceof ExcelOutputStrategy);
+		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLS_DATA_FILE,"some-dummy.xls");
+		assertTrue (runner.geDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
 		
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
@@ -39,12 +38,10 @@ public class ExcelInputStrategyTest {
 
 		// Get the XLS DAta file
 
-		FileInputStream excelInput = new FileInputStream(TestConstants.XLS_DATA_FILE);
-
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 
-		runner.callRules(excelInput, ruleSource, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
+		runner.callRules(ruleSource);
 		assertNotNull(outputStrategy.getWorkbook());
 
 	}
@@ -55,8 +52,8 @@ public class ExcelInputStrategyTest {
 	 */
 	public final void testXlsXCallRulesFromFile() throws Exception {
 
-		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLSX_DATA_FILE);
-		assertTrue (runner.getOutputStrategy() instanceof ExcelOutputStrategy);
+		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLSX_DATA_FILE,"some-dummy.xls");
+		assertTrue (runner.geDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
 		
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
@@ -66,14 +63,11 @@ public class ExcelInputStrategyTest {
 		File whereAmI = new File(".");
 		log.info("Default file location:" + whereAmI.getAbsolutePath());
 
-		// Get the XLS DAta file
-
-		FileInputStream excelInput = new FileInputStream(TestConstants.XLSX_DATA_FILE);
 
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 
-		runner.callRules(excelInput, ruleSource, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
+		runner.callRules(ruleSource);
 		assertNotNull(outputStrategy.getWorkbook());
 
 	}

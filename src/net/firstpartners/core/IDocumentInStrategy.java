@@ -1,7 +1,6 @@
 package net.firstpartners.core;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -33,7 +32,7 @@ public interface IDocumentInStrategy {
 	 * @param excelWorkBook
 	 * @param nameOfLogSheet
 	 */
-	void flush(String nameOfLogSheet);
+	void flush();
 
 	/**
 	 * Write out any documents we hold to anybody else interested
@@ -48,7 +47,7 @@ public interface IDocumentInStrategy {
 	 * @throws EncryptedDocumentException
 	 * @throws IOException
 	 */
-	RangeHolder getJavaBeansFromStream(InputStream inputFromExcel) throws EncryptedDocumentException, IOException;
+	RangeHolder getJavaBeansFromSource() throws EncryptedDocumentException, IOException;
 
 	/**
 	 * Update our Original Document with new data
@@ -56,5 +55,13 @@ public interface IDocumentInStrategy {
 	 * @throws IOException
 	 */
 	void updateOriginalDocument(RangeHolder ranges) throws IOException;
+
+	/**
+	 * State where out input is coming from
+	 * @return
+	 */
+	String getInputName();
+
+
 
 }

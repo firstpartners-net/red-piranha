@@ -6,8 +6,9 @@ import net.firstpartners.core.spreadsheet.ExcelInputStrategy;
 import net.firstpartners.core.spreadsheet.ExcelOutputStrategy;
 
 /**
- * Return an instance of RuleRunner, Appropriately configured with the various IDocumentStrategy etc
- * to handle the current document request
+ * Return an instance of RuleRunner, Appropriately configured with the various
+ * IDocumentStrategy etc to handle the current document request
+ * 
  * @author PBrowne
  *
  */
@@ -18,26 +19,32 @@ public class RuleRunnerFactory {
 	 */
 	private RuleRunnerFactory() {
 	}
-	
+
 	/**
-	 * Create a properly configured RuleRunner for the Input / Output file types we are passing
+	 * Create a properly configured RuleRunner for the Input / Output file types we
+	 * are passing
+	 * 
+	 * @param inputFileName
 	 * @param ruleLoader
 	 * @param outputFileName
 	 * @return
 	 */
-	public static RuleRunner getRuleRunner(IRuleLoader ruleLoader, String outputFileName) {
-		RuleRunner rules = new RuleRunner(new ExcelInputStrategy(), ruleLoader, new ExcelOutputStrategy(outputFileName));
-		
+	public static RuleRunner getRuleRunner(String inputFileName, IRuleLoader ruleLoader, String outputFileName) {
+		RuleRunner rules = new RuleRunner(new ExcelInputStrategy(inputFileName), ruleLoader,
+				new ExcelOutputStrategy(outputFileName));
+
 		return rules;
 	}
-	
+
 	/**
-	 * Create a properly configured RuleRunner for the Input / Output file types we are passing
+	 * Create a properly configured RuleRunner for the Input / Output file types we
+	 * are passing
+	 * 
 	 * @param outputFileName
 	 * @return
 	 */
-	public static RuleRunner getRuleRunner(String outputFileName) {
-		return getRuleRunner(new FileRuleLoader(),outputFileName);
+	public static RuleRunner getRuleRunner(String inputFileName, String outputFileName) {
+		return getRuleRunner(inputFileName, new FileRuleLoader(), outputFileName);
 	}
 
 }

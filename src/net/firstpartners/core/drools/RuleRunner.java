@@ -1,16 +1,10 @@
 package net.firstpartners.core.drools;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Collection;
 import java.util.HashMap;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.drools.KnowledgeBase;
 import org.drools.compiler.compiler.DroolsParserException;
@@ -39,37 +33,15 @@ public class RuleRunner {
 	// Handle to the logger
 	private static final Logger log = RpLogger.getLogger(RuleRunner.class.getName());
 
-	// Handle to loader
-	private final IRuleLoader loader;
-
-	// Handle to the Strategy Class for specific incoming document (Excel, Word etc
-	// tasks)
-	private IDocumentInStrategy strategyIn = null;
-
 	// Handle to the strategy Class to write out the document
 	private IDocumentOutStrategy outputStrategy = null;
 
-	/**
-	 * Handle to the the Strategy Delegate we use for outputting
-	 * 
-	 * @return the strategy object
-	 */
-	public IDocumentOutStrategy getOutputStrategy() {
-		return outputStrategy;
-	}
-	
-	public void setOutputStrategy (IDocumentOutStrategy newStrategy) {
-		this.outputStrategy = newStrategy;
-	}
+	// Handle to loader
+	private final IRuleLoader ruleLoader;
 
-	/**
-	 * The strategy we use for dealing with incoming documents
-	 * 
-	 * @return the strategy object
-	 */
-	protected IDocumentInStrategy getDocumentOutStrategy() {
-		return strategyIn;
-	}
+	// Handle to the Strategy Class for specific incoming document (Excel, Word etc
+	// tasks)
+	private IDocumentInStrategy inputStrategy = null;
 
 	/**
 	 * Construct a new RuleRunner.
@@ -82,38 +54,93 @@ public class RuleRunner {
 	 */
 	protected RuleRunner(IDocumentInStrategy documentStrategy, IRuleLoader ruleLoader,
 			ExcelOutputStrategy outputStrategy) {
-		loader = ruleLoader;
-		strategyIn = documentStrategy;
+		this.ruleLoader = ruleLoader;
+		inputStrategy = documentStrategy;
 		this.outputStrategy = outputStrategy;
 	}
 
+//	/**
+//	 * Call Rules against and Excel data file, then return workbook
+//	 * 
+//	 * @param locationOfExcelDataFile
+//	 * @param ruleSource
+//	 * @param excelLogSheet
+//	 * @throws IOException
+//	 * @throws DroolsParserException
+//	 * @throws ClassNotFoundException
+//	 * @throws InvalidFormatException
+//	 */
+//	public void callRules(File locationOfExcelDataFile, RuleSource ruleSource, String excelLogSheet)
+//			throws IOException, DroolsParserException, ClassNotFoundException, InvalidFormatException {
+//
+//		InputStream inputFromExcel = null;
+//
+//		// Sanity checks on the incoming file
+//		if (locationOfExcelDataFile == null) {
+//			throw new IOException("java.io.File cannot be null");
+//		}
+//
+//		if (!locationOfExcelDataFile.exists()) {
+//			throw new IOException("no file at location:" + locationOfExcelDataFile.getAbsolutePath());
+//		}
+//
+//		try {
+//
+//			log.info("Looking for file:" + locationOfExcelDataFile.getAbsolutePath());
+//			inputFromExcel = new FileInputStream(locationOfExcelDataFile);
+//
+//			log.info("found file:" + locationOfExcelDataFile);
+//
+//		} catch (IOException e) {
+//			log.log(Priority.WARN, "IO Exception Loading rules", e);
+//			throw e;
+//
+//		}
+//
+//		callRules(inputFromExcel, ruleSource, excelLogSheet);
+//
+//	}
+//	
 	/**
 	 * Call the rules engine - using the Excel Data provided
 	 * 
-	 * @param inputAsStream  - the data sheet as already opened as a Java
-	 *                        Stream
-	 * @param args
+	 * @param ruleSource
 	 * @param nameOfLogSheet
-	 * @param userDataDisplay - if not null, we can log log items back to the user
-	 *                        (such as pre and post excel data)
 	 * @throws DroolsParserException
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 * @throws InvalidFormatException
-	 * 
 	 */
-	public void callRules(InputStream inputAsStream, RuleSource ruleSource, String nameOfLogSheet,
-			IGiveFeedbackToUsers userDataDisplay, ILogger userMessages)
+	public void callRules(RuleSource ruleSource)
 			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
+		callRules(ruleSource, null, null);
+	}
+
+/**
+ * Call the rule Engine - data input / output has already been set during the creation of this class
+ * @param ruleSource
+ * @param userDataDisplay - feedback e.g. to GUI
+ * @param userMessages - to display
+ * @throws DroolsParserException
+ * @throws IOException
+ * @throws ClassNotFoundException
+ * @throws InvalidFormatException
+ */
+	public void callRules(RuleSource ruleSource, IGiveFeedbackToUsers userDataDisplay, ILogger userMessages)
+			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
+
+		userMessages.info("Opening Input :" + this.inputStrategy.getInputName());
+
+		
 		// Create a new Excel Logging object
-		strategyIn.setDocumentLogger(new SpreadSheetLogger());
+		inputStrategy.setDocumentLogger(new SpreadSheetLogger());
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(10);
 		}
 
 		// Convert the cell and log if we have a handle
-		RangeHolder ranges = strategyIn.getJavaBeansFromStream(inputAsStream);
+		RangeHolder ranges = inputStrategy.getJavaBeansFromSource();
 
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(25);
@@ -140,18 +167,16 @@ public class RuleRunner {
 		}
 
 		// update the origial document (to be saved as copy) with the result of our rules
-		strategyIn.updateOriginalDocument(ranges);
+		inputStrategy.updateOriginalDocument(ranges);
 
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(90);
 		}
 
 		// update the document (e.g. excel spreadsheet) with our log file as appropriate
-		strategyIn.flush(nameOfLogSheet);
-		strategyIn.flush(userMessages);
+		inputStrategy.flush(userMessages);
 
 		// Close our input work book
-		inputAsStream.close();
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(100);
 		}
@@ -160,131 +185,120 @@ public class RuleRunner {
 		
 		// Process our output
 		userMessages.info("Write to Excel Output file:" + outputStrategy.getOutputDestination());
-		outputStrategy.processOutput(strategyIn.getExcelWorkBook());
+		outputStrategy.processOutput(inputStrategy.getExcelWorkBook());
 		
 
 	}
+//
+//	/**
+//	 * Call Rules against and Excel data file, then return workbook
+//	 * 
+//	 * @param urlOfDataFile
+//	 * @param ruleSource
+//	 * @param excelLogSheet
+//	 * @throws DroolsParserException
+//	 * @throws IOException
+//	 * @throws ClassNotFoundException
+//	 * @throws InvalidFormatException
+//	 */
+//	public void callRules(URL urlOfDataFile, RuleSource ruleSource, String excelLogSheet)
+//			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
+//
+//		InputStream inputFromExcel = null;
+//
+//		try {
+//			log.info("Looking for url:" + urlOfDataFile);
+//
+//			inputFromExcel = urlOfDataFile.openStream();
+//
+//			log.info("found url:" + urlOfDataFile);
+//
+//		} catch (MalformedURLException e) {
+//
+//			log.log(Priority.WARN, "Malformed URL Exception Loading rules", e);
+//			throw e;
+//
+//		} catch (IOException e) {
+//			log.log(Priority.WARN, "IO Exception Loading rules", e);
+//			throw e;
+//
+//		}
+//
+//		callRules(inputFromExcel, ruleSource, excelLogSheet);
+//
+//	}
 
 	/**
-	 * Call the rules engine - using the Excel Data provided
+	 * Handle to the the Strategy Delegate we use for outputting
 	 * 
-	 * @param inputFromExcel
-	 * @param ruleSource
-	 * @param nameOfLogSheet
-	 * @throws DroolsParserException
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 * @throws InvalidFormatException
+	 * @return the strategy object
 	 */
-	public void callRules(InputStream inputFromExcel, RuleSource ruleSource, String nameOfLogSheet)
-			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
-
-		callRules(inputFromExcel, ruleSource, nameOfLogSheet, null, null);
+	public IDocumentOutStrategy geDocumenttOutputStrategy() {
+		return outputStrategy;
 	}
 
 	/**
-	 * Call Rules against and Excel data file, then return workbook
+	 * The strategy we use for dealing with incoming documents
 	 * 
-	 * @param urlOfDataFile
-	 * @param ruleSource
-	 * @param excelLogSheet
-	 * @throws DroolsParserException
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 * @throws InvalidFormatException
+	 * @return the strategy object
 	 */
-	public void callRules(URL urlOfDataFile, RuleSource ruleSource, String excelLogSheet)
-			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
+	public IDocumentInStrategy getDocumentInputStrategy() {
+		return inputStrategy;
+	}
 
-		InputStream inputFromExcel = null;
-
-		try {
-			log.info("Looking for url:" + urlOfDataFile);
-
-			inputFromExcel = urlOfDataFile.openStream();
-
-			log.info("found url:" + urlOfDataFile);
-
-		} catch (MalformedURLException e) {
-
-			log.log(Priority.WARN, "Malformed URL Exception Loading rules", e);
-			throw e;
-
-		} catch (IOException e) {
-			log.log(Priority.WARN, "IO Exception Loading rules", e);
-			throw e;
-
-		}
-
-		callRules(inputFromExcel, ruleSource, excelLogSheet);
-
+	public IRuleLoader getRuleLoader() {
+		return ruleLoader;
 	}
 
 	/**
-	 * Call Rules against and Excel data file, then return workbook
-	 * 
-	 * @param locationOfExcelDataFile
-	 * @param ruleSource
-	 * @param excelLogSheet
-	 * @throws IOException
+	 * Get a Stateful Session for a pre built knowledgebase
+	 *
+	 * @param preBuiltKnowledgeBase
+	 * @param globals
+	 * @param logger
 	 * @throws DroolsParserException
-	 * @throws ClassNotFoundException
-	 * @throws InvalidFormatException
+	 * @throws IOException
 	 */
-	public void callRules(File locationOfExcelDataFile, RuleSource ruleSource, String excelLogSheet)
-			throws IOException, DroolsParserException, ClassNotFoundException, InvalidFormatException {
+	StatefulKnowledgeSession getStatefulSession(KnowledgeBase preBuiltKnowledgeBase, HashMap<String, Cell> globals,
+			ILogger logger) throws DroolsParserException, IOException {
+		// Create a new stateful session
+		StatefulKnowledgeSession workingMemory = preBuiltKnowledgeBase.newStatefulKnowledgeSession();
 
-		InputStream inputFromExcel = null;
-
-		// Sanity checks on the incoming file
-		if (locationOfExcelDataFile == null) {
-			throw new IOException("java.io.File cannot be null");
+		for (String o : globals.keySet()) {
+			log.info("Inserting global name: " + o + " value:" + globals.get(o));
+			workingMemory.setGlobal(o, globals.get(o));
 		}
 
-		if (!locationOfExcelDataFile.exists()) {
-			throw new IOException("no file at location:" + locationOfExcelDataFile.getAbsolutePath());
-		}
+		// Add the logger
+		log.info("Inserting handle to logger (via global)");
+		workingMemory.setGlobal("log", logger);
 
-		try {
-
-			log.info("Looking for file:" + locationOfExcelDataFile.getAbsolutePath());
-			inputFromExcel = new FileInputStream(locationOfExcelDataFile);
-
-			log.info("found file:" + locationOfExcelDataFile);
-
-		} catch (IOException e) {
-			log.log(Priority.WARN, "IO Exception Loading rules", e);
-			throw e;
-
-		}
-
-		callRules(inputFromExcel, ruleSource, excelLogSheet);
+		return workingMemory;
 
 	}
 
 	/**
 	 * Run the rules
 	 *
-	 * @param rulesUrl   - array of rule files that we need to load
-	 * @param dslFileUrl - optional dsl file name (can be null)
-	 * @param facts      - Javabeans to pass to the rule engine
-	 * @param globals    - global variables to pass to the rule engine
-	 * @param logger     - handle to a logging object
+	 * @param rulesUrl    - array of rule files that we need to load
+	 * @param dslFileUrl  - optional dsl file name (can be null)
+	 * @param ruleFlowUrl - optional ruleFlow file name (can be null)
+	 * @param facts       - Javabeans to pass to the rule engine
+	 * @param globals     - global variables to pass to the rule engine
+	 * @param logger      - handle to a logging object
 	 * @throws IOException
 	 * @throws DroolsParserException
 	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
-	void runStatelessRules(RuleSource ruleSource, ILogger logger)
+	StatefulKnowledgeSession getStatefulSession(RuleSource ruleSource, ILogger logger)
 			throws DroolsParserException, IOException, ClassNotFoundException {
 
 		// The most common operation on a rulebase is to create a new rule
 		// session; either stateful or stateless.
-		log.info("Creating master rule base");
-		KnowledgeBase masterRulebase = loader.loadRules(ruleSource);
+		KnowledgeBase masterRulebase = ruleLoader.loadRules(ruleSource);
 
-		log.info("running stateless rules");
-		runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger);
+		return getStatefulSession(masterRulebase, ruleSource.getGlobals(), logger);
 
 	}
 
@@ -330,53 +344,31 @@ public class RuleRunner {
 	/**
 	 * Run the rules
 	 *
-	 * @param rulesUrl    - array of rule files that we need to load
-	 * @param dslFileUrl  - optional dsl file name (can be null)
-	 * @param ruleFlowUrl - optional ruleFlow file name (can be null)
-	 * @param facts       - Javabeans to pass to the rule engine
-	 * @param globals     - global variables to pass to the rule engine
-	 * @param logger      - handle to a logging object
+	 * @param rulesUrl   - array of rule files that we need to load
+	 * @param dslFileUrl - optional dsl file name (can be null)
+	 * @param facts      - Javabeans to pass to the rule engine
+	 * @param globals    - global variables to pass to the rule engine
+	 * @param logger     - handle to a logging object
 	 * @throws IOException
 	 * @throws DroolsParserException
 	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
-	StatefulKnowledgeSession getStatefulSession(RuleSource ruleSource, ILogger logger)
+	void runStatelessRules(RuleSource ruleSource, ILogger logger)
 			throws DroolsParserException, IOException, ClassNotFoundException {
 
 		// The most common operation on a rulebase is to create a new rule
 		// session; either stateful or stateless.
-		KnowledgeBase masterRulebase = loader.loadRules(ruleSource);
+		log.info("Creating master rule base");
+		KnowledgeBase masterRulebase = ruleLoader.loadRules(ruleSource);
 
-		return getStatefulSession(masterRulebase, ruleSource.getGlobals(), logger);
+		log.info("running stateless rules");
+		runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger);
 
 	}
 
-	/**
-	 * Get a Stateful Session for a pre built knowledgebase
-	 *
-	 * @param preBuiltKnowledgeBase
-	 * @param globals
-	 * @param logger
-	 * @throws DroolsParserException
-	 * @throws IOException
-	 */
-	StatefulKnowledgeSession getStatefulSession(KnowledgeBase preBuiltKnowledgeBase, HashMap<String, Cell> globals,
-			ILogger logger) throws DroolsParserException, IOException {
-		// Create a new stateful session
-		StatefulKnowledgeSession workingMemory = preBuiltKnowledgeBase.newStatefulKnowledgeSession();
-
-		for (String o : globals.keySet()) {
-			log.info("Inserting global name: " + o + " value:" + globals.get(o));
-			workingMemory.setGlobal(o, globals.get(o));
-		}
-
-		// Add the logger
-		log.info("Inserting handle to logger (via global)");
-		workingMemory.setGlobal("log", logger);
-
-		return workingMemory;
-
+	public void setOutputStrategy (IDocumentOutStrategy newStrategy) {
+		this.outputStrategy = newStrategy;
 	}
 
 }

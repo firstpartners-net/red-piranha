@@ -7,13 +7,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.net.URL;
 import java.util.Map;
-import org.apache.log4j.Logger;
 
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.junit.Before;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
@@ -46,16 +44,6 @@ public class RangeConvertorTest {
         fileOut.close();
         log.info("Serialized data is saved in:"+ SAVED_RANGEHOLDER_DATA);
 	}
-	
-	@Before
-	public void beforeClass() {
-
-		URL localurl = ClassLoader.getSystemResource("logging.properties");
-		System.out.println("URL:" + localurl);
-		System.setProperty("java.util.logging.config.file", localurl.getPath());
-	}
-
-
 
 	/**
 	 * This is implemented as a sub method so we can call from tests and convenience main[] method

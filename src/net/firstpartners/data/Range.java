@@ -18,6 +18,9 @@ import net.firstpartners.core.log.RpLogger;
 /**
  * A range is just a holder for a group of named cells - maps to a similar Concept in MS Excel
  * We use it as a convenience for loading our values into working memory
+ * 
+ * Since we also map from other sources into these classes, a Range could contain one table from a Word Document.
+ * 
  * @see Map which it implmements for convenience
  * @author paul
  */

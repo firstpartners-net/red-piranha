@@ -92,7 +92,7 @@ public class RulesWrittenInExcelRuleRunnerTest {
 		excelLogger.flush(wb, TestConstants.EXCEL_LOG_WORKSHEET_NAME);
 
 		// Write out modified Excel sheet
-		SpreadSheetOutputter.outputToFile(wb, TestConstants.EXCEL_OUTPUT_FILE);
+		SpreadSheetOutputter.outputToFile(wb, TestConstants.FILE_OUTPUT_FILE);
 
 		// Close our input work book
 		inputFromExcel.close();

@@ -13,7 +13,7 @@ import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
+import net.firstpartners.core.spreadsheet.ExcelOutputStrategy;
 
 /**
  * @author paul
@@ -39,9 +39,10 @@ public class PreCompileRuleBuilderTest {
 		File f = new File(TestConstants.KNOWLEDGE_BASE_FILE_TMP);
 		assertTrue("Cannot find file that should exist", f.exists());
 		f = null; // avoid any interference in the next step
-
-		SpreadSheetOutputter.deleteOutputFileIfExists(TestConstants.KNOWLEDGE_BASE_FILE_TMP);
-
+		
+		ExcelOutputStrategy fileUtils = new ExcelOutputStrategy(TestConstants.KNOWLEDGE_BASE_FILE_TMP);
+		fileUtils.deleteOutputFileIfExists();
+		
 	}
 
 }

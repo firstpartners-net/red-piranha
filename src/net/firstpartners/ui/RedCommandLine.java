@@ -4,21 +4,19 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import org.apache.log4j.Logger;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.RedConstants;
-import net.firstpartners.core.drools.SpreadSheetRuleRunner;
-import net.firstpartners.core.drools.loader.FileRuleLoader;
+import net.firstpartners.core.drools.RuleRunner;
+import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.drools.loader.RuleSource;
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
 import net.firstpartners.ui.utils.Config;
 
 /**
- * Main Entry Point for Red-Piranha Looks for red-piranha.config to decide what
+ * Main Entry Point for Red-Piranha. Looks for red-piranha.config to decide what
  * mode it should run in
  * 
  * By default, loads data from excel, executes business rules against it, saves
@@ -31,8 +29,6 @@ public class RedCommandLine {
 
 	private static final Logger log = RpLogger.getLogger(RedCommandLine.class.getName());
 
-	// Handle to common utility file
-	private static final SpreadSheetRuleRunner commonUtils = new SpreadSheetRuleRunner(new FileRuleLoader());
 
 	/**
 	 * Usage from command line java -jar [jarName.jar] all args are ignored - we
@@ -68,28 +64,27 @@ public class RedCommandLine {
 	 */
 	static void runRules(ILogger playerAsLogger, IGiveFeedbackToUsers userUpdates) throws IllegalArgumentException {
 
+		
 		// Get the params
-		String excelFile = Config.getExcelOutputFile();
-		String outputFileName = Config.getExcelOutputFile();
+		String excelFile = Config.getInputFileName();
+		String outputFileName = Config.getOutputFileName();
 		RuleSource ruleFiles = Config.getRuleFiles();
 
+		// Handle to common utility file
+		//The Factory auto-generates the input and output strategy based on the filenames
+		RuleRunner runner = RuleRunnerFactory.getRuleRunner(outputFileName);
+		
 		try {
 			// Open the input file as a stream
-			playerAsLogger.info("Opening Excel Input file:" + excelFile);
+			playerAsLogger.info("Opening Input file:" + excelFile);
 			FileInputStream excelInput = new FileInputStream(excelFile);
 
 			// Call the rules using this Excel datafile
 			playerAsLogger.info("Running Rules:" + ruleFiles);
-			Workbook wb = commonUtils.callRules(excelInput, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME,
+			runner.callRules(excelInput, ruleFiles, RedConstants.EXCEL_LOG_WORKSHEET_NAME,
 					userUpdates, playerAsLogger);
 
-			// delete the outputFile if it exists
-			SpreadSheetOutputter.deleteOutputFileIfExists(outputFileName);
-
-			// Open the outputfile as a stream
-			playerAsLogger.info("Write to Excel Output file:" + outputFileName);
-			SpreadSheetOutputter.outputToFile(wb, outputFileName);
-
+			
 			playerAsLogger.info("Complete");
 
 		} catch (Throwable t) {

@@ -23,7 +23,7 @@ public class TestConstants {
 	public static final String[] RULES_FILES_EXCEL = new String[] {
 			"test/testrules/log-rules.drl", "test/testrules/TradingRules.xls" };
 
-	public static final String EXCEL_OUTPUT_FILE = "test/testdata/chocolate-output.xls";
+	public static final String FILE_OUTPUT_FILE = "test/testdata/chocolate-output.xls";
 	public static final String EXCEL_TMP_FILE = "test/testdata/tmp.xls";
 
 	public static final String KNOWLEDGE_BASE_FILE = "test/testrules/log-then-modify-rules.KnowledgeBase";
@@ -35,4 +35,9 @@ public class TestConstants {
 	//For security implementation testing
 	public static String PROPERTY_FILE_OF_URL_PREFIXES = "src/UrlWhiteList.properties";
 	public static String PROPERTY_FILE_OF_RESOURCE_SUFFIXES = "src/ResourceWhiteList.properties";
+	
+	//Sample word files
+	public static final String WORDX_DATA_FILE = "test/testdata/simple-word.docx";
+	public static final String WORD_DATA_FILE = "test/testdata/simple-word.doc";
+	
 }

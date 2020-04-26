@@ -61,7 +61,7 @@ public class RpLogger extends Logger {
 		if (logFileName != null & logFileName !="") {
 			fileHandler = new FileAppender();
 			fileHandler.setName("FileLogger");
-			fileHandler.setFile("mylog.log");
+			fileHandler.setFile(logFileName);
 			fileHandler.setLayout(new PatternLayout("%d %-5p [%c{1}] %m%n"));
 			fileHandler.setThreshold(Level.DEBUG);
 			fileHandler.setAppend(true);

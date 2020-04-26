@@ -6,7 +6,8 @@ import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
 /**
- * JavaBean equivalent of a cell in an Excel Spreadsheet
+ * JavaBean equivalent of a cell in an Excel Spreadsheet. Since we also map from other sources into these classes, a Cell could be a cell from a table in a Word Document.
+ * Or a paragraph from a word document
  * 
  * @param cellName
  * @param value

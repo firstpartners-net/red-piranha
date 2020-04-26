@@ -34,7 +34,7 @@ public class NoRuleflowExample {
 
 	private static final String EXCEL_DATA_FILE = "chocolate-data.xls";
 
-	private static final String EXCEL_OUTPUT_FILE = "chocolate-output.xls";
+	private static final String FILE_OUTPUT_FILE = "chocolate-output.xls";
 
 	// the name of the sheet the we log files to
 	private static final String EXCEL_LOG_WORKSHEET_NAME = "log";
@@ -94,7 +94,7 @@ public class NoRuleflowExample {
 		excelLogger.flush(wb, EXCEL_LOG_WORKSHEET_NAME);
 
 		// Write out modified Excel sheet
-		SpreadSheetOutputter.outputToFile(wb, EXCEL_OUTPUT_FILE);
+		SpreadSheetOutputter.outputToFile(wb, FILE_OUTPUT_FILE);
 
 		// Close our input work book
 		inputFromExcel.close();

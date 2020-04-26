@@ -24,15 +24,15 @@ public class Config {
 	private static final Logger log = RpLogger.getLogger(Config.class.getName());
 
 	// names of params to read from properties files - keep these internal
-	private static final String EXCEL_INPUT = "EXCEL_INPUT";
-	private static final String EXCEL_OUTPUT = "EXCEL_OUTPUT";
+	private static final String FILE_INPUT = "FILE_INPUT";
+	private static final String FILE_OUTPUT = "FILE_OUTPUT";
 	private static final String DRL1 = "DRL1";
 	private static final String DRL2 = "DRL2";
 	private static final String DRL3 = "DRL3";
 	private static final String LOG_FILE_NAME = "LOG_FILE_NAME";
 
 	//Keys that must be present in the file
-	public static String[] requiredConfigKeys = { EXCEL_INPUT, EXCEL_OUTPUT, DRL1 };	
+	public static String[] requiredConfigKeys = { FILE_INPUT, FILE_OUTPUT, DRL1 };	
 	
 	//Simple Cache
 	private static Properties prop = null;
@@ -69,8 +69,8 @@ public class Config {
 	}
 
 	/**
-	 * We can override the properites (e.g. for testign)
-	 * @param p - the properties we want to use
+	 * We can override the properties (e.g. for testing)
+	 * @param p - the properties we want to use - cannot be null
 	 */
 	static void setConfig(Properties p) {
 		
@@ -91,7 +91,7 @@ public class Config {
 			
 		}
 		
-		if (getExcelInputFile().equalsIgnoreCase(getExcelOutputFile())) {
+		if (getInputFileName().equalsIgnoreCase(getOutputFileName())) {
 			log.warn("Stopping - Input and output files should not be the same");
 			throw new IllegalArgumentException("Input and output files should not be the same");
 		}
@@ -159,8 +159,8 @@ public class Config {
 	 * 
 	 * @return filename , or empty / null if not present
 	 */
-	public static String getExcelInputFile() {
-		return readConfig().getProperty(Config.EXCEL_INPUT, "");
+	public static String getInputFileName() {
+		return readConfig().getProperty(Config.FILE_INPUT, "");
 	}
 
 	/**
@@ -168,8 +168,8 @@ public class Config {
 	 * 
 	 * @return filename , or empty / null if not present
 	 */
-	public static String getExcelOutputFile() {
-		return readConfig().getProperty(Config.EXCEL_OUTPUT, "");
+	public static String getOutputFileName() {
+		return readConfig().getProperty(Config.FILE_OUTPUT, "");
 	}
 
 }

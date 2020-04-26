@@ -13,7 +13,8 @@ import org.apache.log4j.Logger;
 import net.firstpartners.core.log.RpLogger;
 
 /**
- * Holder of all multiple Named Ranges from a spreadsheet. Also provides convenience methods to access all the Cells (avoid the intermediate step of getting the Ranges)
+ * Holder of all multiple Named Ranges from a spreadsheet. Also provides convenience methods to access all the Cells (avoid the intermediate step of getting the Ranges).
+ * Since we also map from other sources into these classes, a RangeHolder could contain tables from a Word Document.
  * 
  * @author paul
  *

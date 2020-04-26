@@ -48,8 +48,8 @@ public class HtmlGenerator {
 
 		// Get UserSpecifc information we need to display
 
-		excelFile = StringUtils.escape(Config.getExcelInputFile());
-		outputFileName = StringUtils.escape(Config.getExcelOutputFile());
+		excelFile = StringUtils.escape(Config.getInputFileName());
+		outputFileName = StringUtils.escape(Config.getOutputFileName());
 
 		// build multiple rules files
 		String rulesFiles[] = Config.getRuleFiles().getRulesLocation();

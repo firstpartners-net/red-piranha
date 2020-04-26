@@ -1,7 +1,7 @@
 package net.firstpartners.core.log;
 
 /**
- * Marks a class as being one that we can log to.
+ * Marks a class as being one that we can log to. Focus is on messages going back to the user
  * 
  * @author paulbrowne
  *

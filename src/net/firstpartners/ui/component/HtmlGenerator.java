@@ -3,7 +3,7 @@ package net.firstpartners.ui.component;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.text.StringEscapeUtils;
 
 import net.firstpartners.ui.utils.Config;
 
@@ -48,14 +48,14 @@ public class HtmlGenerator {
 
 		// Get UserSpecifc information we need to display
 
-		inputFileName = StringUtils.escape(Config.getInputFileName());
-		outputFileName = StringUtils.escape(Config.getOutputFileName());
+		inputFileName = StringEscapeUtils.escapeHtml4(Config.getInputFileName());
+		outputFileName = StringEscapeUtils.escapeHtml4(Config.getOutputFileName());
 
 		// build multiple rules files
 		String rulesFiles[] = Config.getRuleFiles().getRulesLocation();
 		StringBuilder ruleFile = new StringBuilder();
 		for (int a = 0; a < rulesFiles.length; a++) {
-			ruleFile.append(StringUtils.escape(rulesFiles[a]) + " | ");
+			ruleFile.append(StringEscapeUtils.escapeHtml4(rulesFiles[a]) + " | ");
 		}
 		ruleFile.setLength(ruleFile.length() - 2); // otherwise we have a hanging |
 		ruleFileAsString = ruleFile.toString();

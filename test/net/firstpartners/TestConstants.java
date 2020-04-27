@@ -33,8 +33,8 @@ public class TestConstants {
 	public static final String EXCEL_LOG_WORKSHEET_NAME = "log";
 	
 	//For security implementation testing
-	public static String PROPERTY_FILE_OF_URL_PREFIXES = "src/UrlWhiteList.properties";
-	public static String PROPERTY_FILE_OF_RESOURCE_SUFFIXES = "src/ResourceWhiteList.properties";
+	public static String PROPERTY_FILE_OF_URL_PREFIXES = "test/testdata/UrlWhiteList.properties";
+	public static String PROPERTY_FILE_OF_RESOURCE_SUFFIXES = "test/testdata/ResourceWhiteList.properties";
 	
 	//Sample word files
 	public static final String WORDX_DATA_FILE = "test/testdata/simple-word.docx";

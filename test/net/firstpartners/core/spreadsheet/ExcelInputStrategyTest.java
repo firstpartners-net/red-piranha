@@ -29,7 +29,7 @@ public class ExcelInputStrategyTest {
 		log.debug("rule source created");
 		
 		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLS_DATA_FILE,ruleSource,"some-dummy.xls");
-		assertTrue (runner.geDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
+		assertTrue (runner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
 		
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
@@ -50,13 +50,11 @@ public class ExcelInputStrategyTest {
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 
 		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLSX_DATA_FILE,ruleSource,"some-dummy.xls");
-		assertTrue (runner.geDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
+		assertTrue (runner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
 		
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 		runner.setOutputStrategy(outputStrategy);
-
-
 
 		runner.callRules();
 		assertNotNull(outputStrategy.getWorkbook());

@@ -16,7 +16,7 @@ public class RuleRunnerFactoryTest {
 		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.xls","filename","some-dummy-out.xls");
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
-		assertTrue(myRunner.geDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
+		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
 		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
 		
 		
@@ -28,7 +28,7 @@ public class RuleRunnerFactoryTest {
 		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-name-that-should-match-to-nothing","filename","another-name-to-match-to-nothing");
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
-		assertTrue(myRunner.geDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
+		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
 		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
 		
 		
@@ -39,7 +39,7 @@ public class RuleRunnerFactoryTest {
 		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-name-that-should-match-to-nothing","someFile","another-name-to-match-to-nothing");
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
-		assertTrue(myRunner.geDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
+		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
 		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
 		assertNotNull(myRunner.getRuleLoader().getRuleSource());
 		assertEquals(myRunner.getRuleLoader().getRuleSource().getRulesLocation()[0],"someFile"); //check that someFile is stored
@@ -52,7 +52,7 @@ public class RuleRunnerFactoryTest {
 		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-name-that-should-match-to-nothing","http-something-else","another-name-to-match-to-nothing");
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
-		assertTrue(myRunner.geDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
+		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
 		assertTrue(myRunner.getRuleLoader() instanceof URLRuleLoader);
 		
 		

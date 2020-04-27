@@ -11,6 +11,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.log.RpLogger;
+import net.firstpartners.data.OfficeDocument;
 import net.firstpartners.data.RangeHolder;
 
 /**
@@ -38,8 +39,8 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	}
 
 	@Override
-	public Workbook getExcelWorkBook() {
-		return excelWorkBook;
+	public OfficeDocument getOriginalDocument() {
+		return new OfficeDocument(excelWorkBook);
 	}
 
 	public String getInputName() {
@@ -73,8 +74,8 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	}
 
 	@Override
-	public void setExcelWorkBook(Workbook excelWorkBook) {
-		this.excelWorkBook = excelWorkBook;
+	public void setOriginalDocument(OfficeDocument excelWorkBook) {
+		this.excelWorkBook = excelWorkBook.getOriginalAsPoiWorkbook();
 	}
 
 }

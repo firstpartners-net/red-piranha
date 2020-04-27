@@ -1,4 +1,6 @@
-package net.firstpartners.core.document;
+package net.firstpartners.core.word;
+
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
 
@@ -6,10 +8,15 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.jupiter.api.Test;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.word.DocumentConvertor;
 
 class DocumentConvertorTest {
 
+	@Test
+	void testMarket() throws InvalidFormatException, IOException {
+		fail("No real tests implemented");
+	}
+	
+	
 	@Test
 	void testConvertDocx() throws InvalidFormatException, IOException {
 		DocumentConvertor.convertTables(TestConstants.WORDX_DATA_FILE);
@@ -22,5 +29,6 @@ class DocumentConvertorTest {
 		DocumentConvertor.convertParas(TestConstants.WORD_DATA_FILE);
 	}
 
+	
 
 }

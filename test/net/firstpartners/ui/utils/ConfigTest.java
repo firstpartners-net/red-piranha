@@ -84,7 +84,7 @@ public class ConfigTest {
 			
 			
 			try {
-				Config.setConfig(null);
+				Config.setProperties(null);
 				Assert.fail("Expected assertion error on null properties not thrown");
 			} catch (AssertionError e) {
 				//ignore - this is mean to happen
@@ -97,7 +97,7 @@ public class ConfigTest {
 		public final void testKeyValidation() {
 			
 			try {
-				Config.setConfig(new Properties());
+				Config.setProperties(new Properties());
 				Assert.fail("Expected assertion error on missing Excel Input value not thrown");
 			} catch (AssertionError e) {
 				//ignore - this is mean to happen
@@ -117,7 +117,7 @@ public class ConfigTest {
 			}
 			
 			try {
-				Config.setConfig(dup);
+				Config.setProperties(dup);
 				Assert.fail("Expected assertion error on duplicate input values not thrown");
 			} catch (IllegalArgumentException e) {
 				//ignore - this is mean to happen

@@ -1,4 +1,4 @@
-package net.firstpartners.core.excel;
+package net.firstpartners.core.word;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -12,24 +12,24 @@ import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.drools.loader.RuleSource;
 
-public class ExcelInputStrategyTest {
+public class WordInputStrategyTest {
 
 	// Logger
-	private static final Logger log = Logger.getLogger(ExcelInputStrategyTest.class.getName());
+	private static final Logger log = Logger.getLogger(WordInputStrategyTest.class.getName());
 
 	/**
 	 * Just check that the rules can run, throws no exception
 	 */
 	@Test
-	public final void testXlsCallRulesFromFile() throws Exception {
+	public final void testdoxcCallRulesFromFile() throws Exception {
 
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 		
 		log.debug("rule source created");
 		
-		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLS_DATA_FILE,ruleSource,"some-dummy.xls");
-		assertTrue (runner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
+		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.WORDX_DATA_FILE,ruleSource,"some-dummy.docX");
+		assertTrue (runner.getDocumenttOutputStrategy() instanceof WordOutputStrategy);
 		
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
@@ -44,13 +44,13 @@ public class ExcelInputStrategyTest {
 	/**
 	 * Just check that the rules can run, throws no exception
 	 */
-	public final void testXlsXCallRulesFromFile() throws Exception {
+	public final void testDocCallRulesFromFile() throws Exception {
 		
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 
-		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLSX_DATA_FILE,ruleSource,"some-dummy.xls");
-		assertTrue (runner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
+		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.WORD_DATA_FILE,ruleSource,"some-dummy.doc");
+		assertTrue (runner.getDocumentInputStrategy() instanceof WordInputStrategy);
 		
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();

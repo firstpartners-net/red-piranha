@@ -24,9 +24,9 @@ public class Config {
 	private static final Logger log = RpLogger.getLogger(Config.class.getName());
 
 	// names of params to read from properties files - keep these internal
-	private static final String FILE_INPUT = "FILE_INPUT";
-	private static final String FILE_OUTPUT = "FILE_OUTPUT";
-	private static final String DRL1 = "DRL1";
+	public static final String FILE_INPUT = "FILE_INPUT";
+	public static final String FILE_OUTPUT = "FILE_OUTPUT";
+	public static final String DRL1 = "DRL1";
 	private static final String DRL2 = "DRL2";
 	private static final String DRL3 = "DRL3";
 	private static final String LOG_FILE_NAME = "LOG_FILE_NAME";
@@ -72,7 +72,7 @@ public class Config {
 	 * We can override the properties (e.g. for testing)
 	 * @param p - the properties we want to use - cannot be null
 	 */
-	static void setConfig(Properties p) {
+	public static void setProperties(Properties p) {
 		
 		assert p!=null : "Properties file cannot be reset to null";
 		

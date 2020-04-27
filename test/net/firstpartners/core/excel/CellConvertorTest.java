@@ -63,8 +63,6 @@ public class CellConvertorTest {
 			assertNotNull(thisRedCell);
 
 			// Get a handle to the Excel cell at Sheet / reference
-			// TODO this will likely fail since we don't have the matching 'chocolate' sheet
-			// - update code to create as needed
 			org.apache.poi.ss.usermodel.Sheet thisSheet = SheetConvertor.getOrCreateSheet(wb, thisRedCell);
 			CellReference cellReference = new CellReference(thisRedCell.getOriginalCellReference());
 			Row row = SheetConvertor.getOrCreateRow(thisSheet, cellReference);

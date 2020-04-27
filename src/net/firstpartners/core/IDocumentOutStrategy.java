@@ -2,10 +2,9 @@ package net.firstpartners.core;
 
 import java.io.IOException;
 
-import org.apache.poi.ss.usermodel.Workbook;
-
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
+import net.firstpartners.data.OfficeDocument;
 import net.firstpartners.data.RangeHolder;
 
 /**
@@ -53,6 +52,6 @@ public interface IDocumentOutStrategy {
 	 * @param ranges
 	 * @throws IOException
 	 */
-	void updateCopyOfOriginalDocument(Workbook fileToProcess,RangeHolder ranges) throws IOException;
+	void updateCopyOfOriginalDocument(OfficeDocument fileToProcess,RangeHolder ranges) throws IOException;
 
 }

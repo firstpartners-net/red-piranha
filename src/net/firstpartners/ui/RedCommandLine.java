@@ -54,7 +54,7 @@ public class RedCommandLine {
 	}
 
 	/**
-	 * Run the Rules
+	 * Run the Rules - word in , word out
 	 * @param playerAsLogger - for logging to GUI
 	 * @param userUpdates - for progress feedback to GUI
 	 * @throws IllegalArgumentException
@@ -75,9 +75,7 @@ public class RedCommandLine {
 
 			// Call the rules using this Excel datafile
 			playerAsLogger.info("Running Rules:" + ruleFiles);
-			runner.callRules(/*ruleFiles,*/ userUpdates, playerAsLogger);
-
-			
+			runner.callRules( userUpdates, playerAsLogger);
 			playerAsLogger.info("Complete");
 
 		} catch (Throwable t) {
@@ -87,5 +85,7 @@ public class RedCommandLine {
 		}
 
 	}
+	
+	
 
 }

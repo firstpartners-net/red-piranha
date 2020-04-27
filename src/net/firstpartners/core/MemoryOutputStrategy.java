@@ -2,12 +2,11 @@ package net.firstpartners.core;
 
 import java.io.IOException;
 
-import org.apache.poi.ss.usermodel.Workbook;
-
-import net.firstpartners.RedConstants;
 import net.firstpartners.core.excel.RangeConvertor;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
+import net.firstpartners.core.word.DocumentConvertor;
+import net.firstpartners.data.OfficeDocument;
 import net.firstpartners.data.RangeHolder;
 
 /**
@@ -20,8 +19,9 @@ import net.firstpartners.data.RangeHolder;
 public class MemoryOutputStrategy implements IDocumentOutStrategy {
 
 	private SpreadSheetLogger docLogger;
+
 	// Name of the outputfile
-	private Workbook processedWorkbook = null;
+	private OfficeDocument processedDoc = null;
 
 	/**
 	 * Write out and logs we hold to the document
@@ -31,7 +31,6 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	 */
 	@Override
 	public void flush() {
-		this.docLogger.flush(processedWorkbook, RedConstants.EXCEL_LOG_WORKSHEET_NAME);
 
 	}
 
@@ -57,18 +56,8 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 		return "Held in Memory";
 	}
 
-	protected Workbook getProcessedWorkbook() {
-		return processedWorkbook;
-	}
-
-	/**
-	 * Get the last outputted workbooks
-	 * 
-	 * @return
-	 */
-	public Object getWorkbook() {
-
-		return processedWorkbook;
+	public OfficeDocument getProcessedDocument() {
+		return processedDoc;
 	}
 
 	/**
@@ -94,20 +83,18 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 
 	}
 
-	protected void setProcessedWorkbook(Workbook processedWorkbook) {
-		this.processedWorkbook = processedWorkbook;
+	protected void setProcessedDocument(OfficeDocument processedWorkbook) {
+		this.processedDoc = processedWorkbook;
 	}
 
-	/**
-	 * Update a copy of our Original Document with new data
-	 * 
-	 * @param ranges
-	 * @throws IOException
-	 */
-	public void updateCopyOfOriginalDocument(Workbook fileToProcess, RangeHolder range) throws IOException {
-
-		this.processedWorkbook = fileToProcess;
-		RangeConvertor.updateRedRangeintoPoiExcel(fileToProcess, range);
+	@Override
+	public void updateCopyOfOriginalDocument(OfficeDocument fileToProcess, RangeHolder ranges) throws IOException {
+		this.processedDoc = fileToProcess;
+		if (fileToProcess.isSpreadsheet()) {
+			RangeConvertor.updateRedRangeintoPoiExcel(fileToProcess.getOriginalAsPoiWorkbook(), ranges);
+		} else {
+			DocumentConvertor.updateRedRangeintoPoiWord(fileToProcess.getOriginalAsPoiWordDoc(), ranges);
+		}
 
 	}
 

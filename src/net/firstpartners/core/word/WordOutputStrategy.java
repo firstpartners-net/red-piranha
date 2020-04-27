@@ -1,14 +1,13 @@
-package net.firstpartners.core.excel;
+package net.firstpartners.core.word;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+
 import org.apache.log4j.Logger;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
-import org.apache.poi.ss.usermodel.Workbook;
-
-import net.firstpartners.RedConstants;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
@@ -22,23 +21,22 @@ import net.firstpartners.data.RangeHolder;
  * @author paul
  *
  */
-public class ExcelOutputStrategy implements IDocumentOutStrategy {
+public class WordOutputStrategy implements IDocumentOutStrategy {
 
 	// Logger
-	private static final Logger log = RpLogger.getLogger(ExcelOutputStrategy.class.getName());
+	private static final Logger log = RpLogger.getLogger(WordOutputStrategy.class.getName());
 	
 	//Name of the outputfile
 	private String outputFileName =null;
 	
-	private SpreadSheetLogger spreadSheetLogger;
 
-	private Workbook workbook;
+	private XWPFDocument wordDoc;
 	
 	/**
 	 * Constructor - takes the name of the file we intend outputting to	
 	 * @param outputFileName
 	 */
-	public ExcelOutputStrategy(String outputFileName) {
+	public WordOutputStrategy(String outputFileName) {
 		this.outputFileName = outputFileName;
 	}
 
@@ -59,25 +57,24 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 
 	/**
-	 * Write out and logs we hold to the document
-	 * @param excelWorkBook
-	 * @param nameOfLogSheet
+	 * @todo refector out this method or implement - doesn't really apply for word docs
 	 */
 	@Override
 	public void flush() {
-		this.spreadSheetLogger.flush(workbook,RedConstants.EXCEL_LOG_WORKSHEET_NAME);
 		
 	}
 
 
-	/**
-	 * Write out any documents we hold to anybody else interested
-	 * @param logger
-	 */
 	@Override
 	public void flush(ILogger logger) {
-		this.flush();
-		this.spreadSheetLogger.flush(logger);
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	* @todo refector out this method or implement - doesn't really apply for word docs
+	@Override
+	public void flush(ILogger logger) {
 		
 	}
 	
@@ -94,10 +91,11 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 		return outputFileName;
 	}
 
-	public Workbook getWorkbook() {
-		return workbook;
+	public XWPFDocument getWordDoc() {
+		return wordDoc;
 	}
 
+	
 	/**
 	 * Outputs Red-Piranha's own internal format to a Logging Console
 	 * @param ranges
@@ -107,27 +105,26 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 			log.info(r.toString());
 		}
 	}
-
 	
 	/**
 	 * Outputs an Apache POI Workbook to a Logging Console
 	 * @param wb
 	 * @throws IOException
 	 */
-	void outputToConsole(Workbook wb) throws IOException{
+	void outputToConsole(XWPFDocument wb) throws IOException{
 
-		RangeHolder ranges = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
+		RangeHolder ranges = DocumentConvertor.convertFromPoiWordIntoRedRange(wb);
 		outputToConsole(ranges);
 
 	}
-	
+
 	/**
 	 * Outputs an Apache POI Workbook to a file
 	 * @param wb - Apache POI Workbook (excel)
 	 * @param fileName
 	 * @throws IOException
 	 */
-	void outputToFile(Workbook wb) throws IOException{
+	void outputToFile(XWPFDocument wb) throws IOException{
 
 		// Write out modified Excel sheet
 		try {
@@ -142,14 +139,14 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 		}
 
 	}
-
+	
 	/**
 	 * Outputs an Apache POI Workbook to a Stream (e.g Servlet response)
 	 * @param wb
 	 * @param stream
 	 * @throws IOException
 	 */
-	public void outputToStream(Workbook wb,OutputStream stream) throws IOException{
+	public void outputToStream(XWPFDocument wb,OutputStream stream) throws IOException{
 
 		wb.write(stream); 
 	}
@@ -166,25 +163,25 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 		deleteOutputFileIfExists();
 
 		// Open the outputfile as a stream
-		outputToFile(workbook);
+		outputToFile(wordDoc);
 
 	}
-	
+
 	/**
-	 * Allows us to set a Logger that will flush to an Excel Spreadheet
-	 * @param spreadSheetLogger
+      @todo refector out this method or implement - doesn't really apply for word docs
 	 */
 	@Override
 	public void setDocumentLogger(SpreadSheetLogger spreadSheetLogger) {
-		this.spreadSheetLogger = spreadSheetLogger;
+	
 		
 	}
 
-	public void setWorkbook(Workbook workbook) {
-		this.workbook = workbook;
+	
+	public void setWorkbook(XWPFDocument workbook) {
+		this.wordDoc = workbook;
 	}
 
-	
+
 	/**
 	 * Update a copy of our Original Document with new data
 	 * @param ranges
@@ -192,8 +189,8 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	public void updateCopyOfOriginalDocument(OfficeDocument fileToProcess,RangeHolder range) throws IOException {
 		
-		this.workbook =fileToProcess.getOriginalAsPoiWorkbook();
-		RangeConvertor.updateRedRangeintoPoiExcel(this.workbook, range);
+		this.wordDoc =fileToProcess.getOriginalAsPoiWordDoc();
+		DocumentConvertor.updateRedRangeintoPoiWord(wordDoc, range);
 		
 	}
 

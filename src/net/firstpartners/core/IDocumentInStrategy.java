@@ -3,22 +3,26 @@ package net.firstpartners.core;
 import java.io.IOException;
 
 import org.apache.poi.EncryptedDocumentException;
-import org.apache.poi.ss.usermodel.Workbook;
 
-import net.firstpartners.core.excel.ExcelInputStrategy;
+import net.firstpartners.core.word.WordInputStrategy;
+import net.firstpartners.data.OfficeDocument;
 import net.firstpartners.data.RangeHolder;
 
 /**
  * Implements the Strategy Command Pattern so that we can read data from
  * different sources
  * 
- * @see ExcelInputStrategy @see WordStrategy
+ * @see WordInputStrategy @see WordStrategy
  * @author PBrowne
  *
  */
 public interface IDocumentInStrategy {
 
-	Workbook getExcelWorkBook();
+	/**
+	 * Get a handle to the original source document
+	 * @return
+	 */
+	OfficeDocument getOriginalDocument();
 
 	/**
 	 * State where out input is coming from
@@ -37,6 +41,10 @@ public interface IDocumentInStrategy {
 	 */
 	RangeHolder getJavaBeansFromSource() throws EncryptedDocumentException, IOException;
 
-	void setExcelWorkBook(Workbook excelWorkBook);
+	/**
+	 * Update the document we are dealing with
+	 * @param originalDoc
+	 */
+	void setOriginalDocument(OfficeDocument originalDoc);
 
 }

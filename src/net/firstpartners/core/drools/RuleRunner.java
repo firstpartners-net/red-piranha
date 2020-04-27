@@ -15,7 +15,6 @@ import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.drools.loader.IRuleLoader;
 import net.firstpartners.core.drools.loader.RuleSource;
-import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.log.EmptyLogger;
 import net.firstpartners.core.log.GiveLogFeedback;
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
@@ -55,7 +54,7 @@ public class RuleRunner {
 	 * @param outputStrategy
 	 */
 	protected RuleRunner(IDocumentInStrategy documentStrategy, IRuleLoader ruleLoader,
-			ExcelOutputStrategy outputStrategy) {
+			IDocumentOutStrategy outputStrategy) {
 		this.ruleLoader = ruleLoader;
 		this.inputStrategy = documentStrategy;
 		this.outputStrategy = outputStrategy;
@@ -134,7 +133,7 @@ public class RuleRunner {
 		// update a copy of the original document (to be saved as copy) with the result
 		// of our
 		// rules
-		outputStrategy.updateCopyOfOriginalDocument(inputStrategy.getExcelWorkBook(), ranges);
+		outputStrategy.updateCopyOfOriginalDocument(inputStrategy.getOriginalDocument(), ranges);
 
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(90);
@@ -146,7 +145,7 @@ public class RuleRunner {
 		}
 
 		// Process our output
-		userMessages.info("Write to Excel Output file:" + outputStrategy.getOutputDestination());
+		userMessages.info("Write to Output file:" + outputStrategy.getOutputDestination());
 
 		// update the document (e.g. excel spreadsheet) with our log file as appropriate
 		outputStrategy.flush(userMessages);

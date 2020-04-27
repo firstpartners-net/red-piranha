@@ -13,6 +13,7 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 
 import net.firstpartners.core.log.RpLogger;
+import net.firstpartners.data.RangeHolder;
 
 public class DocumentConvertor {
 
@@ -73,12 +74,14 @@ public class DocumentConvertor {
 
 	
 
-	
-	public static void convertRedDocToPoiDoc() {
-		
+	public static RangeHolder convertFromPoiWordIntoRedRange(XWPFDocument excelWorkBook) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	public static void convertPoiDocToRedDoc() {
+
+
+	public static void updateRedRangeintoPoiWord(XWPFDocument fileToProcess, RangeHolder range) {
+		// TODO Auto-generated method stub
 		
 	}
 	

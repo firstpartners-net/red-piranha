@@ -8,6 +8,8 @@ import net.firstpartners.core.drools.loader.FileRuleLoader;
 import net.firstpartners.core.drools.loader.URLRuleLoader;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
+import net.firstpartners.core.word.WordInputStrategy;
+import net.firstpartners.core.word.WordOutputStrategy;
 
 public class RuleRunnerFactoryTest {
 
@@ -23,6 +25,36 @@ public class RuleRunnerFactoryTest {
 		
 	}
 	
+	@Test
+	public void testGenericXLSXFactory() {
+		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.xlsx","filename","some-dummy-out.xlsx");
+		assertNotNull(myRunner);
+		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
+		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
+		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
+		
+		
+	}
+	
+	@Test
+	public void testGenericDocFactory() {
+		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.doc","filename","some-dummy-out.doc");
+		assertNotNull(myRunner);
+		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordInputStrategy);
+		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof WordOutputStrategy);
+		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
+		
+	}
+	
+	@Test
+	public void testGenericDocXFactory() {
+		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.docx","filename","some-dummy-out.docx");
+		assertNotNull(myRunner);
+		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordInputStrategy);
+		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof WordOutputStrategy);
+		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
+		
+	}
 	@Test
 	public void testGenericFactory() {
 		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-name-that-should-match-to-nothing","filename","another-name-to-match-to-nothing");

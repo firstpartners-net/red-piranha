@@ -26,7 +26,6 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
 
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
@@ -211,8 +210,7 @@ public class RedGui extends WindowAdapter
 	 */
 	public void exception(String message, Throwable t) {
 		this.tab3TextArea.append("EXCEPTION:" + message + "\n" + t.toString() + "\n");
-		log.warn(message + "\n" + t.toString());
-		log.log(Priority.WARN, "Error", t);
+		log.error(message,t);
 
 	}
 

@@ -9,7 +9,6 @@ import java.util.ListIterator;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
 import org.apache.poi.ss.usermodel.Name;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -69,7 +68,7 @@ public class RangeConvertor {
 			aNamedRange = loopList.next(); // wb.getNameAt(namedRangeIdx);
 
 			// retrieve the cells at the named range
-			log.log(Priority.INFO, "Processing named range:" + aNamedRange.getNameName());
+			log.info("Processing named range:" + aNamedRange.getNameName());
 
 			// Reset to empty array - so we're covered even if an exception is through
 			AreaReference aRef[] = new AreaReference[0];
@@ -107,7 +106,7 @@ public class RangeConvertor {
 				try {
 					r = sheet.getRow(thisCellRef.getRow()); // ISSUE HERE
 				} catch (NullPointerException npe) {
-					log.log(Priority.WARN, "Excel Read error on Cell:" + thisCellRef, npe);
+					log.error("Excel Read error on Cell:" + thisCellRef, npe);
 
 				}
 

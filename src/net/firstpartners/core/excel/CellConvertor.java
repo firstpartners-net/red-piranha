@@ -1,4 +1,4 @@
-package net.firstpartners.core.spreadsheet;
+package net.firstpartners.core.excel;
 
 import java.util.Date;
 import org.apache.log4j.Logger;

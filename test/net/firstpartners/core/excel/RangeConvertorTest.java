@@ -1,4 +1,4 @@
-package net.firstpartners.core.spreadsheet;
+package net.firstpartners.core.excel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

@@ -13,9 +13,9 @@ import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.loader.RuleSource;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
-import net.firstpartners.core.spreadsheet.RangeConvertor;
-import net.firstpartners.core.spreadsheet.RangeHolder;
-import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
+import net.firstpartners.core.excel.RangeConvertor;
+import net.firstpartners.core.excel.RangeHolder;
+import net.firstpartners.core.excel.SpreadSheetOutputter;
 
 
 /**

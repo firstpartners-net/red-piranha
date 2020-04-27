@@ -16,7 +16,7 @@ import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.drools.RuleRunnerFactoryTest;
 import net.firstpartners.core.drools.loader.RuleSource;
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.core.spreadsheet.ExcelOutputStrategy;
+import net.firstpartners.core.excel.ExcelOutputStrategy;
 
 /**
  * Sample showing how we can read and manipulate data from excel

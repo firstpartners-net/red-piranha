@@ -13,7 +13,7 @@ import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.spreadsheet.ExcelOutputStrategy;
+import net.firstpartners.core.excel.ExcelOutputStrategy;
 
 /**
  * @author paul

@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import net.firstpartners.core.drools.loader.RuleSource;
-import net.firstpartners.core.spreadsheet.RangeConvertorTest;
+import net.firstpartners.core.excel.RangeConvertorTest;
 import net.firstpartners.data.RangeHolder;
 
 public class ConfigTest {

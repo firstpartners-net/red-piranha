@@ -10,7 +10,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import org.junit.Test;
 
-import net.firstpartners.core.spreadsheet.RangeConvertorTest;
+import net.firstpartners.core.excel.RangeConvertorTest;
 import net.firstpartners.data.RangeHolder;
 
 /**

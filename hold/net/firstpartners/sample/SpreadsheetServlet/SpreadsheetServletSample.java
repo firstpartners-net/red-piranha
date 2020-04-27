@@ -16,7 +16,7 @@ import net.firstpartners.core.drools.FileRuleLoader;
 import net.firstpartners.core.drools.SpreadSheetRuleRunner;
 import net.firstpartners.core.drools.loader.RuleSource;
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
+import net.firstpartners.core.excel.SpreadSheetOutputter;
 
 import org.apache.poi.ss.usermodel.Workbook;
 

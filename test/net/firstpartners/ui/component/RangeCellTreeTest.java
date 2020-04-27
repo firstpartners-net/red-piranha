@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import net.firstpartners.core.spreadsheet.RangeConvertorTest;
+import net.firstpartners.core.excel.RangeConvertorTest;
 import net.firstpartners.data.RangeHolder;
 
 /**

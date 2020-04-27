@@ -6,8 +6,8 @@ import org.junit.Test;
 
 import net.firstpartners.core.drools.loader.FileRuleLoader;
 import net.firstpartners.core.drools.loader.URLRuleLoader;
-import net.firstpartners.core.spreadsheet.ExcelInputStrategy;
-import net.firstpartners.core.spreadsheet.ExcelOutputStrategy;
+import net.firstpartners.core.excel.ExcelInputStrategy;
+import net.firstpartners.core.excel.ExcelOutputStrategy;
 
 public class RuleRunnerFactoryTest {
 

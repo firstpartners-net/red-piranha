@@ -13,7 +13,7 @@ import net.firstpartners.core.drools.IRuleLoader;
 import net.firstpartners.core.drools.SpreadSheetRuleRunner;
 import net.firstpartners.core.drools.loader.RuleSource;
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
+import net.firstpartners.core.excel.SpreadSheetOutputter;
 import net.firstpartners.sample.multiple.MultipleRulesExample;
 
 /**

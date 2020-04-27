@@ -13,10 +13,10 @@ import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.data.RuleSource;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
-import net.firstpartners.core.spreadsheet.Range;
-import net.firstpartners.core.spreadsheet.RangeConvertor;
-import net.firstpartners.core.spreadsheet.RangeHolder;
-import net.firstpartners.core.spreadsheet.SpreadSheetOutputter;
+import net.firstpartners.core.excel.Range;
+import net.firstpartners.core.excel.RangeConvertor;
+import net.firstpartners.core.excel.RangeHolder;
+import net.firstpartners.core.excel.SpreadSheetOutputter;
 
 /**
  * Sample showing how we can read and manipulate data from excel Read Ranges

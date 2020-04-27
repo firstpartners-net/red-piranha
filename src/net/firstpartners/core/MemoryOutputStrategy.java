@@ -5,9 +5,9 @@ import java.io.IOException;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import net.firstpartners.RedConstants;
+import net.firstpartners.core.excel.RangeConvertor;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
-import net.firstpartners.core.spreadsheet.RangeConvertor;
 import net.firstpartners.data.RangeHolder;
 
 /**

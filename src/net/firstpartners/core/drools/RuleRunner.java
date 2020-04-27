@@ -15,13 +15,13 @@ import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.drools.loader.IRuleLoader;
 import net.firstpartners.core.drools.loader.RuleSource;
+import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.log.EmptyLogger;
 import net.firstpartners.core.log.GiveLogFeedback;
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
-import net.firstpartners.core.spreadsheet.ExcelOutputStrategy;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeHolder;
 

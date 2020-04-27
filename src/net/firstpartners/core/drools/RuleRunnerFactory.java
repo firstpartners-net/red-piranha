@@ -4,8 +4,8 @@ import net.firstpartners.core.drools.loader.FileRuleLoader;
 import net.firstpartners.core.drools.loader.IRuleLoader;
 import net.firstpartners.core.drools.loader.RuleSource;
 import net.firstpartners.core.drools.loader.URLRuleLoader;
-import net.firstpartners.core.spreadsheet.ExcelInputStrategy;
-import net.firstpartners.core.spreadsheet.ExcelOutputStrategy;
+import net.firstpartners.core.excel.ExcelInputStrategy;
+import net.firstpartners.core.excel.ExcelOutputStrategy;
 
 /**
  * Return an instance of RuleRunner, Appropriately configured with the various

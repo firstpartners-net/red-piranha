@@ -1,4 +1,4 @@
-package net.firstpartners.core.spreadsheet;
+package net.firstpartners.core.excel;
 
 import java.io.IOException;
 import java.util.ArrayList;

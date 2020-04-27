@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import net.firstpartners.core.spreadsheet.ExcelInputStrategy;
+import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.data.RangeHolder;
 
 /**

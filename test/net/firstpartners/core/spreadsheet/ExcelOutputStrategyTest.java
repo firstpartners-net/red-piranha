@@ -17,11 +17,15 @@ public class ExcelOutputStrategyTest {
 	@Test
 	public final void testOutputExcelThenDelete() throws IOException {
 		
-		ExcelOutputStrategy fileUtils = new ExcelOutputStrategy(TestConstants.EXCEL_TMP_FILE);
-		
 		
 		Workbook wb = WorkbookFactory.create(true); // create new boolean
-		fileUtils.processOutput(wb);
+		
+		ExcelOutputStrategy excelOut = new ExcelOutputStrategy(TestConstants.EXCEL_TMP_FILE);
+		excelOut.setWorkbook(wb);
+		
+		
+		//Process the output
+		excelOut.processOutput();
 		
 		//check that this exists
 		File f = new File(TestConstants.EXCEL_TMP_FILE);
@@ -29,7 +33,7 @@ public class ExcelOutputStrategyTest {
 		f =null; //avoid any interference in the next step
 		
 		//Make sure we can delete file
-		fileUtils.deleteOutputFileIfExists(); //object remembers file name from earlier
+		excelOut.deleteOutputFileIfExists(); //object remembers file name from earlier
 		f = new File(TestConstants.EXCEL_TMP_FILE);
 		assertFalse ("Found file that should exist", f.exists() );
 		

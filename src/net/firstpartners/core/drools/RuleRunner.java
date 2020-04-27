@@ -93,7 +93,7 @@ public class RuleRunner {
 		
 
 		// Create a new Excel Logging object
-		inputStrategy.setDocumentLogger(new SpreadSheetLogger());
+		outputStrategy.setDocumentLogger(new SpreadSheetLogger());
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(10);
 			userMessages.info("Opening Input :" + this.inputStrategy.getInputName());
@@ -129,14 +129,13 @@ public class RuleRunner {
 
 		// update the origial document (to be saved as copy) with the result of our
 		// rules
-		inputStrategy.updateOriginalDocument(ranges);
+		outputStrategy.updateCopyOfOriginalDocument(inputStrategy.getExcelWorkBook(),ranges);
 
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(90);
 		}
 
-		// update the document (e.g. excel spreadsheet) with our log file as appropriate
-		inputStrategy.flush(userMessages);
+		
 
 		// Close our input work book
 		if (userDataDisplay != null) {
@@ -145,7 +144,12 @@ public class RuleRunner {
 
 		// Process our output
 		userMessages.info("Write to Excel Output file:" + outputStrategy.getOutputDestination());
-		outputStrategy.processOutput(inputStrategy.getExcelWorkBook());
+		
+		// update the document (e.g. excel spreadsheet) with our log file as appropriate
+		outputStrategy.flush(userMessages);
+				
+		//make sure both get written (to disk?)
+		outputStrategy.processOutput();
 
 	}
 

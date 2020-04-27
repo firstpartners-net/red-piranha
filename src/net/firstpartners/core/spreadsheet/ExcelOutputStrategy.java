@@ -8,8 +8,11 @@ import org.apache.log4j.Logger;
 
 import org.apache.poi.ss.usermodel.Workbook;
 
+import net.firstpartners.RedConstants;
 import net.firstpartners.core.IDocumentOutStrategy;
+import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
+import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeHolder;
 
@@ -25,6 +28,10 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	
 	//Name of the outputfile
 	private String outputFileName =null;
+	
+	private SpreadSheetLogger spreadSheetLogger;
+
+	private Workbook workbook;
 	
 	/**
 	 * Constructor - takes the name of the file we intend outputting to	
@@ -48,10 +55,46 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 		}
 
 	}
+
+
+	/**
+	 * Write out and logs we hold to the document
+	 * @param excelWorkBook
+	 * @param nameOfLogSheet
+	 */
+	@Override
+	public void flush() {
+		this.spreadSheetLogger.flush(workbook,RedConstants.EXCEL_LOG_WORKSHEET_NAME);
+		
+	}
+
+
+	/**
+	 * Write out any documents we hold to anybody else interested
+	 * @param logger
+	 */
+	@Override
+	public void flush(ILogger logger) {
+		this.flush();
+		this.spreadSheetLogger.flush(logger);
+		
+	}
 	
+
+	/**
+	 * String representing where our output is going to
+	 */
+	@Override
+	public String getOutputDestination() {
+		return "File:"+outputFileName;
+	}
 
 	public String getOutputFileName() {
 		return outputFileName;
+	}
+
+	public Workbook getWorkbook() {
+		return workbook;
 	}
 
 	/**
@@ -64,6 +107,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 		}
 	}
 
+	
 	/**
 	 * Outputs an Apache POI Workbook to a Logging Console
 	 * @param wb
@@ -75,7 +119,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 		outputToConsole(ranges);
 
 	}
-
+	
 	/**
 	 * Outputs an Apache POI Workbook to a file
 	 * @param wb - Apache POI Workbook (excel)
@@ -98,7 +142,6 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 	}
 
-	
 	/**
 	 * Outputs an Apache POI Workbook to a Stream (e.g Servlet response)
 	 * @param wb
@@ -116,22 +159,41 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 * @param outputFileName
 	 * @throws IOException
 	 */
-	public void processOutput(Workbook fileToProcess) throws IOException {
+	public void processOutput() throws IOException {
 		
 		// delete the outputFile if it exists
 		deleteOutputFileIfExists();
 
 		// Open the outputfile as a stream
-		outputToFile(fileToProcess);
+		outputToFile(workbook);
 
 	}
-
+	
 	/**
-	 * String representing where our output is going to
+	 * Allows us to set a Logger that will flush to an Excel Spreadheet
+	 * @param spreadSheetLogger
 	 */
 	@Override
-	public String getOutputDestination() {
-		return "File:"+outputFileName;
+	public void setDocumentLogger(SpreadSheetLogger spreadSheetLogger) {
+		this.spreadSheetLogger = spreadSheetLogger;
+		
+	}
+
+	public void setWorkbook(Workbook workbook) {
+		this.workbook = workbook;
+	}
+
+	
+	/**
+	 * Update a copy of our Original Document with new data
+	 * @param ranges
+	 * @throws IOException
+	 */
+	public void updateCopyOfOriginalDocument(Workbook fileToProcess,RangeHolder range) throws IOException {
+		
+		this.workbook =fileToProcess;
+		RangeConvertor.updateRedRangeintoPoiExcel(fileToProcess, range);
+		
 	}
 
 }

@@ -7,7 +7,7 @@ import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
-import net.firstpartners.core.drools.loader.RuleSource;
+import net.firstpartners.core.drools.loader.RuleDTO;
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
@@ -65,7 +65,7 @@ public class RedCommandLine {
 		// Get the params
 		String inputFileName = Config.getInputFileName();
 		String outputFileName = Config.getOutputFileName();
-		RuleSource ruleFiles = Config.getRuleFiles();
+		RuleDTO ruleFiles = Config.getRuleFiles();
 
 		// Handle to common utility file
 		//The Factory auto-generates the input and output strategy based on the filenames

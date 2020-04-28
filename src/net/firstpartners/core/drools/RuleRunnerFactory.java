@@ -1,11 +1,18 @@
 package net.firstpartners.core.drools;
 
+import org.apache.log4j.Logger;
+
+import net.firstpartners.core.IDocumentInStrategy;
+import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.drools.loader.FileRuleLoader;
-import net.firstpartners.core.drools.loader.IRuleLoader;
-import net.firstpartners.core.drools.loader.RuleSource;
-import net.firstpartners.core.drools.loader.URLRuleLoader;
+import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
+import net.firstpartners.core.drools.loader.RuleDTO;
+import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
+import net.firstpartners.core.log.RpLogger;
+import net.firstpartners.core.word.WordInputStrategy;
+import net.firstpartners.core.word.WordOutputStrategy;
 
 /**
  * Return an instance of RuleRunner, Appropriately configured with the various
@@ -16,54 +23,98 @@ import net.firstpartners.core.excel.ExcelOutputStrategy;
  */
 public class RuleRunnerFactory {
 
+	// Handle to the logger
+	private static final Logger log = RpLogger.getLogger(RuleRunner.class.getName());
+
+	// How we identify file types
+	public static final String SUFFIX_WORD = ".doc";
+	public static final String SUFFIX_WORDX = ".docx";
+	public static final String SUFFIX_EXCEL = ".xls";
+	public static final String SUFFIX_EXCELX = ".xlx";
+
 	/**
 	 * Private Constructor, part of singleton Method
 	 */
 	private RuleRunnerFactory() {
 	}
-	
+
 	/**
 	 * Convenience constructor, state rules as single string
+	 * 
 	 * @param inputFileName
 	 * @param mySourceAsString
 	 * @param outputFileName
 	 * @return
 	 */
 	public static RuleRunner getRuleRunner(String inputFileName, String mySourceAsString, String outputFileName) {
-		
-		RuleSource mySource = new RuleSource();
+
+		RuleDTO mySource = new RuleDTO();
 		mySource.setRulesLocation(mySourceAsString);
-		
-		return getRuleRunner(inputFileName,mySource,outputFileName);
+
+		return getRuleRunner(inputFileName, mySource, outputFileName);
 	}
 
 	/**
 	 * Create a properly configured RuleRunner for the Input / Output file types we
 	 * are passing
 	 * 
+	 * @param inputFileName
+	 * @param ruleSource
 	 * @param outputFileName
 	 * @return
 	 */
-	public static RuleRunner getRuleRunner(String inputFileName, RuleSource mySource, String outputFileName) {
-		
-		//Make sure we get the right type of loader
-		IRuleLoader myLoader = getRuleLoader(mySource.getRulesLocation()[0]);
-		
-		return new RuleRunner(new ExcelInputStrategy(inputFileName), myLoader,
-				new ExcelOutputStrategy(outputFileName));
+	public static RuleRunner getRuleRunner(String inputFileName, RuleDTO ruleSource, String outputFileName) {
+
+		// check our incoming params
+		assert inputFileName != null;
+		assert ruleSource != null;
+		assert outputFileName != null;
+
+		// Make sure we get the right type of loader
+		IRuleLoaderStrategy ruleLoaderStrategy = getRuleLoader(ruleSource.getRulesLocation()[0]);
+
+		// Decide on our input strategy - these default to xl
+		inputFileName = inputFileName.toLowerCase();
+		IDocumentInStrategy inputStrat;
+		if (inputFileName.endsWith(SUFFIX_WORD) || inputFileName.endsWith(SUFFIX_WORDX)) {
+			inputStrat = new WordInputStrategy(inputFileName);
+
+		} else {
+			inputStrat = new ExcelInputStrategy(inputFileName);
+
+		}
+		//decide on our output strategy - these default to xl
+		outputFileName = outputFileName.toLowerCase();
+		IDocumentOutStrategy outputStrat;
+		if (outputFileName.endsWith(SUFFIX_WORD) || outputFileName.endsWith(SUFFIX_WORDX)) {
+			outputStrat = new WordOutputStrategy(outputFileName);
+
+		} else {
+			outputStrat = new ExcelOutputStrategy(outputFileName);
+
+		}
+
+
+		log.info("Using DocumentInputStrategy:" + inputStrat.getClass());
+		log.info("Using RuleLoader:" + ruleLoaderStrategy);
+		log.info("Using DocumentOutputStrategy:" + outputStrat);
+
+		return new RuleRunner(inputStrat, ruleLoaderStrategy, outputStrat);
+
 	}
 
 	/**
 	 * Get a handle to the rule loader we will be using, based on the ruleLocation
+	 * 
 	 * @param ruleLocation
 	 * @return
 	 */
-	public static IRuleLoader getRuleLoader(String ruleLocation) {
+	public static IRuleLoaderStrategy getRuleLoader(String ruleLocation) {
 
-		IRuleLoader ruleLoader;
+		IRuleLoaderStrategy ruleLoader;
 
 		if (ruleLocation.startsWith("http")) {
-			ruleLoader = new URLRuleLoader();
+			ruleLoader = new URLRuleLoaderStrategy();
 		} else {
 			ruleLoader = new FileRuleLoader(ruleLocation);
 		}

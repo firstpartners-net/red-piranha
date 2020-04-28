@@ -10,7 +10,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import net.firstpartners.core.drools.FileRuleLoader;
 import net.firstpartners.core.drools.RuleRunner;
-import net.firstpartners.core.drools.loader.RuleSource;
+import net.firstpartners.core.drools.loader.RuleDTO;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.core.excel.RangeConvertor;

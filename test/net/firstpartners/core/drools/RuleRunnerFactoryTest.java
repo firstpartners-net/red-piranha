@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import net.firstpartners.core.drools.loader.FileRuleLoader;
-import net.firstpartners.core.drools.loader.URLRuleLoader;
+import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.word.WordInputStrategy;
@@ -85,7 +85,7 @@ public class RuleRunnerFactoryTest {
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
-		assertTrue(myRunner.getRuleLoader() instanceof URLRuleLoader);
+		assertTrue(myRunner.getRuleLoader() instanceof URLRuleLoaderStrategy);
 		
 		
 	}

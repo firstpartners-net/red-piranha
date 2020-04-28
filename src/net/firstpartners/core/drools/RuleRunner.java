@@ -13,8 +13,8 @@ import org.drools.runtime.StatelessKnowledgeSession;
 
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
-import net.firstpartners.core.drools.loader.IRuleLoader;
-import net.firstpartners.core.drools.loader.RuleSource;
+import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
+import net.firstpartners.core.drools.loader.RuleDTO;
 import net.firstpartners.core.log.EmptyLogger;
 import net.firstpartners.core.log.GiveLogFeedback;
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
@@ -38,7 +38,7 @@ public class RuleRunner {
 	private IDocumentOutStrategy outputStrategy = null;
 
 	// Handle to loader
-	private final IRuleLoader ruleLoader;
+	private final IRuleLoaderStrategy ruleLoader;
 
 	// Handle to the Strategy Class for specific incoming document (Excel, Word etc
 	// tasks)
@@ -53,7 +53,7 @@ public class RuleRunner {
 	 * @param ruleLoader
 	 * @param outputStrategy
 	 */
-	protected RuleRunner(IDocumentInStrategy documentStrategy, IRuleLoader ruleLoader,
+	protected RuleRunner(IDocumentInStrategy documentStrategy, IRuleLoaderStrategy ruleLoader,
 			IDocumentOutStrategy outputStrategy) {
 		this.ruleLoader = ruleLoader;
 		this.inputStrategy = documentStrategy;
@@ -116,7 +116,7 @@ public class RuleRunner {
 		// Log the cell contents
 
 		// Add the Spreadsheet contents as facts
-		RuleSource ruleSource = ruleLoader.getRuleSource();
+		RuleDTO ruleSource = ruleLoader.getRuleSource();
 		ruleSource.addFacts(ranges.getAllRangesAndCells());
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(65);
@@ -173,7 +173,7 @@ public class RuleRunner {
 		return inputStrategy;
 	}
 
-	public IRuleLoader getRuleLoader() {
+	public IRuleLoaderStrategy getRuleLoader() {
 		return ruleLoader;
 	}
 
@@ -258,7 +258,7 @@ public class RuleRunner {
 	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
-	private void runStatelessRules(RuleSource ruleSource, ILogger logger)
+	private void runStatelessRules(RuleDTO ruleSource, ILogger logger)
 			throws DroolsParserException, IOException, ClassNotFoundException {
 
 		// The most common operation on a rulebase is to create a new rule

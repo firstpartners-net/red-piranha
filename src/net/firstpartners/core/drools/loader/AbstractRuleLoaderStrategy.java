@@ -29,9 +29,9 @@ import net.firstpartners.core.log.RpLogger;
  * @author PBrowne
  *
  */
-public abstract class AbstractRuleLoader implements IRuleLoader {
+public abstract class AbstractRuleLoaderStrategy implements IRuleLoaderStrategy {
 
-	private static final Logger log = RpLogger.getLogger(AbstractRuleLoader.class
+	private static final Logger log = RpLogger.getLogger(AbstractRuleLoaderStrategy.class
 			.getName());
 
 	/**
@@ -46,7 +46,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
-	public org.drools.KnowledgeBase loadRules(RuleSource ruleSource)
+	public org.drools.KnowledgeBase loadRules(RuleDTO ruleSource)
 			throws DroolsParserException, IOException, ClassNotFoundException {
 
 		// Use cached rules if possible
@@ -249,7 +249,7 @@ public abstract class AbstractRuleLoader implements IRuleLoader {
 	 * @throws ClassNotFoundException
 	 */
 	
-	org.drools.KnowledgeBase loadKnowledgeBase(RuleSource ruleSource) throws IOException,
+	org.drools.KnowledgeBase loadKnowledgeBase(RuleDTO ruleSource) throws IOException,
 	ClassNotFoundException, SecurityException {
 
 		BufferedInputStream inStream = new BufferedInputStream(

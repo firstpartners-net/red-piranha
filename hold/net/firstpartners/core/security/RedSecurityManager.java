@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Properties;
 import org.apache.log4j.Logger;
 
-import net.firstpartners.core.drools.loader.RuleSource;
+import net.firstpartners.core.drools.loader.RuleDTO;
 import net.firstpartners.core.log.RpLogger;
 
 /**

@@ -10,7 +10,7 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 
 import net.firstpartners.RedConstants;
-import net.firstpartners.core.drools.loader.RuleSource;
+import net.firstpartners.core.drools.loader.RuleDTO;
 import net.firstpartners.core.log.RpLogger;
 
 /**
@@ -45,7 +45,7 @@ public class Config {
 	 * 
 	 * @return a rule source object containing the drl file locations
 	 */
-	public static RuleSource getRuleFiles() {
+	public static RuleDTO getRuleFiles() {
 
 		Properties prop = readConfig();
 
@@ -62,7 +62,7 @@ public class Config {
 
 		// Set this as a RuleSource Object
 		String[] tmpArr = new String[ruleFileLocations.size()];
-		RuleSource ruleSource = new RuleSource();
+		RuleDTO ruleSource = new RuleDTO();
 		ruleSource.setRulesLocation(ruleFileLocations.toArray(tmpArr));
 
 		return ruleSource;

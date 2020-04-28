@@ -16,19 +16,19 @@ import net.firstpartners.core.log.RpLogger;
  * @author paul
  * 
  */
-public class FileRuleLoader extends AbstractRuleLoader implements IRuleLoader {
+public class FileRuleLoader extends AbstractRuleLoaderStrategy implements IRuleLoaderStrategy {
 
 
 	private static final Logger log = RpLogger.getLogger(FileRuleLoader.class
 			.getName());
 	
-	private RuleSource ruleSource;
+	private RuleDTO ruleSource;
 
 	/**
 	 * 
 	 * @param ruleSource
 	 */
-	public FileRuleLoader(RuleSource ruleSource) {
+	public FileRuleLoader(RuleDTO ruleSource) {
 		this.ruleSource = ruleSource;
 	}
 	
@@ -37,7 +37,7 @@ public class FileRuleLoader extends AbstractRuleLoader implements IRuleLoader {
 	 * @param ruleLocation
 	 */
 	public FileRuleLoader(String ruleLocation) {
-		this.ruleSource = new RuleSource();
+		this.ruleSource = new RuleDTO();
 		this.ruleSource.setRulesLocation(ruleLocation);
 	}
 
@@ -117,13 +117,13 @@ public class FileRuleLoader extends AbstractRuleLoader implements IRuleLoader {
 	 * gets the original rule source
 	 * @return
 	 */
-	public RuleSource getRuleSource() {
+	public RuleDTO getRuleSource() {
 		return ruleSource;
 	}
 
 	
 
-	public void setRuleSource(RuleSource ruleSource) {
+	public void setRuleSource(RuleDTO ruleSource) {
 		this.ruleSource = ruleSource;
 	}
 

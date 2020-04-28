@@ -10,11 +10,11 @@ import org.apache.log4j.Logger;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
 
-public class URLRuleLoaderTest {
+public class URLRuleLoaderStrategyTest {
 
-	URLRuleLoader ruleLoader = new URLRuleLoader();
+	URLRuleLoaderStrategy ruleLoader = new URLRuleLoaderStrategy();
 
-	private static final Logger log = Logger.getLogger(URLRuleLoaderTest.class
+	private static final Logger log = Logger.getLogger(URLRuleLoaderStrategyTest.class
 			.getName());
 
 
@@ -22,7 +22,7 @@ public class URLRuleLoaderTest {
 	public final void testLoadCachedRulesFromUrl() throws IOException, ClassNotFoundException {
 
 		//Set the rule source
-		RuleSource ruleSource = new RuleSource();
+		RuleDTO ruleSource = new RuleDTO();
 		ruleSource.setKnowledgeBaseLocation("https://raw.githubusercontent.com/paulbrowne-irl/red-piranha/master/test/testdata/log-then-modify-rules.KnowledgeBase");
 
 
@@ -41,7 +41,7 @@ public class URLRuleLoaderTest {
 
 		//check that dodgy domains are caught
 		//Set the rule source
-		RuleSource ruleSource = new RuleSource();
+		RuleDTO ruleSource = new RuleDTO();
 		ruleSource.setKnowledgeBaseLocation("http://www.bbc.co.uk/not-on-whitelist-should-fail.Knowledgebase");
 
 		//Check that we cannot read rules from remote location
@@ -61,7 +61,7 @@ public class URLRuleLoaderTest {
 
 		//check that dodgy domains are caught
 		//Set the rule source
-		RuleSource ruleSource = new RuleSource();
+		RuleDTO ruleSource = new RuleDTO();
 		ruleSource.setKnowledgeBaseLocation("http://red-piranha.appspot.com/sampleresources/SpreadSheetServlet/log-then-modify-rules.SomeUnknownResourceType");
 
 		//Check that we cannoread rules from remote location

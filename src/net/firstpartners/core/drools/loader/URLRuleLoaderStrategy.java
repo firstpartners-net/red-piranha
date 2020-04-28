@@ -9,7 +9,7 @@ import java.net.URL;
 import org.apache.log4j.Logger;
 
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.core.drools.loader.URLRuleLoader;
+import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
 
 /**
  * Load rules from a Web URL
@@ -17,12 +17,12 @@ import net.firstpartners.core.drools.loader.URLRuleLoader;
  * @author paul
  * 
  */
-public class URLRuleLoader extends AbstractRuleLoader {
+public class URLRuleLoaderStrategy extends AbstractRuleLoaderStrategy {
 
-	private static final Logger log = RpLogger.getLogger(URLRuleLoader.class
+	private static final Logger log = RpLogger.getLogger(URLRuleLoaderStrategy.class
 			.getName());
 
-	public URLRuleLoader() {
+	public URLRuleLoaderStrategy() {
 	}
 
 
@@ -113,7 +113,7 @@ public class URLRuleLoader extends AbstractRuleLoader {
 	 * gets the original rule source
 	 * @return
 	 */
-	public RuleSource getRuleSource() {
+	public RuleDTO getRuleSource() {
 		return null;
 	}
 

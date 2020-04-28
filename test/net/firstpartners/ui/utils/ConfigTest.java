@@ -13,7 +13,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import net.firstpartners.core.drools.loader.RuleSource;
+import net.firstpartners.core.drools.loader.RuleDTO;
 import net.firstpartners.core.excel.RangeConvertorTest;
 import net.firstpartners.data.RangeHolder;
 
@@ -55,7 +55,7 @@ public class ConfigTest {
 		
 		@Test
 		public final void testReadRulesFiles() {
-			RuleSource myRuleDrl = Config.getRuleFiles();
+			RuleDTO myRuleDrl = Config.getRuleFiles();
 			Assert.assertNotNull(myRuleDrl);
 			Assert.assertEquals(myRuleDrl.getRulesLocation().length,1);
 			

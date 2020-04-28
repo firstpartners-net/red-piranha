@@ -13,7 +13,7 @@ import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.core.drools.FileRuleLoader;
 import net.firstpartners.core.drools.RuleRunner;
-import net.firstpartners.core.drools.loader.RuleSource;
+import net.firstpartners.core.drools.loader.RuleDTO;
 import net.firstpartners.core.log.ConsoleLogger;
 import net.firstpartners.core.log.RpLogger;
 

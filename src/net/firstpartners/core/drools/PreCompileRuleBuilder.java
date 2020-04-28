@@ -12,8 +12,8 @@ import org.apache.log4j.Logger;
 import org.drools.KnowledgeBase;
 import org.drools.compiler.compiler.DroolsParserException;
 
-import net.firstpartners.core.drools.loader.IRuleLoader;
-import net.firstpartners.core.drools.loader.RuleSource;
+import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
+import net.firstpartners.core.drools.loader.RuleDTO;
 import net.firstpartners.core.log.RpLogger;
 
 
@@ -70,10 +70,10 @@ public class PreCompileRuleBuilder {
 		log.info("Loading Knowledgebase from "+ruleLocation);
 
 		//Get a handle to the rule loader that we will use
-		IRuleLoader ruleLoader = RuleRunnerFactory.getRuleLoader(ruleLocation);
+		IRuleLoaderStrategy ruleLoader = RuleRunnerFactory.getRuleLoader(ruleLocation);
 
 		//Setup the source
-		RuleSource ruleSource = new RuleSource();
+		RuleDTO ruleSource = new RuleDTO();
 		ruleSource.setRulesLocation(ruleLocation);
 
 

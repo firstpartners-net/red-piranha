@@ -9,7 +9,7 @@ import org.drools.compiler.compiler.DroolsParserException;
  * @author PBrowne
  *
  */
-public interface IRuleLoader {
+public interface IRuleLoaderStrategy {
 
 	/**
 	 * loads the rules, using the source provided
@@ -19,13 +19,13 @@ public interface IRuleLoader {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	org.drools.KnowledgeBase loadRules(RuleSource ruleSource) throws DroolsParserException, IOException, ClassNotFoundException;
+	org.drools.KnowledgeBase loadRules(RuleDTO ruleSource) throws DroolsParserException, IOException, ClassNotFoundException;
 	
 	/**
 	 * gets the original rule source
 	 * @return
 	 */
-	RuleSource getRuleSource();
+	RuleDTO getRuleSource();
 
 
 }

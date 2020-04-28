@@ -144,7 +144,7 @@ extends java.lang.Object</pre>
 </tr>
 <tbody>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(net.firstpartners.core.drools.loader.IRuleLoader)">SpreadSheetRuleRunner</a></span>&#8203;(<a href="loader/IRuleLoader.html" title="interface in net.firstpartners.core.drools.loader">IRuleLoader</a>&nbsp;ruleLoader)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(net.firstpartners.core.drools.loader.IRuleLoaderStrategy)">SpreadSheetRuleRunner</a></span>&#8203;(<a href="loader/IRuleLoader.html" title="interface in net.firstpartners.core.drools.loader">IRuleLoader</a>&nbsp;ruleLoader)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </tbody>
@@ -172,7 +172,7 @@ extends java.lang.Object</pre>
 <tbody>
 <tr class="altColor" id="i0">
 <td class="colFirst"><code>org.apache.poi.ss.usermodel.Workbook</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#callRules(java.io.File,net.firstpartners.core.drools.loader.RuleSource,java.lang.String)">callRules</a></span>&#8203;(java.io.File&nbsp;locationOfExcelDataFile,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#callRules(java.io.File,net.firstpartners.core.drools.loader.RuleDTO,java.lang.String)">callRules</a></span>&#8203;(java.io.File&nbsp;locationOfExcelDataFile,
          <a href="loader/RuleSource.html" title="class in net.firstpartners.core.drools.loader">RuleSource</a>&nbsp;ruleSource,
          java.lang.String&nbsp;excelLogSheet)</code></th>
 <td class="colLast">
@@ -181,7 +181,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor" id="i1">
 <td class="colFirst"><code>org.apache.poi.ss.usermodel.Workbook</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#callRules(java.io.InputStream,net.firstpartners.core.drools.loader.RuleSource,java.lang.String)">callRules</a></span>&#8203;(java.io.InputStream&nbsp;inputFromExcel,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#callRules(java.io.InputStream,net.firstpartners.core.drools.loader.RuleDTO,java.lang.String)">callRules</a></span>&#8203;(java.io.InputStream&nbsp;inputFromExcel,
          <a href="loader/RuleSource.html" title="class in net.firstpartners.core.drools.loader">RuleSource</a>&nbsp;ruleSource,
          java.lang.String&nbsp;nameOfLogSheet)</code></th>
 <td class="colLast">
@@ -190,7 +190,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor" id="i2">
 <td class="colFirst"><code>org.apache.poi.ss.usermodel.Workbook</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#callRules(java.io.InputStream,net.firstpartners.core.drools.loader.RuleSource,java.lang.String,net.firstpartners.core.log.IGiveFeedbackToUsers,net.firstpartners.core.log.ILogger)">callRules</a></span>&#8203;(java.io.InputStream&nbsp;inputFromExcel,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#callRules(java.io.InputStream,net.firstpartners.core.drools.loader.RuleDTO,java.lang.String,net.firstpartners.core.log.IGiveFeedbackToUsers,net.firstpartners.core.log.ILogger)">callRules</a></span>&#8203;(java.io.InputStream&nbsp;inputFromExcel,
          <a href="loader/RuleSource.html" title="class in net.firstpartners.core.drools.loader">RuleSource</a>&nbsp;ruleSource,
          java.lang.String&nbsp;nameOfLogSheet,
          <a href="../log/IGiveFeedbackToUsers.html" title="interface in net.firstpartners.core.log">IGiveFeedbackToUsers</a>&nbsp;userDataDisplay,
@@ -201,7 +201,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor" id="i3">
 <td class="colFirst"><code>org.apache.poi.ss.usermodel.Workbook</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#callRules(java.net.URL,net.firstpartners.core.drools.loader.RuleSource,java.lang.String)">callRules</a></span>&#8203;(java.net.URL&nbsp;urlOfExcelDataFile,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#callRules(java.net.URL,net.firstpartners.core.drools.loader.RuleDTO,java.lang.String)">callRules</a></span>&#8203;(java.net.URL&nbsp;urlOfExcelDataFile,
          <a href="loader/RuleSource.html" title="class in net.firstpartners.core.drools.loader">RuleSource</a>&nbsp;ruleSource,
          java.lang.String&nbsp;excelLogSheet)</code></th>
 <td class="colLast">
@@ -235,7 +235,7 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;(net.firstpartners.core.drools.loader.IRuleLoader)">
+<a id="&lt;init&gt;(net.firstpartners.core.drools.loader.IRuleLoaderStrategy)">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -254,7 +254,7 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="callRules(java.io.InputStream,net.firstpartners.core.drools.loader.RuleSource,java.lang.String)">
+<a id="callRules(java.io.InputStream,net.firstpartners.core.drools.loader.RuleDTO,java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -282,7 +282,7 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="callRules(java.io.InputStream,net.firstpartners.core.drools.loader.RuleSource,java.lang.String,net.firstpartners.core.log.IGiveFeedbackToUsers,net.firstpartners.core.log.ILogger)">
+<a id="callRules(java.io.InputStream,net.firstpartners.core.drools.loader.RuleDTO,java.lang.String,net.firstpartners.core.log.IGiveFeedbackToUsers,net.firstpartners.core.log.ILogger)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -313,7 +313,7 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="callRules(java.net.URL,net.firstpartners.core.drools.loader.RuleSource,java.lang.String)">
+<a id="callRules(java.net.URL,net.firstpartners.core.drools.loader.RuleDTO,java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -341,7 +341,7 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="callRules(java.io.File,net.firstpartners.core.drools.loader.RuleSource,java.lang.String)">
+<a id="callRules(java.io.File,net.firstpartners.core.drools.loader.RuleDTO,java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockListLast">

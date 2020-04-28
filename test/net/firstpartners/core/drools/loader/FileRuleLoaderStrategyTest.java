@@ -10,11 +10,11 @@ import org.junit.Test;
 
 import net.firstpartners.TestConstants;
 
-public class FileRuleLoaderTest {
+public class FileRuleLoaderStrategyTest {
 
 
 
-	private static final Logger log = Logger.getLogger(FileRuleLoaderTest.class
+	private static final Logger log = Logger.getLogger(FileRuleLoaderStrategyTest.class
 			.getName());
 
 	@Test
@@ -25,7 +25,7 @@ public class FileRuleLoaderTest {
 		log.debug("starting test");
 		
 		//Set the rule source
-		RuleSource ruleSource = new RuleSource();
+		RuleDTO ruleSource = new RuleDTO();
 		ruleSource.setKnowledgeBaseLocation(TestConstants.KNOWLEDGE_BASE_FILE);
 		log.debug("will try to load:"+ruleSource.getKnowledgeBaseLocation());
 		

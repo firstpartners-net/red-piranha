@@ -13,7 +13,7 @@ import net.firstpartners.data.Cell;
  * @author paul
  *
  */
-public class RuleSource {
+public class RuleDTO {
 
 	private String dslFileLocation;
 

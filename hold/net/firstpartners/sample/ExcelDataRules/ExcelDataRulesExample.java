@@ -9,11 +9,11 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.core.drools.loader.FileRuleLoader;
-import net.firstpartners.core.drools.loader.IRuleLoader;
+import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.drools.RuleRunnerFactoryTest;
-import net.firstpartners.core.drools.loader.RuleSource;
+import net.firstpartners.core.drools.loader.RuleDTO;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 

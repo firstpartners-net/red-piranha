@@ -1,6 +1,7 @@
 package net.firstpartners;
 
 import net.firstpartners.core.excel.SpreadSheetConvertorTest;
+import net.firstpartners.core.word.DocumentConvertorTest;
 
 /**
  * Constants used for testing - mainly where we store data
@@ -42,6 +43,10 @@ public class TestConstants {
 	// the name of the sheet the we log files to
 	public static final String EXCEL_LOG_WORKSHEET_NAME = "log";
 	
+	//Serialized Test Data
+	public final static String SAVED_EXCEL_RANGEHOLDER_DATA="test/testdata/RANGEHOLDER_RANGE_CELLS.testdata";
+	public final static String SAVED_WORD_RANGEHOLDER_DATA="test/testdata/RANGEHOLDER_RANGE_WORD.testdata";
+	
 	/**
 	 * Testing utility to generate test Data
 	 */
@@ -49,6 +54,7 @@ public class TestConstants {
 	{
 		
 		SpreadSheetConvertorTest.main(null);
+		DocumentConvertorTest.main(null);
 		
 	}
 }

@@ -155,7 +155,7 @@ public class SpreadSheetConvertor {
 	public static void updateRedRangeintoPoiExcel(Workbook wb, RangeList updatedValues) throws IOException {
 
 		// Get all the Cells that we have been keeping track of
-		Map<String, net.firstpartners.data.Cell> allCells = updatedValues.getAllCells();
+		Map<String, net.firstpartners.data.Cell> allCells = updatedValues.getAllCellsWithNames();
 
 		// Loop through the cells
 		Iterator<net.firstpartners.data.Cell> redCells = allCells.values().iterator();

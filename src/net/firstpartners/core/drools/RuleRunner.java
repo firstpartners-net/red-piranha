@@ -118,7 +118,7 @@ public class RuleRunner {
 
 		// Add the Spreadsheet contents as facts
 		RuleDTO ruleSource = ruleLoader.getRuleSource();
-		ruleSource.addFacts(ranges.getAllRangesAndCells());
+		ruleSource.addFacts(ranges.getAllCellsInAllRanges());
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(65);
 		}

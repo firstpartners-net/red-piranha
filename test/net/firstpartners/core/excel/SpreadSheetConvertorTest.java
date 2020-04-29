@@ -26,8 +26,7 @@ public class SpreadSheetConvertorTest {
 	//Logging
 	private static final Logger log = RpLogger.getLogger(SpreadSheetConvertorTest.class.getName());
 
-	//Save Range and Cell Data
-	public final static String SAVED_RANGEHOLDER_DATA="test/testdata/RANGEHOLDER_RANGE_CELLS.testdata";
+	
 	
 	/** 
 	 * Convenience method - serialize testdata for use by Cell Tasts
@@ -37,12 +36,12 @@ public class SpreadSheetConvertorTest {
 	public static void main (String args[]) throws IOException {
 		
 		RangeList myRange = new SpreadSheetConvertorTest().getTestDataFromWorkbook();
-		FileOutputStream fileOut =new FileOutputStream(SAVED_RANGEHOLDER_DATA);
+		FileOutputStream fileOut =new FileOutputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
         ObjectOutputStream out = new ObjectOutputStream(fileOut);
         out.writeObject(myRange);
         out.close();
         fileOut.close();
-        log.info("Serialized data is saved in:"+ SAVED_RANGEHOLDER_DATA);
+        log.info("Serialized data is saved in:"+ TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
 	}
 
 	/**
@@ -65,10 +64,10 @@ public class SpreadSheetConvertorTest {
 		
 		// Convert over and back again
 		assertNotNull(myRange);
-		assertEquals(myRange.getAllCells().size(), 132);
+		assertEquals(myRange.getAllCellsWithNames().size(), 132);
 
 		// loop through and checck rnages
-		Map<String, Cell> map = myRange.getAllCells();
+		Map<String, Cell> map = myRange.getAllCellsWithNames();
 		for (Map.Entry<String, Cell> entry : map.entrySet()) {
 	        System.out.println(entry.getKey() + ":" + entry.getValue());
 	        assertNotNull(entry.getKey());

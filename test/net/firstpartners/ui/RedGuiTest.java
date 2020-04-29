@@ -4,13 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import org.apache.log4j.Logger;
 
 import javax.swing.UnsupportedLookAndFeelException;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
-import net.firstpartners.core.excel.SpreadSheetConvertorTest;
+import net.firstpartners.TestConstants;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -23,7 +23,6 @@ public class RedGuiTest {
 
 	// Logger
 	private static final Logger log = Logger.getLogger(RedGuiTest.class.getName());
-
 
 	@Test
 	public final void testCallMain() throws Throwable {
@@ -54,23 +53,28 @@ public class RedGuiTest {
 		log.debug("Opening GUI");
 		RedGui player = new RedGui();
 
-		// Get the test data
+		// Get the test data - XL
 		FileInputStream fileIn = null;
 		ObjectInputStream in = null;
 		RangeList redData = null;
-		fileIn = new FileInputStream(SpreadSheetConvertorTest.SAVED_RANGEHOLDER_DATA);
+		fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
 		in = new ObjectInputStream(fileIn);
 		redData = (RangeList) in.readObject();
-		//in.;
+		fileIn.close();
+
+		// Get the test data - XL
+
+		RangeList redWordData = null;
+		fileIn = new FileInputStream(TestConstants.SAVED_WORD_RANGEHOLDER_DATA);
+		in = new ObjectInputStream(fileIn);
+		redWordData = (RangeList) in.readObject();
 		fileIn.close();
 
 		player.showPreRulesSnapShot(redData);
-		player.showPostRulesSnapShot(redData);
+		player.showPostRulesSnapShot(redWordData);
 
 		Runnable readRun = new Thread(player);
 		readRun.run();
-		
-		
 
 	}
 }

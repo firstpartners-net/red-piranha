@@ -19,6 +19,7 @@ import org.apache.poi.ss.util.CellReference;
 import org.junit.Before;
 import org.junit.Test;
 
+import net.firstpartners.TestConstants;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
@@ -34,7 +35,7 @@ public class CellConvertorTest {
 	@Before
 	public void beforeClass() throws IOException, ClassNotFoundException {
 
-		FileInputStream fileIn = new FileInputStream(SpreadSheetConvertorTest.SAVED_RANGEHOLDER_DATA);
+		FileInputStream fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
 		ObjectInputStream in = new ObjectInputStream(fileIn);
 		redData = (RangeList) in.readObject();
 		in.close();
@@ -48,7 +49,7 @@ public class CellConvertorTest {
 		Workbook wb = WorkbookFactory.create(true); // create new boolean
 
 		// loop through and check ranges
-		Map<String, Cell> map = redData.getAllCells();
+		Map<String, Cell> map = redData.getAllCellsWithNames();
 		for (Map.Entry<String, Cell> entry : map.entrySet()) {
 
 			log.info(entry.getKey() + ":" + entry.getValue());

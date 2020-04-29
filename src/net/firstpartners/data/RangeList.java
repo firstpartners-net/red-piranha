@@ -17,13 +17,16 @@ import net.firstpartners.core.log.RpLogger;
  * Holder of all multiple Named Ranges from a spreadsheet. Also provides
  * convenience methods to access all the Cells (avoid the intermediate step of
  * getting the Ranges). Since we also map from other sources into these classes,
- * a RangeHolder could contain tables from a Word Document.
+ * a RangeHolder could instead contain tables from a Word Document.
+ * 
+ * It is designed to be a 'collection' which allows us to
  * 
  * @author paul
  *
  */
 public class RangeList implements List<Range>, Serializable {
 
+	//
 	private static final Logger log = RpLogger.getLogger(RangeList.class.getName());
 
 	/**
@@ -48,6 +51,21 @@ public class RangeList implements List<Range>, Serializable {
 		return allRanges.addAll(arg0, arg1);
 	}
 
+	/**
+	 * Reset the isModified Flag to false in allRanges (and subranges) held by this
+	 * RangeList
+	 * 
+	 * @return
+	 */
+	public void cascadeResetIsModifiedFlag() {
+
+		for (Range range : allRanges) {
+
+			range.cascadeResetIsModifiedFlag();
+		}
+
+	}
+
 	public void clear() {
 		allRanges.clear();
 	}
@@ -66,6 +84,106 @@ public class RangeList implements List<Range>, Serializable {
 
 	public Range get(int arg0) {
 		return allRanges.get(arg0);
+	}
+
+	/**
+	 * Returns all Ranges , and the cells within those ranges As a flattened
+	 * collection
+	 * 
+	 * @return
+	 */
+	public Collection<Cell> getAllCellsInAllRanges() {
+
+		Collection<Cell> returnValues = new ArrayList<Cell>();
+
+		for (Range range : allRanges) {
+
+			// Add the cells within the range
+
+			for (net.firstpartners.data.Cell cell : range.values()) {
+				returnValues.add(cell);
+			}
+
+		}
+
+		return returnValues;
+
+	}
+
+	/**
+	 * Returns all Cells (held by the Ranges we hold)
+	 * 
+	 * @Param nameStartsWith - search criteria
+	 * 
+	 * @return
+	 */
+	public Collection<Cell> findCells(String nameStartsWith) {
+
+		Collection<Cell> returnValues = new ArrayList<Cell>();
+
+		for (Range range : allRanges) {
+
+			// Add the cells within the range
+
+			for (net.firstpartners.data.Cell cell : range.values()) {
+				if ((cell.getCellName() != null) && cell.getCellName().startsWith(nameStartsWith)) {
+					returnValues.add(cell);
+				}
+
+			}
+
+		}
+
+		return returnValues;
+
+	}
+
+	/**
+	 * Returns all Cells (held by the Ranges we hold)
+	 * @Param nameStartsWith - search criteria
+	 * 
+	 * @return
+	 */
+	public Collection<Range> findRanges(String nameStartsWith) {
+
+		Collection<Range> returnValues = new ArrayList<Range>();
+
+		for (Range range : allRanges) {
+
+			//Filter to see if our Range matches the filter
+			if((range.getRangeName()!=null)&&(range.getRangeName().startsWith(nameStartsWith))) {
+					returnValues.add(range);
+				}
+
+		}
+
+	return returnValues;
+
+	}
+
+	/**
+	 * Returns a map of Cells, with the unique handle we've associate with them
+	 * 
+	 * @return
+	 */
+	public Map<String, net.firstpartners.data.Cell> getAllCellsWithNames() {
+
+		HashMap<String, Cell> returnValues = new HashMap<String, Cell>();
+		log.info("combining all cells in all ranges, returning as Hashmap");
+
+		for (Range range : allRanges) {
+
+			for (net.firstpartners.data.Cell cell : range.values()) {
+				if (cell.getCellName() != null) {
+					returnValues.put(cell.getCellName(), cell);
+				}
+
+			}
+
+		}
+
+		return returnValues;
+
 	}
 
 	public int hashCode() {
@@ -133,86 +251,18 @@ public class RangeList implements List<Range>, Serializable {
 	}
 
 	/**
-	 * Returns all Ranges , and the cells within those ranges As a flattened
-	 * collection
-	 * 
-	 * @return
-	 */
-	public Collection<Cell> getAllRangesAndCells() {
-
-		Collection<Cell> returnValues = new ArrayList<Cell>();
-
-		for (Range range : allRanges) {
-
-			// Add the range to the flattened collection
-			// returnValues.add(range);
-
-			// Add the cells within the range
-
-			for (net.firstpartners.data.Cell cell : range.values()) {
-				returnValues.add(cell);
-			}
-
-		}
-
-		return returnValues;
-
-	}
-
-	/**
 	 * toString method, lists all the cells we hold
 	 */
 
 	@Override
 	public String toString() {
-		// StringBuilder returnText = new
-		// StringBuilder(ToStringBuilder.reflectionToString(this));
+
 		StringBuilder returnText = new StringBuilder();
-		getAllRangesAndCells().forEach((cell) -> {
+		getAllCellsInAllRanges().forEach((cell) -> {
 			returnText.append(cell.toString() + "\n");
 		});
 
 		return returnText.toString();
-
-	}
-
-	/**
-	 * Returns a map of Cells, with the unique handle we've associate with them
-	 * 
-	 * @return
-	 */
-	public Map<String, net.firstpartners.data.Cell> getAllCells() {
-
-		HashMap<String, Cell> returnValues = new HashMap<String, Cell>();
-		log.info("combining all cells in all ranges, returning as Hashmap");
-
-		for (Range range : allRanges) {
-
-			for (net.firstpartners.data.Cell cell : range.values()) {
-				if (cell.getCellName() != null) {
-					returnValues.put(cell.getCellName(), cell);
-				}
-
-			}
-
-		}
-
-		return returnValues;
-
-	}
-
-	/**
-	 * Reset the isModified Flag to false in allRanges (and subranges) held by this
-	 * RangeList
-	 * 
-	 * @return
-	 */
-	public void cascadeResetIsModifiedFlag() {
-
-		for (Range range : allRanges) {
-
-			range.cascadeResetIsModifiedFlag();
-		}
 
 	}
 

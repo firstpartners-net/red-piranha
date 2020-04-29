@@ -1,91 +1,158 @@
 package net.firstpartners.core.word;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.usermodel.IBodyElement;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 
 import net.firstpartners.core.log.RpLogger;
+import net.firstpartners.data.Cell;
+import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
+/**
+ * Convert a Word (.docX) into our (Red) Javabeans
+ * 
+ * {@link https://www.devglan.com/corejava/parsing-word-document-example}
+ * 
+ * @author PBrowne
+ *
+ */
 public class DocumentConvertor {
 
+	private static final String TABLE_IN_POI_WORD_MARKER = "TABLE";
+
+	// Logger
 	private static final Logger log = RpLogger.getLogger(DocumentConvertor.class.getName());
 
-	
-	
-	static void convertTables(String fileName) throws InvalidFormatException, IOException {
-		
-		
-		
-			FileInputStream fis = new FileInputStream(fileName);
-			XWPFDocument xdoc = new XWPFDocument(OPCPackage.open(fis));
-			Iterator<IBodyElement> bodyElementIterator = xdoc.getBodyElementsIterator();
-			while (bodyElementIterator.hasNext()) {
-				IBodyElement element = bodyElementIterator.next();
+	/**
+	 * The name we store Word Paragraphs under
+	 */
+	public static final String WORD_PARAGRAPH_NAME_AS_RANGELIST = "PARA_";
 
-				log.info("Element Type:"+element.toString());
-				
-				if ("TABLE".equalsIgnoreCase(element.getElementType().name())) {
-					java.util.List<XWPFTable> tableList = element.getBody().getTables();
-					for (XWPFTable table : tableList) {
-						log.info("Total Number of Rows of Table:" + table.getNumberOfRows());
-						for (int i = 0; i < table.getRows().size(); i++) {
+	/**
+	 * The name we store Word Tables under
+	 */
+	public static final String WORD_TABLE_ROW_AS_RANGELIST = "ROW_";
 
-							for (int j = 0; j < table.getRow(i).getTableCells().size(); j++) {
-								log.info(table.getRow(i).getCell(j).getText());
-							}
+	/**
+	 * Extract the Tables from a Word Document, convert to Red JavaBeans
+	 * 
+	 * @param wordDoc
+	 * @return
+	 * @throws InvalidFormatException
+	 * @throws IOException
+	 */
+	static Collection<Range> convertTablesToBeans(XWPFDocument wordDoc) throws InvalidFormatException, IOException {
+
+		// Our converted Beans
+		Collection<Range> returnValues = new ArrayList<Range>();
+
+		Iterator<IBodyElement> bodyElementIterator = wordDoc.getBodyElementsIterator();
+
+		while (bodyElementIterator.hasNext()) {
+
+			// Get the next POI Word Element
+			IBodyElement element = bodyElementIterator.next();
+
+			// Check if this is a tale
+			if (TABLE_IN_POI_WORD_MARKER.equalsIgnoreCase(element.getElementType().name())) {
+
+				// Get the Tables in this if its
+				java.util.List<XWPFTable> tableList = element.getBody().getTables();
+
+				// Loop through the table
+				for (XWPFTable table : tableList) {
+
+					log.info("Total Number of Rows of Table:" + table.getNumberOfRows());
+
+					for (int rowCounter = 0; rowCounter < table.getRows().size(); rowCounter++) {
+
+						// Create a Range for this row of the table, using the value of the first cell
+						Range thisRow = new Range();
+						String possibleRowName = table.getRow(rowCounter).getCell(0).getText();
+						if (possibleRowName != null) {
+							thisRow.setRangeName(WORD_TABLE_ROW_AS_RANGELIST+possibleRowName);
 						}
+
+						//Loop throuh the Cells in this row
+						for (int cellCounter = 0; cellCounter < table.getRow(rowCounter).getTableCells()
+								.size(); cellCounter++) {
+
+							String cellName = possibleRowName + "_" + cellCounter;
+							Cell thisCell = new Cell(cellName, table.getRow(rowCounter).getCell(cellCounter).getText());
+							thisRow.put(cellName, thisCell);
+						}
+
+						// Make sure we add this row to the return list
+						returnValues.add(thisRow);
 					}
 				}
 			}
-		
-	}
-	
-	
-	static void convertParas(String fileName) throws InvalidFormatException, IOException {
-		
-			FileInputStream fis = new FileInputStream(fileName);
-			XWPFDocument xdoc = new XWPFDocument(OPCPackage.open(fis));
-			
+		}
 
-			java.util.List<XWPFParagraph> paragraphList = xdoc.getParagraphs();
-
-			for (XWPFParagraph paragraph : paragraphList) {
-
-				log.info(paragraph.getText());
-				log.info(paragraph.getAlignment());
-				System.out.print(paragraph.getRuns().size());
-				log.info(paragraph.getStyle());
-
-				// Returns numbering format for this paragraph, eg bullet or lowerLetter.
-				log.info(paragraph.getNumFmt());
-				log.info(paragraph.getAlignment());
-
-				log.info(paragraph.isWordWrapped());
-
-				log.info("********************************************************************");
-			}
+		return returnValues;
 
 	}
-	
 
-	
+	/**
+	 * Extract the Tables from a Word Document, convert to Red JavaBeans
+	 * 
+	 * @param wordDoc
+	 * @return
+	 * @throws InvalidFormatException
+	 * @throws IOException
+	 */
+	static Collection<Range> convertParasToBeans(XWPFDocument wordDoc) throws InvalidFormatException, IOException {
+
+		Collection<Range> returnValues = new ArrayList<Range>();
+		int counter = 0;
+
+		java.util.List<XWPFParagraph> paragraphList = wordDoc.getParagraphs();
+
+		for (XWPFParagraph paragraph : paragraphList) {
+
+			counter++; // make is start at 1
+			String name = WORD_PARAGRAPH_NAME_AS_RANGELIST + counter;
+
+			Range currentPara = new Range(name);
+			Cell redCell = new Cell(name, paragraph.getText());
+
+			// Add the return values
+			currentPara.put(name, redCell);
+			returnValues.add(currentPara);
+		}
+
+		return returnValues;
+
+	}
+
 	/**
 	 * 
 	 * @param excelWorkBook
 	 * @return
+	 * @throws IOException
+	 * @throws InvalidFormatException
 	 */
-	public static RangeList convertFromPoiWordIntoRedRange(XWPFDocument wordDoc) {
-		
-		return new RangeList();
+	public static RangeList convertFromPoiWordIntoRedRange(XWPFDocument wordDoc)
+			throws InvalidFormatException, IOException {
+
+		RangeList returnList = new RangeList();
+
+		Collection<Range> paras = convertParasToBeans(wordDoc);
+		Collection<Range> tables = convertTablesToBeans(wordDoc);
+
+		returnList.addAll(paras);
+		returnList.addAll(tables);
+
+		return returnList;
 	}
 
 	/*
@@ -95,5 +162,5 @@ public class DocumentConvertor {
 		// TODO Auto-generated method stub
 		throw new IllegalAccessError("method not implemented yet");
 	}
-	
+
 }

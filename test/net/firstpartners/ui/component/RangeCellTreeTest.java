@@ -3,12 +3,12 @@ package net.firstpartners.ui.component;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import org.apache.log4j.Logger;
 
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import net.firstpartners.core.excel.SpreadSheetConvertorTest;
+import net.firstpartners.TestConstants;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -27,7 +27,7 @@ public class RangeCellTreeTest {
 	@Before
 	public void beforeClass() throws IOException, ClassNotFoundException {
 
-		FileInputStream fileIn = new FileInputStream(SpreadSheetConvertorTest.SAVED_RANGEHOLDER_DATA);
+		FileInputStream fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
 		ObjectInputStream in = new ObjectInputStream(fileIn);
 		redData = (RangeList) in.readObject();
 		in.close();

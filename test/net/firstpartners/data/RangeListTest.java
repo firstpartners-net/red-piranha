@@ -16,8 +16,8 @@ public class RangeListTest  {
 	public void testIfNullBreaks() throws Exception {
 
 		RangeList myList = new RangeList();
-		myList.getAllRangesAndCells();
-		myList.getAllCells();
+		myList.getAllCellsInAllRanges();
+		myList.getAllCellsWithNames();
 		log.info("null test succesfully passed");
 
 	}

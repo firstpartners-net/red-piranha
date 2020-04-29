@@ -125,10 +125,6 @@ public class SpreadSheetConvertor {
 
 				net.firstpartners.data.Cell redCell = CellConvertor.convertPoiCellToRedCell(cellHandle, thisExcelCell);
 
-				// Give the cell information about who is holding it
-				// and that it should pass on property change events to it
-				redCell.setHoldingRange(redRange);
-
 				// log.info("Converted Cell:" + redCell);
 				log.info("Converted Number:" + thisCellinRange + " of " + cellArray.size());
 
@@ -162,7 +158,7 @@ public class SpreadSheetConvertor {
 		while (redCells.hasNext()) {
 
 			net.firstpartners.data.Cell thisRedCell = redCells.next();
-			String orignalSheetRef = thisRedCell.getOriginalSheetReference();
+			String orignalSheetRef = thisRedCell.getOriginalTableReference();
 			String originalPoiRef = thisRedCell.getOriginalCellReference();
 
 			if (originalPoiRef == null || orignalSheetRef == null) {

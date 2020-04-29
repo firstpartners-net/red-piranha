@@ -62,17 +62,21 @@ public class DocumentConvertor {
 			// Get the next POI Word Element
 			IBodyElement element = bodyElementIterator.next();
 
-			// Check if this is a tale
+			// Check if this is a taBLE
 			if (TABLE_IN_POI_WORD_MARKER.equalsIgnoreCase(element.getElementType().name())) {
 
 				// Get the Tables in this if its
 				java.util.List<XWPFTable> tableList = element.getBody().getTables();
-
-				// Loop through the table
+				int tableCounter =0;
+				
+				
+				// Loop through the tables
 				for (XWPFTable table : tableList) {
 
-					log.info("Total Number of Rows of Table:" + table.getNumberOfRows());
-
+					//we start at one
+					tableCounter++;
+					
+					//loop through the rows in this table
 					for (int rowCounter = 0; rowCounter < table.getRows().size(); rowCounter++) {
 
 						// Create a Range for this row of the table, using the value of the first cell
@@ -88,6 +92,9 @@ public class DocumentConvertor {
 
 							String cellName = possibleRowName + "_" + cellCounter;
 							Cell thisCell = new Cell(cellName, table.getRow(rowCounter).getCell(cellCounter).getText());
+							thisCell.setOriginalTableRefernece("TABLE_"+tableCounter);
+							thisCell.setOriginalCellReference("R:"+rowCounter+"C:"+cellCounter);
+							log.debug("created cell"+thisCell);
 							thisRow.put(cellName, thisCell);
 						}
 

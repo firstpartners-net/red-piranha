@@ -2,6 +2,8 @@ package net.firstpartners.core;
 
 import java.io.IOException;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.data.OfficeDocument;
@@ -38,8 +40,9 @@ public interface IDocumentOutStrategy {
 	 * @param fileToProcess
 	 * @param outputFileName
 	 * @throws IOException
+	 * @throws InvalidFormatException 
 	 */
-	public void processOutput() throws IOException;
+	public void processOutput() throws IOException, InvalidFormatException;
 	
 	/**
 	 * Allows us to set a Logger that will flush to an Excel Spreadheet

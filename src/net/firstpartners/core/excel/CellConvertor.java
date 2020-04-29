@@ -43,7 +43,7 @@ public class CellConvertor {
 
 		// Keep a reference to the original cell location
 		redCell.setOriginalCellReference(poiCell.getAddress().toString());
-		redCell.setOriginalSheetReference(poiCell.getSheet().getSheetName());
+		redCell.setOriginalTableRefernece(poiCell.getSheet().getSheetName());
 
 		// The name makes them as a ranage
 		redCell.setCellName(cellNameFromRange);

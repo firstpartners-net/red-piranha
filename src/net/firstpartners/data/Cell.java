@@ -24,13 +24,13 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	private String comment;
 
-	private Range holdingRange = null;
+//	private Range holdingRange = null;
 
 	private boolean modified = false;
 
 	private String originalCellReference = null;
 
-	private String originalSheetReference = null;
+	private String originalTableReference = null;
 
 	private Object value;
 
@@ -112,15 +112,15 @@ public class Cell implements PropertyChangeListener, Serializable {
 		return comment;
 	}
 
-	/**
-	 * Cells can hold a reference to the Named Range that they (might) sit within
-	 * 
-	 * @see Range
-	 * @return - can be null if
-	 */
-	public Range getHoldingRange() {
-		return holdingRange;
-	}
+//	/**
+//	 * Cells can hold a reference to the Named Range that they (might) sit within
+//	 * 
+//	 * @see Range
+//	 * @return - can be null if
+//	 */
+//	public Range getHoldingRange() {
+//		return holdingRange;
+//	}
 
 	/**
 	 * If possible, get the value of the Cell as an Integer
@@ -147,13 +147,12 @@ public class Cell implements PropertyChangeListener, Serializable {
 	}
 
 	/**
-	 * Get the original Sheet reference (if available) - e.g.from the Original
-	 * (Apache Poi) Spreadsheet if this is linked
-	 * 
+	 * Get the original Table reference (if available) - e.g.from the Original
+	 * (Word Table, sheet in Spreadsheet) that this came from
 	 * @return
 	 */
-	public String getOriginalSheetReference() {
-		return originalSheetReference;
+	public String getOriginalTableReference() {
+		return originalTableReference;
 	}
 
 	public Object getValue() {
@@ -222,9 +221,9 @@ public class Cell implements PropertyChangeListener, Serializable {
 		this.changes.firePropertyChange("comment", oldValue, comment);
 	}
 
-	public void setHoldingRange(Range holdingRange) {
-		this.holdingRange = holdingRange;
-	}
+//	public void setHoldingRange(Range holdingRange) {
+//		this.holdingRange = holdingRange;
+//	}
 
 	public void setModified(boolean modified) {
 		this.modified = modified;
@@ -243,11 +242,14 @@ public class Cell implements PropertyChangeListener, Serializable {
 		this.modified = true;
 		this.changes.firePropertyChange("originalCellReference", oldValue, value);
 	}
+	/**
+	 * Set the original Table (Word Table, sheet in Spreadsheet) that this came from
+	 * @param newOriginalSheetReference
+	 */
+	public void setOriginalTableRefernece(String newOriginalSheetReference) {
 
-	public void setOriginalSheetReference(String newOriginalSheetReference) {
-
-		Object oldValue = this.originalSheetReference;
-		this.originalSheetReference = newOriginalSheetReference;
+		Object oldValue = this.originalTableReference;
+		this.originalTableReference = newOriginalSheetReference;
 		this.modified = true;
 		this.changes.firePropertyChange("value", oldValue, value);
 	}
@@ -268,9 +270,8 @@ public class Cell implements PropertyChangeListener, Serializable {
 	 */
 	public String toLongString() {
 
-		return "Cell [cellName=" + cellName + ", changes=" + changes + ", comment=" + comment + ", holdingRange="
-				+ holdingRange + ", modified=" + modified + ", originalCellReference=" + originalCellReference
-				+ ", originalSheetReference=" + originalSheetReference + ", value=" + value + "]";
+		return "Cell [cellName=" + cellName + ", value=" + value + ", comment=" + comment + ", modified=" + modified + ", originalCellReference=" + originalCellReference
+				+ ", originalTableReference=" + originalTableReference  + "]";
 
 	}
 

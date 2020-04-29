@@ -73,12 +73,12 @@ public class SheetConvertor {
 	 */
 	static Sheet getOrCreateSheet(Workbook wb, net.firstpartners.data.Cell thisRedCell) {
 
-		log.info("trying to find sheet:" + thisRedCell.getOriginalSheetReference());
+		log.info("trying to find sheet:" + thisRedCell.getOriginalTableReference());
 
-		Sheet thisSheet = wb.getSheet(thisRedCell.getOriginalSheetReference());
+		Sheet thisSheet = wb.getSheet(thisRedCell.getOriginalTableReference());
 
 		if (thisSheet == null) {
-			thisSheet = wb.createSheet(thisRedCell.getOriginalSheetReference());
+			thisSheet = wb.createSheet(thisRedCell.getOriginalTableReference());
 		}
 
 		log.info("Found:" + thisSheet.getSheetName());

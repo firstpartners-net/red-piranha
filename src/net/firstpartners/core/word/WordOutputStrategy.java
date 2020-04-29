@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import org.apache.log4j.Logger;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 import net.firstpartners.core.IDocumentOutStrategy;
@@ -110,8 +111,9 @@ public class WordOutputStrategy implements IDocumentOutStrategy {
 	 * Outputs an Apache POI Workbook to a Logging Console
 	 * @param wb
 	 * @throws IOException
+	 * @throws InvalidFormatException 
 	 */
-	void outputToConsole(XWPFDocument wb) throws IOException{
+	void outputToConsole(XWPFDocument wb) throws IOException, InvalidFormatException{
 
 		RangeList ranges = DocumentConvertor.convertFromPoiWordIntoRedRange(wb);
 		outputToConsole(ranges);
@@ -123,8 +125,9 @@ public class WordOutputStrategy implements IDocumentOutStrategy {
 	 * @param wb - Apache POI Workbook (excel)
 	 * @param fileName
 	 * @throws IOException
+	 * @throws InvalidFormatException 
 	 */
-	void outputToFile(XWPFDocument wb) throws IOException{
+	void outputToFile(XWPFDocument wb) throws IOException, InvalidFormatException{
 
 		// Write out modified Excel sheet
 		try {
@@ -156,8 +159,9 @@ public class WordOutputStrategy implements IDocumentOutStrategy {
 	 * @param fileToProcess
 	 * @param outputFileName
 	 * @throws IOException
+	 * @throws InvalidFormatException 
 	 */
-	public void processOutput() throws IOException {
+	public void processOutput() throws IOException, InvalidFormatException {
 		
 		// delete the outputFile if it exists
 		deleteOutputFileIfExists();

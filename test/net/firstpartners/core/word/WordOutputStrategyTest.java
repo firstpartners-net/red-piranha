@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.junit.Test;
 
@@ -14,7 +15,7 @@ import net.firstpartners.TestConstants;
 public class WordOutputStrategyTest {
 
 	@Test
-	public final void testOutputExcelThenDelete() throws IOException {
+	public final void testOutputWordThenDelete() throws IOException, InvalidFormatException {
 
 		XWPFDocument xdoc = new XWPFDocument();
 

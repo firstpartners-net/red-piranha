@@ -1,34 +1,46 @@
 package net.firstpartners.core.word;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.junit.jupiter.api.Test;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.junit.Test;
 
 import net.firstpartners.TestConstants;
+import net.firstpartners.data.RangeHolder;
 
-class DocumentConvertorTest {
+public class DocumentConvertorTest {
+
 
 	@Test
-	void testMarket() throws InvalidFormatException, IOException {
-		fail("No real tests implemented");
-	}
-	
-	
-	@Test
-	void testConvertDocx() throws InvalidFormatException, IOException {
+	public void testMain() throws InvalidFormatException, IOException {
 		DocumentConvertor.convertTables(TestConstants.WORDX_DATA_FILE);
 		DocumentConvertor.convertParas(TestConstants.WORDX_DATA_FILE);
 	}
+
 	
 	@Test
-	void testConvertDoc() throws InvalidFormatException, IOException {
-		DocumentConvertor.convertTables(TestConstants.WORD_DATA_FILE);
-		DocumentConvertor.convertParas(TestConstants.WORD_DATA_FILE);
+	public void testConvertPoiToRed() throws InvalidFormatException, IOException {
+		
+		XWPFDocument xdoc = new XWPFDocument();
+		RangeHolder results = DocumentConvertor.convertFromPoiWordIntoRedRange(xdoc);
+		assertNotNull(results);
+		assertTrue(results.toArray().length>0);
+		
 	}
-
+	
+	
+	@Test
+	public void testConvertRedToPoi() throws InvalidFormatException, IOException {
+		XWPFDocument xdoc = new XWPFDocument();
+		RangeHolder results = new RangeHolder();
+		
+		DocumentConvertor.updateRedRangeintoPoiWord(xdoc, results);
+	}
+	
 	
 
 }

@@ -1,9 +1,13 @@
 package net.firstpartners.core.word;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 import net.firstpartners.core.IDocumentInStrategy;
@@ -51,22 +55,21 @@ public class WordInputStrategy implements IDocumentInStrategy {
 	 * @return
 	 * @throws EncryptedDocumentException
 	 * @throws IOException
+	 * @throws InvalidFormatException
 	 */
 	@Override
 
-	public RangeHolder getJavaBeansFromSource() throws EncryptedDocumentException, IOException {
+	public RangeHolder getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException {
 
-		
-		log.debug("converting incoming excel stream to Javabeans");
-		throw new IllegalArgumentException("method not implmenetd");
-		
-//		InputStream inputAsStream = new FileInputStream(this.wordInputFileName);
-//
-//		
-//		excelWorkBook = WorkbookFactory.create(inputAsStream);
-//		RangeHolder myRange = DocumentConvertor.convertFromPoiWordIntoRedRange(excelWorkBook);
-//		inputAsStream.close();
-//		return myRange;
+		log.debug("converting incoming word stream to Javabeans");
+
+		InputStream inputAsStream = new FileInputStream(this.wordInputFileName);
+		XWPFDocument inDoc = new XWPFDocument(OPCPackage.open(inputAsStream));
+
+		RangeHolder myRange = DocumentConvertor.convertFromPoiWordIntoRedRange(inDoc);
+		inputAsStream.close();
+
+		return myRange;
 
 	}
 
@@ -75,8 +78,7 @@ public class WordInputStrategy implements IDocumentInStrategy {
 	}
 
 	@Override
-	public void setOriginalDocument(OfficeDocument originalDoc)
-	{
+	public void setOriginalDocument(OfficeDocument originalDoc) {
 		this.poiDoc = originalDoc.getOriginalAsPoiWordDoc();
 	}
 

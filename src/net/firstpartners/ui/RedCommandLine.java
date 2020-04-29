@@ -32,16 +32,24 @@ public class RedCommandLine {
 	 * Usage from command line java -jar [jarName.jar] all args are ignored - we
 	 * load from red-piranha.config
 	 *
-	 * @param ignoredArgs - not used
+	 * @param args[0] the name of the config file - defaults to @see RedConstants.RED_PIRANHA_CONFIG
 	 * @throws IOException
 	 * @throws DroolsParserException
 	 */
-	public static void main(String[] ignoredArgs) throws Exception {
+	public static void main(String[] args) throws Exception {
 
 		// Check and force logging
 		String logFileName = Config.getForcedLogFileName();
 		RpLogger.checkForceLogToFile(logFileName);
 
+		//Check if we need to override the configuration
+		if(args.length>=1) {
+			Config.readConfig(args[0]);
+		} else {
+			Config.readConfig();
+		}
+		
+		
 		// Open the GUI
 		log.debug("Opening GUI");
 		RedGui player = new RedGui();

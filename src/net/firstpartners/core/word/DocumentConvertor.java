@@ -21,7 +21,9 @@ public class DocumentConvertor {
 
 	
 	
-	public static void convertTables(String fileName) throws InvalidFormatException, IOException {
+	static void convertTables(String fileName) throws InvalidFormatException, IOException {
+		
+		
 		
 			FileInputStream fis = new FileInputStream(fileName);
 			XWPFDocument xdoc = new XWPFDocument(OPCPackage.open(fis));
@@ -29,6 +31,8 @@ public class DocumentConvertor {
 			while (bodyElementIterator.hasNext()) {
 				IBodyElement element = bodyElementIterator.next();
 
+				log.info("Element Type:"+element.toString());
+				
 				if ("TABLE".equalsIgnoreCase(element.getElementType().name())) {
 					java.util.List<XWPFTable> tableList = element.getBody().getTables();
 					for (XWPFTable table : tableList) {
@@ -46,10 +50,11 @@ public class DocumentConvertor {
 	}
 	
 	
-	public static void convertParas(String fileName) throws InvalidFormatException, IOException {
+	static void convertParas(String fileName) throws InvalidFormatException, IOException {
 		
 			FileInputStream fis = new FileInputStream(fileName);
 			XWPFDocument xdoc = new XWPFDocument(OPCPackage.open(fis));
+			
 
 			java.util.List<XWPFParagraph> paragraphList = xdoc.getParagraphs();
 
@@ -73,16 +78,22 @@ public class DocumentConvertor {
 	
 
 	
-
-	public static RangeHolder convertFromPoiWordIntoRedRange(XWPFDocument excelWorkBook) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * 
+	 * @param excelWorkBook
+	 * @return
+	 */
+	public static RangeHolder convertFromPoiWordIntoRedRange(XWPFDocument wordDoc) {
+		
+		return new RangeHolder();
 	}
 
-
-	public static void updateRedRangeintoPoiWord(XWPFDocument fileToProcess, RangeHolder range) {
+	/*
+	 * 
+	 */
+	public static void updateRedRangeintoPoiWord(XWPFDocument wordDocToUpdate, RangeHolder range) {
 		// TODO Auto-generated method stub
-		
+		throw new IllegalAccessError("method not implemented yet");
 	}
 	
 }

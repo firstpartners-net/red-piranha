@@ -18,14 +18,11 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.CellReference;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.MethodOrderer.Alphanumeric;
-import org.junit.jupiter.api.TestMethodOrder;
 
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeHolder;
 
-@TestMethodOrder(Alphanumeric.class)
 public class CellConvertorTest {
 
 	// Handle to the logger

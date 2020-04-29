@@ -18,7 +18,7 @@ public class URLRuleLoaderStrategyTest {
 			.getName());
 
 
-	@Test
+	
 	public final void testLoadCachedRulesFromUrl() throws IOException, ClassNotFoundException {
 
 		//Set the rule source

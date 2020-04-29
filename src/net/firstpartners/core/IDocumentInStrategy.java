@@ -3,6 +3,7 @@ package net.firstpartners.core;
 import java.io.IOException;
 
 import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import net.firstpartners.core.word.WordInputStrategy;
 import net.firstpartners.data.OfficeDocument;
@@ -36,10 +37,11 @@ public interface IDocumentInStrategy {
 	 * 
 	 * @param inputFromExcel
 	 * @return
+	 * @throws InvalidFormatException 
 	 * @throws EncryptedDocumentException
 	 * @throws IOException
 	 */
-	RangeHolder getJavaBeansFromSource() throws EncryptedDocumentException, IOException;
+	RangeHolder getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException;
 
 	/**
 	 * Update the document we are dealing with

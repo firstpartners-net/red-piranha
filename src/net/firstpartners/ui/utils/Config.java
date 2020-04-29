@@ -21,25 +21,49 @@ import net.firstpartners.core.log.RpLogger;
  */
 public class Config {
 
-	private static final Logger log = RpLogger.getLogger(Config.class.getName());
+	public static final String DRL1 = "DRL1";
 
+	private static final String DRL2 = "DRL2";
+	private static final String DRL3 = "DRL3";
 	// names of params to read from properties files - keep these internal
 	public static final String FILE_INPUT = "FILE_INPUT";
 	public static final String FILE_OUTPUT = "FILE_OUTPUT";
-	public static final String DRL1 = "DRL1";
-	private static final String DRL2 = "DRL2";
-	private static final String DRL3 = "DRL3";
+	private static final Logger log = RpLogger.getLogger(Config.class.getName());
 	private static final String LOG_FILE_NAME = "LOG_FILE_NAME";
 
-	//Keys that must be present in the file
-	public static String[] requiredConfigKeys = { FILE_INPUT, FILE_OUTPUT, DRL1 };	
-	
-	//Simple Cache
+	// Simple Cache
 	private static Properties prop = null;
 
-	
-	
-	
+	// Keys that must be present in the file
+	public static String[] requiredConfigKeys = { FILE_INPUT, FILE_OUTPUT, DRL1 };
+
+	/**
+	 * If set, return the name of the Log file
+	 * 
+	 * @return filename , or empty / null if not present
+	 */
+	public static String getForcedLogFileName() {
+		return readConfig().getProperty(Config.LOG_FILE_NAME, "");
+	}
+
+	/**
+	 * If set, return the name of the Log file
+	 * 
+	 * @return filename , or empty / null if not present
+	 */
+	public static String getInputFileName() {
+		return readConfig().getProperty(Config.FILE_INPUT, "");
+	}
+
+	/**
+	 * If set, return the name of the Log file
+	 * 
+	 * @return filename , or empty / null if not present
+	 */
+	public static String getOutputFileName() {
+		return readConfig().getProperty(Config.FILE_OUTPUT, "");
+	}
+
 	/**
 	 * Get the rule file names from the command line
 	 * 
@@ -69,54 +93,29 @@ public class Config {
 	}
 
 	/**
-	 * We can override the properties (e.g. for testing)
-	 * @param p - the properties we want to use - cannot be null
-	 */
-	public static void setProperties(Properties p) {
-		
-		assert p!=null : "Properties file cannot be reset to null";
-		
-		prop =p;
-		validateConfig();
-	}
-	
-	/**
-	 * Validate the required Config file
-	 */
-	static void validateConfig() {
-		
-		
-		for (int a=0; a <requiredConfigKeys.length;a++) {
-			assert prop.get(requiredConfigKeys[a])!=null : "Please make sure the config file "+RedConstants.RED_PIRANHA_CONFIG+ " contains a value for "+requiredConfigKeys[a];
-			
-		}
-		
-		if (getInputFileName().equalsIgnoreCase(getOutputFileName())) {
-			log.warn("Stopping - Input and output files should not be the same");
-			throw new IllegalArgumentException("Input and output files should not be the same");
-		}
-	}
-	
-	/**
-	 * Reset the properties - will be reload (as if new) on next read. No value checking
-	 */
-	static void reset() {
-		prop =null;
-	}
-	
-	/**
-	 * Read the configuration file
+	 * Read the configuration file using default of @see
+	 * RedConstants.RED_PIRANHA_CONFIG
 	 * 
 	 * @return
 	 */
-	static Properties readConfig() {
+	public static Properties readConfig() {
+		return readConfig(RedConstants.RED_PIRANHA_CONFIG);
+	}
+
+	/**
+	 * Read the configuration file
+	 * 
+	 * @param allows us to set the config file location
+	 * @return
+	 */
+	public static Properties readConfig(String configFileName) {
 
 		if (prop == null) {
 
 			log.debug("loading config");
 			prop = new Properties();
 
-			String fileName = RedConstants.RED_PIRANHA_CONFIG;
+			String fileName = configFileName;
 			InputStream is = null;
 
 			try {
@@ -133,8 +132,6 @@ public class Config {
 			}
 			log.info("Properties file:" + prop.toString());
 
-			
-			
 			return prop;
 
 		} else {
@@ -146,30 +143,41 @@ public class Config {
 	}
 
 	/**
-	 * If set, return the name of the Log file
-	 * 
-	 * @return filename , or empty / null if not present
+	 * Reset the properties - will be reload (as if new) on next read. No value
+	 * checking
 	 */
-	public static String getForcedLogFileName() {
-		return readConfig().getProperty(Config.LOG_FILE_NAME, "");
+	static void reset() {
+		prop = null;
 	}
 
 	/**
-	 * If set, return the name of the Log file
+	 * We can override the properties (e.g. for testing)
 	 * 
-	 * @return filename , or empty / null if not present
+	 * @param p - the properties we want to use - cannot be null
 	 */
-	public static String getInputFileName() {
-		return readConfig().getProperty(Config.FILE_INPUT, "");
+	public static void setProperties(Properties p) {
+
+		assert p != null : "Properties file cannot be reset to null";
+
+		prop = p;
+		validateConfig();
 	}
 
 	/**
-	 * If set, return the name of the Log file
-	 * 
-	 * @return filename , or empty / null if not present
+	 * Validate the required Config file
 	 */
-	public static String getOutputFileName() {
-		return readConfig().getProperty(Config.FILE_OUTPUT, "");
+	static void validateConfig() {
+
+		for (int a = 0; a < requiredConfigKeys.length; a++) {
+			assert prop.get(requiredConfigKeys[a]) != null : "Please make sure the config file "
+					+ RedConstants.RED_PIRANHA_CONFIG + " contains a value for " + requiredConfigKeys[a];
+
+		}
+
+		if (getInputFileName().equalsIgnoreCase(getOutputFileName())) {
+			log.warn("Stopping - Input and output files should not be the same");
+			throw new IllegalArgumentException("Input and output files should not be the same");
+		}
 	}
 
 }

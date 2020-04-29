@@ -2,8 +2,14 @@ package net.firstpartners.core.word;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.io.IOException;
 
 import org.apache.log4j.Logger;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.openxml4j.exceptions.OLE2NotOfficeXmlFileException;
+import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
@@ -44,20 +50,30 @@ public class WordInputStrategyTest {
 	/**
 	 * Just check that the rules can run, throws no exception
 	 */
-	public final void testDocCallRulesFromFile() throws Exception {
+	public final void testDocCallRulesFromFile() throws ClassNotFoundException, InvalidFormatException, DroolsParserException, IOException {
 		
-		RuleDTO ruleSource = new RuleDTO();
-		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
+		try {
+			
+			RuleDTO ruleSource = new RuleDTO();
+			ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 
-		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.WORD_DATA_FILE,ruleSource,"some-dummy.doc");
-		assertTrue (runner.getDocumentInputStrategy() instanceof WordInputStrategy);
+			RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.WORD_DATA_FILE,ruleSource,"some-dummy.doc");
+			
+			assertTrue (runner.getDocumentInputStrategy() instanceof WordInputStrategy);
+			
+			//set out OutputStrategy so we can test the output later
+			MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
+			runner.setOutputStrategy(outputStrategy);
+	
+			runner.callRules();
+			fail("Excpected exception when opening docx not thrown");
+			
+			
+		} catch (OLE2NotOfficeXmlFileException ole2Exception) {
+			// ignore - we expect it to call
+		}
 		
-		//set out OutputStrategy so we can test the output later
-		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
-		runner.setOutputStrategy(outputStrategy);
 
-		runner.callRules();
-		assertNotNull(outputStrategy.getProcessedDocument());
 
 	}
 

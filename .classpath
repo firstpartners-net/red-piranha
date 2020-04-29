@@ -69,7 +69,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/xstream-1.4.9.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/servlet-api-3.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/dom4j-2.0.3.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-4.1.2.jar" sourcepath="C:/Users/pbrowne/.m2/repository/org/apache/poi/poi/4.1.2/poi-4.1.2-sources.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-ooxml-4.1.2.jar" sourcepath="C:/Users/pbrowne/.m2/repository/org/apache/poi/poi-ooxml/4.1.2/poi-ooxml-4.1.2-sources.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-ooxml-schemas-4.1.2.jar"/>
@@ -88,5 +87,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gson-2.8.6.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-text-1.8.jar" sourcepath="C:/Users/pbrowne/.m2/repository/org/apache/commons/commons-text/1.8/commons-text-1.8-sources.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-lang3-3.10.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

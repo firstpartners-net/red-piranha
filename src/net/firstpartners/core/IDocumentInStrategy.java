@@ -7,7 +7,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import net.firstpartners.core.word.WordInputStrategy;
 import net.firstpartners.data.OfficeDocument;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 /**
  * Implements the Strategy Command Pattern so that we can read data from
@@ -41,7 +41,7 @@ public interface IDocumentInStrategy {
 	 * @throws EncryptedDocumentException
 	 * @throws IOException
 	 */
-	RangeHolder getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException;
+	RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException;
 
 	/**
 	 * Update the document we are dealing with

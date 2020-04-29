@@ -18,7 +18,7 @@ import org.apache.poi.ss.util.CellReference;
 
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Range;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 /**
  * Read Ranges from Excel, Convert to a format (JavaBeans) that rules find
@@ -42,11 +42,11 @@ public class RangeConvertor {
 	 * @throws IOException
 	 */
 	@SuppressWarnings("unused")
-	public static RangeHolder convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook wb)
+	public static RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook wb)
 			throws IOException {
 
 		// hold all the named ranges from our sheet
-		RangeHolder returnValues = new RangeHolder();
+		RangeList returnValues = new RangeList();
 
 		// retrieve the named range - Iterator not available
 		List<? extends Name> namedRanges = wb.getAllNames();
@@ -153,7 +153,7 @@ public class RangeConvertor {
 	 * @param updatedValues
 	 * @throws IOException
 	 */
-	public static void updateRedRangeintoPoiExcel(Workbook wb, RangeHolder updatedValues) throws IOException {
+	public static void updateRedRangeintoPoiExcel(Workbook wb, RangeList updatedValues) throws IOException {
 
 		// Get all the Cells that we have been keeping track of
 		Map<String, net.firstpartners.data.Cell> allCells = updatedValues.getAllCells();

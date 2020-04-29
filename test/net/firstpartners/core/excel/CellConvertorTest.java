@@ -21,14 +21,14 @@ import org.junit.Test;
 
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 public class CellConvertorTest {
 
 	// Handle to the logger
 	private static final Logger log = RpLogger.getLogger(CellConvertorTest.class.getName());
 
-	private static RangeHolder redData = null;
+	private static RangeList redData = null;
 	private static Workbook excelData = null;
 
 	@Before
@@ -36,7 +36,7 @@ public class CellConvertorTest {
 
 		FileInputStream fileIn = new FileInputStream(RangeConvertorTest.SAVED_RANGEHOLDER_DATA);
 		ObjectInputStream in = new ObjectInputStream(fileIn);
-		redData = (RangeHolder) in.readObject();
+		redData = (RangeList) in.readObject();
 		in.close();
 		fileIn.close();
 	}

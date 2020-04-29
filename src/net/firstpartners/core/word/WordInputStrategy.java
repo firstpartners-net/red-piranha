@@ -13,7 +13,7 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.OfficeDocument;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 /**
  * Specific steps needed for feeding Excel Documents into and out of the Rule
@@ -59,14 +59,14 @@ public class WordInputStrategy implements IDocumentInStrategy {
 	 */
 	@Override
 
-	public RangeHolder getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException {
+	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException {
 
 		log.debug("converting incoming word stream to Javabeans");
 
 		InputStream inputAsStream = new FileInputStream(this.wordInputFileName);
 		XWPFDocument inDoc = new XWPFDocument(OPCPackage.open(inputAsStream));
 
-		RangeHolder myRange = DocumentConvertor.convertFromPoiWordIntoRedRange(inDoc);
+		RangeList myRange = DocumentConvertor.convertFromPoiWordIntoRedRange(inDoc);
 		inputAsStream.close();
 
 		return myRange;

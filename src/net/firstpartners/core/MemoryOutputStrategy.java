@@ -7,7 +7,7 @@ import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.core.word.DocumentConvertor;
 import net.firstpartners.data.OfficeDocument;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 /**
  * Strategy Class for Output of Documents to memory Doesn't actually output
@@ -88,7 +88,7 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	}
 
 	@Override
-	public void updateCopyOfOriginalDocument(OfficeDocument fileToProcess, RangeHolder ranges) throws IOException {
+	public void updateCopyOfOriginalDocument(OfficeDocument fileToProcess, RangeList ranges) throws IOException {
 		this.processedDoc = fileToProcess;
 		if (fileToProcess.isSpreadsheet()) {
 			RangeConvertor.updateRedRangeintoPoiExcel(fileToProcess.getOriginalAsPoiWorkbook(), ranges);

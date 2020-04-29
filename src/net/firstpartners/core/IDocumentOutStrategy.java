@@ -5,7 +5,7 @@ import java.io.IOException;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.data.OfficeDocument;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 /**
  * Marks classes as being able to output documents in the system
@@ -52,6 +52,6 @@ public interface IDocumentOutStrategy {
 	 * @param ranges
 	 * @throws IOException
 	 */
-	void updateCopyOfOriginalDocument(OfficeDocument fileToProcess,RangeHolder ranges) throws IOException;
+	void updateCopyOfOriginalDocument(OfficeDocument fileToProcess,RangeList ranges) throws IOException;
 
 }

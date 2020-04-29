@@ -17,7 +17,7 @@ import org.junit.Test;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 public class RangeConvertorTest {
 
@@ -36,7 +36,7 @@ public class RangeConvertorTest {
 	 */
 	public static void main (String args[]) throws IOException {
 		
-		RangeHolder myRange = new RangeConvertorTest().getTestDataFromWorkbook();
+		RangeList myRange = new RangeConvertorTest().getTestDataFromWorkbook();
 		FileOutputStream fileOut =new FileOutputStream(SAVED_RANGEHOLDER_DATA);
         ObjectOutputStream out = new ObjectOutputStream(fileOut);
         out.writeObject(myRange);
@@ -49,7 +49,7 @@ public class RangeConvertorTest {
 	 * This is implemented as a sub method so we can call from tests and convenience main[] method
 	 * @throws IOException 
 	 */
-	private final RangeHolder getTestDataFromWorkbook() throws IOException {
+	private final RangeList getTestDataFromWorkbook() throws IOException {
 	
 		FileInputStream inputStream = new FileInputStream(TestConstants.XLSX_DATA_FILE);
 		wb = WorkbookFactory.create(inputStream);
@@ -60,7 +60,7 @@ public class RangeConvertorTest {
 	@Test
 	public final void testRangeConversation() throws IOException {
 		
-		RangeHolder myRange = getTestDataFromWorkbook();
+		RangeList myRange = getTestDataFromWorkbook();
 		assertNotNull(wb);
 		
 		// Convert over and back again

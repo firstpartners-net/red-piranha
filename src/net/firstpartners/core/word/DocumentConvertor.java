@@ -13,7 +13,7 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 public class DocumentConvertor {
 
@@ -83,15 +83,15 @@ public class DocumentConvertor {
 	 * @param excelWorkBook
 	 * @return
 	 */
-	public static RangeHolder convertFromPoiWordIntoRedRange(XWPFDocument wordDoc) {
+	public static RangeList convertFromPoiWordIntoRedRange(XWPFDocument wordDoc) {
 		
-		return new RangeHolder();
+		return new RangeList();
 	}
 
 	/*
 	 * 
 	 */
-	public static void updateRedRangeintoPoiWord(XWPFDocument wordDocToUpdate, RangeHolder range) {
+	public static void updateRedRangeintoPoiWord(XWPFDocument wordDocToUpdate, RangeList range) {
 		// TODO Auto-generated method stub
 		throw new IllegalAccessError("method not implemented yet");
 	}

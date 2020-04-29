@@ -30,7 +30,7 @@ import org.apache.log4j.Logger;
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 import net.firstpartners.ui.component.HtmlGenerator;
 import net.firstpartners.ui.component.RangeCellTree;
 import net.firstpartners.ui.component.SwingGuiUtils;
@@ -331,8 +331,8 @@ public class RedGui extends WindowAdapter
 	@Override
 	public void showPostRulesSnapShot(Object message) {
 
-		if (message instanceof RangeHolder) {
-			postRangeCellTree.setDataModel((RangeHolder) message);
+		if (message instanceof RangeList) {
+			postRangeCellTree.setDataModel((RangeList) message);
 		} else {
 			// redirect this info to the logger
 			info("Data Extracted from Excel Spreadsheet");
@@ -351,8 +351,8 @@ public class RedGui extends WindowAdapter
 	@Override
 	public void showPreRulesSnapShot(Object message) {
 
-		if (message instanceof RangeHolder) {
-			preRangeCellTree.setDataModel((RangeHolder) message);
+		if (message instanceof RangeList) {
+			preRangeCellTree.setDataModel((RangeList) message);
 		} else {
 			// redirect this info to the logger
 			info("Data Extracted from Excel Spreadsheet");

@@ -15,14 +15,14 @@ import org.junit.Test;
 
 import net.firstpartners.core.drools.loader.RuleDTO;
 import net.firstpartners.core.excel.RangeConvertorTest;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 public class ConfigTest {
 
 	// Logger
 		private static final Logger log = Logger.getLogger(ConfigTest.class.getName());
 		@SuppressWarnings("unused")
-		private static RangeHolder redData=null;
+		private static RangeList redData=null;
 
 		
 		@Before
@@ -30,7 +30,7 @@ public class ConfigTest {
 
 			FileInputStream fileIn = new FileInputStream(RangeConvertorTest.SAVED_RANGEHOLDER_DATA);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
-			redData = (RangeHolder) in.readObject();
+			redData = (RangeList) in.readObject();
 			in.close();
 			fileIn.close();
 		}

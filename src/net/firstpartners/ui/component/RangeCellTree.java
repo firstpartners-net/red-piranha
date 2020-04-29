@@ -16,7 +16,7 @@ import javax.swing.tree.DefaultTreeModel;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.Range;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 /**
  * Component we use on our panels to display Ranges and Cells Based on example
@@ -95,7 +95,7 @@ public class RangeCellTree extends JPanel {
 	 * 
 	 * @param redRange
 	 */
-	public void setDataModel(RangeHolder redRange) {
+	public void setDataModel(RangeList redRange) {
 
 		for (Range range : redRange) {
 

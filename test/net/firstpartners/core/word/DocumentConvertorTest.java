@@ -10,7 +10,7 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 public class DocumentConvertorTest {
 
@@ -26,7 +26,7 @@ public class DocumentConvertorTest {
 	public void testConvertPoiToRed() throws InvalidFormatException, IOException {
 		
 		XWPFDocument xdoc = new XWPFDocument();
-		RangeHolder results = DocumentConvertor.convertFromPoiWordIntoRedRange(xdoc);
+		RangeList results = DocumentConvertor.convertFromPoiWordIntoRedRange(xdoc);
 		assertNotNull(results);
 		assertTrue(results.toArray().length>0);
 		
@@ -36,7 +36,7 @@ public class DocumentConvertorTest {
 	@Test
 	public void testConvertRedToPoi() throws InvalidFormatException, IOException {
 		XWPFDocument xdoc = new XWPFDocument();
-		RangeHolder results = new RangeHolder();
+		RangeList results = new RangeList();
 		
 		DocumentConvertor.updateRedRangeintoPoiWord(xdoc, results);
 	}

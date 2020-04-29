@@ -15,7 +15,7 @@ import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.data.OfficeDocument;
 import net.firstpartners.data.Range;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 /**
  * Strategy class of output of Excel Document
@@ -102,7 +102,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 * Outputs Red-Piranha's own internal format to a Logging Console
 	 * @param ranges
 	 */
-	void outputToConsole(RangeHolder ranges ){
+	void outputToConsole(RangeList ranges ){
 		for (Range r : ranges) {
 			log.info(r.toString());
 		}
@@ -116,7 +116,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	void outputToConsole(Workbook wb) throws IOException{
 
-		RangeHolder ranges = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
+		RangeList ranges = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		outputToConsole(ranges);
 
 	}
@@ -190,7 +190,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 * @param ranges
 	 * @throws IOException
 	 */
-	public void updateCopyOfOriginalDocument(OfficeDocument fileToProcess,RangeHolder range) throws IOException {
+	public void updateCopyOfOriginalDocument(OfficeDocument fileToProcess,RangeList range) throws IOException {
 		
 		this.workbook =fileToProcess.getOriginalAsPoiWorkbook();
 		RangeConvertor.updateRedRangeintoPoiExcel(this.workbook, range);

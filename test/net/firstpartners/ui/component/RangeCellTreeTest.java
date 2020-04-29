@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import net.firstpartners.core.excel.RangeConvertorTest;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 /**
  * Test to call the main method
@@ -22,14 +22,14 @@ public class RangeCellTreeTest {
 	// Logger
 	private static final Logger log = Logger.getLogger(RangeCellTreeTest.class.getName());
 
-	private static RangeHolder redData = null;
+	private static RangeList redData = null;
 
 	@Before
 	public void beforeClass() throws IOException, ClassNotFoundException {
 
 		FileInputStream fileIn = new FileInputStream(RangeConvertorTest.SAVED_RANGEHOLDER_DATA);
 		ObjectInputStream in = new ObjectInputStream(fileIn);
-		redData = (RangeHolder) in.readObject();
+		redData = (RangeList) in.readObject();
 		in.close();
 		fileIn.close();
 	}

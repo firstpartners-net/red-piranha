@@ -12,7 +12,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.OfficeDocument;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 /**
  * Specific steps needed for feeding Excel Documents into and out of the Rule
@@ -57,13 +57,13 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	 */
 	@Override
 
-	public RangeHolder getJavaBeansFromSource() throws EncryptedDocumentException, IOException {
+	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException {
 
 		InputStream inputAsStream = new FileInputStream(this.excelInputFileName);
 
 		log.debug("converting incoming excel stream to Javabeans");
 		excelWorkBook = WorkbookFactory.create(inputAsStream);
-		RangeHolder myRange = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(excelWorkBook);
+		RangeList myRange = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(excelWorkBook);
 		inputAsStream.close();
 		return myRange;
 

@@ -22,7 +22,7 @@ import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.data.Cell;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 /**
  * Call JBoss Drools (Rules Engine) passing in Document data as Java Objects
@@ -103,7 +103,7 @@ public class RuleRunner {
 		}
 
 		// Convert the cell and log if we have a handle
-		RangeHolder ranges = inputStrategy.getJavaBeansFromSource();
+		RangeList ranges = inputStrategy.getJavaBeansFromSource();
 
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(25);

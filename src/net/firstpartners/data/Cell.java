@@ -6,8 +6,9 @@ import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
 /**
- * JavaBean equivalent of a cell in an Excel Spreadsheet. Since we also map from other sources into these classes, a Cell could be a cell from a table in a Word Document.
- * Or a paragraph from a word document
+ * JavaBean equivalent of a cell in an Excel Spreadsheet. 
+ * Since we also map from other sources into these classes, a Cell could be a cell from a table in a Word Document.
+ * For simplicity, we map Paragraphs from a word document into a cell (to making writing rules easier)
  * 
  * @param cellName
  * @param value
@@ -32,10 +33,17 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	private Object value;
 
-	// Default constructor - needed to keep this a Javabean
+	/**
+	 * Default constructor - needed to keep this a Javabean
+	 */
 	public Cell() {
 	}
 
+	/**
+	 * Mose Basic useful Cell - with a name and value
+	 * @param cellName
+	 * @param value
+	 */
 	public Cell(String cellName, Object value) {
 		super();
 		this.cellName = cellName;
@@ -48,6 +56,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	/**
 	 * Check for equality with another Object / cell
+	 * @param - the object to compare us to
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -78,6 +87,10 @@ public class Cell implements PropertyChangeListener, Serializable {
 		return true;
 	}
 
+	/**
+	 * If possible, get the value of the Cell as a Boolean
+	 * @returns null if this conversion is not possible
+	 */
 	public Boolean getBooleanValue() {
 		if ((value != null) && (value instanceof Boolean)) {
 			return ((Boolean) value);
@@ -96,13 +109,18 @@ public class Cell implements PropertyChangeListener, Serializable {
 	}
 
 	/**
-	 * Cells can hold a reference to the Named Range that they (might) sit withing
-	 * @return
+	 * Cells can hold a reference to the Named Range that they (might) sit within
+	 * @see Range 
+	 * @return - can be null if
 	 */
 	public Range getHoldingRange() {
 		return holdingRange;
 	}
 
+	/**
+	 * If possible, get the value of the Cell as an Integer
+	 * @returns null if this conversion is not possible
+	 */
 	public Integer getIntValue() {
 		if ((value != null) && (value instanceof Number)) {
 			return ((Number) value).intValue();
@@ -116,7 +134,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 	 * Get the original Cell reference (if available) - e.g. the Cell address from
 	 * the Original (Apache Poi) Spreadsheet
 	 * 
-	 * @return
+	 * @return - null if this is not available
 	 */
 	public String getOriginalCellReference() {
 		return originalCellReference;
@@ -137,11 +155,11 @@ public class Cell implements PropertyChangeListener, Serializable {
 	}
 
 	/**
-	 * Convenience method
-	 * 
-	 * @return
+	 * Get the value of the Cell as a String
+	 * @returns null if this conversion is not possible
 	 */
 	public String getValueAsText() {
+		
 		if (value != null) {
 			return value.toString();
 		}

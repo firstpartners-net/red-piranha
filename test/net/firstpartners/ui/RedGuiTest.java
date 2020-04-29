@@ -11,7 +11,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import org.junit.Test;
 
 import net.firstpartners.core.excel.RangeConvertorTest;
-import net.firstpartners.data.RangeHolder;
+import net.firstpartners.data.RangeList;
 
 /**
  * Test to call the main method
@@ -57,10 +57,10 @@ public class RedGuiTest {
 		// Get the test data
 		FileInputStream fileIn = null;
 		ObjectInputStream in = null;
-		RangeHolder redData = null;
+		RangeList redData = null;
 		fileIn = new FileInputStream(RangeConvertorTest.SAVED_RANGEHOLDER_DATA);
 		in = new ObjectInputStream(fileIn);
-		redData = (RangeHolder) in.readObject();
+		redData = (RangeList) in.readObject();
 		//in.;
 		fileIn.close();
 

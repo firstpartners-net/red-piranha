@@ -2,12 +2,18 @@ package net.firstpartners.data;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import org.junit.Test;
 
-public class CellTest {
+public class CellTest implements PropertyChangeListener {
 
+	PropertyChangeEvent holdEvent=null;
+	
 	@Test
 	public final void testCellEquality() {
 		
@@ -24,9 +30,23 @@ public class CellTest {
 	@Test
 	public final void testPropertyChangeListener() {
 		
+		Cell myCell1 = new Cell("Key1","Value1");
+		myCell1.addPropertyChangeListener(this);
 		
-		// note when fixing - is there an annotation
-		fail("test not yet implemented");
+		//reset the event
+		holdEvent =null;
+		//something should fire
+		
+		assertNull(holdEvent);
+		myCell1.setCellName("newName");
+		
+		assertNotNull(holdEvent);
+		
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		this.holdEvent=evt;
 	}
 
 }

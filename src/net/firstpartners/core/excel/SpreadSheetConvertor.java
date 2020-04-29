@@ -29,10 +29,10 @@ import net.firstpartners.data.RangeList;
  * @author paulbrowne
  *
  */
-public class RangeConvertor {
+public class SpreadSheetConvertor {
 
 	// Logging
-	private static final Logger log = RpLogger.getLogger(RangeConvertor.class.getName());
+	private static final Logger log = RpLogger.getLogger(SpreadSheetConvertor.class.getName());
 
 	/**
 	 * Read an excel file and return what we find as a set of simple JavaBeans
@@ -128,7 +128,6 @@ public class RangeConvertor {
 				// Give the cell information about who is holding it
 				// and that it should pass on property change events to it
 				redCell.setHoldingRange(redRange);
-				redCell.addPropertyChangeListener(redRange);
 
 				// log.info("Converted Cell:" + redCell);
 				log.info("Converted Number:" + thisCellinRange + " of " + cellArray.size());

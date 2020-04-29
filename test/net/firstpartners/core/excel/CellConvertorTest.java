@@ -34,7 +34,7 @@ public class CellConvertorTest {
 	@Before
 	public void beforeClass() throws IOException, ClassNotFoundException {
 
-		FileInputStream fileIn = new FileInputStream(RangeConvertorTest.SAVED_RANGEHOLDER_DATA);
+		FileInputStream fileIn = new FileInputStream(SpreadSheetConvertorTest.SAVED_RANGEHOLDER_DATA);
 		ObjectInputStream in = new ObjectInputStream(fileIn);
 		redData = (RangeList) in.readObject();
 		in.close();

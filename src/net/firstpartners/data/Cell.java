@@ -6,9 +6,10 @@ import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
 /**
- * JavaBean equivalent of a cell in an Excel Spreadsheet. 
- * Since we also map from other sources into these classes, a Cell could be a cell from a table in a Word Document.
- * For simplicity, we map Paragraphs from a word document into a cell (to making writing rules easier)
+ * JavaBean equivalent of a cell in an Excel Spreadsheet. Since we also map from
+ * other sources into these classes, a Cell could be a cell from a table in a
+ * Word Document. For simplicity, we map Paragraphs from a word document into a
+ * cell (to making writing rules easier)
  * 
  * @param cellName
  * @param value
@@ -40,7 +41,8 @@ public class Cell implements PropertyChangeListener, Serializable {
 	}
 
 	/**
-	 * Mose Basic useful Cell - with a name and value
+	 * Most Basic useful Cell - with a name and value
+	 * 
 	 * @param cellName
 	 * @param value
 	 */
@@ -56,6 +58,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	/**
 	 * Check for equality with another Object / cell
+	 * 
 	 * @param - the object to compare us to
 	 */
 	@Override
@@ -89,6 +92,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	/**
 	 * If possible, get the value of the Cell as a Boolean
+	 * 
 	 * @returns null if this conversion is not possible
 	 */
 	public Boolean getBooleanValue() {
@@ -110,7 +114,8 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	/**
 	 * Cells can hold a reference to the Named Range that they (might) sit within
-	 * @see Range 
+	 * 
+	 * @see Range
 	 * @return - can be null if
 	 */
 	public Range getHoldingRange() {
@@ -119,6 +124,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	/**
 	 * If possible, get the value of the Cell as an Integer
+	 * 
 	 * @returns null if this conversion is not possible
 	 */
 	public Integer getIntValue() {
@@ -141,8 +147,8 @@ public class Cell implements PropertyChangeListener, Serializable {
 	}
 
 	/**
-	 * Get the original Sheet reference (if available) - e.g.from
-	 * the Original (Apache Poi) Spreadsheet if this is linked
+	 * Get the original Sheet reference (if available) - e.g.from the Original
+	 * (Apache Poi) Spreadsheet if this is linked
 	 * 
 	 * @return
 	 */
@@ -156,10 +162,11 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	/**
 	 * Get the value of the Cell as a String
+	 * 
 	 * @returns null if this conversion is not possible
 	 */
 	public String getValueAsText() {
-		
+
 		if (value != null) {
 			return value.toString();
 		}
@@ -181,6 +188,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	/**
 	 * Flag that allows us to signal if we have modified the cell
+	 * 
 	 * @return
 	 */
 	public boolean isModified() {
@@ -229,27 +237,36 @@ public class Cell implements PropertyChangeListener, Serializable {
 	 * @return
 	 */
 	public void setOriginalCellReference(String originalCellReference) {
+				
+		Object oldValue = this.originalCellReference;
 		this.originalCellReference = originalCellReference;
+		this.modified = true;
+		this.changes.firePropertyChange("originalCellReference", oldValue, value);
 	}
 
-	public void setOriginalSheetReference(String originalSheetReference) {
-		this.originalSheetReference = originalSheetReference;
+	public void setOriginalSheetReference(String newOriginalSheetReference) {
+
+		Object oldValue = this.originalSheetReference;
+		this.originalSheetReference = newOriginalSheetReference;
+		this.modified = true;
+		this.changes.firePropertyChange("value", oldValue, value);
 	}
 
 	public void setValue(Object value) {
 		Object oldValue = this.value;
 		this.value = value;
 		this.modified = true;
-		this.changes.firePropertyChange("value", oldValue, value);
+		this.changes.firePropertyChange("originalsheetreference", oldValue, value);
 	}
 
 	/**
-	 * Print an internal representation of the Cell contents.
-	 * This is the long version. If used for every cell in a large dataset it could cause an OutOfMemoryError
+	 * Print an internal representation of the Cell contents. This is the long
+	 * version. If used for every cell in a large dataset it could cause an
+	 * OutOfMemoryError
+	 * 
 	 * @see toString()
 	 */
 	public String toLongString() {
-
 
 		return "Cell [cellName=" + cellName + ", changes=" + changes + ", comment=" + comment + ", holdingRange="
 				+ holdingRange + ", modified=" + modified + ", originalCellReference=" + originalCellReference
@@ -258,8 +275,8 @@ public class Cell implements PropertyChangeListener, Serializable {
 	}
 
 	/**
-	 * @see toLongString() if more comprehensive data needed
-	 * This is the short version.
+	 * @see toLongString() if more comprehensive data needed This is the short
+	 *      version.
 	 */
 	@Override
 	public String toString() {

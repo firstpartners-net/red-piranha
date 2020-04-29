@@ -10,7 +10,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import org.junit.Test;
 
-import net.firstpartners.core.excel.RangeConvertorTest;
+import net.firstpartners.core.excel.SpreadSheetConvertorTest;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -58,7 +58,7 @@ public class RedGuiTest {
 		FileInputStream fileIn = null;
 		ObjectInputStream in = null;
 		RangeList redData = null;
-		fileIn = new FileInputStream(RangeConvertorTest.SAVED_RANGEHOLDER_DATA);
+		fileIn = new FileInputStream(SpreadSheetConvertorTest.SAVED_RANGEHOLDER_DATA);
 		in = new ObjectInputStream(fileIn);
 		redData = (RangeList) in.readObject();
 		//in.;

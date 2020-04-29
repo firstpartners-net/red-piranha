@@ -19,12 +19,12 @@ import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
-public class RangeConvertorTest {
+public class SpreadSheetConvertorTest {
 
 	private Workbook wb;
 
 	//Logging
-	private static final Logger log = RpLogger.getLogger(RangeConvertorTest.class.getName());
+	private static final Logger log = RpLogger.getLogger(SpreadSheetConvertorTest.class.getName());
 
 	//Save Range and Cell Data
 	public final static String SAVED_RANGEHOLDER_DATA="test/testdata/RANGEHOLDER_RANGE_CELLS.testdata";
@@ -36,7 +36,7 @@ public class RangeConvertorTest {
 	 */
 	public static void main (String args[]) throws IOException {
 		
-		RangeList myRange = new RangeConvertorTest().getTestDataFromWorkbook();
+		RangeList myRange = new SpreadSheetConvertorTest().getTestDataFromWorkbook();
 		FileOutputStream fileOut =new FileOutputStream(SAVED_RANGEHOLDER_DATA);
         ObjectOutputStream out = new ObjectOutputStream(fileOut);
         out.writeObject(myRange);
@@ -53,7 +53,7 @@ public class RangeConvertorTest {
 	
 		FileInputStream inputStream = new FileInputStream(TestConstants.XLSX_DATA_FILE);
 		wb = WorkbookFactory.create(inputStream);
-		return RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
+		return SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		
 	}
 	
@@ -76,7 +76,7 @@ public class RangeConvertorTest {
 	        
 	    }
 			
-		RangeConvertor.updateRedRangeintoPoiExcel(wb, myRange);
+		SpreadSheetConvertor.updateRedRangeintoPoiExcel(wb, myRange);
 
 	}
 

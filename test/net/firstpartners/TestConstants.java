@@ -1,5 +1,7 @@
 package net.firstpartners;
 
+import net.firstpartners.core.excel.SpreadSheetConvertorTest;
+
 /**
  * Constants used for testing - mainly where we store data
  * 
@@ -40,6 +42,13 @@ public class TestConstants {
 	// the name of the sheet the we log files to
 	public static final String EXCEL_LOG_WORKSHEET_NAME = "log";
 	
-
-	
+	/**
+	 * Testing utility to generate test Data
+	 */
+	public static void main (String [] args) throws Exception
+	{
+		
+		SpreadSheetConvertorTest.main(null);
+		
+	}
 }

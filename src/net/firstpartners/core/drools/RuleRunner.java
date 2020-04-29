@@ -104,6 +104,7 @@ public class RuleRunner {
 
 		// Convert the cell and log if we have a handle
 		RangeList ranges = inputStrategy.getJavaBeansFromSource();
+		ranges.cascadeResetIsModifiedFlag();
 
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(25);

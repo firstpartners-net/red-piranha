@@ -1,7 +1,5 @@
 package net.firstpartners.data;
 
-import static org.junit.Assert.fail;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,14 +8,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+
 import org.apache.log4j.Logger;
-import org.junit.Test;
 
 import net.firstpartners.core.log.RpLogger;
 
 /**
- * Holder of all multiple Named Ranges from a spreadsheet. Also provides convenience methods to access all the Cells (avoid the intermediate step of getting the Ranges).
- * Since we also map from other sources into these classes, a RangeHolder could contain tables from a Word Document.
+ * Holder of all multiple Named Ranges from a spreadsheet. Also provides
+ * convenience methods to access all the Cells (avoid the intermediate step of
+ * getting the Ranges). Since we also map from other sources into these classes,
+ * a RangeHolder could contain tables from a Word Document.
  * 
  * @author paul
  *
@@ -145,7 +145,7 @@ public class RangeList implements List<Range>, Serializable {
 		for (Range range : allRanges) {
 
 			// Add the range to the flattened collection
-			//returnValues.add(range);
+			// returnValues.add(range);
 
 			// Add the cells within the range
 
@@ -158,24 +158,24 @@ public class RangeList implements List<Range>, Serializable {
 		return returnValues;
 
 	}
+
 	/**
 	 * toString method, lists all the cells we hold
 	 */
-	
+
 	@Override
 	public String toString() {
-		//StringBuilder returnText = new StringBuilder(ToStringBuilder.reflectionToString(this));
+		// StringBuilder returnText = new
+		// StringBuilder(ToStringBuilder.reflectionToString(this));
 		StringBuilder returnText = new StringBuilder();
 		getAllRangesAndCells().forEach((cell) -> {
-			returnText.append(cell.toString()+"\n");
+			returnText.append(cell.toString() + "\n");
 		});
-		
+
 		return returnText.toString();
-	   
+
 	}
 
-	
-	
 	/**
 	 * Returns a map of Cells, with the unique handle we've associate with them
 	 * 
@@ -200,13 +200,20 @@ public class RangeList implements List<Range>, Serializable {
 		return returnValues;
 
 	}
-	
-	@Test
-	public final void testPropertyChangeListener() {
-		
-		
-		// note when fixing - is there an annotation
-		fail("test not yet implemented");
+
+	/**
+	 * Reset the isModified Flag to false in allRanges (and subranges) held by this
+	 * RangeList
+	 * 
+	 * @return
+	 */
+	public void cascadeResetIsModifiedFlag() {
+
+		for (Range range : allRanges) {
+
+			range.cascadeResetIsModifiedFlag();
+		}
+
 	}
 
 }

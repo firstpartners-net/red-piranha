@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import net.firstpartners.core.drools.loader.RuleDTO;
-import net.firstpartners.core.excel.RangeConvertorTest;
+import net.firstpartners.core.excel.SpreadSheetConvertorTest;
 import net.firstpartners.data.RangeList;
 
 public class ConfigTest {
@@ -28,7 +28,7 @@ public class ConfigTest {
 		@Before
 		public void beforeClass() throws IOException, ClassNotFoundException {
 
-			FileInputStream fileIn = new FileInputStream(RangeConvertorTest.SAVED_RANGEHOLDER_DATA);
+			FileInputStream fileIn = new FileInputStream(SpreadSheetConvertorTest.SAVED_RANGEHOLDER_DATA);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			redData = (RangeList) in.readObject();
 			in.close();

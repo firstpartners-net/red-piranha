@@ -116,7 +116,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	void outputToConsole(Workbook wb) throws IOException{
 
-		RangeList ranges = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
+		RangeList ranges = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		outputToConsole(ranges);
 
 	}
@@ -193,7 +193,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	public void updateCopyOfOriginalDocument(OfficeDocument fileToProcess,RangeList range) throws IOException {
 		
 		this.workbook =fileToProcess.getOriginalAsPoiWorkbook();
-		RangeConvertor.updateRedRangeintoPoiExcel(this.workbook, range);
+		SpreadSheetConvertor.updateRedRangeintoPoiExcel(this.workbook, range);
 		
 	}
 

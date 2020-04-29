@@ -63,7 +63,7 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 
 		log.debug("converting incoming excel stream to Javabeans");
 		excelWorkBook = WorkbookFactory.create(inputAsStream);
-		RangeList myRange = RangeConvertor.convertNamesFromPoiWorkbookIntoRedRange(excelWorkBook);
+		RangeList myRange = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(excelWorkBook);
 		inputAsStream.close();
 		return myRange;
 

@@ -16,4 +16,6 @@ dist/red-piranha-single.jar
 dist/red-piranha.jar
 dist/example-ExcelDataRules.zip
 dist/red-piranha.exe
+dist/red-piranha.war
 examples/private*/*.*
+red-piranha.log.1

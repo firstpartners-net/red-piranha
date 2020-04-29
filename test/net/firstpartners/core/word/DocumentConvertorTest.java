@@ -38,7 +38,7 @@ public class DocumentConvertorTest {
         out.writeObject(myRange);
         out.close();
         fileOut.close();
-        log.info("Serialized data is saved in:"+ (TestConstants.SAVED_WORD_RANGEHOLDER_DATA));
+        log.debug("Serialized data is saved in:"+ (TestConstants.SAVED_WORD_RANGEHOLDER_DATA));
 	}
 	
 	/**
@@ -59,13 +59,13 @@ public class DocumentConvertorTest {
 	public void testConvertPoiToRed() throws InvalidFormatException, IOException {
 		
 		RangeList myRangeList = new DocumentConvertorTest().getTestDataFromWorkbook();
-		log.info("RangeList:"+myRangeList);
+		log.debug("RangeList:"+myRangeList);
 		assertNotNull(myRangeList);
 		
 		
 		//check what we think will we return
 		Collection<Range> filterParaRange = myRangeList.findRanges(DocumentConvertor.WORD_PARAGRAPH_NAME_AS_RANGELIST);
-		log.info("FilteredRange:"+filterParaRange);
+		log.debug("FilteredRange:"+filterParaRange);
 		assertNotNull(filterParaRange);
 		assertEquals(9,filterParaRange.size());
 		

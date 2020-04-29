@@ -48,7 +48,7 @@ public class RuleflowExample {
 	 */
 	public static void main(String[] args) throws Exception {
 
-		log.info("Calling ruleFlowExample");
+		log.debug("Calling ruleFlowExample");
 
 		RuleflowExample thisSample = new RuleflowExample();
 		thisSample.runRuleflowExample();

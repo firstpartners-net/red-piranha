@@ -65,7 +65,7 @@ public class RedServlet extends HttpServlet {
 		//Identify where the rules are stored
 		RuleSource ruleSource = new RuleSource();
 		ruleSource.setKnowledgeBaseLocation(knowledgeBaseFile);
-		log.info("Using knowledgeBaseFile"+knowledgeBaseFile);
+		log.debug("Using knowledgeBaseFile"+knowledgeBaseFile);
 
 		//if ((user != null)&&(knowledgeBaseFile!=null)&&!knowledgeBaseFile.equals("")&&(excelFile!=null)&&!excelFile.equals("")) {
 
@@ -77,7 +77,7 @@ public class RedServlet extends HttpServlet {
 			RedSecurityManager.checkUrl(knowledgeBaseFile);
 			RedSecurityManager.checkUrl(excelFile);
 
-			log.info("Using Excel File"+excelFile);
+			log.debug("Using Excel File"+excelFile);
 
 
 			URL url = new URL(excelFile);

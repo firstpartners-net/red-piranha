@@ -32,7 +32,7 @@ public class PreCompileRuleBuilderTest {
 	@Test
 	public final void testpreCompileRules() throws ClassNotFoundException, DroolsParserException, IOException {
 
-		log.info("Starting to compile rules");
+		log.debug("Starting to compile rules");
 		preCompileRuleBuilder.compileRule(TestConstants.RULES_FILES[0], TestConstants.KNOWLEDGE_BASE_FILE_TMP);
 
 		// check that this exists

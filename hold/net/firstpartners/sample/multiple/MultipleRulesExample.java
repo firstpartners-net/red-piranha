@@ -65,11 +65,11 @@ public class MultipleRulesExample {
 		OoompaLoompaDate holiday2 = new OoompaLoompaDate(2009, 2, 10);
 		OoompaLoompaDate holiday1 = new OoompaLoompaDate(2009, 3, 17);
 
-		log.info("===== Setup =====");
-		log.info(candyBarOrder.toString());
+		log.debug("===== Setup =====");
+		log.debug(candyBarOrder.toString());
 
 		// Call the rule engine
-		log.info("==================== Calling Rule Runner ====================");
+		log.debug("==================== Calling Rule Runner ====================");
 
 		Object[] facts = new Object[3];
 		facts[0] = candyBarOrder;
@@ -93,8 +93,8 @@ public class MultipleRulesExample {
 		new RuleRunner(new FileRuleLoader()).runStatelessRules(ruleSource, new ConsoleLogger());
 
 		// Look at the results
-		log.info("======= Results - shipping schedule =======");
-		log.info(candyBarOrder.toString());
+		log.debug("======= Results - shipping schedule =======");
+		log.debug(candyBarOrder.toString());
 
 		return candyBarOrder;
 	}

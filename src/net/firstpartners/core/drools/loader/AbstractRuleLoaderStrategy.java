@@ -61,16 +61,16 @@ public abstract class AbstractRuleLoaderStrategy implements IRuleLoaderStrategy 
 				.newKnowledgeBuilder();
 
 		for (String ruleFile : ruleSource.getRulesLocation()) {
-			log.info("Loading file: " + ruleFile);
+			log.debug("Loading file: " + ruleFile);
 
 			// Check the type of rule file, then load it
 			if (ruleFile.endsWith(RedConstants.XLS_FILE_EXTENSION)) {
 
-				log.info("Loading Excel file: " + ruleFile);
+				log.debug("Loading Excel file: " + ruleFile);
 				loadExcelRules(ruleFile, localBuilder);
 			} else {
 
-				log.info("Loading Drl file: " + ruleFile);
+				log.debug("Loading Drl file: " + ruleFile);
 				loadDrlRules(ruleFile, ruleSource.getDslFileLocation(),
 						ruleSource.getRuleFlowFileUrl(), localBuilder);
 			}
@@ -109,17 +109,17 @@ public abstract class AbstractRuleLoaderStrategy implements IRuleLoaderStrategy 
 					+ localBuilder.getErrors().toString());
 
 		} else {
-			log.info("No Drools Errors");
+			log.debug("No Drools Errors");
 		}
 
 		// Print out what we know of the built packages
 		logKnowledgePackages(localBuilder);
 
 		// Use these
-		log.info("Creating new knowledgebase");
+		log.debug("Creating new knowledgebase");
 		org.drools.KnowledgeBase localBase = org.drools.KnowledgeBaseFactory.newKnowledgeBase();
 
-		log.info("Adding packages to localBase");
+		log.debug("Adding packages to localBase");
 		localBase.addKnowledgePackages(localBuilder.getKnowledgePackages());
 
 		return localBase;
@@ -133,12 +133,12 @@ public abstract class AbstractRuleLoaderStrategy implements IRuleLoaderStrategy 
 	void logKnowledgePackages(KnowledgeBuilder localBuilder) {
 		Collection<KnowledgePackage> kpCollection = localBuilder
 				.getKnowledgePackages();
-		log.info("Number of packages" + kpCollection.size());
+		log.debug("Number of packages" + kpCollection.size());
 
 		// Loop through and log
 		Iterator<KnowledgePackage> kpIterator = kpCollection.iterator();
 		while (kpIterator.hasNext()) {
-			log.info(kpIterator.next().toString());
+			log.debug(kpIterator.next().toString());
 		}
 
 	}
@@ -158,7 +158,7 @@ public abstract class AbstractRuleLoaderStrategy implements IRuleLoaderStrategy 
 					throws DroolsParserException, IOException {
 
 		// Load the main rule file
-		log.info("Loading Main rule file");
+		log.debug("Loading Main rule file");
 		Reader ruleFileAsReader = getReader(ruleUrl);
 
 		addRulesToThisBuilder.add(ResourceFactory
@@ -168,7 +168,7 @@ public abstract class AbstractRuleLoaderStrategy implements IRuleLoaderStrategy 
 		// Check if the user has passed in a DSL
 		if (dslFileUrl != null) {
 
-			log.info("Loading DSL file");
+			log.debug("Loading DSL file");
 			Reader dslFileAsReader = getReader(dslFileUrl);
 
 			addRulesToThisBuilder.add(ResourceFactory
@@ -180,14 +180,14 @@ public abstract class AbstractRuleLoaderStrategy implements IRuleLoaderStrategy 
 		// if we've specified a ruleflow, add this to the package
 		if (ruleFlowFileUrl != null) {
 
-			log.info("Loading RuleFlow file");
+			log.debug("Loading RuleFlow file");
 			Reader ruleFlowAsReader = getReader(ruleFlowFileUrl);
 
 			addRulesToThisBuilder.add(ResourceFactory
 					.newReaderResource(ruleFlowAsReader), ResourceType.DSLR);
 
 		}
-		log.info("Finished Loading rule files");
+		log.debug("Finished Loading rule files");
 
 	}
 
@@ -270,7 +270,7 @@ public abstract class AbstractRuleLoaderStrategy implements IRuleLoaderStrategy 
 				new ByteArrayInputStream(binaryBytes));
 
 		Object inObject = in.readObject();
-		log.info("inObject:" + inObject.getClass());
+		log.debug("inObject:" + inObject.getClass());
 
 		return (org.drools.KnowledgeBase) inObject;
 

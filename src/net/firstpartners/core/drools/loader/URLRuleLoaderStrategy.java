@@ -60,11 +60,11 @@ public class URLRuleLoaderStrategy extends AbstractRuleLoaderStrategy {
 			cache.append(line);
 		}
 		reader.close();
-		log.info("Read file contents/n =========");
-		log.info(cache.toString());
-		log.info(" ========= /n end file contents");
+		log.debug("Read file contents/n =========");
+		log.debug(cache.toString());
+		log.debug(" ========= /n end file contents");
 		returnBytes = reader.toString().getBytes();
-		log.info("end getFileFromUrl");
+		log.debug("end getFileFromUrl");
 		return returnBytes;
 	}
 

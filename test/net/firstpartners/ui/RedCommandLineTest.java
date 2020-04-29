@@ -54,7 +54,7 @@ public class RedCommandLineTest {
 
 		// Make sure the config changes stick
 		assertEquals(Config.getInputFileName(), TestConstants.WORD_DATA_FILE);
-		log.info("Successfully configure for word test");
+		log.debug("Successfully configure for word test");
 		
 		// Call test
 		RedCommandLine.runRules(playerAsLogger, userUpdates);
@@ -79,7 +79,7 @@ public class RedCommandLineTest {
 
 		// Make sure the config changes stick
 		assertEquals(Config.getInputFileName(), TestConstants.XLSX_DATA_FILE);
-		log.info("Successfully configure for excel in word out test");
+		log.debug("Successfully configure for excel in word out test");
 		
 		// Call test
 		RedCommandLine.runRules(playerAsLogger, userUpdates);

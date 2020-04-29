@@ -18,7 +18,7 @@ public class RangeListTest  {
 		RangeList myList = new RangeList();
 		myList.getAllCellsInAllRanges();
 		myList.getAllCellsWithNames();
-		log.info("null test succesfully passed");
+		log.debug("null test succesfully passed");
 
 	}
 	

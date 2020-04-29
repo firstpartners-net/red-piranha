@@ -117,7 +117,7 @@ public class SpreadSheetLogger implements ILogger {
 	 * Log at Info Level
 	 */
 	public void info(String output) {
-		log.info(output);
+		log.debug(output);
 		loggedItems.add("info:" + output);
 	}
 

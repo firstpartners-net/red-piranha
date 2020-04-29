@@ -41,7 +41,7 @@ public class SpreadSheetConvertorTest {
         out.writeObject(myRange);
         out.close();
         fileOut.close();
-        log.info("Serialized data is saved in:"+ TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
+        log.debug("Serialized data is saved in:"+ TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
 	}
 
 	/**

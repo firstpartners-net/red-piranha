@@ -194,11 +194,11 @@ public class RuleRunner {
 
 
 
-		log.info("Inserting handle to logger (via global) type:" + logger.getClass());
+		log.debug("Inserting handle to logger (via global) type:" + logger.getClass());
 		workingMemory.setGlobal("log", logger);
 
 		for (String o : globals.keySet()) {
-			log.info("Inserting global name: " + o + " value:" + globals.get(o));
+			log.debug("Inserting global name: " + o + " value:" + globals.get(o));
 			workingMemory.setGlobal(o, globals.get(o));
 		}
 
@@ -221,28 +221,28 @@ public class RuleRunner {
 			ILogger logger) throws DroolsParserException, IOException {
 
 		// Create a new stateless session
-		log.info("Creating new working memory");
+		log.debug("Creating new working memory");
 		StatelessKnowledgeSession workingMemory = preBuiltKnowledgeBase.newStatelessKnowledgeSession();
 
-		log.info("Checking for globals");
+		log.debug("Checking for globals");
 		if (globals != null) {
 			for (String o : globals.keySet()) {
-				log.info("Inserting global name: " + o + " value:" + globals.get(o));
+				log.debug("Inserting global name: " + o + " value:" + globals.get(o));
 				workingMemory.setGlobal(o, globals.get(o));
 			}
 		}
 		// Add the logger
-		log.info("Inserting handle to logger (via global)");
+		log.debug("Inserting handle to logger (via global)");
 		workingMemory.setGlobal("log", logger);
 
-		log.info("Using facts:" + facts);
+		log.debug("Using facts:" + facts);
 
-		log.info("==================== Calling Rule Engine ====================");
+		log.debug("==================== Calling Rule Engine ====================");
 
 		// Fire using the facts
 		workingMemory.execute(facts);
 
-		log.info("==================== Rules Complete ====================");
+		log.debug("==================== Rules Complete ====================");
 
 	}
 
@@ -264,10 +264,10 @@ public class RuleRunner {
 
 		// The most common operation on a rulebase is to create a new rule
 		// session; either stateful or stateless.
-		log.info("Creating master rule base");
+		log.debug("Creating master rule base");
 		KnowledgeBase masterRulebase = ruleLoader.loadRules(ruleSource);
 
-		log.info("running stateless rules");
+		log.debug("running stateless rules");
 		runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger);
 
 	}

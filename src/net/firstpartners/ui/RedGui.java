@@ -187,7 +187,7 @@ public class RedGui extends WindowAdapter
 	 * 
 	 */
 	public synchronized void actionPerformed(ActionEvent evt) {
-		log.info("Notified of Action:" + evt);
+		log.info("User pressed close Button: Exiting" );
 		System.exit(0);
 
 	}
@@ -254,11 +254,11 @@ public class RedGui extends WindowAdapter
 
 	/**
 	 * Notifies us if we want Provide a visual notification that an Exception has
-	 * occured
+	 * occcured
 	 */
 	public void notifyExceptionOccured() {
 
-		log.info("Updating GUI State");
+		log.debug("Updating GUI State");
 
 		// Replace Progress bar state
 		Container parent = homePageProgressBar.getParent();

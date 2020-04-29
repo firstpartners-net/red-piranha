@@ -26,7 +26,7 @@ public class MultipleRulesExampleTest {
 	@Test
 	public final void testRunMultipleRulesExample() throws DroolsParserException, IOException, ClassNotFoundException {
 
-		log.info("Calling example");
+		log.debug("Calling example");
 		
 		//Run the Rules Example, almost as if from the command line
 		MultipleRulesExample thisSample = new MultipleRulesExample();

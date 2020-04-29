@@ -66,7 +66,7 @@ public class RangeCellTree extends JPanel {
 			@Override
 			public void valueChanged(TreeSelectionEvent e) {
 
-				log.info(e.toString());
+				log.debug(e.toString());
 				Object thisNodeObject = ""; // default value
 				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 

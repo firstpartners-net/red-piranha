@@ -18,8 +18,8 @@ public class GoogleDownloadLinkGeneratorTest {
 		String xlResourceId = "tL4ZXxrtEeInpERn0XHEsmw.04732767912870830876.8581956527660014973";
 		String expectedLink = "https://spreadsheets.google.com/fm?id=tL4ZXxrtEeInpERn0XHEsmw.04732767912870830876.8581956527660014973&hl=en&fmcmd=4";
 
-		log.info("Expected:"+expectedLink);
-		log.info("Actual:  "+GoogleDownloadLinkGenerator.generateXlDownloadLink(xlResourceId));
+		log.debug("Expected:"+expectedLink);
+		log.debug("Actual:  "+GoogleDownloadLinkGenerator.generateXlDownloadLink(xlResourceId));
 
 		assertEquals(expectedLink,
 				GoogleDownloadLinkGenerator

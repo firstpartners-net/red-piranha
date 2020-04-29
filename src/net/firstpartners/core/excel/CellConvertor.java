@@ -49,7 +49,7 @@ public class CellConvertor {
 		redCell.setCellName(cellNameFromRange);
 
 		org.apache.poi.ss.usermodel.CellType myCellType = poiCell.getCellType();
-		log.info("Working with Poi Cell Type:" + myCellType);
+		log.debug("Working with Poi Cell Type:" + myCellType);
 
 		Object value = null; // to capture the output
 		switch (myCellType.toString()) {

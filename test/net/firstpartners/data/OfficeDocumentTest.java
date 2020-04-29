@@ -35,7 +35,7 @@ public class OfficeDocumentTest {
 			fail("Excpected Conversion Error not thrown");
 			
 		}catch (Exception e) {
-			log.info("Expected Exception thrown");
+			log.debug("Expected Exception thrown");
 		}
 	}
 

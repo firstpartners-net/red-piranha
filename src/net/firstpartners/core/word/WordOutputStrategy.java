@@ -103,7 +103,7 @@ public class WordOutputStrategy implements IDocumentOutStrategy {
 	 */
 	void outputToConsole(RangeList ranges ){
 		for (Range r : ranges) {
-			log.info(r.toString());
+			log.debug(r.toString());
 		}
 	}
 	

@@ -970,7 +970,7 @@ public class GoogleDocumentList {
 		}
 		output.append(doc.getResourceId());
 
-		log.info(output.toString());
+		log.debug(output.toString());
 	}
 
 }

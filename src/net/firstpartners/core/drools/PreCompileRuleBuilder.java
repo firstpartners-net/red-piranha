@@ -67,7 +67,7 @@ public class PreCompileRuleBuilder {
 	public void compileRule(String ruleLocation, String outputFile) throws DroolsParserException, IOException, ClassNotFoundException {
 
 
-		log.info("Loading Knowledgebase from "+ruleLocation);
+		log.debug("Loading Knowledgebase from "+ruleLocation);
 
 		//Get a handle to the rule loader that we will use
 		IRuleLoaderStrategy ruleLoader = RuleRunnerFactory.getRuleLoader(ruleLocation);
@@ -80,7 +80,7 @@ public class PreCompileRuleBuilder {
 		KnowledgeBase kb= ruleLoader.loadRules(ruleSource);
 		if(outputFile!=null){
 			cacheKnowledgeBase(kb,outputFile);
-			log.info("Cached Knowledgebase to "+outputFile);
+			log.debug("Cached Knowledgebase to "+outputFile);
 
 		}
 

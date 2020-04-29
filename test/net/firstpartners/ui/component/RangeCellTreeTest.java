@@ -36,7 +36,7 @@ public class RangeCellTreeTest {
 
 	@Test
 	public final void testCreateGUI() throws Throwable {
-		log.info("Test create GUI");
+		log.debug("Test create GUI");
 		RangeCellTree tree = new RangeCellTree();
 		tree.setDataModel(redData);
 

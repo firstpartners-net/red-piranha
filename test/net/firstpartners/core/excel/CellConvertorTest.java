@@ -52,7 +52,7 @@ public class CellConvertorTest {
 		Map<String, Cell> map = redData.getAllCellsWithNames();
 		for (Map.Entry<String, Cell> entry : map.entrySet()) {
 
-			log.info(entry.getKey() + ":" + entry.getValue());
+			log.debug(entry.getKey() + ":" + entry.getValue());
 
 			String originalName = entry.getKey();
 			Cell thisRedCell = entry.getValue();
@@ -65,7 +65,7 @@ public class CellConvertorTest {
 			CellReference cellReference = new CellReference(thisRedCell.getOriginalCellReference());
 			Row row = SheetConvertor.getOrCreateRow(thisSheet, cellReference);
 
-			log.info("found Row:" + row);
+			log.debug("found Row:" + row);
 			org.apache.poi.ss.usermodel.Cell poiCell = SheetConvertor.getOrCreateCell(row, cellReference);
 
 			CellConvertor.convertRedCellToPoiCell(wb, poiCell, thisRedCell);
@@ -95,7 +95,7 @@ public class CellConvertorTest {
 		Iterator<?> rows = sheet.rowIterator();
 		while (rows.hasNext()) {
 			Row row = (Row) rows.next();
-			log.info("Row #" + row.getRowNum());
+			log.debug("Row #" + row.getRowNum());
 
 			// Iterate over each cell in the row and print out the cell's content
 			Iterator<?> cells = row.cellIterator();

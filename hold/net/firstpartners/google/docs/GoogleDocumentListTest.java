@@ -118,7 +118,7 @@ public class GoogleDocumentListTest {
 
 		//Save the resource ID for later
 		uploadedExcelDocumentID = entry.getResourceId();
-		log.info("setting uploadedExcelDocumentID to:"+uploadedExcelDocumentID);
+		log.debug("setting uploadedExcelDocumentID to:"+uploadedExcelDocumentID);
 
 
 	}
@@ -136,7 +136,7 @@ public class GoogleDocumentListTest {
 		assertNotNull("Google Docs should return a resourceID as part of the entry",entry.getResourceId());
 
 		uploadedKbDocumentID = entry.getResourceId();
-		log.info("setting uploadedKbDocumentID to:"+uploadedKbDocumentID);
+		log.debug("setting uploadedKbDocumentID to:"+uploadedKbDocumentID);
 
 	}
 

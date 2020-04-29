@@ -70,7 +70,7 @@ public class ExcelDataRulesExample {
 
 		// Call the rule engine passing in the excel data file, the rules we want to
 		// use, and name of the spreadsheet that we log rules to
-		log.info("Calling example");
+		log.debug("Calling example");
 		ruleRunner.callRules(excelDataFile, ruleSource, EXCEL_LOG_WORKSHEET_NAME);
 
 	}

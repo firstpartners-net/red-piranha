@@ -72,7 +72,7 @@ public class RpLogger extends Logger {
 			
 			//Log 
 			Logger thisLog = getLogger(RedCommandLine.class.getName());
-			thisLog.info("Forced Log to:"+logFileName);
+			thisLog.debug("Forced Log to:"+logFileName);
 		}
 
 	}

@@ -130,7 +130,7 @@ public class Config {
 			} catch (IOException ex) {
 				log.error(ex.getStackTrace().toString());
 			}
-			log.info("Properties file:" + prop.toString());
+			log.info("Using Configuration file:" + prop.toString());
 
 			return prop;
 

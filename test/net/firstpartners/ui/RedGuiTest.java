@@ -29,7 +29,7 @@ public class RedGuiTest {
 
 		// Check where we are
 		File whereAmI = new File(".");
-		log.info("Default file location:" + whereAmI.getAbsolutePath());
+		log.debug("Default file location:" + whereAmI.getAbsolutePath());
 
 		// Call test
 

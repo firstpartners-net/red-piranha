@@ -169,7 +169,7 @@ public class RangeList implements List<Range>, Serializable {
 	public Map<String, net.firstpartners.data.Cell> getAllCellsWithNames() {
 
 		HashMap<String, Cell> returnValues = new HashMap<String, Cell>();
-		log.info("combining all cells in all ranges, returning as Hashmap");
+		log.debug("combining all cells in all ranges, returning as Hashmap");
 
 		for (Range range : allRanges) {
 

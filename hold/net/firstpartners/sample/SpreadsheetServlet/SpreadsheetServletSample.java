@@ -53,7 +53,7 @@ public class SpreadsheetServletSample extends HttpServlet {
 			String key = (String)it.next();
 			output.append("" + key + "=" + pr.get(key) + "\n");
 		}
-		log.info(output.toString());
+		log.debug(output.toString());
 
 
 	}

@@ -74,8 +74,8 @@ public class EventRulesExample {
 		new RuleRunner(new FileRuleLoader()).runStatelessRules( ruleSource , new ConsoleLogger());
 
 		//Look at the results
-		log.info("======= Results - shipping schedule =======");
-		log.info(candyBarOrder.toString());
+		log.debug("======= Results - shipping schedule =======");
+		log.debug(candyBarOrder.toString());
 
 		return candyBarOrder;
 

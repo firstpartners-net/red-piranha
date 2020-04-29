@@ -49,7 +49,7 @@ public class GiveLogFeedback implements IGiveFeedbackToUsers{
 	 * Notifies us if we want Provide a visual notification that an Exception has occured
 	 */
 	public void notifyExceptionOccured() {
-		log.info("EXCEPTION!");
+		log.warn("EXCEPTION!");
 	}
 
 	

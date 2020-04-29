@@ -95,9 +95,9 @@ public class RuleRunnerFactory {
 		}
 
 
-		log.info("Using DocumentInputStrategy:" + inputStrat.getClass());
-		log.info("Using RuleLoader:" + ruleLoaderStrategy);
-		log.info("Using DocumentOutputStrategy:" + outputStrat);
+		log.debug("Using DocumentInputStrategy:" + inputStrat.getClass());
+		log.debug("Using RuleLoader:" + ruleLoaderStrategy);
+		log.debug("Using DocumentOutputStrategy:" + outputStrat);
 
 		return new RuleRunner(inputStrat, ruleLoaderStrategy, outputStrat);
 

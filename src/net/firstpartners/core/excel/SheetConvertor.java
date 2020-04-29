@@ -29,14 +29,14 @@ public class SheetConvertor {
 	 */
 	static Cell getOrCreateCell(Row row, CellReference cellReference) {
 
-		log.info("Looking for:" + cellReference);
+		log.debug("Looking for:" + cellReference);
 		Cell cell = row.getCell(cellReference.getCol());
 
 		if(cell==null) {
 			cell = row.createCell(cellReference.getCol());
 		}
 		
-		//log.info("found:" + cell.getStringCellValue());
+		//log.debug("found:" + cell.getStringCellValue());
 
 		return cell;
 	}
@@ -50,7 +50,7 @@ public class SheetConvertor {
 	 */
 	static Row getOrCreateRow(Sheet thisSheet, CellReference cellReference) {
 
-		log.info("Looking for:" + cellReference);
+		log.debug("Looking for:" + cellReference);
 
 		Row row = thisSheet.getRow(cellReference.getRow());
 
@@ -58,7 +58,7 @@ public class SheetConvertor {
 			row = thisSheet.createRow(cellReference.getRow());
 		}
 
-		log.info("found:" + row.getRowNum());
+		log.debug("found:" + row.getRowNum());
 
 		return row;
 
@@ -73,7 +73,7 @@ public class SheetConvertor {
 	 */
 	static Sheet getOrCreateSheet(Workbook wb, net.firstpartners.data.Cell thisRedCell) {
 
-		log.info("trying to find sheet:" + thisRedCell.getOriginalTableReference());
+		log.debug("trying to find sheet:" + thisRedCell.getOriginalTableReference());
 
 		Sheet thisSheet = wb.getSheet(thisRedCell.getOriginalTableReference());
 
@@ -81,7 +81,7 @@ public class SheetConvertor {
 			thisSheet = wb.createSheet(thisRedCell.getOriginalTableReference());
 		}
 
-		log.info("Found:" + thisSheet.getSheetName());
+		log.debug("Found:" + thisSheet.getSheetName());
 		return thisSheet;
 	}
 

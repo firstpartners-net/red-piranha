@@ -59,7 +59,7 @@ public class DslChocolateTradingExample {
 		if (null == inputFromExcel) {
 			throw new FileNotFoundException("Cannot find file:" + EXCEL_DATA_FILE);
 		} else {
-			log.info("found file:" + EXCEL_DATA_FILE);
+			log.debug("found file:" + EXCEL_DATA_FILE);
 		}
 
 		// Convert this into a (POI) Workbook
@@ -107,7 +107,7 @@ public class DslChocolateTradingExample {
 		inputFromExcel.close();
 
 		// complete
-		log.info("Finished");
+		log.debug("Finished");
 	}
 
 }

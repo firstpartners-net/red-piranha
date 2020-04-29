@@ -64,11 +64,11 @@ public class FileRuleLoader extends AbstractRuleLoaderStrategy implements IRuleL
 			cache.append(line);
 		}
 		reader.close();
-		log.info("Read file contents/n =========");
-		log.info(cache.toString());
-		log.info(" ========= /n end file contents");
+		log.debug("Read file contents/n =========");
+		log.debug(cache.toString());
+		log.debug(" ========= /n end file contents");
 		returnBytes = reader.toString().getBytes();
-		log.info("end getFileFromUrl");
+		log.debug("end getFileFromUrl");
 		return returnBytes;
 
 
@@ -99,14 +99,14 @@ public class FileRuleLoader extends AbstractRuleLoaderStrategy implements IRuleL
 	Reader getReader(String fileResource) throws IOException {
 
 		File baseFile= new File(".");
-		log.info("baseFile:"+baseFile.getAbsolutePath());
+		log.debug("baseFile:"+baseFile.getAbsolutePath());
 
 		File lookForFile = new File (fileResource);
-		log.info("Looking for File:"+lookForFile);
-		log.info("lookForFile.exists():"+lookForFile.exists());
-		log.info("lookForFile.isAbsolute():"+lookForFile.isAbsolute());
-		log.info("lookForFile.getParent():"+lookForFile.getParent());
-		log.info("lookForFile.getAbsolutePath():"+lookForFile.getAbsolutePath());
+		log.debug("Looking for File:"+lookForFile);
+		log.debug("lookForFile.exists():"+lookForFile.exists());
+		log.debug("lookForFile.isAbsolute():"+lookForFile.isAbsolute());
+		log.debug("lookForFile.getParent():"+lookForFile.getParent());
+		log.debug("lookForFile.getAbsolutePath():"+lookForFile.getAbsolutePath());
 
 		java.io.FileReader fr = new java.io.FileReader(lookForFile);
 		return fr;

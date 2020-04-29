@@ -51,7 +51,7 @@ public class SpreadSheetConvertor {
 		// retrieve the named range - Iterator not available
 		List<? extends Name> namedRanges = wb.getAllNames();
 		if (namedRanges == null) {
-			log.info("No Named Ranges in workbook- skipping");
+			log.debug("No Named Ranges in workbook- skipping");
 			return returnValues;
 		}
 
@@ -68,7 +68,7 @@ public class SpreadSheetConvertor {
 			aNamedRange = loopList.next(); // wb.getNameAt(namedRangeIdx);
 
 			// retrieve the cells at the named range
-			log.info("Processing named range:" + aNamedRange.getNameName());
+			log.debug("Processing named range:" + aNamedRange.getNameName());
 
 			// Reset to empty array - so we're covered even if an exception is through
 			AreaReference aRef[] = new AreaReference[0];
@@ -79,7 +79,7 @@ public class SpreadSheetConvertor {
 
 				// It is possible that a named range exists in excel but, the actual cell as
 				// been deleted
-				log.info("Ignoring invalid range ref:" + iae);
+				log.debug("Ignoring invalid range ref:" + iae);
 			}
 
 			ArrayList<CellReference> cellArray = new ArrayList<CellReference>();
@@ -125,8 +125,8 @@ public class SpreadSheetConvertor {
 
 				net.firstpartners.data.Cell redCell = CellConvertor.convertPoiCellToRedCell(cellHandle, thisExcelCell);
 
-				// log.info("Converted Cell:" + redCell);
-				log.info("Converted Number:" + thisCellinRange + " of " + cellArray.size());
+				// log.debug("Converted Cell:" + redCell);
+				log.debug("Converted Number:" + thisCellinRange + " of " + cellArray.size());
 
 				// Add the list of cells to a range
 				redRange.put(cellHandle, redCell);
@@ -162,7 +162,7 @@ public class SpreadSheetConvertor {
 			String originalPoiRef = thisRedCell.getOriginalCellReference();
 
 			if (originalPoiRef == null || orignalSheetRef == null) {
-				log.info("Cells has no ref to original sheet or cell - ignoring:" + thisRedCell);
+				log.debug("Cells has no ref to original sheet or cell - ignoring:" + thisRedCell);
 			} else {
 
 				// Get a handle to the Excel cell at Sheet / reference

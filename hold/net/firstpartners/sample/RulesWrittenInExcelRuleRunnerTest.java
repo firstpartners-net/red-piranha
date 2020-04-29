@@ -51,7 +51,7 @@ public class RulesWrittenInExcelRuleRunnerTest {
 			throw new FileNotFoundException("Cannot find file:"
 					+ TestConstants.XLS_DATA_FILE);
 		} else {
-			log.info("found file:" + TestConstants.XLS_DATA_FILE);
+			log.debug("found file:" + TestConstants.XLS_DATA_FILE);
 		}
 
 		// Convert this into a (POI) Workbook
@@ -98,7 +98,7 @@ public class RulesWrittenInExcelRuleRunnerTest {
 		inputFromExcel.close();
 
 		// complete
-		log.info("Finished");
+		log.debug("Finished");
 
 	}
 

@@ -166,8 +166,7 @@ public class DocumentConvertor {
 	 * 
 	 */
 	public static void updateRedRangeintoPoiWord(XWPFDocument wordDocToUpdate, RangeList range) {
-		// TODO Auto-generated method stub
-		throw new IllegalAccessError("method not implemented yet");
+		log.warn("WARNING: output conversion not implemented yet");
 	}
 
 }

@@ -38,16 +38,16 @@ public class RedCommandLine {
 	 */
 	public static void main(String[] args) throws Exception {
 
-		// Check and force logging
-		String logFileName = Config.getForcedLogFileName();
-		RpLogger.checkForceLogToFile(logFileName);
-
 		//Check if we need to override the configuration
 		if(args.length>=1) {
 			Config.readConfig(args[0]);
 		} else {
 			Config.readConfig();
 		}
+		
+		// Check and force logging
+		String logFileName = Config.getForcedLogFileName();
+		RpLogger.checkForceLogToFile(logFileName);
 		
 		
 		// Open the GUI

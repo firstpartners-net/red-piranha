@@ -62,11 +62,12 @@ public class WordInputStrategy implements IDocumentInStrategy {
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException {
 
 		log.debug("converting incoming word stream to Javabeans");
+		
 
 		InputStream inputAsStream = new FileInputStream(this.wordInputFileName);
-		XWPFDocument inDoc = new XWPFDocument(OPCPackage.open(inputAsStream));
+		poiDoc= new XWPFDocument(OPCPackage.open(inputAsStream));
 
-		RangeList myRange = DocumentConvertor.convertFromPoiWordIntoRedRange(inDoc);
+		RangeList myRange = DocumentConvertor.convertFromPoiWordIntoRedRange(poiDoc);
 		inputAsStream.close();
 
 		return myRange;

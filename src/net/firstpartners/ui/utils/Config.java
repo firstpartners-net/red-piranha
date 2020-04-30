@@ -120,6 +120,7 @@ public class Config {
 
 			try {
 				is = new FileInputStream(fileName);
+				log.debug("input stream is not null:"+is==null);
 			} catch (FileNotFoundException ex) {
 				log.error(ex.getStackTrace().toString());
 			}

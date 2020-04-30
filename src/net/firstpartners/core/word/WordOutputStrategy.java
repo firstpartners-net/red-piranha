@@ -44,8 +44,6 @@ public class WordOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * Delete the output file if it already exists
-	 *
-	 * @param outputFile
 	 */
 	public void deleteOutputFileIfExists() {
 
@@ -72,13 +70,6 @@ public class WordOutputStrategy implements IDocumentOutStrategy {
 		
 	}
 
-	/**
-	* @todo refector out this method or implement - doesn't really apply for word docs
-	@Override
-	public void flush(ILogger logger) {
-		
-	}
-	
 
 	/**
 	 * String representing where our output is going to
@@ -167,6 +158,7 @@ public class WordOutputStrategy implements IDocumentOutStrategy {
 		deleteOutputFileIfExists();
 
 		// Open the outputfile as a stream
+		log.debug("trying to output to:"+wordDoc);
 		outputToFile(wordDoc);
 
 	}
@@ -193,7 +185,10 @@ public class WordOutputStrategy implements IDocumentOutStrategy {
 	 */
 	public void updateCopyOfOriginalDocument(OfficeDocument fileToProcess,RangeList range) throws IOException {
 		
+		
 		this.wordDoc =fileToProcess.getOriginalAsPoiWordDoc();
+		log.debug("updating copy of word doc to:"+wordDoc);
+		
 		DocumentConvertor.updateRedRangeintoPoiWord(wordDoc, range);
 		
 	}

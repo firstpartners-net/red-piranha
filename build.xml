@@ -84,7 +84,7 @@
 
 			<!-- Comment this out for production build-->
 			<!-- Include mock objects and tests-->
-			<src path="${testsrc.dir}" />
+			<!--<src path="${testsrc.dir}" />-->
 
 			<!-- Main Production Classpath-->
 			<classpath refid="master-classpath" />

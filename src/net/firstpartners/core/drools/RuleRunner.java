@@ -132,8 +132,8 @@ public class RuleRunner {
 		}
 
 		// update a copy of the original document (to be saved as copy) with the result
-		// of our
-		// rules
+		// of our rules
+		log.debug("RunRules - object is null?"+inputStrategy.getOriginalDocument());
 		outputStrategy.updateCopyOfOriginalDocument(inputStrategy.getOriginalDocument(), ranges);
 
 		if (userDataDisplay != null) {

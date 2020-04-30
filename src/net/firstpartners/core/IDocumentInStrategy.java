@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
-import net.firstpartners.core.word.WordInputStrategy;
+import net.firstpartners.core.word.WordXInputStrategy;
 import net.firstpartners.data.OfficeDocument;
 import net.firstpartners.data.RangeList;
 
@@ -13,7 +13,7 @@ import net.firstpartners.data.RangeList;
  * Implements the Strategy Command Pattern so that we can read data from
  * different sources
  * 
- * @see WordInputStrategy @see WordStrategy
+ * @see WordXInputStrategy @see WordStrategy
  * @author PBrowne
  *
  */

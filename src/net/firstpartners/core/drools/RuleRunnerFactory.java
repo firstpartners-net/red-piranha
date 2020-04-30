@@ -11,8 +11,8 @@ import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.core.word.WordInputStrategy;
-import net.firstpartners.core.word.WordOutputStrategy;
+import net.firstpartners.core.word.WordXInputStrategy;
+import net.firstpartners.core.word.WordXOutputStrategy;
 
 /**
  * Return an instance of RuleRunner, Appropriately configured with the various
@@ -77,7 +77,7 @@ public class RuleRunnerFactory {
 		inputFileName = inputFileName.toLowerCase();
 		IDocumentInStrategy inputStrat;
 		if (inputFileName.endsWith(SUFFIX_WORD) || inputFileName.endsWith(SUFFIX_WORDX)) {
-			inputStrat = new WordInputStrategy(inputFileName);
+			inputStrat = new WordXInputStrategy(inputFileName);
 
 		} else {
 			inputStrat = new ExcelInputStrategy(inputFileName);
@@ -87,7 +87,7 @@ public class RuleRunnerFactory {
 		outputFileName = outputFileName.toLowerCase();
 		IDocumentOutStrategy outputStrat;
 		if (outputFileName.endsWith(SUFFIX_WORD) || outputFileName.endsWith(SUFFIX_WORDX)) {
-			outputStrat = new WordOutputStrategy(outputFileName);
+			outputStrat = new WordXOutputStrategy(outputFileName);
 
 		} else {
 			outputStrat = new ExcelOutputStrategy(outputFileName);

@@ -8,8 +8,8 @@ import net.firstpartners.core.drools.loader.FileRuleLoader;
 import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
-import net.firstpartners.core.word.WordInputStrategy;
-import net.firstpartners.core.word.WordOutputStrategy;
+import net.firstpartners.core.word.WordXInputStrategy;
+import net.firstpartners.core.word.WordXOutputStrategy;
 
 public class RuleRunnerFactoryTest {
 
@@ -40,8 +40,8 @@ public class RuleRunnerFactoryTest {
 	public void testGenericDocFactory() {
 		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.doc","filename","some-dummy-out.doc");
 		assertNotNull(myRunner);
-		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordInputStrategy);
-		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof WordOutputStrategy);
+		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordXInputStrategy);
+		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof WordXOutputStrategy);
 		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
 		
 	}
@@ -50,8 +50,8 @@ public class RuleRunnerFactoryTest {
 	public void testGenericDocXFactory() {
 		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.docx","filename","some-dummy-out.docx");
 		assertNotNull(myRunner);
-		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordInputStrategy);
-		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof WordOutputStrategy);
+		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordXInputStrategy);
+		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof WordXOutputStrategy);
 		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
 		
 	}

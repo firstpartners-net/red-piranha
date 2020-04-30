@@ -22,10 +22,10 @@ import net.firstpartners.data.RangeList;
  * @author paul
  *
  */
-public class WordOutputStrategy implements IDocumentOutStrategy {
+public class WordXOutputStrategy implements IDocumentOutStrategy {
 
 	// Logger
-	private static final Logger log = RpLogger.getLogger(WordOutputStrategy.class.getName());
+	private static final Logger log = RpLogger.getLogger(WordXOutputStrategy.class.getName());
 	
 	//Name of the outputfile
 	private String outputFileName =null;
@@ -37,7 +37,7 @@ public class WordOutputStrategy implements IDocumentOutStrategy {
 	 * Constructor - takes the name of the file we intend outputting to	
 	 * @param outputFileName
 	 */
-	public WordOutputStrategy(String outputFileName) {
+	public WordXOutputStrategy(String outputFileName) {
 		this.outputFileName = outputFileName;
 	}
 

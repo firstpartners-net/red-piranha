@@ -12,14 +12,14 @@ import org.junit.Test;
 
 import net.firstpartners.TestConstants;
 
-public class WordOutputStrategyTest {
+public class WordXOutputStrategyTest {
 
 	@Test
 	public final void testOutputWordThenDelete() throws IOException, InvalidFormatException {
 
 		XWPFDocument xdoc = new XWPFDocument();
 
-		WordOutputStrategy wordOut = new WordOutputStrategy(TestConstants.WORD_TMP_FILE);
+		WordXOutputStrategy wordOut = new WordXOutputStrategy(TestConstants.WORD_TMP_FILE);
 		wordOut.setWorkbook(xdoc);
 
 		// Process the output

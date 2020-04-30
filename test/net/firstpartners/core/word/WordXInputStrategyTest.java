@@ -18,10 +18,10 @@ import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.drools.loader.RuleDTO;
 
-public class WordInputStrategyTest {
+public class WordXInputStrategyTest {
 
 	// Logger
-	private static final Logger log = Logger.getLogger(WordInputStrategyTest.class.getName());
+	private static final Logger log = Logger.getLogger(WordXInputStrategyTest.class.getName());
 
 	/**
 	 * Just check that the rules can run, throws no exception
@@ -35,7 +35,7 @@ public class WordInputStrategyTest {
 		log.debug("rule source created");
 		
 		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.WORDX_DATA_FILE,ruleSource,"some-dummy.docX");
-		assertTrue (runner.getDocumenttOutputStrategy() instanceof WordOutputStrategy);
+		assertTrue (runner.getDocumenttOutputStrategy() instanceof WordXOutputStrategy);
 		
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
@@ -59,7 +59,7 @@ public class WordInputStrategyTest {
 
 			RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.WORD_DATA_FILE,ruleSource,"some-dummy.doc");
 			
-			assertTrue (runner.getDocumentInputStrategy() instanceof WordInputStrategy);
+			assertTrue (runner.getDocumentInputStrategy() instanceof WordXInputStrategy);
 			
 			//set out OutputStrategy so we can test the output later
 			MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();

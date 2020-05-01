@@ -22,10 +22,10 @@ import net.firstpartners.data.RangeList;
  * @author PBrowne
  *
  */
-public class WordXInputStrategy implements IDocumentInStrategy {
+public class WordInputStrategy implements IDocumentInStrategy {
 
 	// Handle to the loggers
-	private static final Logger log = RpLogger.getLogger(WordXInputStrategy.class.getName());
+	private static final Logger log = RpLogger.getLogger(WordInputStrategy.class.getName());
 
 	private String wordInputFileName = null;
 	private XWPFDocument poiDoc = null;
@@ -35,7 +35,7 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 	 * 
 	 * @param wordInputFileName
 	 */
-	public WordXInputStrategy(String excelInputFileName) {
+	public WordInputStrategy(String excelInputFileName) {
 		this.wordInputFileName = excelInputFileName;
 	}
 
@@ -67,7 +67,7 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 		InputStream inputAsStream = new FileInputStream(this.wordInputFileName);
 		poiDoc= new XWPFDocument(OPCPackage.open(inputAsStream));
 
-		RangeList myRange = DocumentXConvertor.convertFromPoiWordIntoRedRange(poiDoc);
+		RangeList myRange = DocumentConvertor.convertFromPoiWordIntoRedRange(poiDoc);
 		inputAsStream.close();
 
 		return myRange;

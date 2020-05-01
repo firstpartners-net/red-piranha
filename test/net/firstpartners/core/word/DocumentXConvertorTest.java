@@ -19,10 +19,10 @@ import net.firstpartners.TestConstants;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
-public class DocumentConvertorTest {
+public class DocumentXConvertorTest {
 
 	// Logger
-	private static final Logger log = Logger.getLogger(DocumentConvertorTest.class.getName());
+	private static final Logger log = Logger.getLogger(DocumentXConvertorTest.class.getName());
 	
 	/** s
 	 * Convenience method - serialize testdata for use by Cell Tasts
@@ -32,13 +32,13 @@ public class DocumentConvertorTest {
 	 */
 	public static void main (String args[]) throws IOException, InvalidFormatException {
 		
-		RangeList myRange = new DocumentConvertorTest().getTestDataFromWorkbook();
-		FileOutputStream fileOut =new FileOutputStream(TestConstants.SAVED_WORD_RANGEHOLDER_DATA);
+		RangeList myRange = new DocumentXConvertorTest().getTestDataFromWorkbook();
+		FileOutputStream fileOut =new FileOutputStream(TestConstants.SAVED_WORDX_RANGEHOLDER_DATA);
         ObjectOutputStream out = new ObjectOutputStream(fileOut);
         out.writeObject(myRange);
         out.close();
         fileOut.close();
-        log.debug("Serialized data is saved in:"+ (TestConstants.SAVED_WORD_RANGEHOLDER_DATA));
+        log.debug("Serialized data is saved in:"+ (TestConstants.SAVED_WORDX_RANGEHOLDER_DATA));
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public class DocumentConvertorTest {
 	@Test
 	public void testConvertPoiToRed() throws InvalidFormatException, IOException {
 		
-		RangeList myRangeList = new DocumentConvertorTest().getTestDataFromWorkbook();
+		RangeList myRangeList = new DocumentXConvertorTest().getTestDataFromWorkbook();
 		log.debug("RangeList:"+myRangeList);
 		assertNotNull(myRangeList);
 		

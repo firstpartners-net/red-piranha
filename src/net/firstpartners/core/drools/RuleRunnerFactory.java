@@ -1,5 +1,10 @@
 package net.firstpartners.core.drools;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 
 import net.firstpartners.core.IDocumentInStrategy;
@@ -11,6 +16,8 @@ import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.log.RpLogger;
+import net.firstpartners.core.word.WordInputStrategy;
+import net.firstpartners.core.word.WordOutputStrategy;
 import net.firstpartners.core.word.WordXInputStrategy;
 import net.firstpartners.core.word.WordXOutputStrategy;
 
@@ -30,12 +37,83 @@ public class RuleRunnerFactory {
 	public static final String SUFFIX_WORD = ".doc";
 	public static final String SUFFIX_WORDX = ".docx";
 	public static final String SUFFIX_EXCEL = ".xls";
-	public static final String SUFFIX_EXCELX = ".xlx";
+	public static final String SUFFIX_EXCELX = ".xlsx";
+
+	// mappings between the suffix and class we want to load
+	static Map<String, Class<?>> inputSuffixMaps = null;
+	static Map<String, Class<?>> outputSuffixMaps = new HashMap<String, Class<?>>();
+
+	static void resetReferenceTables() {
+		inputSuffixMaps = null;
+		outputSuffixMaps = null;
+	}
 
 	/**
-	 * Private Constructor, part of singleton Method
+	 * Build the cache of strategy classes we can use to handle different input and
+	 * output files
 	 */
-	private RuleRunnerFactory() {
+	static void buildReferenceTables() {
+
+		if (inputSuffixMaps == null) {
+			inputSuffixMaps = new HashMap<String, Class<?>>();
+			inputSuffixMaps.put(SUFFIX_WORD, WordInputStrategy.class);
+			inputSuffixMaps.put(SUFFIX_WORDX, WordXInputStrategy.class);
+			inputSuffixMaps.put(SUFFIX_EXCEL, ExcelInputStrategy.class);
+			inputSuffixMaps.put(SUFFIX_EXCELX, ExcelInputStrategy.class); // same
+		}
+
+		if (outputSuffixMaps == null) {
+			outputSuffixMaps = new HashMap<String, Class<?>>();
+			outputSuffixMaps.put(SUFFIX_WORD, WordOutputStrategy.class);
+			outputSuffixMaps.put(SUFFIX_WORDX, WordXOutputStrategy.class);
+			outputSuffixMaps.put(SUFFIX_EXCEL, ExcelOutputStrategy.class);
+			outputSuffixMaps.put(SUFFIX_EXCELX, ExcelOutputStrategy.class); // same
+		}
+
+	}
+
+	/**
+	 * Get the class that maps to our filename based on .xls, .doc etc
+	 * 
+	 * @param string - full filename
+	 * @return
+	 */
+	static Class<?> getInputMapping(String fileName) {
+
+		assert fileName != null;
+
+		buildReferenceTables();
+
+		int splitPoint = fileName.lastIndexOf(".");
+		if(splitPoint==-1) {
+			//nothing found
+			return null;
+		}
+		String suffix = fileName.substring(splitPoint, fileName.length());
+
+		log.debug("Looking for input Mapping against suffix:" + suffix);
+
+		return inputSuffixMaps.get(suffix);
+	}
+
+	/**
+	 * Get the class that maps to our filename based on .xls, .doc etc
+	 * 
+	 * @param string - full filename
+	 * @return
+	 */
+	static Class<?> getOutputMapping(String fileName) {
+
+		assert fileName != null;
+
+		buildReferenceTables();
+
+		int splitPoint = fileName.lastIndexOf(".");
+		String suffix = fileName.substring(splitPoint, fileName.length());
+
+		log.debug("Looking for output Mapping against suffix:" + suffix);
+
+		return outputSuffixMaps.get(suffix);
 	}
 
 	/**
@@ -45,8 +123,16 @@ public class RuleRunnerFactory {
 	 * @param mySourceAsString
 	 * @param outputFileName
 	 * @return
+	 * @throws InvocationTargetException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
 	 */
-	public static RuleRunner getRuleRunner(String inputFileName, String mySourceAsString, String outputFileName) {
+	public static RuleRunner getRuleRunner(String inputFileName, String mySourceAsString, String outputFileName)
+			throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException {
 
 		RuleDTO mySource = new RuleDTO();
 		mySource.setRulesLocation(mySourceAsString);
@@ -62,8 +148,16 @@ public class RuleRunnerFactory {
 	 * @param ruleSource
 	 * @param outputFileName
 	 * @return
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
+	 * @throws InvocationTargetException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
 	 */
-	public static RuleRunner getRuleRunner(String inputFileName, RuleDTO ruleSource, String outputFileName) {
+	public static RuleRunner getRuleRunner(String inputFileName, RuleDTO ruleSource, String outputFileName)
+			throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException {
 
 		// check our incoming params
 		assert inputFileName != null;
@@ -73,27 +167,28 @@ public class RuleRunnerFactory {
 		// Make sure we get the right type of loader
 		IRuleLoaderStrategy ruleLoaderStrategy = getRuleLoader(ruleSource.getRulesLocation()[0]);
 
-		// Decide on our input strategy - these default to xl
+		// Decide on our input strategy
 		inputFileName = inputFileName.toLowerCase();
-		IDocumentInStrategy inputStrat;
-		if (inputFileName.endsWith(SUFFIX_WORD) || inputFileName.endsWith(SUFFIX_WORDX)) {
-			inputStrat = new WordXInputStrategy(inputFileName);
-
-		} else {
-			inputStrat = new ExcelInputStrategy(inputFileName);
-
+		Class<?> strategyClass = getInputMapping(inputFileName);
+		if(strategyClass ==null) {
+			throw new IllegalArgumentException("No Input Strategy Found for:"+inputFileName);
 		}
-		//decide on our output strategy - these default to xl
+		log.debug("trying to create Strategy Object from class:" + strategyClass);
+		Constructor<?> constructor = strategyClass.getConstructor(String.class);
+		IDocumentInStrategy inputStrat = (IDocumentInStrategy) constructor.newInstance(inputFileName);
+
+		
+		
+		// Decide on our output strategy
 		outputFileName = outputFileName.toLowerCase();
-		IDocumentOutStrategy outputStrat;
-		if (outputFileName.endsWith(SUFFIX_WORD) || outputFileName.endsWith(SUFFIX_WORDX)) {
-			outputStrat = new WordXOutputStrategy(outputFileName);
-
-		} else {
-			outputStrat = new ExcelOutputStrategy(outputFileName);
-
+		strategyClass =null;
+		strategyClass = getOutputMapping(outputFileName);
+		if(strategyClass ==null) {
+			throw new IllegalArgumentException("No Output Strategy Found for:"+inputFileName);
 		}
-
+		log.debug("trying to create Strategy Object from class:" + strategyClass);
+		constructor = strategyClass.getConstructor(String.class);
+		IDocumentOutStrategy outputStrat = (IDocumentOutStrategy) constructor.newInstance(outputFileName);
 
 		log.debug("Using DocumentInputStrategy:" + inputStrat.getClass());
 		log.debug("Using RuleLoader:" + ruleLoaderStrategy);

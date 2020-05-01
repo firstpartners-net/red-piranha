@@ -1,6 +1,7 @@
 package net.firstpartners.ui;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import org.apache.log4j.Logger;
 import org.drools.compiler.compiler.DroolsParserException;
@@ -66,8 +67,13 @@ public class RedCommandLine {
 	 * @param playerAsLogger - for logging to GUI
 	 * @param userUpdates - for progress feedback to GUI
 	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws SecurityException 
+	 * @throws NoSuchMethodException 
 	 */
-	static void runRules(ILogger playerAsLogger, IGiveFeedbackToUsers userUpdates) throws IllegalArgumentException {
+	static void runRules(ILogger playerAsLogger, IGiveFeedbackToUsers userUpdates) throws IllegalArgumentException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, InvocationTargetException {
 
 		
 		// Get the params

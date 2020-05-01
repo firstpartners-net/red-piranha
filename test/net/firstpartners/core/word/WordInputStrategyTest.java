@@ -19,10 +19,10 @@ import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.drools.loader.RuleDTO;
 
-public class WordXInputStrategyTest {
+public class WordInputStrategyTest {
 
 	// Logger
-	private static final Logger log = Logger.getLogger(WordXInputStrategyTest.class.getName());
+	private static final Logger log = Logger.getLogger(WordInputStrategyTest.class.getName());
 
 	/**
 	 * Just check that the rules can run, throws no exception

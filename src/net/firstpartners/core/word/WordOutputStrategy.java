@@ -18,14 +18,14 @@ import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
 /**
- * Strategy class of output of Excel Document
+ * Strategy class of output of Word Document
  * @author paul
  *
  */
-public class WordXOutputStrategy implements IDocumentOutStrategy {
+public class WordOutputStrategy implements IDocumentOutStrategy {
 
 	// Logger
-	private static final Logger log = RpLogger.getLogger(WordXOutputStrategy.class.getName());
+	private static final Logger log = RpLogger.getLogger(WordOutputStrategy.class.getName());
 	
 	//Name of the outputfile
 	private String outputFileName =null;
@@ -37,7 +37,7 @@ public class WordXOutputStrategy implements IDocumentOutStrategy {
 	 * Constructor - takes the name of the file we intend outputting to	
 	 * @param outputFileName
 	 */
-	public WordXOutputStrategy(String outputFileName) {
+	public WordOutputStrategy(String outputFileName) {
 		this.outputFileName = outputFileName;
 	}
 
@@ -189,7 +189,7 @@ public class WordXOutputStrategy implements IDocumentOutStrategy {
 		this.wordDoc =fileToProcess.getOriginalAsPoiWordDoc();
 		log.debug("updating copy of word doc to:"+wordDoc);
 		
-		DocumentXConvertor.updateRedRangeintoPoiWord(wordDoc, range);
+		DocumentConvertor.updateRedRangeintoPoiWord(wordDoc, range);
 		
 	}
 

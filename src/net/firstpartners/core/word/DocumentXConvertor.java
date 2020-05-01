@@ -25,12 +25,12 @@ import net.firstpartners.data.RangeList;
  * @author PBrowne
  *
  */
-public class DocumentConvertor {
+public class DocumentXConvertor {
 
 	private static final String TABLE_IN_POI_WORD_MARKER = "TABLE";
 
 	// Logger
-	private static final Logger log = RpLogger.getLogger(DocumentConvertor.class.getName());
+	private static final Logger log = RpLogger.getLogger(DocumentXConvertor.class.getName());
 
 	/**
 	 * The name we store Word Paragraphs under

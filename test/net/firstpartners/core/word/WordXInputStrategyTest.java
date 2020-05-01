@@ -13,11 +13,15 @@ import org.apache.poi.openxml4j.exceptions.OLE2NotOfficeXmlFileException;
 import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.Test;
 
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.MemoryOutputStrategy;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.drools.loader.RuleDTO;
+import net.firstpartners.core.file.PDFOutputStrategy;
 
 public class WordXInputStrategyTest {
 
@@ -32,13 +36,14 @@ public class WordXInputStrategyTest {
 
 		RuleDTO ruleSource = new RuleDTO();
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
-		
+
 		log.debug("rule source created");
-		
-		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.WORDX_DATA_FILE,ruleSource,"some-dummy.docX");
-		assertTrue (runner.getDocumenttOutputStrategy() instanceof WordXOutputStrategy);
-		
-		//set out OutputStrategy so we can test the output later
+
+		RuleRunner runner = RuleRunnerFactory.getRuleRunner(TestConstants.WORDX_DATA_FILE, ruleSource,
+				"some-dummy.pdf");
+		assertTrue(runner.getDocumenttOutputStrategy() instanceof PDFOutputStrategy);
+
+		// set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 		runner.setOutputStrategy(outputStrategy);
 
@@ -51,32 +56,32 @@ public class WordXInputStrategyTest {
 	/**
 	 * Just check that the rules can run, throws no exception
 	 */
-	public final void testDocCallRulesFromFile() throws ClassNotFoundException, InvalidFormatException, DroolsParserException, IOException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		
+	public final void testDocCallRulesFromFile() throws ClassNotFoundException, InvalidFormatException,
+			DroolsParserException, IOException, NoSuchMethodException, SecurityException, InstantiationException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException, CsvDataTypeMismatchException,
+			CsvRequiredFieldEmptyException {
+
 		try {
-			
+
 			RuleDTO ruleSource = new RuleDTO();
 			ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 
-			RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.WORD_DATA_FILE,ruleSource,"some-dummy.doc");
-			
-			assertTrue (runner.getDocumentInputStrategy() instanceof WordXInputStrategy);
-			
-			//set out OutputStrategy so we can test the output later
+			RuleRunner runner = RuleRunnerFactory.getRuleRunner(TestConstants.WORD_DATA_FILE, ruleSource,
+					"some-dummy.csv");
+
+			assertTrue(runner.getDocumentInputStrategy() instanceof WordInputStrategy);
+
+			// set out OutputStrategy so we can test the output later
 			MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 			runner.setOutputStrategy(outputStrategy);
-	
+
 			runner.callRules();
 			fail("Excpected exception when opening docx not thrown");
-			
-			
+
 		} catch (OLE2NotOfficeXmlFileException ole2Exception) {
 			// ignore - we expect it to call
 		}
-		
-
 
 	}
 
-	
 }

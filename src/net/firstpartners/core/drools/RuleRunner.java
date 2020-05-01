@@ -11,6 +11,9 @@ import org.drools.compiler.compiler.DroolsParserException;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.StatelessKnowledgeSession;
 
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
@@ -69,8 +72,10 @@ public class RuleRunner {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 * @throws InvalidFormatException
+	 * @throws CsvRequiredFieldEmptyException 
+	 * @throws CsvDataTypeMismatchException 
 	 */
-	public void callRules() throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
+	public void callRules() throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
 
 		// Add the logger
 		// prevent a null pointer in our rules
@@ -91,9 +96,11 @@ public class RuleRunner {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 * @throws InvalidFormatException
+	 * @throws CsvRequiredFieldEmptyException 
+	 * @throws CsvDataTypeMismatchException 
 	 */
 	public void callRules(IGiveFeedbackToUsers userDataDisplay, ILogger userMessages)
-			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
+			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
 
 		// Create a new Excel Logging object
 		outputStrategy.setDocumentLogger(new SpreadSheetLogger());
@@ -134,7 +141,7 @@ public class RuleRunner {
 		// update a copy of the original document (to be saved as copy) with the result
 		// of our rules
 		log.debug("RunRules - object is null?"+inputStrategy.getOriginalDocument());
-		outputStrategy.updateCopyOfOriginalDocument(inputStrategy.getOriginalDocument(), ranges);
+		outputStrategy.setUpdates(inputStrategy.getOriginalDocument(), ranges);
 
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(90);

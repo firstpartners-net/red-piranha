@@ -18,7 +18,7 @@ import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
 /**
- * Convert a Word (.docX) into our (Red) Javabeans
+ * Convert a Word (.docX) into our (Red) Javabeans.  Currently does not support the reverse translation.
  * 
  * {@link https://www.devglan.com/corejava/parsing-word-document-example}
  * 
@@ -160,14 +160,6 @@ public class DocumentXConvertor {
 		returnList.addAll(tables);
 
 		return returnList;
-	}
-
-	/*
-	 * 
-	 */
-	public static void updateRedRangeintoPoiWord(XWPFDocument wordDocToUpdate, RangeList range) {
-		log.warn("WARNING: output conversion not implemented yet");
-		throw new IllegalAccessError("Not implemented yet");
 	}
 
 }

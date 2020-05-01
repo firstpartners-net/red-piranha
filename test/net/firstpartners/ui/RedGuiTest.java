@@ -2,6 +2,7 @@ package net.firstpartners.ui;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
@@ -54,21 +55,11 @@ public class RedGuiTest {
 		RedGui player = new RedGui();
 
 		// Get the test data - XL
-		FileInputStream fileIn = null;
-		ObjectInputStream in = null;
-		RangeList redData = null;
-		fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
-		in = new ObjectInputStream(fileIn);
-		redData = (RangeList) in.readObject();
-		fileIn.close();
+		RangeList redData = getTestDataFromExcel();
 
-		// Get the test data - XL
+		// Get the test data - Word
 
-		RangeList redWordData = null;
-		fileIn = new FileInputStream(TestConstants.SAVED_WORD_RANGEHOLDER_DATA);
-		in = new ObjectInputStream(fileIn);
-		redWordData = (RangeList) in.readObject();
-		fileIn.close();
+		RangeList redWordData = getTestDataFromWord();
 
 		player.showPreRulesSnapShot(redData);
 		player.showPostRulesSnapShot(redWordData);
@@ -76,5 +67,39 @@ public class RedGuiTest {
 		Runnable readRun = new Thread(player);
 		readRun.run();
 
+	}
+
+	/**
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public static RangeList getTestDataFromExcel() throws FileNotFoundException, IOException, ClassNotFoundException {
+		FileInputStream fileIn = null;
+		ObjectInputStream in = null;
+		RangeList redData = null;
+		fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
+		in = new ObjectInputStream(fileIn);
+		redData = (RangeList) in.readObject();
+		fileIn.close();
+		return redData;
+	}
+
+	/**
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public static RangeList getTestDataFromWord() throws FileNotFoundException, IOException, ClassNotFoundException {
+		FileInputStream fileIn;
+		ObjectInputStream in;
+		RangeList redWordData = null;
+		fileIn = new FileInputStream(TestConstants.SAVED_WORD_RANGEHOLDER_DATA);
+		in = new ObjectInputStream(fileIn);
+		redWordData = (RangeList) in.readObject();
+		fileIn.close();
+		return redWordData;
 	}
 }

@@ -36,7 +36,8 @@ public class TestConstants {
 	
 	//tmp files
 	public static final String EXCEL_TMP_FILE = "test/testdata/tmp.xls";
-	public static final String WORD_TMP_FILE = "test/testdata/tmp.docx";
+	public static final String CSV_TMP_FILE = "test/testdata/tmp.csv";
+	public static final String PDF_TMP_FILE = "test/testdata/tmp.pdf";
 	
 	public static final String KNOWLEDGE_BASE_FILE = "test/testrules/log-then-modify-rules.KnowledgeBase";
 	public static final String KNOWLEDGE_BASE_FILE_TMP ="test/testrules/tmp.KnowledgeBase";

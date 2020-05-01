@@ -11,6 +11,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
+import net.firstpartners.core.file.Utils;
 
 public class ExcelOutputStrategyTest {
 
@@ -33,7 +34,7 @@ public class ExcelOutputStrategyTest {
 		f =null; //avoid any interference in the next step
 		
 		//Make sure we can delete file
-		excelOut.deleteOutputFileIfExists(); //object remembers file name from earlier
+		Utils.deleteOutputFileIfExists(TestConstants.EXCEL_TMP_FILE); //object remembers file name from earlier
 		f = new File(TestConstants.EXCEL_TMP_FILE);
 		assertFalse ("Found file that should exist", f.exists() );
 		

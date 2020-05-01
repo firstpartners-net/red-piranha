@@ -4,6 +4,9 @@ import java.io.IOException;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.data.OfficeDocument;
@@ -41,8 +44,10 @@ public interface IDocumentOutStrategy {
 	 * @param outputFileName
 	 * @throws IOException
 	 * @throws InvalidFormatException 
+	 * @throws CsvRequiredFieldEmptyException 
+	 * @throws CsvDataTypeMismatchException 
 	 */
-	public void processOutput() throws IOException, InvalidFormatException;
+	public void processOutput() throws IOException, InvalidFormatException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException;
 	
 	/**
 	 * Allows us to set a Logger that will flush to an Excel Spreadheet
@@ -55,6 +60,6 @@ public interface IDocumentOutStrategy {
 	 * @param ranges
 	 * @throws IOException
 	 */
-	void updateCopyOfOriginalDocument(OfficeDocument fileToProcess,RangeList ranges) throws IOException;
+	void setUpdates(OfficeDocument fileToProcess,RangeList ranges) throws IOException;
 
 }

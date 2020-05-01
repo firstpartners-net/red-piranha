@@ -259,7 +259,7 @@ public class RangeList implements List<Range>, Serializable {
 
 		StringBuilder returnText = new StringBuilder();
 		getAllCellsInAllRanges().forEach((cell) -> {
-			returnText.append(cell.toString() + "\n");
+			returnText.append(cell.toString() + " ");
 		});
 
 		return returnText.toString();

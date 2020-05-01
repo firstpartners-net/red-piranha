@@ -1,15 +1,15 @@
 package net.firstpartners.core.excel;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import org.apache.log4j.Logger;
 
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import net.firstpartners.RedConstants;
 import net.firstpartners.core.IDocumentOutStrategy;
+import net.firstpartners.core.file.Utils;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
@@ -42,20 +42,6 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 		this.outputFileName = outputFileName;
 	}
 
-
-	/**
-	 * Delete the output file if it already exists
-	 *
-	 * @param outputFile
-	 */
-	public void deleteOutputFileIfExists() {
-
-		File outputFile = new File(outputFileName);
-		if (outputFile.exists()) {
-			outputFile.delete();
-		}
-
-	}
 
 
 	/**
@@ -163,7 +149,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	public void processOutput() throws IOException {
 		
 		// delete the outputFile if it exists
-		deleteOutputFileIfExists();
+		Utils.deleteOutputFileIfExists(outputFileName);
 
 		// Open the outputfile as a stream
 		outputToFile(workbook);
@@ -190,7 +176,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 * @param ranges
 	 * @throws IOException
 	 */
-	public void updateCopyOfOriginalDocument(OfficeDocument fileToProcess,RangeList range) throws IOException {
+	public void setUpdates(OfficeDocument fileToProcess,RangeList range) throws IOException {
 		
 		this.workbook =fileToProcess.getOriginalAsPoiWorkbook();
 		SpreadSheetConvertor.updateRedRangeintoPoiExcel(this.workbook, range);

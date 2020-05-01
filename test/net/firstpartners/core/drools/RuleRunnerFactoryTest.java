@@ -11,11 +11,11 @@ import net.firstpartners.core.drools.loader.FileRuleLoader;
 import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
+import net.firstpartners.core.file.CSVOutputStrategy;
+import net.firstpartners.core.file.PDFOutputStrategy;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.word.WordInputStrategy;
-import net.firstpartners.core.word.WordOutputStrategy;
 import net.firstpartners.core.word.WordXInputStrategy;
-import net.firstpartners.core.word.WordXOutputStrategy;
 
 public class RuleRunnerFactoryTest {
 
@@ -47,10 +47,10 @@ public class RuleRunnerFactoryTest {
 	@Test
 	public void testGenericDocFactory() throws NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.doc", "filename", "some-dummy-out.doc");
+		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.doc", "filename", "some-dummy-out.csv");
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordInputStrategy);
-		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof WordOutputStrategy);
+		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof CSVOutputStrategy);
 		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
 
 	}
@@ -58,10 +58,10 @@ public class RuleRunnerFactoryTest {
 	@Test
 	public void testGenericDocXFactory() throws NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.docx", "filename", "some-dummy-out.docx");
+		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.docx", "filename", "some-dummy-out.pdf");
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordXInputStrategy);
-		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof WordXOutputStrategy);
+		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof PDFOutputStrategy);
 		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
 
 	}

@@ -79,16 +79,6 @@ public class DocumentConvertorTest {
 		
 	}
 
-	
-	
-	@Test
-	public void testConvertRedToPoi() throws InvalidFormatException, IOException {
-		XWPFDocument xdoc = new XWPFDocument();
-		RangeList results = new RangeList();
-		
-		DocumentXConvertor.updateRedRangeintoPoiWord(xdoc, results);
-	}
-	
-	
+
 
 }

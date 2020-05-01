@@ -5,7 +5,6 @@ import java.io.IOException;
 import net.firstpartners.core.excel.SpreadSheetConvertor;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
-import net.firstpartners.core.word.DocumentXConvertor;
 import net.firstpartners.data.OfficeDocument;
 import net.firstpartners.data.RangeList;
 
@@ -88,14 +87,11 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	}
 
 	@Override
-	public void updateCopyOfOriginalDocument(OfficeDocument fileToProcess, RangeList ranges) throws IOException {
+	public void setUpdates(OfficeDocument fileToProcess, RangeList ranges) throws IOException {
 		this.processedDoc = fileToProcess;
 		if (fileToProcess.isSpreadsheet()) {
 			SpreadSheetConvertor.updateRedRangeintoPoiExcel(fileToProcess.getOriginalAsPoiWorkbook(), ranges);
-		} else {
-			DocumentXConvertor.updateRedRangeintoPoiWord(fileToProcess.getOriginalAsPoiWordDoc(), ranges);
-		}
-
+		} 
 	}
 
 }

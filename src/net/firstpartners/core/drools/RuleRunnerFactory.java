@@ -15,11 +15,11 @@ import net.firstpartners.core.drools.loader.RuleDTO;
 import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
+import net.firstpartners.core.file.CSVOutputStrategy;
+import net.firstpartners.core.file.PDFOutputStrategy;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.word.WordInputStrategy;
-import net.firstpartners.core.word.WordOutputStrategy;
 import net.firstpartners.core.word.WordXInputStrategy;
-import net.firstpartners.core.word.WordXOutputStrategy;
 
 /**
  * Return an instance of RuleRunner, Appropriately configured with the various
@@ -38,10 +38,12 @@ public class RuleRunnerFactory {
 	public static final String SUFFIX_WORDX = ".docx";
 	public static final String SUFFIX_EXCEL = ".xls";
 	public static final String SUFFIX_EXCELX = ".xlsx";
+	public static final String SUFFIX_CSV = ".csv";
+	public static final String SUFFIX_PDF = ".pdf";
 
 	// mappings between the suffix and class we want to load
 	static Map<String, Class<?>> inputSuffixMaps = null;
-	static Map<String, Class<?>> outputSuffixMaps = new HashMap<String, Class<?>>();
+	static Map<String, Class<?>> outputSuffixMaps = null;
 
 	static void resetReferenceTables() {
 		inputSuffixMaps = null;
@@ -64,8 +66,8 @@ public class RuleRunnerFactory {
 
 		if (outputSuffixMaps == null) {
 			outputSuffixMaps = new HashMap<String, Class<?>>();
-			outputSuffixMaps.put(SUFFIX_WORD, WordOutputStrategy.class);
-			outputSuffixMaps.put(SUFFIX_WORDX, WordXOutputStrategy.class);
+			outputSuffixMaps.put(SUFFIX_CSV, CSVOutputStrategy.class);
+			outputSuffixMaps.put(SUFFIX_PDF, PDFOutputStrategy.class);
 			outputSuffixMaps.put(SUFFIX_EXCEL, ExcelOutputStrategy.class);
 			outputSuffixMaps.put(SUFFIX_EXCELX, ExcelOutputStrategy.class); // same
 		}
@@ -112,8 +114,10 @@ public class RuleRunnerFactory {
 		String suffix = fileName.substring(splitPoint, fileName.length());
 
 		log.debug("Looking for output Mapping against suffix:" + suffix);
-
-		return outputSuffixMaps.get(suffix);
+		Class<?> foundStrategy = outputSuffixMaps.get(suffix);
+		log.debug("Found Strategy:"+foundStrategy);
+		
+		return foundStrategy;
 	}
 
 	/**
@@ -184,7 +188,7 @@ public class RuleRunnerFactory {
 		strategyClass =null;
 		strategyClass = getOutputMapping(outputFileName);
 		if(strategyClass ==null) {
-			throw new IllegalArgumentException("No Output Strategy Found for:"+inputFileName);
+			throw new IllegalArgumentException("No Output Strategy Found for:"+outputFileName);
 		}
 		log.debug("trying to create Strategy Object from class:" + strategyClass);
 		constructor = strategyClass.getConstructor(String.class);

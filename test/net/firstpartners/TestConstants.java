@@ -48,7 +48,7 @@ public class TestConstants {
 	//Serialized Test Data
 	public final static String SAVED_EXCEL_RANGEHOLDER_DATA="test/testdata/RANGEHOLDER_RANGE_CELLS.testdata";
 	public final static String SAVED_WORD_RANGEHOLDER_DATA="test/testdata/RANGEHOLDER_RANGE_WORD.testdata";
-	public final static String SAVED_WORDX_RANGEHOLDER_DATA="test/testdata/RANGEHOLDER_RANGE_WORD.testdata";
+	public final static String SAVED_WORDX_RANGEHOLDER_DATA="test/testdata/RANGEHOLDER_RANGE_WORDX.testdata";
 	
 	/**
 	 * Testing utility to generate test Data

@@ -6,10 +6,12 @@ import java.io.InputStream;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.openxml4j.opc.OPCPackage;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
+import net.firstpartners.TestConstants;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.OfficeDocument;
@@ -63,10 +65,11 @@ public class WordInputStrategy implements IDocumentInStrategy {
 
 		log.debug("converting incoming word stream to Javabeans");
 		
-
-		InputStream inputAsStream = new FileInputStream(this.wordInputFileName);
-		poiDoc= new XWPFDocument(OPCPackage.open(inputAsStream));
-
+		InputStream inputAsStream = new FileInputStream(TestConstants.WORD_DATA_FILE);
+		POIFSFileSystem fs = new POIFSFileSystem(inputAsStream);
+		HWPFDocument poiDoc = new HWPFDocument(fs);
+		
+	
 		RangeList myRange = DocumentConvertor.convertFromPoiWordIntoRedRange(poiDoc);
 		inputAsStream.close();
 

@@ -3,22 +3,22 @@ package net.firstpartners.core.word;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 import org.apache.log4j.Logger;
+import org.apache.poi.hwpf.HWPFDocument;
+import org.apache.poi.hwpf.usermodel.Paragraph;
+import org.apache.poi.hwpf.usermodel.Table;
+import org.apache.poi.hwpf.usermodel.TableIterator;
+import org.apache.poi.hwpf.usermodel.TableRow;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.xwpf.usermodel.IBodyElement;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFTable;
 
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
-import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
 /**
- * Convert a Word (.docX) into our (Red) Javabeans. Currently does not support the reverse translation.
+ * Convert a Word (.docX) into our (Red) Javabeans. Currently does not support
+ * the reverse translation.
  * 
  * {@link https://www.devglan.com/corejava/parsing-word-document-example}
  * 
@@ -27,7 +27,7 @@ import net.firstpartners.data.RangeList;
  */
 public class DocumentConvertor {
 
-	private static final String TABLE_IN_POI_WORD_MARKER = "TABLE";
+	private static final String TABLE_MARKER = "TABLE_";
 
 	// Logger
 	private static final Logger log = RpLogger.getLogger(DocumentConvertor.class.getName());
@@ -50,58 +50,47 @@ public class DocumentConvertor {
 	 * @throws InvalidFormatException
 	 * @throws IOException
 	 */
-	static Collection<Range> convertTablesToBeans(XWPFDocument wordDoc) throws InvalidFormatException, IOException {
+	static Collection<net.firstpartners.data.Range> convertTablesToBeans(HWPFDocument doc)
+			throws InvalidFormatException, IOException {
 
 		// Our converted Beans
-		Collection<Range> returnValues = new ArrayList<Range>();
+		Collection<net.firstpartners.data.Range> returnValues = new ArrayList<net.firstpartners.data.Range>();
 
-		Iterator<IBodyElement> bodyElementIterator = wordDoc.getBodyElementsIterator();
+		// Handle to all the tables in the document
+		org.apache.poi.hwpf.usermodel.Range range = doc.getRange();
+		TableIterator itr = new TableIterator(range);
 
-		while (bodyElementIterator.hasNext()) {
+		int tableCounter = 0;
 
-			// Get the next POI Word Element
-			IBodyElement element = bodyElementIterator.next();
+		// Loop through all the tables
+		while (itr.hasNext()) {
 
-			// Check if this is a taBLE
-			if (TABLE_IN_POI_WORD_MARKER.equalsIgnoreCase(element.getElementType().name())) {
+			tableCounter++;
 
-				// Get the Tables in this if its
-				java.util.List<XWPFTable> tableList = element.getBody().getTables();
-				int tableCounter =0;
-				
-				
-				// Loop through the tables
-				for (XWPFTable table : tableList) {
+			Table table = itr.next();
+			for (int rowIndex = 0; rowIndex < table.numRows(); rowIndex++) {
 
-					//we start at one
-					tableCounter++;
-					
-					//loop through the rows in this table
-					for (int rowCounter = 0; rowCounter < table.getRows().size(); rowCounter++) {
+				TableRow row = table.getRow(rowIndex);
 
-						// Create a Range for this row of the table, using the value of the first cell
-						Range thisRow = new Range();
-						String possibleRowName = table.getRow(rowCounter).getCell(0).getText();
-						if (possibleRowName != null) {
-							thisRow.setRangeName(WORD_TABLE_ROW_AS_RANGELIST+possibleRowName);
-						}
-
-						//Loop throuh the Cells in this row
-						for (int cellCounter = 0; cellCounter < table.getRow(rowCounter).getTableCells()
-								.size(); cellCounter++) {
-
-							String cellName = possibleRowName + "_" + cellCounter;
-							Cell thisCell = new Cell(cellName, table.getRow(rowCounter).getCell(cellCounter).getText());
-							thisCell.setOriginalTableRefernece("TABLE_"+tableCounter);
-							thisCell.setOriginalCellReference("R:"+rowCounter+"C:"+cellCounter);
-							log.debug("created cell"+thisCell);
-							thisRow.put(cellName, thisCell);
-						}
-
-						// Make sure we add this row to the return list
-						returnValues.add(thisRow);
-					}
+				// Create a Range for this row of the table, using the value of the first cell
+				net.firstpartners.data.Range thisRow = new net.firstpartners.data.Range();
+				String possibleRowName = table.getRow(rowIndex).getCell(0).getParagraph(0).text();
+				if (possibleRowName != null) {
+					thisRow.setRangeName(WORD_TABLE_ROW_AS_RANGELIST + possibleRowName);
 				}
+
+				for (int colIndex = 0; colIndex < row.numCells(); colIndex++) {
+
+					String cellName = possibleRowName + "_" + colIndex;
+					Cell thisCell = new Cell(cellName, table.getRow(rowIndex).getCell(colIndex).getParagraph(0).text());
+					thisCell.setOriginalTableRefernece(TABLE_MARKER + tableCounter);
+					thisCell.setOriginalCellReference("R:" + rowIndex + "C:" + colIndex);
+					log.debug("created cell" + thisCell);
+					thisRow.put(cellName, thisCell);
+				}
+
+				// Make sure we add this row to the return list
+				returnValues.add(thisRow);
 			}
 		}
 
@@ -117,25 +106,35 @@ public class DocumentConvertor {
 	 * @throws InvalidFormatException
 	 * @throws IOException
 	 */
-	static Collection<Range> convertParasToBeans(XWPFDocument wordDoc) throws InvalidFormatException, IOException {
+	static Collection<net.firstpartners.data.Range> convertParasToBeans(HWPFDocument wordDoc)
+			throws InvalidFormatException, IOException {
 
-		Collection<Range> returnValues = new ArrayList<Range>();
+		Collection<net.firstpartners.data.Range> returnValues = new ArrayList<net.firstpartners.data.Range>();
 		int counter = 0;
+		
+		//Get a handle to the paragraphs in our document
+		org.apache.poi.hwpf.usermodel.Range range = wordDoc.getRange();
+		int num = range.numParagraphs();
+		Paragraph para;
+		
+		//Loop through the document
+		for (int i = 0; i < num; i++) {
 
-		java.util.List<XWPFParagraph> paragraphList = wordDoc.getParagraphs();
-
-		for (XWPFParagraph paragraph : paragraphList) {
-
-			counter++; // make is start at 1
+			counter++; // make is start at 1 or more
+			
+			para = range.getParagraph(i);
+			
 			String name = WORD_PARAGRAPH_NAME_AS_RANGELIST + counter;
 
-			Range currentPara = new Range(name);
-			Cell redCell = new Cell(name, paragraph.getText());
+			net.firstpartners.data.Range currentPara = new net.firstpartners.data.Range(name);
+			Cell redCell = new Cell(name, para.text());
 
 			// Add the return values
 			currentPara.put(name, redCell);
 			returnValues.add(currentPara);
+			
 		}
+		
 
 		return returnValues;
 
@@ -148,13 +147,13 @@ public class DocumentConvertor {
 	 * @throws IOException
 	 * @throws InvalidFormatException
 	 */
-	public static RangeList convertFromPoiWordIntoRedRange(XWPFDocument wordDoc)
+	public static RangeList convertFromPoiWordIntoRedRange(HWPFDocument wordDoc)
 			throws InvalidFormatException, IOException {
 
 		RangeList returnList = new RangeList();
 
-		Collection<Range> paras = convertParasToBeans(wordDoc);
-		Collection<Range> tables = convertTablesToBeans(wordDoc);
+		Collection<net.firstpartners.data.Range> paras = convertParasToBeans(wordDoc);
+		Collection<net.firstpartners.data.Range> tables = convertTablesToBeans(wordDoc);
 
 		returnList.addAll(paras);
 		returnList.addAll(tables);

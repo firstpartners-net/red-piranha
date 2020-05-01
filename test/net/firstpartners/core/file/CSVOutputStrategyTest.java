@@ -34,10 +34,10 @@ public class CSVOutputStrategyTest {
 		assertTrue("Cannot find file that should exist", f.exists());
 		f = null; // avoid any interference in the next step
 
-//		// Make sure we can delete file
-//		Utils.deleteOutputFileIfExists(TestConstants.CSV_TMP_FILE); // object remembers file name from earlier
-//		f = new File(TestConstants.CSV_TMP_FILE);
-//		assertFalse("Found file that should exist", f.exists());
+		// Make sure we can delete file
+		Utils.deleteOutputFileIfExists(TestConstants.CSV_TMP_FILE); // object remembers file name from earlier
+		f = new File(TestConstants.CSV_TMP_FILE);
+		assertFalse("Found file that should exist", f.exists());
 
 	}
 

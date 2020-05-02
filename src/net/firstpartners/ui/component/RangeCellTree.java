@@ -1,6 +1,9 @@
 package net.firstpartners.ui.component;
 
 import java.awt.BorderLayout;
+import java.text.CharacterIterator;
+import java.text.StringCharacterIterator;
+
 import org.apache.log4j.Logger;
 
 import javax.swing.JPanel;
@@ -35,7 +38,7 @@ public class RangeCellTree extends JPanel {
 		// Logger
 		final Logger log = RpLogger.getLogger(RangeCellTree.class.getName());
 
-		treeRoot = new DefaultMutableTreeNode("Name of Ranges in Excel. Select Node for more details");
+		treeRoot = new DefaultMutableTreeNode("Info we have found. Select Node for more details");
 
 		// create the tree by passing in the treeRoot node
 		tree = new JTree(treeRoot);
@@ -70,16 +73,30 @@ public class RangeCellTree extends JPanel {
 				Object thisNodeObject = ""; // default value
 				DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 
+				// Update our display panel if possible
 				if (selectedNode != null) {
 					thisNodeObject = selectedNode.getUserObject();
-				}
 
-				if (thisNodeObject instanceof Cell) {
-					Cell thisNodeCell = (Cell) thisNodeObject;
-					textArea.setText(thisNodeCell.toLongString());
+					if (thisNodeObject instanceof Cell) {
+						Cell thisNodeCell = (Cell) thisNodeObject;
+						textArea.setText(thisNodeCell.toLongString());
 
-				} else {
-					textArea.setText(thisNodeObject.toString());
+					} else {
+
+						//Sometimes an empty node with subnotes gets added
+						if (thisNodeObject != null) {
+							textArea.setText(thisNodeObject.toString());
+
+							// Debugging code
+							CharacterIterator it = new StringCharacterIterator(thisNodeObject.toString());
+
+							while (it.current() != CharacterIterator.DONE) {
+								log.debug("Char:" + it.current() + " value:" + (int) it.current());
+								it.next();
+							}
+						}
+
+					}
 				}
 
 			}

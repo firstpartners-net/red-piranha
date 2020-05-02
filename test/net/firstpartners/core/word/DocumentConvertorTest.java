@@ -26,7 +26,7 @@ public class DocumentConvertorTest {
 	private static final Logger log = Logger.getLogger(DocumentConvertorTest.class.getName());
 
 	/**
-	 * s Convenience method - serialize testdata for use by Cell Tasts
+	 * s Convenience method - serialize test data for use by Cell Tests
 	 * 
 	 * @param args
 	 * @throws IOException
@@ -50,7 +50,7 @@ public class DocumentConvertorTest {
 	 * @throws IOException
 	 * @throws InvalidFormatException
 	 */
-	private final RangeList getTestDataFromWorkbook() throws IOException, InvalidFormatException{
+	final RangeList getTestDataFromWorkbook() throws IOException, InvalidFormatException{
 
 		InputStream fis = new FileInputStream(TestConstants.WORD_DATA_FILE);
 		POIFSFileSystem fs = new POIFSFileSystem(fis);
@@ -79,5 +79,6 @@ public class DocumentConvertorTest {
 		assertEquals(14, filterTableRange.size());
 
 	}
+	
 
 }

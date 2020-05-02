@@ -9,9 +9,11 @@ import java.io.ObjectInputStream;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import org.apache.log4j.Logger;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
+import net.firstpartners.core.word.DocumentConvertorTest;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -46,10 +48,14 @@ public class RedGuiTest {
 	 * @throws IllegalAccessException
 	 * @throws UnsupportedLookAndFeelException
 	 * @throws IOException
+	 * @throws InvalidFormatException 
 	 */
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException,
-			IllegalAccessException, UnsupportedLookAndFeelException, IOException {
+			IllegalAccessException, UnsupportedLookAndFeelException, IOException, InvalidFormatException {
 
+		//Regen the Word data (can be commented out)
+		DocumentConvertorTest.main(null);
+		
 		// Open the GUI
 		log.debug("Opening GUI");
 		RedGui player = new RedGui();

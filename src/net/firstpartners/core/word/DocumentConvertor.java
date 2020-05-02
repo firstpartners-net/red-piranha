@@ -32,6 +32,9 @@ public class DocumentConvertor {
 	// Logger
 	private static final Logger log = RpLogger.getLogger(DocumentConvertor.class.getName());
 
+	// first number of chars we use in names
+	public static final int FIRST_X_IN_NAMES = 30;
+
 	/**
 	 * The name we store Word Paragraphs under
 	 */
@@ -75,14 +78,30 @@ public class DocumentConvertor {
 				// Create a Range for this row of the table, using the value of the first cell
 				net.firstpartners.data.Range thisRow = new net.firstpartners.data.Range();
 				String possibleRowName = table.getRow(rowIndex).getCell(0).getParagraph(0).text();
-				if (possibleRowName != null) {
+				possibleRowName = tidyText(possibleRowName);
+				
+				if ((possibleRowName != null)&&(possibleRowName.length()>0)) {
+
+					// truncate and add rowname
+					if (possibleRowName.length() > FIRST_X_IN_NAMES) {
+						possibleRowName = possibleRowName.substring(0, FIRST_X_IN_NAMES);
+					}
+
 					thisRow.setRangeName(WORD_TABLE_ROW_AS_RANGELIST + possibleRowName);
+				} else {
+					
+					//It is possible that the first cell in a row is blank
+					// we give it a name as there may be other useful values in the row (col 2, col3 etc)
+					thisRow.setRangeName(WORD_TABLE_ROW_AS_RANGELIST+rowIndex);
 				}
 
+				// Loop through the cell in the row
 				for (int colIndex = 0; colIndex < row.numCells(); colIndex++) {
 
 					String cellName = possibleRowName + "_" + colIndex;
-					Cell thisCell = new Cell(cellName, table.getRow(rowIndex).getCell(colIndex).getParagraph(0).text());
+					String paraText = tidyText(table.getRow(rowIndex).getCell(colIndex).getParagraph(0).text());
+
+					Cell thisCell = new Cell(cellName, paraText);	
 					thisCell.setOriginalTableRefernece(TABLE_MARKER + tableCounter);
 					thisCell.setOriginalCellReference("R:" + rowIndex + "C:" + colIndex);
 					log.debug("created cell" + thisCell);
@@ -111,33 +130,83 @@ public class DocumentConvertor {
 
 		Collection<net.firstpartners.data.Range> returnValues = new ArrayList<net.firstpartners.data.Range>();
 		int counter = 0;
-		
-		//Get a handle to the paragraphs in our document
+
+		// Get a handle to the paragraphs in our document
 		org.apache.poi.hwpf.usermodel.Range range = wordDoc.getRange();
 		int num = range.numParagraphs();
 		Paragraph para;
-		
-		//Loop through the document
+
+		// Loop through the document
 		for (int i = 0; i < num; i++) {
 
-			counter++; // make is start at 1 or more
-			
+
+			//The current text we ae working with
 			para = range.getParagraph(i);
-			
-			String name = WORD_PARAGRAPH_NAME_AS_RANGELIST + counter;
 
-			net.firstpartners.data.Range currentPara = new net.firstpartners.data.Range(name);
-			Cell redCell = new Cell(name, para.text());
-
-			// Add the return values
-			currentPara.put(name, redCell);
-			returnValues.add(currentPara);
+			String possibleText = tidyText(para.text());
 			
+			
+			//Filter out empty and cells with only spaces
+			if ((possibleText != null) && (possibleText.length()>0) ) {
+
+				//Only update for non empty paras
+				counter++; // make is start at 1 or more
+
+				
+				//Log info on our para
+				
+				String name = "";
+				if (possibleText.length() > FIRST_X_IN_NAMES) {
+					name = WORD_PARAGRAPH_NAME_AS_RANGELIST + counter + "_"
+							+ possibleText.substring(0, FIRST_X_IN_NAMES);
+				} else {
+					name = WORD_PARAGRAPH_NAME_AS_RANGELIST + counter + "_" + possibleText;
+				}
+
+				// Add this to our list of values
+				net.firstpartners.data.Range currentPara = new net.firstpartners.data.Range(name);
+				Cell redCell = new Cell(name, possibleText);
+
+				// Add the return values
+				currentPara.put(name, redCell);
+				returnValues.add(currentPara);
+			}
+
 		}
-		
 
 		return returnValues;
 
+	}
+	
+	/**
+	 * Tidy the Name - remove leading / trailing spaces, escape the string, remove special character
+	 * @param incomingName
+	 * @return
+	 */
+	static String tidyText(String incomingName) {
+		
+		//Defaut return value
+		String returnString =null;
+		
+		if(incomingName!=null) {
+		
+			//Replace all carraige returns with spaces
+			incomingName= incomingName.replace((char)7, (char)32);
+			incomingName= incomingName.replace((char)8, (char)32);
+			incomingName= incomingName.replace((char)19, (char)32);
+			incomingName = incomingName.replaceAll("[\\r\\n]", "");
+			
+			//remove all trailing spaces - this may give us an empty string.
+			incomingName = incomingName.strip();
+			
+			//For safety later - make Json safe
+			returnString = incomingName;
+
+			
+		}
+			
+		
+		return returnString;
 	}
 
 	/**

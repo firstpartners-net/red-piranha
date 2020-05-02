@@ -57,7 +57,7 @@ public class RedGui extends WindowAdapter
 	
 	// Class level GUI Elements - we update these as we get notification from the
 	// system via the IGiveFeedbackToUsers interface
-	private JFrame frame = new JFrame("Red-Piranha - Java Power Tools for Excel");
+	private JFrame frame = new JFrame("Red-Piranha - Java Power Tools for Excel and Word");
 	private JButton homePageCloseButton;
 
 	private JProgressBar homePageProgressBar;
@@ -109,7 +109,7 @@ public class RedGui extends WindowAdapter
 		SwingGuiUtils.updateFontSize(jtp);
 
 		jtp.addTab("  Home  ", jp1);
-		jtp.addTab("  Excel Data before rules  ", jp2);
+		jtp.addTab("  Data before rules  ", jp2);
 		jtp.addTab("  Rules Engine Log ", jp3);
 		jtp.addTab("  Data after business rules applied	  ", jp4);
 
@@ -143,7 +143,7 @@ public class RedGui extends WindowAdapter
 
 		// Panel 2
 		JLabel label2 = new JLabel();
-		label2.setText("This is the information we have been able to 'read' from your Excel file\n");
+		label2.setText("This is the information we have been able to 'read' from your Word / Excel file\n");
 		SwingGuiUtils.updateFontSize(label2);
 		preRangeCellTree = new RangeCellTree();
 		jp2.setLayout(new BorderLayout());
@@ -164,7 +164,7 @@ public class RedGui extends WindowAdapter
 
 		// Panel 4
 		JLabel label4 = new JLabel();
-		label4.setText("This the information updated by the business rules, that we are about to save to Excel\n");
+		label4.setText("This the information updated by the business rules, that we are about to save\n");
 		SwingGuiUtils.updateFontSize(label4);
 		this.postRangeCellTree = new RangeCellTree();
 		jp4.setLayout(new BorderLayout());

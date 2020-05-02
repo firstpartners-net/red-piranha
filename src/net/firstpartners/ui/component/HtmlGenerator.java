@@ -47,6 +47,7 @@ public class HtmlGenerator {
 		String ruleFileAsString = "";
 
 		// Get UserSpecifc information we need to display
+		
 
 		inputFileName = StringEscapeUtils.escapeHtml3(Config.getInputFileName());
 		outputFileName = StringEscapeUtils.escapeHtml4(Config.getOutputFileName());

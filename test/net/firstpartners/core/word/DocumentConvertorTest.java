@@ -68,13 +68,13 @@ public class DocumentConvertorTest {
 		assertNotNull(myRangeList);
 
 		// check what we think will we return
-		Collection<Range> filterParaRange = myRangeList.findRanges(DocumentXConvertor.WORD_PARAGRAPH_NAME_AS_RANGELIST);
+		Collection<Range> filterParaRange = myRangeList.findRangesStartingWith(DocumentXConvertor.WORD_PARAGRAPH_NAME_AS_RANGELIST);
 		log.debug("FilteredRange:" + filterParaRange);
 		assertNotNull(filterParaRange);
 		assertEquals(124, filterParaRange.size());
 
 		// Check for tables
-		Collection<Range> filterTableRange = myRangeList.findRanges(DocumentXConvertor.WORD_TABLE_ROW_AS_RANGELIST);
+		Collection<Range> filterTableRange = myRangeList.findRangesStartingWith(DocumentXConvertor.WORD_TABLE_ROW_AS_RANGELIST);
 		assertNotNull(filterTableRange);
 		assertEquals(14, filterTableRange.size());
 

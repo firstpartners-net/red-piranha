@@ -23,7 +23,7 @@ public class TestConstants {
 	public static final String WORD_DATA_FILE = "test/testdata/simple-word.doc";
 
 	//Sample CSV file to append to
-	public static final String CSV_APPEND_FILE="sample-csv-to-append-to.csv";
+	public static final String CSV_APPEND_FILE="test/testdata/sample-csv-to-append-to.csv";
 	
 	
 	//Sample Rules files

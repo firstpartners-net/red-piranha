@@ -92,6 +92,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/fontbox-2.0.19.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-beanutils-1.9.4.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/poi-scratchpad-4.1.2.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-csv-1.8.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-csv-1.8.jar" sourcepath="C:/Users/pbrowne/.m2/repository/org/apache/commons/commons-csv/1.8/commons-csv-1.8-sources.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

@@ -1,21 +1,31 @@
 package net.firstpartners.core.file;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
 import java.io.Writer;
-import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.log4j.Logger;
-import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
+import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -45,7 +55,8 @@ import net.firstpartners.data.RangeList;
  * The process by which the Outputer works is as follows. It uses the data from
  * the RangeHolder (our version of the Word / Excel / Other document that was
  * passed in, that the rules then modified).
- * </p><p>
+ * </p>
+ * <p>
  * Happily, this data is displayed in the Red Piranha GUI - picture below - so
  * you can see the data you have to work with.
  * </p>
@@ -62,25 +73,27 @@ import net.firstpartners.data.RangeList;
  * file, using the values found.</li>
  * </ol>
  * <p>
- * While the Outputer will not overwrite any data present, it will not check
- * for duplicates; running this five times will add five lines of equal data. We
+ * While the Outputer will not overwrite any data present, it will not check for
+ * duplicates; running this five times will add five lines of equal data. We
  * leave it up to your Excel skills to detect duplicates!
  * </p>
  * <p>
  * Some best practices should include
  * </p>
  * <ul>
- * <li>Including a filename or some other unique identifier in the csv output file. That
- * way you can spot and filter out any duplicate runs.</li>
+ * <li>Including a filename or some other unique identifier in the csv output
+ * file. That way you can spot and filter out any duplicate runs.</li>
  * <li>In your rule file, map your incoming value to an specific outgoing value.
- * That way your output name should not change if if there are changes to the format
- * of the source document.</li>
+ * That way your output name should not change if if there are changes to the
+ * format of the source document.</li>
  * </ul>
  * </p>
  * <p>
  * <img src=
- * "https://paulbrowne-irl.github.io/red-piranha/images/GuiRangeHolder.png" alt="Red Piranha GUI showing RangeHolder Data></img>
+ * "https://paulbrowne-irl.github.io/red-piranha/images/GuiRangeHolder.png"
+ * alt="Red Piranha GUI showing RangeHolder Data></img>
  * </p>
+ * 
  * @author paul
  *
  */
@@ -89,17 +102,20 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	// Logger
 	private static final Logger log = RpLogger.getLogger(CSVOutputStrategy.class.getName());
 
-	// Name of the outputfile
-	private String outputFileName = null;
+	// Name of the output file
+	private String appendFileName = null;
 
-	private RangeList outputRange;
+	// Hold the data until we are asked to process it
+	@SuppressWarnings("unused") // eclipse mistakenly marks this as unused
+	private RangeList processedRange;
 
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
+	 * 
 	 * @param outputFileName - file we want to output to
 	 */
 	public CSVOutputStrategy(String outputFileName) {
-		this.outputFileName = outputFileName;
+		this.appendFileName = outputFileName;
 	}
 
 	/**
@@ -118,53 +134,129 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 
 	}
 
+	List<String> getHeadersFromFile() throws IOException {
+
+		// We must have a pre existing file
+		Path path = Paths.get(appendFileName);
+		if (!Files.exists(path)) {
+			throw new IllegalArgumentException("CSV file should already exist with headers in first row");
+		}
+
+		log.debug("Found CSV:" + appendFileName);
+
+		// Open in a reader
+		Reader reader = new BufferedReader(new FileReader(appendFileName));
+		CSVParser csvParser = CSVParser.parse(reader, CSVFormat.EXCEL.withFirstRecordAsHeader());
+
+		List<String> returnValues = csvParser.getHeaderNames();
+		log.debug("Found " + returnValues + " headers");
+
+		// close everything off
+		reader.close();
+		reader = null;
+
+		return returnValues;
+	}
+
+	/**
+	 * /** Get the values from our Beans (RangeList) that match the headers
+	 * 
+	 * @param headers  that we are looking to match in the data
+	 * @param beanData that we have collected.
+	 * @return Map <header-key, matching-value>
+	 */
+	public Map<String, String> getMatchingValues(List<String> headers, RangeList beanData) {
+
+		Map<String, String> returnValues = new HashMap<String, String>();
+
+		// Loop and try to find data matching our header values
+		for (String thisHeader : headers) {
+			Cell matchingCell = beanData.findCell(thisHeader);
+			String value = null;
+			if (matchingCell != null) {
+				value = matchingCell.getValueAsText();
+			}
+
+			returnValues.put(thisHeader, value);
+		}
+
+		return returnValues;
+	}
+
+	/**
+	 * Count the number of entries there are in the CSV file
+	 * 
+	 * @return number of lines in CSV file
+	 * @throws IOException
+	 */
+	int getNumberOfRowsInFile() throws IOException {
+
+		File file = new File(appendFileName);
+		FileInputStream fis = new FileInputStream(file);
+		byte[] byteArray = new byte[(int) file.length()];
+		fis.read(byteArray);
+		String data = new String(byteArray);
+		String[] stringArray = data.split("\r\n");
+		fis.close();
+
+		return stringArray.length;
+	}
+
 	/**
 	 * String representing where our output is going to
+	 * 
 	 * @return String - where we will output this to
 	 */
 	@Override
 	public String getOutputDestination() {
-		return "File:" + outputFileName;
+		return "File:" + appendFileName;
 	}
 
 	public String getOutputFileName() {
-		return outputFileName;
+		return appendFileName;
 	}
 
 	/**
 	 * Process the output from the system
 	 * 
-	 * @throws IOException - from underlying libs
+	 * @throws IOException            - from underlying libs
 	 * @throws InvalidFormatException - from underlying libs
 	 */
 	public void processOutput() throws IOException, InvalidFormatException {
 
-		// create a writer
-		Writer writer = new FileWriter(outputFileName, true);
+		// Get the headers in the incoming file
+		List<String> headers = getHeadersFromFile();
 
-		// write CSV file
-		CSVPrinter printer = CSVFormat.DEFAULT.withHeader("ID", "Name", "Program", "New", "University").print(writer);
+		// Extract data from our bean tree using these headers
+		Map<String, String> outputValues = getMatchingValues(headers, processedRange);
 
-		// create a list
-		List<Object[]> data = new ArrayList<>();
-		data.add(new Object[] { 1, "John Mike", "Engineering", "MIT" });
-		data.add(new Object[] { 2, "Jovan Krovoski", "Medical", "Harvard" });
-		data.add(new Object[] { 3, "Lando Mata", "Computer Science", "TU Berlin" });
-		data.add(new Object[] { 4, "Emma Ali", "Mathematics", "Oxford" });
+		// create a list to write out
+		Object[] dataToWrite = new Object[headers.size()];
+		int counter = 0;
 
-		// write list to file
-		printer.printRecords(data);
+		// Loop and add the values in order
+		for (String thisHeader : headers) {
 
-		// flush the stream
+			dataToWrite[counter] = outputValues.get(thisHeader);
+			log.debug("CSV Output for header:" + thisHeader + " value:" + dataToWrite[counter]);
+
+			counter++;
+		}
+
+		// create a writer - set to append (true)
+		Writer writer = new FileWriter(appendFileName, true);
+
+		// open-write-flush-close CSV file
+		CSVPrinter printer = CSVFormat.EXCEL.print(writer);
+		printer.printRecord(dataToWrite);
 		printer.flush();
-
-		// close the writer
 		writer.close();
 
 	}
 
 	/**
 	 * Not needing to be implemented as part of this strategy
+	 * 
 	 * @param ignored - this strategy does not use
 	 */
 	@Override
@@ -174,42 +266,17 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * Update a copy of our Original Document with new data
-	 * @param ignored - normally the original file, but this strategy ignores it
-	 * @param range - our Javabeans to output
+	 * 
+	 * @param ignored      - normally the original file, but this strategy ignores
+	 *                     it
+	 * @param incomingData - our Javabeans to output
 	 * @throws IOException fileToProcess
 	 */
-	public void setUpdates(OfficeDocument ignored, RangeList range) throws IOException {
+	public void setUpdates(OfficeDocument ignored, RangeList incomingData) throws IOException {
 
 		// this converter ignores any original , we just store the range output
-		this.outputRange = range;
+		processedRange = incomingData;
 
-	}
-
-	/**
-	 * Access a Stream, convert it to Red JavaBeans (representing CSV Object)
-	 * 
-	 * @return RangeList
-	 * @throws EncryptedDocumentException - from the underlying libs
-	 * @throws IOException- from the underlying libs
-	 */
-	RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException {
-
-//		   List<MyBean> beans = new CsvToBeanBuilder(FileReader(this.csvInputFullName))
-//			       .withType(Visitors.class).build().parse();
-//		
-		log.debug("converting incoming office stream to Javabeans");
-//		excelWorkBook = WorkbookFactory.create(inputAsStream);
-//		RangeList myRange = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(excelWorkBook);
-//		
-//		
-//		inputAsStream.close();
-		return null;
-
-	}
-
-	public String[] getHeadersFromFile() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

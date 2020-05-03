@@ -108,6 +108,34 @@ public class RangeList implements List<Range>, Serializable {
 		return returnValues;
 
 	}
+	
+	/**
+	 * returns the first cell with an exact manth
+	 * 
+	 * @param exactName - search criteria
+	 * 
+	 * @return - can be null if nothing found
+	 */
+	public Cell findCell(String exactName) {
+
+
+		for (Range range : allRanges) {
+
+			// Add the cells within the range
+
+			for (net.firstpartners.data.Cell cell : range.values()) {
+				if ((cell.getCellName() != null) && cell.getCellName().equals(exactName)) {
+					return cell;
+				}
+
+			}
+
+		}
+		
+		//no match if we get this far
+		return null;
+
+	}
 
 	/**
 	 * Returns all Cells (held by the Ranges we hold)
@@ -116,7 +144,7 @@ public class RangeList implements List<Range>, Serializable {
 	 * 
 	 * @return
 	 */
-	public Collection<Cell> findCells(String nameStartsWith) {
+	public Collection<Cell> findCellsStartingWith(String nameStartsWith) {
 
 		Collection<Cell> returnValues = new ArrayList<Cell>();
 
@@ -132,7 +160,6 @@ public class RangeList implements List<Range>, Serializable {
 			}
 
 		}
-
 		return returnValues;
 
 	}
@@ -143,7 +170,7 @@ public class RangeList implements List<Range>, Serializable {
 	 * 
 	 * @return
 	 */
-	public Collection<Range> findRanges(String nameStartsWith) {
+	public Collection<Range> findRangesStartingWith(String nameStartsWith) {
 
 		Collection<Range> returnValues = new ArrayList<Range>();
 

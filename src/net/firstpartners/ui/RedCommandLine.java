@@ -16,10 +16,12 @@ import net.firstpartners.ui.utils.Config;
 
 /**
  * Main Entry Point for Red-Piranha. Looks for red-piranha.config to decide what
- * mode it should run in
+ * mode it should run in.
  * 
  * Main use case, loads data from excel (or word doc), executes business rules against it, saves
- * into another Excel file.
+ * into another Excel file (or similar data format). <br/>.
+ * 
+ * There is a check to ensure the input file is not the same as the output file.
  * 
  * @author PBrowne
  *
@@ -30,8 +32,8 @@ public class RedCommandLine {
 
 
 	/**
-	 * Usage from command line java -jar [jarName.jar] all args are ignored - we
-	 * load from red-piranha.config
+	 * Usage from command line java -jar [jarName.jar] [optional.config]<br/>
+	 * If no optional.config is specified, it is loaded from red-piranha.config instead. This is expected to be in the current directory.
 	 *
 	 * @param args[0] the name of the config file - defaults to @see RedConstants.RED_PIRANHA_CONFIG
 	 * @throws IOException

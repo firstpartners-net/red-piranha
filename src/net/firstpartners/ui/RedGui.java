@@ -92,11 +92,11 @@ public class RedGui extends WindowAdapter
 
 		// Overall Screen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension frameSize = new Dimension(screenSize.width / 2, screenSize.height / 2);
+		Dimension frameSize = new Dimension(screenSize.width -20, screenSize.height -20);
 		int x = frameSize.width / 2;
-		int y = frameSize.height / 2;
+//		int y = frameSize.height / 2;
 
-		frame.setBounds(x, y, frameSize.width, frameSize.height);
+		frame.setBounds(50, 50, frameSize.width, frameSize.height);
 		JTabbedPane jtp = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
 
 		this.frame.getContentPane().add(jtp);

@@ -21,8 +21,7 @@ public class RpLogger extends Logger {
 	 private static FileAppender fileHandler = null;
 
 	/**
-	 * @param name
-	 * @param resourceBundleName
+	 * @param name of this Logger
 	 */
 	public RpLogger(String name) {
 

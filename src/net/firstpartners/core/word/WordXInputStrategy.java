@@ -33,7 +33,7 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 	/**
 	 * Construct a new Strategy Object
 	 * 
-	 * @param wordInputFileName
+	 * @param wordxInputFileName that we are reading from
 	 */
 	public WordXInputStrategy(String wordxInputFileName) {
 		this.wordInputFileName = wordxInputFileName;

@@ -77,9 +77,10 @@ import net.firstpartners.data.RangeList;
  * of the source document.</li>
  * </ul>
  * </p>
+ * <p>
  * <img src=
  * "https://paulbrowne-irl.github.io/red-piranha/images/GuiRangeHolder.png" alt="Red Piranha GUI showing RangeHolder Data></img>
- * <p></p>
+ * </p>
  * @author paul
  *
  */
@@ -95,8 +96,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
-	 * 
-	 * @param outputFileName
+	 * @param outputFileName - file we want to output to
 	 */
 	public CSVOutputStrategy(String outputFileName) {
 		this.outputFileName = outputFileName;
@@ -120,6 +120,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * String representing where our output is going to
+	 * @return String - where we will output this to
 	 */
 	@Override
 	public String getOutputDestination() {
@@ -133,12 +134,8 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	/**
 	 * Process the output from the system
 	 * 
-	 * @param fileToProcess
-	 * @param outputFileName
-	 * @throws IOException
-	 * @throws InvalidFormatException
-	 * @throws CsvRequiredFieldEmptyException
-	 * @throws CsvDataTypeMismatchException
+	 * @throws IOException - from underlying libs
+	 * @throws InvalidFormatException - from underlying libs
 	 */
 	public void processOutput() throws IOException, InvalidFormatException {
 
@@ -168,19 +165,20 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * Not needing to be implemented as part of this strategy
+	 * @param ignored - this strategy does not use
 	 */
 	@Override
-	public void setDocumentLogger(SpreadSheetLogger spreadSheetLogger) {
+	public void setDocumentLogger(SpreadSheetLogger ignored) {
 
 	}
 
 	/**
 	 * Update a copy of our Original Document with new data
-	 * 
-	 * @param ranges
-	 * @throws IOException
+	 * @param ignored - normally the original file, but this strategy ignores it
+	 * @param range - our Javabeans to output
+	 * @throws IOException fileToProcess
 	 */
-	public void setUpdates(OfficeDocument fileToProcess, RangeList range) throws IOException {
+	public void setUpdates(OfficeDocument ignored, RangeList range) throws IOException {
 
 		// this converter ignores any original , we just store the range output
 		this.outputRange = range;
@@ -191,8 +189,8 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	 * Access a Stream, convert it to Red JavaBeans (representing CSV Object)
 	 * 
 	 * @return RangeList
-	 * @throws EncryptedDocumentException
-	 * @throws IOException
+	 * @throws EncryptedDocumentException - from the underlying libs
+	 * @throws IOException- from the underlying libs
 	 */
 	RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException {
 
@@ -207,6 +205,11 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 //		inputAsStream.close();
 		return null;
 
+	}
+
+	public String[] getHeadersFromFile() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

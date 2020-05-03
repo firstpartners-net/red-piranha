@@ -25,8 +25,8 @@ public class FileRuleLoader extends AbstractRuleLoaderStrategy implements IRuleL
 	private RuleDTO ruleSource;
 
 	/**
-	 * 
-	 * @param ruleSource
+	 *  Constructor
+	 * @param ruleSource - info on where our business rules are stored
 	 */
 	public FileRuleLoader(RuleDTO ruleSource) {
 		this.ruleSource = ruleSource;
@@ -34,7 +34,7 @@ public class FileRuleLoader extends AbstractRuleLoaderStrategy implements IRuleL
 	
 	/** 
 	 * Constructor - convenience - takes single ruleLocation
-	 * @param ruleLocation
+	 * @param ruleLocation - single file location
 	 */
 	public FileRuleLoader(String ruleLocation) {
 		this.ruleSource = new RuleDTO();
@@ -115,7 +115,7 @@ public class FileRuleLoader extends AbstractRuleLoaderStrategy implements IRuleL
 
 	/**
 	 * gets the original rule source
-	 * @return
+	 * @return RuleDTO with the rule locations previously provided
 	 */
 	public RuleDTO getRuleSource() {
 		return ruleSource;

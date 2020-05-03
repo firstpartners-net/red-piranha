@@ -32,8 +32,8 @@ public class SpreadSheetLogger implements ILogger {
 	/**
 	 * Delete then recreate a log sheet in a workbook
 	 * 
-	 * @param wb
-	 * @param worksheetName
+	 * @param wb - Apache Poi Workbook
+	 * @param worksheetName - that will hold the log
 	 */
 	private void deleteCreateWorksheet(Workbook wb, String worksheetName) {
 
@@ -66,7 +66,7 @@ public class SpreadSheetLogger implements ILogger {
 	/**
 	 * prints all our previously logged items as text into a log stream
 	 * 
-	 * @Param to ILogger to print into
+	 * @param logger to print into
 	 */
 	public void flush(ILogger logger) {
 

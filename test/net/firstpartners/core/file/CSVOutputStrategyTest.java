@@ -1,13 +1,12 @@
 package net.firstpartners.core.file;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
 
@@ -40,14 +39,24 @@ public class CSVOutputStrategyTest {
 
 	}
 
+	//
 	
 	@Test
-	public final void testGetJavaBeansFromSource() throws EncryptedDocumentException, IOException {
+	public final void testGetHeadersFromCSV()  {
 		
-		RangeList readData = new CSVOutputStrategy(TestConstants.CSV_TMP_FILE).getJavaBeansFromSource();
-		assertNotNull(readData);
+		CSVOutputStrategy csvOut = new CSVOutputStrategy(TestConstants.CSV_APPEND_FILE);
+		
+		String[] headers = csvOut.getHeadersFromFile();
+		String[] expectedHeaders = {"h1","h2","h3"};
+		assertSame(expectedHeaders,headers);
+		
+//		RangeList readData = new CSVOutputStrategy(TestConstants.CSV_TMP_FILE).getJavaBeansFromSource();
+//		assertNotNull(readData);
 		fail("write some more checks");
 	}
+	
 
+	
+	
 	
 }

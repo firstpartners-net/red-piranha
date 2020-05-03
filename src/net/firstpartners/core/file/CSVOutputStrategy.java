@@ -21,17 +21,19 @@ import net.firstpartners.data.RangeList;
 /**
  * Strategy class of output of CSV Document.
  * <p>
- * CSV will try to append to an existing CSV file. Only cells marked with
- * 'isModified' will be output. All Output will be on one line in format
+ * CSV will try to append to an existing CSV file. In General, one document processed equals one line in the CSV file. 
  * 
  * The table below might help understand this Outputters behaviour.
  * <table>
- * <tr><td>name1</td><td>name2</td><td>cell3.name</tr>
- * <tr><td>cell1.value</td><td>cell2.value</td><td>cell3.value</tr>
+ * <tr><td>name1</td><td>name2</td><td>name3</tr>
+ * <tr><td>filea-cell1.value&nbsp;</td><td>filea-cell2.value&nbsp;</td><td>filea-cell3.value&nbsp;</tr>
  * </table>
  * 
  * <ol>
  * <li>The Outputter looks for a file of the name given, if it exists it will read the headers</li>
+ * 
+ * Only cells marked with
+ * All Output will be on one line in format
  * 
  * 
  * </ol>s

@@ -108,15 +108,14 @@ public class Cell implements PropertyChangeListener, Serializable {
 		return comment;
 	}
 
-
 	/**
 	 * If possible, get the value of the Cell as an Integer
-	 * 
+	 * @param value to convert
 	 * @return null if this conversion is not possible
 	 */
-	public Integer getIntValue() {
+	private Long getLongValue() {
 		if ((value != null) && (value instanceof Number)) {
-			return ((Number) value).intValue();
+			return ((Number) value).longValue();
 		}
 
 		// Default
@@ -134,8 +133,9 @@ public class Cell implements PropertyChangeListener, Serializable {
 	}
 
 	/**
-	 * Get the original Table reference (if available) - e.g.from the Original
-	 * (Word Table, sheet in Spreadsheet) that this came from
+	 * Get the original Table reference (if available) - e.g.from the Original (Word
+	 * Table, sheet in Spreadsheet) that this came from
+	 * 
 	 * @return
 	 */
 	public String getOriginalTableReference() {
@@ -219,17 +219,20 @@ public class Cell implements PropertyChangeListener, Serializable {
 	/**
 	 * set the original Cell reference (if available) - e.g. the Cell address from
 	 * the Original (Apache Poi) Spreadsheet
+	 * 
 	 * @param originalCellReference
 	 */
 	public void setOriginalCellReference(String originalCellReference) {
-				
+
 		Object oldValue = this.originalCellReference;
 		this.originalCellReference = originalCellReference;
 		this.modified = true;
 		this.changes.firePropertyChange("originalCellReference", oldValue, value);
 	}
+
 	/**
 	 * Set the original Table (Word Table, sheet in Spreadsheet) that this came from
+	 * 
 	 * @param newOriginalSheetReference
 	 */
 	public void setOriginalTableRefernece(String newOriginalSheetReference) {
@@ -250,16 +253,61 @@ public class Cell implements PropertyChangeListener, Serializable {
 	/**
 	 * Print an internal representation of the Cell contents. This is the long
 	 * version. If used for every cell in a large dataset it could cause an
-	 * OutOfMemoryError
+	 * OutOfMemoryError. This version should be copy-pastable into rules / drl files
 	 * 
 	 * @see toString()
 	 */
 	public String toLongString() {
 
-		return "Cell [cellName=" + cellName + ", value=" + value + ", comment=" + comment + ", modified=" + modified + ", originalCellReference=" + originalCellReference
-				+ ", originalTableReference=" + originalTableReference  + "]";
+		return "Cell (\n    cellName==" + quoteString(cellName) + "\n    value==" + quoteInternalValueIfNotNumber()
+				+ "\n    comment==" + quoteString(comment) + "\n    modified==" + modified
+				+ "\n    originalCellReference==" + quoteString(originalCellReference)
+				+ "\n    originalTableReference==" + quoteString(originalTableReference) + "\n)";
 
 	}
+
+	/**
+	 * Puts quotes around strings, but ensure null is still null
+	 * 
+	 * @param value to quote
+	 * @return same value with quots around it (escaped)
+	 */
+	private String quoteString(Object value) {
+
+		if (value == null) {
+			return null;
+		}
+
+		return "\"" + value.toString() + "\"";
+	}
+
+	/**
+	 * Puts quotes around internal, but ensure null is still null
+	 * 
+	 * @param value to quote
+	 * @return internal value with quotes around it (escaped) as approprate
+	 */
+	private String quoteInternalValueIfNotNumber() {
+
+		if (value == null) {
+			return null;
+		}
+		
+		//if we can return this as a number, do so without quotes.
+		Long tmpNum = getLongValue();
+		if(tmpNum!=null) {
+			return tmpNum.toString();
+		}
+		
+		Boolean tmpBool = getBooleanValue();
+		if(tmpBool!=null) {
+			return tmpBool.toString();
+		}
+		
+		//default treat as string and return
+		return "\"" + value.toString() + "\"";
+	}
+	
 
 	/**
 	 * @see toLongString() if more comprehensive data needed This is the short
@@ -268,7 +316,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 	@Override
 	public String toString() {
 
-		return "Cell [cellName=" + cellName + "]";
+		return "Cell ( cellName==\"" + cellName + "\" )";
 	}
 
 }

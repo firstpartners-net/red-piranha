@@ -235,7 +235,7 @@ public class RuleRunner {
 		log.debug("Inserting handle to logger (via global)");
 		workingMemory.setGlobal("log", logger);
 
-		log.debug("Using facts:" + facts);
+		//log.debug("Using facts:" + facts);
 
 		log.debug("==================== Calling Rule Engine ====================");
 

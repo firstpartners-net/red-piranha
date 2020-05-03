@@ -55,7 +55,6 @@ public class RangeList implements List<Range>, Serializable {
 	 * Reset the isModified Flag to false in allRanges (and subranges) held by this
 	 * RangeList
 	 * 
-	 * @return
 	 */
 	public void cascadeResetIsModifiedFlag() {
 
@@ -113,7 +112,7 @@ public class RangeList implements List<Range>, Serializable {
 	/**
 	 * Returns all Cells (held by the Ranges we hold)
 	 * 
-	 * @Param nameStartsWith - search criteria
+	 * @param nameStartsWith - search criteria
 	 * 
 	 * @return
 	 */
@@ -140,7 +139,7 @@ public class RangeList implements List<Range>, Serializable {
 
 	/**
 	 * Returns all Cells (held by the Ranges we hold)
-	 * @Param nameStartsWith - search criteria
+	 * @param nameStartsWith - search criteria
 	 * 
 	 * @return
 	 */

@@ -8,9 +8,9 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.util.Collection;
 import java.util.Iterator;
-import org.apache.log4j.Logger;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.log4j.Logger;
 import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderErrors;
@@ -21,7 +21,6 @@ import org.drools.core.common.DroolsObjectInputStream;
 import org.drools.definition.KnowledgePackage;
 import org.drools.io.ResourceFactory;
 
-import net.firstpartners.RedConstants;
 import net.firstpartners.core.log.RpLogger;
 
 /**
@@ -33,6 +32,9 @@ public abstract class AbstractRuleLoaderStrategy implements IRuleLoaderStrategy 
 
 	private static final Logger log = RpLogger.getLogger(AbstractRuleLoaderStrategy.class
 			.getName());
+	
+	public static final String XLS_FILE_EXTENSION = ".xls";
+	
 
 	/**
 	 * Load multiple rules, with optional dsl and ruleflow file
@@ -64,9 +66,9 @@ public abstract class AbstractRuleLoaderStrategy implements IRuleLoaderStrategy 
 			log.debug("Loading file: " + ruleFile);
 
 			// Check the type of rule file, then load it
-			if (ruleFile.endsWith(RedConstants.XLS_FILE_EXTENSION)) {
+			if (ruleFile.endsWith(XLS_FILE_EXTENSION)) {
 
-				log.debug("Loading Excel file: " + ruleFile);
+				log.debug("Loading Data file: " + ruleFile);
 				loadExcelRules(ruleFile, localBuilder);
 			} else {
 

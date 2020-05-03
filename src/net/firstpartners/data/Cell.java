@@ -11,8 +11,6 @@ import java.io.Serializable;
  * Word Document. For simplicity, we map Paragraphs from a word document into a
  * cell (to making writing rules easier)
  * 
- * @param cellName
- * @param value
  */
 public class Cell implements PropertyChangeListener, Serializable {
 
@@ -57,7 +55,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 	/**
 	 * Check for equality with another Object / cell
 	 * 
-	 * @param - the object to compare us to
+	 * @param obj - the object to compare us to
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -91,7 +89,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 	/**
 	 * If possible, get the value of the Cell as a Boolean
 	 * 
-	 * @returns null if this conversion is not possible
+	 * @return null if this conversion is not possible
 	 */
 	public Boolean getBooleanValue() {
 		if ((value != null) && (value instanceof Boolean)) {
@@ -110,20 +108,11 @@ public class Cell implements PropertyChangeListener, Serializable {
 		return comment;
 	}
 
-//	/**
-//	 * Cells can hold a reference to the Named Range that they (might) sit within
-//	 * 
-//	 * @see Range
-//	 * @return - can be null if
-//	 */
-//	public Range getHoldingRange() {
-//		return holdingRange;
-//	}
 
 	/**
 	 * If possible, get the value of the Cell as an Integer
 	 * 
-	 * @returns null if this conversion is not possible
+	 * @return null if this conversion is not possible
 	 */
 	public Integer getIntValue() {
 		if ((value != null) && (value instanceof Number)) {
@@ -160,7 +149,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 	/**
 	 * Get the value of the Cell as a String
 	 * 
-	 * @returns null if this conversion is not possible
+	 * @return null if this conversion is not possible
 	 */
 	public String getValueAsText() {
 
@@ -230,8 +219,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 	/**
 	 * set the original Cell reference (if available) - e.g. the Cell address from
 	 * the Original (Apache Poi) Spreadsheet
-	 * 
-	 * @return
+	 * @param originalCellReference
 	 */
 	public void setOriginalCellReference(String originalCellReference) {
 				

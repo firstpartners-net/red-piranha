@@ -18,8 +18,6 @@ public interface IDocumentOutStrategy {
 	
 	/**
 	 * Write out and logs we hold to the document
-	 * @param excelWorkBook
-	 * @param nameOfLogSheet
 	 */
 	void flush();
 
@@ -47,10 +45,10 @@ public interface IDocumentOutStrategy {
 	public void processOutput() throws IOException, InvalidFormatException;
 	
 	/**
-	 * Allows us to set a Logger that will flush to an Excel Spreadheet
-	 * @param spreadSheetLogger
+	 * Allows us to set a Logger that will flush within a document if the Strategy supports it
+	 * @param documentLogger
 	 */
-	void setDocumentLogger(SpreadSheetLogger spreadSheetLogger);
+	void setDocumentLogger(SpreadSheetLogger documentLogger);
 	
 	/**
 	 * Update our Original Document with new data

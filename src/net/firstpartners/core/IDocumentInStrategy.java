@@ -33,10 +33,9 @@ public interface IDocumentInStrategy {
 	String getInputName();
 
 	/**
-	 * Access a Stream, convert it to Red JavaBeans (representing Excel Objects)
+	 * Access a Stream, convert it to Red JavaBeans (representing and Office Objects)
 	 * 
-	 * @param inputFromExcel
-	 * @return
+	 * @return RangeList
 	 * @throws InvalidFormatException 
 	 * @throws EncryptedDocumentException
 	 * @throws IOException

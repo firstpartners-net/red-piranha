@@ -1,6 +1,5 @@
 package net.firstpartners.core.file;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -11,8 +10,6 @@ import java.io.IOException;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
-
-
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.data.RangeList;

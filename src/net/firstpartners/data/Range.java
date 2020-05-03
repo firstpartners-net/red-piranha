@@ -110,7 +110,6 @@ public class Range implements Map<String, Cell>, Serializable {
 	 * Get the Actual Cell of a position cell in the range e.g. if the cell name is
 	 * range_8 then , we can ask for the first cell range_0
 	 * 
-	 * @param currentCellName
 	 * @param newCellPosition
 	 * @return
 	 */
@@ -134,7 +133,7 @@ public class Range implements Map<String, Cell>, Serializable {
 	 * Get the Actual Cell of a position cell in the range e.g. if the cell name is
 	 * range_8 then , we can ask for the first cell range_0
 	 * 
-	 * @param currentCellName
+	 * @param currentFullCellName
 	 * @param newCellPosition
 	 * @return
 	 */
@@ -149,9 +148,9 @@ public class Range implements Map<String, Cell>, Serializable {
 	 * Get the name of a position cell in the range e.g. if the cell name is range_8
 	 * then , we can ask for the first cell range_0
 	 * 
-	 * @param currentCellName
+	 * @param currentFullCellName
 	 * @param newCellPosition
-	 * @return
+	 * @return String with the name
 	 */
 	public String getCellName(String currentFullCellName, int newCellPosition) {
 
@@ -173,9 +172,8 @@ public class Range implements Map<String, Cell>, Serializable {
 	 * Get the Actual Cell of a position cell in the range e.g. if the cell name is
 	 * range_8 then , we can ask for the first cell range_0
 	 * 
-	 * @param currentCellName
 	 * @param newCellPosition
-	 * @return
+	 * @return - Object, Representing the cell Value
 	 */
 	public Object getCellValue(int newCellPosition) {
 

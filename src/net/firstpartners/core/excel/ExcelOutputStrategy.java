@@ -7,7 +7,6 @@ import java.io.OutputStream;
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import net.firstpartners.RedConstants;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.Utils;
@@ -16,6 +15,7 @@ import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
+import net.firstpartners.ui.utils.Config;
 
 /**
  * Strategy class of output of Excel Document
@@ -51,7 +51,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	@Override
 	public void flush() {
-		this.spreadSheetLogger.flush(workbook,RedConstants.EXCEL_LOG_WORKSHEET_NAME);
+		this.spreadSheetLogger.flush(workbook,Config.EXCEL_LOG_WORKSHEET_NAME);
 		
 	}
 

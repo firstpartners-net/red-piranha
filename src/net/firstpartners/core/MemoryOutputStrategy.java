@@ -25,8 +25,6 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	/**
 	 * Write out and logs we hold to the document
 	 * 
-	 * @param excelWorkBook
-	 * @param nameOfLogSheet
 	 */
 	@Override
 	public void flush() {
@@ -72,7 +70,7 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	}
 
 	/**
-	 * Allows us to set a Logger that will flush to an Excel Spreadheet
+	 * Allows us to set a Logger that will flush to an Document such as Spreadheet
 	 * 
 	 * @param spreadSheetLogger
 	 */

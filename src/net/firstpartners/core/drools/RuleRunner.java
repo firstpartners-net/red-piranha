@@ -69,17 +69,16 @@ public class RuleRunner {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 * @throws InvalidFormatException
-	 * @throws CsvRequiredFieldEmptyException 
-	 * @throws CsvDataTypeMismatchException 
+	 * @throws CsvRequiredFieldEmptyException
+	 * @throws CsvDataTypeMismatchException
 	 */
 	public void callRules() throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
 		// Add the logger
 		// prevent a null pointer in our rules
 		ILogger logger = new EmptyLogger();
-		IGiveFeedbackToUsers userFeedback= new GiveLogFeedback();
-		
-		
+		IGiveFeedbackToUsers userFeedback = new GiveLogFeedback();
+
 		callRules(userFeedback, logger);
 	}
 
@@ -93,8 +92,8 @@ public class RuleRunner {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 * @throws InvalidFormatException
-	 * @throws CsvRequiredFieldEmptyException 
-	 * @throws CsvDataTypeMismatchException 
+	 * @throws CsvRequiredFieldEmptyException
+	 * @throws CsvDataTypeMismatchException
 	 */
 	public void callRules(IGiveFeedbackToUsers userDataDisplay, ILogger userMessages)
 			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
@@ -137,7 +136,7 @@ public class RuleRunner {
 
 		// update a copy of the original document (to be saved as copy) with the result
 		// of our rules
-		log.debug("RunRules - object is null?"+inputStrategy.getOriginalDocument());
+		log.debug("RunRules - object is null?" + inputStrategy.getOriginalDocument());
 		outputStrategy.setUpdates(inputStrategy.getOriginalDocument(), ranges);
 
 		if (userDataDisplay != null) {
@@ -196,8 +195,6 @@ public class RuleRunner {
 		// Create a new stateful session
 		StatefulKnowledgeSession workingMemory = preBuiltKnowledgeBase.newStatefulKnowledgeSession();
 
-
-
 		log.debug("Inserting handle to logger (via global) type:" + logger.getClass());
 		workingMemory.setGlobal("log", logger);
 
@@ -210,7 +207,6 @@ public class RuleRunner {
 
 	}
 
-
 	/**
 	 * Run Stateless rules using a prebuilt knowledgebase
 	 *
@@ -221,8 +217,8 @@ public class RuleRunner {
 	 * @throws DroolsParserException
 	 * @throws IOException
 	 */
-	private void runStatelessRules(KnowledgeBase preBuiltKnowledgeBase, Collection<Cell> facts, HashMap<String, Cell> globals,
-			ILogger logger) throws DroolsParserException, IOException {
+	private void runStatelessRules(KnowledgeBase preBuiltKnowledgeBase, Collection<Cell> facts,
+			HashMap<String, Cell> globals, ILogger logger) throws DroolsParserException, IOException {
 
 		// Create a new stateless session
 		log.debug("Creating new working memory");

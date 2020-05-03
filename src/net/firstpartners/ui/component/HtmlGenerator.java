@@ -62,7 +62,7 @@ public class HtmlGenerator {
 		ruleFileAsString = ruleFile.toString();
 
 		// create some simple html as a string
-		String htmlString = "<html>\n" + "<body>\n" + "<h1>Red Piranha - Business Rules for Excel</h1>\n"
+		String htmlString = "<html>\n" + "<body>\n" + "<h1>Red Piranha - Business Rules for Excel and Office</h1>\n"
 				+ "<p>Applying Business rules to your Data. "
 				+ "More Information and guides at <a href=\"https://github.com/paulbrowne-irl/red-piranha\">https://github.com/paulbrowne-irl/red-piranha</a>."
 				+ "<br/>Clicking the tabs at the bottom of the app will show more detailled information.</p><br/>"

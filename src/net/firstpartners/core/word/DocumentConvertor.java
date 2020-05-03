@@ -20,8 +20,6 @@ import net.firstpartners.data.RangeList;
  * Convert a Word (.docX) into our (Red) Javabeans. Currently does not support
  * the reverse translation.
  * 
- * {@link https://www.devglan.com/corejava/parsing-word-document-example}
- * 
  * @author PBrowne
  *
  */
@@ -210,8 +208,8 @@ public class DocumentConvertor {
 	}
 
 	/**
-	 * 
-	 * @param excelWorkBook
+	 * Convert from WordDoc (Apache Poi) into our Javabean format
+	 * @param wordDoc
 	 * @return
 	 * @throws IOException
 	 * @throws InvalidFormatException

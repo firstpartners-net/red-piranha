@@ -51,8 +51,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	}
 
 	/**
-	 * @todo refector out this method or implement - doesn't really apply for word
-	 *       docs
+	 * Not needing to be implemented as part of this strategy
 	 */
 	@Override
 	public void flush() {
@@ -119,8 +118,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	}
 
 	/**
-	 * @todo refector out this method or implement - doesn't really apply for word
-	 *       docs
+	 * Not needing to be implemented as part of this strategy
 	 */
 	@Override
 	public void setDocumentLogger(SpreadSheetLogger spreadSheetLogger) {
@@ -143,8 +141,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	/**
 	 * Access a Stream, convert it to Red JavaBeans (representing CSV Object)
 	 * 
-	 * @param inputFromExcel
-	 * @return
+	 * @return RangeList
 	 * @throws EncryptedDocumentException
 	 * @throws IOException
 	 */
@@ -153,7 +150,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 //		   List<MyBean> beans = new CsvToBeanBuilder(FileReader(this.csvInputFullName))
 //			       .withType(Visitors.class).build().parse();
 //		
-		log.debug("converting incoming excel stream to Javabeans");
+		log.debug("converting incoming office stream to Javabeans");
 //		excelWorkBook = WorkbookFactory.create(inputAsStream);
 //		RangeList myRange = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(excelWorkBook);
 //		

@@ -314,10 +314,10 @@ public class RedGui extends WindowAdapter
 	/**
 	 * Update the message that will be shown on all tabs
 	 * 
-	 * @param frontPageMessage
+	 * @param frontPageMessage that we want to show
 	 */
-	public void setFrontPageMessage(String allPageMessage) {
-		this.frontPageMessage.setText(allPageMessage);
+	public void setFrontPageMessage(String frontPageMessage) {
+		this.frontPageMessage.setText(frontPageMessage);
 		this.frontPageMessage.repaint();
 	}
 
@@ -335,7 +335,7 @@ public class RedGui extends WindowAdapter
 			postRangeCellTree.setDataModel((RangeList) message);
 		} else {
 			// redirect this info to the logger
-			info("Data Extracted from Excel Spreadsheet");
+			info("Data Extracted from Document");
 			info(message.toString());
 		}
 
@@ -355,7 +355,7 @@ public class RedGui extends WindowAdapter
 			preRangeCellTree.setDataModel((RangeList) message);
 		} else {
 			// redirect this info to the logger
-			info("Data Extracted from Excel Spreadsheet");
+			info("Data Extracted from Document");
 			info(message.toString());
 		}
 

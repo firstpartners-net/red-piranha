@@ -87,7 +87,7 @@ public class RedCommandLine {
 		
 		try {
 
-			// Call the rules using this Excel datafile
+			// Call the rules using this datafile
 			playerAsLogger.info("Running Rules:" + ruleFiles);
 			runner.callRules( userUpdates, playerAsLogger);
 			playerAsLogger.info("Complete");

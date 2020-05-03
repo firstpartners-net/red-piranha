@@ -123,23 +123,23 @@ public class RuleRunnerFactory {
 	/**
 	 * Convenience constructor, state rules as single string
 	 * 
-	 * @param inputFileName
-	 * @param mySourceAsString
-	 * @param outputFileName
-	 * @return
-	 * @throws InvocationTargetException
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws InstantiationException
-	 * @throws SecurityException
-	 * @throws NoSuchMethodException
+	 * @param inputFileName - where we get the data from
+	 * @param ruleSourceAsString - name of a single rule file
+	 * @param outputFileName - where we will output the file to
+	 * @return RuleRunner Object with the correct input / output Strategies configured
+	 * @throws InvocationTargetException - from underlying input - output libs
+	 * @throws IllegalArgumentException- from underlying input - output libs
+	 * @throws IllegalAccessException - from underlying input - output libs
+	 * @throws InstantiationException - from underlying input - output libs
+	 * @throws SecurityException - from underlying input - output libs
+	 * @throws NoSuchMethodException - from underlying input - output libs
 	 */
-	public static RuleRunner getRuleRunner(String inputFileName, String mySourceAsString, String outputFileName)
+	public static RuleRunner getRuleRunner(String inputFileName, String ruleSourceAsString, String outputFileName)
 			throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException {
 
 		RuleDTO mySource = new RuleDTO();
-		mySource.setRulesLocation(mySourceAsString);
+		mySource.setRulesLocation(ruleSourceAsString);
 
 		return getRuleRunner(inputFileName, mySource, outputFileName);
 	}
@@ -148,16 +148,16 @@ public class RuleRunnerFactory {
 	 * Create a properly configured RuleRunner for the Input / Output file types we
 	 * are passing
 	 * 
-	 * @param inputFileName
-	 * @param ruleSource
-	 * @param outputFileName
-	 * @return
-	 * @throws SecurityException
-	 * @throws NoSuchMethodException
-	 * @throws InvocationTargetException
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws InstantiationException
+	 * @param inputFileName - where we get the data from
+	 * @param ruleSourceAsString - name of a multiple rule files
+	 * @param outputFileName - where we will output the file to
+	 * @return RuleRunner Object with the correct input / output Strategies configured
+	 * @throws InvocationTargetException - from underlying input - output libs
+	 * @throws IllegalArgumentException- from underlying input - output libs
+	 * @throws IllegalAccessException - from underlying input - output libs
+	 * @throws InstantiationException - from underlying input - output libs
+	 * @throws SecurityException - from underlying input - output libs
+	 * @throws NoSuchMethodException - from underlying input - output libs
 	 */
 	public static RuleRunner getRuleRunner(String inputFileName, RuleDTO ruleSource, String outputFileName)
 			throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException,

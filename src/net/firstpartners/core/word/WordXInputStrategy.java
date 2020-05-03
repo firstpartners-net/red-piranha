@@ -16,7 +16,7 @@ import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.RangeList;
 
 /**
- * Specific steps needed for feeding Excel Documents into and out of the Rule
+ * Specific steps needed for feeding WordX (latest Office) Documents into and out of the Rule
  * Engine
  * 
  * @author PBrowne
@@ -35,8 +35,8 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 	 * 
 	 * @param wordInputFileName
 	 */
-	public WordXInputStrategy(String excelInputFileName) {
-		this.wordInputFileName = excelInputFileName;
+	public WordXInputStrategy(String wordxInputFileName) {
+		this.wordInputFileName = wordxInputFileName;
 	}
 
 	@Override
@@ -51,8 +51,7 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 	/**
 	 * Access a Stream, convert it to Red JavaBeans (representing Excel Ojbects)
 	 * 
-	 * @param inputFromExcel
-	 * @return
+	 * @return RangeList
 	 * @throws EncryptedDocumentException
 	 * @throws IOException
 	 * @throws InvalidFormatException
@@ -74,8 +73,8 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 
 	}
 
-	public void setInputFileName(String excelInputFileName) {
-		this.wordInputFileName = excelInputFileName;
+	public void setInputFileName(String wordInputFileName) {
+		this.wordInputFileName = wordInputFileName;
 	}
 
 	@Override

@@ -2,12 +2,11 @@ net.firstpartners
 net.firstpartners.core
 net.firstpartners.core.drools
 net.firstpartners.core.drools.loader
-net.firstpartners.core.log
-net.firstpartners.core.security
 net.firstpartners.core.excel
+net.firstpartners.core.file
+net.firstpartners.core.log
+net.firstpartners.core.word
 net.firstpartners.data
-net.firstpartners.sample
-net.firstpartners.sample.ExcelDataRules
 net.firstpartners.ui
 net.firstpartners.ui.component
 net.firstpartners.ui.utils

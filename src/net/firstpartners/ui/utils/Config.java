@@ -1,15 +1,14 @@
 package net.firstpartners.ui.utils;
 
 import java.io.FileInputStream;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
+
 import org.apache.log4j.Logger;
 
-import net.firstpartners.RedConstants;
 import net.firstpartners.core.drools.loader.RuleDTO;
 import net.firstpartners.core.log.RpLogger;
 
@@ -21,11 +20,19 @@ import net.firstpartners.core.log.RpLogger;
  */
 public class Config {
 
+	
+	
+	// the name of the sheet the we log files to
+	public static final String EXCEL_LOG_WORKSHEET_NAME = "log";
+	
+	//Default name for the config file
+	public static final String RED_PIRANHA_CONFIG = "red-piranha.config";
+	
 	public static final String DRL1 = "DRL1";
-
 	private static final String DRL2 = "DRL2";
 	private static final String DRL3 = "DRL3";
-	// names of params to read from properties files - keep these internal
+	
+	// names of params to read from properties files - keep these internal except for testing
 	public static final String FILE_INPUT = "FILE_INPUT";
 	public static final String FILE_OUTPUT = "FILE_OUTPUT";
 	private static final Logger log = RpLogger.getLogger(Config.class.getName());
@@ -99,13 +106,13 @@ public class Config {
 	 * @return
 	 */
 	public static Properties readConfig() {
-		return readConfig(RedConstants.RED_PIRANHA_CONFIG);
+		return readConfig(RED_PIRANHA_CONFIG);
 	}
 
 	/**
 	 * Read the configuration file
 	 * 
-	 * @param allows us to set the config file location
+	 * @param configFileName allows us to set the config file location
 	 * @return
 	 */
 	public static Properties readConfig(String configFileName) {
@@ -170,8 +177,7 @@ public class Config {
 	static void validateConfig() {
 
 		for (int a = 0; a < requiredConfigKeys.length; a++) {
-			assert prop.get(requiredConfigKeys[a]) != null : "Please make sure the config file "
-					+ RedConstants.RED_PIRANHA_CONFIG + " contains a value for " + requiredConfigKeys[a];
+			assert prop.get(requiredConfigKeys[a]) != null : "Please make sure the config file contains a value for " + requiredConfigKeys[a];
 
 		}
 

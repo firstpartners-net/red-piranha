@@ -18,7 +18,7 @@ import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
 /**
- * Strategy class of output of Excel Document
+ * Strategy class to output of PDF Document
  * 
  * @author paul
  *
@@ -43,8 +43,7 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 	}
 
 	/**
-	 * @todo refector out this method or implement - doesn't really apply for word
-	 *       docs
+	 * Not needing to be implemented as part of this strategy
 	 */
 	@Override
 	public void flush() {
@@ -114,8 +113,7 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 	}
 
 	/**
-	 * @todo refector out this method or implement - doesn't really apply for word
-	 *       docs
+	 * Not needing to be implemented as part of this strategy
 	 */
 	@Override
 	public void setDocumentLogger(SpreadSheetLogger spreadSheetLogger) {

@@ -44,7 +44,7 @@
 	<!-- Define additional ant tasks -->
 	<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar" />
 	<taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties" classpath="testlib/checkstyle-8.31-all.jar" />
-	
+
 	<!-- The Main classpath we use when compiling -->
 	<path id="master-classpath">
 		<fileset dir="${lib.root}/lib/">
@@ -261,7 +261,7 @@
 	<target name="javadoc" description="Create complete Javadoc documentation">
 		<delete dir="${javadocs.dir}" />
 		<mkdir dir="${javadocs.dir}" />
-		<javadoc sourcepath="${src.dir}" destdir="${javadocs.dir}" windowtitle="Tiles Example" author="true" version="true" use="true" packagenames="*">
+		<javadoc sourcepath="${src.dir}" destdir="${javadocs.dir}" overview="src/overview.html" windowtitle="Red Piranha - Power Tools for Excel and Office Users" author="true" version="true" use="true" packagenames="*">
 			<doctitle>
 				<![CDATA[<h1>Red-Piranha - Java Power tools for Excel</h1>]]>
 			</doctitle>
@@ -277,14 +277,13 @@
 <target name="check-javadoc" description="Check Javadoc documentation">
 
 
-<checkstyle config="/test/checkstyle_checks.xml" failureProperty="checkstyle.failure"
-    failOnViolation="false">
+<checkstyle config="/test/checkstyle_checks.xml" failureProperty="checkstyle.failure" failOnViolation="false">
 	<fileset dir="${src.dir}" includes="**/*.java" />
-	<formatter type="xml" tofile="checkstyle_report.xml"/>
-	<path id="test-classpath"/>
+	<formatter type="xml" tofile="checkstyle_report.xml" />
+	<path id="test-classpath" />
 </checkstyle>
 
-	<style in="checkstyle_report.xml" out="checkstyle_report.html" style="checkstyle.xsl" />
+<style in="checkstyle_report.xml" out="checkstyle_report.html" style="checkstyle.xsl" />
 
 </target>
 

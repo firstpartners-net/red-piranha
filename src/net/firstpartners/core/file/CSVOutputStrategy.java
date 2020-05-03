@@ -79,7 +79,7 @@ import net.firstpartners.data.RangeList;
  * </p>
  * <img src=
  * "https://paulbrowne-irl.github.io/red-piranha/images/GuiRangeHolder.png" alt="Red Piranha GUI showing RangeHolder Data></img>
- * 
+ * <p></p>
  * @author paul
  *
  */

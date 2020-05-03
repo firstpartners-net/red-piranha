@@ -14,7 +14,6 @@ import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
-import net.firstpartners.data.OfficeDocument;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 

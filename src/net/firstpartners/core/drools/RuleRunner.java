@@ -11,9 +11,6 @@ import org.drools.compiler.compiler.DroolsParserException;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.StatelessKnowledgeSession;
 
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
-import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
-
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
@@ -75,7 +72,7 @@ public class RuleRunner {
 	 * @throws CsvRequiredFieldEmptyException 
 	 * @throws CsvDataTypeMismatchException 
 	 */
-	public void callRules() throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
+	public void callRules() throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
 		// Add the logger
 		// prevent a null pointer in our rules
@@ -100,7 +97,7 @@ public class RuleRunner {
 	 * @throws CsvDataTypeMismatchException 
 	 */
 	public void callRules(IGiveFeedbackToUsers userDataDisplay, ILogger userMessages)
-			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
+			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
 		// Create a new Excel Logging object
 		outputStrategy.setDocumentLogger(new SpreadSheetLogger());

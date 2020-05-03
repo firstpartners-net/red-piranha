@@ -5,8 +5,8 @@ import java.io.IOException;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
+import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.word.WordXInputStrategy;
-import net.firstpartners.data.OfficeDocument;
 import net.firstpartners.data.RangeList;
 
 /**

@@ -11,8 +11,8 @@ import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 import net.firstpartners.core.IDocumentInStrategy;
+import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.data.OfficeDocument;
 import net.firstpartners.data.RangeList;
 
 /**

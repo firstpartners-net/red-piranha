@@ -1,10 +1,6 @@
 package net.firstpartners.ui.component;
 
 import java.awt.BorderLayout;
-import java.text.CharacterIterator;
-import java.text.StringCharacterIterator;
-
-import org.apache.log4j.Logger;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -15,6 +11,8 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+
+import org.apache.log4j.Logger;
 
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
@@ -87,13 +85,13 @@ public class RangeCellTree extends JPanel {
 						if (thisNodeObject != null) {
 							textArea.setText(thisNodeObject.toString());
 
-							// Debugging code
-							CharacterIterator it = new StringCharacterIterator(thisNodeObject.toString());
-
-							while (it.current() != CharacterIterator.DONE) {
-								log.debug("Char:" + it.current() + " value:" + (int) it.current());
-								it.next();
-							}
+//							// Debugging code
+//							CharacterIterator it = new StringCharacterIterator(thisNodeObject.toString());
+//
+//							while (it.current() != CharacterIterator.DONE) {
+//								log.debug("Char:" + it.current() + " value:" + (int) it.current());
+//								it.next();
+//							}
 						}
 
 					}

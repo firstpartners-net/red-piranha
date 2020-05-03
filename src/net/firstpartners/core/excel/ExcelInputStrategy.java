@@ -10,8 +10,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import net.firstpartners.core.IDocumentInStrategy;
+import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.data.OfficeDocument;
 import net.firstpartners.data.RangeList;
 
 /**

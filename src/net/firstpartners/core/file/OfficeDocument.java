@@ -1,4 +1,4 @@
-package net.firstpartners.data;
+package net.firstpartners.core.file;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;

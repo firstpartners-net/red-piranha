@@ -66,6 +66,17 @@ public class RuleRunnerFactoryTest {
 
 	}
 
+	
+	@Test
+	public void testCsvOutAndIn() throws NoSuchMethodException, SecurityException, InstantiationException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.doc", "filename", "some-dummy-out.csv");
+		assertNotNull(myRunner);
+		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordInputStrategy);
+		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof CSVOutputStrategy);
+
+	}
+	
 	@Test
 	public void testGenericFactory() throws NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, InvocationTargetException {

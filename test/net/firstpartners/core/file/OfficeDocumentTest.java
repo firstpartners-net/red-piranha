@@ -1,4 +1,4 @@
-package net.firstpartners.data;
+package net.firstpartners.core.file;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

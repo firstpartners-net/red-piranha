@@ -24,8 +24,6 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	private String comment;
 
-//	private Range holdingRange = null;
-
 	private boolean modified = false;
 
 	private String originalCellReference = null;

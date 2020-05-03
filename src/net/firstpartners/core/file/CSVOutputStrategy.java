@@ -24,7 +24,8 @@ import net.firstpartners.data.RangeList;
  * CSV will try to append to an existing CSV file. Only cells marked with
  * 'isModified' will be output. All Output will be on one line in format
  * 
- * cell1.name | cell2.name | cell3.name cell1.value | cell2.value | cell3.value
+ * cell1.name | cell2.name | cell3.name <br/>
+ * cell1.value | cell2.value | cell3.value <br/>
  * 
  * 
  * 

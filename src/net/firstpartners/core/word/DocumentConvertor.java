@@ -90,7 +90,8 @@ public class DocumentConvertor {
 					
 					//It is possible that the first cell in a row is blank
 					// we give it a name as there may be other useful values in the row (col 2, col3 etc)
-					thisRow.setRangeName(WORD_TABLE_ROW_AS_RANGELIST+rowIndex);
+					thisRow.setRangeName(TABLE_MARKER+tableCounter+"_"+WORD_TABLE_ROW_AS_RANGELIST+rowIndex);
+			
 				}
 
 				// Loop through the cell in the row
@@ -100,7 +101,7 @@ public class DocumentConvertor {
 					String paraText = tidyText(table.getRow(rowIndex).getCell(colIndex).getParagraph(0).text());
 
 					Cell thisCell = new Cell(cellName, paraText);	
-					thisCell.setOriginalTableRefernece(TABLE_MARKER + tableCounter);
+					thisCell.setOriginalTableReference(TABLE_MARKER + tableCounter);
 					thisCell.setOriginalCellReference("R:" + rowIndex + "C:" + colIndex);
 					log.debug("created cell" + thisCell);
 					thisRow.put(cellName, thisCell);

@@ -5,6 +5,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 /**
  * JavaBean equivalent of a cell in an Excel Spreadsheet. Since we also map from
  * other sources into these classes, a Cell could be a cell from a table in a
@@ -86,40 +88,12 @@ public class Cell implements PropertyChangeListener, Serializable {
 		return true;
 	}
 
-	/**
-	 * If possible, get the value of the Cell as a Boolean
-	 * 
-	 * @return null if this conversion is not possible
-	 */
-	public Boolean getBooleanValue() {
-		if ((value != null) && (value instanceof Boolean)) {
-			return ((Boolean) value);
-		}
-
-		// Default
-		return null;
-	}
-
 	public String getCellName() {
 		return cellName;
 	}
 
 	public String getComment() {
 		return comment;
-	}
-
-	/**
-	 * If possible, get the value of the Cell as an Integer
-	 * @param value to convert
-	 * @return null if this conversion is not possible
-	 */
-	private Long getLongValue() {
-		if ((value != null) && (value instanceof Number)) {
-			return ((Number) value).longValue();
-		}
-
-		// Default
-		return null;
 	}
 
 	/**
@@ -144,6 +118,56 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	public Object getValue() {
 		return value;
+	}
+
+	/**
+	 * If possible, get the value of the Cell as a Boolean
+	 * 
+	 * @return null if this conversion is not possible
+	 */
+	public Boolean getValueAsBoolean() {
+		
+		if(value==null) {
+			return null;
+		}
+		
+		if (value instanceof Boolean) {
+			return ((Boolean) value);
+		}
+		
+		if(value.toString().equalsIgnoreCase("true")) {
+			return true;
+		}
+		
+		if(value.toString().equalsIgnoreCase("false")) {
+			return false;
+		}
+
+		// Default
+		return null;
+	}
+
+	/**
+	 * If possible, get the value of the Cell as an Integer
+	 * @param value to convert
+	 * @return null if this conversion is not possible
+	 */
+	public Long getValueAsLong() {
+		
+		if(value==null) {
+			return null;
+		}
+		
+		if ((value instanceof Number)) {
+			return ((Number) value).longValue();
+		}
+		
+		if(NumberUtils.isCreatable(value.toString())){
+			return NumberUtils.createDouble(value.toString()).longValue();
+		}
+		
+		// Default
+		return null;
 	}
 
 	/**
@@ -188,9 +212,55 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	}
 
+	/**
+	 * Puts quotes around internal, but ensure null is still null
+	 * 
+	 * @param value to quote
+	 * @return internal value with quotes around it (escaped) as approprate
+	 */
+	private String quoteInternalValueIfNotNumber() {
+
+		if (value == null) {
+			return null;
+		}
+		
+		//if we can return this as a number, do so without quotes.
+		Long tmpNum = getValueAsLong();
+		if(tmpNum!=null) {
+			return tmpNum.toString();
+		}
+		
+		Boolean tmpBool = getValueAsBoolean();
+		if(tmpBool!=null) {
+			return tmpBool.toString();
+		}
+		
+		//default treat as string and return
+		return "\"" + value.toString() + "\"";
+	}
+
+	/**
+	 * Puts quotes around strings, but ensure null is still null
+	 * 
+	 * @param value to quote
+	 * @return same value with quots around it (escaped)
+	 */
+	private String quoteString(Object value) {
+
+		if (value == null) {
+			return null;
+		}
+
+		return "\"" + value.toString() + "\"";
+	}
+
 	public void removePropertyChangeListener(final PropertyChangeListener l) {
 		this.changes.removePropertyChangeListener(l);
 	}
+
+//	public void setHoldingRange(Range holdingRange) {
+//		this.holdingRange = holdingRange;
+//	}
 
 	public void setCellName(String cellName) {
 
@@ -207,10 +277,6 @@ public class Cell implements PropertyChangeListener, Serializable {
 		this.modified = true;
 		this.changes.firePropertyChange("comment", oldValue, comment);
 	}
-
-//	public void setHoldingRange(Range holdingRange) {
-//		this.holdingRange = holdingRange;
-//	}
 
 	public void setModified(boolean modified) {
 		this.modified = modified;
@@ -235,7 +301,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 	 * 
 	 * @param newOriginalSheetReference
 	 */
-	public void setOriginalTableRefernece(String newOriginalSheetReference) {
+	public void setOriginalTableReference(String newOriginalSheetReference) {
 
 		Object oldValue = this.originalTableReference;
 		this.originalTableReference = newOriginalSheetReference;
@@ -258,54 +324,15 @@ public class Cell implements PropertyChangeListener, Serializable {
 	 * @see toString()
 	 */
 	public String toLongString() {
-
-		return "Cell (\n    cellName==" + quoteString(cellName) + "\n    value==" + quoteInternalValueIfNotNumber()
+		
+		return "$cell : Cell (\n    cellName==" + quoteString(cellName) + "\n    value==" + quoteInternalValueIfNotNumber()
 				+ "\n    comment==" + quoteString(comment) + "\n    modified==" + modified
 				+ "\n    originalCellReference==" + quoteString(originalCellReference)
-				+ "\n    originalTableReference==" + quoteString(originalTableReference) + "\n)";
+				+ "\n    originalTableReference==" + quoteString(originalTableReference) 
+				+ "\n    valueAsBoolean==" + getValueAsBoolean()
+				+ "\n    valueAsLong==" + getValueAsLong()
+				+ "\n)";
 
-	}
-
-	/**
-	 * Puts quotes around strings, but ensure null is still null
-	 * 
-	 * @param value to quote
-	 * @return same value with quots around it (escaped)
-	 */
-	private String quoteString(Object value) {
-
-		if (value == null) {
-			return null;
-		}
-
-		return "\"" + value.toString() + "\"";
-	}
-
-	/**
-	 * Puts quotes around internal, but ensure null is still null
-	 * 
-	 * @param value to quote
-	 * @return internal value with quotes around it (escaped) as approprate
-	 */
-	private String quoteInternalValueIfNotNumber() {
-
-		if (value == null) {
-			return null;
-		}
-		
-		//if we can return this as a number, do so without quotes.
-		Long tmpNum = getLongValue();
-		if(tmpNum!=null) {
-			return tmpNum.toString();
-		}
-		
-		Boolean tmpBool = getBooleanValue();
-		if(tmpBool!=null) {
-			return tmpBool.toString();
-		}
-		
-		//default treat as string and return
-		return "\"" + value.toString() + "\"";
 	}
 	
 

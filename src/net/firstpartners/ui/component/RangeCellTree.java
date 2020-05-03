@@ -53,7 +53,7 @@ public class RangeCellTree extends JPanel {
 		textArea.setLineWrap(true);
 		textArea.setOpaque(false);
 		textArea.setEditable(false);
-		textArea.setFocusable(false);
+		textArea.setFocusable(true);
 		textArea.setBackground(UIManager.getColor("Label.background"));
 		textArea.setFont(UIManager.getFont("Label.font"));
 		textArea.setBorder(UIManager.getBorder("Label.border"));

@@ -22,6 +22,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.text.DefaultCaret;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 
@@ -36,10 +37,11 @@ import net.firstpartners.ui.component.RangeCellTree;
 import net.firstpartners.ui.component.SwingGuiUtils;
 
 /**
- * Desktop GUI for Red Piranha Desktop User interface to ease calling of Rules / running the webserver needed for the
- * office plugin.
+ * Desktop GUI for Red Piranha Desktop User interface to ease calling of Rules /
+ * running the webserver needed for the office plugin.
  * 
- * This is just a facade, called by RedCommandLine (unless the user has configured it not to)
+ * This is just a facade, called by RedCommandLine (unless the user has
+ * configured it not to)
  * 
  * @author PBrowne
  *
@@ -54,7 +56,6 @@ public class RedGui extends WindowAdapter
 
 	private JLabel frontPageMessage;
 
-	
 	// Class level GUI Elements - we update these as we get notification from the
 	// system via the IGiveFeedbackToUsers interface
 	private JFrame frame = new JFrame("Red-Piranha - Java Power Tools for Excel and Word");
@@ -160,6 +161,8 @@ public class RedGui extends WindowAdapter
 		this.tab3TextArea.setLineWrap(true);
 		jp3.setLayout(new BorderLayout());
 		jp3.add(new JScrollPane(this.tab3TextArea), "Center");
+		DefaultCaret caret = (DefaultCaret) tab3TextArea.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		jp3.add(label3, "North");
 
 		// Panel 4
@@ -187,7 +190,7 @@ public class RedGui extends WindowAdapter
 	 * 
 	 */
 	public synchronized void actionPerformed(ActionEvent evt) {
-		log.info("User pressed close Button: Exiting" );
+		log.info("User pressed close Button: Exiting");
 		System.exit(0);
 
 	}
@@ -210,10 +213,9 @@ public class RedGui extends WindowAdapter
 	 */
 	public void exception(String message, Throwable t) {
 		this.tab3TextArea.append("EXCEPTION:" + message + "\n" + t.toString() + "\n");
-		log.error(message,t);
+		log.error(message, t);
 
 	}
-
 
 	/**
 	 * Construct the HTML Based Home panel the user sees at startup
@@ -321,7 +323,6 @@ public class RedGui extends WindowAdapter
 		this.frontPageMessage.repaint();
 	}
 
-
 	/**
 	 * Allows us to Log to the GUI a snapshot pre rules Callback via
 	 * IGiveFeedbacktoUsers interface
@@ -338,7 +339,6 @@ public class RedGui extends WindowAdapter
 			info("Data Extracted from Document");
 			info(message.toString());
 		}
-
 
 	}
 

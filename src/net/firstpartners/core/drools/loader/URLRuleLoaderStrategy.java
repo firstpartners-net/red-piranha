@@ -113,7 +113,7 @@ public class URLRuleLoaderStrategy extends AbstractRuleLoaderStrategy {
 	 * gets the original rule source
 	 * @return
 	 */
-	public RuleDTO getRuleSource() {
+	public RuleConfig getRuleSource() {
 		return null;
 	}
 

@@ -1,0 +1,24 @@
+package example
+
+import net.firstpartners.core.log.ILogger
+import net.firstpartners.data.Cell;
+
+
+global ILogger log;
+
+// We must reference the dsl that we are using
+expander cell-logging.dsl
+
+
+rule "print cell initial values" 
+
+	when
+
+ 		There is a Cell 
+ 			- unmodified
+       
+    then
+        	   
+        Log the cell contents
+    	
+end

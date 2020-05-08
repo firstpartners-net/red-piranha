@@ -9,7 +9,7 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
-import net.firstpartners.core.drools.loader.RuleDTO;
+import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.core.log.RpLogger;
 
 /**
@@ -28,9 +28,11 @@ public class Config {
 	//Default name for the config file
 	public static final String RED_PIRANHA_CONFIG = "red-piranha.config";
 	
-	public static final String DRL1 = "DRL1";
-	private static final String DRL2 = "DRL2";
-	private static final String DRL3 = "DRL3";
+	public static final String RULE1 = "RULE1";
+	private static final String RULE2 = "RULE2";
+	private static final String RULE3 = "RULE3";
+	
+	public static final String DRL="DSL";
 	
 	// names of params to read from properties files - keep these internal except for testing
 	public static final String FILE_INPUT = "FILE_INPUT";
@@ -42,7 +44,7 @@ public class Config {
 	private static Properties prop = null;
 
 	// Keys that must be present in the file
-	public static String[] requiredConfigKeys = { FILE_INPUT, FILE_OUTPUT, DRL1 };
+	public static String[] requiredConfigKeys = { FILE_INPUT, FILE_OUTPUT, RULE1 };
 
 	/**
 	 * If set, return the name of the Log file
@@ -74,28 +76,32 @@ public class Config {
 	/**
 	 * Get the rule file names from the command line
 	 * 
-	 * @return a rule source object containing the drl file locations
+	 * @return a rule source object containing the drl file locations, and all the other relevant information
+	 * 
 	 */
-	public static RuleDTO getRuleFiles() {
+	public static RuleConfig getRuleConfig() {
 
 		Properties prop = readConfig();
 
 		ArrayList<String> ruleFileLocations = new ArrayList<String>();
-		if (prop.getProperty(DRL1) != null) {
-			ruleFileLocations.add(prop.getProperty(DRL1));
+		if (prop.getProperty(RULE1) != null) {
+			ruleFileLocations.add(prop.getProperty(RULE1));
 		}
-		if (prop.getProperty(DRL2) != null) {
-			ruleFileLocations.add(prop.getProperty(DRL2));
+		if (prop.getProperty(RULE2) != null) {
+			ruleFileLocations.add(prop.getProperty(RULE2));
 		}
-		if (prop.getProperty(DRL3) != null) {
-			ruleFileLocations.add(prop.getProperty(DRL3));
+		if (prop.getProperty(RULE3) != null) {
+			ruleFileLocations.add(prop.getProperty(RULE3));
 		}
 
 		// Set this as a RuleSource Object
 		String[] tmpArr = new String[ruleFileLocations.size()];
-		RuleDTO ruleSource = new RuleDTO();
+		RuleConfig ruleSource = new RuleConfig();
 		ruleSource.setRulesLocation(ruleFileLocations.toArray(tmpArr));
 
+		//update other config
+		ruleSource.setDslFileLocation(getDslName());
+		
 		return ruleSource;
 	}
 
@@ -185,6 +191,10 @@ public class Config {
 			log.warn("Stopping - Input and output files should not be the same");
 			throw new IllegalArgumentException("Input and output files should not be the same - we don't want to overwrite our original data");
 		}
+	}
+
+	public static String getDslName() {
+		return readConfig().getProperty(Config.DRL, "");
 	}
 
 }

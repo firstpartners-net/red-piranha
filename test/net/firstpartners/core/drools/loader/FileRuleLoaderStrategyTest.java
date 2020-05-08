@@ -25,7 +25,7 @@ public class FileRuleLoaderStrategyTest {
 		log.debug("starting test");
 		
 		//Set the rule source
-		RuleDTO ruleSource = new RuleDTO();
+		RuleConfig ruleSource = new RuleConfig();
 		ruleSource.setKnowledgeBaseLocation(TestConstants.KNOWLEDGE_BASE_FILE);
 		log.debug("will try to load:"+ruleSource.getKnowledgeBaseLocation());
 		

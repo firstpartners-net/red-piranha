@@ -19,13 +19,13 @@ public interface IRuleLoaderStrategy {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	org.drools.KnowledgeBase loadRules(RuleDTO ruleSource) throws DroolsParserException, IOException, ClassNotFoundException;
+	org.drools.KnowledgeBase loadRules(RuleConfig ruleSource) throws DroolsParserException, IOException, ClassNotFoundException;
 	
 	/**
 	 * gets the original rule source
 	 * @return
 	 */
-	RuleDTO getRuleSource();
+	RuleConfig getRuleSource();
 
 
 }

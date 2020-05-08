@@ -14,7 +14,7 @@ import org.drools.runtime.StatelessKnowledgeSession;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
-import net.firstpartners.core.drools.loader.RuleDTO;
+import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.core.log.EmptyLogger;
 import net.firstpartners.core.log.GiveLogFeedback;
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
@@ -120,7 +120,7 @@ public class RuleRunner {
 		// Log the cell contents
 
 		// Add the Spreadsheet contents as facts
-		RuleDTO ruleSource = ruleLoader.getRuleSource();
+		RuleConfig ruleSource = ruleLoader.getRuleSource();
 		ruleSource.addFacts(ranges.getAllCellsInAllRanges());
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(65);
@@ -235,7 +235,7 @@ public class RuleRunner {
 		log.debug("Inserting handle to logger (via global)");
 		workingMemory.setGlobal("log", logger);
 
-		//log.debug("Using facts:" + facts);
+		// log.debug("Using facts:" + facts);
 
 		log.debug("==================== Calling Rule Engine ====================");
 
@@ -259,7 +259,7 @@ public class RuleRunner {
 	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
-	private void runStatelessRules(RuleDTO ruleSource, ILogger logger)
+	private void runStatelessRules(RuleConfig ruleSource, ILogger logger)
 			throws DroolsParserException, IOException, ClassNotFoundException {
 
 		// The most common operation on a rulebase is to create a new rule

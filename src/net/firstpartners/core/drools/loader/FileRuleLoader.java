@@ -22,24 +22,24 @@ public class FileRuleLoader extends AbstractRuleLoaderStrategy implements IRuleL
 	private static final Logger log = RpLogger.getLogger(FileRuleLoader.class
 			.getName());
 	
-	private RuleDTO ruleSource;
+	private RuleConfig ruleSource;
 
 	/**
 	 *  Constructor
 	 * @param ruleSource - info on where our business rules are stored
 	 */
-	public FileRuleLoader(RuleDTO ruleSource) {
+	public FileRuleLoader(RuleConfig ruleSource) {
 		this.ruleSource = ruleSource;
 	}
 	
-	/** 
-	 * Constructor - convenience - takes single ruleLocation
-	 * @param ruleLocation - single file location
-	 */
-	public FileRuleLoader(String ruleLocation) {
-		this.ruleSource = new RuleDTO();
-		this.ruleSource.setRulesLocation(ruleLocation);
-	}
+//	/** 
+//	 * Constructor - convenience - takes single ruleLocation
+//	 * @param ruleLocation - single file location
+//	 */
+//	public FileRuleLoader(String ruleLocation) {
+//		this.ruleSource = new RuleConfig();
+//		this.ruleSource.setRulesLocation(ruleLocation);
+//	}
 
 
 
@@ -117,13 +117,13 @@ public class FileRuleLoader extends AbstractRuleLoaderStrategy implements IRuleL
 	 * gets the original rule source
 	 * @return RuleDTO with the rule locations previously provided
 	 */
-	public RuleDTO getRuleSource() {
+	public RuleConfig getRuleSource() {
 		return ruleSource;
 	}
 
 	
 
-	public void setRuleSource(RuleDTO ruleSource) {
+	public void setRuleSource(RuleConfig ruleSource) {
 		this.ruleSource = ruleSource;
 	}
 

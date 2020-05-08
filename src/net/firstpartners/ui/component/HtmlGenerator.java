@@ -53,7 +53,7 @@ public class HtmlGenerator {
 		outputFileName = StringEscapeUtils.escapeHtml4(Config.getOutputFileName());
 
 		// build multiple rules files
-		String rulesFiles[] = Config.getRuleFiles().getRulesLocation();
+		String rulesFiles[] = Config.getRuleConfig().getRulesLocation();
 		StringBuilder ruleFile = new StringBuilder();
 		for (int a = 0; a < rulesFiles.length; a++) {
 			ruleFile.append(StringEscapeUtils.escapeHtml4(rulesFiles[a]) + " | ");

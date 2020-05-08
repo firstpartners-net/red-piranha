@@ -10,7 +10,7 @@ import net.firstpartners.TestConstants;
 import net.firstpartners.core.MemoryOutputStrategy;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
-import net.firstpartners.core.drools.loader.RuleDTO;
+import net.firstpartners.core.drools.loader.RuleConfig;
 
 public class ExcelInputStrategyTest {
 
@@ -23,7 +23,7 @@ public class ExcelInputStrategyTest {
 	@Test
 	public final void testXlsCallRulesFromFile() throws Exception {
 
-		RuleDTO ruleSource = new RuleDTO();
+		RuleConfig ruleSource = new RuleConfig();
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 		
 		log.debug("rule source created");
@@ -46,7 +46,7 @@ public class ExcelInputStrategyTest {
 	 */
 	public final void testXlsXCallRulesFromFile() throws Exception {
 		
-		RuleDTO ruleSource = new RuleDTO();
+		RuleConfig ruleSource = new RuleConfig();
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 
 		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLSX_DATA_FILE,ruleSource,"some-dummy.xls");

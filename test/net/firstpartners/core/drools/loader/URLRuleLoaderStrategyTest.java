@@ -22,7 +22,7 @@ public class URLRuleLoaderStrategyTest {
 	public final void testLoadCachedRulesFromUrl() throws IOException, ClassNotFoundException {
 
 		//Set the rule source
-		RuleDTO ruleSource = new RuleDTO();
+		RuleConfig ruleSource = new RuleConfig();
 		ruleSource.setKnowledgeBaseLocation("https://raw.githubusercontent.com/paulbrowne-irl/red-piranha/master/test/testdata/log-then-modify-rules.KnowledgeBase");
 
 
@@ -41,7 +41,7 @@ public class URLRuleLoaderStrategyTest {
 
 		//check that dodgy domains are caught
 		//Set the rule source
-		RuleDTO ruleSource = new RuleDTO();
+		RuleConfig ruleSource = new RuleConfig();
 		ruleSource.setKnowledgeBaseLocation("http://www.bbc.co.uk/not-on-whitelist-should-fail.Knowledgebase");
 
 		//Check that we cannot read rules from remote location
@@ -61,7 +61,7 @@ public class URLRuleLoaderStrategyTest {
 
 		//check that dodgy domains are caught
 		//Set the rule source
-		RuleDTO ruleSource = new RuleDTO();
+		RuleConfig ruleSource = new RuleConfig();
 		ruleSource.setKnowledgeBaseLocation("http://red-piranha.appspot.com/sampleresources/SpreadSheetServlet/log-then-modify-rules.SomeUnknownResourceType");
 
 		//Check that we cannoread rules from remote location

@@ -10,7 +10,7 @@ import net.firstpartners.TestConstants;
 import net.firstpartners.core.MemoryOutputStrategy;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
-import net.firstpartners.core.drools.loader.RuleDTO;
+import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.core.file.PDFOutputStrategy;
 
 public class WordInputStrategyTest {
@@ -24,7 +24,7 @@ public class WordInputStrategyTest {
 	@Test
 	public final void testdocCallRulesFromFile() throws Exception {
 
-		RuleDTO ruleSource = new RuleDTO();
+		RuleConfig ruleSource = new RuleConfig();
 		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
 		
 		log.debug("rule source created");

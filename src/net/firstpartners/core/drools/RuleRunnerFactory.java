@@ -11,7 +11,7 @@ import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.drools.loader.FileRuleLoader;
 import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
-import net.firstpartners.core.drools.loader.RuleDTO;
+import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
@@ -159,7 +159,7 @@ public class RuleRunnerFactory {
 			throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException {
 
-		RuleDTO mySource = new RuleDTO();
+		RuleConfig mySource = new RuleConfig();
 		mySource.setRulesLocation(ruleSourceAsString);
 
 		return getRuleRunner(inputFileName, mySource, outputFileName);
@@ -181,7 +181,7 @@ public class RuleRunnerFactory {
 	 * @sthrows SecurityException         - from underlying input - output libs
 	 * @throws NoSuchMethodException     - from underlying input - output libs
 	 */
-	public static RuleRunner getRuleRunner(String inputFileName, RuleDTO ruleSource, String outputFileName)
+	public static RuleRunner getRuleRunner(String inputFileName, RuleConfig ruleSource, String outputFileName)
 			throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException {
 
@@ -191,7 +191,7 @@ public class RuleRunnerFactory {
 		assert outputFileName != null;
 
 		// Make sure we get the right type of loader
-		IRuleLoaderStrategy ruleLoaderStrategy = getRuleLoader(ruleSource.getRulesLocation()[0]);
+		IRuleLoaderStrategy ruleLoaderStrategy = getRuleLoader(ruleSource);
 
 		// Decide on our input strategy
 		Class<?> strategyClass = getInputMapping(inputFileName);
@@ -215,6 +215,8 @@ public class RuleRunnerFactory {
 		return new RuleRunner(inputStrat, ruleLoaderStrategy, outputStrat);
 
 	}
+	
+
 
 	/**
 	 * Get a handle to the rule loader we will be using, based on the ruleLocation
@@ -222,11 +224,13 @@ public class RuleRunnerFactory {
 	 * @param ruleLocation
 	 * @return
 	 */
-	public static IRuleLoaderStrategy getRuleLoader(String ruleLocation) {
+	public static IRuleLoaderStrategy getRuleLoader(RuleConfig ruleLocation) {
 
 		IRuleLoaderStrategy ruleLoader;
+		String firstRuleLocation = ruleLocation.getRulesLocation()[0].toLowerCase();
+		
 
-		if (ruleLocation.startsWith("http")) {
+		if (firstRuleLocation.startsWith("http")) {
 			ruleLoader = new URLRuleLoaderStrategy();
 		} else {
 			ruleLoader = new FileRuleLoader(ruleLocation);

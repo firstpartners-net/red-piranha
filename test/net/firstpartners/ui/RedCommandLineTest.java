@@ -48,7 +48,7 @@ public class RedCommandLineTest {
 		Properties p = new Properties();
 		p.setProperty(Config.FILE_INPUT, TestConstants.WORD_DATA_FILE);
 		p.setProperty(Config.FILE_OUTPUT, TestConstants.CSV_TMP_FILE);
-		p.setProperty(Config.DRL1, TestConstants.RULE_FILE_FOR_WORD);
+		p.setProperty(Config.RULE1, TestConstants.RULE_FILE_FOR_WORD);
 		Config.setProperties(p);
 		
 
@@ -73,7 +73,7 @@ public class RedCommandLineTest {
 		Properties p = new Properties();
 		p.setProperty(Config.FILE_INPUT, TestConstants.XLSX_DATA_FILE);
 		p.setProperty(Config.FILE_OUTPUT, TestConstants.CSV_TMP_FILE);
-		p.setProperty(Config.DRL1, TestConstants.RULE_FILE_FOR_WORD);  // these shouldn't fire, but we're more interested in teh converstion
+		p.setProperty(Config.RULE1, TestConstants.RULE_FILE_FOR_WORD);  // these shouldn't fire, but we're more interested in teh converstion
 		Config.setProperties(p);
 		
 

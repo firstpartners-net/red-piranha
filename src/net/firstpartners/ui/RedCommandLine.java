@@ -8,7 +8,7 @@ import org.drools.compiler.compiler.DroolsParserException;
 
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
-import net.firstpartners.core.drools.loader.RuleDTO;
+import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
@@ -81,16 +81,21 @@ public class RedCommandLine {
 		// Get the params
 		String inputFileName = Config.getInputFileName();
 		String outputFileName = Config.getOutputFileName();
-		RuleDTO ruleFiles = Config.getRuleFiles();
+		RuleConfig ruleConfig = Config.getRuleConfig();
 
+		
+		log.debug("DSL?"+ruleConfig.getDslFileLocation());
+		
 		// Handle to common utility file
 		//The Factory auto-generates the input and output strategy based on the filenames
-		RuleRunner runner = RuleRunnerFactory.getRuleRunner(inputFileName,ruleFiles,outputFileName);
+		RuleRunner runner = RuleRunnerFactory.getRuleRunner(inputFileName,ruleConfig,outputFileName);
+		
+		
 		
 		try {
 
 			// Call the rules using this datafile
-			playerAsLogger.info("Running Rules:" + ruleFiles);
+			playerAsLogger.info("Running Rules:" + ruleConfig);
 			runner.callRules( userUpdates, playerAsLogger);
 			playerAsLogger.info("Complete");
 

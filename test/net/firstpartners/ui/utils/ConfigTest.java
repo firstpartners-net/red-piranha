@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.drools.loader.RuleDTO;
+import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.data.RangeList;
 
 public class ConfigTest {
@@ -54,8 +54,17 @@ public class ConfigTest {
 		}
 		
 		@Test
+		public final void testReadDslName() {
+			
+			Config.reset(); // so we know the start state
+			String testDsl = Config.getDslName();
+			Assert.assertNotNull(testDsl);
+			assertTrue(testDsl!="");
+			
+		}
+		@Test
 		public final void testReadRulesFiles() {
-			RuleDTO myRuleDrl = Config.getRuleFiles();
+			RuleConfig myRuleDrl = Config.getRuleConfig();
 			Assert.assertNotNull(myRuleDrl);
 			Assert.assertEquals(myRuleDrl.getRulesLocation().length,1);
 			

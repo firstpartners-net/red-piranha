@@ -88,7 +88,7 @@ public class DocumentConvertor {
 					thisRow.setRangeName(WORD_TABLE_ROW_AS_RANGELIST + possibleRowName);
 				} else {
 					
-					//It is possible that the first cell in a row is blank
+					//It is possible that the first cell in a row is blank	
 					// we give it a name as there may be other useful values in the row (col 2, col3 etc)
 					thisRow.setRangeName(TABLE_MARKER+tableCounter+"_"+WORD_TABLE_ROW_AS_RANGELIST+rowIndex);
 			

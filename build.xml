@@ -10,6 +10,9 @@
       Ant Build file - compile, build, test , package the Red-Piranha project
     </description>
 
+	
+	<!-- The Version number  Update this before each release-->
+	<property name="version" value="1.22-beta"/>
 
 	<!-- General Variables -->
 	<property name="application.title" value="Red Piranha" />
@@ -163,7 +166,7 @@
 	<!-- Create Jar file-->
 	<target name="jar" depends="build" description="Create the Jar file for distribution">
 
-		<jar jarfile="${distrib.dir}/${name}.jar" compress="true">
+		<jar jarfile="${distrib.dir}/${name}-${version}.jar" compress="true">
 
 			<manifest>
 				<attribute name="Main-Class" value="${main.class}" />
@@ -184,9 +187,9 @@
 	<target name="war" depends="jar" description="Create the War file for distribution">
 
 		<!-- copy in Red Piranha jars to WEB-INF lib for later packaign-->
-		<copy file="${distrib.dir}/${name}.jar" tofile="${lib.root}/lib/${name}.jar" />
+		<copy file="${distrib.dir}/${name}-${version}.jar" tofile="${lib.root}/lib/${name}-${version}.jar" />
 
-		<war warfile="${distrib.dir}/${name}.war" basedir="war" needxmlfile="false" webxml="${lib.root}/web.xml">
+		<war warfile="${distrib.dir}/${name}-${version}.war" basedir="war" needxmlfile="false" webxml="${lib.root}/web.xml">
 
 			<lib dir="${lib.root}/lib/" />
 
@@ -198,7 +201,7 @@
 	<!-- Deploy War to Jetty-->
 	<target name="deploy-jetty" depends="war" description="Deploy the War file to local Jetty">
 
-		<copy file="${distrib.dir}/${name}.war" tofile="${deploy.dir}/${name}.war" />
+		<copy file="${distrib.dir}/${name}-${version}.war" tofile="${deploy.dir}/${name}-${version}.war" />
 
 	</target>
 
@@ -210,6 +213,8 @@
 		             minus the .jar extension. It should not have spaces.
 		             <property name="store.jar.name" value="MyJarName"/>
 		        -->
+		
+		<!-- We don't version number the single jar, as it causes the launch4j packagings to fail-->
 		<property name="store.jar.name" value="${name}-single" />
 		<property name="tmp.dir" value="${distrib.dir}/tmp" />
 		<property name="store.jar" value="${tmp.dir}/${store.jar.name}.jar" />
@@ -245,13 +250,16 @@
 	<target name="exe" depends="jar-single" description="create standalone exe">
 
 		<!-- Delete any previous exe-->
-		<delete file="${distrib.dir}/red-piranha.exe" />
+		<delete file="${distrib.dir}/red-piranha-${version}.exe" />
 
 		<!-- call the launch4j to wrap as standalone exe-->
 		<launch4j configFile="launch4j.xml" />
 
+		<!-- Rename the file with the version number -->
+		<move file="${distrib.dir}/red-piranha.exe" tofile="${distrib.dir}/red-piranha-${version}.exe"/>
+		
 		<!-- Copy the debug batch file into dist-->
-		<copy file="${src.dir}/red-piranha-debug.bat" tofile="${distrib.dir}/red-piranha-debug.bat" />
+		<copy file="${src.dir}/red-piranha-debug.bat" tofile="${distrib.dir}/red-piranha-debug-${version}.bat" />
 
 
 	</target>

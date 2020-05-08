@@ -98,7 +98,7 @@ public class RuleRunner {
 	public void callRules(IGiveFeedbackToUsers userDataDisplay, ILogger userMessages)
 			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
-		// Create a new Excel Logging object
+		// Create a new Logging object
 		outputStrategy.setDocumentLogger(new SpreadSheetLogger());
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(10);

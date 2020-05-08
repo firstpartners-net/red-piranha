@@ -17,7 +17,7 @@ import net.firstpartners.data.RangeList;
  */
 public class MemoryOutputStrategy implements IDocumentOutStrategy {
 
-	private SpreadSheetLogger docLogger;
+	private ILogger docLogger;
 
 	// Name of the outputfile
 	private OfficeDocument processedDoc = null;
@@ -38,9 +38,12 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	 */
 	@Override
 	public void flush(ILogger logger) {
-		this.flush();
-		this.docLogger.flush(logger);
 
+		if (logger instanceof SpreadSheetLogger) {
+
+			((SpreadSheetLogger) this.docLogger).flush(logger);
+
+		}
 	}
 
 	/**
@@ -75,7 +78,7 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	 * @param spreadSheetLogger
 	 */
 	@Override
-	public void setDocumentLogger(SpreadSheetLogger spreadSheetLogger) {
+	public void setDocumentLogger(ILogger spreadSheetLogger) {
 		this.docLogger = spreadSheetLogger;
 
 	}
@@ -89,7 +92,7 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 		this.processedDoc = fileToProcess;
 		if (fileToProcess.isSpreadsheet()) {
 			SpreadSheetConvertor.updateRedRangeintoPoiExcel(fileToProcess.getOriginalAsPoiWorkbook(), ranges);
-		} 
+		}
 	}
 
 }

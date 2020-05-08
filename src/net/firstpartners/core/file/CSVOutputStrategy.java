@@ -22,9 +22,9 @@ import org.apache.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import net.firstpartners.core.IDocumentOutStrategy;
+import net.firstpartners.core.log.EmptyLogger;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
@@ -108,6 +108,9 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	// Hold the data until we are asked to process it
 	@SuppressWarnings("unused") // eclipse mistakenly marks this as unused
 	private RangeList processedRange;
+	
+	//Handle to logger to GUI
+	private ILogger userLogger = new EmptyLogger(); // we may change later -null safe
 
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
@@ -131,7 +134,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	 */
 	@Override
 	public void flush(ILogger logger) {
-
+		
 	}
 
 	List<String> getHeadersFromFile() throws IOException {
@@ -237,10 +240,10 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 		int counter = 0;
 
 		// Loop and add the values in order
-		for (String thisHeader : headers) {
+		for (String thisHeader : headers) {	
 
 			dataToWrite[counter] = outputValues.get(thisHeader);
-			log.debug("CSV Output for header:" + thisHeader + " value:" + dataToWrite[counter]);
+			userLogger.info("CSV Output for header:" + thisHeader + " value:" + dataToWrite[counter]);
 
 			counter++;
 		}
@@ -257,13 +260,13 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	}
 
 	/**
-	 * Not needing to be implemented as part of this strategy
+	 * Handle that we can pass informration back to the user
 	 * 
-	 * @param ignored - this strategy does not use
+	 * @param userLogger - this strategy does not use
 	 */
 	@Override
-	public void setDocumentLogger(SpreadSheetLogger ignored) {
-
+	public void setDocumentLogger(ILogger userLogger) {
+		this.userLogger = userLogger;
 	}
 
 	/**

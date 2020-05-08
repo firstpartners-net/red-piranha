@@ -220,11 +220,13 @@ public class DocumentConvertor {
 
 		RangeList returnList = new RangeList();
 
-		Collection<net.firstpartners.data.Range> paras = convertParasToBeans(wordDoc);
+		//Convert Tables then Paras - more useful info in the former, and table info will then show up first
 		Collection<net.firstpartners.data.Range> tables = convertTablesToBeans(wordDoc);
-
-		returnList.addAll(paras);
+		Collection<net.firstpartners.data.Range> paras = convertParasToBeans(wordDoc);
+		
 		returnList.addAll(tables);
+		returnList.addAll(paras);
+		
 
 		return returnList;
 	}

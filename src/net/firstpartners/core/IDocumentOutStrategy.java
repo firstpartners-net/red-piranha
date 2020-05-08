@@ -6,7 +6,6 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.log.ILogger;
-import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -48,7 +47,7 @@ public interface IDocumentOutStrategy {
 	 * Allows us to set a Logger that will flush within a document if the Strategy supports it
 	 * @param documentLogger
 	 */
-	void setDocumentLogger(SpreadSheetLogger documentLogger);
+	void setDocumentLogger(ILogger documentLogger);
 	
 	/**
 	 * Update our Original Document with new data

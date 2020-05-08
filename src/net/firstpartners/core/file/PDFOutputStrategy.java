@@ -13,7 +13,6 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
@@ -116,7 +115,7 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 	 * Not needing to be implemented as part of this strategy
 	 */
 	@Override
-	public void setDocumentLogger(SpreadSheetLogger spreadSheetLogger) {
+	public void setDocumentLogger(ILogger spreadSheetLogger) {
 
 	}
 

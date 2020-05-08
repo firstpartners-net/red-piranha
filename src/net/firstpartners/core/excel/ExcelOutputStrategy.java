@@ -19,6 +19,7 @@ import net.firstpartners.ui.utils.Config;
 
 /**
  * Strategy class of output of Excel Document
+ * 
  * @author paul
  *
  */
@@ -26,54 +27,60 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 	// Logger
 	private static final Logger log = RpLogger.getLogger(ExcelOutputStrategy.class.getName());
-	
-	//Name of the outputfile
-	private String outputFileName =null;
-	
-	private SpreadSheetLogger spreadSheetLogger;
+
+	// Name of the outputfile
+	private String outputFileName = null;
+
+	private ILogger spreadSheetLogger;
 
 	private Workbook workbook;
-	
+
 	/**
-	 * Constructor - takes the name of the file we intend outputting to	
+	 * Constructor - takes the name of the file we intend outputting to
+	 * 
 	 * @param outputFileName
 	 */
 	public ExcelOutputStrategy(String outputFileName) {
 		this.outputFileName = outputFileName;
 	}
 
-
-
 	/**
 	 * Write out and logs we hold to the document
+	 * 
 	 * @param excelWorkBook
 	 * @param nameOfLogSheet
 	 */
 	@Override
 	public void flush() {
-		this.spreadSheetLogger.flush(workbook,Config.EXCEL_LOG_WORKSHEET_NAME);
-		
-	}
+		if (this.spreadSheetLogger instanceof SpreadSheetLogger) {
 
+			((SpreadSheetLogger) this.spreadSheetLogger).flush(workbook, Config.EXCEL_LOG_WORKSHEET_NAME);
+
+		}
+
+	}
 
 	/**
 	 * Write out any documents we hold to anybody else interested
+	 * 
 	 * @param logger
 	 */
 	@Override
 	public void flush(ILogger logger) {
 		this.flush();
-		this.spreadSheetLogger.flush(logger);
-		
+		if (this.spreadSheetLogger instanceof SpreadSheetLogger) {
+
+			((SpreadSheetLogger) this.spreadSheetLogger).flush(logger);
+		}
+
 	}
-	
 
 	/**
 	 * String representing where our output is going to
 	 */
 	@Override
 	public String getOutputDestination() {
-		return "File:"+outputFileName;
+		return "File:" + outputFileName;
 	}
 
 	public String getOutputFileName() {
@@ -86,43 +93,45 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * Outputs Red-Piranha's own internal format to a Logging Console
+	 * 
 	 * @param ranges
 	 */
-	void outputToConsole(RangeList ranges ){
+	void outputToConsole(RangeList ranges) {
 		for (Range r : ranges) {
 			log.debug(r.toString());
 		}
 	}
 
-	
 	/**
 	 * Outputs an Apache POI Workbook to a Logging Console
+	 * 
 	 * @param wb
 	 * @throws IOException
 	 */
-	void outputToConsole(Workbook wb) throws IOException{
+	void outputToConsole(Workbook wb) throws IOException {
 
 		RangeList ranges = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		outputToConsole(ranges);
 
 	}
-	
+
 	/**
 	 * Outputs an Apache POI Workbook to a file
-	 * @param wb - Apache POI Workbook (excel)
+	 * 
+	 * @param wb       - Apache POI Workbook (excel)
 	 * @param fileName
 	 * @throws IOException
 	 */
-	void outputToFile(Workbook wb) throws IOException{
+	void outputToFile(Workbook wb) throws IOException {
 
 		// Write out modified Excel sheet
 		try {
-			FileOutputStream fileOutputStream = new FileOutputStream(
-					this.outputFileName);
-			outputToStream(wb,fileOutputStream);
+			FileOutputStream fileOutputStream = new FileOutputStream(this.outputFileName);
+			outputToStream(wb, fileOutputStream);
 			fileOutputStream.close();
-		} catch (java.security.AccessControlException ace){
-			//Unable to output file (e.g. as in Google App Engine) - drop back and log via console instead
+		} catch (java.security.AccessControlException ace) {
+			// Unable to output file (e.g. as in Google App Engine) - drop back and log via
+			// console instead
 			log.error("Unable to output to file - logging to console instead");
 			outputToConsole(wb);
 		}
@@ -131,23 +140,25 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * Outputs an Apache POI Workbook to a Stream (e.g Servlet response)
+	 * 
 	 * @param wb
 	 * @param stream
 	 * @throws IOException
 	 */
-	public void outputToStream(Workbook wb,OutputStream stream) throws IOException{
+	public void outputToStream(Workbook wb, OutputStream stream) throws IOException {
 
-		wb.write(stream); 
+		wb.write(stream);
 	}
-	
+
 	/**
 	 * Process the output from the system
+	 * 
 	 * @param fileToProcess
 	 * @param outputFileName
 	 * @throws IOException
 	 */
 	public void processOutput() throws IOException {
-		
+
 		// delete the outputFile if it exists
 		Utils.deleteOutputFileIfExists(outputFileName);
 
@@ -155,32 +166,33 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 		outputToFile(workbook);
 
 	}
-	
+
 	/**
 	 * Allows us to set a Logger that will flush to an Excel Spreadheet
+	 * 
 	 * @param spreadSheetLogger
 	 */
 	@Override
-	public void setDocumentLogger(SpreadSheetLogger spreadSheetLogger) {
+	public void setDocumentLogger(ILogger spreadSheetLogger) {
 		this.spreadSheetLogger = spreadSheetLogger;
-		
+
 	}
 
 	public void setWorkbook(Workbook workbook) {
 		this.workbook = workbook;
 	}
 
-	
 	/**
 	 * Update a copy of our Original Document with new data
+	 * 
 	 * @param ranges
 	 * @throws IOException
 	 */
-	public void setUpdates(OfficeDocument fileToProcess,RangeList range) throws IOException {
-		
-		this.workbook =fileToProcess.getOriginalAsPoiWorkbook();
+	public void setUpdates(OfficeDocument fileToProcess, RangeList range) throws IOException {
+
+		this.workbook = fileToProcess.getOriginalAsPoiWorkbook();
 		SpreadSheetConvertor.updateRedRangeintoPoiExcel(this.workbook, range);
-		
+
 	}
 
 }

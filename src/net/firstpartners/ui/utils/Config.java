@@ -183,7 +183,7 @@ public class Config {
 
 		if (getInputFileName().equalsIgnoreCase(getOutputFileName())) {
 			log.warn("Stopping - Input and output files should not be the same");
-			throw new IllegalArgumentException("Input and output files should not be the same");
+			throw new IllegalArgumentException("Input and output files should not be the same - we don't want to overwrite our original data");
 		}
 	}
 

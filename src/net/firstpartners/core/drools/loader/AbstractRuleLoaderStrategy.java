@@ -107,7 +107,7 @@ public abstract class AbstractRuleLoaderStrategy implements IRuleLoaderStrategy 
 					+ localBuilder.getErrors().toString());
 			log.warn("****/nEnd Drools Errors");
 
-			throw new RuntimeException("Error in Rules File:"
+			throw new RuntimeException("Check your Rules file (.drl, .dsl) for Errors. Details:"
 					+ localBuilder.getErrors().toString());
 
 		} else {

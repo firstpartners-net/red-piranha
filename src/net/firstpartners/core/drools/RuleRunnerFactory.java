@@ -78,24 +78,38 @@ public class RuleRunnerFactory {
 	 * Get the class that maps to our filename based on .xls, .doc etc
 	 * 
 	 * @param string - full filename
+	 * @throws Illegal Argument exception if we don't have a mapping for this class
 	 * @return
 	 */
 	static Class<?> getInputMapping(String fileName) {
 
 		assert fileName != null;
+		
+		//change to lower case
+		fileName = fileName.toLowerCase();
 
 		buildReferenceTables();
 
 		int splitPoint = fileName.lastIndexOf(".");
-		if(splitPoint==-1) {
-			//nothing found
-			return null;
+		if (splitPoint == -1) {
+			// nothing found
+			throw new IllegalArgumentException("Unable to guess the type of file (based on where '. is) for:" + fileName);
 		}
 		String suffix = fileName.substring(splitPoint, fileName.length());
 
 		log.debug("Looking for input Mapping against suffix:" + suffix);
 
-		return inputSuffixMaps.get(suffix);
+		Class<?> strategyClass = inputSuffixMaps.get(suffix);
+		
+		log.debug("Found strategy class:" + strategyClass);
+
+		
+		if (strategyClass == null) {
+			throw new IllegalArgumentException("No Input Strategy Found to read files of type:" + suffix);
+		}
+
+		return strategyClass;
+
 	}
 
 	/**
@@ -108,6 +122,8 @@ public class RuleRunnerFactory {
 
 		assert fileName != null;
 
+		fileName = fileName.toLowerCase();
+		
 		buildReferenceTables();
 
 		int splitPoint = fileName.lastIndexOf(".");
@@ -115,24 +131,29 @@ public class RuleRunnerFactory {
 
 		log.debug("Looking for output Mapping against suffix:" + suffix);
 		Class<?> foundStrategy = outputSuffixMaps.get(suffix);
-		log.debug("Found Strategy:"+foundStrategy);
-		
+		log.debug("Found Strategy:" + foundStrategy);
+
+		if (foundStrategy == null) {
+			throw new IllegalArgumentException("No Output Strategy found to write files of type :" + suffix);
+		}
+
 		return foundStrategy;
 	}
 
 	/**
 	 * Convenience constructor, state rules as single string
 	 * 
-	 * @param inputFileName - where we get the data from
+	 * @param inputFileName      - where we get the data from
 	 * @param ruleSourceAsString - name of a single rule file
-	 * @param outputFileName - where we will output the file to
-	 * @return RuleRunner Object with the correct input / output Strategies configured
+	 * @param outputFileName     - where we will output the file to
+	 * @return RuleRunner Object with the correct input / output Strategies
+	 *         configured
 	 * @throws InvocationTargetException - from underlying input - output libs
 	 * @throws IllegalArgumentException- from underlying input - output libs
-	 * @throws IllegalAccessException - from underlying input - output libs
-	 * @throws InstantiationException - from underlying input - output libs
-	 * @throws SecurityException - from underlying input - output libs
-	 * @throws NoSuchMethodException - from underlying input - output libs
+	 * @throws IllegalAccessException    - from underlying input - output libs
+	 * @throws InstantiationException    - from underlying input - output libs
+	 * @throws SecurityException         - from underlying input - output libs
+	 * @throws NoSuchMethodException     - from underlying input - output libs
 	 */
 	public static RuleRunner getRuleRunner(String inputFileName, String ruleSourceAsString, String outputFileName)
 			throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException,
@@ -148,16 +169,17 @@ public class RuleRunnerFactory {
 	 * Create a properly configured RuleRunner for the Input / Output file types we
 	 * are passing
 	 * 
-	 * @param inputFileName - where we get the data from
+	 * @param inputFileName      - where we get the data from
 	 * @param ruleSourceAsString - name of a multiple rule files
-	 * @param outputFileName - where we will output the file to
-	 * @return RuleRunner Object with the correct input / output Strategies configured
+	 * @param outputFileName     - where we will output the file to
+	 * @return RuleRunner Object with the correct input / output Strategies
+	 *         configured
 	 * @throws InvocationTargetException - from underlying input - output libs
 	 * @throws IllegalArgumentException- from underlying input - output libs
-	 * @throws IllegalAccessException - from underlying input - output libs
-	 * @throws InstantiationException - from underlying input - output libs
-	 * @throws SecurityException - from underlying input - output libs
-	 * @throws NoSuchMethodException - from underlying input - output libs
+	 * @throws IllegalAccessException    - from underlying input - output libs
+	 * @throws InstantiationException    - from underlying input - output libs
+	 * @sthrows SecurityException         - from underlying input - output libs
+	 * @throws NoSuchMethodException     - from underlying input - output libs
 	 */
 	public static RuleRunner getRuleRunner(String inputFileName, RuleDTO ruleSource, String outputFileName)
 			throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException,
@@ -172,24 +194,16 @@ public class RuleRunnerFactory {
 		IRuleLoaderStrategy ruleLoaderStrategy = getRuleLoader(ruleSource.getRulesLocation()[0]);
 
 		// Decide on our input strategy
-		inputFileName = inputFileName.toLowerCase();
 		Class<?> strategyClass = getInputMapping(inputFileName);
-		if(strategyClass ==null) {
-			throw new IllegalArgumentException("No Input Strategy Found for:"+inputFileName);
-		}
+
 		log.debug("trying to create Strategy Object from class:" + strategyClass);
 		Constructor<?> constructor = strategyClass.getConstructor(String.class);
 		IDocumentInStrategy inputStrat = (IDocumentInStrategy) constructor.newInstance(inputFileName);
 
-		
-		
 		// Decide on our output strategy
-		outputFileName = outputFileName.toLowerCase();
-		strategyClass =null;
+		strategyClass = null;
 		strategyClass = getOutputMapping(outputFileName);
-		if(strategyClass ==null) {
-			throw new IllegalArgumentException("No Output Strategy Found for:"+outputFileName);
-		}
+
 		log.debug("trying to create Strategy Object from class:" + strategyClass);
 		constructor = strategyClass.getConstructor(String.class);
 		IDocumentOutStrategy outputStrat = (IDocumentOutStrategy) constructor.newInstance(outputFileName);

@@ -141,7 +141,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 		log.info("Looking for CSV path:"+ path.getFileName());
 		
 		if (!Files.exists(path)) {
-			throw new IllegalArgumentException("CSV file should already exist with headers in first row");
+			throw new IllegalArgumentException("For writing to a CSV file "+ path.getFileName()+" should already exist with headers in first row");
 		}
 
 		log.debug("Found CSV:" + appendFileName);

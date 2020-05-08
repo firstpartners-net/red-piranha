@@ -20,7 +20,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	private String cellName = null;
 
-	private final PropertyChangeSupport changes = new PropertyChangeSupport(this);
+	private transient PropertyChangeSupport changes = new PropertyChangeSupport(this);
 
 	private String comment;
 

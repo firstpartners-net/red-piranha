@@ -16,6 +16,7 @@ import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.file.CSVOutputStrategy;
+import net.firstpartners.core.file.JsonOutputStrategy;
 import net.firstpartners.core.file.PDFOutputStrategy;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.word.WordInputStrategy;
@@ -40,6 +41,7 @@ public class RuleRunnerFactory {
 	public static final String SUFFIX_EXCELX = ".xlsx";
 	public static final String SUFFIX_CSV = ".csv";
 	public static final String SUFFIX_PDF = ".pdf";
+	public static final String SUFFIX_JSON = ".json";
 
 	// mappings between the suffix and class we want to load
 	static Map<String, Class<?>> inputSuffixMaps = null;
@@ -70,6 +72,9 @@ public class RuleRunnerFactory {
 			outputSuffixMaps.put(SUFFIX_PDF, PDFOutputStrategy.class);
 			outputSuffixMaps.put(SUFFIX_EXCEL, ExcelOutputStrategy.class);
 			outputSuffixMaps.put(SUFFIX_EXCELX, ExcelOutputStrategy.class); // same
+			outputSuffixMaps.put(SUFFIX_JSON, JsonOutputStrategy.class); // same
+			
+			
 		}
 
 	}

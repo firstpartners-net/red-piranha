@@ -149,5 +149,21 @@ public class RuleRunnerFactoryTest {
 		log.debug("InputMapping:"+tmpObject);
 		assertTrue(RuleRunnerFactory.getInputMapping("something.xlsx") == ExcelInputStrategy.class);
 	}
+	
+	@Test
+	public void testJsonFileFactory() throws NoSuchMethodException, SecurityException, InstantiationException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("generic.xls", "someFile",
+				"generic.json");
+		assertNotNull(myRunner);
+		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
+		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
+		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
+		assertNotNull(myRunner.getRuleLoader().getRuleSource());
+		assertEquals(myRunner.getRuleLoader().getRuleSource().getRulesLocation()[0], "someFile"); // check that someFile
+																									// is stored
+
+	}
+
 
 }

@@ -9,13 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.log4j.Logger;
-import org.drools.KnowledgeBase;
-import org.drools.KnowledgeBaseFactory;
-import org.drools.builder.KnowledgeBuilder;
-import org.drools.builder.KnowledgeBuilderFactory;
-import org.drools.builder.ResourceType;
 import org.drools.compiler.compiler.DroolsParserException;
-import org.drools.io.ResourceFactory;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
@@ -68,8 +62,7 @@ public class PreCompileRuleBuilderTest {
 		rulesToCompile.setRulesLocation(EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR);
 		rulesToCompile.setDslFileLocation(EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL);
 
-		// preCompileRuleBuilder.compileRule(TestConstants.RULES_FILES[0],
-		// TestConstants.KNOWLEDGE_BASE_FILE_TMP);
+
 		preCompileRuleBuilder.compileRule(rulesToCompile, TestConstants.KNOWLEDGE_BASE_FILE_TMP);
 
 		// check that this exists
@@ -81,24 +74,5 @@ public class PreCompileRuleBuilderTest {
 
 	}
 
-	/**
-	 * Quick method to test rule compilation
-	 * @param args
-	 */
-	public static void main(String[] args) {
-
-		KnowledgeBuilder builder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-		builder.add(ResourceFactory.newFileResource(EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL), ResourceType.DSL);
-		builder.add(ResourceFactory.newFileResource(EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR), ResourceType.DSLR);
-		if (builder.hasErrors()) {
-			throw new RuntimeException(builder.getErrors().toString());
-		}
-
-		KnowledgeBase knowledgeBase = KnowledgeBaseFactory.newKnowledgeBase();
-		knowledgeBase.addKnowledgePackages(builder.getKnowledgePackages());
-		
-		log.debug("complete");
-
-	}
 
 }

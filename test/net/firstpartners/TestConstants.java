@@ -41,6 +41,7 @@ public class TestConstants {
 	public static final String EXCEL_TMP_FILE = "test/testdata/tmp.xls";
 	public static final String CSV_TMP_FILE = "test/testdata/tmp.csv";
 	public static final String PDF_TMP_FILE = "test/testdata/tmp.pdf";
+	public static final String JSON_TMP_FILE = "test/testdata/tmp.json";
 	
 	public static final String KNOWLEDGE_BASE_FILE = "test/testrules/log-then-modify-rules.KnowledgeBase";
 	public static final String KNOWLEDGE_BASE_FILE_TMP ="test/testrules/tmp.KnowledgeBase";
@@ -52,6 +53,7 @@ public class TestConstants {
 	public final static String SAVED_EXCEL_RANGEHOLDER_DATA="test/testdata/RANGEHOLDER_RANGE_CELLS.testdata";
 	public final static String SAVED_WORD_RANGEHOLDER_DATA="test/testdata/RANGEHOLDER_RANGE_WORD.testdata";
 	public final static String SAVED_WORDX_RANGEHOLDER_DATA="test/testdata/RANGEHOLDER_RANGE_WORDX.testdata";
+	
 	
 	/**
 	 * Testing utility to generate test Data

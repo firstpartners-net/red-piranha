@@ -91,7 +91,7 @@ public class DocumentXConvertor {
 							String cellName = possibleRowName + "_" + cellCounter;
 							Cell thisCell = new Cell(cellName, table.getRow(rowCounter).getCell(cellCounter).getText());
 							thisCell.setOriginalTableReference("TABLE_"+tableCounter);
-							thisCell.setOriginalCellReference("R:"+rowCounter+"C:"+cellCounter);
+							thisCell.setOriginalCellReference(rowCounter,cellCounter);
 							log.debug("created cell"+thisCell);
 							thisRow.put(cellName, thisCell);
 						}

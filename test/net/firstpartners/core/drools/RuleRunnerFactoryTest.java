@@ -12,6 +12,7 @@ import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.file.CSVOutputStrategy;
+import net.firstpartners.core.file.JsonOutputStrategy;
 import net.firstpartners.core.file.PDFOutputStrategy;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.word.WordInputStrategy;
@@ -157,7 +158,7 @@ public class RuleRunnerFactoryTest {
 				"generic.json");
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
-		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
+		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof JsonOutputStrategy);
 		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
 		assertNotNull(myRunner.getRuleLoader().getRuleSource());
 		assertEquals(myRunner.getRuleLoader().getRuleSource().getRulesLocation()[0], "someFile"); // check that someFile

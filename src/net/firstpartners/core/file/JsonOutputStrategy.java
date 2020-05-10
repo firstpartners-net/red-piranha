@@ -3,7 +3,6 @@ package net.firstpartners.core.file;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -15,8 +14,6 @@ import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.log.EmptyLogger;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.data.Cell;
-import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -88,7 +85,7 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 	public void processOutput() throws IOException, InvalidFormatException {
 
 		// create a writer - set to append (true)
-		log.debug("Writing Json to :" + outputFile);
+		userLogger.debug("Writing Json to :" + outputFile);
 		Writer writer = new FileWriter(outputFile);
 
 		// Objects for use in our loop

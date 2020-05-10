@@ -118,10 +118,6 @@ public class RuleRunner {
 			userDataDisplay.notifyProgress(55);
 		}
 
-		// Call the overloaded method to actually run the rules and log output if we
-		// have a handle
-		// Log the cell contents
-
 		// Add the Spreadsheet contents as facts
 		
 		ruleSource.addFacts(ranges.getAllCellsInAllRanges());

@@ -168,7 +168,9 @@ public class SpreadSheetConvertor {
 				// Get a handle to the Excel cell at Sheet / reference
 				org.apache.poi.ss.usermodel.Sheet thisSheet = SheetConvertor.getOrCreateSheet(wb, thisRedCell);
 
-				CellReference cellReference = new CellReference(thisRedCell.getOriginalCellReference());
+				CellReference cellReference = new CellReference(thisRedCell.getOriginalCellRow(),thisRedCell.getOriginalCellRow());
+				
+				
 				Row row = SheetConvertor.getOrCreateRow(thisSheet, cellReference);
 
 				org.apache.poi.ss.usermodel.Cell excelCell = SheetConvertor.getOrCreateCell(row, cellReference);

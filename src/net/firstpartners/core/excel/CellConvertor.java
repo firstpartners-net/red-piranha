@@ -42,7 +42,7 @@ public class CellConvertor {
 		net.firstpartners.data.Cell redCell = new net.firstpartners.data.Cell();
 
 		// Keep a reference to the original cell location
-		redCell.setOriginalCellReference(poiCell.getAddress().toString());
+		redCell.setOriginalCellReference(poiCell.getAddress().getRow(),poiCell.getAddress().getColumn());
 		redCell.setOriginalTableReference(poiCell.getSheet().getSheetName());
 
 		// The name makes them as a ranage

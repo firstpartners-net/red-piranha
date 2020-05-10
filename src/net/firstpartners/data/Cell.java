@@ -378,5 +378,30 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 		return "Cell ( name==\"" + name + "\" )";
 	}
+	
+	/**
+	 * Appends textToAdd to existing value.
+	 * Converts existing cell value to string if it already is there.
+	 * If cell is null, then textToAdd will be the new value
+	 * @param textToAdd
+	 */
+	public void appendValue(String textToAdd) {
+		
+		//for property change listener
+		Object oldValue =value;
+		
+		if(value ==null) {
+			value="";
+		}
+		
+		StringBuffer tmpValue = new StringBuffer();
+		tmpValue.append(value); //handles version of numbers
+		tmpValue.append(textToAdd);
+		
+		value=tmpValue.toString();
+		
+		this.changes.firePropertyChange("value", oldValue, value);
+		
+	}
 
 }

@@ -79,6 +79,26 @@ public class CellTest implements PropertyChangeListener {
 		assertEquals(myFalseCell.getValue(),1);
 		
 	}
+	
+	@Test
+	public void testAppendValue() {
+		Cell myCell = new Cell("name",1);
+		assertEquals(myCell.getValue(),1);
+		
+		myCell.appendValue("new");
+		assertEquals(myCell.getValue(),"1new");
+		
+	}
+	
+	@Test
+	public void testAppendValueNull() {
+		Cell myCell = new Cell();
+		assertNull(myCell.getValue());
+		
+		myCell.appendValue("new");
+		assertEquals(myCell.getValue(),"new");
+		
+	}
 
 }
 

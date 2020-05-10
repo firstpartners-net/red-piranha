@@ -1,5 +1,6 @@
 package net.firstpartners.core.file;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -85,9 +86,13 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 	public void processOutput() throws IOException, InvalidFormatException {
 
 		// create a writer - set to append (true)
-		userLogger.debug("Writing Json to :" + outputFile);
-		Writer writer = new FileWriter(outputFile);
-
+		
+		File fileToOutput = new File(outputFile);
+		
+		Writer writer = new FileWriter(fileToOutput);
+		userLogger.debug("Writing Json to :" + fileToOutput.getAbsolutePath());
+		log.debug("Writing Json to :" +fileToOutput.getAbsolutePath());
+		
 		// Objects for use in our loop
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		

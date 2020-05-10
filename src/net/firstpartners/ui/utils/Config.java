@@ -34,6 +34,8 @@ public class Config {
 	
 	public static final String DRL="DSL";
 	
+	public static final String GUI_MODE="GUI_MODE"; // allowed values, empty, CLOSE_ON_COMPLETION
+	
 	// names of params to read from properties files - keep these internal except for testing
 	public static final String FILE_INPUT = "FILE_INPUT";
 	public static final String FILE_OUTPUT = "FILE_OUTPUT";
@@ -53,6 +55,15 @@ public class Config {
 	 */
 	public static String getForcedLogFileName() {
 		return readConfig().getProperty(Config.LOG_FILE_NAME, "");
+	}
+	
+	/**
+	 * If set, return the name of the GuiMode file
+	 * 
+	 * @return filename , or empty / null if not present
+	 */
+	public static String getGuiMode() {
+		return readConfig().getProperty(Config.GUI_MODE, "");
 	}
 
 	/**

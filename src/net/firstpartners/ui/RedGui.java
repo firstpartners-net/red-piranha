@@ -35,6 +35,7 @@ import net.firstpartners.data.RangeList;
 import net.firstpartners.ui.component.HtmlGenerator;
 import net.firstpartners.ui.component.RangeCellTree;
 import net.firstpartners.ui.component.SwingGuiUtils;
+import net.firstpartners.ui.utils.Config;
 
 /**
  * Desktop GUI for Red Piranha Desktop User interface to ease calling of Rules /
@@ -48,6 +49,8 @@ import net.firstpartners.ui.component.SwingGuiUtils;
  */
 public class RedGui extends WindowAdapter
 		implements WindowListener, ActionListener, Runnable, ILogger, IGiveFeedbackToUsers {
+
+	private static final String GUI_MODE_CLOSE_ON_COMPLETION = "CLOSE_ON_COMPLETION";
 
 	// Logger
 	private static final Logger log = RpLogger.getLogger(RedGui.class.getName());
@@ -154,7 +157,7 @@ public class RedGui extends WindowAdapter
 		// panel 3
 		JLabel label3 = new JLabel();
 		label3.setText(
-				"Updates as the system runs - more details in red-piranha.log and in the 'log' table of the workbook\n");
+				"Updates as the system runs - more details in red-piranha.log file");
 		SwingGuiUtils.updateFontSize(label3);
 		this.tab3TextArea = new JTextArea();
 		this.tab3TextArea.setEditable(false);
@@ -284,7 +287,20 @@ public class RedGui extends WindowAdapter
 
 		if (percentProgressMade == 100) {
 			homePageCloseButton.setEnabled(true);
+			
+		
+			//check if we exit on completion
+			if(Config.getGuiMode().equals(GUI_MODE_CLOSE_ON_COMPLETION)) {
+				log.debug("Signalling close");
+	
+				System.exit(0);
+			}
+			
+			
 		}
+		
+
+		
 
 	}
 

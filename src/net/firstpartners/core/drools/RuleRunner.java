@@ -98,9 +98,9 @@ public class RuleRunner {
 	public void callRules(IGiveFeedbackToUsers userDataDisplay, ILogger userMessages)
 			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
-		//Load our rules first - catches any compilation errors early
+		// Load our rules first - catches any compilation errors early
 		RuleConfig ruleSource = ruleLoader.getRuleSource();
-		
+
 		// Create a new Logging object
 		outputStrategy.setDocumentLogger(new SpreadSheetLogger());
 		if (userDataDisplay != null) {
@@ -119,7 +119,7 @@ public class RuleRunner {
 		}
 
 		// Add the Spreadsheet contents as facts
-		
+
 		ruleSource.addFacts(ranges.getAllCellsInAllRanges());
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(70);
@@ -140,21 +140,22 @@ public class RuleRunner {
 
 		if (userDataDisplay != null) {
 			userDataDisplay.notifyProgress(90);
-		}
+			userMessages.info("Write to Output file:" + outputStrategy.getOutputDestination());
 
-		// Close our input work book
-		if (userDataDisplay != null) {
-			userDataDisplay.notifyProgress(100);
 		}
 
 		// Process our output
-		userMessages.info("Write to Output file:" + outputStrategy.getOutputDestination());
 
 		// update the document (e.g. excel spreadsheet) with our log file as appropriate
 		outputStrategy.flush(userMessages);
 
 		// make sure both get written (to disk?)
 		outputStrategy.processOutput();
+
+		// signal to GUI we are complete
+		if (userDataDisplay != null) {
+			userDataDisplay.notifyProgress(100);
+		}
 
 	}
 

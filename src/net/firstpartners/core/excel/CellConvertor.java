@@ -46,7 +46,7 @@ public class CellConvertor {
 		redCell.setOriginalTableReference(poiCell.getSheet().getSheetName());
 
 		// The name makes them as a ranage
-		redCell.setCellName(cellNameFromRange);
+		redCell.setName(cellNameFromRange);
 
 		org.apache.poi.ss.usermodel.CellType myCellType = poiCell.getCellType();
 		log.debug("Working with Poi Cell Type:" + myCellType);
@@ -150,34 +150,34 @@ public class CellConvertor {
 		// operator overloading breaks down as we have a handle to a generic 'object'
 		if (redCellValue instanceof String) {
 
-			log.debug("UpdatingCell:" + redCell.getCellName() + " value:" + redCellValue + " as String");
+			log.debug("UpdatingCell:" + redCell.getName() + " value:" + redCellValue + " as String");
 			poiCell.setCellValue(redCellValue.toString());
 
 		} else if (redCellValue instanceof Boolean) {
-			log.debug("UpdatingCell:" + redCell.getCellName() + " value:" + redCellValue + " as Boolean");
+			log.debug("UpdatingCell:" + redCell.getName() + " value:" + redCellValue + " as Boolean");
 			poiCell.setCellValue((Boolean) redCellValue);
 
 		} else if (redCellValue instanceof Number) {
 
-			log.debug("UpdatingCell:" + redCell.getCellName() + " value:" + redCellValue + " as Number");
+			log.debug("UpdatingCell:" + redCell.getName() + " value:" + redCellValue + " as Number");
 			Double number = ((Number) redCellValue).doubleValue();
 			poiCell.setCellValue(number);
 
 		} else if (redCellValue instanceof Date) {
 
-			log.debug("UpdatingCell:" + redCell.getCellName() + " value:" + redCellValue + " as Date");
+			log.debug("UpdatingCell:" + redCell.getName() + " value:" + redCellValue + " as Date");
 			poiCell.setCellValue((Date) redCellValue);
 
 		} else if (redCellValue != null) {
 
 			// Treat as object, use toString() method
-			log.debug("UpdatingCell:" + redCell.getCellName() + " value:" + redCellValue + " as Generic Object");
+			log.debug("UpdatingCell:" + redCell.getName() + " value:" + redCellValue + " as Generic Object");
 			poiCell.setCellValue(redCellValue.toString());
 
 		} else {
 
 			// value is null, blank cell
-			log.debug("UpdatingCell:" + redCell.getCellName() + " value is null, treating as empty string");
+			log.debug("UpdatingCell:" + redCell.getName() + " value is null, treating as empty string");
 			poiCell.setCellValue("");
 
 		}

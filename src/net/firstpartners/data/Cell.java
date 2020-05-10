@@ -18,7 +18,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	private static final long serialVersionUID = -763504507901540819L;
 
-	private String cellName = null;
+	private String name = null;
 
 	private transient PropertyChangeSupport changes = new PropertyChangeSupport(this);
 
@@ -42,12 +42,12 @@ public class Cell implements PropertyChangeListener, Serializable {
 	/**
 	 * Most Basic useful Cell - with a name and value
 	 * 
-	 * @param cellName
+	 * @param name
 	 * @param value
 	 */
-	public Cell(String cellName, Object value) {
+	public Cell(String name, Object value) {
 		super();
-		this.cellName = cellName;
+		this.name = name;
 		this.value = value;
 	}
 
@@ -69,10 +69,10 @@ public class Cell implements PropertyChangeListener, Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Cell other = (Cell) obj;
-		if (cellName == null) {
-			if (other.cellName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!cellName.equals(other.cellName))
+		} else if (!name.equals(other.name))
 			return false;
 		if (comment == null) {
 			if (other.comment != null)
@@ -89,8 +89,8 @@ public class Cell implements PropertyChangeListener, Serializable {
 		return true;
 	}
 
-	public String getCellName() {
-		return cellName;
+	public String getName() {
+		return name;
 	}
 
 	public String getComment() {
@@ -103,8 +103,8 @@ public class Cell implements PropertyChangeListener, Serializable {
 	 * @return true if it is
 	 */
 	public boolean getNameStartsWith(String textToCompareAgainst) {
-		if (cellName != null) {
-			return cellName.startsWith(textToCompareAgainst);
+		if (name != null) {
+			return name.startsWith(textToCompareAgainst);
 
 		}
 
@@ -219,7 +219,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cellName == null) ? 0 : cellName.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
 		result = prime * result + (modified ? 1231 : 1237);
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
@@ -292,12 +292,12 @@ public class Cell implements PropertyChangeListener, Serializable {
 //		this.holdingRange = holdingRange;
 //	}
 
-	public void setCellName(String cellName) {
+	public void setName(String name) {
 
-		String oldValue = this.cellName;
-		this.cellName = cellName;
+		String oldValue = this.name;
+		this.name = name;
 		this.modified = true;
-		this.changes.firePropertyChange("cellName", oldValue, cellName);
+		this.changes.firePropertyChange("name", oldValue, name);
 
 	}
 
@@ -361,7 +361,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 	 */
 	public String toLongString() {
 
-		return "$cell : Cell (\n    cellName==" + quoteString(cellName) + "\n    value=="
+		return "$cell : Cell (\n    name==" + quoteString(name) + "\n    value=="
 				+ quoteInternalValueIfNotNumber() + "\n    comment==" + quoteString(comment) + "\n    modified=="
 				+ modified + "\n    originalCellReference==" + quoteString(getOriginalCellReference())
 				+ "\n    originalTableReference==" + quoteString(originalTableReference) + "\n    valueAsBoolean=="
@@ -376,7 +376,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 	@Override
 	public String toString() {
 
-		return "Cell ( cellName==\"" + cellName + "\" )";
+		return "Cell ( name==\"" + name + "\" )";
 	}
 
 }

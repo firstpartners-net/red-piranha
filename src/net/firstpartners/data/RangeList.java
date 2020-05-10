@@ -124,7 +124,7 @@ public class RangeList implements List<Range>, Serializable {
 			// Add the cells within the range
 
 			for (net.firstpartners.data.Cell cell : range.values()) {
-				if ((cell.getCellName() != null) && cell.getCellName().equals(exactName)) {
+				if ((cell.getName() != null) && cell.getName().equals(exactName)) {
 					return cell;
 				}
 
@@ -153,7 +153,7 @@ public class RangeList implements List<Range>, Serializable {
 			// Add the cells within the range
 
 			for (net.firstpartners.data.Cell cell : range.values()) {
-				if ((cell.getCellName() != null) && cell.getCellName().startsWith(nameStartsWith)) {
+				if ((cell.getName() != null) && cell.getName().startsWith(nameStartsWith)) {
 					returnValues.add(cell);
 				}
 
@@ -200,8 +200,8 @@ public class RangeList implements List<Range>, Serializable {
 		for (Range range : allRanges) {
 
 			for (net.firstpartners.data.Cell cell : range.values()) {
-				if (cell.getCellName() != null) {
-					returnValues.put(cell.getCellName(), cell);
+				if (cell.getName() != null) {
+					returnValues.put(cell.getName(), cell);
 				}
 
 			}

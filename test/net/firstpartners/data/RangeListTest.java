@@ -37,7 +37,7 @@ public class RangeListTest  {
 		myRange.put("cell-ref",myCell);
 		
 		assertFalse (myCell.isModified());
-		myCell.setCellName("somenewname");
+		myCell.setName("somenewname");
 		assertTrue(myCell.isModified());
 		
 		//now do the reset

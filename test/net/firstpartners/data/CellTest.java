@@ -40,7 +40,7 @@ public class CellTest implements PropertyChangeListener {
 		//something should fire
 		
 		assertNull(holdEvent);
-		myCell1.setCellName("newName");
+		myCell1.setName("newName");
 		
 		assertNotNull(holdEvent);
 		

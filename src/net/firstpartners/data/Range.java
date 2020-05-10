@@ -317,4 +317,13 @@ public class Range implements Map<String, Cell>, Serializable {
 		return cells.values();
 	}
 
+	public void put(Collection<Cell> newFacts) {
+		
+		for(Cell c: newFacts) {
+			put(c.getName(),c);
+			log.debug("Added new fact:"+c.getName());
+		}
+		
+	}
+
 }

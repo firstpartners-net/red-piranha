@@ -3,6 +3,7 @@ package net.firstpartners.core.drools;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -22,6 +23,7 @@ import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.data.Cell;
+import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -113,26 +115,33 @@ public class RuleRunner {
 		ranges.cascadeResetIsModifiedFlag();
 
 		if (userDataDisplay != null) {
-			userDataDisplay.notifyProgress(45);
+			userDataDisplay.notifyProgress(35);
 			userDataDisplay.showPreRulesSnapShot(ranges);
-			userDataDisplay.notifyProgress(55);
+			userDataDisplay.notifyProgress(50);
 		}
 
-		// Add the Spreadsheet contents as facts
-
+		// Add the document contents as facts
 		ruleSource.addFacts(ranges.getAllCellsInAllRanges());
 		if (userDataDisplay != null) {
-			userDataDisplay.notifyProgress(70);
+			userDataDisplay.notifyProgress(60);
 		}
 
 		// Load and fire our rules files against the data
-		runStatelessRules(ruleSource, userMessages);
-
+		Collection<Cell> newFacts = runStatelessRules(ruleSource, userMessages);
+		
+		
+		
 		if (userDataDisplay != null) {
 			userDataDisplay.showPostRulesSnapShot(ranges);
 			userDataDisplay.notifyProgress(80);
 		}
 
+		//Make a note of any new facts added
+		Range newRange = new Range("New Facts");
+		newRange.put(newFacts);
+		ranges.add(newRange);
+		
+		
 		// update a copy of the original document (to be saved as copy) with the result
 		// of our rules
 		log.debug("RunRules - object " + inputStrategy.getOriginalDocument());
@@ -143,8 +152,6 @@ public class RuleRunner {
 			userMessages.info("Write to Output file:" + outputStrategy.getOutputDestination());
 
 		}
-
-		// Process our output
 
 		// update the document (e.g. excel spreadsheet) with our log file as appropriate
 		outputStrategy.flush(userMessages);
@@ -214,15 +221,20 @@ public class RuleRunner {
 	 * @param facts
 	 * @param globals
 	 * @param logger
+	 * @return any new facts created by teh working memory
 	 * @throws DroolsParserException
 	 * @throws IOException
 	 */
-	private void runStatelessRules(KnowledgeBase preBuiltKnowledgeBase, Collection<Cell> facts,
+	private Collection<Cell> runStatelessRules(KnowledgeBase preBuiltKnowledgeBase, Collection<Cell> facts,
 			HashMap<String, Cell> globals, ILogger logger) throws DroolsParserException, IOException {
 
 		// Create a new stateless session
 		log.debug("Creating new working memory");
 		StatelessKnowledgeSession workingMemory = preBuiltKnowledgeBase.newStatelessKnowledgeSession();
+		
+		// Add the logger
+		log.debug("Inserting handle to logger (via global)");
+		workingMemory.setGlobal("log", logger);
 
 		log.debug("Checking for globals");
 		if (globals != null) {
@@ -231,18 +243,21 @@ public class RuleRunner {
 				workingMemory.setGlobal(o, globals.get(o));
 			}
 		}
-		// Add the logger
-		log.debug("Inserting handle to logger (via global)");
-		workingMemory.setGlobal("log", logger);
 
-		// log.debug("Using facts:" + facts);
+		
+		//We need to 'listen' for new cells being created so we can add to our results
+		WorkingMemoryCellListener cellListener = new WorkingMemoryCellListener();
+		workingMemory.addEventListener(cellListener);
 
-		log.debug("==================== Calling Rule Engine ====================");
+
 
 		// Fire using the facts
 		workingMemory.execute(facts);
 
 		log.debug("==================== Rules Complete ====================");
+		List<Cell> additionalFacts =cellListener.getNewCells(facts);
+		
+		return additionalFacts;
 
 	}
 
@@ -254,12 +269,13 @@ public class RuleRunner {
 	 * @param facts      - Javabeans to pass to the rule engine
 	 * @param globals    - global variables to pass to the rule engine
 	 * @param logger     - handle to a logging object
+	 * @return 
 	 * @throws IOException
 	 * @throws DroolsParserException
 	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
-	private void runStatelessRules(RuleConfig ruleSource, ILogger logger)
+	private Collection<Cell> runStatelessRules(RuleConfig ruleSource, ILogger logger)
 			throws DroolsParserException, IOException, ClassNotFoundException {
 
 		// The most common operation on a rulebase is to create a new rule
@@ -268,8 +284,8 @@ public class RuleRunner {
 		KnowledgeBase masterRulebase = ruleLoader.loadRules(ruleSource);
 
 		log.debug("running stateless rules");
-		runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger);
-
+		Collection<Cell> tmpCollection = runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger);
+		return tmpCollection;
 	}
 
 	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {

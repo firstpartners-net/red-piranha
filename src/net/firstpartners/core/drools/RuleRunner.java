@@ -98,10 +98,13 @@ public class RuleRunner {
 	public void callRules(IGiveFeedbackToUsers userDataDisplay, ILogger userMessages)
 			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
+		//Load our rules first - catches any compilation errors early
+		RuleConfig ruleSource = ruleLoader.getRuleSource();
+		
 		// Create a new Logging object
 		outputStrategy.setDocumentLogger(new SpreadSheetLogger());
 		if (userDataDisplay != null) {
-			userDataDisplay.notifyProgress(10);
+			userDataDisplay.notifyProgress(20);
 			userMessages.info("Opening Input :" + this.inputStrategy.getInputName());
 		}
 
@@ -110,9 +113,9 @@ public class RuleRunner {
 		ranges.cascadeResetIsModifiedFlag();
 
 		if (userDataDisplay != null) {
-			userDataDisplay.notifyProgress(25);
-			userDataDisplay.showPreRulesSnapShot(ranges);
 			userDataDisplay.notifyProgress(45);
+			userDataDisplay.showPreRulesSnapShot(ranges);
+			userDataDisplay.notifyProgress(55);
 		}
 
 		// Call the overloaded method to actually run the rules and log output if we
@@ -120,10 +123,10 @@ public class RuleRunner {
 		// Log the cell contents
 
 		// Add the Spreadsheet contents as facts
-		RuleConfig ruleSource = ruleLoader.getRuleSource();
+		
 		ruleSource.addFacts(ranges.getAllCellsInAllRanges());
 		if (userDataDisplay != null) {
-			userDataDisplay.notifyProgress(65);
+			userDataDisplay.notifyProgress(70);
 		}
 
 		// Load and fire our rules files against the data

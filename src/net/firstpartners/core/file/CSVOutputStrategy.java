@@ -154,7 +154,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 		CSVParser csvParser = CSVParser.parse(reader, CSVFormat.EXCEL.withFirstRecordAsHeader());
 
 		List<String> returnValues = csvParser.getHeaderNames();
-		log.debug("Found " + returnValues + " headers");
+		log.debug("Found Headers" + returnValues + " headers");
 
 		// close everything off
 		reader.close();

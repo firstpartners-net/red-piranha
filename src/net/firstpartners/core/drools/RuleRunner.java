@@ -215,13 +215,13 @@ public class RuleRunner {
 	}
 
 	/**
-	 * Run Stateless rules using a prebuilt knowledgebase
+	 * Run Stateless rules using a pre built knowledge base
 	 *
 	 * @param preBuiltKnowledgeBase
 	 * @param facts
 	 * @param globals
 	 * @param logger
-	 * @return any new facts created by teh working memory
+	 * @return any new facts created by the working memory
 	 * @throws DroolsParserException
 	 * @throws IOException
 	 */

@@ -54,6 +54,8 @@ public class DocumentConvertor {
 	static Collection<net.firstpartners.data.Range> convertTablesToBeans(HWPFDocument doc)
 			throws InvalidFormatException, IOException {
 
+		Cell previousCell = new Cell();
+		
 		// Our converted Beans
 		Collection<net.firstpartners.data.Range> returnValues = new ArrayList<net.firstpartners.data.Range>();
 
@@ -68,6 +70,8 @@ public class DocumentConvertor {
 
 			tableCounter++;
 
+			
+			
 			Table table = itr.next();
 			for (int rowIndex = 0; rowIndex < table.numRows(); rowIndex++) {
 
@@ -106,8 +110,14 @@ public class DocumentConvertor {
 					thisCell.setOriginalCellReference(rowIndex,colIndex);
 					log.debug("created cell" + thisCell);
 					thisRow.put(cellName, thisCell);
+					
+					//Cells are aware of the next name
+					previousCell.setNextName(cellName);
+					previousCell = thisCell;
+					
 				}
 
+			
 				// Make sure we add this row to the return list
 				returnValues.add(thisRow);
 			}
@@ -135,6 +145,8 @@ public class DocumentConvertor {
 		org.apache.poi.hwpf.usermodel.Range range = wordDoc.getRange();
 		int num = range.numParagraphs();
 		Paragraph para;
+		
+		Cell previousCell = new Cell();
 
 		// Loop through the document
 		for (int i = 0; i < num; i++) {
@@ -143,6 +155,7 @@ public class DocumentConvertor {
 			//The current text we ae working with
 			para = range.getParagraph(i);
 
+			
 			String possibleText = tidyText(para.text());
 			
 			
@@ -162,11 +175,17 @@ public class DocumentConvertor {
 				} else {
 					name = WORD_PARAGRAPH_NAME_AS_RANGELIST + counter + "_" + possibleText;
 				}
-
+				
+				
+				
 				// Add this to our list of values
 				net.firstpartners.data.Range currentPara = new net.firstpartners.data.Range(name);
 				Cell redCell = new Cell(name, possibleText);
 
+				//Cells are aware of the next name
+				previousCell.setNextName(name);
+				previousCell = redCell;
+				
 				// Add the return values
 				currentPara.put(name, redCell);
 				returnValues.add(currentPara);

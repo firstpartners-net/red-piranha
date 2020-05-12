@@ -20,6 +20,16 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	private String name = null;
 
+	private String nextName =null;
+	
+	public String getNextName() {
+		return nextName;
+	}
+
+	public void setNextName(String nextName) {
+		this.nextName = nextName;
+	}
+
 	private transient PropertyChangeSupport changes = new PropertyChangeSupport(this);
 
 	private String comment;

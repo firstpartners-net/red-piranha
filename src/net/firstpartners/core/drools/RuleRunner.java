@@ -249,7 +249,7 @@ public class RuleRunner {
 		WorkingMemoryCellListener cellListener = new WorkingMemoryCellListener();
 		workingMemory.addEventListener(cellListener);
 
-
+		log.debug("==================== Starting Rules ====================");
 
 		// Fire using the facts
 		workingMemory.execute(facts);

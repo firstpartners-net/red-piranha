@@ -26,7 +26,7 @@ public class CellConvertor {
 	/**
 	 * Convert from Excel(Apache) to RedPiranha - Javabean version of a Cell
 	 * 
-	 * @param cellNameFromRange - allows us to treat this cell as a member of a rane
+	 * @param cellNameFromRange - allows us to treat this cell as a member of a range
 	 * @param poiCell
 	 * @return
 	 */

@@ -187,9 +187,8 @@ public class Cell implements PropertyChangeListener, Serializable {
 	}
 
 	/**
-	 * If possible, get the value of the Cell as an Integer
+	 * If possible, get the value of the Cell as an Long
 	 * 
-	 * @param value to convert
 	 * @return null if this conversion is not possible
 	 */
 	public Long getValueAsLong() {

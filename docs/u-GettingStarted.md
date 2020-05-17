@@ -1,11 +1,5 @@
-_TODO Tidy this page_ <br />
-_TODO Resize images_
 
-
-| <img src='http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png' /> | You've already checked out the [Online Examples](RedPiranhaExamples.md) . But how do you try out those examples with your own information? This page shows you how.|
-|:------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-
-This section shows you how to apply [Business Rules](BusinessRules.md) to your spreadsheets.
+This section shows you how to apply Business Rules to your spreadsheets.
 
   * Spreadsheet + Business Rules = Result
 
@@ -146,3 +140,6 @@ _TODO complete Section_
 
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEwOTc4NjA0MzddfQ==
+-->

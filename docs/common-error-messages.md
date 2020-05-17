@@ -11,9 +11,9 @@ Common error messages from Red Piranha and how to solve them
 | Descrption | .log.ILoggerMissing resolves to a package
 	pcv/sef/smallent/Rule_check_valiation_notes1385600217.java (8:559) : log cannot be resolved
 , Rule Compilation error : [Rule name='sample of rule warnings cell to capture warnings']|
-| Description | |
+
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDA2MzUxMTldfQ==
+eyJoaXN0b3J5IjpbNzYwMjc3MzI1XX0=
 -->

@@ -47,8 +47,9 @@ Even better, it's all open source and free to get started. And it works with Goo
 * [Poweruser - Getting Started](docs/p-GettingStarted.md)
 
 ## Examples
-* [Basic Excel Example](examples/domain-specific-language.readme.md)
-* [Comprehensive Excel Example](examples/domain-specific-language.readme.md)
+* [Basic Excel Example](examples/domain-specific-language/readme.md)
+* [Comprehensive Excel Example](examples/ExcelDataRules/readme.md)
+* 
 
 ## Links - Developers and Site Admin
 
@@ -63,5 +64,5 @@ Even better, it's all open source and free to get started. And it works with Goo
 
 Images from [here under GPL](http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA2ODkzOTIzNCwtODUxNDYxMzczXX0=
+eyJoaXN0b3J5IjpbLTMzODQ2OTA4OCwtODUxNDYxMzczXX0=
 -->

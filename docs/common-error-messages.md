@@ -11,12 +11,14 @@ Common error messages from Red Piranha and how to solve them
 | Filenotfound error| java.io.FileNotFoundException: Proposal-list.csv (The process cannot access the file because it is being used by another process)
 | Configuration Errors| error|
 | Null pointer in rules - where it expects a value but we don't pass it in| java.lang.NullPointerException|
-| Description |  $cell cannot be resolved to a variable|
+| Check that $ is in front of Cell|  $cell cannot be resolved to a variable|
+| No rules firing|  NOTE THERE IS NOT LINE  IN LOG|
+| Check that $ is in front of Cell|  $cell cannot be resolved to a variable|
 
 
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ3MjM2NDkwN119
+eyJoaXN0b3J5IjpbLTIwMTg3MjkzNzhdfQ==
 -->

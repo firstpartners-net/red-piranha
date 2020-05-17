@@ -10,11 +10,13 @@ Common error messages from Red Piranha and how to solve them
 | Description| log cannot be resolved , Rule Compilation error : [Rule name='sample of rule warnings cell to capture warnings'] |
 | Filenotfound error| java.io.FileNotFoundException: Proposal-list.csv (The process cannot access the file because it is being used by another process)
 | Configuration Errors| error|
-| Description | error|
-| Description | error|
+| Null pointer in rules - where it expects a value but we don't pass it in| java.lang.NullPointerException|
+| Description |  $cell cannot be resolved to a variable|
+
+
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwOTkxNzU3NTldfQ==
+eyJoaXN0b3J5IjpbMTQ3MjM2NDkwN119
 -->

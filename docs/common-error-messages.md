@@ -8,10 +8,13 @@ Common error messages from Red Piranha and how to solve them
 | Security Exception when running RuleRunner (JNLP or Local script) | Make sure rule-runner.jar is signed |
 | Unexpected Key Exception when running RuleRunner (JNLP or Local script)| Make sure no third-party manifest files included in rule-runner.jar |
 | Description| log cannot be resolved , Rule Compilation error : [Rule name='sample of rule warnings cell to capture warnings'] |
-| Description | log cannot be resolved , Rule Compilation error : [Rule name='sample of rule warnings cell to capture warnings']|
+| Filenotfound error| java.io.FileNotFoundException: Proposal-list.csv (The process cannot access the file because it is being used by another process)
+| Configuration Errors| error|
+| Description | error|
+| Description | error|
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTYzMjc1NTcyXX0=
+eyJoaXN0b3J5IjpbLTEwOTkxNzU3NTldfQ==
 -->

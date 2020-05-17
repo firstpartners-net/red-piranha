@@ -43,7 +43,7 @@ Even better, it's all open source and free to get started. And it works with Goo
 
 * [User - Getting Started](docs/u-GettingStarted.md)
 * [What are business rules and other FAQs](docs/u-FAQ.md)
-* [More detailed Examples](examples/examples.md)
+* * [More detailed Examples](examples/examples.md)
 * [Poweruser - Getting Started](docs/p-GettingStarted.md)
 
 ## Links - Developers and Site Admin
@@ -59,5 +59,5 @@ Even better, it's all open source and free to get started. And it works with Goo
 
 Images from [here under GPL](http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg1MTQ2MTM3M119
+eyJoaXN0b3J5IjpbNjA0NTQ4MTczLC04NTE0NjEzNzNdfQ==
 -->

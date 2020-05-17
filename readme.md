@@ -50,7 +50,8 @@ Even better, it's all open source and free to get started. And it works with Goo
 * [Basic Excel Example](examples/domain-specific-language/readme.md)
 * [Comprehensive Excel Example](examples/ExcelDataRules/readme.md)
 * [Comprehensive Word Example](examples/WordInfoRules/readme.md)
-* [Sample Catalogue of Rules](examples/sample/readme.md)
+* [Sample Catalogue of Rules](examples/sample-catlogue/readme.md)
+* 
 ## Links - Developers and Site Admin
 
 * [Getting Started as Developer](docs/d-GettingStarted.md)
@@ -64,6 +65,6 @@ Even better, it's all open source and free to get started. And it works with Goo
 
 Images from [here under GPL](http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI4OTk5NzAwNCwtMzM4NDY5MDg4LC04NT
-E0NjEzNzNdfQ==
+eyJoaXN0b3J5IjpbLTE0MTU3NDM4NzUsLTMzODQ2OTA4OCwtOD
+UxNDYxMzczXX0=
 -->

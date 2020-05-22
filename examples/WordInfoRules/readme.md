@@ -6,3 +6,6 @@ _For the moment the examples presume that you've followed the instructions on th
 [DevDeveloperGettingStarted](../docs/d-GettingStarted.md) page._
 What this sample is
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTYwNjA1NDU1OV19
+-->

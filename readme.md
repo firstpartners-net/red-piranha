@@ -43,21 +43,27 @@ Even better, it's all open source and free to get started. And it works with Goo
 
 * [User - Getting Started](docs/u-GettingStarted.md)
 * [What are business rules and other FAQs](docs/u-FAQ.md)
-* [More detailed Examples](examples/examples.md)
 * [Poweruser - Getting Started](docs/p-GettingStarted.md)
+
+## Examples of what Red Piranha can do
+* [Basic Excel Example](examples/domain-specific-language/readme.md)
+* [Comprehensive Excel Example](examples/ExcelDataRules/readme.md)
+* [Comprehensive Word Example](examples/WordInfoRules/readme.md)
+* [Sample Catalogue of Rules](examples/sample-catlogue/readme.md)
 
 ## Links - Developers and Site Admin
 
 * [Getting Started as Developer](docs/d-GettingStarted.md)
 * [Project Layout](docs/d-ProjectLayout.md)
-* [Notes for Drools Developers](docs/d-RedPiranhaForDroolsDevelopers.md)
+* [Notes on Red Piranha for Drools Developers](docs/d-RedPiranhaForDroolsDevelopers.md)
 * [Libraries Used](docs/d-LibrariesUsed.md)
 * [Common Error Messages](docs/common-error-messages.md)
-* [How to do release of Red-Piranha](docs/g-releases.md)
+* [How to do a release of Red-Piranha](docs/g-releases.md)
 
 
 
 Images from [here under GPL](http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg1MTQ2MTM3M119
+eyJoaXN0b3J5IjpbMTM2MTYyMDYsLTMzODQ2OTA4OCwtODUxND
+YxMzczXX0=
 -->

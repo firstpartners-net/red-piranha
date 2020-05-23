@@ -17,19 +17,30 @@ Why would we want to do this?
 Statement: 
 
 
-## What this sample does##
+## What this sample does ##
 High level 
+
+ 1. Walk through input file
+ 2. Walk through running RP - 1 screenshot
+ 3. Walk through output
 
 ## More detail on how it does it ##
 
 
 ### Setup ###
 Text
+Where get from
+Pre-reqs
 
-## Configuration ##
+
+### Configuration ###
 Walk through
 
 > Example of config file
+
+### Rules ###
+
+### Screens - details ###
 
 
 
@@ -337,5 +348,5 @@ _TODO Complete Section_
   * [DevDeveloperGettingStarted](DevDeveloperGettingStarted.md) provides additional information, at a more technical level.
   * _TODO Loop back to [UserEndUserGettingStarted](UserEndUserGettingStarted.md), only this time run your own rules_
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NDI2MDk5NjFdfQ==
+eyJoaXN0b3J5IjpbMTY3MTg0MDcxNl19
 -->

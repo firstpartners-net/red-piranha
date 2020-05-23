@@ -45,8 +45,18 @@ Walk through
 ## Extending the example ##
 
 ### Investigating Data ##
+* from the Screens
+* Using the JSON Output
+
+### Other config ###
+GUI Mode
+
+### Dev Setup ###
+* Eclipse
+* VSCode
+* 
 
 ## What Next ##
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMxMTA2OTMxM119
+eyJoaXN0b3J5IjpbLTkxNDM5MDY3NiwtMzExMDY5MzEzXX0=
 -->

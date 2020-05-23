@@ -1,6 +1,10 @@
 # Red Piranha Examples
 
-* [Example showing how to validate an word document Spreadhsheet with Business rules](ExcelDataRules/example.md)
+* [Example showing how to validate an word document with Business rules](ExcelDataRules/example.md)
+
+## Heading ##
+Text
+
 
 _For the moment the examples presume that you've followed the instructions on the
 [DevDeveloperGettingStarted](../docs/d-GettingStarted.md) page._
@@ -315,3 +319,6 @@ _TODO Complete Section_
   * Link to [RedPiranhaExamples](RedPiranhaExamples.md) & [KeyConcepts#Community](KeyConcepts#Community.md) Community pages
   * [DevDeveloperGettingStarted](DevDeveloperGettingStarted.md) provides additional information, at a more technical level.
   * _TODO Loop back to [UserEndUserGettingStarted](UserEndUserGettingStarted.md), only this time run your own rules_
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMjMxMTAyMDY3XX0=
+-->

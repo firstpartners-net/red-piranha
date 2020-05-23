@@ -20,7 +20,10 @@ Statement:
 ## What this sample does##
 High level 
 
-## Setup ##
+## More detail on how it does it ##
+
+
+### Setup ###
 Text
 
 ## Configuration ##
@@ -334,5 +337,5 @@ _TODO Complete Section_
   * [DevDeveloperGettingStarted](DevDeveloperGettingStarted.md) provides additional information, at a more technical level.
   * _TODO Loop back to [UserEndUserGettingStarted](UserEndUserGettingStarted.md), only this time run your own rules_
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMDIwODY0NV19
+eyJoaXN0b3J5IjpbLTE3NDI2MDk5NjFdfQ==
 -->

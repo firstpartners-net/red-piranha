@@ -1,15 +1,6 @@
 # Red Piranha Examples
 
-* [Example showing how to validate an word document with Business rules](ExcelDataRules/example.md)
-
-## Heading ##
-Text
-
-
-_For the moment the examples presume that you've followed the instructions on the
-[DevDeveloperGettingStarted](../docs/d-GettingStarted.md) page._
-What this sample is
-
+General Statement on what Red Piranha does
 
 This section shows you how to apply Business Rules to your spreadsheets.
 
@@ -21,6 +12,29 @@ Why would we want to do this?
   * Same for **Excel Macros** - and they have security concerns. You can tightly control the rules.
   * Google Spreadsheets are like Excel online, but don't have all the power. Rules add them back.
   * You control the rules. Who changes the Excel file when you're not looking?
+ 
+## Business Problem ##
+Statement: 
+
+
+## What this sample does##
+High level 
+
+## Setup ##
+Text
+
+## Configuration ##
+Walk through
+
+> Example of config file
+
+
+
+_For the moment the examples presume that you've followed the instructions on the
+[DevDeveloperGettingStarted](../docs/d-GettingStarted.md) page._
+What this sample is
+
+
 
 ## How does it work ##
 
@@ -320,5 +334,5 @@ _TODO Complete Section_
   * [DevDeveloperGettingStarted](DevDeveloperGettingStarted.md) provides additional information, at a more technical level.
   * _TODO Loop back to [UserEndUserGettingStarted](UserEndUserGettingStarted.md), only this time run your own rules_
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjMxMTAyMDY3XX0=
+eyJoaXN0b3J5IjpbLTExMDIwODY0NV19
 -->

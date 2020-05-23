@@ -22,7 +22,6 @@ Even better, it's all open source and free to get started. And it works with Goo
 | | | |
 |----|----|----|
 | ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/spreadsheet-icon.png) | **[I dabble with Excel - what do I do now? ](docs/u-GettingStarted.md)** User getting started <br /> including how to run the samples online, how to use with your own Excel / Google Spreadsheets|
-| ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/package-development-icon.png) | **[I'm an Excel power user - what do I do now?](docs/p-GettingStarted.md)** Power User Getting Started. <br /> How to build your own rules against these spreadsheets and share them with other people.|
 |  ![icon](http://icons.iconarchive.com/icons/mart/glaze/48/source-j-icon.png) | **[I'm a developer - what next?](docs/d-GettingStarted.md)** How to extend Red Piranha to get it to do exactly what you want.|
 
 
@@ -36,7 +35,7 @@ Even better, it's all open source and free to get started. And it works with Goo
 
 
 
-| ![Man Icon](http://rcm-images.amazon.com/images/I/511yB7Fl-SL._SL110_.jpg) | **[Have you just bought the book?](docs/Book.md)** - Beginning Business rules with JBoss Drools. <br /> Where to download the samples and other useful information. |
+| ![Man Icon](http://rcm-images.amazon.com/images/I/511yB7Fl-SL._SL110_.jpg) | **[Have you just bought the book?](docs/z-Book.md)** - Beginning Business rules with JBoss Drools. <br /> Where to download the samples and other useful information. |
 |:----------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 ## Links - Users and Power Users
@@ -59,6 +58,10 @@ Even better, it's all open source and free to get started. And it works with Goo
 * [Libraries Used](docs/d-LibrariesUsed.md)
 * [Common Error Messages](docs/common-error-messages.md)
 * [How to do a release of Red-Piranha](docs/g-releases.md)
+
+## Links for older version of Red Piranha
+* [s](link.md)
+* [s](link.md)
 
 
 

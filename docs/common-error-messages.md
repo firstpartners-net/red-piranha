@@ -15,12 +15,3 @@ Common error messages from Red Piranha and how to solve them
 | No rules firing|  NOTE THERE IS NOT LINE  IN LOG|
 | Check that $ is in front of Cell|  $cell cannot be resolved to a variable|
 | No equivalent mapping in file |"Unable to expand:" |
-
-
-
-
-
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAyOTM0MDgyOF19
--->

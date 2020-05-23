@@ -15,6 +15,3 @@ All people have business rules – except that they might not them of them as su
 While the use of well understood algorithms such as Rete and Leaps can make systems that use Business Rules both simple and run quickly, we are interested primarily in the financial knowledge management possibilities afforded to us by Rule engines.
 
 Because business rules can be written in 'near English' language, not hidden in code, they are much more meaningful to non-technical domain experts. In this format, the knowledge they contain is easier to manage, maintain and share. They also carry the advantage of separating the meaning of the business from the actual technical implementation.
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbODYxNzQzMjUzXX0=
--->

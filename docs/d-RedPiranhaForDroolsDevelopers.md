@@ -1,4 +1,4 @@
-# Red Piranha for Drools Develpers
+# Red Piranha for Drools Developers
 
 If you've used http://www.jboss.org/drools JBoss Drools, you'll be pretty familiar with most of the concepts. This sections explain what Red-Piranha does (and does not) do compared to JBoss Drools.
 

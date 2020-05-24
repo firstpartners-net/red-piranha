@@ -1,5 +1,11 @@
 # Red Piranha Examples
 
+Jump to 
+* [Example]()
+* [Setup]()
+
+
+
 General Statement on what Red Piranha does
 
 This section shows you how to apply Business Rules to your spreadsheets.
@@ -17,9 +23,7 @@ Why would we want to do this?
 Explain for example
 
 -   Prerequest
-
 -   Java installed
-
 -   Config.ini
 -   Usecase
 -   Input file
@@ -35,19 +39,6 @@ Explain for example
 -   Input file
 -   Rules applied
 -   Output file
-
-Log then modified - simple sample of where modified
-
--   Launch4j.log
--   Red-piranha.log
-
-Only once
-
-Where to find output when done
-
-Make sure to close output
-
-How to log to console
 
 What objects are
  
@@ -81,6 +72,9 @@ Pre-reqs
 - 
 
 (take from notes)
+
+### Files in Directory ###
+* Walk through
 
 ### Configuration ###
 Walk through
@@ -125,6 +119,23 @@ Walk through
 -   Notion of templating
 
 ### Screens - details ###
+
+### Logs - More info on what is going on ###
+
+
+Log then modified - simple sample of where modified
+
+-   Launch4j.log
+-   Red-piranha.log
+
+Only once
+
+Where to find output when done
+
+Make sure to close output
+
+How to log to console
+
 
 ## Extending the example ##
 
@@ -309,15 +320,18 @@ Iterative development
 
 Link to sample rules catalog
 
-### Key Documents and Classes ###
-* Cell - Link
-* Range  - Link
-* RangeList - Link
+### Key Technical Documents and Classes ###
+* Main Javadoc https://paulbrowne-irl.github.io/red-piranha/javadocs/
+* Cell - https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/data/Cell.html
+* Range  - https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/data/Range.html
+* RangeList - https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/data/RangeList.html
 * Convertors
+** Excel Input Strategy https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/excel/ExcelInputStrategy.html
+** Excel Output Strategy https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/excel/ExcelOutputStrategy.html
+** CSV Output Strategy https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/file/CSVOutputStrategy.html
+** JSON Output Strategy https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/file/JsonOutputStrategy.html
+** WordInput Strategy https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/word/WordInputStrategy.html
+** Word (newer version) Input Strategy
+https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/word/WordXInputStrategy.html
 
 ## What Next ##
-
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYyODU3NzQ2NiwtMTA1NjA4NjQ3Ml19
--->

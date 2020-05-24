@@ -1,7 +1,4 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
 layout: home
 ---
 
@@ -12,6 +9,7 @@ Jump to
 * [Setup]()
 
  Red-Piranha is a set of Power tools for Word, Excel and Office Power users.
+ 
 ![Red Piranha Splash Screen](https://paulbrowne-irl.github.io/red-piranha/images/splash.png)
 
 It packages the Drools Business Rules Management System (BRMS) solution from RedHat (IBM) to be more accessible to Windows Desktop users. In particular, it makes it easier to feed information from Excel and Word (Office) Documents, apply business rules to these documents, and get useful results.
@@ -344,5 +342,5 @@ https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/wor
 
 ## What Next ##
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYyNjc2Njk0XX0=
+eyJoaXN0b3J5IjpbNTk5MTM3NDk3LDE2MjY3NjY5NF19
 -->

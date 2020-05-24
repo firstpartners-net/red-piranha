@@ -113,6 +113,87 @@ For tasks
 
 Github
 
+### More on Document Conversion ###
+
+-   How to set as input file
+-   Word (docx) and not doc - not yet impmeneted / how to covnert
+-   Why we map everything to a cell
+-   Viewing the data in the view
+-   And how to use this to write data gainst it
+- Link to Javadoc
+
+INPUT
+
+-   XLS/XLSX
+-   WORD/WORDX
+
+BASIC RP MODEL
+
+RangeList
+
+0 more Ranges
+
+0 or more Cells
+
+CONVERTOR MODEL - word
+
+Document
+
+-   Para
+
+-   Text
+
+RangeList 1 per Doc
+
+-   Range 1 per Para
+
+-   Cell 1 per Para
+
+Cell Value Gives Text
+
+Sample Rule to Access
+
+???
+
+Document
+
+-   Tables
+
+-   Rows
+
+-   Cells in Table
+
+RangeList 1 per Doc
+
+[all rows in tables added] - but using
+
+Table 1 Row 1 Convention
+
+-   Range = one row on table
+
+-   Cell = 1 cell per cell on table
+
+Name is the fist row
+
+Names - based on …
+
+-   First row
+-   thisCell.setOriginalTableRefernece("TABLE_"+tableCounter);
+-   thisCell.setOriginalCellReference("R:"+rowCounter+" C:"+cellCounter);
+
+Update: Paragraph / Cells - new doc?
+
+Other ntoes
+
+-   Filters to Ascii sets
+-   Only table cells with a value get in (so can't guarantee all cells from table are present in working memory
+
+Sample Doc: Before (picture of word)
+
+Sample Doc after (from viewr)
+
+Only document in and out …
+
 ### Explaining the DRL ###
 Note \\ needed in java when specifiying directories
 
@@ -142,6 +223,6 @@ Writing your first rule
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNDMwNTA5MTYsLTc1Mjk0MzU5OCwtOT
+eyJoaXN0b3J5IjpbLTIxMjA4NDE2MjEsLTc1Mjk0MzU5OCwtOT
 E0MzkwNjc2LC0zMTEwNjkzMTNdfQ==
 -->

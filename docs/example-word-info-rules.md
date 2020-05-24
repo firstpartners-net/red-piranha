@@ -12,6 +12,8 @@ Why would we want to do this?
   * Same for **Excel Macros** - and they have security concerns. You can tightly control the rules.
   * Google Spreadsheets are like Excel online, but don't have all the power. Rules add them back.
   * You control the rules. Who changes the Excel file when you're not looking?
+
+## Find Home for
  
 ## Business Problem ##
 Statement: 
@@ -219,6 +221,20 @@ Writing your first rule
 -   Possible exceptions
 
 -   Esp around
+#### More rules ####
+-   Refer to showcase (of every possible rule)
+-   Using drl
+-   Without using drl
+
+Checks for values
+
+Using offsets
+
+Cell Object (and javadoc on it)
+
+Iterative development
+
+Link to sample rules catalog
 
 ### Key Documents and Classes ###
 * Cell - Link
@@ -230,5 +246,5 @@ Writing your first rule
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNTYwODY0NzJdfQ==
+eyJoaXN0b3J5IjpbMjU2MzIxNDAyLC0xMDU2MDg2NDcyXX0=
 -->

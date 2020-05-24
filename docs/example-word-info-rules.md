@@ -194,6 +194,43 @@ Sample Doc after (from viewr)
 
 Only document in and out …
 
+### More on Document Output ### 
+Dev Note on how to extend
+
+
+OUTPUT
+Available File formats
+	- XLS / XLSX in and out
+	- Word, WordX In
+		○ Wriite rules to detect if format of incomfing doc changes
+		○ "fingerprint" a couple of key points
+		○ If values are repeated multiple times in doc, try to t
+		○ Double check names nearby to 
+			§ e.g. on our doc
+			§ // cellName=Department Manager Name:_0 , originalTableReference ="TABLE_9"
+		○ Prefer Table values to document, less likely to hcange
+		○ Refer to Table name in rules
+		○ 
+	- ?? PDF - very simple
+		○ How to create a template which we can then fill
+	- ?? CSV Out - very simple
+		○ Tries to append ??
+		○ Ignores original document 
+		○ @see net.firstpartners.core.file.CSVOutputStrategy
+		○ Note on how to create a CSV file
+	- .json
+		○ Use for debugging
+		○ Use alongside GUI
+		○ Go through Cycle of mappign document
+	- Note about data independent of layout
+	
+
+
+
+
+NTOE IN WRITING RULES
+PUT IN STRAGN VLAUES 
+
 ### Explaining the DRL ###
 Note \\ needed in java when specifiying directories
 

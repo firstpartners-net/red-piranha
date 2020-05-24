@@ -4,13 +4,14 @@ Jump to
 * [Example]()
 * [Setup]()
 
+ Red-Piranha is a set of Power tools for Word, Excel and Office Power users.
+
+It packages the Drools Business Rules Management System (BRMS) solution from RedHat (IBM) to be more accessible to Windows Desktop users. In particular, it makes it easier to feed information from Excel and Word (Office) Documents, apply business rules to these documents, and get useful results.
+
+Most importantly, because your business rules are in an 'English like' language, it makes it very easy for you (and colleagues) to see what checks are being made
 
 
-General Statement on what Red Piranha does
-
-This section shows you how to apply Business Rules to your spreadsheets.
-
-  * Spreadsheet + Business Rules = Result
+  * Word Document + Business Rules = Result
 
 Why would we want to do this?
 

@@ -78,6 +78,13 @@ For tasks
 
 Github
 
+### Explaining the DRL ###
+Note \\ needed in java when specifiying directories
+
+In translator.dsl
+
+-   Adding #/result will debug the generated rules to the log
+
 ### Writing your first rule ###
 
 Writing your first rule
@@ -98,6 +105,6 @@ Writing your first rule
 
 ## What Next ##
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY0MjY5MTAyMCwtOTE0MzkwNjc2LC0zMT
+eyJoaXN0b3J5IjpbLTc1Mjk0MzU5OCwtOTE0MzkwNjc2LC0zMT
 EwNjkzMTNdfQ==
 -->

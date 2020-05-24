@@ -12,6 +12,44 @@ Why would we want to do this?
   * Same for **Excel Macros** - and they have security concerns. You can tightly control the rules.
   * Google Spreadsheets are like Excel online, but don't have all the power. Rules add them back.
   * You control the rules. Who changes the Excel file when you're not looking?
+
+## Find Home For ##
+Explain for example
+
+-   Prerequest
+
+-   Java installed
+
+-   Config.ini
+-   Usecase
+-   Input file
+-   Output file
+-   Files in directory
+-   Console / logs
+
+-   Where
+-   Contents
+
+-   More details
+
+-   Input file
+-   Rules applied
+-   Output file
+
+Log then modified - simple sample of where modified
+
+-   Launch4j.log
+-   Red-piranha.log
+
+Only once
+
+Where to find output when done
+
+Make sure to close output
+
+How to log to console
+
+What objects are
  
 ## Business Problem ##
 Statement: 
@@ -36,6 +74,7 @@ Pre-reqs
 
 -   Mininum Version
 -   Picture of command window
+- Java Admin rights
 
 -   Test:
 - First time run
@@ -255,6 +294,20 @@ Writing your first rule
 -   Possible exceptions
 
 -   Esp around
+#### More rules ####
+-   Refer to showcase (of every possible rule)
+-   Using drl
+-   Without using drl
+
+Checks for values
+
+Using offsets
+
+Cell Object (and javadoc on it)
+
+Iterative development
+
+Link to sample rules catalog
 
 ### Key Documents and Classes ###
 * Cell - Link
@@ -265,3 +318,6 @@ Writing your first rule
 ## What Next ##
 
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTYyODU3NzQ2NiwtMTA1NjA4NjQ3Ml19
+-->

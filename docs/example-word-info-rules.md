@@ -32,6 +32,16 @@ Text
 Where get from
 Pre-reqs
 
+-   How to check you have Java
+
+-   Mininum Version
+-   Picture of command window
+
+-   Test:
+- First time run
+- 
+
+(take from notes)
 
 ### Configuration ###
 Walk through
@@ -54,9 +64,22 @@ GUI Mode
 ### Dev Setup ###
 * Eclipse
 * VSCode
-* 
+* Java install
+
+Eclipse download
+
+Jboss / Drools tools
+
+For tasks
+
+[http://download.eclipse.org/egit/github/updates-nightly/](http://download.eclipse.org/egit/github/updates-nightly/)
+
+[https://wiki.eclipse.org/EGit/GitHub/User_Guide](https://wiki.eclipse.org/EGit/GitHub/User_Guide)
+
+Github
 
 ## What Next ##
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkxNDM5MDY3NiwtMzExMDY5MzEzXX0=
+eyJoaXN0b3J5IjpbMTYzNzM2ODYyOCwtOTE0MzkwNjc2LC0zMT
+EwNjkzMTNdfQ==
 -->

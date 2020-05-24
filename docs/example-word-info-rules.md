@@ -13,7 +13,43 @@ Why would we want to do this?
   * Google Spreadsheets are like Excel online, but don't have all the power. Rules add them back.
   * You control the rules. Who changes the Excel file when you're not looking?
 
-## Find Home for
+## Find Home For ##
+Explain for example
+
+-   Prerequest
+
+-   Java installed
+
+-   Config.ini
+-   Usecase
+-   Input file
+-   Output file
+-   Files in directory
+-   Console / logs
+
+-   Where
+-   Contents
+
+-   More details
+
+-   Input file
+-   Rules applied
+-   Output file
+
+Log then modified - simple sample of where modified
+
+-   Launch4j.log
+-   Red-piranha.log
+
+Only once
+
+Where to find output when done
+
+Make sure to close output
+
+How to log to console
+
+What objects are
  
 ## Business Problem ##
 Statement: 
@@ -246,5 +282,5 @@ Link to sample rules catalog
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjU2MzIxNDAyLC0xMDU2MDg2NDcyXX0=
+eyJoaXN0b3J5IjpbMTYyODU3NzQ2NiwtMTA1NjA4NjQ3Ml19
 -->

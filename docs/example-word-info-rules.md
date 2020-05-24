@@ -78,8 +78,26 @@ For tasks
 
 Github
 
+### Writing your first rule ###
+
+Writing your first rule
+
+-   Refer to install notes
+-   Start with existing Batch
+-   Update config file
+
+-   Input and output ; close to what you want as possible
+-   Data Model is same, but there may be small differneces
+
+-   First run
+
+-   What you should see (work through tabs)
+-   Possible exceptions
+
+-   Esp around
+
 ## What Next ##
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYzNzM2ODYyOCwtOTE0MzkwNjc2LC0zMT
+eyJoaXN0b3J5IjpbLTY0MjY5MTAyMCwtOTE0MzkwNjc2LC0zMT
 EwNjkzMTNdfQ==
 -->

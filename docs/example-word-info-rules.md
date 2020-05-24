@@ -36,6 +36,7 @@ Pre-reqs
 
 -   Mininum Version
 -   Picture of command window
+- Java Admin rights
 
 -   Test:
 - First time run
@@ -228,3 +229,6 @@ Writing your first rule
 ## What Next ##
 
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEwNTYwODY0NzJdfQ==
+-->

@@ -2,8 +2,5 @@ theme: jekyll-theme-tactile
 
 title: Red Piranha - Power Tools for Excel, Word and Office users
 email: RedPiranha@FirstPartners.net
-description: >- Red-Piranha is a set of Power tools for Word, Excel and Office Power users.
-It packages the Drools Business Rules Management System (BRMS) solution from RedHat (IBM) to be more accessible to Windows Desktop users. 
-In particular, it makes it easier to feed information from Excel and Word (Office) Documents, apply business rules to these documents, and get useful results.
 
 github_username:  paulbrowne-irl

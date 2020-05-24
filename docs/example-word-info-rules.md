@@ -50,6 +50,41 @@ Walk through
 
 ### Rules ###
 
+### Running the Example ###
+-   Running
+
+-   Does not overwrite
+-   Batch
+-   Config
+-   Logs
+-   Screens
+-   Step through what it is doing
+
+-   Reads from Word ..
+-   Applies rules
+-   Appends to CSV
+
+-   Useful Tools
+
+-   Drools / Eclipse
+-   GitHub source and pages
+-   Visual studio drl
+
+-   GUI Notes
+
+-   Drill down , view cell, can copy paste into rules (and remove filters)
+
+-   DRL Notes
+
+-   Case senstive
+
+-   CSV Notes
+
+-   Case Sensitive headings
+-   Case senstive file name in config
+-   Doesn't like it when file is left open
+-   Notion of templating
+
 ### Screens - details ###
 
 ## Extending the example ##
@@ -104,7 +139,9 @@ Writing your first rule
 -   Esp around
 
 ## What Next ##
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc1Mjk0MzU5OCwtOTE0MzkwNjc2LC0zMT
-EwNjkzMTNdfQ==
+eyJoaXN0b3J5IjpbLTIwNDMwNTA5MTYsLTc1Mjk0MzU5OCwtOT
+E0MzkwNjc2LC0zMTEwNjkzMTNdfQ==
 -->

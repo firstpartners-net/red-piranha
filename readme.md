@@ -29,14 +29,7 @@ Even better, it's all open source and free to get started. And it works with Goo
 
 * [More detailed Examples](examples/examples.md)
 * [Validating Excel Spreadsheets using Business Rules](examples/ExcelDataRules/example.md)
-
-
-## Looking for the Book Examples?
-
-
-
-| ![Man Icon](http://rcm-images.amazon.com/images/I/511yB7Fl-SL._SL110_.jpg) | **[Have you just bought the book?](docs/z-Book.md)** - Beginning Business rules with JBoss Drools. <br /> Where to download the samples and other useful information. |
-|:----------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+* [Validating Word Documents using Business Rules](examples/WordDataRules/example.md)
 
 ## Links - Users and Power Users
 
@@ -60,9 +53,13 @@ Even better, it's all open source and free to get started. And it works with Goo
 * [How to do a release of Red-Piranha](docs/g-releases.md)
 
 ## Links for older version of Red Piranha
-* [s](link.md)
-* [s](link.md)
 
+### Looking for the Book Examples?
+
+
+
+| ![Man Icon](http://rcm-images.amazon.com/images/I/511yB7Fl-SL._SL110_.jpg) | **[Have you just bought the book?](docs/z-Book.md)** - Beginning Business rules with JBoss Drools. <br /> Where to download the samples and other useful information. |
+|:----------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
 Images from [here under GPL](http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html)

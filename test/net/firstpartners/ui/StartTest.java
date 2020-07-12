@@ -20,10 +20,10 @@ import net.firstpartners.ui.utils.Config;
  * @author PBrowne
  *
  */
-public class RedCommandLineTest {
+public class StartTest {
 
 	// Logger
-	private static final Logger log = Logger.getLogger(RedCommandLineTest.class.getName());
+	private static final Logger log = Logger.getLogger(StartTest.class.getName());
 
 	// Test file locations
 	private static final String[] args = new String[] {};
@@ -32,7 +32,7 @@ public class RedCommandLineTest {
 	public final void testCallMainDefaultArgs() throws Throwable {
 
 		// Call test
-		RedCommandLine.main(args);
+		Start.main(args);
 
 	}
 
@@ -57,7 +57,7 @@ public class RedCommandLineTest {
 		log.debug("Successfully configure for word test");
 		
 		// Call test
-		RedCommandLine.runRules(playerAsLogger, userUpdates);
+		Start.runRules(playerAsLogger, userUpdates);
 
 	}
 	
@@ -82,7 +82,7 @@ public class RedCommandLineTest {
 		log.debug("Successfully configure for excel in word out test");
 		
 		// Call test
-		RedCommandLine.runRules(playerAsLogger, userUpdates);
+		Start.runRules(playerAsLogger, userUpdates);
 
 	}
 

@@ -41,7 +41,7 @@ import net.firstpartners.ui.utils.Config;
  * Desktop GUI for Red Piranha Desktop User interface to ease calling of Rules /
  * running the webserver needed for the office plugin.
  * 
- * This is just a facade, called by RedCommandLine (unless the user has
+ * This is just a facade, called by Start (unless the user has
  * configured it not to)
  * 
  * @author PBrowne

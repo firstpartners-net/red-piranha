@@ -26,9 +26,9 @@ import net.firstpartners.ui.utils.Config;
  * @author PBrowne
  *
  */
-public class RedCommandLine {
+public class Start {
 
-	private static final Logger log = RpLogger.getLogger(RedCommandLine.class.getName());
+	private static final Logger log = RpLogger.getLogger(Start.class.getName());
 
 
 	/**

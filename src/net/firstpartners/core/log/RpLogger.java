@@ -7,7 +7,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 
-import net.firstpartners.ui.RedCommandLine;
+import net.firstpartners.ui.Start;
 
 /**
  * Extend logging so that we can control logging in an exe environment where we
@@ -70,7 +70,7 @@ public class RpLogger extends Logger {
 			Logger.getRootLogger().addAppender(fileHandler);
 			
 			//Log 
-			Logger thisLog = getLogger(RedCommandLine.class.getName());
+			Logger thisLog = getLogger(Start.class.getName());
 			thisLog.debug("Forced Log to:"+logFileName);
 		}
 

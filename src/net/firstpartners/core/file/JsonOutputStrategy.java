@@ -32,7 +32,7 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 	private String outputFile = null;
 
 	// Hold the data until we are asked to process it
-	@SuppressWarnings("unused") // eclipse mistakenly marks this as unused
+	//@SuppressWarnings("unused") // eclipse mistakenly marks this as unused
 	private RangeList processedRange;
 
 	// Handle to logger to GUI

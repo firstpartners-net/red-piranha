@@ -45,7 +45,7 @@
 	<property name="distrib.dir" value="dist" />
 
 	<!-- Define additional ant tasks -->
-	<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar" />
+	<!--<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar" />-->
 	<taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties" classpath="testlib/checkstyle-8.31-all.jar" />
 
 	<!-- The Main classpath we use when compiling -->
@@ -80,7 +80,7 @@
 	<target name="build" description="Compile main source tree java files into class files, generate build folder">
 		<delete dir="${build.dir}" />
 		<mkdir dir="${build.dir}" />
-		<javac destdir="${build.dir}" debug="true" deprecation="false" optimize="false" failonerror="true">
+		<javac destdir="${build.dir}" debug="true" deprecation="false" optimize="false" failonerror="true" includeantruntime="false">
 
 			<!-- Source path-->
 			<src path="${src.dir}" />
@@ -116,7 +116,7 @@
 		<mkdir dir="${testreports.dir}" />
 		<mkdir dir="${testreports.dir}/logs" />
 		<mkdir dir="${testhtml.dir}" />
-		<javac srcdir="${testsrc.dir}" destdir="${testbuild.dir}" deprecation="true">
+		<javac srcdir="${testsrc.dir}" destdir="${testbuild.dir}" deprecation="true" includeantruntime="false">
 			<classpath path="${build.dir}" />
 			<classpath refid="master-classpath" />
 			<classpath path="${app.root}/testlib/*.jar" />

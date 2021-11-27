@@ -11,7 +11,7 @@ import org.apache.commons.lang3.math.NumberUtils;
  * JavaBean equivalent of a cell in an Excel Spreadsheet. Since we also map from
  * other sources into these classes, a Cell could be a cell from a table in a
  * Word Document. For simplicity, we map Paragraphs from a word document into a
- * cell (to making writing rules easier)
+ * cell (to make writing rules easier)
  * 
  */
 public class Cell implements PropertyChangeListener, Serializable {

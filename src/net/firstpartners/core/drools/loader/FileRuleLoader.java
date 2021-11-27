@@ -16,7 +16,7 @@ import net.firstpartners.core.log.RpLogger;
  * @author paul
  * 
  */
-public class FileRuleLoader extends AbstractRuleLoaderStrategy implements IRuleLoaderStrategy {
+public class FileRuleLoader extends AbstractRuleLoaderStrategy {
 
 
 	private static final Logger log = RpLogger.getLogger(FileRuleLoader.class

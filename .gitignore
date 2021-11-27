@@ -5,6 +5,8 @@ _site
 build
 dist
 
+.vscode
+
 war/WEB-INF/classes
 junit-test-reports/T*
 testbuild
@@ -28,3 +30,4 @@ dist/example-ExcelDataRules.zip
 dist/red-piranha.exe
 dist/red-piranha.war
 
+docs/*.html

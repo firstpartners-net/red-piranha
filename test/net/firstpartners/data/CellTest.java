@@ -1,11 +1,8 @@
 package net.firstpartners.data;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.*;
+
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -22,8 +19,7 @@ public class CellTest implements PropertyChangeListener {
 		Cell myCell1 = new Cell("Key1","Value1");
 		Cell myCellSameValues = new Cell("Key1","Value1");
 		assertEquals(myCell1,myCellSameValues);
-		
-		
+
 		Cell myCell2 = new Cell ("Key1","Value2");
 		assertNotEquals(myCell1,myCell2);
 		

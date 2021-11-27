@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+//import java.awt.event.WindowListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -48,7 +48,7 @@ import net.firstpartners.ui.utils.Config;
  *
  */
 public class RedGui extends WindowAdapter
-		implements WindowListener, ActionListener, Runnable, ILogger, IGiveFeedbackToUsers {
+		implements ActionListener, Runnable, ILogger, IGiveFeedbackToUsers {
 
 	private static final String GUI_MODE_CLOSE_ON_COMPLETION = "CLOSE_ON_COMPLETION";
 

@@ -106,7 +106,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	private String appendFileName = null;
 
 	// Hold the data until we are asked to process it
-	@SuppressWarnings("unused") // eclipse mistakenly marks this as unused
+	//@SuppressWarnings("unused") // eclipse mistakenly marks this as unused
 	private RangeList processedRange;
 	
 	//Handle to logger to GUI

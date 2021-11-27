@@ -1,17 +1,25 @@
+
+_site
 *.class
+*.log
 build
 dist
+
 war/WEB-INF/classes
 junit-test-reports/T*
 testbuild
+
 red-piranha.log.lck
-*.log
 red-piranha.log
 red-piranha.log.1
+
 private/
+
 example-private.zip
 examples/private*/*.*
+
 private.md
+
 dist/*.jar
 dist/example-ExcelDataRules.zip
 dist/red-piranha-single.jar
@@ -19,5 +27,4 @@ dist/red-piranha.jar
 dist/example-ExcelDataRules.zip
 dist/red-piranha.exe
 dist/red-piranha.war
-_site
 

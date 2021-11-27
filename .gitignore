@@ -5,7 +5,9 @@ _site
 build
 dist
 
+.vs 
 .vscode
+.project
 
 war/WEB-INF/classes
 junit-test-reports/T*
@@ -31,3 +33,5 @@ dist/red-piranha.exe
 dist/red-piranha.war
 
 docs/*.html
+docs/javadocs/
+docs/

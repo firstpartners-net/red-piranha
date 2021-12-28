@@ -35,3 +35,4 @@ dist/red-piranha.war
 docs/*.html
 docs/javadocs/
 docs/
+.project

@@ -40,3 +40,7 @@ scripts/launch4j/.project
 scripts/launch4j/maven/.classpath
 scripts/launch4j/maven/.project
 war/WEB-INF/lib/red-piranha-1.22-beta.jar
+code/.classpath
+code/.settings/org.eclipse.core.resources.prefs
+code/.classpath
+code/.settings/org.eclipse.core.resources.prefs

@@ -5,7 +5,10 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.apache.log4j.Logger;
 import org.drools.compiler.compiler.DroolsParserException;
+
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
@@ -34,6 +37,7 @@ public class Start {
 
 
 	/**
+	 * TODO - update javadoc
 	 * <p>Usage from command line java -jar [jarName.jar] [optional.config]</p>
 	 * <p>If no optional.config is specified, it is loaded from red-piranha.config instead. This is expected to be in the current directory.
 	 * </p>
@@ -41,7 +45,12 @@ public class Start {
 	 * @throws IOException
 	 * @throws DroolsParserException
 	 */
-	public static void main(String[] args) throws Exception {
+	
+	public static void main(String[] args) {
+		SpringApplication.run(Start.class, args);
+	}
+	
+	public static void oldmain(String[] args) throws Exception {
 
 		//Check if we need to override the configuration
 		if(args.length>=1) {

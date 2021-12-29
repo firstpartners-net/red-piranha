@@ -19,11 +19,13 @@
 	</properties>
 	<dependencies>
 
-		<!--
+		<!-- if we want to embed webservice>		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-quartz</artifactId>
-		</dependency> -->
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		-->
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -145,28 +147,22 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 
+					<!-- Entry Point of the application-->
 					<mainClass>net.firstpartners.ui.Start</mainClass>
-
 				</configuration>
-
 
 			</plugin>
 
-			<plugin>
-        <artifactId>maven-site-plugin</artifactId>
-        <configuration>
-          <locales>en,fr</locales>
-        </configuration>
-      </plugin>
+
 		</plugins>
 	</build>
 
 	<reporting>
-    <plugins>
-      <plugin>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </reporting>
+		<plugins>
+			<plugin>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</reporting>
 
 </project>

@@ -28,6 +28,7 @@ import javax.swing.text.html.HTMLEditorKit;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
@@ -48,6 +49,7 @@ import net.firstpartners.ui.utils.Config;
  * @author PBrowne
  *
  */
+@Component
 public class RedGui extends WindowAdapter
 		implements ActionListener, Runnable, ILogger, IGiveFeedbackToUsers {
 
@@ -77,7 +79,8 @@ public class RedGui extends WindowAdapter
 	private JTextArea tab3TextArea;
 	private RangeCellTree postRangeCellTree;
 	
-	private HtmlGenerator htmlGenerator = new HtmlGenerator();
+	@Autowired
+	private HtmlGenerator htmlGenerator;
 
 	/**
 	 * Constructor, builds a simple GUI
@@ -100,6 +103,9 @@ public class RedGui extends WindowAdapter
 			log.warn(e.toString());
 		}
 
+		//handle to our html generator
+		//htmlGenerator = new HtmlGenerator();
+		
 		// Overall Screen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize = new Dimension(screenSize.width -20, screenSize.height -20);
@@ -248,7 +254,12 @@ public class RedGui extends WindowAdapter
 		// create a document, set it on the jeditorpane, then add the html
 		Document doc = kit.createDefaultDocument();
 		htmlHomePane.setDocument(doc);
-		htmlHomePane.setText(htmlGenerator.getupdatedHomeSreenHtml());
+		if(htmlGenerator!=null) {
+			htmlHomePane.setText(htmlGenerator.getupdatedHomeSreenHtml());
+		} else {
+			log.warn("htmlgenerator is not configured");
+		}
+		
 
 		return scrollPane;
 
@@ -316,9 +327,14 @@ public class RedGui extends WindowAdapter
 	 */
 	public synchronized void run() {
 
-		// Update the Home panel with what we know about the input / output fies
+		// Update the Home panel with what we know about the input / output files
 		// this.homeScreen= getHomePanel();
-		htmlHomePane.setText(htmlGenerator.getupdatedHomeSreenHtml());
+		if(htmlGenerator!=null) {
+			htmlHomePane.setText(htmlGenerator.getupdatedHomeSreenHtml());
+		} else {
+			log.warn("HTML Generator not yet configured");
+		}
+		
 
 		while (true) {
 			try {

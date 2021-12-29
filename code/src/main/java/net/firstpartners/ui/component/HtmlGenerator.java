@@ -5,6 +5,7 @@ import javax.swing.text.html.StyleSheet;
 
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import net.firstpartners.ui.utils.Config;
 
@@ -14,6 +15,7 @@ import net.firstpartners.ui.utils.Config;
  * @author PBrowne
  *
  */
+@Component
 public class HtmlGenerator {
 
 	//handle for our config
@@ -52,10 +54,12 @@ public class HtmlGenerator {
 		String ruleFileAsString = "";
 
 		// Get UserSpecifc information we need to display
-		
+		if(appConfig!=null) {
+			inputFileName = StringEscapeUtils.escapeHtml3(appConfig.getInputFileName());
+			outputFileName = StringEscapeUtils.escapeHtml4(appConfig.getOutputFileName());
+		}
 
-		inputFileName = StringEscapeUtils.escapeHtml3(appConfig.getInputFileName());
-		outputFileName = StringEscapeUtils.escapeHtml4(appConfig.getOutputFileName());
+	
 
 		// build multiple rules files
 		String rulesFiles[] = appConfig.getRuleConfig().getRulesLocation();

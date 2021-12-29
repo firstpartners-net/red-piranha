@@ -2,7 +2,7 @@
 
 ![Red Piranha Logo](/site/images/top/02.gif)
 
-## More powerful Excel, Google Docs and Spreadsheets using JBoss Rules and Google App Engine
+## More powerful Excel, Google Docs and Spreadsheets using JBoss Rules and the Cloud
 
 Powered by [Drools](http://www.jboss.org/drools), Red-Piranha allows you to state your Excel business rules in a simple **when ... then** format that everybody can understand.
 Instead of having your knowledge 'disappear' into complicated formulas that you can't read, Drools keeps things in a simple 'English' like format.

@@ -7,3 +7,7 @@
 
 
 Simple update
+
+
+To run as spring boot applicaiton
+mvn spring-boot:run 

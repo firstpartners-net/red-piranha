@@ -4,6 +4,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
 import org.apache.commons.text.StringEscapeUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import net.firstpartners.ui.utils.Config;
 
@@ -15,6 +16,10 @@ import net.firstpartners.ui.utils.Config;
  */
 public class HtmlGenerator {
 
+	//handle for our config
+	@Autowired
+	Config appConfig;
+	
 	/**
 	 * Get a HTMLEditor Kit with a standard CSS
 	 * 
@@ -39,7 +44,7 @@ public class HtmlGenerator {
 	 * 
 	 * @return String containing the HTML we want to display on the home screen
 	 */
-	public static String getupdatedHomeSreenHtml() {
+	public String getupdatedHomeSreenHtml() {
 
 		// Default if we are running standalone
 		String inputFileName = "";
@@ -49,11 +54,11 @@ public class HtmlGenerator {
 		// Get UserSpecifc information we need to display
 		
 
-		inputFileName = StringEscapeUtils.escapeHtml3(Config.getInputFileName());
-		outputFileName = StringEscapeUtils.escapeHtml4(Config.getOutputFileName());
+		inputFileName = StringEscapeUtils.escapeHtml3(appConfig.getInputFileName());
+		outputFileName = StringEscapeUtils.escapeHtml4(appConfig.getOutputFileName());
 
 		// build multiple rules files
-		String rulesFiles[] = Config.getRuleConfig().getRulesLocation();
+		String rulesFiles[] = appConfig.getRuleConfig().getRulesLocation();
 		StringBuilder ruleFile = new StringBuilder();
 		for (int a = 0; a < rulesFiles.length; a++) {
 			ruleFile.append(StringEscapeUtils.escapeHtml4(rulesFiles[a]) + " | ");

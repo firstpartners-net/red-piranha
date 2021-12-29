@@ -5,10 +5,13 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.apache.log4j.Logger;
 import org.drools.compiler.compiler.DroolsParserException;
-
-import org.springframework.boot.SpringApplication;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.WebApplicationType;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContext;
 
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
@@ -31,10 +34,21 @@ import net.firstpartners.ui.utils.Config;
  *
  */
 @SpringBootApplication
-public class Start {
+//@Component
+@EnableAutoConfiguration
+public class Start implements CommandLineRunner{
 
+	// handle for logger
 	private static final Logger log = RpLogger.getLogger(Start.class.getName());
 
+	//handle for Application Context
+	@Autowired
+	ApplicationContext applicationContext;
+	
+	//handle for our config
+	@Autowired
+	Config appConfig;
+	
 
 	/**
 	 * TODO - update javadoc
@@ -47,20 +61,60 @@ public class Start {
 	 */
 	
 	public static void main(String[] args) {
-		SpringApplication.run(Start.class, args);
+		
+		//applicationContext=SpringApplication.run(Start.class, args);
+		
+		
+		new SpringApplicationBuilder(Start.class)
+			.headless(false)
+			.web(WebApplicationType.NONE)
+			.build().run(args);
+		
+		//applicationContext = new ClassPathXmlApplicationContext("ApplicationContext.xml");
+
 	}
 	
-	public static void oldmain(String[] args) throws Exception {
+	/**
+	 * Real Entry point for application
+	 * @param args
+	 * @throws Exception	
+	 */
+	@Override
+	public  void run(String... args) throws Exception {
 
-		//Check if we need to override the configuration
-		if(args.length>=1) {
-			Config.readConfig(args[0]);
-		} else {
-			Config.readConfig();
-		}
+//		if(applicationContext!=null) {
+//			
+//		} else {
+//			System.out.println("application context is null");
+//		}
 		
+		
+//		Config myConfig =null;
+//		
+//		//Check that we are running in context
+//		if (applicationContext!=null) {
+//			 myConfig = (Config)applicationContext.getBean("config");
+//			 System.out.println("Using Spring configuration");
+//			 
+//			 
+//		} else {
+//				
+//		//			myConfig = new Config();
+//		//			
+//		//			//Check if we need to override the configuration
+//		//			if(args.length>=1) {
+//		//				myConfig.readConfig(args[0]);
+//		//			} else {
+//		//				myConfig.readConfig();
+//		//			}
+//			
+//			System.out.println("ERROR - NO SRPING CONFIG FOUND");
+//			
+//		}
+	
 		// Check and force logging
-		String logFileName = Config.getForcedLogFileName();
+		String logFileName = appConfig.getForcedLogFileName(); // was my config
+		System.out.println("FORCING LOG TO FILE:"+logFileName);
 		RpLogger.checkForceLogToFile(logFileName);
 		
 		
@@ -86,13 +140,13 @@ public class Start {
 	 * @throws SecurityException 
 	 * @throws NoSuchMethodException 
 	 */
-	static void runRules(ILogger playerAsLogger, IGiveFeedbackToUsers userUpdates) throws IllegalArgumentException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, InvocationTargetException {
+	 void runRules(ILogger playerAsLogger, IGiveFeedbackToUsers userUpdates) throws IllegalArgumentException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, InvocationTargetException {
 
 		
 		// Get the params
-		String inputFileName = Config.getInputFileName();
-		String outputFileName = Config.getOutputFileName();
-		RuleConfig ruleConfig = Config.getRuleConfig();
+		String inputFileName = appConfig.getInputFileName();
+		String outputFileName = appConfig.getOutputFileName();
+		RuleConfig ruleConfig = appConfig.getRuleConfig();
 
 		
 		log.debug("DSL?"+ruleConfig.getDslFileLocation());

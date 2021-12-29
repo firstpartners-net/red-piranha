@@ -27,6 +27,7 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
@@ -50,6 +51,10 @@ import net.firstpartners.ui.utils.Config;
 public class RedGui extends WindowAdapter
 		implements ActionListener, Runnable, ILogger, IGiveFeedbackToUsers {
 
+	//handle for our config
+	@Autowired
+	Config appConfig;
+	
 	private static final String GUI_MODE_CLOSE_ON_COMPLETION = "CLOSE_ON_COMPLETION";
 
 	// Logger
@@ -71,6 +76,8 @@ public class RedGui extends WindowAdapter
 	private RangeCellTree preRangeCellTree;
 	private JTextArea tab3TextArea;
 	private RangeCellTree postRangeCellTree;
+	
+	private HtmlGenerator htmlGenerator = new HtmlGenerator();
 
 	/**
 	 * Constructor, builds a simple GUI
@@ -241,7 +248,7 @@ public class RedGui extends WindowAdapter
 		// create a document, set it on the jeditorpane, then add the html
 		Document doc = kit.createDefaultDocument();
 		htmlHomePane.setDocument(doc);
-		htmlHomePane.setText(HtmlGenerator.getupdatedHomeSreenHtml());
+		htmlHomePane.setText(htmlGenerator.getupdatedHomeSreenHtml());
 
 		return scrollPane;
 
@@ -290,7 +297,7 @@ public class RedGui extends WindowAdapter
 			
 		
 			//check if we exit on completion
-			if(Config.getGuiMode().equals(GUI_MODE_CLOSE_ON_COMPLETION)) {
+			if(appConfig.getGuiMode().equals(GUI_MODE_CLOSE_ON_COMPLETION)) {
 				log.debug("Signalling close");
 	
 				System.exit(0);
@@ -311,7 +318,7 @@ public class RedGui extends WindowAdapter
 
 		// Update the Home panel with what we know about the input / output fies
 		// this.homeScreen= getHomePanel();
-		htmlHomePane.setText(HtmlGenerator.getupdatedHomeSreenHtml());
+		htmlHomePane.setText(htmlGenerator.getupdatedHomeSreenHtml());
 
 		while (true) {
 			try {

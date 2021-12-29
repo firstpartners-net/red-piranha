@@ -6,6 +6,7 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.log.EmptyLogger;
@@ -16,12 +17,16 @@ import net.firstpartners.ui.utils.Config;
 
 /**
  * Test to call the main method
- * 
+ * @TODO investigate more options from : https://www.baeldung.com/spring-tests-override-properties
  * @author PBrowne
  *
  */
 public class StartTest {
 
+	//handle for our config
+	@Autowired
+	Config appConfig;
+	
 	// Logger
 	private static final Logger log = Logger.getLogger(StartTest.class.getName());
 
@@ -49,11 +54,11 @@ public class StartTest {
 		p.setProperty(Config.FILE_INPUT, TestConstants.WORD_DATA_FILE);
 		p.setProperty(Config.FILE_OUTPUT, TestConstants.CSV_TMP_FILE);
 		p.setProperty(Config.RULE1, TestConstants.RULE_FILE_FOR_WORD);
-		Config.setProperties(p);
+		appConfig.setProperties(p);
 		
 
 		// Make sure the config changes stick
-		assertEquals(Config.getInputFileName(), TestConstants.WORD_DATA_FILE);
+		assertEquals(appConfig.getInputFileName(), TestConstants.WORD_DATA_FILE);
 		log.debug("Successfully configure for word test");
 		
 		// Call test
@@ -74,11 +79,11 @@ public class StartTest {
 		p.setProperty(Config.FILE_INPUT, TestConstants.XLSX_DATA_FILE);
 		p.setProperty(Config.FILE_OUTPUT, TestConstants.CSV_TMP_FILE);
 		p.setProperty(Config.RULE1, TestConstants.RULE_FILE_FOR_WORD);  // these shouldn't fire, but we're more interested in teh converstion
-		Config.setProperties(p);
+		appConfig.setProperties(p);
 		
 
 		// Make sure the config changes stick
-		assertEquals(Config.getInputFileName(), TestConstants.XLSX_DATA_FILE);
+		assertEquals(appConfig.getInputFileName(), TestConstants.XLSX_DATA_FILE);
 		log.debug("Successfully configure for excel in word out test");
 		
 		// Call test

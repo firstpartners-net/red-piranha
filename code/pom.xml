@@ -4,8 +4,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.2</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<version>2.6.2</version> <!-- lookup parent from repository -->
 	</parent>
 
 
@@ -16,6 +15,7 @@
 	<description>GUI for mapping Excel to Rules</description>
 	<properties>
 		<java.version>11</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
 
@@ -151,7 +151,22 @@
 
 
 			</plugin>
+
+			<plugin>
+        <artifactId>maven-site-plugin</artifactId>
+        <configuration>
+          <locales>en,fr</locales>
+        </configuration>
+      </plugin>
 		</plugins>
 	</build>
+
+	<reporting>
+    <plugins>
+      <plugin>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
 
 </project>

@@ -1,6 +1,7 @@
 package net.firstpartners.ui;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.util.Properties;
 
@@ -44,6 +45,8 @@ public class StartTest {
 	@Test
 	public final void testCallRunRulesWordDocs() throws Throwable {
 
+		fail("Test needs implemented for new configuration");
+		
 		// Mock up logging objects
 
 		ILogger playerAsLogger = new EmptyLogger();
@@ -54,7 +57,7 @@ public class StartTest {
 		p.setProperty(Config.FILE_INPUT, TestConstants.WORD_DATA_FILE);
 		p.setProperty(Config.FILE_OUTPUT, TestConstants.CSV_TMP_FILE);
 		p.setProperty(Config.RULE1, TestConstants.RULE_FILE_FOR_WORD);
-		appConfig.setProperties(p);
+		//appConfig.setProperties(p);
 		
 
 		// Make sure the config changes stick
@@ -62,13 +65,16 @@ public class StartTest {
 		log.debug("Successfully configure for word test");
 		
 		// Call test
-		Start.runRules(playerAsLogger, userUpdates);
+		//Start.runRules(playerAsLogger, userUpdates);
 
 	}
 	
 	@Test
 	public final void testCallRunRulesExcelInWordDocOut() throws Throwable {
 
+		fail("Test needs implemented for new configuration");
+		
+		
 		// Mock up logging objects
 
 		ILogger playerAsLogger = new EmptyLogger();
@@ -79,7 +85,7 @@ public class StartTest {
 		p.setProperty(Config.FILE_INPUT, TestConstants.XLSX_DATA_FILE);
 		p.setProperty(Config.FILE_OUTPUT, TestConstants.CSV_TMP_FILE);
 		p.setProperty(Config.RULE1, TestConstants.RULE_FILE_FOR_WORD);  // these shouldn't fire, but we're more interested in teh converstion
-		appConfig.setProperties(p);
+		//appConfig.setProperties(p);
 		
 
 		// Make sure the config changes stick
@@ -87,7 +93,7 @@ public class StartTest {
 		log.debug("Successfully configure for excel in word out test");
 		
 		// Call test
-		Start.runRules(playerAsLogger, userUpdates);
+		//Start.runRules(playerAsLogger, userUpdates);
 
 	}
 

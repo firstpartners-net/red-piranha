@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
 import net.firstpartners.core.log.RpLogger;

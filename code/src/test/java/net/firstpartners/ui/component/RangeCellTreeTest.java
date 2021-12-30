@@ -4,7 +4,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +21,7 @@ import net.firstpartners.data.RangeList;
 public class RangeCellTreeTest {
 
 	// Logger
-	private static final Logger log = Logger.getLogger(RangeCellTreeTest.class.getName());
+	private static final Logger log = LogManager.getLogger(RangeCellTreeTest.class.getName());
 
 	private static RangeList redData = null;
 

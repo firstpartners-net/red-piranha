@@ -5,7 +5,9 @@ import static org.junit.Assert.fail;
 
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,7 +31,7 @@ public class StartTest {
 	Config appConfig;
 	
 	// Logger
-	private static final Logger log = Logger.getLogger(StartTest.class.getName());
+	private static final Logger log = LogManager.getLogger(StartTest.class.getName());
 
 	// Test file locations
 	private static final String[] args = new String[] {};

@@ -3,7 +3,8 @@ package net.firstpartners.core.word;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
@@ -16,7 +17,7 @@ import net.firstpartners.core.file.PDFOutputStrategy;
 public class WordInputStrategyTest {
 
 	// Logger
-	private static final Logger log = Logger.getLogger(WordInputStrategyTest.class.getName());
+	private static final Logger log = LogManager.getLogger(WordInputStrategyTest.class.getName());
 
 	/**
 	 * Just check that the rules can run, throws no exception

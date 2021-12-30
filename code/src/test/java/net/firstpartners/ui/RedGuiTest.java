@@ -8,7 +8,8 @@ import java.io.ObjectInputStream;
 
 import javax.swing.UnsupportedLookAndFeelException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
 
@@ -25,7 +26,7 @@ import net.firstpartners.data.RangeList;
 public class RedGuiTest {
 
 	// Logger
-	private static final Logger log = Logger.getLogger(RedGuiTest.class.getName());
+	private static final Logger log = LogManager.getLogger(RedGuiTest.class.getName());
 
 	@Test
 	public final void testCallMain() throws Throwable {

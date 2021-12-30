@@ -8,7 +8,8 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.Test;
 
@@ -30,7 +31,7 @@ public class PreCompileRuleBuilderTest {
 	private final PreCompileRuleBuilder preCompileRuleBuilder = new PreCompileRuleBuilder();
 
 	// Handle to Logger
-	private static final Logger log = Logger.getLogger(PreCompileRuleBuilderTest.class.getName());
+	private static final Logger log = LogManager.getLogger(PreCompileRuleBuilderTest.class.getName());
 
 	@Test
 	public final void testpreCompileRules() throws ClassNotFoundException, DroolsParserException, IOException {

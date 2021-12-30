@@ -7,7 +7,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +25,10 @@ public class ConfigTest {
 	Config appConfig;
 	
 	// Logger
-		private static final Logger log = Logger.getLogger(ConfigTest.class.getName());
+
+	private static final Logger log = LogManager.getLogger(ConfigTest.class.getName());
+
+		
 		@SuppressWarnings("unused")
 		private static RangeList redData=null;
 

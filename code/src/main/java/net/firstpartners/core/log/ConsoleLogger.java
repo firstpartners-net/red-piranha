@@ -1,6 +1,6 @@
 package net.firstpartners.core.log;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 /**
  * An Adaptor that allows us to log to the consoles

@@ -10,7 +10,8 @@ import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.util.Collection;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
@@ -23,7 +24,7 @@ import net.firstpartners.data.RangeList;
 public class DocumentConvertorTest {
 
 	// Logger
-	private static final Logger log = Logger.getLogger(DocumentConvertorTest.class.getName());
+	private static final Logger log = LogManager.getLogger(DocumentConvertorTest.class.getName());
 
 	/**
 	 * s Convenience method - serialize test data for use by Cell Tests

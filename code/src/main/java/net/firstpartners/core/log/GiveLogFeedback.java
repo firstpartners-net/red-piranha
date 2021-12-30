@@ -1,6 +1,6 @@
 package net.firstpartners.core.log;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Marks as class as being able to display a pre and post rules snapshot of Data as feedback to users.

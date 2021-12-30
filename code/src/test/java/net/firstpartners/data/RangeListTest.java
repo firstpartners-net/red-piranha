@@ -3,7 +3,7 @@ package net.firstpartners.data;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
 import net.firstpartners.core.log.RpLogger;

@@ -3,7 +3,7 @@ package net.firstpartners.ui;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.drools.compiler.compiler.DroolsParserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

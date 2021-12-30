@@ -3,7 +3,9 @@ package net.firstpartners.core.drools.loader;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
@@ -14,7 +16,7 @@ public class FileRuleLoaderStrategyTest {
 
 
 
-	private static final Logger log = Logger.getLogger(FileRuleLoaderStrategyTest.class
+	private static final Logger log = LogManager.getLogger(FileRuleLoaderStrategyTest.class
 			.getName());
 
 	@Test

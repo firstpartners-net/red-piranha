@@ -5,7 +5,9 @@ import static org.junit.Assert.fail;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
@@ -14,7 +16,7 @@ public class URLRuleLoaderStrategyTest {
 
 	URLRuleLoaderStrategy ruleLoader = new URLRuleLoaderStrategy();
 
-	private static final Logger log = Logger.getLogger(URLRuleLoaderStrategyTest.class
+	private static final Logger log = LogManager.getLogger(URLRuleLoaderStrategyTest.class
 			.getName());
 
 

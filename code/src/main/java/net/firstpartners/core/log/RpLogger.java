@@ -2,31 +2,31 @@ package net.firstpartners.core.log;
 
 import java.io.IOException;
 
-import org.apache.log4j.FileAppender;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PatternLayout;
+import org.apache.logging.log4j.core.appender.FileAppender;
+import org.apache.logging.log4j.core.appender.FileAppender.Builder;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import net.firstpartners.ui.Start;
 
 /**
- * Extend logging so that we can control logging in an exe environment where we
+ * Extend logging so that we can control logging in an 	exe environment where we
  * may not have full control of config
  * 
  * @author PBrowne
  */
-public class RpLogger extends Logger {
+public class RpLogger extends LogManager {
 
 	// the handle to the log file
-	 private static FileAppender fileHandler = null;
+	private static FileAppender fileHandler = null;
 
-	/**
-	 * @param name of this Logger
-	 */
-	public RpLogger(String name) {
-
-		super(name);
-	}
+//	/**
+//	 * @param name of this Logger
+//	 */
+//	public RpLogger(String name) {
+//
+//	}
 
 	/**
 	 * Get a handle to a logger, with our additions (if set)
@@ -37,12 +37,13 @@ public class RpLogger extends Logger {
 	 */
 	public static Logger getLogger(String name) {
 
-		Logger log = Logger.getLogger(name);
+		Logger log = LogManager.getLogger(name);
 		
 
-		if (fileHandler != null) {
-			log.addAppender(fileHandler);
-		}
+//		if (fileHandler != null) {
+//			log.addAppender(fileHandler);
+//			log.
+//		}
 
 		return log;
 
@@ -58,16 +59,15 @@ public class RpLogger extends Logger {
 	public static void checkForceLogToFile(String logFileName) throws SecurityException, IOException {
 
 		if (logFileName != null & logFileName !="") {
-			fileHandler = new FileAppender();
-			fileHandler.setName("FileLogger");
-			fileHandler.setFile(logFileName);
-			fileHandler.setLayout(new PatternLayout("%d %-5p [%c{1}] %m%n"));
-			fileHandler.setThreshold(Level.DEBUG);
-			fileHandler.setAppend(true);
-			fileHandler.activateOptions();
-
-			// add appender to any Logger (here is root)
-			Logger.getRootLogger().addAppender(fileHandler);
+			
+		
+			
+			FileAppender.Builder b = FileAppender.newBuilder();
+			b.withFileName(logFileName);
+			b.withAppend(true);
+			b.setName("fileLogger");
+			b.build();
+			fileHandler = b.build();
 			
 			//Log 
 			Logger thisLog = getLogger(Start.class.getName());

@@ -67,7 +67,7 @@ public class Start implements CommandLineRunner{
 		
 		new SpringApplicationBuilder(Start.class)
 			.headless(false)
-			.web(WebApplicationType.NONE)
+			.web(WebApplicationType.REACTIVE)
 			.build().run(args);
 		
 		//applicationContext = new ClassPathXmlApplicationContext("ApplicationContext.xml");

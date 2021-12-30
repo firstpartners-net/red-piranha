@@ -7,12 +7,11 @@
 		<version>2.6.2</version> <!-- lookup parent from repository -->
 	</parent>
 
-
 	<groupId>net.firstpartners</groupId>
-	<artifactId>RedGui</artifactId>
+	<artifactId>RedPiranha</artifactId>
 	<version>2.0.0-SNAPSHOT</version>
 	<name>RedGui</name>
-	<description>GUI for mapping Excel to Rules</description>
+	<description>GUI for mapping Excel Data to Java and Business Rules</description>
 	<properties>
 		<java.version>11</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,8 +23,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
-
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -44,6 +41,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- needed to render html templates in /resources/templates -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
 
 		<!--Log4j - latest version without vulnerability-->
 		<dependency>
@@ -70,7 +73,6 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.32</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.drools</groupId>
@@ -166,7 +168,7 @@
 				<configuration>
 
 					<!-- Entry Point of the application-->
-					<mainClass>net.firstpartners.ui.Start</mainClass>
+					<!--mainClass>net.firstpartners.ui.Start</mainClass>-->
 				</configuration>
 
 			</plugin>

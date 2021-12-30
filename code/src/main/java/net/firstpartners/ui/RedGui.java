@@ -49,7 +49,7 @@ import net.firstpartners.ui.utils.Config;
  * @author PBrowne
  *
  */
-@Component
+//@Component
 public class RedGui extends WindowAdapter
 		implements ActionListener, Runnable, ILogger, IGiveFeedbackToUsers {
 

@@ -33,9 +33,9 @@ import net.firstpartners.ui.utils.Config;
  * @author PBrowne
  *
  */
-@SpringBootApplication
+//@SpringBootApplication
 //@Component
-@EnableAutoConfiguration
+//@EnableAutoConfiguration
 public class Start implements CommandLineRunner{
 
 	// handle for logger
@@ -67,7 +67,7 @@ public class Start implements CommandLineRunner{
 		
 		new SpringApplicationBuilder(Start.class)
 			.headless(false)
-			.web(WebApplicationType.REACTIVE)
+			.web(WebApplicationType.SERVLET)
 			.build().run(args);
 		
 		//applicationContext = new ClassPathXmlApplicationContext("ApplicationContext.xml");

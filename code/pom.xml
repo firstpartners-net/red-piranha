@@ -18,15 +18,15 @@
 	</properties>
 	<dependencies>
 
-		<!-- To provide embedded webservice-->		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<!-- To provide embedded webservice-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
@@ -41,12 +41,25 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- needed to render html templates in /resources/templates -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<!-- Provides a lot of "out of box" services useful for production deployment-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<!-- Swagger - self documenting REST endpoints
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version>
+		</dependency>-->
 
 		<!--Log4j - latest version without vulnerability-->
 		<dependency>
@@ -60,7 +73,7 @@
 			<artifactId>log4j-core</artifactId>
 			<version>2.17.1</version>
 		</dependency>
-
+		<!--
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -73,7 +86,7 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.32</version>
 		</dependency>
-
+-->
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-core</artifactId>
@@ -86,7 +99,6 @@
 			<version>6.5.0.Final</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.drools/knowledge-api -->
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>knowledge-api</artifactId>

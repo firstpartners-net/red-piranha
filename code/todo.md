@@ -1,6 +1,9 @@
 RP TODO - MOVE
 	* Branch (Integrate)
     * Web version 1
+		* Next: display / update configuration
+		* some layout for server
+		* as much REST as possible
 	* Tidy Check functionality
 		* Logs (to RP Log again)
         * Configuration respore (move to srping)
@@ -9,6 +12,9 @@ RP TODO - MOVE
 		* Restore GUI panel (on web)
 	* Notes on getting started with build
 	* Update all dependencies
+	* Spring
+		* Enable swagger
+		* Enable more services
 	* Update to latest KIE version
 		* Running again
 	* Excel ??

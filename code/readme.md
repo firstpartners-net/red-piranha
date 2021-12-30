@@ -1,6 +1,6 @@
 Here if you're a coder
 
-mvn Spring:boot run
+* To run as spring boot applicaiton mvn spring-boot:run
 
 Standard Maven package layout
 Standard Srping boot app
@@ -8,5 +8,7 @@ Standard Srping boot app
 entry points ...
 
 configuration ...
+
+Logging ...
 
 extending ...

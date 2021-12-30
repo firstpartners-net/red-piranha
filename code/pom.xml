@@ -19,12 +19,12 @@
 	</properties>
 	<dependencies>
 
-		<!-- if we want to embed webservice>		
+		<!-- To provide embedded webservice-->		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		-->
+		
 
 
 		<dependency>

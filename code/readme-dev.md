@@ -2,6 +2,11 @@ Here if you're a coder
 
 * To run as spring boot applicaiton mvn spring-boot:run
 
+What happens on startup
+* trys to run using the config in application 
+* further queries based on rest api
+
+
 Standard Maven package layout
 Standard Srping boot app
 

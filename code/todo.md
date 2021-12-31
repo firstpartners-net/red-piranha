@@ -1,3 +1,8 @@
+Now pushing - example using config
+
+
+
+
 RP TODO - MOVE
 	* Branch (Integrate)
     * Web version 1
@@ -5,9 +10,6 @@ RP TODO - MOVE
 		* some layout for server
 		* as much REST as possible
 	* Tidy Check functionality
-		* Logs (to RP Log again)
-        * Configuration respore (move to srping)
-            * override for testing and extension
 		* Test of example
 		* Restore GUI panel (on web)
 	* Notes on getting started with build

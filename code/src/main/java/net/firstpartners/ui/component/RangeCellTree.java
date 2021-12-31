@@ -12,9 +12,9 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
@@ -31,11 +31,13 @@ public class RangeCellTree extends JPanel {
 	private DefaultMutableTreeNode treeRoot; // need to keep a handle to it later
 	// private JLabel selectedLabel;
 
+	// Logger
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+	
 	public RangeCellTree() {
 
-		// Logger
-		final Logger log = RpLogger.getLogger(RangeCellTree.class.getName());
-
+		
 		treeRoot = new DefaultMutableTreeNode("Info we have found. Select Node for more details");
 
 		// create the tree by passing in the treeRoot node

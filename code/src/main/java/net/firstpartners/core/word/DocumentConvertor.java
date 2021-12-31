@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.usermodel.Paragraph;
 import org.apache.poi.hwpf.usermodel.Table;
@@ -12,7 +14,6 @@ import org.apache.poi.hwpf.usermodel.TableIterator;
 import org.apache.poi.hwpf.usermodel.TableRow;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
@@ -28,7 +29,8 @@ public class DocumentConvertor {
 	private static final String TABLE_MARKER = "TABLE_";
 
 	// Logger
-	private static final Logger log = RpLogger.getLogger(DocumentConvertor.class.getName());
+	private static Logger log = LoggerFactory.getLogger(DocumentConvertor.class);
+
 
 	// first number of chars we use in names
 	public static final int FIRST_X_IN_NAMES = 30;

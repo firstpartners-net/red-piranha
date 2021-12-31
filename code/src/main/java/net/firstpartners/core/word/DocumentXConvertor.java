@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import org.apache.logging.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xwpf.usermodel.IBodyElement;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
@@ -25,10 +25,11 @@ import net.firstpartners.data.RangeList;
  */
 public class DocumentXConvertor {
 
+	// Logger
+	private static final Logger log = LoggerFactory.getLogger(DocumentXConvertor.class);
+	
 	private static final String TABLE_IN_POI_WORD_MARKER = "TABLE";
 
-	// Logger
-	private static final Logger log = RpLogger.getLogger(DocumentXConvertor.class.getName());
 
 	/**
 	 * The name we store Word Paragraphs under

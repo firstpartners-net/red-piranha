@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Value;
 
 import net.firstpartners.core.drools.loader.RuleConfig;
-import net.firstpartners.core.log.RpLogger;
 
 /**
  * Bean to hold Configuration from the specified property file
@@ -25,20 +25,8 @@ public class Config {
 	
 	
 	//Logger if needed
-	private static final Logger log = RpLogger.getLogger(Config.class.getName());
-	
-/*	
-	public static final String RULE1 = "RULE1";
-	private static final String RULE2 = "RULE2";
-	private static final String RULE3 = "RULE3";
-	
-	public static final String DRL="DSL";
-	
-	// names of params to read from properties files - keep these internal except for testing
-	public static final String FILE_INPUT = "FILE_INPUT";
-	public static final String FILE_OUTPUT = "FILE_OUTPUT";
-	*/
-	
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+
 	
 	// Properties autowired by spring
 	@Value("${FILE_INPUT}")

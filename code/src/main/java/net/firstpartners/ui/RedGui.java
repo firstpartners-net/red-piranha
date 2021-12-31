@@ -26,13 +26,13 @@ import javax.swing.text.DefaultCaret;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.RangeList;
 import net.firstpartners.ui.component.HtmlGenerator;
 import net.firstpartners.ui.component.RangeCellTree;
@@ -60,7 +60,7 @@ public class RedGui extends WindowAdapter
 	//private static final String GUI_MODE_CLOSE_ON_COMPLETION = "CLOSE_ON_COMPLETION";
 
 	// Logger
-	private static final Logger log = RpLogger.getLogger(RedGui.class.getName());
+	private static Logger log = LoggerFactory.getLogger(RedGui.class);
 
 	static boolean quit = false;
 

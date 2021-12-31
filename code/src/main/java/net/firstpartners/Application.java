@@ -1,8 +1,7 @@
 package net.firstpartners;
 
-import java.util.Arrays;
-
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.ui.utils.Config;
 
 
@@ -27,7 +25,7 @@ public class Application {
 	Config myConfig;
 
 	// Logger
-	private static final Logger log = RpLogger.getLogger(Application.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	
 	public static void main(String[] args) {

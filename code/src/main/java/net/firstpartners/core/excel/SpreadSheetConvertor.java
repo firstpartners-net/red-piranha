@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 import org.apache.poi.ss.usermodel.Name;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -16,7 +18,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.AreaReference;
 import org.apache.poi.ss.util.CellReference;
 
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
@@ -32,7 +33,7 @@ import net.firstpartners.data.RangeList;
 public class SpreadSheetConvertor {
 
 	// Logging
-	private static final Logger log = RpLogger.getLogger(SpreadSheetConvertor.class.getName());
+	private static final Logger log = LoggerFactory.getLogger(SpreadSheetConvertor.class);
 
 	/**
 	 * Read an excel file and return what we find as a set of simple JavaBeans

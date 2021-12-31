@@ -5,7 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
@@ -18,7 +19,6 @@ import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.file.CSVOutputStrategy;
 import net.firstpartners.core.file.JsonOutputStrategy;
 import net.firstpartners.core.file.PDFOutputStrategy;
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.word.WordInputStrategy;
 import net.firstpartners.core.word.WordXInputStrategy;
 
@@ -32,8 +32,8 @@ import net.firstpartners.core.word.WordXInputStrategy;
 public class RuleRunnerFactory {
 
 	// Handle to the logger
-	private static final Logger log = RpLogger.getLogger(RuleRunner.class.getName());
-
+	private static final Logger log = LoggerFactory.getLogger(RuleRunnerFactory.class);
+	
 	// How we identify file types
 	public static final String SUFFIX_WORD = ".doc";
 	public static final String SUFFIX_WORDX = ".docx";

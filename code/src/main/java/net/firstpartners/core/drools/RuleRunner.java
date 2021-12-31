@@ -5,12 +5,13 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.logging.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.drools.KnowledgeBase;
 import org.drools.compiler.compiler.DroolsParserException;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.StatelessKnowledgeSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
@@ -20,7 +21,6 @@ import net.firstpartners.core.log.EmptyLogger;
 import net.firstpartners.core.log.GiveLogFeedback;
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.Range;
@@ -34,7 +34,7 @@ import net.firstpartners.data.RangeList;
 public class RuleRunner {
 
 	// Handle to the logger
-	private static final Logger log = RpLogger.getLogger(RuleRunner.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	// Handle to the strategy Class to write out the document
 	private IDocumentOutStrategy outputStrategy = null;

@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import net.firstpartners.core.log.RpLogger;
 
 /**
  * A range is just a holder for a group of named cells - maps to a similar
@@ -27,7 +27,7 @@ public class Range implements Map<String, Cell>, Serializable {
 
 	public static final String CELLNAME_NUM_SEPARATOR = "_";
 
-	private static final Logger log = RpLogger.getLogger(Range.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private static final long serialVersionUID = -2208591825859424164L;
 

@@ -6,15 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import javax.swing.UnsupportedLookAndFeelException;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.word.DocumentConvertorTest;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -26,7 +22,7 @@ import net.firstpartners.data.RangeList;
 public class RedGuiTest {
 
 	// Logger
-	private static final Logger log = LogManager.getLogger(RedGuiTest.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Test
 	public final void testCallMain() throws Throwable {
@@ -39,42 +35,6 @@ public class RedGuiTest {
 
 	}
 
-	/**
-	 * The Main method is more of a convenience for testing All it does is display
-	 * the GUI
-	 * 
-	 * @param args
-	 * @throws ClassNotFoundException
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws UnsupportedLookAndFeelException
-	 * @throws IOException
-	 * @throws InvalidFormatException 
-	 */
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException,
-			IllegalAccessException, UnsupportedLookAndFeelException, IOException, InvalidFormatException {
-
-		//Regen the Word data (can be commented out)
-		DocumentConvertorTest.main(null);
-		
-		// Open the GUI
-		log.debug("Opening GUI");
-		RedGui player = new RedGui();
-
-		// Get the test data - XL
-		RangeList redData = getTestDataFromExcel();
-
-		// Get the test data - Word
-
-		RangeList redWordData = getTestDataFromWord();
-
-		player.showPreRulesSnapShot(redData);
-		player.showPostRulesSnapShot(redWordData);
-
-		Runnable readRun = new Thread(player);
-		readRun.run();
-
-	}
 
 	/**
 	 * @return

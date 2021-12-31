@@ -2,17 +2,17 @@ package net.firstpartners.core.file;
 
 import java.io.IOException;
 
-import org.apache.logging.log4j.Logger;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.log.ILogger;
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
@@ -25,8 +25,9 @@ import net.firstpartners.data.RangeList;
 public class PDFOutputStrategy implements IDocumentOutStrategy {
 
 	// Logger
-	private static final Logger log = RpLogger.getLogger(PDFOutputStrategy.class.getName());
-
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
+	
 	// Name of the outputfile
 	private String outputFileName = null;
 

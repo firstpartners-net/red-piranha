@@ -1,6 +1,7 @@
 package net.firstpartners.core.log;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * An Adaptor that allows us to log to the consoles
@@ -10,7 +11,7 @@ public class ConsoleLogger implements ILogger {
 
 	
 	// Logger
-	private static final Logger log = RpLogger.getLogger(ConsoleLogger.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	
 	public ConsoleLogger(){

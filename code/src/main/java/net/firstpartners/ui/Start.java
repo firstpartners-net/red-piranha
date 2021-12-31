@@ -3,13 +3,13 @@ package net.firstpartners.ui;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 import org.drools.compiler.compiler.DroolsParserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
@@ -18,7 +18,7 @@ import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
 import net.firstpartners.core.log.ILogger;
-import net.firstpartners.core.log.RpLogger;
+
 import net.firstpartners.ui.utils.Config;
 
 /**
@@ -39,7 +39,7 @@ import net.firstpartners.ui.utils.Config;
 public class Start implements CommandLineRunner{
 
 	// handle for logger
-	private static final Logger log = RpLogger.getLogger(Start.class.getName());
+	private static final Logger log = LoggerFactory.getLogger(Start.class.getName());
 
 	//handle for Application Context
 	@Autowired
@@ -111,12 +111,7 @@ public class Start implements CommandLineRunner{
 //			System.out.println("ERROR - NO SRPING CONFIG FOUND");
 //			
 //		}
-	
-		// Check and force logging
-		String logFileName = appConfig.getForcedLogFileName(); // was my config
-		System.out.println("FORCING LOG TO FILE:"+logFileName);
-		RpLogger.checkForceLogToFile(logFileName);
-		
+
 		
 		// Open the GUI
 		log.debug("Opening GUI");

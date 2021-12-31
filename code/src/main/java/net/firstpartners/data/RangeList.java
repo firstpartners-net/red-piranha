@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import net.firstpartners.core.log.RpLogger;
 
 /**
  * Holder of all multiple Named Ranges from a spreadsheet. Also provides
@@ -27,7 +27,7 @@ import net.firstpartners.core.log.RpLogger;
 public class RangeList implements List<Range>, Serializable {
 
 	//
-	private static final Logger log = RpLogger.getLogger(RangeList.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	/**
 	 * needed for serialization

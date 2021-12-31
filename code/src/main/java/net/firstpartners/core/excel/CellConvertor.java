@@ -1,7 +1,6 @@
 package net.firstpartners.core.excel;
 
 import java.util.Date;
-import org.apache.logging.log4j.Logger;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -12,8 +11,9 @@ import org.apache.poi.ss.usermodel.Drawing;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
-import net.firstpartners.core.log.RpLogger;
 
 /**
  * Convert from Excel values (as represented by Apache POI) to Javaeans (used by
@@ -21,7 +21,7 @@ import net.firstpartners.core.log.RpLogger;
  */
 public class CellConvertor {
 
-	private static final Logger log = RpLogger.getLogger(CellConvertor.class.getName());
+	private static Logger log = LoggerFactory.getLogger(CellConvertor.class);
 
 	/**
 	 * Convert from Excel(Apache) to RedPiranha - Javabean version of a Cell

@@ -4,16 +4,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.logging.log4j.Logger;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.file.OfficeDocument;
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -26,7 +26,7 @@ import net.firstpartners.data.RangeList;
 public class WordInputStrategy implements IDocumentInStrategy {
 
 	// Handle to the loggers
-	private static final Logger log = RpLogger.getLogger(WordInputStrategy.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private String wordInputFileName = null;
 	private XWPFDocument poiDoc = null;

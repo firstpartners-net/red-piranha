@@ -1,6 +1,7 @@
 package net.firstpartners.core.excel;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -8,7 +9,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellReference;
 
-import net.firstpartners.core.log.RpLogger;
 
 /**
  * A class that helps up map Excel Worksheets into Javabeans.
@@ -19,7 +19,7 @@ import net.firstpartners.core.log.RpLogger;
  */
 public class SheetConvertor {
 
-	private static final Logger log = RpLogger.getLogger(SheetConvertor.class.getName());
+	private static final Logger log = LoggerFactory.getLogger(SheetConvertor.class);
 	
 	/**
 	 * Get or create a cell in a row, if it is not found

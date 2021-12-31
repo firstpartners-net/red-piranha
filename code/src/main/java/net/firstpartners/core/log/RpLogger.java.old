@@ -4,11 +4,13 @@ import java.io.IOException;
 
 import org.apache.logging.log4j.core.appender.FileAppender;
 import org.apache.logging.log4j.core.appender.FileAppender.Builder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.firstpartners.ui.Start;
+import net.firstpartners.ui.utils.Config;
 
 /**
  * Extend logging so that we can control logging in an 	exe environment where we
@@ -21,32 +23,17 @@ public class RpLogger extends LogManager {
 	// the handle to the log file
 	private static FileAppender fileHandler = null;
 
-//	/**
-//	 * @param name of this Logger
-//	 */
-//	public RpLogger(String name) {
-//
-//	}
 
 	/**
 	 * Get a handle to a logger, with our additions (if set)
 	 * 
 	 * @param name
-	 * @return java.util.logging.Logger - but configured to output in exe
-	 *         environment
+	 * @return Logger
 	 */
 	public static Logger getLogger(String name) {
 
-		Logger log = LogManager.getLogger(name);
+		return LogManager.getLogger(name);
 		
-
-//		if (fileHandler != null) {
-//			log.addAppender(fileHandler);
-//			log.
-//		}
-
-		return log;
-
 	}
 
 	/**
@@ -59,19 +46,27 @@ public class RpLogger extends LogManager {
 	public static void checkForceLogToFile(String logFileName) throws SecurityException, IOException {
 
 		if (logFileName != null & logFileName !="") {
+
 			
-		
-			
-			FileAppender.Builder b = FileAppender.newBuilder();
-			b.withFileName(logFileName);
-			b.withAppend(true);
-			b.setName("fileLogger");
-			b.build();
-			fileHandler = b.build();
-			
-			//Log 
-			Logger thisLog = getLogger(Start.class.getName());
-			thisLog.debug("Forced Log to:"+logFileName);
+			if (fileHandler != null) {
+				
+				FileAppender.Builder b = FileAppender.newBuilder();
+				b.withFileName(myConfig.);
+				b.withAppend(true);
+				b.setName("fileLogger");
+				b.build();
+				fileHandler = b.build();
+				
+				//Log 
+				Logger thisLog = getLogger(Start.class.getName());
+				thisLog.debug("Forced Log to:"+logFileName);
+				log.addAppender(fileHandler);
+				
+			}
+
+			return log;
+
+
 		}
 
 	}

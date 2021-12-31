@@ -1,6 +1,7 @@
 package net.firstpartners.core.log;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Marks as class as being able to display a pre and post rules snapshot of Data as feedback to users.
@@ -12,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 public class GiveLogFeedback implements IGiveFeedbackToUsers{
 
 	// Handle to the logger
-	private static final Logger log = RpLogger.getLogger(GiveLogFeedback.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	
 	/**
@@ -20,7 +21,7 @@ public class GiveLogFeedback implements IGiveFeedbackToUsers{
 	 * @param message
 	 */
 	public void showPreRulesSnapShot(Object dataToSnapshotToUser) {
-		log.info(dataToSnapshotToUser);
+		log.info(dataToSnapshotToUser.toString());
 	}
 	
 
@@ -29,7 +30,7 @@ public class GiveLogFeedback implements IGiveFeedbackToUsers{
 	 * @param message
 	 */
 	public void showPostRulesSnapShot(Object dataToSnapshotToUser) {
-		log.info(dataToSnapshotToUser);
+		log.info(dataToSnapshotToUser.toString());
 	}
 	
 	/**

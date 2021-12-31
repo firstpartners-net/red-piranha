@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 import org.drools.event.rule.ObjectInsertedEvent;
 import org.drools.event.rule.ObjectRetractedEvent;
 import org.drools.event.rule.ObjectUpdatedEvent;
 import org.drools.event.rule.WorkingMemoryEventListener;
 
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
 
 /**
@@ -22,7 +23,7 @@ import net.firstpartners.data.Cell;
 public class WorkingMemoryCellListener implements WorkingMemoryEventListener {
 
 	// Logger
-	private static final Logger log = RpLogger.getLogger(WorkingMemoryCellListener.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	ArrayList<Cell> newCells = new ArrayList<Cell>();
 

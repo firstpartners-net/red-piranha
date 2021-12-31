@@ -1,14 +1,15 @@
 package net.firstpartners.ui.utils;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,7 +30,7 @@ public class ConfigTest {
 	Config myConfig;
 
 	// Logger
-	private static final Logger log = LogManager.getLogger(ConfigTest.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 
 	public final void testReadPreviousData() throws IOException, ClassNotFoundException {
@@ -37,6 +38,7 @@ public class ConfigTest {
 		FileInputStream fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
 		ObjectInputStream in = new ObjectInputStream(fileIn);
 		RangeList redData = (RangeList) in.readObject();
+		assertNotNull(redData);
 		in.close();
 		fileIn.close();
 	}

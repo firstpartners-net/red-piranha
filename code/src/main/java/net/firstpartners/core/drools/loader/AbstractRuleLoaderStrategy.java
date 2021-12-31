@@ -10,7 +10,6 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.logging.log4j.Logger;
 import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderErrors;
@@ -20,8 +19,9 @@ import org.drools.compiler.compiler.DroolsParserException;
 import org.drools.core.common.DroolsObjectInputStream;
 import org.drools.definition.KnowledgePackage;
 import org.drools.io.ResourceFactory;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
-import net.firstpartners.core.log.RpLogger;
 
 /**
  * Base class to support loading Rules Related files
@@ -34,7 +34,7 @@ public abstract class AbstractRuleLoaderStrategy implements IRuleLoaderStrategy 
 	// How we recognize rules written in a Domain Specific language files extensions
 	public static final String DSLR_FILE_EXTENSION = ".dslr";
 
-	private static final Logger log = RpLogger.getLogger(AbstractRuleLoaderStrategy.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	// How we recognize Excel rule files extensions
 	public static final String XLS_FILE_EXTENSION = ".xls";

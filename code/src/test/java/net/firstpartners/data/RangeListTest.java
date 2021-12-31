@@ -3,14 +3,14 @@ package net.firstpartners.data;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.junit.Test;
 
-import net.firstpartners.core.log.RpLogger;
 
 public class RangeListTest  {
 
-	private Logger log = RpLogger.getLogger(Range.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Test
 	public void testIfNullBreaks() throws Exception {

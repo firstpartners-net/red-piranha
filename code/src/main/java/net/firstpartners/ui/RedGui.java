@@ -306,13 +306,7 @@ public class RedGui extends WindowAdapter
 		if (percentProgressMade == 100) {
 			homePageCloseButton.setEnabled(true);
 			
-		
-			//check if we exit on completion
-			if(appConfig.getGuiMode().equals(GUI_MODE_CLOSE_ON_COMPLETION)) {
-				log.debug("Signalling close");
-	
-				System.exit(0);
-			}
+
 			
 			
 		}

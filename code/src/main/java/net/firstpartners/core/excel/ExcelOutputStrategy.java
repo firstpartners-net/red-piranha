@@ -6,6 +6,7 @@ import java.io.OutputStream;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
@@ -28,6 +29,10 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	// Logger
 	private static final Logger log = RpLogger.getLogger(ExcelOutputStrategy.class.getName());
 
+	//handle for our config
+	@Autowired
+	Config appConfig;
+	
 	// Name of the outputfile
 	private String outputFileName = null;
 
@@ -54,7 +59,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	public void flush() {
 		if (this.spreadSheetLogger instanceof SpreadSheetLogger) {
 
-			((SpreadSheetLogger) this.spreadSheetLogger).flush(workbook, Config.EXCEL_LOG_WORKSHEET_NAME);
+			((SpreadSheetLogger) this.spreadSheetLogger).flush(workbook, appConfig.getExcelLogSheetName());
 
 		}
 

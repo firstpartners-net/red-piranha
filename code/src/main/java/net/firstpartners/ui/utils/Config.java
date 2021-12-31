@@ -2,17 +2,19 @@ package net.firstpartners.ui.utils;
 
 import java.util.ArrayList;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 
 import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.core.log.RpLogger;
 
 /**
- * Read the System configuration from the specified property file
+ * Bean to hold Configuration from the specified property file
  * 
  * @author PBrowne
  *
@@ -21,15 +23,10 @@ import net.firstpartners.core.log.RpLogger;
 @PropertySource(value = "classpath:application.properties", ignoreResourceNotFound = true)
 public class Config {
 	
-	// Spring should make the property source available here
-	@Autowired
-	private Environment env;
 	
-	// the name of the sheet the we log files to
-	public static final String EXCEL_LOG_WORKSHEET_NAME = "log";
+	//Logger if needed
+	private static final Logger log = RpLogger.getLogger(Config.class.getName());
 	
-	//Default name for the config file
-	public static final String RED_PIRANHA_CONFIG = "red-piranha.config";
 	
 	public static final String RULE1 = "RULE1";
 	private static final String RULE2 = "RULE2";
@@ -37,56 +34,125 @@ public class Config {
 	
 	public static final String DRL="DSL";
 	
-	public static final String GUI_MODE="GUI_MODE"; // allowed values, empty, CLOSE_ON_COMPLETION
-	
 	// names of params to read from properties files - keep these internal except for testing
 	public static final String FILE_INPUT = "FILE_INPUT";
 	public static final String FILE_OUTPUT = "FILE_OUTPUT";
-	private static final Logger log = RpLogger.getLogger(Config.class.getName());
-	private static final String LOG_FILE_NAME = "LOG_FILE_NAME";
 
 	// Keys that must be present in the file
 	public static String[] requiredConfigKeys = { FILE_INPUT, FILE_OUTPUT, RULE1 };
-
-	/**
-	 * If set, return the name of the Log file
-	 * 
-	 * @return filename , or empty / null if not present
-	 */
-	public String getForcedLogFileName() {
-		
-		log.info("Env is null:"+(env==null));
-		return env.getProperty(Config.LOG_FILE_NAME);
-		
-		//return readConfig().getProperty(, "");
-	}
 	
-	/**
-	 * If set, return the name of the GuiMode file
-	 * 
-	 * @return filename , or empty / null if not present
-	 */
-	public String getGuiMode() {
-		return env.getProperty(Config.GUI_MODE, "");
+	// Properties autowired by spring
+	@Value("${FILE_INPUT}")
+	private String inputFileName;
+
+	@Autowired
+	@Value("${FILE_OUTPUT}")
+	private String outputFileName;
+	
+	@Autowired
+	@Value("${LOG_FILE_NAME}")
+	private String forcedLogFileName;
+	
+	@Autowired
+	@Value("${DSL}")
+	private String dslName;
+	
+	@Autowired
+	@Value("${RULE1}")
+	private String rule1;
+	
+	@Autowired
+	@Value("${RULE2}")
+	private String rule2;
+	
+	@Autowired
+	@Value("${RULE3}")
+	private String rule3;
+	
+	@Autowired
+	@Value("${EXCEL_LOG_SHEET_NAME}")
+	private String excelLogSheetName;
+	
+
+	public String getRule1() {
+		return rule1;
 	}
 
-	/**
-	 * If set, return the name of the Log file
-	 * 
-	 * @return filename , or empty / null if not present
-	 */
+
+	public void setRule1(String rule1) {
+		this.rule1 = rule1;
+	}
+
+
+	public String getRule2() {
+		return rule2;
+	}
+
+
+	public void setRule2(String rule2) {
+		this.rule2 = rule2;
+	}
+
+
+	public String getRule3() {
+		return rule3;
+	}
+
+
+	public void setRule3(String rule3) {
+		this.rule3 = rule3;
+	}
+
+
+	public String getExcelLogSheetName() {
+		return excelLogSheetName;
+	}
+
+
+	public void setExcelLogSheetName(String excelLogSheetName) {
+		this.excelLogSheetName = excelLogSheetName;
+	}
+
+
 	public String getInputFileName() {
-		return env.getProperty(Config.FILE_INPUT, "");
+		return inputFileName;
 	}
 
-	/**
-	 * If set, return the name of the Log file
-	 * 
-	 * @return filename , or empty / null if not present
-	 */
-	public String getOutputFileName() {
-		return env.getProperty(Config.FILE_OUTPUT, "");
+
+	public void setInputFileName(String inputFileName) {
+		this.inputFileName = inputFileName;
 	}
+
+
+	public String getOutputFileName() {
+		return outputFileName;
+	}
+
+
+	public void setOutputFileName(String outputFileName) {
+		this.outputFileName = outputFileName;
+	}
+
+
+	public String getForcedLogFileName() {
+		return forcedLogFileName;
+	}
+
+
+	public void setForcedLogFileName(String forcedLogFileName) {
+		this.forcedLogFileName = forcedLogFileName;
+	}
+
+
+	public String getDslName() {
+		return dslName;
+	}
+
+
+	public void setDslName(String dslName) {
+		this.dslName = dslName;
+	}
+
 
 	/**
 	 * Get the rule file names from the command line
@@ -97,15 +163,18 @@ public class Config {
 	public RuleConfig getRuleConfig() {
 
 		ArrayList<String> ruleFileLocations = new ArrayList<String>();
-		if (env.getProperty(RULE1) != null) {
-			ruleFileLocations.add(env.getProperty(RULE1));
+		if (rule1!=null) {
+			ruleFileLocations.add(rule1);
 		}
-		if (env.getProperty(RULE2) != null) {
-			ruleFileLocations.add(env.getProperty(RULE2));
+		
+		if (rule2!=null) {
+			ruleFileLocations.add(rule2);
 		}
-		if (env.getProperty(RULE3) != null) {
-			ruleFileLocations.add(env.getProperty(RULE3));
+		
+		if (rule3!=null) {
+			ruleFileLocations.add(rule3);
 		}
+		
 
 		// Set this as a RuleSource Object
 		String[] tmpArr = new String[ruleFileLocations.size()];
@@ -124,10 +193,11 @@ public class Config {
 	 */
 	void validateConfig() {
 
-		for (int a = 0; a < requiredConfigKeys.length; a++) {
-			assert env.getProperty(requiredConfigKeys[a]) != null : "Please make sure the config file contains a value for " + requiredConfigKeys[a];
+		// Check for required Keys
+			assert rule1 != null : "Please make sure the config file contains a value for Rule 1";
+			assert inputFileName != null : "Please make sure the config file contains a value for the Input file";
+			assert outputFileName != null : "Please make sure the config file contains a value for the Output file";
 
-		}
 
 		if (getInputFileName().equalsIgnoreCase(getOutputFileName())) {
 			log.warn("Stopping - Input and output files should not be the same");
@@ -135,8 +205,9 @@ public class Config {
 		}
 	}
 
-	public String getDslName() {
-		return env.getProperty(Config.DRL, "");
+	
+	public String toString() {
+		  return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
 	}
 
 }

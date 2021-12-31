@@ -47,7 +47,6 @@ public class ConfigTest {
 	public final void testConfigNotNullOrEmpty() {
 		assertTrue(myConfig!=null);
 		assertTrue(myConfig.getDslName()!=null);
-		assertTrue(myConfig.getForcedLogFileName()!=null);
 		assertTrue(myConfig.getInputFileName()!=null);
 		
 	} 
@@ -70,16 +69,6 @@ public class ConfigTest {
 		assertEquals(myConfig.getOutputFileName(),"yada-yada2");
 	}
 	
-	
-	@Test
-	public final void testReadLogFileName() {
-
-		String testLog = myConfig.getForcedLogFileName();
-		Assert.assertNotNull(testLog);
-		assertTrue(testLog != "");
-		log.debug("test run");
-
-	}
 
 	@Test
 	public final void testReadDslName() {

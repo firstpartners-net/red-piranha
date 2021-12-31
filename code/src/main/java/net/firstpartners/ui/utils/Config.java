@@ -121,14 +121,14 @@ public class Config {
 	}
 
 
-	public String getForcedLogFileName() {
-		return forcedLogFileName;
-	}
-
-
-	public void setForcedLogFileName(String forcedLogFileName) {
-		this.forcedLogFileName = forcedLogFileName;
-	}
+//	public String getForcedLogFileName() {
+//		return forcedLogFileName;
+//	}
+//
+//
+//	public void setForcedLogFileName(String forcedLogFileName) {
+//		this.forcedLogFileName = forcedLogFileName;
+//	}
 
 
 	public String getDslName() {

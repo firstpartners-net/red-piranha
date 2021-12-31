@@ -1,4 +1,4 @@
-package net.firstpartners.ui;
+package net.firstpartners;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

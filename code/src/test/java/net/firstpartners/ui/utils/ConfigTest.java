@@ -2,17 +2,14 @@ package net.firstpartners.ui.utils;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +60,12 @@ public class ConfigTest {
 	
 	@Test
 	public final void testCanOverwriteConfig() {
-		fail("just kidding");
+		
+		myConfig.setInputFileName("yada-yada");
+		assertEquals(myConfig.getInputFileName(),"yada-yada");
+		
+		myConfig.setOutputFileName("yada-yada2");
+		assertEquals(myConfig.getOutputFileName(),"yada-yada2");
 	}
 	
 	

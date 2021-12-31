@@ -27,7 +27,7 @@ public class Config {
 	//Logger if needed
 	private static final Logger log = RpLogger.getLogger(Config.class.getName());
 	
-	
+/*	
 	public static final String RULE1 = "RULE1";
 	private static final String RULE2 = "RULE2";
 	private static final String RULE3 = "RULE3";
@@ -37,9 +37,8 @@ public class Config {
 	// names of params to read from properties files - keep these internal except for testing
 	public static final String FILE_INPUT = "FILE_INPUT";
 	public static final String FILE_OUTPUT = "FILE_OUTPUT";
-
-	// Keys that must be present in the file
-	public static String[] requiredConfigKeys = { FILE_INPUT, FILE_OUTPUT, RULE1 };
+	*/
+	
 	
 	// Properties autowired by spring
 	@Value("${FILE_INPUT}")
@@ -62,11 +61,11 @@ public class Config {
 	private String rule1;
 	
 	@Autowired
-	@Value("${RULE2}")
+	@Value("${RULE2 ?: 'empty'}")
 	private String rule2;
 	
 	@Autowired
-	@Value("${RULE3}")
+	@Value("${RULE3 ?: 'empty'}")
 	private String rule3;
 	
 	@Autowired

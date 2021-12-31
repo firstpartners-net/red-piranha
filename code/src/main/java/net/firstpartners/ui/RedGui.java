@@ -57,7 +57,7 @@ public class RedGui extends WindowAdapter
 	@Autowired
 	Config appConfig;
 	
-	private static final String GUI_MODE_CLOSE_ON_COMPLETION = "CLOSE_ON_COMPLETION";
+	//private static final String GUI_MODE_CLOSE_ON_COMPLETION = "CLOSE_ON_COMPLETION";
 
 	// Logger
 	private static final Logger log = RpLogger.getLogger(RedGui.class.getName());

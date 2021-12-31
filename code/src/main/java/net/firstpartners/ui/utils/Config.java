@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Component;
 
 import net.firstpartners.core.drools.loader.RuleConfig;
@@ -21,12 +22,11 @@ import net.firstpartners.core.drools.loader.RuleConfig;
  */
 @Component
 @PropertySource(value = "classpath:application.properties", ignoreResourceNotFound = true)
+@ManagedResource 
 public class Config {
-	
 	
 	//Logger if needed
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-
 	
 	// Properties autowired by spring
 	@Value("${FILE_INPUT}")
@@ -120,15 +120,6 @@ public class Config {
 		this.outputFileName = outputFileName;
 	}
 
-
-//	public String getForcedLogFileName() {
-//		return forcedLogFileName;
-//	}
-//
-//
-//	public void setForcedLogFileName(String forcedLogFileName) {
-//		this.forcedLogFileName = forcedLogFileName;
-//	}
 
 
 	public String getDslName() {

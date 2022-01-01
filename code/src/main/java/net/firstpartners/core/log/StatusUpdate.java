@@ -5,17 +5,31 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Marks as class as being able to display a pre and post rules snapshot of Data as feedback to users.
- * Often this is used as to update a GUI or something similar.
+ * Often this is used as to update the status to the user.
+ * 
+ * It differs from a log as we are more interested in the last message
  * 
  * @author PBrowne
  *
  */
-public class GiveLogFeedback implements IGiveFeedbackToUsers{
+public class StatusUpdate {
 
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	
+	private String currentStatus="";
+			
+			
+	public String getCurrentStatus() {
+		return currentStatus;
+	}
+
+
+	public void updateCurrentStatus(String currentStatus) {
+		this.currentStatus = currentStatus;
+	}
+
+
 	/**
 	 * Allows us to notify the user of a snapshot post rules
 	 * @param message

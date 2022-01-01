@@ -18,8 +18,7 @@ import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
 import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.core.log.EmptyLogger;
-import net.firstpartners.core.log.GiveLogFeedback;
-import net.firstpartners.core.log.IGiveFeedbackToUsers;
+import net.firstpartners.core.log.StatusUpdate;
 import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.data.Cell;
@@ -79,7 +78,7 @@ public class RuleRunner {
 		// Add the logger
 		// prevent a null pointer in our rules
 		ILogger logger = new EmptyLogger();
-		IGiveFeedbackToUsers userFeedback = new GiveLogFeedback();
+		StatusUpdate userFeedback = new StatusUpdate();
 
 		callRules(userFeedback, logger);
 	}
@@ -97,7 +96,7 @@ public class RuleRunner {
 	 * @throws CsvRequiredFieldEmptyException
 	 * @throws CsvDataTypeMismatchException
 	 */
-	public void callRules(IGiveFeedbackToUsers userDataDisplay, ILogger userMessages)
+	public void callRules(StatusUpdate userDataDisplay, ILogger userMessages)
 			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
 		// Load our rules first - catches any compilation errors early

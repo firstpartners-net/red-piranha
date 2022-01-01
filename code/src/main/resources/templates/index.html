@@ -47,7 +47,7 @@
 					th:object="${configBean}">
 						<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-primary">Run Rules</button>
+							<button type="submit" class="btn btn-primary">Run All Steps</button>
 						</div>
 					</div>
 				</form>
@@ -100,7 +100,7 @@
 				<p class="bg-primary">&nbsp;Information from Input File</p>
 				<p><input type="text" th:value="*{inputFileContent}" class="form-control" rows="5"/></p>
 				<p class="bg-primary">&nbsp;Messages as Business Rules are applied</p>
-				<p><input type="text" th:value="*{ruleFileContent}" class="form-control" rows="5" /></p>
+				<p th:text="${ruleFileMessages}"/></p>
 				<p class="bg-primary">&nbsp;Information after Business Rules</p>
 				<p><input type="text" th:value="*{outputFileContent}" class="form-control" rows="5" /></p>
 			</div>

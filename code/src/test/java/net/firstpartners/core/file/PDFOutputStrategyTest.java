@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.data.RangeList;
-import net.firstpartners.ui.RedGuiTest;
+import net.firstpartners.ui.RedControllerTest;
 
 public class PDFOutputStrategyTest {
 
@@ -20,7 +20,7 @@ public class PDFOutputStrategyTest {
 
 
 		PDFOutputStrategy pdfOut = new PDFOutputStrategy(TestConstants.PDF_TMP_FILE);
-		RangeList TestData=RedGuiTest.getTestDataFromWord();
+		RangeList TestData=RedControllerTest.getTestDataFromWord();
 		pdfOut.setUpdates(null, TestData);
 
 		// Process the output

@@ -1,6 +1,7 @@
 package net.firstpartners.utils;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -41,8 +42,8 @@ public class Config {
 	private String forcedLogFileName;
 	
 	@Autowired
-	@Value("${DSL}")
-	private String dslName;
+	@Value("${DSL ?: 'empty'}")
+	private Optional<String> dslName;
 	
 	@Autowired
 	@Value("${RULE1}")
@@ -123,12 +124,17 @@ public class Config {
 
 
 	public String getDslName() {
-		return dslName;
+		
+		if(dslName.isPresent()) {
+			return dslName.get();
+		}
+		
+		return "";
 	}
 
 
 	public void setDslName(String dslName) {
-		this.dslName = dslName;
+		this.dslName = Optional.of(dslName); 
 	}
 
 

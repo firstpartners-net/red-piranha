@@ -19,7 +19,7 @@ import net.firstpartners.data.RangeList;
  * @author PBrowne
  *
  */
-public class RedGuiTest {
+public class RedControllerTest {
 
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());

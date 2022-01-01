@@ -1,11 +1,12 @@
 package net.firstpartners.ui;
 
+import java.io.File;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,7 @@ import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.core.log.BufferLogger;
-import net.firstpartners.core.log.GiveLogFeedback;
-import net.firstpartners.core.log.IGiveFeedbackToUsers;
+import net.firstpartners.core.log.StatusUpdate;
 import net.firstpartners.utils.Config;
 
 /**
@@ -36,11 +36,6 @@ public class RedController {
 	// Logger if needed
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	@GetMapping("/zzz-some-made-up-method")
-	public String index() {
-		return "Greetings from Spring Boot!";
-	}
-
 	/**
 	 * Original Request
 	 * 
@@ -50,9 +45,16 @@ public class RedController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
 
+		// Check where we are
+		File whereAmI = new File(".");
+		log.debug("Default file location:" + whereAmI.getAbsolutePath());
+
+		
 		// this attribute will be available in the view index.html as a thymeleaf
 		// variable
 		model.addAttribute("configBean", appConfig);
+		
+		model.addAttribute("updateMessage", "Please hit the 'Run Rules' button");
 
 		// this just means render index.html from static/ area
 		return "index";
@@ -83,9 +85,14 @@ public class RedController {
 
 		log.debug("DSL?" + ruleConfig.getDslFileLocation());
 		
+
 		//Create objects to gather feedback
 		BufferLogger userLogger = new BufferLogger();
-		IGiveFeedbackToUsers userUpdates = new GiveLogFeedback();
+		StatusUpdate userUpdates = new StatusUpdate();
+		
+		// Just in Case Status message that we will update as we progress
+		userUpdates.updateCurrentStatus("Something has gone wrong, please check the messages below and in the logs."); 
+		
 
 		try {
 
@@ -96,6 +103,9 @@ public class RedController {
 			userLogger.info("Running Rules:" + ruleConfig);
 			runner.callRules(userUpdates, userLogger);
 			userLogger.info("Complete");
+			
+			//update our main status message
+			userUpdates.updateCurrentStatus("Rules Complete");
 
 		} catch (Throwable t) {
 			userLogger.exception("Uncaught Exception", t);
@@ -107,9 +117,9 @@ public class RedController {
 		
 		
 		// update the web values with the values coming back
-		model.addAttribute("updateMessage", "Some progress message...");
+		model.addAttribute("updateMessage", userUpdates.getCurrentStatus());
 		model.addAttribute("inputFileContent", "incoming values...");
-		model.addAttribute("ruleFileContent", userLogger.getContents());
+		model.addAttribute("ruleFileMessages", userLogger.getContents());
 		model.addAttribute("outputFileContent", "output log...");
 
 		// make the config we used available as well

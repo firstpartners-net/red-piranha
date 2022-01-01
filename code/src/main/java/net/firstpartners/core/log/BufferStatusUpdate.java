@@ -6,18 +6,18 @@ package net.firstpartners.core.log;
  * @author paulbrowne
  *
  */
-public class BufferLogger implements ILogger {
+public class BufferStatusUpdate extends AbstractStatusUpdate implements IStatusUpdate {
 
-	ILogger nestedLogger = null;
+	IStatusUpdate nestedLogger = null;
 
 	// We also allow this to be configured to log to memory
 	final StringBuffer buffer = new StringBuffer();
 
-	public BufferLogger() {
+	public BufferStatusUpdate() {
 
 	}
 
-	public BufferLogger(ILogger nestedLogger) {
+	public BufferStatusUpdate(IStatusUpdate nestedLogger) {
 		this.nestedLogger = nestedLogger;
 	}
 
@@ -50,11 +50,11 @@ public class BufferLogger implements ILogger {
 		return buffer.toString();
 	}
 
-	public ILogger getNestedLogger() {
+	public IStatusUpdate getNestedLogger() {
 		return nestedLogger;
 	}
 
-	public void setNestedLogger(ILogger nestedLogger) {
+	public void setNestedLogger(IStatusUpdate nestedLogger) {
 		this.nestedLogger = nestedLogger;
 	}
 

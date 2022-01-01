@@ -62,7 +62,7 @@
   {
     "GHI_1": {
       "name": "GHI_1",
-      "nextName": "‘000_0",
+      "nextName": "â€˜000_0",
       "modified": true,
       "originalCellCol": 1,
       "originalCellRow": 3,
@@ -80,35 +80,35 @@
     }
   },
   {
-    "‘000_2": {
-      "name": "‘000_2",
-      "nextName": "‘000_3",
+    "â€˜000_2": {
+      "name": "â€˜000_2",
+      "nextName": "â€˜000_3",
       "modified": true,
       "originalCellCol": 2,
       "originalCellRow": 0,
       "originalTableReference": "TABLE_2",
       "value": "Heading 2"
     },
-    "‘000_1": {
-      "name": "‘000_1",
-      "nextName": "‘000_2",
+    "â€˜000_1": {
+      "name": "â€˜000_1",
+      "nextName": "â€˜000_2",
       "modified": true,
       "originalCellCol": 1,
       "originalCellRow": 0,
       "originalTableReference": "TABLE_2",
       "value": "Heading 1"
     },
-    "‘000_0": {
-      "name": "‘000_0",
-      "nextName": "‘000_1",
+    "â€˜000_0": {
+      "name": "â€˜000_0",
+      "nextName": "â€˜000_1",
       "modified": true,
       "originalCellCol": 0,
       "originalCellRow": 0,
       "originalTableReference": "TABLE_2",
-      "value": "‘000"
+      "value": "â€˜000"
     },
-    "‘000_4": {
-      "name": "‘000_4",
+    "â€˜000_4": {
+      "name": "â€˜000_4",
       "nextName": "Row 1_0",
       "modified": true,
       "originalCellCol": 4,
@@ -116,9 +116,9 @@
       "originalTableReference": "TABLE_2",
       "value": "Heading 4"
     },
-    "‘000_3": {
-      "name": "‘000_3",
-      "nextName": "‘000_4",
+    "â€˜000_3": {
+      "name": "â€˜000_3",
+      "nextName": "â€˜000_4",
       "modified": true,
       "originalCellCol": 3,
       "originalCellRow": 0,
@@ -617,7 +617,7 @@
   {
     "PARA_13_Vestibulum neque massa, sceler": {
       "name": "PARA_13_Vestibulum neque massa, sceler",
-      "nextName": "PARA_14_‘000",
+      "nextName": "PARA_14_â€˜000",
       "modified": false,
       "originalCellCol": -1,
       "originalCellRow": -1,
@@ -625,13 +625,13 @@
     }
   },
   {
-    "PARA_14_‘000": {
-      "name": "PARA_14_‘000",
+    "PARA_14_â€˜000": {
+      "name": "PARA_14_â€˜000",
       "nextName": "PARA_15_Heading 1",
       "modified": false,
       "originalCellCol": -1,
       "originalCellRow": -1,
-      "value": "‘000"
+      "value": "â€˜000"
     }
   },
   {

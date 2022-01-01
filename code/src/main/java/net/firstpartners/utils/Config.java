@@ -1,7 +1,6 @@
 package net.firstpartners.utils;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

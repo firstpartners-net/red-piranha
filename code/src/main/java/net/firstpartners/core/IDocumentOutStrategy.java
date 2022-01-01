@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import net.firstpartners.core.file.OfficeDocument;
-import net.firstpartners.core.log.ILogger;
+import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -24,7 +24,7 @@ public interface IDocumentOutStrategy {
 	 * Write out any documents we hold to anybody else interested
 	 * @param logger
 	 */
-	void flush(ILogger logger);
+	void flush(IStatusUpdate logger);
 	
 	/**
 	 * String representation of where our output will be going to
@@ -47,7 +47,7 @@ public interface IDocumentOutStrategy {
 	 * Allows us to set a Logger that will flush within a document if the Strategy supports it
 	 * @param documentLogger
 	 */
-	void setDocumentLogger(ILogger documentLogger);
+	void setDocumentLogger(IStatusUpdate documentLogger);
 	
 	/**
 	 * Update our Original Document with new data

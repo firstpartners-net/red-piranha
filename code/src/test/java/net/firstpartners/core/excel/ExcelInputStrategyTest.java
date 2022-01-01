@@ -36,7 +36,7 @@ public class ExcelInputStrategyTest {
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 		runner.setOutputStrategy(outputStrategy);
-
+ 
 		runner.callRules();
 		assertNotNull(outputStrategy.getProcessedDocument());
 

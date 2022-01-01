@@ -7,7 +7,7 @@ public class BufferLoggerTest {
 	@Test
 	public final void testLog() {
 		//Make these these log without exception
-		BufferLogger bufferLogger = new BufferLogger();
+		BufferStatusUpdate bufferLogger = new BufferStatusUpdate();
 		bufferLogger.debug("testDebug");
 		bufferLogger.info("testInfo");
 		bufferLogger.exception("testException", new Exception("Sample"));
@@ -16,8 +16,8 @@ public class BufferLoggerTest {
 	@Test
 	public final void testNestedLog() {
 		//Make these these log without exception
-		ConsoleLogger consoleLogger = new ConsoleLogger();
-		BufferLogger bufferLogger = new BufferLogger(consoleLogger);
+		ConsoleStatusUpdate consoleLogger = new ConsoleStatusUpdate();
+		BufferStatusUpdate bufferLogger = new BufferStatusUpdate(consoleLogger);
 
 
 		bufferLogger.debug("testDebug");

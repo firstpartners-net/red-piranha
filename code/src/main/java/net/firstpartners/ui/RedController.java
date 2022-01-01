@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.drools.loader.RuleConfig;
-import net.firstpartners.core.log.BufferLogger;
-import net.firstpartners.core.log.StatusUpdate;
+import net.firstpartners.core.log.BufferStatusUpdate;
 import net.firstpartners.utils.Config;
 
 /**
@@ -87,8 +86,7 @@ public class RedController {
 		
 
 		//Create objects to gather feedback
-		BufferLogger userLogger = new BufferLogger();
-		StatusUpdate userUpdates = new StatusUpdate();
+		BufferStatusUpdate userUpdates = new BufferStatusUpdate();
 		
 		// Just in Case Status message that we will update as we progress
 		userUpdates.updateCurrentStatus("Something has gone wrong, please check the messages below and in the logs."); 
@@ -100,15 +98,15 @@ public class RedController {
 			RuleRunner runner = RuleRunnerFactory.getRuleRunner(inputFileName, ruleConfig, outputFileName);
 			
 			// Call the rules using this datafile
-			userLogger.info("Running Rules:" + ruleConfig);
-			runner.callRules(userUpdates, userLogger);
-			userLogger.info("Complete");
+			userUpdates.info("Running Rules:" + ruleConfig);
+			runner.callRules(userUpdates);
+			userUpdates.info("Complete");
 			
 			//update our main status message
 			userUpdates.updateCurrentStatus("Rules Complete");
 
 		} catch (Throwable t) {
-			userLogger.exception("Uncaught Exception", t);
+			userUpdates.exception("Uncaught Exception", t);
 			userUpdates.notifyExceptionOccured();
 
 		}
@@ -119,7 +117,7 @@ public class RedController {
 		// update the web values with the values coming back
 		model.addAttribute("updateMessage", userUpdates.getCurrentStatus());
 		model.addAttribute("inputFileContent", "incoming values...");
-		model.addAttribute("ruleFileMessages", userLogger.getContents());
+		model.addAttribute("ruleFileMessages", userUpdates.getContents());
 		model.addAttribute("outputFileContent", "output log...");
 
 		// make the config we used available as well

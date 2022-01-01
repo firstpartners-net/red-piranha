@@ -23,8 +23,8 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 import net.firstpartners.core.IDocumentOutStrategy;
-import net.firstpartners.core.log.EmptyLogger;
-import net.firstpartners.core.log.ILogger;
+import net.firstpartners.core.log.EmptyStatusUpdate;
+import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
@@ -110,7 +110,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	private RangeList processedRange;
 	
 	//Handle to logger to GUI
-	private ILogger userLogger = new EmptyLogger(); // we may change later -null safe
+	private IStatusUpdate userLogger = new EmptyStatusUpdate(); // we may change later -null safe
 
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
@@ -133,7 +133,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	 * We implement this is part of the interface, but don't do anything with it.
 	 */
 	@Override
-	public void flush(ILogger logger) {
+	public void flush(IStatusUpdate logger) {
 		
 	}
 
@@ -265,7 +265,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	 * @param userLogger - this strategy does not use
 	 */
 	@Override
-	public void setDocumentLogger(ILogger userLogger) {
+	public void setDocumentLogger(IStatusUpdate userLogger) {
 		this.userLogger = userLogger;
 	}
 

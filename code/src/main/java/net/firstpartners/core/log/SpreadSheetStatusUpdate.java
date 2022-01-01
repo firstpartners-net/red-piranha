@@ -17,7 +17,7 @@ import org.apache.poi.ss.usermodel.Workbook;
  * @author paulbrowne
  *
  */
-public class SpreadSheetLogger implements ILogger {
+public class SpreadSheetStatusUpdate extends AbstractStatusUpdate implements IStatusUpdate {
 
 	// We also allow this to be configured to log to console
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -69,7 +69,7 @@ public class SpreadSheetLogger implements ILogger {
 	 * 
 	 * @param logger to print into
 	 */
-	public void flush(ILogger logger) {
+	public void flush(IStatusUpdate logger) {
 
 		StringBuffer returnText = new StringBuffer();
 

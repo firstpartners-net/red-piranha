@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.Utils;
-import net.firstpartners.core.log.ILogger;
-import net.firstpartners.core.log.SpreadSheetLogger;
+import net.firstpartners.core.log.IStatusUpdate;
+import net.firstpartners.core.log.SpreadSheetStatusUpdate;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 import net.firstpartners.utils.Config;
@@ -36,7 +36,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	// Name of the outputfile
 	private String outputFileName = null;
 
-	private ILogger spreadSheetLogger;
+	private IStatusUpdate spreadSheetLogger;
 
 	private Workbook workbook;
 
@@ -57,9 +57,9 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	@Override
 	public void flush() {
-		if (this.spreadSheetLogger instanceof SpreadSheetLogger) {
+		if (this.spreadSheetLogger instanceof SpreadSheetStatusUpdate) {
 
-			((SpreadSheetLogger) this.spreadSheetLogger).flush(workbook, appConfig.getExcelLogSheetName());
+			((SpreadSheetStatusUpdate) this.spreadSheetLogger).flush(workbook, appConfig.getExcelLogSheetName());
 
 		}
 
@@ -71,11 +71,11 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 * @param logger
 	 */
 	@Override
-	public void flush(ILogger logger) {
+	public void flush(IStatusUpdate logger) {
 		this.flush();
-		if (this.spreadSheetLogger instanceof SpreadSheetLogger) {
+		if (this.spreadSheetLogger instanceof SpreadSheetStatusUpdate) {
 
-			((SpreadSheetLogger) this.spreadSheetLogger).flush(logger);
+			((SpreadSheetStatusUpdate) this.spreadSheetLogger).flush(logger);
 		}
 
 	}
@@ -178,7 +178,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 * @param spreadSheetLogger
 	 */
 	@Override
-	public void setDocumentLogger(ILogger spreadSheetLogger) {
+	public void setDocumentLogger(IStatusUpdate spreadSheetLogger) {
 		this.spreadSheetLogger = spreadSheetLogger;
 
 	}

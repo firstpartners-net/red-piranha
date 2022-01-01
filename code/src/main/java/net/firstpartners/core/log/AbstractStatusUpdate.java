@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
  * @author PBrowne
  *
  */
-public class StatusUpdate {
+public abstract class AbstractStatusUpdate implements IStatusUpdate {
 
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -66,7 +66,7 @@ public class StatusUpdate {
 	public void notifyExceptionOccured() {
 		log.warn("EXCEPTION!");
 	}
-
+	
 	
 
 }

@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import net.firstpartners.core.excel.SpreadSheetConvertor;
 import net.firstpartners.core.file.OfficeDocument;
-import net.firstpartners.core.log.ILogger;
-import net.firstpartners.core.log.SpreadSheetLogger;
+import net.firstpartners.core.log.IStatusUpdate;
+import net.firstpartners.core.log.SpreadSheetStatusUpdate;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -17,7 +17,7 @@ import net.firstpartners.data.RangeList;
  */
 public class MemoryOutputStrategy implements IDocumentOutStrategy {
 
-	private ILogger docLogger;
+	private IStatusUpdate docLogger;
 
 	// Name of the outputfile
 	private OfficeDocument processedDoc = null;
@@ -37,11 +37,11 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	 * @param logger
 	 */
 	@Override
-	public void flush(ILogger logger) {
+	public void flush(IStatusUpdate logger) {
 
-		if (logger instanceof SpreadSheetLogger) {
+		if (logger instanceof SpreadSheetStatusUpdate) {
 
-			((SpreadSheetLogger) this.docLogger).flush(logger);
+			((SpreadSheetStatusUpdate) this.docLogger).flush(logger);
 
 		}
 	}
@@ -78,7 +78,7 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	 * @param spreadSheetLogger
 	 */
 	@Override
-	public void setDocumentLogger(ILogger spreadSheetLogger) {
+	public void setDocumentLogger(IStatusUpdate spreadSheetLogger) {
 		this.docLogger = spreadSheetLogger;
 
 	}

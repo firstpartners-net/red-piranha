@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.IDocumentOutStrategy;
-import net.firstpartners.core.log.ILogger;
+import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
@@ -51,7 +51,7 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 	}
 
 	@Override
-	public void flush(ILogger logger) {
+	public void flush(IStatusUpdate logger) {
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 	 * Not needing to be implemented as part of this strategy
 	 */
 	@Override
-	public void setDocumentLogger(ILogger spreadSheetLogger) {
+	public void setDocumentLogger(IStatusUpdate spreadSheetLogger) {
 
 	}
 

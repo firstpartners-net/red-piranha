@@ -7,14 +7,14 @@ import org.slf4j.LoggerFactory;
  * An Adaptor that allows us to log to the consoles
  *
  */
-public class ConsoleLogger implements ILogger {
+public class ConsoleStatusUpdate extends AbstractStatusUpdate implements IStatusUpdate {
 
 	
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	
-	public ConsoleLogger(){
+	public ConsoleStatusUpdate(){
 		
 	}
 	

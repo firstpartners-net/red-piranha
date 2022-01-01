@@ -5,11 +5,9 @@ package net.firstpartners.core.log;
  * But avoids Nullpointers in the rulebase
  *
  */
-public class EmptyLogger implements ILogger {
-
-
+public class EmptyStatusUpdate extends AbstractStatusUpdate implements IStatusUpdate {
 	
-	public EmptyLogger(){
+	public EmptyStatusUpdate(){
 		
 	}
 	

@@ -17,10 +17,9 @@ import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
 import net.firstpartners.core.drools.loader.RuleConfig;
-import net.firstpartners.core.log.EmptyLogger;
-import net.firstpartners.core.log.StatusUpdate;
-import net.firstpartners.core.log.ILogger;
-import net.firstpartners.core.log.SpreadSheetLogger;
+import net.firstpartners.core.log.EmptyStatusUpdate;
+import net.firstpartners.core.log.IStatusUpdate;
+import net.firstpartners.core.log.SpreadSheetStatusUpdate;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
@@ -77,10 +76,9 @@ public class RuleRunner {
 
 		// Add the logger
 		// prevent a null pointer in our rules
-		ILogger logger = new EmptyLogger();
-		StatusUpdate userFeedback = new StatusUpdate();
+		IStatusUpdate userMessages = new EmptyStatusUpdate();
 
-		callRules(userFeedback, logger);
+		callRules(userMessages);
 	}
 
 	/**
@@ -96,16 +94,16 @@ public class RuleRunner {
 	 * @throws CsvRequiredFieldEmptyException
 	 * @throws CsvDataTypeMismatchException
 	 */
-	public void callRules(StatusUpdate userDataDisplay, ILogger userMessages)
+	public void callRules(IStatusUpdate userMessages)
 			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
 		// Load our rules first - catches any compilation errors early
 		RuleConfig ruleSource = ruleLoader.getRuleSource();
 
 		// Create a new Logging object
-		outputStrategy.setDocumentLogger(new SpreadSheetLogger());
-		if (userDataDisplay != null) {
-			userDataDisplay.notifyProgress(20);
+		outputStrategy.setDocumentLogger(new SpreadSheetStatusUpdate());
+		if (userMessages != null) {
+			userMessages.notifyProgress(20);
 			userMessages.info("Opening Input :" + this.inputStrategy.getInputName());
 		}
 
@@ -113,16 +111,16 @@ public class RuleRunner {
 		RangeList ranges = inputStrategy.getJavaBeansFromSource();
 		ranges.cascadeResetIsModifiedFlag();
 
-		if (userDataDisplay != null) {
-			userDataDisplay.notifyProgress(35);
-			userDataDisplay.showPreRulesSnapShot(ranges);
-			userDataDisplay.notifyProgress(50);
+		if (userMessages != null) {
+			userMessages.notifyProgress(35);
+			userMessages.showPreRulesSnapShot(ranges);
+			userMessages.notifyProgress(50);
 		}
 
 		// Add the document contents as facts
 		ruleSource.addFacts(ranges.getAllCellsInAllRanges());
-		if (userDataDisplay != null) {
-			userDataDisplay.notifyProgress(60);
+		if (userMessages != null) {
+			userMessages.notifyProgress(60);
 		}
 
 		// Load and fire our rules files against the data
@@ -130,9 +128,9 @@ public class RuleRunner {
 		
 		
 		
-		if (userDataDisplay != null) {
-			userDataDisplay.showPostRulesSnapShot(ranges);
-			userDataDisplay.notifyProgress(80);
+		if (userMessages != null) {
+			userMessages.showPostRulesSnapShot(ranges);
+			userMessages.notifyProgress(80);
 		}
 
 		//Make a note of any new facts added
@@ -146,8 +144,8 @@ public class RuleRunner {
 		log.debug("RunRules - object " + inputStrategy.getOriginalDocument());
 		outputStrategy.setUpdates(inputStrategy.getOriginalDocument(), ranges);
 
-		if (userDataDisplay != null) {
-			userDataDisplay.notifyProgress(90);
+		if (userMessages != null) {
+			userMessages.notifyProgress(90);
 			userMessages.info("Write to Output file:" + outputStrategy.getOutputDestination());
 
 		}
@@ -159,8 +157,8 @@ public class RuleRunner {
 		outputStrategy.processOutput();
 
 		// signal to GUI we are complete
-		if (userDataDisplay != null) {
-			userDataDisplay.notifyProgress(100);
+		if (userMessages != null) {
+			userMessages.notifyProgress(100);
 		}
 
 	}
@@ -197,7 +195,7 @@ public class RuleRunner {
 	 * @throws IOException
 	 */
 	StatefulKnowledgeSession getStatefulSession(KnowledgeBase preBuiltKnowledgeBase, HashMap<String, Cell> globals,
-			ILogger logger) throws DroolsParserException, IOException {
+			IStatusUpdate logger) throws DroolsParserException, IOException {
 		// Create a new stateful session
 		StatefulKnowledgeSession workingMemory = preBuiltKnowledgeBase.newStatefulKnowledgeSession();
 
@@ -225,7 +223,7 @@ public class RuleRunner {
 	 * @throws IOException
 	 */
 	private Collection<Cell> runStatelessRules(KnowledgeBase preBuiltKnowledgeBase, Collection<Cell> facts,
-			HashMap<String, Cell> globals, ILogger logger) throws DroolsParserException, IOException {
+			HashMap<String, Cell> globals, IStatusUpdate logger) throws DroolsParserException, IOException {
 
 		// Create a new stateless session
 		log.debug("Creating new working memory");
@@ -274,7 +272,7 @@ public class RuleRunner {
 	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
-	private Collection<Cell> runStatelessRules(RuleConfig ruleSource, ILogger logger)
+	private Collection<Cell> runStatelessRules(RuleConfig ruleSource, IStatusUpdate logger)
 			throws DroolsParserException, IOException, ClassNotFoundException {
 
 		// The most common operation on a rulebase is to create a new rule

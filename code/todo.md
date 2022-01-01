@@ -3,6 +3,7 @@ Now pushing - example using config
 ** Config updates when rules pushed
 ** rules Steps
 ** catch empty
+** most info through to front end
 ** more tests compile / rule
 ** skeleton docs
 

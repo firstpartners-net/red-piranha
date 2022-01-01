@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -33,7 +34,14 @@ public class ConfigTest {
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-
+	@Test
+	public final void testCurrentLocation() {
+		
+		// Check where we are
+		File whereAmI = new File(".");
+		log.debug("Default file location:" + whereAmI.getAbsolutePath());
+	}
+	
 	public final void testReadPreviousData() throws IOException, ClassNotFoundException {
 		
 		FileInputStream fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
@@ -56,7 +64,7 @@ public class ConfigTest {
 	public final void testAutoConfig() {
 		assertTrue(myConfig.getOutputFileName()!=null);
 		log.info("Output file name"+myConfig.getOutputFileName());
-		assertTrue(myConfig.getOutputFileName().indexOf("FILE_OUTPUT")==0);
+		assertTrue(myConfig.getOutputFileName().indexOf("FILE_OUTPUT")!=0);
 	}
 	
 	

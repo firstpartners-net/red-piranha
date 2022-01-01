@@ -1,4 +1,4 @@
-package net.firstpartners.ui.utils;
+package net.firstpartners.utils;
 
 import java.util.ArrayList;
 

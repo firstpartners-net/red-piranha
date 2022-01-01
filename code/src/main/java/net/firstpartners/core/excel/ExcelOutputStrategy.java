@@ -16,7 +16,7 @@ import net.firstpartners.core.log.ILogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
-import net.firstpartners.ui.utils.Config;
+import net.firstpartners.utils.Config;
 
 /**
  * Strategy class of output of Excel Document

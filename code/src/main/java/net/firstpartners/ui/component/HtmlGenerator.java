@@ -7,7 +7,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import net.firstpartners.ui.utils.Config;
+import net.firstpartners.utils.Config;
 
 /**
  * Utility class for generating HTML used by the GUI

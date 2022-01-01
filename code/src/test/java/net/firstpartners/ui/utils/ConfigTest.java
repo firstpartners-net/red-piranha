@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.data.RangeList;
+import net.firstpartners.utils.Config;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest

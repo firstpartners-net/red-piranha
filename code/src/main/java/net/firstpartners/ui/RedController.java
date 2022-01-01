@@ -3,7 +3,6 @@ package net.firstpartners.ui;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +17,6 @@ import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.core.log.BufferLogger;
 import net.firstpartners.core.log.GiveLogFeedback;
 import net.firstpartners.core.log.IGiveFeedbackToUsers;
-import net.firstpartners.core.log.ILogger;
 import net.firstpartners.utils.Config;
 
 /**
@@ -34,8 +32,6 @@ public class RedController {
 	@Autowired
 	Config appConfig;
 
-	@Autowired
-	private ApplicationContext context;
 
 	// Logger if needed
 	private Logger log = LoggerFactory.getLogger(this.getClass());

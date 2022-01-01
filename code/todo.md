@@ -2,27 +2,22 @@ Now pushing - example using config
 * Tidy
 ** Config updates when rules pushed
 ** rules Steps
-** catch empty
 ** most info through to front end
 ** more tests compile / rule
 ** skeleton docs
 
+Testing: 59 tests, 9 Errors, 2 failures
 
 
-RP TODO - MOVE
-	*
-    * Web version 1
-		* Next: display / update configuration
-		* some layout for server
-		* as much REST as possible
-	* Tidy Check functionality
-		* Test of example
-		* Restore GUI panel (on web)
+Think Design
+* Robust simple
+* as much rest as possible
+* integration and pre/post release tests (e.g. Selenumum)
+
+
+
+TODO MOVE
 	* Notes on getting started with build
-	* Update all dependencies
-	* Spring
-		* Enable swagger
-		* Enable more services
 	* Update to latest KIE version
 		* Running again
 	* Excel ??
@@ -30,13 +25,15 @@ RP TODO - MOVE
         * Internal
         * Post to KIE Server / get from KIE server
 	* Comments on build
-	* TODO 
-		* Look for comments in code
+	* tIDY
+		* Look for TODO comments in code
 		* Update Javadoc
 	* NTH
 		* Add Docker image (based on main java one)
 		* Integrate in EI sample
-		
-
-RP later
-Maven site - document rp code?
+		* Add Spring MVC Tests
+		* Review update dependencie
+	* Spring
+		* Enable swagger
+		* Enable more services
+	* Maven site - document rp code?

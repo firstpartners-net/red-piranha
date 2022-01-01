@@ -22,3 +22,5 @@ code/.classpath
 code/.project
 
 code/.settings/org.eclipse.m2e.core.prefs
+code/src/test/resources/testdata/tmp.json
+code/src/test/resources/testdata/tmp.pdf

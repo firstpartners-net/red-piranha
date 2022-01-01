@@ -13,7 +13,7 @@
 	<name>RedGui</name>
 	<description>GUI for mapping Excel Data to Java and Business Rules</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
@@ -80,21 +80,35 @@
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-core</artifactId>
-			<version>6.5.0.Final</version>
+			<version>7.59.0.Final</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-compiler</artifactId>
-			<version>6.5.0.Final</version>
+			<version>7.59.0.Final</version>
+		</dependency>
+
+		<!-- Needed for compilign rules-->
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-canonical-model</artifactId>
+			<version>7.59.0.Final</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.drools</groupId>
-			<artifactId>knowledge-api</artifactId>
-			<version>6.5.0.Final</version>
+			<artifactId>drools-model-compiler</artifactId>
+			<version>7.59.0.Final</version>
 		</dependency>
 
+		<!-- 
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>knowledge-api</artifactId>
+			<version>7.59.0.Final</version>
+		</dependency>
+-->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>

@@ -1,10 +1,14 @@
 
-Next : combine config and model into single object
+Next :
+* Move to KIE
+* Merge branch	
 
 
 
 Now pushing 
 * Tidy
+** remove precomiple rules builder
+
 ** Config updates when rules pushed
 ** rules Steps
 ** most info through to front end

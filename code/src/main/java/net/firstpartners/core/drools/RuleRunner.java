@@ -6,16 +6,29 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+// previous drools
 import org.drools.KnowledgeBase;
 import org.drools.compiler.compiler.DroolsParserException;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.StatelessKnowledgeSession;
+
+// new kie
+import org.kie.api.KieServices;
+import org.kie.api.builder.KieModule;
+import org.kie.api.event.rule.DebugAgendaEventListener;
+import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
+import org.kie.api.logger.KieRuntimeLogger;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
+
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
+import net.firstpartners.core.drools.loader.RedRuleBuilder;
 import net.firstpartners.core.log.EmptyStatusUpdate;
 import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.core.log.SpreadSheetStatusUpdate;
@@ -72,7 +85,7 @@ public class RuleRunner {
 	 * @throws CsvRequiredFieldEmptyException
 	 * @throws CsvDataTypeMismatchException
 	 */
-	public RedModel callRules() throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
+	public RedModel callRules() throws IOException, ClassNotFoundException, InvalidFormatException {
 
 		// Add the logger
 		// prevent a null pointer in our rules
@@ -96,7 +109,7 @@ public class RuleRunner {
 	 * @return our Model with all the information so we can display back to the user
 	 */
 	public RedModel callRules(IStatusUpdate userMessages)
-			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
+			throws IOException, ClassNotFoundException, InvalidFormatException {
 
 		// Load our rules first - catches any compilation errors early
 		RedModel ruleModel = ruleLoader.getRuleSource();
@@ -276,13 +289,24 @@ public class RuleRunner {
 	 * @throws Exception
 	 */
 	private Collection<Cell> runStatelessRules(RedModel ruleSource, IStatusUpdate logger)
-			throws DroolsParserException, IOException, ClassNotFoundException {
+			throws IOException, ClassNotFoundException {
 
+		
+		KieContainer kc = KieServices.Factory.get().getKieClasspathContainer();
+		KieSession kSession = kc.newKieSession("RedKS");
+		
+		
+		
 		// The most common operation on a rulebase is to create a new rule
 		// session; either stateful or stateless.
 		log.debug("Creating master rule base");
-		KnowledgeBase masterRulebase = ruleLoader.loadRules(ruleSource);
+		//@Todo refactor into this patter
+		//KnowledgeBase masterRulebase = ruleLoader.loadRules(ruleSource);
+		KieModule masterRulebase = RedRuleBuilder.getRulesFromDisk(ruleSource);
 
+		
+		//refactorign from here
+		
 		log.debug("running stateless rules");
 		Collection<Cell> tmpCollection = runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger);
 		return tmpCollection;

@@ -1,10 +1,10 @@
 package example
 
-import net.firstpartners.core.log.ILogger
+import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.Cell;
 
 
-global ILogger log;
+global IStatusUpdate log;
 
 // We must reference the dsl that we are using
 expander cell-logging.dsl

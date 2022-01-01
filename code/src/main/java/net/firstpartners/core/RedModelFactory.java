@@ -45,9 +45,6 @@ public class RedModelFactory {
 		if (thisConfig.getRule3() != null && thisConfig.getRule3() != Config.EMPTY) {
 			freshModel.addRuleLocation(thisConfig.getRule3());
 		}
-
-		//Validate this model
-		validateModel (freshModel);
 		
 		return freshModel;
 	}
@@ -55,7 +52,7 @@ public class RedModelFactory {
 	/**
 	 * Validate the required Config file
 	 */
-	static void validateModel(RedModel modelToValidate) {
+	public static void validateModel(RedModel modelToValidate) {
 
 		// Check for required Keys
 		assert modelToValidate.getRulesLocation() != null : "Please make sure the config file contains a value for Rule 1";

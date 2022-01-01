@@ -1,11 +1,11 @@
 package net.firstpartners.sample.ExcelDataRules;
 
-import net.firstpartners.drools.log.ILogger
+import net.firstpartners.drools.log.IStatusUpdate;
 
 import net.firstpartners.spreadsheet.Cell;
 import net.firstpartners.spreadsheet.Range;
 
-global ILogger log;
+global IStatusUpdate log;
 
 # We must reference the dsl that we are using
 expander cell-logging.dsl

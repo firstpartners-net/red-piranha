@@ -167,21 +167,21 @@ public class RuleRunner {
 	}
 
 	/**
-	 * Handle to the the Strategy Delegate we use for outputting
-	 * 
-	 * @return the strategy object
-	 */
-	public IDocumentOutStrategy getDocumenttOutputStrategy() {
-		return outputStrategy;
-	}
-
-	/**
 	 * The strategy we use for dealing with incoming documents
 	 * 
 	 * @return the strategy object
 	 */
 	public IDocumentInStrategy getDocumentInputStrategy() {
 		return inputStrategy;
+	}
+
+	/**
+	 * Handle to the the Strategy Delegate we use for outputting
+	 * 
+	 * @return the strategy object
+	 */
+	public IDocumentOutStrategy getDocumenttOutputStrategy() {
+		return outputStrategy;
 	}
 
 	public IRuleLoaderStrategy getRuleLoader() {

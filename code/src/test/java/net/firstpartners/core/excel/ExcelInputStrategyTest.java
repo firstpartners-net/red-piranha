@@ -29,7 +29,7 @@ public class ExcelInputStrategyTest {
 
 		RedModel ruleSource = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
 		ruleSource.addRuleLocation(TestConstants.RULES_FILES);
-		
+			
 		log.debug("rule source created");
 		
 		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLS_DATA_FILE,ruleSource,"some-dummy.xls");

@@ -33,8 +33,6 @@ public class FileRuleLoaderStrategyTest {
 		ruleSource.setKnowledgeBaseLocation(TestConstants.KNOWLEDGE_BASE_FILE);
 		log.debug("will try to load:"+ruleSource.getKnowledgeBaseLocation());
 		
-		
-		
 		// do the call
 		//Class Under Test
 		FileRuleLoader ruleLoader = new FileRuleLoader(ruleSource);

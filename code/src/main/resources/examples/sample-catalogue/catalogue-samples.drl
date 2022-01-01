@@ -1,9 +1,9 @@
 package sample.catalogue;
 
-import net.firstpartners.core.log.ILogger
+import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.Cell;
 
-global ILogger log;
+global IStatusUpdate log;
 
 
 rule "test following cell"

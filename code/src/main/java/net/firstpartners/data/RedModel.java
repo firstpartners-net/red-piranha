@@ -6,6 +6,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Cargo object to hold information about the rules and facts (Excel Data) we are working with
  * @author paul
@@ -13,6 +16,10 @@ import java.util.List;
  */
 public class RedModel {
 	
+	// Logger
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
+	//internal data
 	private String dslFileLocation;
 
 	private Collection<Cell> facts = new ArrayList<Cell>();
@@ -27,6 +34,8 @@ public class RedModel {
 
 	private Config config;
 
+	public RedModel() {}
+	
 	public RedModel(Config config) {
 		this.config = config;
 	}
@@ -87,7 +96,8 @@ public class RedModel {
 	}
 
 	public String[] getRulesLocation() {
-		return (String[]) rulesLocation.toArray();
+		log.debug("ruleslocation:"+rulesLocation.getClass());
+		return (String[]) rulesLocation.toArray(new String[rulesLocation.size()]);
 	}
 
 

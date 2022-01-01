@@ -45,10 +45,6 @@ public class RedController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
 
-		// Check where we are
-		File whereAmI = new File(".");
-		log.debug("Default file location:" + whereAmI.getAbsolutePath());
-
 		
 		// this attribute will be available in the view index.html as a thymeleaf
 		// variable
@@ -81,9 +77,12 @@ public class RedController {
 		// Get the params
 		String inputFileName = appConfig.getInputFileName();
 		String outputFileName = appConfig.getOutputFileName();
-		RedModel ruleConfig = RedModelFactory.getFreshRedModelUsingConfiguration(appConfig);
+		
+		//create a validate the info we are going to use to run the rules
+		RedModel redModel = RedModelFactory.getFreshRedModelUsingConfiguration(appConfig);
+		RedModelFactory.validateModel(redModel);
 
-		log.debug("DSL?" + ruleConfig.getDslFileLocation());
+		log.debug("DSL?" + redModel.getDslFileLocation());
 		
 
 		//Create objects to gather feedback
@@ -96,10 +95,10 @@ public class RedController {
 		try {
 
 			// The Factory auto-generates the input and output strategy based on the filenames
-			RuleRunner runner = RuleRunnerFactory.getRuleRunner(inputFileName, ruleConfig, outputFileName);
+			RuleRunner runner = RuleRunnerFactory.getRuleRunner(inputFileName, redModel, outputFileName);
 			
 			// Call the rules using this datafile
-			userUpdates.info("Running Rules:" + ruleConfig);
+			userUpdates.info("Running Rules:" + redModel);
 			runner.callRules(userUpdates);
 			userUpdates.info("Complete");
 			

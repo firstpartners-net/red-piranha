@@ -16,13 +16,13 @@ import org.slf4j.LoggerFactory;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
-import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.core.log.EmptyStatusUpdate;
 import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.core.log.SpreadSheetStatusUpdate;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
+import net.firstpartners.data.RedModel;
 
 /**
  * Call JBoss Drools (Rules Engine) passing in Document data as Java Objects
@@ -72,13 +72,13 @@ public class RuleRunner {
 	 * @throws CsvRequiredFieldEmptyException
 	 * @throws CsvDataTypeMismatchException
 	 */
-	public void callRules() throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
+	public RedModel callRules() throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
 		// Add the logger
 		// prevent a null pointer in our rules
 		IStatusUpdate userMessages = new EmptyStatusUpdate();
 
-		callRules(userMessages);
+		return callRules(userMessages);
 	}
 
 	/**
@@ -93,12 +93,13 @@ public class RuleRunner {
 	 * @throws InvalidFormatException
 	 * @throws CsvRequiredFieldEmptyException
 	 * @throws CsvDataTypeMismatchException
+	 * @return our Model with all the information so we can display back to the user
 	 */
-	public void callRules(IStatusUpdate userMessages)
+	public RedModel callRules(IStatusUpdate userMessages)
 			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
 
 		// Load our rules first - catches any compilation errors early
-		RuleConfig ruleSource = ruleLoader.getRuleSource();
+		RedModel ruleModel = ruleLoader.getRuleSource();
 
 		// Create a new Logging object
 		outputStrategy.setDocumentLogger(new SpreadSheetStatusUpdate());
@@ -118,13 +119,13 @@ public class RuleRunner {
 		}
 
 		// Add the document contents as facts
-		ruleSource.addFacts(ranges.getAllCellsInAllRanges());
+		ruleModel.addFacts(ranges.getAllCellsInAllRanges());
 		if (userMessages != null) {
 			userMessages.notifyProgress(60);
 		}
 
 		// Load and fire our rules files against the data
-		Collection<Cell> newFacts = runStatelessRules(ruleSource, userMessages);
+		Collection<Cell> newFacts = runStatelessRules(ruleModel, userMessages);
 		
 		
 		
@@ -160,6 +161,8 @@ public class RuleRunner {
 		if (userMessages != null) {
 			userMessages.notifyProgress(100);
 		}
+		
+		return ruleModel;
 
 	}
 
@@ -272,7 +275,7 @@ public class RuleRunner {
 	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
-	private Collection<Cell> runStatelessRules(RuleConfig ruleSource, IStatusUpdate logger)
+	private Collection<Cell> runStatelessRules(RedModel ruleSource, IStatusUpdate logger)
 			throws DroolsParserException, IOException, ClassNotFoundException {
 
 		// The most common operation on a rulebase is to create a new rule

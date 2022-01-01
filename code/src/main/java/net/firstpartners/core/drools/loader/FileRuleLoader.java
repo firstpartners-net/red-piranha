@@ -10,6 +10,8 @@ import java.io.Reader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.data.RedModel;
+
 /**
  * Load rules, assume that resources are available on the local file system
  * 
@@ -20,13 +22,13 @@ public class FileRuleLoader extends AbstractRuleLoaderStrategy {
 
 	private Logger log = LoggerFactory.getLogger(this.getClass());;
 	
-	private RuleConfig ruleSource;
+	private RedModel ruleSource;
 
 	/**
 	 *  Constructor
 	 * @param ruleSource - info on where our business rules are stored
 	 */
-	public FileRuleLoader(RuleConfig ruleSource) {
+	public FileRuleLoader(RedModel ruleSource) {
 		this.ruleSource = ruleSource;
 	}
 	
@@ -115,13 +117,13 @@ public class FileRuleLoader extends AbstractRuleLoaderStrategy {
 	 * gets the original rule source
 	 * @return RuleDTO with the rule locations previously provided
 	 */
-	public RuleConfig getRuleSource() {
+	public RedModel getRuleSource() {
 		return ruleSource;
 	}
 
 	
 
-	public void setRuleSource(RuleConfig ruleSource) {
+	public void setRuleSource(RedModel ruleSource) {
 		this.ruleSource = ruleSource;
 	}
 

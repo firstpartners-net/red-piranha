@@ -14,8 +14,10 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.drools.loader.RuleConfig;
+import net.firstpartners.core.RedModelFactory;
 import net.firstpartners.core.file.Utils;
+import net.firstpartners.data.Config;
+import net.firstpartners.data.RedModel;
 
 /**
  * @author paul
@@ -39,8 +41,8 @@ public class PreCompileRuleBuilderTest {
 
 		log.debug("Starting to compile rules");
 
-		RuleConfig rulesToCompile = new RuleConfig();
-		rulesToCompile.setRulesLocation(TestConstants.RULES_FILES[0]);
+		RedModel rulesToCompile = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
+		rulesToCompile.addRuleLocation(TestConstants.RULES_FILES[0]);
 	
 		preCompileRuleBuilder.compileRule(rulesToCompile, TestConstants.KNOWLEDGE_BASE_FILE_TMP);
 
@@ -60,8 +62,8 @@ public class PreCompileRuleBuilderTest {
 
 		// String rulesToCompile = "examples/private/sef-copy-proposal-data.dslr";
 
-		RuleConfig rulesToCompile = new RuleConfig();
-		rulesToCompile.setRulesLocation(EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR);
+		RedModel rulesToCompile = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
+		rulesToCompile.addRuleLocation(EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR);
 		rulesToCompile.setDslFileLocation(EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL);
 
 

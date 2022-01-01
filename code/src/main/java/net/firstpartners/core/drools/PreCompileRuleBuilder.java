@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
-import net.firstpartners.core.drools.loader.RuleConfig;
+import net.firstpartners.data.RedModel;
 
 /**
  * Pre compile rules, and save them as Drools Knowledge Packages for later
@@ -60,7 +60,7 @@ public class PreCompileRuleBuilder {
 	 * @throws DroolsParserException
 	 * @throws ClassNotFoundException
 	 */
-	public void compileRule(RuleConfig ruleSource, String outputFile)
+	public void compileRule(RedModel ruleSource, String outputFile)
 			throws DroolsParserException, IOException, ClassNotFoundException {
 
 		log.debug("Loading Knowledgebase from " + ruleSource);

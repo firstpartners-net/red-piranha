@@ -20,6 +20,9 @@ import org.drools.core.common.DroolsObjectInputStream;
 import org.drools.definition.KnowledgePackage;
 import org.drools.io.ResourceFactory;
 import org.slf4j.LoggerFactory;
+
+import net.firstpartners.data.RedModel;
+
 import org.slf4j.Logger;
 
 
@@ -180,7 +183,7 @@ public abstract class AbstractRuleLoaderStrategy implements IRuleLoaderStrategy 
 	 * @throws ClassNotFoundException
 	 */
 
-	org.drools.KnowledgeBase loadKnowledgeBase(RuleConfig ruleSource)
+	org.drools.KnowledgeBase loadKnowledgeBase(RedModel ruleSource)
 			throws IOException, ClassNotFoundException, SecurityException {
 
 		BufferedInputStream inStream = new BufferedInputStream(getInputStream(ruleSource.getKnowledgeBaseLocation()));
@@ -217,7 +220,7 @@ public abstract class AbstractRuleLoaderStrategy implements IRuleLoaderStrategy 
 	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
-	public org.drools.KnowledgeBase loadRules(RuleConfig ruleSource)
+	public org.drools.KnowledgeBase loadRules(RedModel ruleSource)
 			throws DroolsParserException, IOException, ClassNotFoundException {
 
 		// Use cached rules if possible

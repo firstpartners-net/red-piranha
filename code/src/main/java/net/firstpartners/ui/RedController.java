@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import net.firstpartners.core.RedModelFactory;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
-import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.core.log.BufferStatusUpdate;
-import net.firstpartners.utils.Config;
+import net.firstpartners.data.Config;
+import net.firstpartners.data.RedModel;
 
 /**
  * Class that Spring will delegate most web (not rest) requests to in order to
@@ -80,7 +81,7 @@ public class RedController {
 		// Get the params
 		String inputFileName = appConfig.getInputFileName();
 		String outputFileName = appConfig.getOutputFileName();
-		RuleConfig ruleConfig = appConfig.getRuleConfig();
+		RedModel ruleConfig = RedModelFactory.getFreshRedModelUsingConfiguration(appConfig);
 
 		log.debug("DSL?" + ruleConfig.getDslFileLocation());
 		

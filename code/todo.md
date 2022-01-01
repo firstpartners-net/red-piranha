@@ -1,12 +1,19 @@
-Now pushing - example using config
+
+Next : combine config and model into single object
+
+
+
+Now pushing 
 * Tidy
 ** Config updates when rules pushed
 ** rules Steps
 ** most info through to front end
 ** more tests compile / rule
-** skeleton docs
+*** Testing: 48 tests, 9 Errors, 2 failures
+* skeleton Doc (Dev, User)
 
-Testing: 59 tests, 9 Errors, 2 failures
+* look at moving over private samples
+* look at integration test examples (either via Srping MVC or other)
 
 
 Think Design

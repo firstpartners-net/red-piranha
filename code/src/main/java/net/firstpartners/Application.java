@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-import net.firstpartners.utils.Config;
+import net.firstpartners.data.Config;
 
 
 /**

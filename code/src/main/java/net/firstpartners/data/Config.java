@@ -1,18 +1,12 @@
-package net.firstpartners.utils;
-
-import java.util.ArrayList;
+package net.firstpartners.data;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Component;
-
-import net.firstpartners.core.drools.loader.RuleConfig;
 
 /**
  * Bean to hold Configuration from the specified property file
@@ -25,11 +19,9 @@ import net.firstpartners.core.drools.loader.RuleConfig;
 @ManagedResource
 public class Config {
 
-	// Logger if needed
-	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	// Constant to denote empty values
-	private String EMPTY = "empty";
+	public final static String EMPTY = "empty";
 
 	// Properties autowired by spring
 	@Value("${FILE_INPUT}")
@@ -118,58 +110,6 @@ public class Config {
 
 	public void setDslName(String dslName) {
 		this.dslName = dslName;
-	}
-
-	/**
-	 * Get the rule file names from the command line
-	 * 
-	 * @return a rule source object containing the drl file locations, and all the
-	 *         other relevant information
-	 * 
-	 */
-	public RuleConfig getRuleConfig() {
-
-		ArrayList<String> ruleFileLocations = new ArrayList<String>();
-		if (rule1 != null && rule1 != EMPTY) {
-			ruleFileLocations.add(rule1);
-		}
-
-		if (rule2 != null && !rule2.equals(EMPTY)) {
-			ruleFileLocations.add(rule2);
-		}
-
-		if (rule3 != null && !rule3.equals(EMPTY)) {
-			ruleFileLocations.add(rule3);
-		}
-
-		// Set this as a RuleSource Object
-		String[] tmpArr = new String[ruleFileLocations.size()];
-		RuleConfig ruleSource = new RuleConfig();
-		ruleSource.setRulesLocation(ruleFileLocations.toArray(tmpArr));
-
-		// update other config - dsl name
-		if (dslName != null && !dslName.equals(EMPTY)) {
-			ruleSource.setDslFileLocation(getDslName());
-		}
-
-		return ruleSource;
-	}
-
-	/**
-	 * Validate the required Config file
-	 */
-	void validateConfig() {
-
-		// Check for required Keys
-		assert rule1 != null : "Please make sure the config file contains a value for Rule 1";
-		assert inputFileName != null : "Please make sure the config file contains a value for the Input file";
-		assert outputFileName != null : "Please make sure the config file contains a value for the Output file";
-
-		if (getInputFileName().equalsIgnoreCase(getOutputFileName())) {
-			log.warn("Stopping - Input and output files should not be the same");
-			throw new IllegalArgumentException(
-					"Input and output files should not be the same - we don't want to overwrite our original data");
-		}
 	}
 
 	public String toString() {

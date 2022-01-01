@@ -7,6 +7,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.slf4j.LoggerFactory;
+
+import net.firstpartners.core.RedModelFactory;
+import net.firstpartners.data.Config;
+import net.firstpartners.data.RedModel;
+
 import org.slf4j.Logger;
 
 import org.drools.runtime.StatefulKnowledgeSession;
@@ -21,7 +26,7 @@ public class URLRuleLoaderStrategyTest {
 	public final void testLoadCachedRulesFromUrl() throws IOException, ClassNotFoundException {
 
 		//Set the rule source
-		RuleConfig ruleSource = new RuleConfig();
+		RedModel ruleSource = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
 		ruleSource.setKnowledgeBaseLocation("https://raw.githubusercontent.com/paulbrowne-irl/red-piranha/master/test/testdata/log-then-modify-rules.KnowledgeBase");
 
 
@@ -40,7 +45,7 @@ public class URLRuleLoaderStrategyTest {
 
 		//check that dodgy domains are caught
 		//Set the rule source
-		RuleConfig ruleSource = new RuleConfig();
+		RedModel ruleSource = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
 		ruleSource.setKnowledgeBaseLocation("http://www.bbc.co.uk/not-on-whitelist-should-fail.Knowledgebase");
 
 		//Check that we cannot read rules from remote location
@@ -60,7 +65,7 @@ public class URLRuleLoaderStrategyTest {
 
 		//check that dodgy domains are caught
 		//Set the rule source
-		RuleConfig ruleSource = new RuleConfig();
+		RedModel ruleSource = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
 		ruleSource.setKnowledgeBaseLocation("http://red-piranha.appspot.com/sampleresources/SpreadSheetServlet/log-then-modify-rules.SomeUnknownResourceType");
 
 		//Check that we cannoread rules from remote location

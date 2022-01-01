@@ -10,6 +10,8 @@ import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.data.RedModel;
+
 /**
  * Load rules from a Web URL
  * 
@@ -111,7 +113,7 @@ public class URLRuleLoaderStrategy extends AbstractRuleLoaderStrategy {
 	 * gets the original rule source
 	 * @return
 	 */
-	public RuleConfig getRuleSource() {
+	public RedModel getRuleSource() {
 		return null;
 	}
 

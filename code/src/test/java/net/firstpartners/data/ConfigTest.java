@@ -1,4 +1,4 @@
-package net.firstpartners.ui.utils;
+package net.firstpartners.data;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -9,19 +9,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.drools.loader.RuleConfig;
-import net.firstpartners.data.RangeList;
-import net.firstpartners.utils.Config;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -59,13 +56,7 @@ public class ConfigTest {
 		assertTrue(myConfig.getInputFileName()!=null);
 		
 	} 
-	
-	@Test
-	public final void testAutoConfig() {
-		assertTrue(myConfig.getOutputFileName()!=null);
-		log.info("Output file name"+myConfig.getOutputFileName());
-		assertTrue(myConfig.getOutputFileName().indexOf("FILE_OUTPUT")!=0);
-	}
+
 	
 	
 	@Test
@@ -88,13 +79,7 @@ public class ConfigTest {
 
 	}
 
-	@Test
-	public final void testReadRulesFiles() {
-		RuleConfig myRuleDrl = myConfig.getRuleConfig();
-		Assert.assertNotNull(myRuleDrl);
-		Assert.assertEquals(myRuleDrl.getRulesLocation().length, 1);
 
-	}
 
 	@Test
 	public final void testExcelIn() {

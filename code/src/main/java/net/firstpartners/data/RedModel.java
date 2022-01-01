@@ -1,4 +1,4 @@
-package net.firstpartners.core.drools.loader;
+package net.firstpartners.data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,28 +6,31 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-import net.firstpartners.data.Cell;
-
 /**
- * Cargo object to hold information about the type of rules that we are working with
+ * Cargo object to hold information about the rules and facts (Excel Data) we are working with
  * @author paul
  *
  */
-public class RuleConfig {
-
+public class RedModel {
+	
 	private String dslFileLocation;
 
 	private Collection<Cell> facts = new ArrayList<Cell>();
 
-	private HashMap<String, Cell> globals = new HashMap<String, Cell> ();
+	private HashMap<String, Cell> globals = new HashMap<String, Cell>();
 
 	private String knowledgeBaseLocation;
 
 	private String ruleFlowFileUrl;
 
+	private ArrayList<String> rulesLocation = new ArrayList<String>();
 
-	private String[] rulesLocation;
+	private Config config;
 
+	public RedModel(Config config) {
+		this.config = config;
+	}
+	
 	public void addFact(Cell fact) {
 
 		if(facts ==null){
@@ -84,7 +87,7 @@ public class RuleConfig {
 	}
 
 	public String[] getRulesLocation() {
-		return rulesLocation;
+		return (String[]) rulesLocation.toArray();
 	}
 
 
@@ -115,19 +118,31 @@ public class RuleConfig {
 	}
 
 	/**
-	 * Convenience method for setting rule location
+	 * Asd rule location
 	 * Takes string instead of array
 	 * @param ruleLocation
 	 */
-	public void setRulesLocation(String ruleLocation) {
+	public void addRuleLocation(String ruleLocation) {
 
-		String[] tmpArray = new String[1];
-		tmpArray[0] = ruleLocation;
-		rulesLocation = tmpArray;
+		this.rulesLocation.add(ruleLocation);
+	}
+	
+	public void addRuleLocation(String[] ruleLocation) {
+
+		if(ruleLocation!=null) {
+			for (int counter=0; counter <ruleLocation.length; counter++) {
+				addRuleLocation(ruleLocation[counter]);
+			}
+		}
+		
+	}
+	
+	public Config getConfig() {
+		return this.config;
 	}
 
-	public void setRulesLocation(String[] rulesLocation) {
-		this.rulesLocation = rulesLocation;
+	public void setConfig(Config config) {
+		this.config = config;
 	}
 
 

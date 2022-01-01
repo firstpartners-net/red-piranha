@@ -14,9 +14,9 @@ import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.Utils;
 import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.core.log.SpreadSheetStatusUpdate;
+import net.firstpartners.data.Config;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
-import net.firstpartners.utils.Config;
 
 /**
  * Strategy class of output of Excel Document

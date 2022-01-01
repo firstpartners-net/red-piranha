@@ -11,6 +11,9 @@ import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
+import net.firstpartners.core.RedModelFactory;
+import net.firstpartners.data.Config;
+import net.firstpartners.data.RedModel;
 
 public class FileRuleLoaderStrategyTest {
 
@@ -26,7 +29,7 @@ public class FileRuleLoaderStrategyTest {
 		log.debug("starting test");
 		
 		//Set the rule source
-		RuleConfig ruleSource = new RuleConfig();
+		RedModel ruleSource = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
 		ruleSource.setKnowledgeBaseLocation(TestConstants.KNOWLEDGE_BASE_FILE);
 		log.debug("will try to load:"+ruleSource.getKnowledgeBaseLocation());
 		

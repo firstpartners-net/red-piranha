@@ -10,9 +10,11 @@ import org.junit.Test;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.MemoryOutputStrategy;
+import net.firstpartners.core.RedModelFactory;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
-import net.firstpartners.core.drools.loader.RuleConfig;
+import net.firstpartners.data.Config;
+import net.firstpartners.data.RedModel;
 
 public class ExcelInputStrategyTest {
 
@@ -25,8 +27,8 @@ public class ExcelInputStrategyTest {
 	@Test
 	public final void testXlsCallRulesFromFile() throws Exception {
 
-		RuleConfig ruleSource = new RuleConfig();
-		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
+		RedModel ruleSource = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
+		ruleSource.addRuleLocation(TestConstants.RULES_FILES);
 		
 		log.debug("rule source created");
 		
@@ -48,8 +50,8 @@ public class ExcelInputStrategyTest {
 	 */
 	public final void testXlsXCallRulesFromFile() throws Exception {
 		
-		RuleConfig ruleSource = new RuleConfig();
-		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
+		RedModel ruleSource = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
+		ruleSource.addRuleLocation(TestConstants.RULES_FILES);
 
 		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLSX_DATA_FILE,ruleSource,"some-dummy.xls");
 		assertTrue (runner.getDocumentInputStrategy() instanceof ExcelInputStrategy);

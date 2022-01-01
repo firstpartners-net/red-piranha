@@ -10,10 +10,12 @@ import org.junit.Test;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.MemoryOutputStrategy;
+import net.firstpartners.core.RedModelFactory;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
-import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.core.file.PDFOutputStrategy;
+import net.firstpartners.data.Config;
+import net.firstpartners.data.RedModel;
 
 public class WordInputStrategyTest {
 
@@ -26,8 +28,8 @@ public class WordInputStrategyTest {
 	@Test
 	public final void testdocCallRulesFromFile() throws Exception {
 
-		RuleConfig ruleSource = new RuleConfig();
-		ruleSource.setRulesLocation(TestConstants.RULES_FILES);
+		RedModel ruleSource = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
+		ruleSource.addRuleLocation(TestConstants.RULES_FILES);
 		
 		log.debug("rule source created");
 		

@@ -1,10 +1,15 @@
 Now pushing - example using config
-
+* Tidy
+** Config updates when rules pushed
+** rules Steps
+** catch empty
+** more tests compile / rule
+** skeleton docs
 
 
 
 RP TODO - MOVE
-	* Branch (Integrate)
+	*
     * Web version 1
 		* Next: display / update configuration
 		* some layout for server

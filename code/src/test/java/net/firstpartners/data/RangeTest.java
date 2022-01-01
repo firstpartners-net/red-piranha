@@ -7,14 +7,14 @@ import static org.junit.Assert.assertTrue;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import org.apache.logging.log4j.Logger;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import net.firstpartners.core.log.RpLogger;
 
 public class RangeTest implements PropertyChangeListener {
 
-	private Logger log = RpLogger.getLogger(Range.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	PropertyChangeEvent holdEvent = null;
 

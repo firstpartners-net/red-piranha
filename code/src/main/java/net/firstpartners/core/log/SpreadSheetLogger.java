@@ -3,7 +3,8 @@ package net.firstpartners.core.log;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -19,7 +20,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 public class SpreadSheetLogger implements ILogger {
 
 	// We also allow this to be configured to log to console
-	private static final Logger log = RpLogger.getLogger(SpreadSheetLogger.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	// For holding logging data until we can flush it
 	List<String> loggedItems = new ArrayList<String>();

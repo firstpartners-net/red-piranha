@@ -1,92 +1,116 @@
 package net.firstpartners.ui.utils;
 
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.drools.loader.RuleConfig;
 import net.firstpartners.data.RangeList;
+import net.firstpartners.utils.Config;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 public class ConfigTest {
 
-	//handle for our config
+	// handle for our config
 	@Autowired
-	Config appConfig;
-	
+	Config myConfig;
+
 	// Logger
-
-	private static final Logger log = LogManager.getLogger(ConfigTest.class.getName());
-
-		
-		@SuppressWarnings("unused")
-		private static RangeList redData=null;
-
-		
-		@Before
-		public void beforeClass() throws IOException, ClassNotFoundException {
-
-			FileInputStream fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
-			ObjectInputStream in = new ObjectInputStream(fileIn);
-			redData = (RangeList) in.readObject();
-			in.close();
-			fileIn.close();
-		}
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 
+	public final void testReadPreviousData() throws IOException, ClassNotFoundException {
 		
-		@Test
-		public final void testReadLogFileName() {
-			
-			String testLog = appConfig.getForcedLogFileName();
-			Assert.assertNotNull(testLog);
-			assertTrue(testLog!="");
-			log.debug("test run");
-			
-		}
+		FileInputStream fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
+		ObjectInputStream in = new ObjectInputStream(fileIn);
+		RangeList redData = (RangeList) in.readObject();
+		assertNotNull(redData);
+		in.close();
+		fileIn.close();
+	}
+	
+	@Test
+	public final void testConfigNotNullOrEmpty() {
+		assertTrue(myConfig!=null);
+		assertTrue(myConfig.getDslName()!=null);
+		assertTrue(myConfig.getInputFileName()!=null);
 		
-		@Test
-		public final void testReadDslName() {
-			
-			String testDsl = appConfig.getDslName();
-			Assert.assertNotNull(testDsl);
-			assertTrue(testDsl!="");
-			
-		}
-		@Test
-		public final void testReadRulesFiles() {
-			RuleConfig myRuleDrl = appConfig.getRuleConfig();
-			Assert.assertNotNull(myRuleDrl);
-			Assert.assertEquals(myRuleDrl.getRulesLocation().length,1);
-			
-		}
+	} 
+	
+	@Test
+	public final void testAutoConfig() {
+		assertTrue(myConfig.getOutputFileName()!=null);
+		log.info("Output file name"+myConfig.getOutputFileName());
+		assertTrue(myConfig.getOutputFileName().indexOf("FILE_OUTPUT")==0);
+	}
+	
+	
+	@Test
+	public final void testCanOverwriteConfig() {
 		
-		@Test
-		public final void testExcelIn() {
-			
-			String xlIn = appConfig.getInputFileName();
-			Assert.assertNotNull(xlIn);
-			assertTrue(xlIn!="");
-			
-		}
+		myConfig.setInputFileName("yada-yada");
+		assertEquals(myConfig.getInputFileName(),"yada-yada");
 		
-		@Test
-		public final void testExcelOut() {
-			
-			String xlOut = appConfig.getOutputFileName();
-			Assert.assertNotNull(xlOut);
-			assertTrue(xlOut!="");
-			
-		}
+		myConfig.setOutputFileName("yada-yada2");
+		assertEquals(myConfig.getOutputFileName(),"yada-yada2");
+	}
+	
+
+	@Test
+	public final void testReadDslName() {
+
+		String testDsl = myConfig.getDslName();
+		Assert.assertNotNull(testDsl);
+		assertTrue(testDsl != "");
+
+	}
+
+	@Test
+	public final void testReadRulesFiles() {
+		RuleConfig myRuleDrl = myConfig.getRuleConfig();
+		Assert.assertNotNull(myRuleDrl);
+		Assert.assertEquals(myRuleDrl.getRulesLocation().length, 1);
+
+	}
+
+	@Test
+	public final void testExcelIn() {
+
+		String xlIn = myConfig.getInputFileName();
+		Assert.assertNotNull(xlIn);
+		assertTrue(xlIn != "");
+
+	}
+
+	@Test
+	public final void testExcelOut() {
+
+		String xlOut = myConfig.getOutputFileName();
+		Assert.assertNotNull(xlOut);
+		assertTrue(xlOut != "");
+
+	}
+	
+	@Test
+	public final void testToString() {
+		
+		String toS = myConfig.toString();
+		assertEquals(-1,toS.indexOf("inputFileName=<null>"));
+	}
 
 }

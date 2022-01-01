@@ -6,19 +6,20 @@ import static org.junit.Assert.fail;
 
 import java.io.IOException;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.junit.Test;
 
-import net.firstpartners.core.log.RpLogger;
 
 public class OfficeDocumentTest {
 
 	
 	// Handle to the loggers
-	private static final Logger log = RpLogger.getLogger(OfficeDocumentTest.class.getName());
-
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
+	
 	@Test
 	public final void testRunEventRulesExample() throws IOException {
 		Workbook wb = WorkbookFactory.create(true); // create new boolean

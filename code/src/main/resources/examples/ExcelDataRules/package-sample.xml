@@ -1,0 +1,37 @@
+<project name="Red Piranha" basedir="." default="zip-example">
+
+	<!-- Package up this example ready for distribution -->
+	<!-- Uses the latest binaries from Dist-->
+
+	<!-- Copyright (C) 2004-2020 Paul Browne, http://www.firstpartners.net 	-->
+	<!-- Released under terms of the LGPL license						-->
+	<!-- http://www.opensource.org/licenses/lgpl-license.php				-->
+
+	<description>
+		Package up this example ready for distribution
+    </description>
+
+
+	<!-- General Variables -->
+	<property name="name" value="example-ExcelDataRules" />
+	<property name="distrib.dir" value="../../dist" />
+
+
+	<target name="get-core-binaries" description="Get the latest Red Piranha Core Binaraies">
+		<copy file="${distrib.dir}/red-piranha.exe" verbose="true" todir="." />
+		<copy file="${distrib.dir}/red-piranha-single.jar" verbose="true" todir="." />
+		<copy file="${distrib.dir}/red-piranha-debug.bat" todir="." />
+	</target>
+
+
+	<!-- Create a standalone exe file with all needed classes -->
+	<target name="zip-example" depends="get-core-binaries" description="zip up this example ready for distribution">
+
+
+		<zip destfile="${distrib.dir}/${name}.zip" basedir="." excludes="*.log, package-sample.xml" />
+
+
+	</target>
+
+
+</project>

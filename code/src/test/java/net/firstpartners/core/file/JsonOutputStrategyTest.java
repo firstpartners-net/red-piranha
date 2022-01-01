@@ -10,14 +10,14 @@ import org.junit.Test;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.data.RangeList;
-import net.firstpartners.ui.RedGuiTest;
+import net.firstpartners.ui.RedControllerTest;
 
 public class JsonOutputStrategyTest {
 
 	@Test
 	public final void testOutputJsoThenDelete() throws IOException, ClassNotFoundException, InvalidFormatException {
 		
-		RangeList TestData = RedGuiTest.getTestDataFromWord();
+		RangeList TestData = RedControllerTest.getTestDataFromWord();
 	
 		
 		JsonOutputStrategy jsonOut = new JsonOutputStrategy(TestConstants.JSON_TMP_FILE);

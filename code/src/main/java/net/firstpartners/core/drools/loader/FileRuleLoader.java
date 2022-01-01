@@ -6,9 +6,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
-import org.apache.logging.log4j.Logger;
 
-import net.firstpartners.core.log.RpLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Load rules, assume that resources are available on the local file system
@@ -18,9 +18,7 @@ import net.firstpartners.core.log.RpLogger;
  */
 public class FileRuleLoader extends AbstractRuleLoaderStrategy {
 
-
-	private static final Logger log = RpLogger.getLogger(FileRuleLoader.class
-			.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());;
 	
 	private RuleConfig ruleSource;
 

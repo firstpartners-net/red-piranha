@@ -1,11 +1,16 @@
 package net.firstpartners.core.drools;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.lang.reflect.InvocationTargetException;
 
-import org.apache.logging.log4j.Logger;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.drools.loader.FileRuleLoader;
 import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
@@ -14,15 +19,14 @@ import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.file.CSVOutputStrategy;
 import net.firstpartners.core.file.JsonOutputStrategy;
 import net.firstpartners.core.file.PDFOutputStrategy;
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.word.WordInputStrategy;
 import net.firstpartners.core.word.WordXInputStrategy;
 
 public class RuleRunnerFactoryTest {
 
 	// Handle to the logger
-	private static final Logger log = RpLogger.getLogger(RuleRunnerFactoryTest.class.getName());
-
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	@Test
 	public void testGenericXLSFactory() throws NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {

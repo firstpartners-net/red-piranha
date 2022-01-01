@@ -9,13 +9,13 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Map;
 
-import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
@@ -24,7 +24,7 @@ public class SpreadSheetConvertorTest {
 	private Workbook wb;
 
 	//Logging
-	private static final Logger log = RpLogger.getLogger(SpreadSheetConvertorTest.class.getName());
+	private static final Logger log = LoggerFactory.getLogger(SpreadSheetConvertorTest.class);
 
 	
 	

@@ -13,14 +13,14 @@ import org.junit.Test;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.data.RangeList;
-import net.firstpartners.ui.RedGuiTest;
+import net.firstpartners.ui.RedControllerTest;
 
 public class CSVOutputStrategyTest {
 
 	@Test
 	public final void testAppendToCSV() throws IOException, InvalidFormatException, ClassNotFoundException {
 
-		RangeList TestData = RedGuiTest.getTestDataFromWord();
+		RangeList TestData = RedControllerTest.getTestDataFromWord();
 
 		CSVOutputStrategy csvOut = new CSVOutputStrategy(TestConstants.CSV_APPEND_FILE);
 		int previousNumberOfCsvRows = csvOut.getNumberOfRowsInFile();
@@ -39,7 +39,7 @@ public class CSVOutputStrategyTest {
 	@Test
 	public final void testGetMatchHeadersFromCSV() throws FileNotFoundException, ClassNotFoundException, IOException {
 
-		RangeList testData = RedGuiTest.getTestDataFromWord();
+		RangeList testData = RedControllerTest.getTestDataFromWord();
 
 		CSVOutputStrategy csvOut = new CSVOutputStrategy(TestConstants.CSV_APPEND_FILE);
 

@@ -6,10 +6,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
-import org.apache.logging.log4j.Logger;
 
-import net.firstpartners.core.log.RpLogger;
-import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Load rules from a Web URL
@@ -19,9 +18,8 @@ import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
  */
 public class URLRuleLoaderStrategy extends AbstractRuleLoaderStrategy {
 
-	private static final Logger log = RpLogger.getLogger(URLRuleLoaderStrategy.class
-			.getName());
-
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	public URLRuleLoaderStrategy() {
 	}
 

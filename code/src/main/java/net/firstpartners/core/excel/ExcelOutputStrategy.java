@@ -4,18 +4,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.Utils;
 import net.firstpartners.core.log.ILogger;
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.core.log.SpreadSheetLogger;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
-import net.firstpartners.ui.utils.Config;
+import net.firstpartners.utils.Config;
 
 /**
  * Strategy class of output of Excel Document
@@ -26,7 +27,11 @@ import net.firstpartners.ui.utils.Config;
 public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 	// Logger
-	private static final Logger log = RpLogger.getLogger(ExcelOutputStrategy.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+
+	// handle for our config
+	@Autowired
+	Config appConfig;
 
 	// Name of the outputfile
 	private String outputFileName = null;
@@ -54,7 +59,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	public void flush() {
 		if (this.spreadSheetLogger instanceof SpreadSheetLogger) {
 
-			((SpreadSheetLogger) this.spreadSheetLogger).flush(workbook, Config.EXCEL_LOG_WORKSHEET_NAME);
+			((SpreadSheetLogger) this.spreadSheetLogger).flush(workbook, appConfig.getExcelLogSheetName());
 
 		}
 

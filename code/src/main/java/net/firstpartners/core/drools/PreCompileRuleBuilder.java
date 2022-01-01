@@ -5,13 +5,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.logging.log4j.Logger;
 import org.drools.KnowledgeBase;
 import org.drools.compiler.compiler.DroolsParserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
 import net.firstpartners.core.drools.loader.RuleConfig;
-import net.firstpartners.core.log.RpLogger;
 
 /**
  * Pre compile rules, and save them as Drools Knowledge Packages for later
@@ -24,8 +24,8 @@ import net.firstpartners.core.log.RpLogger;
 public class PreCompileRuleBuilder {
 
 
-	private static final Logger log = RpLogger.getLogger(PreCompileRuleBuilder.class.getName());
-
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	/**
 	 * * Cache the pre built knowledgebase.
 	 *

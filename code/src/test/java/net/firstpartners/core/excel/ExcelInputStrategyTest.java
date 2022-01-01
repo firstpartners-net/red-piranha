@@ -3,8 +3,9 @@ package net.firstpartners.core.excel;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
@@ -16,8 +17,8 @@ import net.firstpartners.core.drools.loader.RuleConfig;
 public class ExcelInputStrategyTest {
 
 	// Logger
-	private static final Logger log = LogManager.getLogger(ExcelInputStrategyTest.class.getName());
-
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	/**
 	 * Just check that the rules can run, throws no exception
 	 */

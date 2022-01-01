@@ -5,8 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
-import org.apache.logging.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,7 +15,6 @@ import com.google.gson.GsonBuilder;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.log.EmptyLogger;
 import net.firstpartners.core.log.ILogger;
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -26,7 +26,7 @@ import net.firstpartners.data.RangeList;
 public class JsonOutputStrategy implements IDocumentOutStrategy {
 
 	// Logger
-	private static final Logger log = RpLogger.getLogger(JsonOutputStrategy.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	// Name of the output file
 	private String outputFile = null;

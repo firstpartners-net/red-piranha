@@ -10,7 +10,6 @@ import java.io.ObjectInputStream;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -18,16 +17,17 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.CellReference;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.log.RpLogger;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
 public class CellConvertorTest {
 
 	// Handle to the logger
-	private static final Logger log = RpLogger.getLogger(CellConvertorTest.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private static RangeList redData = null;
 	private static Workbook excelData = null;

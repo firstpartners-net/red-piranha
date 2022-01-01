@@ -1,18 +1,28 @@
+Now pushing - example using config
+
+
+
+
 RP TODO - MOVE
-	* Branch
-    * Web build of GUI to get excel sample through
-		* Focus on Java build of GUI
+	* Branch (Integrate)
+    * Web version 1
+		* Next: display / update configuration
+		* some layout for server
+		* as much REST as possible
 	* Tidy Check functionality
-		* Logs (to RP Log again)
-        * Configuration respore (move to srping)
 		* Test of example
-		* Restore GUI panel
-		* Notes on getting started with build
+		* Restore GUI panel (on web)
+	* Notes on getting started with build
 	* Update all dependencies
+	* Spring
+		* Enable swagger
+		* Enable more services
 	* Update to latest KIE version
 		* Running again
 	* Excel ??
-	* Post to KIE Server / get from KIE server
+    * Rules calling
+        * Internal
+        * Post to KIE Server / get from KIE server
 	* Comments on build
 	* TODO 
 		* Look for comments in code

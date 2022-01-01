@@ -8,10 +8,10 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.Test;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.drools.loader.RuleConfig;
@@ -31,8 +31,9 @@ public class PreCompileRuleBuilderTest {
 	private final PreCompileRuleBuilder preCompileRuleBuilder = new PreCompileRuleBuilder();
 
 	// Handle to Logger
-	private static final Logger log = LogManager.getLogger(PreCompileRuleBuilderTest.class.getName());
-
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
+	
 	@Test
 	public final void testpreCompileRules() throws ClassNotFoundException, DroolsParserException, IOException {
 

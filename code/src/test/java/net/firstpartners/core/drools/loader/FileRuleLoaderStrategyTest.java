@@ -4,8 +4,8 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
@@ -16,8 +16,7 @@ public class FileRuleLoaderStrategyTest {
 
 
 
-	private static final Logger log = LogManager.getLogger(FileRuleLoaderStrategyTest.class
-			.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Test
 	public final void testLoadCachedRules() throws IOException, ClassNotFoundException {

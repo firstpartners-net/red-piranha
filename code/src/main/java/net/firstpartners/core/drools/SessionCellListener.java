@@ -49,7 +49,7 @@ public class SessionCellListener implements RuleRuntimeEventListener {
 	 */
 	
 	@Override
-	public void objectUpdated(org.kie.api.event.rule.ObjectUpdatedEvent event) {
+	public void objectUpdated(ObjectUpdatedEvent event) {
 		// TODO Auto-generated method stub
 		
 	}

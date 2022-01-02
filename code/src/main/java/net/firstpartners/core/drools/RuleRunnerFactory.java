@@ -5,15 +5,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.RedModelFactory;
-import net.firstpartners.core.drools.loader.FileRuleLoader;
 import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
-import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
+import net.firstpartners.core.drools.loader.RuleLoaderFactory;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.file.CSVOutputStrategy;
@@ -198,7 +197,7 @@ public class RuleRunnerFactory {
 		assert outputFileName != null;
 
 		// Make sure we get the right type of loader
-		IRuleLoaderStrategy ruleLoaderStrategy = getRuleLoader(ruleSource);
+		IRuleLoaderStrategy ruleLoaderStrategy = RuleLoaderFactory.getRuleLoader(ruleSource);
 
 		// Decide on our input strategy
 		Class<?> strategyClass = getInputMapping(inputFileName);
@@ -225,26 +224,6 @@ public class RuleRunnerFactory {
 	
 
 
-	/**
-	 * Get a handle to the rule loader we will be using, based on the ruleLocation
-	 * 
-	 * @param ruleLocation
-	 * @return
-	 */
-	public static IRuleLoaderStrategy getRuleLoader(RedModel ruleLocation) {
 
-		IRuleLoaderStrategy ruleLoader;
-		String firstRuleLocation = ruleLocation.getRulesLocation()[0].toLowerCase();
-		
-
-		if (firstRuleLocation.startsWith("http")) {
-			ruleLoader = new URLRuleLoaderStrategy();
-		} else {
-			ruleLoader = new FileRuleLoader(ruleLocation);
-		}
-
-		// Default - url rule loader
-		return ruleLoader;
-	}
 
 }

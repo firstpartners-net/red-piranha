@@ -6,20 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-// previous drools
-import org.drools.KnowledgeBase;
 import org.drools.compiler.compiler.DroolsParserException;
-import org.drools.runtime.StatefulKnowledgeSession;
-import org.drools.runtime.StatelessKnowledgeSession;
-
-// new kie
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieModule;
 import org.kie.api.event.rule.DebugAgendaEventListener;
 import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
 import org.kie.api.logger.KieRuntimeLogger;
 import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.StatelessKieSession;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.slf4j.Logger;
@@ -206,31 +199,6 @@ public class RuleRunner {
 		return ruleLoader;
 	}
 
-	/**
-	 * Get a Stateful Session for a pre built knowledgebase
-	 *
-	 * @param preBuiltKnowledgeBase
-	 * @param globals
-	 * @param logger
-	 * @throws DroolsParserException
-	 * @throws IOException
-	 */
-	StatefulKnowledgeSession getStatefulSession(KnowledgeBase preBuiltKnowledgeBase, HashMap<String, Cell> globals,
-			IStatusUpdate logger) throws DroolsParserException, IOException {
-		// Create a new stateful session
-		StatefulKnowledgeSession workingMemory = preBuiltKnowledgeBase.newStatefulKnowledgeSession();
-
-		log.debug("Inserting handle to logger (via global) type:" + logger.getClass());
-		workingMemory.setGlobal("log", logger);
-
-		for (String o : globals.keySet()) {
-			log.debug("Inserting global name: " + o + " value:" + globals.get(o));
-			workingMemory.setGlobal(o, globals.get(o));
-		}
-
-		return workingMemory;
-
-	}
 
 
 

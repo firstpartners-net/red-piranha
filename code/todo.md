@@ -41,6 +41,7 @@ Think Design
 
 
 TODO MOVE
+	* Read drools doc in more detail
 	* Notes on getting started with build
 	* Update to latest KIE version
 		* Running again

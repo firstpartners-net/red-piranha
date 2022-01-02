@@ -1,6 +1,6 @@
 package net.firstpartners.core.drools.loader;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import org.kie.api.builder.KieBuilder;
@@ -26,6 +26,8 @@ class RedRuleBuilderTest {
 		
 		KieBuilder myBuilder = new RedRuleBuilder().getRulesFromDisk(myModel);
 		KieModule myModule = myBuilder.getKieModule();
+		
+		assertNotNull(myModule);
 	}
 
 }

@@ -1,15 +1,32 @@
 
-Next : combine config and model into single object
+Next :
+* Move to KIE
+* Merge branch	
 
+Remove Stateful ??
+Refactor factory aorund rules / simplify?
+
+
+UNDERSTAND
+Understand different objects
+add listeners / explore more
+add logging around KIE
+WorkingMemoryEventListener ->  RuleRuntimeEventListener for new cells - wokring?
+
+
+Later (move)
+* split out compile steps
 
 
 Now pushing 
 * Tidy
+** remove precomiple rules builder
+
 ** Config updates when rules pushed
 ** rules Steps
 ** most info through to front end
 ** more tests compile / rule
-*** Testing: 48 tests, 9 Errors, 2 failures
+*** Testing: 55 tests, 17 Errors, 2 failures
 * skeleton Doc (Dev, User)
 
 * look at moving over private samples
@@ -24,6 +41,7 @@ Think Design
 
 
 TODO MOVE
+	* Read drools doc in more detail
 	* Notes on getting started with build
 	* Update to latest KIE version
 		* Running again

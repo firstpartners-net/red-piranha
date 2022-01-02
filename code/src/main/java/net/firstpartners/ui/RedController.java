@@ -1,7 +1,5 @@
 package net.firstpartners.ui;
 
-import java.io.File;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,7 +97,7 @@ public class RedController {
 			
 			// Call the rules using this datafile
 			userUpdates.info("Running Rules:" + redModel);
-			runner.callRules(userUpdates);
+			runner.callRules(userUpdates,redModel);
 			userUpdates.info("Complete");
 			
 			//update our main status message

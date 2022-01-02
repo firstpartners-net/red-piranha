@@ -17,7 +17,6 @@ import net.firstpartners.data.RedModel;
  * Pre compile rules, and save them as Drools Knowledge Packages for later
  * (faster) use)
  *
- *
  * @author paul
  *
  */

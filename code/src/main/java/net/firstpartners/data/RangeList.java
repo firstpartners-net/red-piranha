@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -26,8 +24,6 @@ import org.slf4j.LoggerFactory;
  */
 public class RangeList implements List<Range>, Serializable {
 
-	//
-	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	/**
 	 * needed for serialization
@@ -195,7 +191,6 @@ public class RangeList implements List<Range>, Serializable {
 	public Map<String, net.firstpartners.data.Cell> getAllCellsWithNames() {
 
 		HashMap<String, Cell> returnValues = new HashMap<String, Cell>();
-		log.debug("combining all cells in all ranges, returning as Hashmap");
 
 		for (Range range : allRanges) {
 

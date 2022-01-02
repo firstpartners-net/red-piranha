@@ -13,6 +13,7 @@ import net.firstpartners.core.MemoryOutputStrategy;
 import net.firstpartners.core.RedModelFactory;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
+import net.firstpartners.core.log.EmptyStatusUpdate;
 import net.firstpartners.data.Config;
 import net.firstpartners.data.RedModel;
 
@@ -27,19 +28,19 @@ public class ExcelInputStrategyTest {
 	@Test
 	public final void testXlsCallRulesFromFile() throws Exception {
 
-		RedModel ruleSource = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
-		ruleSource.addRuleLocation(TestConstants.RULES_FILES);
+		RedModel redModel = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
+		redModel.addRuleLocation(TestConstants.RULES_FILES);
 			
 		log.debug("rule source created");
 		
-		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLS_DATA_FILE,ruleSource,"some-dummy.xls");
-		assertTrue (runner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
+		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLS_DATA_FILE,redModel,"some-dummy.xls");
+		assertTrue (runner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 		
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 		runner.setOutputStrategy(outputStrategy);
  
-		runner.callRules();
+		runner.callRules(new EmptyStatusUpdate(),redModel);
 		assertNotNull(outputStrategy.getProcessedDocument());
 
 	}
@@ -50,17 +51,17 @@ public class ExcelInputStrategyTest {
 	 */
 	public final void testXlsXCallRulesFromFile() throws Exception {
 		
-		RedModel ruleSource = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
-		ruleSource.addRuleLocation(TestConstants.RULES_FILES);
+		RedModel redModel = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
+		redModel.addRuleLocation(TestConstants.RULES_FILES);
 
-		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLSX_DATA_FILE,ruleSource,"some-dummy.xls");
+		RuleRunner runner =RuleRunnerFactory.getRuleRunner(TestConstants.XLSX_DATA_FILE,redModel,"some-dummy.xls");
 		assertTrue (runner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
 		
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 		runner.setOutputStrategy(outputStrategy);
 
-		runner.callRules();
+		runner.callRules(new EmptyStatusUpdate(),redModel);
 		assertNotNull(outputStrategy.getProcessedDocument());
 
 	}

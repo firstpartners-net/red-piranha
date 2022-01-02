@@ -1,6 +1,5 @@
 package net.firstpartners.core.drools;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -12,8 +11,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.firstpartners.core.drools.loader.FileRuleLoader;
-import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.file.CSVOutputStrategy;
@@ -33,8 +30,7 @@ public class RuleRunnerFactoryTest {
 		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.xls", "filename", "some-dummy-out.xls");
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
-		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
-		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
+		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 
 	}
 
@@ -44,8 +40,7 @@ public class RuleRunnerFactoryTest {
 		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.xlsx", "filename", "some-dummy-out.xlsx");
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
-		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
-		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
+		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 
 	}
 
@@ -55,8 +50,7 @@ public class RuleRunnerFactoryTest {
 		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.doc", "filename", "some-dummy-out.csv");
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordInputStrategy);
-		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof CSVOutputStrategy);
-		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
+		assertTrue(myRunner.getDocumentOutputStrategy() instanceof CSVOutputStrategy);
 
 	}
 
@@ -66,8 +60,7 @@ public class RuleRunnerFactoryTest {
 		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.docx", "filename", "some-dummy-out.pdf");
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordXInputStrategy);
-		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof PDFOutputStrategy);
-		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
+		assertTrue(myRunner.getDocumentOutputStrategy() instanceof PDFOutputStrategy);
 
 	}
 
@@ -78,7 +71,7 @@ public class RuleRunnerFactoryTest {
 		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner("some-in-name.doc", "filename", "some-dummy-out.csv");
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordInputStrategy);
-		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof CSVOutputStrategy);
+		assertTrue(myRunner.getDocumentOutputStrategy() instanceof CSVOutputStrategy);
 
 	}
 	
@@ -106,10 +99,7 @@ public class RuleRunnerFactoryTest {
 				"generic.xls");
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
-		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
-		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
-		assertNotNull(myRunner.getRuleLoader().getRuleSource());
-		assertEquals(myRunner.getRuleLoader().getRuleSource().getRulesLocation()[0], "someFile"); // check that someFile
+		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 																									// is stored
 
 	}
@@ -121,8 +111,7 @@ public class RuleRunnerFactoryTest {
 				"http-something-else", "some-gernic.xls");
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
-		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
-		assertTrue(myRunner.getRuleLoader() instanceof URLRuleLoaderStrategy);
+		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 
 	}
 
@@ -162,10 +151,7 @@ public class RuleRunnerFactoryTest {
 				"generic.json");
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
-		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof JsonOutputStrategy);
-		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
-		assertNotNull(myRunner.getRuleLoader().getRuleSource());
-		assertEquals(myRunner.getRuleLoader().getRuleSource().getRulesLocation()[0], "someFile"); // check that someFile
+		assertTrue(myRunner.getDocumentOutputStrategy() instanceof JsonOutputStrategy);
 																									// is stored
 
 	}

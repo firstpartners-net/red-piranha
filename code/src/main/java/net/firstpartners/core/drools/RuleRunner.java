@@ -6,17 +6,21 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.drools.KnowledgeBase;
 import org.drools.compiler.compiler.DroolsParserException;
-import org.drools.runtime.StatefulKnowledgeSession;
-import org.drools.runtime.StatelessKnowledgeSession;
+import org.kie.api.KieServices;
+import org.kie.api.builder.KieModule;
+import org.kie.api.event.rule.DebugAgendaEventListener;
+import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.StatelessKieSession;
+import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
-import net.firstpartners.core.log.EmptyStatusUpdate;
+import net.firstpartners.core.drools.loader.RedRuleBuilder;
 import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.core.log.SpreadSheetStatusUpdate;
 import net.firstpartners.data.Cell;
@@ -44,6 +48,11 @@ public class RuleRunner {
 	// tasks)
 	private IDocumentInStrategy inputStrategy = null;
 
+
+	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {
+		this.outputStrategy = newStrategy;
+	}
+	
 	/**
 	 * Construct a new RuleRunner.
 	 * 
@@ -60,26 +69,6 @@ public class RuleRunner {
 		this.outputStrategy = outputStrategy;
 	}
 
-	/**
-	 * call the rule Engine - data input / output has already been set during the
-	 * creation of this class
-	 * 
-	 * @param nameOfLogSheet
-	 * @throws DroolsParserException
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 * @throws InvalidFormatException
-	 * @throws CsvRequiredFieldEmptyException
-	 * @throws CsvDataTypeMismatchException
-	 */
-	public RedModel callRules() throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
-
-		// Add the logger
-		// prevent a null pointer in our rules
-		IStatusUpdate userMessages = new EmptyStatusUpdate();
-
-		return callRules(userMessages);
-	}
 
 	/**
 	 * Call the rule Engine - data input / output has already been set during the
@@ -95,11 +84,9 @@ public class RuleRunner {
 	 * @throws CsvDataTypeMismatchException
 	 * @return our Model with all the information so we can display back to the user
 	 */
-	public RedModel callRules(IStatusUpdate userMessages)
-			throws DroolsParserException, IOException, ClassNotFoundException, InvalidFormatException {
+	public RedModel callRules(IStatusUpdate userMessages, RedModel ruleModel)
+			throws IOException, ClassNotFoundException, InvalidFormatException {
 
-		// Load our rules first - catches any compilation errors early
-		RedModel ruleModel = ruleLoader.getRuleSource();
 
 		// Create a new Logging object
 		outputStrategy.setDocumentLogger(new SpreadSheetStatusUpdate());
@@ -180,7 +167,7 @@ public class RuleRunner {
 	 * 
 	 * @return the strategy object
 	 */
-	public IDocumentOutStrategy getDocumenttOutputStrategy() {
+	public IDocumentOutStrategy getDocumentOutputStrategy() {
 		return outputStrategy;
 	}
 
@@ -188,78 +175,8 @@ public class RuleRunner {
 		return ruleLoader;
 	}
 
-	/**
-	 * Get a Stateful Session for a pre built knowledgebase
-	 *
-	 * @param preBuiltKnowledgeBase
-	 * @param globals
-	 * @param logger
-	 * @throws DroolsParserException
-	 * @throws IOException
-	 */
-	StatefulKnowledgeSession getStatefulSession(KnowledgeBase preBuiltKnowledgeBase, HashMap<String, Cell> globals,
-			IStatusUpdate logger) throws DroolsParserException, IOException {
-		// Create a new stateful session
-		StatefulKnowledgeSession workingMemory = preBuiltKnowledgeBase.newStatefulKnowledgeSession();
 
-		log.debug("Inserting handle to logger (via global) type:" + logger.getClass());
-		workingMemory.setGlobal("log", logger);
 
-		for (String o : globals.keySet()) {
-			log.debug("Inserting global name: " + o + " value:" + globals.get(o));
-			workingMemory.setGlobal(o, globals.get(o));
-		}
-
-		return workingMemory;
-
-	}
-
-	/**
-	 * Run Stateless rules using a pre built knowledge base
-	 *
-	 * @param preBuiltKnowledgeBase
-	 * @param facts
-	 * @param globals
-	 * @param logger
-	 * @return any new facts created by the working memory
-	 * @throws DroolsParserException
-	 * @throws IOException
-	 */
-	private Collection<Cell> runStatelessRules(KnowledgeBase preBuiltKnowledgeBase, Collection<Cell> facts,
-			HashMap<String, Cell> globals, IStatusUpdate logger) throws DroolsParserException, IOException {
-
-		// Create a new stateless session
-		log.debug("Creating new working memory");
-		StatelessKnowledgeSession workingMemory = preBuiltKnowledgeBase.newStatelessKnowledgeSession();
-		
-		// Add the logger
-		log.debug("Inserting handle to logger (via global)");
-		workingMemory.setGlobal("log", logger);
-
-		log.debug("Checking for globals");
-		if (globals != null) {
-			for (String o : globals.keySet()) {
-				log.debug("Inserting global name: " + o + " value:" + globals.get(o));
-				workingMemory.setGlobal(o, globals.get(o));
-			}
-		}
-
-		
-		//We need to 'listen' for new cells being created so we can add to our results
-		WorkingMemoryCellListener cellListener = new WorkingMemoryCellListener();
-		workingMemory.addEventListener(cellListener);
-
-		log.debug("==================== Starting Rules ====================");
-
-		// Fire using the facts
-		workingMemory.execute(facts);
-
-		log.debug("==================== Rules Complete ====================");
-		List<Cell> additionalFacts =cellListener.getNewCells(facts);
-		
-		return additionalFacts;
-
-	}
 
 	/**
 	 * Run the rules
@@ -276,20 +193,74 @@ public class RuleRunner {
 	 * @throws Exception
 	 */
 	private Collection<Cell> runStatelessRules(RedModel ruleSource, IStatusUpdate logger)
-			throws DroolsParserException, IOException, ClassNotFoundException {
+			throws IOException, ClassNotFoundException {
 
+		
+			
 		// The most common operation on a rulebase is to create a new rule
 		// session; either stateful or stateless.
-		log.debug("Creating master rule base");
-		KnowledgeBase masterRulebase = ruleLoader.loadRules(ruleSource);
-
+		log.debug("Creating new rule base");
+		KieModule masterRulebase = new RedRuleBuilder().loadRules(ruleSource).getKieModule();
+		
+		
 		log.debug("running stateless rules");
-		Collection<Cell> tmpCollection = runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger);
-		return tmpCollection;
+		return runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger);
+	}
+	
+	/**
+	 * Run Stateless rules using a pre built knowledge base
+	 *
+	 * @param preBuiltKnowledgeBase
+	 * @param facts
+	 * @param globals
+	 * @param logger
+	 * @return any new facts created by the working memory
+	 * @throws DroolsParserException
+	 * @throws IOException
+	 */
+	private Collection<Cell> runStatelessRules(KieModule preBuiltKnowledgeBase, Collection<Cell> facts,
+			HashMap<String, Cell> globals, IStatusUpdate logger) throws IOException {
+
+		log.debug("Creating new stateless working memory");
+		
+		KieContainer kc = KieServices.Factory.get().newKieContainer(preBuiltKnowledgeBase.getReleaseId());
+		StatelessKieSession kSession = kc.newStatelessKieSession();
+		
+		
+		// Add the logger
+		log.debug("Inserting handle to logger (via global)");
+		kSession.setGlobal("log", logger);
+
+		log.debug("Checking for globals");
+		if (globals != null) {
+			for (String o : globals.keySet()) {
+				log.debug("Inserting global name: " + o + " value:" + globals.get(o));
+				kSession.setGlobal(o, globals.get(o));
+			}
+		}
+
+		//We need to 'listen' for new cells being created so we can add to our results
+		SessionCellListener cellListener = new SessionCellListener();
+		kSession.addEventListener(cellListener);
+		
+        // setup listeners
+        kSession.addEventListener( new DebugAgendaEventListener() );
+        kSession.addEventListener( new DebugRuleRuntimeEventListener() );
+
+        // Set up a file based audit logger
+        KnowledgeRuntimeLoggerFactory.newFileLogger(kSession, "log/WorkItemConsequence.log");
+        
+        log.debug("==================== Starting Rules ====================");
+		
+		// Fire using the facts
+		kSession.execute(facts);
+
+		log.debug("==================== Rules Complete ====================");
+		List<Cell> additionalFacts =cellListener.getNewCells(facts);
+		
+		return additionalFacts;
+
 	}
 
-	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {
-		this.outputStrategy = newStrategy;
-	}
 
 }

@@ -36,3 +36,8 @@ If you use Gradle, you can run the application by using ./gradlew bootRun. Alter
 
 java -jar build/libs/gs-serving-web-content-0.1.0.jar
 
+
+===
+
+Note that running main in TestConstants regenerates the serialized test data
+

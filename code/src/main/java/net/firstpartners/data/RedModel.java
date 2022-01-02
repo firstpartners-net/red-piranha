@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -97,7 +98,21 @@ public class RedModel {
 
 	public String[] getRulesLocation() {
 		log.debug("ruleslocation:"+rulesLocation.getClass());
-		return (String[]) rulesLocation.toArray(new String[rulesLocation.size()]);
+		
+		ArrayList<String> outputList = new ArrayList<String>();
+		String thisLocation;
+		
+		//we need to check for empty rules
+		Iterator<String> loopList = rulesLocation.iterator();
+		while (loopList.hasNext()){
+			thisLocation= loopList.next();
+			if(!Config.EMPTY.equals(thisLocation)) {
+				outputList.add(thisLocation);
+			}
+			
+		}
+		
+		return (String[]) outputList.toArray(new String[outputList.size()]);
 	}
 
 

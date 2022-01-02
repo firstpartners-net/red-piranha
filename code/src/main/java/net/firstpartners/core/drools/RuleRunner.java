@@ -20,8 +20,8 @@ import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
 import org.kie.api.logger.KieRuntimeLogger;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
-
-
+import org.kie.api.runtime.StatelessKieSession;
+import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,6 +57,11 @@ public class RuleRunner {
 	// tasks)
 	private IDocumentInStrategy inputStrategy = null;
 
+
+	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {
+		this.outputStrategy = newStrategy;
+	}
+	
 	/**
 	 * Construct a new RuleRunner.
 	 * 
@@ -227,52 +232,7 @@ public class RuleRunner {
 
 	}
 
-	/**
-	 * Run Stateless rules using a pre built knowledge base
-	 *
-	 * @param preBuiltKnowledgeBase
-	 * @param facts
-	 * @param globals
-	 * @param logger
-	 * @return any new facts created by the working memory
-	 * @throws DroolsParserException
-	 * @throws IOException
-	 */
-	private Collection<Cell> runStatelessRules(KnowledgeBase preBuiltKnowledgeBase, Collection<Cell> facts,
-			HashMap<String, Cell> globals, IStatusUpdate logger) throws DroolsParserException, IOException {
 
-		// Create a new stateless session
-		log.debug("Creating new working memory");
-		StatelessKnowledgeSession workingMemory = preBuiltKnowledgeBase.newStatelessKnowledgeSession();
-		
-		// Add the logger
-		log.debug("Inserting handle to logger (via global)");
-		workingMemory.setGlobal("log", logger);
-
-		log.debug("Checking for globals");
-		if (globals != null) {
-			for (String o : globals.keySet()) {
-				log.debug("Inserting global name: " + o + " value:" + globals.get(o));
-				workingMemory.setGlobal(o, globals.get(o));
-			}
-		}
-
-		
-		//We need to 'listen' for new cells being created so we can add to our results
-		WorkingMemoryCellListener cellListener = new WorkingMemoryCellListener();
-		workingMemory.addEventListener(cellListener);
-
-		log.debug("==================== Starting Rules ====================");
-
-		// Fire using the facts
-		workingMemory.execute(facts);
-
-		log.debug("==================== Rules Complete ====================");
-		List<Cell> additionalFacts =cellListener.getNewCells(facts);
-		
-		return additionalFacts;
-
-	}
 
 	/**
 	 * Run the rules
@@ -292,28 +252,72 @@ public class RuleRunner {
 			throws IOException, ClassNotFoundException {
 
 		
-		KieContainer kc = KieServices.Factory.get().getKieClasspathContainer();
-		KieSession kSession = kc.newKieSession("RedKS");
-		
-		
-		
+			
 		// The most common operation on a rulebase is to create a new rule
 		// session; either stateful or stateless.
 		log.debug("Creating master rule base");
 		//@Todo refactor into this patter
 		//KnowledgeBase masterRulebase = ruleLoader.loadRules(ruleSource);
-		KieModule masterRulebase = RedRuleBuilder.getRulesFromDisk(ruleSource);
-
+		KieModule masterRulebase = new RedRuleBuilder().getRulesFromDisk(ruleSource).getKieModule();
 		
-		//refactorign from here
 		
 		log.debug("running stateless rules");
-		Collection<Cell> tmpCollection = runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger);
-		return tmpCollection;
+		return runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger);
+	}
+	
+	/**
+	 * Run Stateless rules using a pre built knowledge base
+	 *
+	 * @param preBuiltKnowledgeBase
+	 * @param facts
+	 * @param globals
+	 * @param logger
+	 * @return any new facts created by the working memory
+	 * @throws DroolsParserException
+	 * @throws IOException
+	 */
+	private Collection<Cell> runStatelessRules(KieModule preBuiltKnowledgeBase, Collection<Cell> facts,
+			HashMap<String, Cell> globals, IStatusUpdate logger) throws IOException {
+
+		log.debug("Creating new stateless working memory");
+		
+		KieContainer kc = KieServices.Factory.get().newKieContainer(preBuiltKnowledgeBase.getReleaseId());
+		StatelessKieSession kSession = kc.newStatelessKieSession();
+		
+		
+		// Add the logger
+		log.debug("Inserting handle to logger (via global)");
+		kSession.setGlobal("log", logger);
+
+		log.debug("Checking for globals");
+		if (globals != null) {
+			for (String o : globals.keySet()) {
+				log.debug("Inserting global name: " + o + " value:" + globals.get(o));
+				kSession.setGlobal(o, globals.get(o));
+			}
+		}
+
+		//We need to 'listen' for new cells being created so we can add to our results
+		SessionCellListener cellListener = new SessionCellListener();
+		kSession.addEventListener(cellListener);
+		
+        // setup listeners
+        kSession.addEventListener( new DebugAgendaEventListener() );
+        kSession.addEventListener( new DebugRuleRuntimeEventListener() );
+
+        // Set up a file based audit logger
+        KieRuntimeLogger kLogger = KnowledgeRuntimeLoggerFactory.newFileLogger(kSession, "log/WorkItemConsequence.log");
+        log.debug("==================== Starting Rules ====================");
+		
+		// Fire using the facts
+		kSession.execute(facts);
+
+		log.debug("==================== Rules Complete ====================");
+		List<Cell> additionalFacts =cellListener.getNewCells(facts);
+		
+		return additionalFacts;
+
 	}
 
-	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {
-		this.outputStrategy = newStrategy;
-	}
 
 }

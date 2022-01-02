@@ -3,6 +3,7 @@ package net.firstpartners.core.drools.loader;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,8 @@ class RedRuleBuilderTest {
 		RedModel myModel = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
 		myModel.addRuleLocation(TestConstants.RULES_FILES);
 		
-		KieModule myModule = new RedRuleBuilder().getRulesFromDisk(myModel);
+		KieBuilder myBuilder = new RedRuleBuilder().getRulesFromDisk(myModel);
+		KieModule myModule = myBuilder.getKieModule();
 	}
 
 }

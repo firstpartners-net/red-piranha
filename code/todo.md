@@ -3,6 +3,19 @@ Next :
 * Move to KIE
 * Merge branch	
 
+Remove Stateful ??
+Refactor factory aorund rules / simplify?
+
+
+UNDERSTAND
+Understand different objects
+add listeners / explore more
+add logging around KIE
+WorkingMemoryEventListener ->  RuleRuntimeEventListener for new cells - wokring?
+
+
+Later (move)
+* split out compile steps
 
 
 Now pushing 

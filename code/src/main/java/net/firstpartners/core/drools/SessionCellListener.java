@@ -7,10 +7,10 @@ import java.util.List;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
-import org.drools.event.rule.ObjectInsertedEvent;
-import org.drools.event.rule.ObjectRetractedEvent;
-import org.drools.event.rule.ObjectUpdatedEvent;
-import org.drools.event.rule.WorkingMemoryEventListener;
+import org.kie.api.event.rule.ObjectInsertedEvent;
+import org.kie.api.event.rule.ObjectUpdatedEvent;
+import org.kie.api.event.rule.ObjectDeletedEvent;
+import org.kie.api.event.rule.RuleRuntimeEventListener;
 
 import net.firstpartners.data.Cell;
 
@@ -20,7 +20,7 @@ import net.firstpartners.data.Cell;
  * @author PBrowne
  *
  */
-public class WorkingMemoryCellListener implements WorkingMemoryEventListener {
+public class SessionCellListener implements RuleRuntimeEventListener {
 
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -43,17 +43,20 @@ public class WorkingMemoryCellListener implements WorkingMemoryEventListener {
 
 	}
 
+
 	/**
 	 * We get notified of these events, but we don't really care about updates
 	 */
+	
 	@Override
-	public void objectUpdated(ObjectUpdatedEvent event) {
-		// log.debug("Object updating:"+event.getObject());
-
+	public void objectUpdated(org.kie.api.event.rule.ObjectUpdatedEvent event) {
+		// TODO Auto-generated method stub
+		
 	}
 
+
 	@Override
-	public void objectRetracted(ObjectRetractedEvent event) {
+	public void objectDeleted(ObjectDeletedEvent event) {
 		newCells.remove(event.getOldObject());
 		//log.debug("Object retracted:" + event.getOldObject());
 
@@ -86,5 +89,8 @@ public class WorkingMemoryCellListener implements WorkingMemoryEventListener {
 		
 		return returnList;
 	}
+
+
+
 
 }

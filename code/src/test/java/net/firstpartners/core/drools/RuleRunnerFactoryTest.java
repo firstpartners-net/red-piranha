@@ -12,8 +12,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.firstpartners.core.drools.loader.FileRuleLoader;
-import net.firstpartners.core.drools.loader.URLRuleLoaderStrategy;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.file.CSVOutputStrategy;
@@ -34,7 +32,6 @@ public class RuleRunnerFactoryTest {
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
-		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
 
 	}
 
@@ -45,7 +42,6 @@ public class RuleRunnerFactoryTest {
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
-		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
 
 	}
 
@@ -56,7 +52,6 @@ public class RuleRunnerFactoryTest {
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordInputStrategy);
 		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof CSVOutputStrategy);
-		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
 
 	}
 
@@ -67,7 +62,6 @@ public class RuleRunnerFactoryTest {
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordXInputStrategy);
 		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof PDFOutputStrategy);
-		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
 
 	}
 
@@ -107,7 +101,6 @@ public class RuleRunnerFactoryTest {
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
-		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
 		assertNotNull(myRunner.getRuleLoader().getRuleSource());
 		assertEquals(myRunner.getRuleLoader().getRuleSource().getRulesLocation()[0], "someFile"); // check that someFile
 																									// is stored
@@ -122,7 +115,6 @@ public class RuleRunnerFactoryTest {
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof ExcelOutputStrategy);
-		assertTrue(myRunner.getRuleLoader() instanceof URLRuleLoaderStrategy);
 
 	}
 
@@ -163,7 +155,6 @@ public class RuleRunnerFactoryTest {
 		assertNotNull(myRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumenttOutputStrategy() instanceof JsonOutputStrategy);
-		assertTrue(myRunner.getRuleLoader() instanceof FileRuleLoader);
 		assertNotNull(myRunner.getRuleLoader().getRuleSource());
 		assertEquals(myRunner.getRuleLoader().getRuleSource().getRulesLocation()[0], "someFile"); // check that someFile
 																									// is stored

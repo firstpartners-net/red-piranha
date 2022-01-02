@@ -226,7 +226,7 @@ public class RuleRunner {
 		log.debug("Creating master rule base");
 		//@Todo refactor into this patter
 		//KnowledgeBase masterRulebase = ruleLoader.loadRules(ruleSource);
-		KieModule masterRulebase = new RedRuleBuilder().getRulesFromDisk(ruleSource).getKieModule();
+		KieModule masterRulebase = new RedRuleBuilder().loadRules(ruleSource).getKieModule();
 		
 		
 		log.debug("running stateless rules");

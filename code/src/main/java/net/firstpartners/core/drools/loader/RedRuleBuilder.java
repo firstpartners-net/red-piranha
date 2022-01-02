@@ -22,23 +22,25 @@ import net.firstpartners.data.RedModel;
  * @author paulf
  * @todo refactor into Rule Loader pattern, part of move to KIE / Drools 7.5
  */
-public class RedRuleBuilder {
+public class RedRuleBuilder implements IRuleLoaderStrategy {
 
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	public KieBuilder getRulesFromDisk(RedModel ruleSource) {
+	//Handle to the original source
+	RedModel originalSource =null;
+	
+	public KieBuilder loadRules(RedModel ruleSource) {
 
+		// Store Source for later use
+		this.originalSource=ruleSource;
+		
 		// Handles
 		File currentFile;
 
 		// For Kie later
 		KieServices ks = KieServices.Factory.get();
 		KieFileSystem kfs = ks.newKieFileSystem();
-
-		// ===
-
-		// ===
 
 		// Loop through and read rule files locations
 		String[] rulesLocs = ruleSource.getRulesLocation();
@@ -74,6 +76,12 @@ public class RedRuleBuilder {
 		}
 
 		return kBuilder; // .getKieModule();
+	}
+
+	@Override
+	public RedModel getRuleSource() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

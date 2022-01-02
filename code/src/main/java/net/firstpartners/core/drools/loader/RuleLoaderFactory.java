@@ -12,15 +12,16 @@ public class RuleLoaderFactory {
 	 */
 	public static IRuleLoaderStrategy getRuleLoader(RedModel ruleLocation) {
 
-		IRuleLoaderStrategy ruleLoader;
-		String firstRuleLocation = ruleLocation.getRulesLocation()[0].toLowerCase();
-		
-
-		if (firstRuleLocation.startsWith("http")) {
-			ruleLoader = new URLRuleLoaderStrategy();
-		} else {
-			ruleLoader = new FileRuleLoader(ruleLocation);
-		}
+		IRuleLoaderStrategy ruleLoader = new RedRuleBuilder();
+//		String firstRuleLocation = ruleLocation.getRulesLocation()[0].toLowerCase();
+//		
+//
+//		if (firstRuleLocation.startsWith("http")) {
+//			if (true) {throw new RuntimeException("http loading not implemented yet");}
+//			ruleLoader = new URLRuleLoaderStrategy();
+//		} else {
+//			ruleLoader = new FileRuleLoader(ruleLocation);
+//		}
 
 		// Default - url rule loader
 		return ruleLoader;

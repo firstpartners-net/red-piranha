@@ -55,6 +55,12 @@ public class TestConstants {
 	public final static String SAVED_WORDX_RANGEHOLDER_DATA="src/test/resources/testdata/RANGEHOLDER_RANGE_WORDX.testdata";
 	
 	
+	public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR = "examples/domain-specific-language/log-rules.dslr";
+
+	public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL = "examples/domain-specific-language/cell-logging.dsl";
+
+
+	
 	/**
 	 * Testing utility to generate test Data
 	 */

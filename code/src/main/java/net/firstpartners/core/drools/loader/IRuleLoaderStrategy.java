@@ -3,6 +3,7 @@ package net.firstpartners.core.drools.loader;
 import java.io.IOException;
 
 import org.drools.compiler.compiler.DroolsParserException;
+import org.kie.api.builder.KieBuilder;
 
 import net.firstpartners.data.RedModel;
 
@@ -21,7 +22,7 @@ public interface IRuleLoaderStrategy {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	org.drools.KnowledgeBase loadRules(RedModel ruleSource) throws DroolsParserException, IOException, ClassNotFoundException;
+	KieBuilder loadRules(RedModel ruleSource) throws DroolsParserException, IOException, ClassNotFoundException;
 	
 	/**
 	 * gets the original rule source

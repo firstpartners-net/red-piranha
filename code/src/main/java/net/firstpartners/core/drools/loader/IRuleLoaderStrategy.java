@@ -23,12 +23,7 @@ public interface IRuleLoaderStrategy {
 	 * @throws ClassNotFoundException
 	 */
 	KieBuilder loadRules(RedModel ruleSource) throws DroolsParserException, IOException, ClassNotFoundException;
-	
-	/**
-	 * gets the original rule source
-	 * @return
-	 */
-	RedModel getRuleSource();
+
 
 
 }

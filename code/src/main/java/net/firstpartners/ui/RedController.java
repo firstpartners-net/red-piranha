@@ -97,7 +97,7 @@ public class RedController {
 			
 			// Call the rules using this datafile
 			userUpdates.info("Running Rules:" + redModel);
-			runner.callRules(userUpdates);
+			runner.callRules(userUpdates,redModel);
 			userUpdates.info("Complete");
 			
 			//update our main status message

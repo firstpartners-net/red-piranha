@@ -11,7 +11,6 @@ import org.kie.api.KieServices;
 import org.kie.api.builder.KieModule;
 import org.kie.api.event.rule.DebugAgendaEventListener;
 import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
-import org.kie.api.logger.KieRuntimeLogger;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.StatelessKieSession;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
@@ -22,7 +21,6 @@ import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
 import net.firstpartners.core.drools.loader.RedRuleBuilder;
-import net.firstpartners.core.log.EmptyStatusUpdate;
 import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.core.log.SpreadSheetStatusUpdate;
 import net.firstpartners.data.Cell;
@@ -71,26 +69,6 @@ public class RuleRunner {
 		this.outputStrategy = outputStrategy;
 	}
 
-	/**
-	 * call the rule Engine - data input / output has already been set during the
-	 * creation of this class
-	 * 
-	 * @param nameOfLogSheet
-	 * @throws DroolsParserException
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 * @throws InvalidFormatException
-	 * @throws CsvRequiredFieldEmptyException
-	 * @throws CsvDataTypeMismatchException
-	 */
-	public RedModel callRules() throws IOException, ClassNotFoundException, InvalidFormatException {
-
-		// Add the logger
-		// prevent a null pointer in our rules
-		IStatusUpdate userMessages = new EmptyStatusUpdate();
-
-		return callRules(userMessages);
-	}
 
 	/**
 	 * Call the rule Engine - data input / output has already been set during the
@@ -106,11 +84,9 @@ public class RuleRunner {
 	 * @throws CsvDataTypeMismatchException
 	 * @return our Model with all the information so we can display back to the user
 	 */
-	public RedModel callRules(IStatusUpdate userMessages)
+	public RedModel callRules(IStatusUpdate userMessages, RedModel ruleModel)
 			throws IOException, ClassNotFoundException, InvalidFormatException {
 
-		// Load our rules first - catches any compilation errors early
-		RedModel ruleModel = ruleLoader.getRuleSource();
 
 		// Create a new Logging object
 		outputStrategy.setDocumentLogger(new SpreadSheetStatusUpdate());
@@ -191,7 +167,7 @@ public class RuleRunner {
 	 * 
 	 * @return the strategy object
 	 */
-	public IDocumentOutStrategy getDocumenttOutputStrategy() {
+	public IDocumentOutStrategy getDocumentOutputStrategy() {
 		return outputStrategy;
 	}
 
@@ -223,9 +199,7 @@ public class RuleRunner {
 			
 		// The most common operation on a rulebase is to create a new rule
 		// session; either stateful or stateless.
-		log.debug("Creating master rule base");
-		//@Todo refactor into this patter
-		//KnowledgeBase masterRulebase = ruleLoader.loadRules(ruleSource);
+		log.debug("Creating new rule base");
 		KieModule masterRulebase = new RedRuleBuilder().loadRules(ruleSource).getKieModule();
 		
 		
@@ -274,7 +248,8 @@ public class RuleRunner {
         kSession.addEventListener( new DebugRuleRuntimeEventListener() );
 
         // Set up a file based audit logger
-        KieRuntimeLogger kLogger = KnowledgeRuntimeLoggerFactory.newFileLogger(kSession, "log/WorkItemConsequence.log");
+        KnowledgeRuntimeLoggerFactory.newFileLogger(kSession, "log/WorkItemConsequence.log");
+        
         log.debug("==================== Starting Rules ====================");
 		
 		// Fire using the facts

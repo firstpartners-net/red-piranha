@@ -27,13 +27,9 @@ public class RedRuleBuilder implements IRuleLoaderStrategy {
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	//Handle to the original source
-	RedModel originalSource =null;
 	
 	public KieBuilder loadRules(RedModel ruleSource) {
 
-		// Store Source for later use
-		this.originalSource=ruleSource;
 		
 		// Handles
 		File currentFile;
@@ -75,13 +71,8 @@ public class RedRuleBuilder implements IRuleLoaderStrategy {
 					+ thisCompileMessage.getLine() + " | " + thisCompileMessage.getText());
 		}
 
-		return kBuilder; // .getKieModule();
+		return kBuilder;
 	}
 
-	@Override
-	public RedModel getRuleSource() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

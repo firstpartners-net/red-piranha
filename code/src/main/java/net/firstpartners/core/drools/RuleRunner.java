@@ -114,8 +114,6 @@ public class RuleRunner {
 		// Load and fire our rules files against the data
 		Collection<Cell> newFacts = runStatelessRules(ruleModel, userMessages);
 		
-		
-		
 		if (userMessages != null) {
 			userMessages.showPostRulesSnapShot(ranges);
 			userMessages.notifyProgress(80);

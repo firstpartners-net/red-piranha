@@ -106,4 +106,5 @@ public class ConfigTest {
 		assertEquals(-1,toS.indexOf("inputFileName=<null>"));
 	}
 
+	
 }

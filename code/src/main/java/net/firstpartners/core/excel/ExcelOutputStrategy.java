@@ -8,6 +8,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
@@ -26,12 +27,10 @@ import net.firstpartners.data.RangeList;
  */
 public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
+	private static final String RULES_LOG = "rules-log";
+
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-
-	// handle for our config
-	@Autowired
-	Config appConfig;
 
 	// Name of the outputfile
 	private String outputFileName = null;
@@ -59,7 +58,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	public void flush() {
 		if (this.spreadSheetLogger instanceof SpreadSheetStatusUpdate) {
 
-			((SpreadSheetStatusUpdate) this.spreadSheetLogger).flush(workbook, appConfig.getExcelLogSheetName());
+			((SpreadSheetStatusUpdate) this.spreadSheetLogger).flush(workbook, RULES_LOG);
 
 		}
 

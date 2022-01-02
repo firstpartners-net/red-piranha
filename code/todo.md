@@ -1,5 +1,8 @@
 
 Next :
+Work through what is going on with rules output to Excel
+Write junit test to mimic (or find existing)
+
 
 UNDERSTAND
 Understand different objects
@@ -56,3 +59,22 @@ TODO MOVE
 		* Enable swagger
 		* Enable more services
 	* Maven site - document rp code?
+
+
+
+	NEXT: 
+	• Compile
+	• Test constructor
+	• Rest service / js front end
+
+
+
+RP next todo from:
+	• Code/todo.md
+	• Links in index.html
+	• Working excel example
+		○ Spring boot showing logs
+		○ Unit tests 
+		○ Note (my draft)
+			§ How to run
+How to setup

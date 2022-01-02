@@ -104,8 +104,12 @@ public class RedController {
 			userUpdates.updateCurrentStatus("Rules Complete");
 
 		} catch (Throwable t) {
+
+			//We try to show as much details as possible (in the logs) without scaring the user
+			log.error("Full details of error", t);
 			userUpdates.exception("Uncaught Exception", t);
 			userUpdates.notifyExceptionOccured();
+			model.addAttribute("displayException", t);
 
 		}
 
@@ -114,9 +118,9 @@ public class RedController {
 		
 		// update the web values with the values coming back
 		model.addAttribute("updateMessage", userUpdates.getCurrentStatus());
-		model.addAttribute("inputFileContent", "incoming values...");
+		model.addAttribute("inputFacts", "incoming values...");
 		model.addAttribute("ruleFileMessages", userUpdates.getContents());
-		model.addAttribute("outputFileContent", "output log...");
+		model.addAttribute("outputFacts", redModel.getFacts());
 
 		// make the config we used available as well
 		model.addAttribute("configBean", appConfig);

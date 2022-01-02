@@ -98,11 +98,13 @@
 				<p class="bg-primary">&nbsp;Progress</p>
 				<p th:text="${updateMessage}"/></p>
 				<p class="bg-primary">&nbsp;Information from Input File</p>
-				<p><input type="text" th:value="*{inputFileContent}" class="form-control" rows="5"/></p>
+				<p><input type="text" th:value="*{inputFacts}" class="form-control" rows="5"/></p>
 				<p class="bg-primary">&nbsp;Messages as Business Rules are applied</p>
 				<p th:text="${ruleFileMessages}"/></p>
 				<p class="bg-primary">&nbsp;Information after Business Rules</p>
-				<p><input type="text" th:value="*{outputFileContent}" class="form-control" rows="5" /></p>
+				<p th:text="${outputFacts}"/></p>
+				<p class="bg-primary">&nbsp;Did anything go wrong?</p>
+				<p th:text="${displayException}"/></p>
 			</div>
 		</div>
 	</div>

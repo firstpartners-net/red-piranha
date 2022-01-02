@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Component;
 @ManagedResource
 public class Config {
 
-
+	
 	// Constant to denote empty values
 	public final static String EMPTY = "empty";
 
@@ -51,9 +52,9 @@ public class Config {
 	@Value("${RULE3 ?:empty}")
 	private String rule3;
 
-	@Autowired
-	@Value("${EXCEL_LOG_SHEET_NAME}")
-	private String excelLogSheetName;
+//	@Autowired
+//	@Value("${EXCEL_LOG_SHEET_NAME}")
+//	private String excelLogSheetName;
 
 	public String getRule1() {
 		return rule1;
@@ -79,13 +80,13 @@ public class Config {
 		this.rule3 = rule3;
 	}
 
-	public String getExcelLogSheetName() {
-		return excelLogSheetName;
-	}
-
-	public void setExcelLogSheetName(String excelLogSheetName) {
-		this.excelLogSheetName = excelLogSheetName;
-	}
+//	public String getExcelLogSheetName() {
+//		return excelLogSheetName;
+//	}
+//
+//	public void setExcelLogSheetName(String excelLogSheetName) {
+//		this.excelLogSheetName = excelLogSheetName;
+//	}
 
 	public String getInputFileName() {
 		return inputFileName;
@@ -115,5 +116,6 @@ public class Config {
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
 	}
+	
 
 }

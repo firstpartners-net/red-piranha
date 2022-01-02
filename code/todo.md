@@ -1,11 +1,5 @@
 
 Next :
-* Move to KIE
-* Merge branch	
-
-Remove Stateful ??
-Refactor factory aorund rules / simplify?
-
 
 UNDERSTAND
 Understand different objects

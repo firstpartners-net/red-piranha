@@ -27,3 +27,9 @@ code/.settings/org.eclipse.m2e.core.prefs
 tmp.json
 tmp.pdf
 
+#Jekyll _site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+

@@ -23,7 +23,7 @@ Now pushing
 ** rules Steps
 ** most info through to front end
 ** more tests compile / rule
-*** Testing: 55 tests, 17 Errors, 2 failures
+*** Testing: 55 tests, 2 Errors, 2 failures
 * skeleton Doc (Dev, User)
 
 * look at moving over private samples

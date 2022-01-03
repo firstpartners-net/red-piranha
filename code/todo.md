@@ -3,7 +3,6 @@
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
 
-
 ## Aim of Next Sprint
 
 Platform (with existing examples) and good draft of user and dev documentation.

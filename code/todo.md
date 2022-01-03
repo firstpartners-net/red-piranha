@@ -1,44 +1,48 @@
+# Todo List
 
-Next :
-Work through what is going on with rules output to Excel
-Write junit test to mimic (or find existing)
+Yes, we should be using the GitHub issue tracker. But for this stage in development (muliple small improvements) a todo list works fine
 
+## Next Step
 
-UNDERSTAND
-Understand different objects
+* Tidy docs - todo.md / readme-dev.md / readme.md
+* merge structure back into branch
+
+## Aim of Next Sprint
+
+Platform (with existing examples) and good draft of user and dev documentation.
+
+* Can hand to Java developer and build
+* (with Docker, examples and site) - could be run be end-user and have idea what talking about
+
+Set in place key design principles
+
+* Robust simple
+* As much est as possible
+* integration and pre/post release tests (e.g. Selenumum)
+* Examples easy to use
+
+## To understand
+
+Understand different kie objects
 add listeners / explore more
 add logging around KIE
 WorkingMemoryEventListener ->  RuleRuntimeEventListener for new cells - wokring?
 
+## Later (move)
 
-Later (move)
-* split out compile steps
-
-
-Now pushing 
-* Tidy
-** remove precomiple rules builder
-
-** Config updates when rules pushed
-** rules Steps
-** most info through to front end
-** more tests compile / rule
-*** Testing: 55 tests, 17 Errors, 2 failures
-* skeleton Doc (Dev, User)
+*Config updates when rules pushed
+*rules Steps
+*most info through to front end
+*more tests compile / rule - currently 
+** Tests compiling Testing: 55 tests, 2 Errors, 2 failures
 
 * look at moving over private samples
 * look at integration test examples (either via Srping MVC or other)
+* split out compile steps
 
+## Todo Soon
 
-Think Design
-* Robust simple
-* as much rest as possible
-* integration and pre/post release tests (e.g. Selenumum)
-
-
-
-TODO MOVE
-	* Read drools doc in more detail
+* Read drools doc in more detail
 	* Notes on getting started with build
 	* Update to latest KIE version
 		* Running again
@@ -47,7 +51,7 @@ TODO MOVE
         * Internal
         * Post to KIE Server / get from KIE server
 	* Comments on build
-	* tIDY
+	* Tidy
 		* Look for TODO comments in code
 		* Update Javadoc
 	* NTH
@@ -58,7 +62,7 @@ TODO MOVE
 	* Spring
 		* Enable swagger
 		* Enable more services
-	* Maven site - document rp code?
+
 
 
 
@@ -67,14 +71,11 @@ TODO MOVE
 	• Test constructor
 	• Rest service / js front end
 
-
-
-RP next todo from:
-	• Code/todo.md
-	• Links in index.html
 	• Working excel example
 		○ Spring boot showing logs
 		○ Unit tests 
-		○ Note (my draft)
-			§ How to run
-How to setup
+		○ Note (my draft) on How to run
+
+## Todo Later
+
+* Maven site - document rp code?

@@ -2,10 +2,7 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
-## Next Step
 
-* Tidy docs - readme.md /readme-dev.md
-* merge structure back into branch
 
 ## Aim of Next Sprint
 
@@ -13,6 +10,8 @@ Platform (with existing examples) and good draft of user and dev documentation.
 
 * Can hand to Java developer and build
 * (with Docker, examples and site) - could be run be end-user and have idea what talking about
+
+### Design
 
 Set in place key design principles
 
@@ -26,9 +25,19 @@ Set in place key design principles
 * Understand different kie objects
 * add logging around KIE (to file, but also debug listener)
 * WorkingMemoryEventListener ->  RuleRuntimeEventListener for new cells - wokring?
+* Understand bootstrap and different layout options
+
+## Next Step
+
+* ReRead KIE docs
+* Example Template
+    * Standard format
+	* Automatically gets picked up by RP Index.html
+	* Config to turn off?
+	* readme.md
 
 ## Todo Next 
-
+- [ ] template so auto gets
 - [ ] rules Steps (break out compile)
 - [ ] Figure out why current excel example is outputting incorrectly
 - [ ] More info through to front end
@@ -36,6 +45,8 @@ Set in place key design principles
 - [ ] Tests compiling Testing: 55 tests, 2 Errors, 2 failures
 - [ ] look at moving over private samples
 - [ ] Integrate test examples into application (can be run from standard deployment) and UI upgrade to faciltiate.
+- [ ] Understand Github pages, Jekyll and see if can build an even 'friendlier' version of this site.
+- [ ] (another) review and tidy of two readme pages
 
 
 ## Todo Soon

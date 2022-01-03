@@ -17,7 +17,6 @@ Later (move)
 
 Now pushing 
 * Tidy
-** remove precomiple rules builder
 
 ** Config updates when rules pushed
 ** rules Steps
@@ -70,8 +69,7 @@ TODO MOVE
 
 
 RP next todo from:
-	• Code/todo.md
-	• Links in index.html
+
 	• Working excel example
 		○ Spring boot showing logs
 		○ Unit tests 

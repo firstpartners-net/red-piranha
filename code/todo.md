@@ -1,11 +1,8 @@
 # Todo List
 
-Yes, we should be using the GitHub issue tracker. But for this stage in development (muliple small improvements) a todo list works fine
+Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
-## Next Step
 
-* Tidy docs - todo.md / readme-dev.md / readme.md
-* merge structure back into branch
 
 ## Aim of Next Sprint
 
@@ -13,6 +10,8 @@ Platform (with existing examples) and good draft of user and dev documentation.
 
 * Can hand to Java developer and build
 * (with Docker, examples and site) - could be run be end-user and have idea what talking about
+
+### Design
 
 Set in place key design principles
 
@@ -23,59 +22,56 @@ Set in place key design principles
 
 ## To understand
 
-Understand different kie objects
-add listeners / explore more
-add logging around KIE
-WorkingMemoryEventListener ->  RuleRuntimeEventListener for new cells - wokring?
+* Understand different kie objects
+* add logging around KIE (to file, but also debug listener)
+* WorkingMemoryEventListener ->  RuleRuntimeEventListener for new cells - wokring?
+* Understand bootstrap and different layout options
 
-## Later (move)
+## Next Step
 
-*Config updates when rules pushed
-*rules Steps
-*most info through to front end
-*more tests compile / rule - currently 
-** Tests compiling Testing: 55 tests, 2 Errors, 2 failures
+* ReRead KIE docs
+* Example Template
+    * Standard format
+	* Automatically gets picked up by RP Index.html
+	* Config to turn off?
+	* readme.md
 
-* look at moving over private samples
-* look at integration test examples (either via Srping MVC or other)
-* split out compile steps
+## Todo Next 
+- [ ] template so auto gets
+- [ ] rules Steps (break out compile)
+- [ ] Figure out why current excel example is outputting incorrectly
+- [ ] More info through to front end
+- [ ] more tests compile / rule - currently 
+- [ ] Tests compiling Testing: 55 tests, 2 Errors, 2 failures
+- [ ] look at moving over private samples
+- [ ] Integrate test examples into application (can be run from standard deployment) and UI upgrade to faciltiate.
+- [ ] Understand Github pages, Jekyll and see if can build an even 'friendlier' version of this site.
+- [ ] (another) review and tidy of two readme pages
+
 
 ## Todo Soon
 
 * Read drools doc in more detail
-	* Notes on getting started with build
-	* Update to latest KIE version
-		* Running again
-	* Excel ??
-    * Rules calling
-        * Internal
-        * Post to KIE Server / get from KIE server
-	* Comments on build
-	* Tidy
-		* Look for TODO comments in code
-		* Update Javadoc
-	* NTH
-		* Add Docker image (based on main java one)
-		* Integrate in EI sample
-		* Add Spring MVC Tests
-		* Review update dependencie
-	* Spring
-		* Enable swagger
-		* Enable more services
+* Initial Docker Build (just RP in container)
+* Extended Docker Compose (Make Kie Server and Business Central available)
+* Outline how to integrate with KIE Server
+* split out compile steps (at from end)
+* Review / tidy Javadoc
+* Add Spring MVC Tests
+* Add Integration Tests
+* Review update dependencies (in Pom.xml)
+* upgrade display of Java objects (e.g. before and after Model) to be more user friendly
 
+## Todo Book Samples
 
-
-
-	NEXT: 
-	• Compile
-	• Test constructor
-	• Rest service / js front end
-
-	• Working excel example
-		○ Spring boot showing logs
-		○ Unit tests 
-		○ Note (my draft) on How to run
+* What book sample (to be integrated into standard deploy)
+* what features needed for book examples - Possible
+    * Extract Named ranges from Excel
+    * Choice of colours to update (?)
 
 ## Todo Later
 
 * Maven site - document rp code?
+* Update red-piranha-sourceforge.com to point to github (grab info first)
+* Enable Swagger
+* Turn back on Spring Services in applicaiton.properites

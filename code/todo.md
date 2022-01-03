@@ -1,10 +1,10 @@
 # Todo List
 
-Yes, we should be using the GitHub issue tracker. But for this stage in development (muliple small improvements) a todo list works fine
+Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
 ## Next Step
 
-* Tidy docs - todo.md / readme-dev.md / readme.md
+* Tidy docs - readme.md /readme-dev.md
 * merge structure back into branch
 
 ## Aim of Next Sprint
@@ -29,13 +29,13 @@ Set in place key design principles
 
 ## Todo Next 
 
-- [ ] rules Steps
+- [ ] rules Steps (break out compile)
 - [ ] Figure out why current excel example is outputting incorrectly
 - [ ] More info through to front end
 - [ ] more tests compile / rule - currently 
 - [ ] Tests compiling Testing: 55 tests, 2 Errors, 2 failures
 - [ ] look at moving over private samples
-- [ ] Integrate test examples into application (can be run from standard deployment)
+- [ ] Integrate test examples into application (can be run from standard deployment) and UI upgrade to faciltiate.
 
 
 ## Todo Soon
@@ -57,7 +57,7 @@ Set in place key design principles
 * what features needed for book examples - Possible
     * Extract Named ranges from Excel
     * Choice of colours to update (?)
-	
+
 ## Todo Later
 
 * Maven site - document rp code?

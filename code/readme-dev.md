@@ -75,17 +75,6 @@ Explain for example
 
 What objects are
 
-## Business Problem ##
-
-Statement:
-
-## What this sample does ##
-
-High level
-
- 1. Walk through input file
- 2. Walk through running RP - 1 screenshot
- 3. Walk through output
 
 ## More detail on how it does it ##
 
@@ -181,3 +170,145 @@ Datamodel
 ** WordInput Strategy <https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/word/WordInputStrategy.html>
 ** Word (newer version) Input Strategy
 <https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/word/WordXInputStrategy.html>
+
+
+### Dev Setup
+
+* Eclipse
+* VSCode
+* Java install
+
+Eclipse download
+
+Jboss / Drools tools
+
+For tasks
+
+[http://download.eclipse.org/egit/github/updates-nightly/](http://download.eclipse.org/egit/github/updates-nightly/)
+
+[https://wiki.eclipse.org/EGit/GitHub/User_Guide](https://wiki.eclipse.org/EGit/GitHub/User_Guide)
+
+Github
+
+### More on Document Conversion
+
+* How to set as input file
+* Word (docx) and not doc - not yet impmeneted / how to covnert
+* Why we map everything to a cell
+* Viewing the data in the view
+* And how to use this to write data gainst it
+* Link to Javadoc
+
+INPUT
+
+* XLS/XLSX
+* WORD/WORDX
+
+BASIC RP MODEL
+
+RangeList
+
+0 more Ranges
+
+0 or more Cells
+
+CONVERTOR MODEL - word
+
+Document
+
+* Para
+
+* Text
+
+RangeList 1 per Doc
+
+* Range 1 per Para
+
+* Cell 1 per Para
+
+Cell Value Gives Text
+
+Sample Rule to Access
+
+???
+
+Document
+
+* Tables
+
+* Rows
+
+* Cells in Table
+
+RangeList 1 per Doc
+
+[all rows in tables added] - but using
+
+Table 1 Row 1 Convention
+
+* Range = one row on table
+
+* Cell = 1 cell per cell on table
+
+Name is the fist row
+
+Names - based on …
+
+* First row
+* thisCell.setOriginalTableRefernece("TABLE_"+tableCounter);
+* thisCell.setOriginalCellReference("R:"+rowCounter+" C:"+cellCounter);
+
+Update: Paragraph / Cells - new doc?
+
+Other ntoes
+
+* Filters to Ascii sets
+* Only table cells with a value get in (so can't guarantee all cells from table are present in working memory
+
+Sample Doc: Before (picture of word)
+
+Sample Doc after (from viewr)
+
+Only document in and out …
+
+### More on Document Output
+
+Dev Note on how to extend
+
+OUTPUT
+Available File formats
+
+* XLS / XLSX in and out
+* Word, WordX In
+  ○ Wriite rules to detect if format of incomfing doc changes
+  ○ "fingerprint" a couple of key points
+  ○ If values are repeated multiple times in doc, try to t
+  ○ Double check names nearby to
+   § e.g. on our doc
+   § // cellName=Department Manager Name:_0 , originalTableReference ="TABLE_9"
+  ○ Prefer Table values to document, less likely to hcange
+  ○ Refer to Table name in rules
+  ○
+* ?? PDF - very simple
+  ○ How to create a template which we can then fill
+* ?? CSV Out - very simple
+  ○ Tries to append ??
+  ○ Ignores original document
+  ○ @see net.firstpartners.core.file.CSVOutputStrategy
+  ○ Note on how to create a CSV file
+* .json
+  ○ Use for debugging
+  ○ Use alongside GUI
+  ○ Go through Cycle of mappign document
+* Note about data independent of layout
+
+NTOE IN WRITING RULES
+PUT IN STRAGN VLAUES
+
+### Explaining the DRL
+
+Note \\ needed in java when specifiying directories
+
+In translator.dsl
+
+* Adding #/result will debug the generated rules to the log

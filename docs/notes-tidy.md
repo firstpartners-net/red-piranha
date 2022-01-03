@@ -20,15 +20,6 @@ Example rules of how to call each type of info available
 
 - Update Site : readup on jeckyll
 
-- explain dirs: scripts / jetty / samples / launch for j
-
-- explain various options in dist
-
-- Make notes on each of the build target
-
-- how to run jetty
-
-- how to run launch4j
 
 - Eclipse tools (Jboss / market place etc)
 
@@ -54,7 +45,3 @@ Datamodel
 -   How to call it from a rule
 
 
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbODY1NDkzMDIyXX0=
--->

@@ -45,17 +45,9 @@ Even better, it's all open source and free to get started. And it works with Goo
 
 ## Links - Developers and Site Admin
 
-* [Getting Started as Developer](docs/d-GettingStarted.md)
-* [Project Layout](docs/d-ProjectLayout.md)
-* [Notes on Red Piranha for Drools Developers](docs/d-RedPiranhaForDroolsDevelopers.md)
-* [Libraries Used](docs/d-LibrariesUsed.md)
-* [Common Error Messages](docs/common-error-messages.md)
-* [How to do a release of Red-Piranha](docs/g-releases.md)
+* [Getting Started as Developer](code/d-GettingStarted.md)
 
-## Links for older version of Red Piranha
-
-### Looking for the Book Examples?
-
+### Looking for the Older Examples from Book 1 ?
 
 
 | ![Man Icon](http://rcm-images.amazon.com/images/I/511yB7Fl-SL._SL110_.jpg) | **[Have you just bought the book?](docs/z-Book.md)** - Beginning Business rules with JBoss Drools. <br /> Where to download the samples and other useful information. |

@@ -30,11 +30,11 @@ WorkingMemoryEventListener ->  RuleRuntimeEventListener for new cells - wokring?
 
 ## Later (move)
 
-*Config updates when rules pushed
-*rules Steps
-*most info through to front end
-*more tests compile / rule - currently 
-** Tests compiling Testing: 55 tests, 2 Errors, 2 failures
+- [*] Config updates when rules pushed
+- [ ]  rules Steps
+- [ ]  most info through to front end
+- [ ]  more tests compile / rule - currently 
+- [ ]   Tests compiling Testing: 55 tests, 2 Errors, 2 failures
 
 * look at moving over private samples
 * look at integration test examples (either via Srping MVC or other)
@@ -52,7 +52,6 @@ WorkingMemoryEventListener ->  RuleRuntimeEventListener for new cells - wokring?
         * Post to KIE Server / get from KIE server
 	* Comments on build
 	* Tidy
-		* Look for TODO comments in code
 		* Update Javadoc
 	* NTH
 		* Add Docker image (based on main java one)
@@ -63,19 +62,7 @@ WorkingMemoryEventListener ->  RuleRuntimeEventListener for new cells - wokring?
 		* Enable swagger
 		* Enable more services
 
-
-
-
-	NEXT: 
-	• Compile
-	• Test constructor
-	• Rest service / js front end
-
-	• Working excel example
-		○ Spring boot showing logs
-		○ Unit tests 
-		○ Note (my draft) on How to run
-
 ## Todo Later
 
 * Maven site - document rp code?
+* Update red-piranha-sourceforge.com to point to github (grab info first)

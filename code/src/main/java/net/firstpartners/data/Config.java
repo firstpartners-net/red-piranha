@@ -52,9 +52,17 @@ public class Config {
 	@Value("${RULE3 ?:empty}")
 	private String rule3;
 
-//	@Autowired
-//	@Value("${EXCEL_LOG_SHEET_NAME}")
-//	private String excelLogSheetName;
+	@Autowired
+	@Value("${SHOW_FULL_RULE_ENGINE_LOGS}")
+	private boolean showFullRuleEngineLogs;
+
+	public boolean getShowFullRuleEngineLogs() {
+		return showFullRuleEngineLogs;
+	}
+
+	public void setShowFullRuleEngineLogs(boolean showFullRuleEngineLogs) {
+		this.showFullRuleEngineLogs = showFullRuleEngineLogs;
+	}
 
 	public String getRule1() {
 		return rule1;
@@ -80,13 +88,6 @@ public class Config {
 		this.rule3 = rule3;
 	}
 
-//	public String getExcelLogSheetName() {
-//		return excelLogSheetName;
-//	}
-//
-//	public void setExcelLogSheetName(String excelLogSheetName) {
-//		this.excelLogSheetName = excelLogSheetName;
-//	}
 
 	public String getInputFileName() {
 		return inputFileName;

@@ -16,6 +16,7 @@ import org.kie.api.runtime.StatelessKieSession;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
@@ -24,6 +25,7 @@ import net.firstpartners.core.drools.loader.RedRuleBuilder;
 import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.core.log.SpreadSheetStatusUpdate;
 import net.firstpartners.data.Cell;
+import net.firstpartners.data.Config;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 import net.firstpartners.data.RedModel;
@@ -38,21 +40,23 @@ public class RuleRunner {
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
+	// handle for our config
+	@Autowired
+	Config appConfig;
+
 	// Handle to the strategy Class to write out the document
+	// Setup by RuleRunnerFactory
 	private IDocumentOutStrategy outputStrategy = null;
 
 	// Handle to loader
+	// Setup by RuleRunnerFactory
 	private final IRuleLoaderStrategy ruleLoader;
 
 	// Handle to the Strategy Class for specific incoming document (Excel, Word etc
 	// tasks)
+	// Setup by RuleRunnerFactory
 	private IDocumentInStrategy inputStrategy = null;
 
-
-	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {
-		this.outputStrategy = newStrategy;
-	}
-	
 	/**
 	 * Construct a new RuleRunner.
 	 * 
@@ -68,7 +72,6 @@ public class RuleRunner {
 		this.inputStrategy = documentStrategy;
 		this.outputStrategy = outputStrategy;
 	}
-
 
 	/**
 	 * Call the rule Engine - data input / output has already been set during the
@@ -86,7 +89,6 @@ public class RuleRunner {
 	 */
 	public RedModel callRules(IStatusUpdate userMessages, RedModel ruleModel)
 			throws IOException, ClassNotFoundException, InvalidFormatException {
-
 
 		// Create a new Logging object
 		outputStrategy.setDocumentLogger(new SpreadSheetStatusUpdate());
@@ -113,18 +115,17 @@ public class RuleRunner {
 
 		// Load and fire our rules files against the data
 		Collection<Cell> newFacts = runStatelessRules(ruleModel, userMessages);
-		
+
 		if (userMessages != null) {
 			userMessages.showPostRulesSnapShot(ranges);
 			userMessages.notifyProgress(80);
 		}
 
-		//Make a note of any new facts added
+		// Make a note of any new facts added
 		Range newRange = new Range("New Facts");
 		newRange.put(newFacts);
 		ranges.add(newRange);
-		
-		
+
 		// update a copy of the original document (to be saved as copy) with the result
 		// of our rules
 		log.debug("RunRules - object " + inputStrategy.getOriginalDocument());
@@ -146,7 +147,7 @@ public class RuleRunner {
 		if (userMessages != null) {
 			userMessages.notifyProgress(100);
 		}
-		
+
 		return ruleModel;
 
 	}
@@ -169,12 +170,13 @@ public class RuleRunner {
 		return outputStrategy;
 	}
 
+	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {
+		this.outputStrategy = newStrategy;
+	}
+
 	public IRuleLoaderStrategy getRuleLoader() {
 		return ruleLoader;
 	}
-
-
-
 
 	/**
 	 * Run the rules
@@ -184,7 +186,7 @@ public class RuleRunner {
 	 * @param facts      - Javabeans to pass to the rule engine
 	 * @param globals    - global variables to pass to the rule engine
 	 * @param logger     - handle to a logging object
-	 * @return 
+	 * @return
 	 * @throws IOException
 	 * @throws DroolsParserException
 	 * @throws ClassNotFoundException
@@ -193,18 +195,15 @@ public class RuleRunner {
 	private Collection<Cell> runStatelessRules(RedModel ruleSource, IStatusUpdate logger)
 			throws IOException, ClassNotFoundException {
 
-		
-			
 		// The most common operation on a rulebase is to create a new rule
 		// session; either stateful or stateless.
 		log.debug("Creating new rule base");
 		KieModule masterRulebase = new RedRuleBuilder().loadRules(ruleSource).getKieModule();
-		
-		
+
 		log.debug("running stateless rules");
 		return runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger);
 	}
-	
+
 	/**
 	 * Run Stateless rules using a pre built knowledge base
 	 *
@@ -220,11 +219,10 @@ public class RuleRunner {
 			HashMap<String, Cell> globals, IStatusUpdate logger) throws IOException {
 
 		log.debug("Creating new stateless working memory");
-		
+
 		KieContainer kc = KieServices.Factory.get().newKieContainer(preBuiltKnowledgeBase.getReleaseId());
 		StatelessKieSession kSession = kc.newStatelessKieSession();
-		
-		
+
 		// Add the logger
 		log.debug("Inserting handle to logger (via global)");
 		kSession.setGlobal("log", logger);
@@ -237,28 +235,30 @@ public class RuleRunner {
 			}
 		}
 
-		//We need to 'listen' for new cells being created so we can add to our results
+		// We need to 'listen' for new cells being created so we can add to our results
 		SessionCellListener cellListener = new SessionCellListener();
 		kSession.addEventListener(cellListener);
-		
-        // setup listeners
-        kSession.addEventListener( new DebugAgendaEventListener() );
-        kSession.addEventListener( new DebugRuleRuntimeEventListener() );
 
-        // Set up a file based audit logger
-        KnowledgeRuntimeLoggerFactory.newFileLogger(kSession, "log/WorkItemConsequence.log");
-        
-        log.debug("==================== Starting Rules ====================");
-		
+		// setup listeners
+		if(appConfig.getShowFullRuleEngineLogs()) {
+			kSession.addEventListener(new DebugAgendaEventListener());
+			kSession.addEventListener(new DebugRuleRuntimeEventListener());			
+		}
+
+
+		// Set up a file based audit logger
+		KnowledgeRuntimeLoggerFactory.newFileLogger(kSession, "log/WorkItemConsequence.log");
+
+		log.debug("==================== Starting Rules ====================");
+
 		// Fire using the facts
 		kSession.execute(facts);
 
 		log.debug("==================== Rules Complete ====================");
-		List<Cell> additionalFacts =cellListener.getNewCells(facts);
-		
+		List<Cell> additionalFacts = cellListener.getNewCells(facts);
+
 		return additionalFacts;
 
 	}
-
 
 }

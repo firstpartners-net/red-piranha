@@ -18,8 +18,10 @@ public abstract class AbstractStatusUpdate implements IStatusUpdate {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private String currentStatus="";
-			
-			
+	
+	
+	
+
 	public String getCurrentStatus() {
 		return currentStatus;
 	}
@@ -34,7 +36,7 @@ public abstract class AbstractStatusUpdate implements IStatusUpdate {
 	 * Allows us to notify the user of a snapshot post rules
 	 * @param message
 	 */
-	public void showPreRulesSnapShot(Object dataToSnapshotToUser) {
+	public void setPreRulesSnapShot(Object dataToSnapshotToUser) {
 		log.info(dataToSnapshotToUser.toString());
 	}
 	
@@ -43,7 +45,7 @@ public abstract class AbstractStatusUpdate implements IStatusUpdate {
 	 * Allows us to notify the user of a snapshot post rules
 	 * @param message
 	 */
-	public void showPostRulesSnapShot(Object dataToSnapshotToUser) {
+	public void setPostRulesSnapShot(Object dataToSnapshotToUser) {
 		log.info(dataToSnapshotToUser.toString());
 	}
 	

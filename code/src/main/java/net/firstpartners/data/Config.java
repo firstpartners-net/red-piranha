@@ -4,7 +4,6 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Component;
@@ -105,12 +104,17 @@ public class Config {
 		this.outputFileName = outputFileName;
 	}
 
-	public String getDslName() {
-
+	public String getDslFileName() {
+		
+		//Check Empty
+		if (dslName.equals(EMPTY)) {
+			dslName="";
+		}
+		
 		return dslName;
 	}
 
-	public void setDslName(String dslName) {
+	public void setDslFileName(String dslName) {
 		this.dslName = dslName;
 	}
 

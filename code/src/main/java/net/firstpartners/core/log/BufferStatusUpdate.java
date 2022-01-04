@@ -1,7 +1,12 @@
 package net.firstpartners.core.log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 /**
- * An Adaptor that allows us and hold Logs in Memory Useful for Testing
+ * An Adaptor that allows us and hold Logs in Memory While Useful for Testing ,
+ * the main aim is to hold the information long enough to display back to the
+ * user on a web page
  * 
  * @author paulbrowne
  *
@@ -15,6 +20,17 @@ public class BufferStatusUpdate extends AbstractStatusUpdate implements IStatusU
 
 	public BufferStatusUpdate() {
 
+	}
+
+	private String preRulesSnapShotAsJson = "";
+	private String postRulesSnapShotAsJson = "";
+
+	public String getPostRulesSnapShotAsJson() {
+		return postRulesSnapShotAsJson;
+	}
+
+	public String getPreRulesSnapShotAsJson() {
+		return preRulesSnapShotAsJson;
 	}
 
 	public BufferStatusUpdate(IStatusUpdate nestedLogger) {
@@ -58,4 +74,38 @@ public class BufferStatusUpdate extends AbstractStatusUpdate implements IStatusU
 		this.nestedLogger = nestedLogger;
 	}
 
+	/**
+	 * Allows us to notify the user of a snapshot post rules
+	 * 
+	 * @param message
+	 */
+	@Override
+	public void setPreRulesSnapShot(Object dataToSnapshotToUser) {
+
+		// We want to keep a snapshot in JSON (as the object tree will be updated later
+		// by the rule engine
+
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		this.preRulesSnapShotAsJson = gson.toJson(dataToSnapshotToUser);
+
+		// Also log (if set) in the super class
+		super.setPreRulesSnapShot(dataToSnapshotToUser.toString());
+	}
+	
+	/**
+	 * Allows us to notify the user of a snapshot post rules
+	 * @param message
+	 */
+	public void setPostRulesSnapShot(Object dataToSnapshotToUser) {
+		
+		// We want to keep a snapshot in JSON (as the object tree will be updated later
+		// by the rule engine
+
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		this.postRulesSnapShotAsJson = gson.toJson(dataToSnapshotToUser);
+
+		// Also log (if set) in the super class
+		super.setPostRulesSnapShot(dataToSnapshotToUser.toString());
+		
+	}
 }

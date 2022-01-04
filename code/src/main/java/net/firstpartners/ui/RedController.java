@@ -26,6 +26,9 @@ import net.firstpartners.data.RedModel;
 @Controller
 public class RedController {
 
+	private static final String CONFIG_DISPLAY = "configDisplay";
+
+
 	// handle for our config
 	@Autowired
 	Config appConfig;
@@ -46,7 +49,7 @@ public class RedController {
 		
 		// this attribute will be available in the view index.html as a thymeleaf
 		// variable
-		model.addAttribute("configBean", appConfig);
+		model.addAttribute(CONFIG_DISPLAY, appConfig);
 		
 		model.addAttribute("updateMessage", "Please hit the 'Run Rules' button");
 
@@ -54,22 +57,29 @@ public class RedController {
 		return "index";
 	}
 
+	/**
+	 * Method called by Spring in response to Form submission
+	 * @param model
+	 * @param configBean
+	 * @return
+	 */
 	@PostMapping("/updateConfig")
-	public String submitForm(Model model, @ModelAttribute("configBean") Config configBean) {
+	public String submitForm(Model model, @ModelAttribute(CONFIG_DISPLAY) Config configDisplay) {
 
-		// Make sure our Global Config gets updated with incoming values
-		appConfig.setInputFileName(configBean.getInputFileName());
-		appConfig.setRule1(configBean.getRule1());
-		appConfig.setOutputFileName(configBean.getOutputFileName());
+		// Make sure our Global Application Config gets updated with incoming values
+		appConfig.setInputFileName(configDisplay.getInputFileName());
+		appConfig.setRule1(configDisplay.getRule1());
+		appConfig.setDslFileName(configDisplay.getDslFileName());
+		appConfig.setOutputFileName(configDisplay.getOutputFileName());
 
 		// update the web values with system value (in case we missed any)
-		model.addAttribute("configBean", appConfig);
+		model.addAttribute(CONFIG_DISPLAY, appConfig);
 
 		return "index";
 	}
 
 	@PostMapping("/runRules")
-	public String runRules(Model model, @ModelAttribute("configBean") Config configBean) {
+	public String runRules(Model model, @ModelAttribute(CONFIG_DISPLAY) Config configBean) {
 
 		// Make sure our Global Config gets updated with incoming values
 		// Get the params
@@ -95,6 +105,7 @@ public class RedController {
 			// The Factory auto-generates the input and output strategy based on the filenames
 			RuleRunner runner = RuleRunnerFactory.getRuleRunner(inputFileName, redModel, outputFileName);
 			
+			
 			// Call the rules using this datafile
 			userUpdates.info("Running Rules:" + redModel);
 			runner.callRules(userUpdates,redModel);
@@ -118,13 +129,14 @@ public class RedController {
 		
 		// update the web values with the values coming back
 		model.addAttribute("updateMessage", userUpdates.getCurrentStatus());
-		model.addAttribute("inputFacts", "incoming values...");
+		model.addAttribute("inputFacts", userUpdates.getPreRulesSnapShotAsJson());
 		model.addAttribute("ruleFileMessages", userUpdates.getContents());
-		model.addAttribute("outputFacts", redModel.getFacts());
+		model.addAttribute("outputFacts", userUpdates.getPostRulesSnapShotAsJson());
 
 		// make the config we used available as well
-		model.addAttribute("configBean", appConfig);
+		model.addAttribute(CONFIG_DISPLAY, appConfig);
 
+		//set the html page we want to display
 		return "index";
 	}
 

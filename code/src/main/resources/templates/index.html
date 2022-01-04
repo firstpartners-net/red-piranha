@@ -44,7 +44,7 @@
   			<div class="col-xs-6">
   						
 				<form class="form-inline" action="#" th:action="@{/runRules}" method="post"
-					th:object="${configBean}">
+					th:object="${configDisplay}">
 						<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<button type="submit" class="btn btn-primary">Run All Steps</button>
@@ -61,7 +61,7 @@
 			<div>
 				<p class="bg-primary">&nbsp;Current Settings</p>
 				<form class="form-inline" action="#" th:action="@{/updateConfig}" method="post"
-					th:object="${configBean}">
+					th:object="${configDisplay}">
 
 					<div class="form-group">
 
@@ -76,6 +76,13 @@
 						<label for="inputEmail3" class="col-sm-2 control-label">Business&nbsp;Rules&nbsp;File&nbsp;1:</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" th:field="*{rule1}"/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">Domain&nbsp;Specific&nbsp;Language&nbsp;(DSL)&nbsp;File&nbsp;-&nbsp;Optional</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" th:field="*{dslFileName}"/>
 						</div>
 					</div>
 					<div class="form-group">
@@ -98,7 +105,7 @@
 				<p class="bg-primary">&nbsp;Progress</p>
 				<p th:text="${updateMessage}"/></p>
 				<p class="bg-primary">&nbsp;Information from Input File</p>
-				<p><input type="text" th:value="*{inputFacts}" class="form-control" rows="5"/></p>
+				<p th:text="${inputFacts}"/></p>
 				<p class="bg-primary">&nbsp;Messages as Business Rules are applied</p>
 				<p th:text="${ruleFileMessages}"/></p>
 				<p class="bg-primary">&nbsp;Information after Business Rules</p>

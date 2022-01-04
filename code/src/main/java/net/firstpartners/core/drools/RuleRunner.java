@@ -16,7 +16,6 @@ import org.kie.api.runtime.StatelessKieSession;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
@@ -25,7 +24,6 @@ import net.firstpartners.core.drools.loader.RedRuleBuilder;
 import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.core.log.SpreadSheetStatusUpdate;
 import net.firstpartners.data.Cell;
-import net.firstpartners.data.Config;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 import net.firstpartners.data.RedModel;
@@ -39,10 +37,6 @@ public class RuleRunner {
 
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-
-	// handle for our config
-	@Autowired
-	Config appConfig;
 
 	// Handle to the strategy Class to write out the document
 	// Setup by RuleRunnerFactory
@@ -103,7 +97,7 @@ public class RuleRunner {
 
 		if (userMessages != null) {
 			userMessages.notifyProgress(35);
-			userMessages.showPreRulesSnapShot(ranges);
+			userMessages.setPreRulesSnapShot(ranges);
 			userMessages.notifyProgress(50);
 		}
 
@@ -117,7 +111,7 @@ public class RuleRunner {
 		Collection<Cell> newFacts = runStatelessRules(ruleModel, userMessages);
 
 		if (userMessages != null) {
-			userMessages.showPostRulesSnapShot(ranges);
+			userMessages.setPostRulesSnapShot(ranges);
 			userMessages.notifyProgress(80);
 		}
 
@@ -178,6 +172,7 @@ public class RuleRunner {
 		return ruleLoader;
 	}
 
+	
 	/**
 	 * Run the rules
 	 *
@@ -199,9 +194,12 @@ public class RuleRunner {
 		// session; either stateful or stateless.
 		log.debug("Creating new rule base");
 		KieModule masterRulebase = new RedRuleBuilder().loadRules(ruleSource).getKieModule();
+		
+		//Get rule engine logging flag
+		boolean logRuleDetails = ruleSource.getConfig().getShowFullRuleEngineLogs();
 
 		log.debug("running stateless rules");
-		return runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger);
+		return runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger,logRuleDetails);
 	}
 
 	/**
@@ -216,7 +214,7 @@ public class RuleRunner {
 	 * @throws IOException
 	 */
 	private Collection<Cell> runStatelessRules(KieModule preBuiltKnowledgeBase, Collection<Cell> facts,
-			HashMap<String, Cell> globals, IStatusUpdate logger) throws IOException {
+			HashMap<String, Cell> globals, IStatusUpdate logger, boolean logRuleDetails) throws IOException {
 
 		log.debug("Creating new stateless working memory");
 
@@ -240,7 +238,7 @@ public class RuleRunner {
 		kSession.addEventListener(cellListener);
 
 		// setup listeners
-		if(appConfig.getShowFullRuleEngineLogs()) {
+		if(logRuleDetails) {
 			kSession.addEventListener(new DebugAgendaEventListener());
 			kSession.addEventListener(new DebugRuleRuntimeEventListener());			
 		}

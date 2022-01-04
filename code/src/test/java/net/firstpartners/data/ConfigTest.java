@@ -52,7 +52,7 @@ public class ConfigTest {
 	@Test
 	public final void testConfigNotNullOrEmpty() {
 		assertTrue(myConfig!=null);
-		assertTrue(myConfig.getDslName()!=null);
+		assertTrue(myConfig.getDslFileName()!=null);
 		assertTrue(myConfig.getInputFileName()!=null);
 		
 	} 
@@ -73,7 +73,7 @@ public class ConfigTest {
 	@Test
 	public final void testReadDslName() {
 
-		String testDsl = myConfig.getDslName();
+		String testDsl = myConfig.getDslFileName();
 		Assert.assertNotNull(testDsl);
 		assertTrue(testDsl != "");
 

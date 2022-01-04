@@ -16,8 +16,7 @@ public class BufferLoggerTest {
 	@Test
 	public final void testNestedLog() {
 		//Make these these log without exception
-		ConsoleStatusUpdate consoleLogger = new ConsoleStatusUpdate();
-		BufferStatusUpdate bufferLogger = new BufferStatusUpdate(consoleLogger);
+		BufferStatusUpdate bufferLogger = new BufferStatusUpdate();
 
 
 		bufferLogger.debug("testDebug");

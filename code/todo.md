@@ -8,7 +8,13 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 Platform (with existing examples) and good draft of user and dev documentation.
 
 * Can hand to Java developer and build
-* (with Docker, examples and site) - could be run be end-user and have idea what talking about
+* Could be run by simple end-user
+    * (e.g. (with Docker or Native) - )
+    * NTH - auto maven build on Githib 
+* Maven build jar - to try out object model on business central
+
+* Move Later
+    * Docker Compose
 
 ### Design
 
@@ -28,12 +34,12 @@ Set in place key design principles
 
 ## Next Step
 
-* ReRead KIE docs
-* Example Template
+* Example Template (for chocolate rules)
     * Standard format
 	* Automatically gets picked up by RP Index.html
 	* Config to turn off?
 	* readme.md
+* Maven build (Java Model)
 
 ## Todo Next 
 - [ ] template so auto gets
@@ -50,9 +56,10 @@ Set in place key design principles
 
 ## Todo Soon
 
+* Better display of Java objects
 * Read drools doc in more detail
 * Initial Docker Build (just RP in container)
-* Extended Docker Compose (Make Kie Server and Business Central available)
+* Extended Docker Compose (Make Kie Server and Business Central available) OR link to kie services/ online
 * Outline how to integrate with KIE Server
 * split out compile steps (at from end)
 * Review / tidy Javadoc

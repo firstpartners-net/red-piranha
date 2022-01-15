@@ -1,0 +1,25 @@
+# What this file is
+# how to run - from within this directory
+#     
+# delete readme?
+
+version: '2.0'
+services:
+  jbpm-server-full :
+#    container_name: db
+    image: jboss/jbpm-server-full:latest
+#    environment:
+#      : employees
+#      MYSQL_USER: mysql
+#      MYSQL_PASSWORD: mysql
+#      MYSQL_ROOT_PASSWORD: supersecret
+    ports:
+      - 8080:8080
+      - 8001:8001
+  red:
+    image: docker.io/library/redpiranha:2.0.0-SNAPSHOT
+    ports:
+      - 7000:7000
+#     - 9990:9990
+    depends_on:
+      - jbpm-server-full 

@@ -172,14 +172,6 @@
 			<version>2.8.9</version>
 		</dependency>
 
-		<!-- Testing 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13.2</version>
-			<scope>test</scope>
-		</dependency>-->
-
 		<!-- Unit Testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -204,14 +196,46 @@
 	<build>
 		<plugins>
 
+			<!--Ant Task, tied to Maven Package Phase -->
+			<!--Builds a 2nd Jar, containing only data classes-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>zip-artifacts</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<!-- includes should filter on only classes in our data model -->
+								<jar destfile="target/rp-data-model.jar"
+									basedir="target/classes"
+									includes="net/firstpartners/data/**"
+									excludes="**/Test.class"
+							 />
+
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 			<!-- Enables Srping as a framework-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 
-					<!-- Entry Point of the application-->
-					<!--mainClass>net.firstpartners.ui.Start</mainClass>-->
+					<!-- Allow layers when building a docker image -->
+					<!-- Enables docker to cache the libs that do not change -->
+					<layers>
+						<enabled>true</enabled>
+					</layers>
+
 				</configuration>
 
 			</plugin>

@@ -14,7 +14,15 @@ Platform (with existing examples) and good draft of user and dev documentation.
 * Maven build jar - to try out object model on business central
 
 * Move Later
-    * Docker Compose
+    * Docker Compose tidy
+    * samples (dectect if local dev, or running in Docker)
+    * Find More info on docker
+    * from book, spring docker name and firsrpatners
+    * push image to docker hub
+    * try azure or open shift deploy of image
+    * add spring boot Web socket for push updates
+
+    
 
 ### Design
 

@@ -212,7 +212,7 @@
 						<configuration>
 							<target>
 								<!-- includes should filter on only classes in our data model -->
-								<jar destfile="target/rp-data-model.jar"
+								<jar destfile="target/rp-data-model-${project.version}.jar"
 									basedir="target/classes"
 									includes="net/firstpartners/data/**"
 									excludes="**/Test.class"

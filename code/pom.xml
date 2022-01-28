@@ -34,6 +34,8 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
+			
+
 		</dependency>
 
 
@@ -211,7 +213,7 @@
 						</goals>
 						<configuration>
 							<target>
-								<!-- includes should filter on only classes in our data model -->
+								<!-- includes only classes in our data model -->
 								<jar destfile="target/rp-data-model-${project.version}.jar"
 									basedir="target/classes"
 									includes="net/firstpartners/data/**"

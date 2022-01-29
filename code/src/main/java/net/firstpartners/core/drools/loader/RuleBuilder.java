@@ -14,6 +14,7 @@ import org.kie.api.io.ResourceType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.data.Config;
 import net.firstpartners.data.RedModel;
 
@@ -29,46 +30,6 @@ public class RuleBuilder {
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	/**
-	 * Try to load the file at resource name , in this order 1) in working directory
-	 * 2) in directory as specified in Config.sampleBaseDirDefault + ResourceName 3)
-	 * 3) in directory as specified in Config.sampleBaseDirAlternate + ResourceName
-	 * 
-	 * @param resourceName
-	 * @param appConfig
-	 * @return
-	 * @throws FileNotFoundException 
-	 */
-	File getResourceUsingConfig(String resourceName, Config appConfig) throws FileNotFoundException {
-		
-		File bareFile = new File(resourceName);
-		if (bareFile.exists()) {
-			return bareFile;
-		} else {
-			log.debug("No resource:"+resourceName+ " attempting another approach");
-		}
-		
-		String defaultDir = appConfig.getSampleBaseDirDefault();
-		File defaultFile = new File(defaultDir+resourceName);
-		if (defaultFile.exists()) {
-			return defaultFile;
-		} else {
-			log.debug("No resource in default dir:"+defaultFile+ " attempting another approach");
-		}
-		
-		
-		String alternatDir = appConfig.getSampleBaseDirAlternate();
-		File alternateFile = new File(alternatDir+resourceName);
-		if (alternateFile.exists()) {
-			return alternateFile;
-		} else {
-			log.debug("No resource in alternate dir:"+alternateFile);
-			
-			throw new FileNotFoundException("Cannot find after 3 attempts:"+resourceName);
-		}
-		
-		
-	}
 
 	/**
 	 * Load the rules from the sources listed in the Data model and configuration
@@ -93,7 +54,7 @@ public class RuleBuilder {
 		for (int counter = 0; counter < rulesLocs.length; counter++) {
 
 			log.debug("loading into KFS:" + rulesLocs[counter]);
-			currentFile = getResourceUsingConfig(rulesLocs[counter], appConfig);
+			currentFile = ResourceFinder.getResourceUsingConfig(rulesLocs[counter], appConfig);
 			Resource resource = ks.getResources().newFileSystemResource(currentFile).setResourceType(ResourceType.DRL);
 			kfs.write(resource);
 		}

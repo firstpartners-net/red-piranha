@@ -2,11 +2,13 @@ package net.firstpartners.core.log;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 
 //import com.google.gson.Gson;
 //import com.google.gson.GsonBuilder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 /**
  * An Adaptor that allows us and hold Logs in Memory While Useful for Testing ,
@@ -18,24 +20,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class BufferStatusUpdate extends AbstractStatusUpdate implements IStatusUpdate {
 
-	IStatusUpdate nestedLogger = null;
-
 	// We also allow this to be configured to log to memory
 	final StringBuffer buffer = new StringBuffer();
 
-	public BufferStatusUpdate() {
+	IStatusUpdate nestedLogger = null;
+	
 
-	}
-
-	private String preRulesSnapShotAsJson = "";
 	private String postRulesSnapShotAsJson = "";
 
-	public String getPostRulesSnapShotAsJson() {
-		return postRulesSnapShotAsJson;
-	}
+	private String preRulesSnapShotAsJson = "";
 
-	public String getPreRulesSnapShotAsJson() {
-		return preRulesSnapShotAsJson;
+	//Hold at class level to save time
+	ObjectWriter writer;
+	
+	/**
+	 * Default constructor
+	 */
+	public BufferStatusUpdate() {
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		writer = objectMapper.writer(new DefaultPrettyPrinter());
+		
 	}
 
 	public BufferStatusUpdate(IStatusUpdate nestedLogger) {
@@ -47,14 +52,6 @@ public class BufferStatusUpdate extends AbstractStatusUpdate implements IStatusU
 
 		if (nestedLogger != null) {
 			nestedLogger.debug(output);
-		}
-	}
-
-	public void info(String output) {
-		buffer.append("INFO:" + output + "\n");
-
-		if (nestedLogger != null) {
-			nestedLogger.info(output);
 		}
 	}
 
@@ -75,10 +72,48 @@ public class BufferStatusUpdate extends AbstractStatusUpdate implements IStatusU
 		return nestedLogger;
 	}
 
+	public String getPostRulesSnapShotAsJson() {
+		return postRulesSnapShotAsJson;
+	}
+
+	public String getPreRulesSnapShotAsJson() {
+		return preRulesSnapShotAsJson;
+	}
+
+	public void info(String output) {
+		buffer.append("INFO:" + output + "\n");
+
+		if (nestedLogger != null) {
+			nestedLogger.info(output);
+		}
+	}
+
 	public void setNestedLogger(IStatusUpdate nestedLogger) {
 		this.nestedLogger = nestedLogger;
 	}
 
+	/**
+	 * Allows us to notify the user of a snapshot post rules
+	 * @param message
+	 */
+	public void setPostRulesSnapShot(Object dataToSnapshotToUser) {
+		
+		// We want to keep a snapshot in JSON (as the object tree will be updated later
+		// by the rule engine
+		
+		
+		try {
+			this.postRulesSnapShotAsJson = writer.writeValueAsString(dataToSnapshotToUser);
+		} catch (JsonProcessingException e) {
+			this.exception("", e);
+		
+		}
+
+		// Also log (if set) in the super class
+		super.setPostRulesSnapShot(dataToSnapshotToUser.toString());
+		
+	}
+	
 	/**
 	 * Allows us to notify the user of a snapshot post rules
 	 * 
@@ -89,12 +124,8 @@ public class BufferStatusUpdate extends AbstractStatusUpdate implements IStatusU
 
 		// We want to keep a snapshot in JSON (as the object tree will be updated later
 		// by the rule engine
-
-		ObjectMapper objectMapper = new ObjectMapper();
-		
-		//Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		try {
-			this.preRulesSnapShotAsJson = objectMapper.writeValueAsString(dataToSnapshotToUser);
+			this.preRulesSnapShotAsJson = writer.writeValueAsString(dataToSnapshotToUser);
 		} catch (JsonProcessingException e) {
 			this.exception("", e);
 		
@@ -102,29 +133,5 @@ public class BufferStatusUpdate extends AbstractStatusUpdate implements IStatusU
 
 		// Also log (if set) in the super class
 		super.setPreRulesSnapShot(dataToSnapshotToUser.toString());
-	}
-	
-	/**
-	 * Allows us to notify the user of a snapshot post rules
-	 * @param message
-	 */
-	public void setPostRulesSnapShot(Object dataToSnapshotToUser) {
-		
-		// We want to keep a snapshot in JSON (as the object tree will be updated later
-		// by the rule engine
-		ObjectMapper objectMapper = new ObjectMapper();
-		
-		try {
-			this.postRulesSnapShotAsJson = objectMapper.writeValueAsString(dataToSnapshotToUser);
-		} catch (JsonProcessingException e) {
-			this.exception("", e);
-		
-		}
-
-
-
-		// Also log (if set) in the super class
-		super.setPostRulesSnapShot(dataToSnapshotToUser.toString());
-		
 	}
 }

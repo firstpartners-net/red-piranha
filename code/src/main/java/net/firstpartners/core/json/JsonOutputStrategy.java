@@ -1,18 +1,15 @@
 package net.firstpartners.core.json;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-//import com.google.gson.Gson;
-//import com.google.gson.GsonBuilder;
-
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
@@ -90,40 +87,16 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 
 		// create a writer - set to append (true)
 		
-		File fileToOutput = new File(outputFile);
 		
-		Writer writer = new FileWriter(fileToOutput);
-		userLogger.debug("Writing Json to :" + fileToOutput.getAbsolutePath());
-		log.debug("Writing Json to :" +fileToOutput.getAbsolutePath());
+		userLogger.debug("Writing Json to :" +outputFile);
 		
 		// Objects for use in our loop
-//		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//		ObjectMapper mapper = new ObjectMapper();	
-		
-		ObjectMapper objectMapper = new ObjectMapper();
-		objectMapper.writeValue(new File(outputFile), processedRange);
-		
-//		String tmpJson = gson.toJson(processedRange);
-//		writer.write(tmpJson);
-//
-//		HashMap<String, Cell> returnValues = new HashMap<String, Cell>();
-//		log.debug("combining all cells in all ranges, returning as Hashmap");
-//
-//		for (Range range : processedRange) {
-//
-//			for (net.firstpartners.data.Cell cell : range.values()) {
-//				if (cell.getName() != null) {
-//
-//					tmpJson = gson.toJson(cell);
-//					log.debug(tmpJson);
-//					writer.write(tmpJson);
-//				}
-//
-//			}
-//
-//		}
 
-		writer.close();
+		ObjectMapper objectMapper = new ObjectMapper();
+		ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
+		writer.writeValue(new File(outputFile), processedRange);
+		
+
 		log.debug("Output complete");
 
 	}

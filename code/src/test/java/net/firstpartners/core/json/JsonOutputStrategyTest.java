@@ -1,5 +1,6 @@
-package net.firstpartners.core.file;
+package net.firstpartners.core.json;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -17,7 +18,7 @@ public class JsonOutputStrategyTest {
 	@Test
 	public final void testOutputJsoThenDelete() throws IOException, ClassNotFoundException, InvalidFormatException {
 		
-		RangeList TestData = RedControllerTest.getTestDataFromWord();
+		RangeList TestData = RedControllerTest.getTestDataFromExcel();
 	
 		
 		JsonOutputStrategy jsonOut = new JsonOutputStrategy(TestConstants.JSON_TMP_FILE);
@@ -32,7 +33,7 @@ public class JsonOutputStrategyTest {
 		assertTrue ("Cannot find file that should exist", f.exists() );
 		f =null; //avoid any interference in the next step
 		
-		//Make sure we can delete file
+//		//Make sure we can delete file
 //		Utils.deleteOutputFileIfExists(TestConstants.JSON_TMP_FILE); //object remembers file name from earlier
 //		f = new File(TestConstants.JSON_TMP_FILE);
 //		assertFalse ("Found file that should exist", f.exists() );

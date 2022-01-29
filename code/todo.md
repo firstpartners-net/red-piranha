@@ -4,18 +4,17 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ##
 
-Next - tests passing
-* config passed in
-* loading using two directories
-* loader test
-
 
 Next: samples load
+* Output JSON in Java
 * load JSON in Java (in unit)
+* Use red as table model
+
 * Sample Dire x2 
 READ JSON - UNIT TEST
 READ JSON - MAKE AVAILABLE TO index.html
-* Run all samples as integration test in java
+* Run one samples as integration test in java
+* Run all Samples as integration test (in json / Java)
 
 * Refactor - remove redmodelfactory
 
@@ -30,8 +29,10 @@ READ JSON - MAKE AVAILABLE TO index.html
 LATER
 * Move bootstrap offline
 * tidy DSL example
+* Serialize Java test data to JSON
 
-
+BOOK NOTES
+* csv as part of a chain
 
 ## Aim of Next Sprint
 

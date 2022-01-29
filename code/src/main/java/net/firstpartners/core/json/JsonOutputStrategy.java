@@ -1,4 +1,4 @@
-package net.firstpartners.core.file;
+package net.firstpartners.core.json;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import net.firstpartners.core.IDocumentOutStrategy;
+import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.log.EmptyStatusUpdate;
 import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.RangeList;

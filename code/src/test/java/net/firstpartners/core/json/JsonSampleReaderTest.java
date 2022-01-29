@@ -1,7 +1,7 @@
 /**
  * 
  */
-package net.firstpartners.core.file;
+package net.firstpartners.core.json;
 
 import static org.junit.jupiter.api.Assertions.*;
 

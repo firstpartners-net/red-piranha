@@ -14,10 +14,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
-
 /**
- * Convert from Excel values (as represented by Apache POI) to JavaBeans (used by
- * RedPiranha / Rules) and vice versa
+ * Convert from Excel values (as represented by Apache POI) to JavaBeans (used
+ * by RedPiranha / Rules) and vice versa
  */
 public class CellConvertor {
 
@@ -26,7 +25,8 @@ public class CellConvertor {
 	/**
 	 * Convert from Excel(Apache) to RedPiranha - Javabean version of a Cell
 	 * 
-	 * @param cellNameFromRange - allows us to treat this cell as a member of a range
+	 * @param cellNameFromRange - allows us to treat this cell as a member of a
+	 *                          range
 	 * @param poiCell
 	 * @return
 	 */
@@ -42,7 +42,7 @@ public class CellConvertor {
 		net.firstpartners.data.Cell redCell = new net.firstpartners.data.Cell();
 
 		// Keep a reference to the original cell location
-		redCell.setOriginalCellReference(poiCell.getAddress().getRow(),poiCell.getAddress().getColumn());
+		redCell.setOriginalCellReference(poiCell.getAddress().getRow(), poiCell.getAddress().getColumn());
 		redCell.setOriginalTableReference(poiCell.getSheet().getSheetName());
 
 		// The name makes them as a range
@@ -185,8 +185,6 @@ public class CellConvertor {
 		return;
 
 	}
-
-
 
 	/**
 	 * Get the 'updated' style that we use to show that a cell value has been

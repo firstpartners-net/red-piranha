@@ -1,4 +1,4 @@
-package net.firstpartners.core.file;
+package net.firstpartners.core.json;
 
 /**
  * Class to read info on our samples from a file.
@@ -7,6 +7,6 @@ package net.firstpartners.core.file;
  * @author paulf
  *
  */
-public class JsonSampleReader {
+public class JsonInputStrategy {
 
 }

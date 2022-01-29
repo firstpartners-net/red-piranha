@@ -2,6 +2,9 @@ package net.firstpartners.core;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.firstpartners.core.excel.SpreadSheetConvertor;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.log.IStatusUpdate;
@@ -17,8 +20,13 @@ import net.firstpartners.data.RangeList;
  */
 public class MemoryOutputStrategy implements IDocumentOutStrategy {
 
-	private IStatusUpdate docLogger;
+	private Config appConfig;
 
+	private IStatusUpdate docLogger;
+	
+	// Logger
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	// Name of the outputfile
 	private OfficeDocument processedDoc = null;
 
@@ -70,6 +78,12 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	public void processOutput() throws IOException {
 
 		// do nothing - we just keep it in momeory
+		log.debug("Config:"+appConfig);// to clear compiliation warning
+		
+	}
+
+	public void setConfig(Config appConfig) {
+		this.appConfig = appConfig;
 	}
 
 	/**

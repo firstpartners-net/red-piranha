@@ -54,7 +54,7 @@ public class RuleBuilder {
 		for (int counter = 0; counter < rulesLocs.length; counter++) {
 
 			log.debug("loading into KFS:" + rulesLocs[counter]);
-			currentFile = ResourceFinder.getResourceUsingConfig(rulesLocs[counter], appConfig);
+			currentFile = ResourceFinder.getFileResourceUsingConfig(rulesLocs[counter], appConfig);
 			Resource resource = ks.getResources().newFileSystemResource(currentFile).setResourceType(ResourceType.DRL);
 			kfs.write(resource);
 		}

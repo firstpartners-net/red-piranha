@@ -27,10 +27,12 @@ public class ResourceFinder {
 	 * 
 	 * @param resourceName
 	 * @param appConfig
+	 * @param directoryOnly - check for directory and not file
 	 * @return
 	 * @throws FileNotFoundException 
 	 */
-	public static File getResourceUsingConfig(String resourceName, Config appConfig) throws FileNotFoundException {
+	public static File getFileResourceUsingConfig(String resourceName, Config appConfig) throws FileNotFoundException {
+		
 		
 		File bareFile = new File(resourceName);
 		if (bareFile.exists()) {
@@ -41,7 +43,7 @@ public class ResourceFinder {
 		
 		// We need config info to try backups
 		if(appConfig==null) {
-			throw new FileNotFoundException("Cannot find after 1 attempts:"+resourceName+" no config provided");
+			throw new FileNotFoundException("1 Cannot find :"+resourceName+" no config provided");
 		}
 		
 		String defaultDir = appConfig.getSampleBaseDirDefault();
@@ -49,7 +51,7 @@ public class ResourceFinder {
 		if (defaultFile.exists()) {
 			return defaultFile;
 		} else {
-			log.debug("No resource in default dir:"+defaultFile+ " attempting another approach");
+			log.debug("2 No resource in default dir:"+defaultFile+ " attempting another approach");
 		}
 		
 		
@@ -58,11 +60,55 @@ public class ResourceFinder {
 		if (alternateFile.exists()) {
 			return alternateFile;
 		} else {
-			log.debug("No resource in alternate dir:"+alternateFile);
+			log.debug("3 No resource in alternate dir:"+alternateFile);
 			
 			throw new FileNotFoundException("Cannot find after 3 attempts:"+resourceName);
 		}
 		
+		
+	}
+	
+	/**
+	 * Try to load the file at resource name , in this order 1) in working directory
+	 * 2) in directory as specified in Config.sampleBaseDirDefault + ResourceName 3)
+	 * 3) in directory as specified in Config.sampleBaseDirAlternate + ResourceName
+	 * 
+	 * @param resourceName
+	 * @param appConfig
+	 * @param directoryOnly - check for directory and not file
+	 * @return
+	 * @throws FileNotFoundException 
+	 */
+	public static String getDirectoryResourceUsingConfig(Config appConfig) throws FileNotFoundException {
+		
+		
+
+		// We need config info to try backups - default to current working directory
+		if(appConfig==null) {
+			log.debug("Config is null - defaulting to working dir");
+			return new File(".").getAbsolutePath();
+		}
+		
+		String defaultDir = appConfig.getSampleBaseDirDefault();
+		File defaultFile = new File(defaultDir);
+		if (defaultFile.exists()) {
+			return defaultDir;
+		} else {
+			log.debug("1 No resource in default dir:"+defaultFile+ " attempting another approach");
+		}
+		
+		
+		String alternateDir = appConfig.getSampleBaseDirAlternate();
+		File alternateFile = new File(alternateDir);
+		if (alternateFile.exists()) {
+			return alternateDir;
+		} else {
+			log.debug("2 No resource in alternate dir:"+alternateDir);	
+		}
+		
+		log.debug("BackupPlan- defaulting to working dir");
+		return new File(".").getAbsolutePath();
+			
 		
 	}
 

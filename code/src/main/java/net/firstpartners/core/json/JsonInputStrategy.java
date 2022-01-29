@@ -11,10 +11,10 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
-import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -26,14 +26,17 @@ import net.firstpartners.data.RangeList;
  */
 public class JsonInputStrategy implements IDocumentInStrategy {
 
-	private String jsonInputFileName;
+	
+	private Config appConfig;
 
+	private String jsonInputFileName;
+	
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-	
-	
 
 	private OfficeDocument officeDocument;
+	
+	
 
 	/**
 	 * Construct a new Strategy Object
@@ -61,7 +64,8 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		File jsonSource = ResourceFinder.getResourceUsingConfig(jsonInputFileName, null);
+		File jsonSource = ResourceFinder.getFileResourceUsingConfig(jsonInputFileName, appConfig);
+		
 		//RangeList myRange  = objectMapper.readValue(jsonSource, RangeList[].class);
 		JsonNode rootNode = objectMapper.readTree(jsonSource);
 		log.debug("Found:"+rootNode);
@@ -70,8 +74,6 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 		
 		return null;
 	}
-
-
 
 	public String getJsonInputFileName() {
 		return jsonInputFileName;
@@ -82,6 +84,12 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 	@Override
 	public OfficeDocument getOriginalDocument() {
 		return officeDocument;
+	}
+
+
+
+	public void setConfig(Config appConfig) {
+		this.appConfig = appConfig;
 	}
 
 	public void setJsonInputFileName(String jsonInputFileName) {

@@ -132,6 +132,12 @@ public class RuleRunnerFactory {
 		buildReferenceTables();
 
 		int splitPoint = fileName.lastIndexOf(".");
+		if (splitPoint == -1) {
+			// nothing found
+			throw new IllegalArgumentException(
+					"Unable to guess the type of Output file (based on where '. is) for:" + fileName);
+		}
+		
 		String suffix = fileName.substring(splitPoint, fileName.length());
 
 		log.debug("Looking for output Mapping against suffix:" + suffix);
@@ -196,6 +202,9 @@ public class RuleRunnerFactory {
 		Constructor<?> constructor = strategyClass.getConstructor(String.class);
 		IDocumentInStrategy inputStrat = (IDocumentInStrategy) constructor
 				.newInstance(dataModel.getInputFileLocation());
+		
+		//pass in the config
+		inputStrat.setConfig(appConfig);
 
 		// Decide on our output strategy
 		strategyClass = null;
@@ -205,6 +214,9 @@ public class RuleRunnerFactory {
 		constructor = strategyClass.getConstructor(String.class);
 		IDocumentOutStrategy outputStrat = (IDocumentOutStrategy) constructor
 				.newInstance(dataModel.getOutputFileLocation());
+		
+		//pass in the config
+		outputStrat.setConfig(appConfig);
 
 		log.debug("Using DocumentInputStrategy:" + inputStrat.getClass());
 		log.debug("Using DocumentOutputStrategy:" + outputStrat);

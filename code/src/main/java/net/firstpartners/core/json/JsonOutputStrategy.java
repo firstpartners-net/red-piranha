@@ -11,8 +11,10 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
+import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
+import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.core.log.EmptyStatusUpdate;
 import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.RangeList;
@@ -24,6 +26,8 @@ import net.firstpartners.data.RangeList;
  *
  */
 public class JsonOutputStrategy implements IDocumentOutStrategy {
+
+	private Config appConfig;
 
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -87,6 +91,8 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 	public void processOutput() throws IOException, InvalidFormatException {
 
 		// create a writer - set to append (true)
+		String outputDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
+		
 
 		userLogger.debug("Writing Json to :" + outputFile);
 		log.debug("Writing Json to :" + outputFile);
@@ -95,10 +101,14 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
-		writer.writeValue(new File(outputFile), processedRange);
+		writer.writeValue(new File(outputDir+outputFile), processedRange);
 
 		log.debug("Output complete");
 
+	}
+
+	public void setConfig(Config appConfig) {
+		this.appConfig = appConfig;
 	}
 
 	/**

@@ -11,6 +11,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.Range;
@@ -24,13 +25,14 @@ import net.firstpartners.data.RangeList;
  */
 public class PDFOutputStrategy implements IDocumentOutStrategy {
 
+	private Config appConfig;
+	
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-	
-	
+
 	// Name of the outputfile
 	private String outputFileName = null;
-
+	
 	private RangeList savedRange;
 
 	/**
@@ -87,6 +89,8 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 	 */
 	public void processOutput() throws IOException, InvalidFormatException {
 
+		String outputDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
+		
 		// Open the outputfile as a stream
 		log.debug("trying to output to:" + savedRange);
 
@@ -105,11 +109,15 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 			contents.endText();
 			contents.close();
 
-			doc.save(outputFileName);
+			doc.save(outputDir+outputFileName);
 		} finally {
 			doc.close();
 		}
 
+	}
+
+	public void setConfig(Config appConfig) {
+		this.appConfig = appConfig;
 	}
 
 	/**

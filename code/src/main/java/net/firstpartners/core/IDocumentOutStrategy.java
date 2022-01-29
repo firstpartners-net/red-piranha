@@ -31,6 +31,11 @@ public interface IDocumentOutStrategy {
 	 * @return
 	 */
 	public String getOutputDestination();
+	
+	/**
+	 * Allows us to pass details of the environment
+	 */
+	void setConfig(Config config);
 
 	/**
 	 * Process the output from the system

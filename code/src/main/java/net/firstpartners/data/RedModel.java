@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class RedModel {
 	
-	private Config config;
 	
 	//internal data
 	private String dslFileLocation;
@@ -89,10 +88,6 @@ public class RedModel {
 		this.globals.putAll(globals);
 	}
 
-	public Config getConfig() {
-		return this.config;
-	}
-
 	public String getDslFileLocation() {
 		return dslFileLocation;
 	}
@@ -139,9 +134,6 @@ public class RedModel {
 		return ruleFlowFileUrl;
 	}
 
-	public void setConfig(Config config) {
-		this.config = config;
-	}
 
 	public void setDslFileLocation(String dslFileLocation) {
 		this.dslFileLocation = dslFileLocation;

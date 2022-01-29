@@ -4,6 +4,12 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ##
 
+Next - tests passing
+* config passed in
+* loading using two directories
+* loader test
+
+
 Next: samples load
 * load JSON in Java (in unit)
 * Sample Dire x2 
@@ -23,6 +29,7 @@ READ JSON - MAKE AVAILABLE TO index.html
 
 LATER
 * Move bootstrap offline
+* tidy DSL example
 
 
 

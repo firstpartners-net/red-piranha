@@ -22,7 +22,7 @@ public class WordInputStrategyTest {
 	@Test
 	public final void testdocCallRulesFromFile() throws Exception {
 
-		RedModel redModel = new RedModel(TestConstants.WORD_DATA_FILE,"some-dummy-rule","some-dummy.pdf");
+		RedModel redModel = new RedModel(TestConstants.WORD_DATA_FILE,TestConstants.RULE_FILE_FOR_WORD,"some-dummy.pdf");
 		
 		RuleRunner runner =RuleRunnerFactory.getRuleRunner(redModel);
 		assertTrue (runner.getDocumentOutputStrategy() instanceof PDFOutputStrategy);

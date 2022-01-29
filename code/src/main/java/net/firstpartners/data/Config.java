@@ -1,7 +1,5 @@
 package net.firstpartners.data;
 
-import java.util.List;
-
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +21,15 @@ public class Config {
 
 	@Autowired
 	@Value("${sample.Base.Directory.Alternate}")
-	private String sampleBaseDirAlternate;
+	private String sampleBaseDirAlternate="";
 
 	@Autowired
 	@Value("${sample.Base.Directory.Default}")
-	private String sampleBaseDirDefault;
+	private String sampleBaseDirDefault="";
 	
 	@Autowired
 	@Value("${SHOW_FULL_RULE_ENGINE_LOGS}")
-	private boolean showFullRuleEngineLogs;
+	private boolean showFullRuleEngineLogs = false;
 
 	public String getSampleBaseDirAlternate() {
 		return sampleBaseDirAlternate;

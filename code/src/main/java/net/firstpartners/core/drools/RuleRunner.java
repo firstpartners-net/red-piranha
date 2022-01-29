@@ -19,21 +19,29 @@ import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
-import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
-import net.firstpartners.core.drools.loader.RedRuleBuilder;
+import net.firstpartners.core.drools.loader.RuleBuilder;
 import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.core.log.SpreadSheetStatusUpdate;
 import net.firstpartners.data.Cell;
+import net.firstpartners.data.Config;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 import net.firstpartners.data.RedModel;
 
 /**
  * Call JBoss Drools (Rules Engine) passing in Document data as Java Objects
- * 
+ *
  * This class uses an IDocumentStrategy Object to handle different types
  */
 public class RuleRunner {
+
+	//Application Config - if passed in
+	private Config appConfig = new Config();
+
+	// Handle to the Strategy Class for specific incoming document (Excel, Word etc
+	// tasks)
+	// Setup by RuleRunnerFactory
+	private IDocumentInStrategy inputStrategy = null;
 
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -42,27 +50,17 @@ public class RuleRunner {
 	// Setup by RuleRunnerFactory
 	private IDocumentOutStrategy outputStrategy = null;
 
-	// Handle to loader
-	// Setup by RuleRunnerFactory
-	private final IRuleLoaderStrategy ruleLoader;
-
-	// Handle to the Strategy Class for specific incoming document (Excel, Word etc
-	// tasks)
-	// Setup by RuleRunnerFactory
-	private IDocumentInStrategy inputStrategy = null;
 
 	/**
 	 * Construct a new RuleRunner.
-	 * 
+	 *
 	 * @see RuleRunnerFactory in this package which we use to build a properly
 	 *      constructed instance of this class
 	 * @param documentStrategy
 	 * @param ruleLoader
 	 * @param outputStrategy
 	 */
-	protected RuleRunner(IDocumentInStrategy documentStrategy, IRuleLoaderStrategy ruleLoader,
-			IDocumentOutStrategy outputStrategy) {
-		this.ruleLoader = ruleLoader;
+	protected RuleRunner(IDocumentInStrategy documentStrategy, 	IDocumentOutStrategy outputStrategy) {
 		this.inputStrategy = documentStrategy;
 		this.outputStrategy = outputStrategy;
 	}
@@ -70,7 +68,7 @@ public class RuleRunner {
 	/**
 	 * Call the rule Engine - data input / output has already been set during the
 	 * creation of this class
-	 * 
+	 *
 	 * @param userDataDisplay - feedback e.g. to GUI
 	 * @param userMessages    - to display
 	 * @throws DroolsParserException
@@ -82,7 +80,7 @@ public class RuleRunner {
 	 * @return our Model with all the information so we can display back to the user
 	 */
 	public RedModel callRules(IStatusUpdate userMessages, RedModel ruleModel)
-			throws IOException, ClassNotFoundException, InvalidFormatException {
+			throws IOException, ClassNotFoundException, InvalidFormatException, DroolsParserException {
 
 		// Create a new Logging object
 		outputStrategy.setDocumentLogger(new SpreadSheetStatusUpdate());
@@ -146,9 +144,13 @@ public class RuleRunner {
 
 	}
 
+	public Config getAppConfig() {
+		return appConfig;
+	}
+
 	/**
 	 * The strategy we use for dealing with incoming documents
-	 * 
+	 *
 	 * @return the strategy object
 	 */
 	public IDocumentInStrategy getDocumentInputStrategy() {
@@ -157,50 +159,13 @@ public class RuleRunner {
 
 	/**
 	 * Handle to the the Strategy Delegate we use for outputting
-	 * 
+	 *
 	 * @return the strategy object
 	 */
 	public IDocumentOutStrategy getDocumentOutputStrategy() {
 		return outputStrategy;
 	}
 
-	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {
-		this.outputStrategy = newStrategy;
-	}
-
-	public IRuleLoaderStrategy getRuleLoader() {
-		return ruleLoader;
-	}
-
-	
-	/**
-	 * Run the rules
-	 *
-	 * @param rulesUrl   - array of rule files that we need to load
-	 * @param dslFileUrl - optional dsl file name (can be null)
-	 * @param facts      - Javabeans to pass to the rule engine
-	 * @param globals    - global variables to pass to the rule engine
-	 * @param logger     - handle to a logging object
-	 * @return
-	 * @throws IOException
-	 * @throws DroolsParserException
-	 * @throws ClassNotFoundException
-	 * @throws Exception
-	 */
-	private Collection<Cell> runStatelessRules(RedModel ruleSource, IStatusUpdate logger)
-			throws IOException, ClassNotFoundException {
-
-		// The most common operation on a rulebase is to create a new rule
-		// session; either stateful or stateless.
-		log.debug("Creating new rule base");
-		KieModule masterRulebase = new RedRuleBuilder().loadRules(ruleSource).getKieModule();
-		
-		//Get rule engine logging flag
-		boolean logRuleDetails = ruleSource.getConfig().getShowFullRuleEngineLogs();
-
-		log.debug("running stateless rules");
-		return runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger,logRuleDetails);
-	}
 
 	/**
 	 * Run Stateless rules using a pre built knowledge base
@@ -240,7 +205,7 @@ public class RuleRunner {
 		// setup listeners
 		if(logRuleDetails) {
 			kSession.addEventListener(new DebugAgendaEventListener());
-			kSession.addEventListener(new DebugRuleRuntimeEventListener());			
+			kSession.addEventListener(new DebugRuleRuntimeEventListener());
 		}
 
 
@@ -258,5 +223,45 @@ public class RuleRunner {
 		return additionalFacts;
 
 	}
+
+	/**
+	 * Run the rules
+	 *
+	 * @param rulesUrl   - array of rule files that we need to load
+	 * @param dslFileUrl - optional dsl file name (can be null)
+	 * @param facts      - Javabeans to pass to the rule engine
+	 * @param globals    - global variables to pass to the rule engine
+	 * @param logger     - handle to a logging object
+	 * @return
+	 * @throws IOException
+	 * @throws DroolsParserException
+	 * @throws ClassNotFoundException
+	 * @throws Exception
+	 */
+	private Collection<Cell> runStatelessRules(RedModel ruleSource, IStatusUpdate logger)
+			throws IOException, ClassNotFoundException, DroolsParserException {
+
+		// The most common operation on a rulebase is to create a new rule
+		// session; either stateful or stateless.
+		log.debug("Creating new rule base");
+		KieModule masterRulebase = new RuleBuilder().loadRules(ruleSource,appConfig).getKieModule();
+		
+		boolean showFullRuleEngineLogs = appConfig.getShowFullRuleEngineLogs();
+
+
+		log.debug("running stateless rules");
+		return runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger,showFullRuleEngineLogs);
+	}
+
+	public void setAppConfig(Config appConfig) {
+		this.appConfig = appConfig;
+	}
+
+
+	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {
+		this.outputStrategy = newStrategy;
+	}
+
+
 
 }

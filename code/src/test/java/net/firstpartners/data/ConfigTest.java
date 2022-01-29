@@ -1,19 +1,14 @@
 package net.firstpartners.data;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -27,10 +22,6 @@ public class ConfigTest {
 	// handle for our config
 	@Autowired
 	Config myConfig;
-
-	// Logger
-	private Logger log = LoggerFactory.getLogger(this.getClass());
-
 	public final void testReadPreviousData() throws IOException, ClassNotFoundException {
 		
 		FileInputStream fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
@@ -52,7 +43,6 @@ public class ConfigTest {
 
 		
 	} 
-	
 
 	
 	@Test

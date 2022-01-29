@@ -13,20 +13,23 @@ import org.slf4j.LoggerFactory;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.file.Utils;
+import net.firstpartners.data.Config;
 import net.firstpartners.data.RedModel;
 
-class RedRuleBuilderTest {
+class RuleBuilderTest {
 
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Test
-	void test() {
+	void testDefaultBuild() throws ClassNotFoundException, DroolsParserException, IOException {
 
 		RedModel myModel = new RedModel();
+		Config testConfig = new Config();
+		
 		myModel.setRuleFileLocation(TestConstants.RULES_FILE);
 
-		KieBuilder myBuilder = new RedRuleBuilder().loadRules(myModel);
+		KieBuilder myBuilder = new RuleBuilder().loadRules(myModel,testConfig);
 		KieModule myModule = myBuilder.getKieModule();
 
 		assertNotNull(myModule);
@@ -39,8 +42,10 @@ class RedRuleBuilderTest {
 
 		RedModel rulesToCompile = new RedModel();
 		rulesToCompile.setRuleFileLocation(TestConstants.RULES_FILE);
+		
+		Config testConfig = new Config();
 
-		KieBuilder myBuilder = new RedRuleBuilder().loadRules(rulesToCompile);
+		KieBuilder myBuilder = new RuleBuilder().loadRules(rulesToCompile,testConfig);
 		KieModule myModule = myBuilder.getKieModule();
 
 		assertNotNull(myModule);
@@ -60,11 +65,15 @@ class RedRuleBuilderTest {
 		rulesToCompile.setRuleFileLocation(TestConstants.EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR);
 		rulesToCompile.setDslFileLocation(TestConstants.EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL);
 
-		KieBuilder myBuilder = new RedRuleBuilder().loadRules(rulesToCompile);
+		Config testConfig = new Config();
+		
+		KieBuilder myBuilder = new RuleBuilder().loadRules(rulesToCompile,testConfig);
 		KieModule myModule = myBuilder.getKieModule();
 
 		assertNotNull(myModule);
 		Utils.deleteOutputFileIfExists(TestConstants.KNOWLEDGE_BASE_FILE_TMP);
 
 	}
+	
+	
 }

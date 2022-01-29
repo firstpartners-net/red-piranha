@@ -12,9 +12,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.firstpartners.TestConstants;
+import net.firstpartners.core.Config;
+import net.firstpartners.core.RedModel;
 import net.firstpartners.core.file.Utils;
-import net.firstpartners.data.Config;
-import net.firstpartners.data.RedModel;
 
 class RuleBuilderTest {
 

@@ -1,4 +1,4 @@
-package net.firstpartners.data;
+package net.firstpartners.core;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.firstpartners.TestConstants;
+import net.firstpartners.data.RangeList;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest

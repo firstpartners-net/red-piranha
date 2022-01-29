@@ -1,12 +1,20 @@
 package net.firstpartners.core.json;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.file.OfficeDocument;
+import net.firstpartners.core.file.ResourceFinder;
+import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -18,40 +26,74 @@ import net.firstpartners.data.RangeList;
  */
 public class JsonInputStrategy implements IDocumentInStrategy {
 
-	
 	private String jsonInputFileName;
+
+	// Handle to the logger
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
+	
+
+	private OfficeDocument officeDocument;
 
 	/**
 	 * Construct a new Strategy Object
-	 * 
+	 *
 	 * @param jsonInputFileName
 	 */
 	public JsonInputStrategy(String jsonInputFileName) {
 		this.jsonInputFileName = jsonInputFileName;
 	}
-	
-	@Override
-	public OfficeDocument getOriginalDocument() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public String getInputName() {
-		// TODO Auto-generated method stub
-		return null;
+		return jsonInputFileName;
 	}
 
+	/**
+	 * Access a Stream, convert it to Red JavaBeans (representing grid like data)
+	 *
+	 * @return RangeList of data from our json
+	 * @throws EncryptedDocumentException
+	 * @throws IOException
+	 */
 	@Override
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException {
-		// TODO Auto-generated method stub
+
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		File jsonSource = ResourceFinder.getResourceUsingConfig(jsonInputFileName, null);
+		//RangeList myRange  = objectMapper.readValue(jsonSource, RangeList[].class);
+		JsonNode rootNode = objectMapper.readTree(jsonSource);
+		log.debug("Found:"+rootNode);
+		
+		log.debug("Convert Json to RedBeans");
+		
 		return null;
 	}
 
-	@Override
-	public void setOriginalDocument(OfficeDocument originalDoc) {
-		// TODO Auto-generated method stub
-		
+
+
+	public String getJsonInputFileName() {
+		return jsonInputFileName;
 	}
 
+
+
+	@Override
+	public OfficeDocument getOriginalDocument() {
+		return officeDocument;
+	}
+
+	public void setJsonInputFileName(String jsonInputFileName) {
+		this.jsonInputFileName = jsonInputFileName;
+	}
+
+
+	@Override
+	public void setOriginalDocument(OfficeDocument officeDocument) {
+		this.officeDocument = officeDocument;
+	}
+
+
 }
+

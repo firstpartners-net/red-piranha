@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.core.RedModel;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.file.CSVOutputStrategy;
@@ -19,7 +20,6 @@ import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.core.json.JsonOutputStrategy;
 import net.firstpartners.core.word.WordInputStrategy;
 import net.firstpartners.core.word.WordXInputStrategy;
-import net.firstpartners.data.RedModel;
 
 public class RuleRunnerFactoryTest {
 

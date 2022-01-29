@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import net.firstpartners.core.Config;
+import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.log.BufferStatusUpdate;
-import net.firstpartners.data.Config;
-import net.firstpartners.data.RedModel;
 
 /**
- * Class that Spring will delegate most web requests to in order to
- * decide what to do next
+ * Class that Spring will delegate most web requests to in order to decide what
+ * to do next
  * 
  * @return
  */
@@ -27,11 +27,9 @@ public class RedController {
 
 	private static final String RED_MODEL = "redModel";
 
-
 	// handle for our config
 	@Autowired
 	Config appConfig;
-
 
 	// Logger if needed
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -44,53 +42,51 @@ public class RedController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
-		
 
-		
 		// this attribute will be available in the view index.html as a thymeleaf
 		// variable
-		log.info("\nCreating new Red Model - Forgetting any previous settings\n");
+		log.info("\nCreating new Red Model - replacing any previous settings with incoming values\n");
 		model.addAttribute(RED_MODEL, new RedModel());
-		
+
 		model.addAttribute("updateMessage", "Please hit the 'Run Rules' button");
 
 		// this just means render index.html from static/ area
 		return "index";
 	}
 
-
-
-	@PostMapping("/runRules")
+	@RequestMapping(value = "/runRules")
 	public String runRules(Model model, @ModelAttribute(RED_MODEL) RedModel redModel) {
 
-		
+		log.debug("inputFileLocation:" + redModel.getInputFileLocation());
 		log.debug("DSL?" + redModel.getDslFileLocation());
-		
+		log.debug("DRL?" + redModel.getRuleFileLocation());
+		log.debug("Output?" + redModel.getOutputFileLocation());
 
-		//Create objects to gather feedback
+		// Create objects to gather feedback
 		BufferStatusUpdate userUpdates = new BufferStatusUpdate();
-		
-		// Just in Case Status message that we will update as we progress
-		userUpdates.updateCurrentStatus("Something has gone wrong, please check the messages below and in the logs."); 
-		
 
 		try {
 
-			// The Factory auto-generates the input and output strategy based on the filenames
-			RuleRunner runner = RuleRunnerFactory.getRuleRunner( redModel);
-			
-			
+			// Just in Case Status message that we will update as we progress
+			userUpdates
+					.updateCurrentStatus("Something has gone wrong, please check the messages below and in the logs.");
+
+			// The Factory auto-generates the input and output strategy based on the
+			// filenames
+			RuleRunner runner = RuleRunnerFactory.getRuleRunner(redModel);
+
 			// Call the rules using this datafile
 			userUpdates.info("Running Rules:" + redModel);
-			runner.callRules(userUpdates,redModel);
+			runner.callRules(userUpdates, redModel);
 			userUpdates.info("Complete");
-			
-			//update our main status message
+
+			// update our main status message
 			userUpdates.updateCurrentStatus("Rules Complete");
 
 		} catch (Throwable t) {
 
-			//We try to show as much details as possible (in the logs) without scaring the user
+			// We try to show as much details as possible (in the logs) without scaring the
+			// user
 			log.error("Full details of error", t);
 			userUpdates.exception("Uncaught Exception", t);
 			userUpdates.notifyExceptionOccured();
@@ -98,19 +94,18 @@ public class RedController {
 
 		}
 
-		//make our full log objects available in the session
-		
-		
+		// make our full log objects available in the session
+
 		// update the web values with the values coming back
-		model.addAttribute("updateMessage", userUpdates.getCurrentStatus());
-		model.addAttribute("inputFacts", userUpdates.getPreRulesSnapShotAsJson());
-		model.addAttribute("ruleFileMessages", userUpdates.getContents());
-		model.addAttribute("outputFacts", userUpdates.getPostRulesSnapShotAsJson());
+//		model.addAttribute("updateMessage", userUpdates.getCurrentStatus());
+//		model.addAttribute("inputFacts", userUpdates.getPreRulesSnapShotAsJson());
+//		model.addAttribute("ruleFileMessages", userUpdates.getContents());
+//		model.addAttribute("outputFacts", userUpdates.getPostRulesSnapShotAsJson());
 
 		// make the config we used available as well
-		model.addAttribute(RED_MODEL, appConfig);
+		model.addAttribute(RED_MODEL, redModel);
 
-		//set the html page we want to display
+		// set the html page we want to display
 		return "index";
 	}
 

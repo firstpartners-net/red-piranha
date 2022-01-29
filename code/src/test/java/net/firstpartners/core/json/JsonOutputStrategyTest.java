@@ -19,13 +19,11 @@ public class JsonOutputStrategyTest {
 	@Test
 	public final void testOutputJsoThenDelete() throws IOException, ClassNotFoundException, InvalidFormatException {
 
-		
-		//Make sure we can delete file
-		Utils.deleteOutputFileIfExists(TestConstants.JSON_TMP_FILE); //object remembers file name from earlier
+		// Make sure we can delete file
+		Utils.deleteOutputFileIfExists(TestConstants.JSON_TMP_FILE); // object remembers file name from earlier
 		File f = new File(TestConstants.JSON_TMP_FILE);
-		assertFalse ("Found file that should exist", f.exists() );
-		
-		
+		assertFalse("Found file that should exist", f.exists());
+
 		// Now get and output our test data
 		RangeList TestData = RedControllerTest.getTestDataFromExcel();
 		JsonOutputStrategy jsonOut = new JsonOutputStrategy(TestConstants.JSON_TMP_FILE);
@@ -34,16 +32,10 @@ public class JsonOutputStrategyTest {
 		jsonOut.setUpdates(null, TestData);
 		jsonOut.processOutput();
 
-		
-		//check that this exists
+		// check that this exists
 		File newFile = new File(TestConstants.JSON_TMP_FILE);
-		assertTrue ("Cannot find file that should exist", newFile.exists() );
-		
+		assertTrue("Cannot find file that should exist", newFile.exists());
 
-		
-		
 	}
-
-	
 
 }

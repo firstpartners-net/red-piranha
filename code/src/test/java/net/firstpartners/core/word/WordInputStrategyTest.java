@@ -7,11 +7,11 @@ import org.junit.Test;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.MemoryOutputStrategy;
+import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.file.PDFOutputStrategy;
 import net.firstpartners.core.log.EmptyStatusUpdate;
-import net.firstpartners.data.RedModel;
 
 public class WordInputStrategyTest {
 

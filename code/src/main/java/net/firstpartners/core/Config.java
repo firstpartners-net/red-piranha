@@ -1,4 +1,4 @@
-package net.firstpartners.data;
+package net.firstpartners.core;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

@@ -1,10 +1,12 @@
-package net.firstpartners.data;
+package net.firstpartners.core;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+
+import net.firstpartners.data.Cell;
 
 /**
  * Cargo object to hold information about the rules and facts (Excel Data) we are working with
@@ -26,7 +28,6 @@ public class RedModel {
 
 	private String knowledgeBaseLocation;
 
-	
 	private String outputFileLocation;
 
 	private String ruleFileLocation;

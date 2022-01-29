@@ -17,16 +17,16 @@ import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
+import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.loader.RuleBuilder;
 import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.core.log.SpreadSheetStatusUpdate;
 import net.firstpartners.data.Cell;
-import net.firstpartners.data.Config;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
-import net.firstpartners.data.RedModel;
 
 /**
  * Call JBoss Drools (Rules Engine) passing in Document data as Java Objects

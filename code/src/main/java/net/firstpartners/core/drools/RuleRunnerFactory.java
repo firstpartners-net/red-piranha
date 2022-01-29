@@ -8,8 +8,10 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
+import net.firstpartners.core.RedModel;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.file.CSVOutputStrategy;
@@ -18,8 +20,6 @@ import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.core.json.JsonOutputStrategy;
 import net.firstpartners.core.word.WordInputStrategy;
 import net.firstpartners.core.word.WordXInputStrategy;
-import net.firstpartners.data.Config;
-import net.firstpartners.data.RedModel;
 
 /**
  * Return an instance of RuleRunner, Appropriately configured with the various

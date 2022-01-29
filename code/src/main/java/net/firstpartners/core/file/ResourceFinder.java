@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.firstpartners.data.Config;
+import net.firstpartners.core.Config;
 
 /**
  * Find and load resources
@@ -36,7 +36,12 @@ public class ResourceFinder {
 		if (bareFile.exists()) {
 			return bareFile;
 		} else {
-			log.debug("No resource:"+resourceName+ " attempting another approach");
+			log.debug("No resource:"+resourceName+ " attempting another approach?");
+		}
+		
+		// We need config info to try backups
+		if(appConfig==null) {
+			throw new FileNotFoundException("Cannot find after 1 attempts:"+resourceName+" no config provided");
 		}
 		
 		String defaultDir = appConfig.getSampleBaseDirDefault();

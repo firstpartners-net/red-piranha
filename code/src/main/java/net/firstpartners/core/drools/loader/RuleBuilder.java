@@ -14,9 +14,9 @@ import org.kie.api.io.ResourceType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.core.Config;
+import net.firstpartners.core.RedModel;
 import net.firstpartners.core.file.ResourceFinder;
-import net.firstpartners.data.Config;
-import net.firstpartners.data.RedModel;
 
 /**
  * Obtain the Drools Rules in a runnable format Could be from the Web, local

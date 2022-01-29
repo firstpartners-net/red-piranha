@@ -27,8 +27,7 @@ public class TestConstants {
 	
 	
 	//Sample Rules files
-	public static final String[] RULES_FILES = new String[] {
-			"src/test/resources/testrules/log-then-modify-rules.drl" };
+	public static final String RULES_FILE = "src/test/resources/testrules/log-then-modify-rules.drl";
 	
 	public static final String[] RULES_FILES_IN_EXCEL = new String[] {
 			"src/test/resources/testrules/log-rules.drl", "src/test/resources/testrules/TradingRules.xls" };

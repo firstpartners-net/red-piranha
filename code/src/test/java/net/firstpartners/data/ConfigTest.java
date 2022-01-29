@@ -1,15 +1,15 @@
 package net.firstpartners.data;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -49,55 +49,19 @@ public class ConfigTest {
 		fileIn.close();
 	}
 	
+
+
+	
 	@Test
-	public final void testConfigNotNullOrEmpty() {
-		assertTrue(myConfig!=null);
-		assertTrue(myConfig.getDslFileName()!=null);
-		assertTrue(myConfig.getInputFileName()!=null);
+	public final void testSampleBaseDirNotNullOrEmpty() {
+		List<String> sampleBaseDir =myConfig.getSampleBaseDir();
+		assertNotNull(sampleBaseDir);
+		assertFalse(sampleBaseDir.isEmpty());
+		
 		
 	} 
-
-	
-	
-	@Test
-	public final void testCanOverwriteConfig() {
-		
-		myConfig.setInputFileName("yada-yada");
-		assertEquals(myConfig.getInputFileName(),"yada-yada");
-		
-		myConfig.setOutputFileName("yada-yada2");
-		assertEquals(myConfig.getOutputFileName(),"yada-yada2");
-	}
 	
 
-	@Test
-	public final void testReadDslName() {
-
-		String testDsl = myConfig.getDslFileName();
-		Assert.assertNotNull(testDsl);
-		assertTrue(testDsl != "");
-
-	}
-
-
-
-	@Test
-	public final void testExcelIn() {
-
-		String xlIn = myConfig.getInputFileName();
-		Assert.assertNotNull(xlIn);
-		assertTrue(xlIn != "");
-
-	}
-
-	@Test
-	public final void testExcelOut() {
-
-		String xlOut = myConfig.getOutputFileName();
-		Assert.assertNotNull(xlOut);
-		assertTrue(xlOut != "");
-
-	}
 	
 	@Test
 	public final void testToString() {

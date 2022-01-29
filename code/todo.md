@@ -4,11 +4,26 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ##
 
-Next: samples load - Javascript reading json
-readup on react.js
-* table
+Next: samples load
+* load JSON in Java (in unit)
+* Sample Dire x2 
+READ JSON - UNIT TEST
+READ JSON - MAKE AVAILABLE TO index.html
+* Run all samples as integration test in java
+
+* Refactor - remove redmodelfactory
+
+* get view working again (red controller / index.html)
+* table render via thyme
+
+
 * url to call
 * show hide sample
+* transform call to "get"
+
+LATER
+* Move bootstrap offline
+
 
 
 ## Aim of Next Sprint
@@ -24,13 +39,9 @@ Platform (with existing examples) and good draft of user and dev documentation.
 * Maven build jar - to try out object model on business central
 
 * Move Later
-    * Docker Compose tidy
-    * samples (dectect if local dev, or running in Docker)
     * Find More info on docker
     * from book, spring docker name and firsrpatners
     * push image to docker hub
-    * try azure or open shift deploy of image
-    * add spring boot Web socket for push updates
 
     
 
@@ -60,10 +71,10 @@ Set in place key design principles
 * Maven build (Java Model)
 
 ## Todo Next 
-- [ ] template so auto gets
 - [ ] rules Steps (break out compile)
 - [ ] Figure out why current excel example is outputting incorrectly
 - [ ] More info through to front end
+- [ ] Tidy front end
 - [ ] more tests compile / rule - currently 
 - [ ] Tests compiling Testing: 55 tests, 2 Errors, 2 failures
 - [ ] look at moving over private samples

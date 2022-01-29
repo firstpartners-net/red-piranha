@@ -39,7 +39,7 @@ public class RedRuleBuilder implements IRuleLoaderStrategy {
 		KieFileSystem kfs = ks.newKieFileSystem();
 
 		// Loop through and read rule files locations
-		String[] rulesLocs = ruleSource.getRulesLocation();
+		String[] rulesLocs = ruleSource.getRulesFilesLocations();
 		for (int counter = 0; counter < rulesLocs.length; counter++) {
 
 			log.debug("loading into KFS:" + rulesLocs[counter]);

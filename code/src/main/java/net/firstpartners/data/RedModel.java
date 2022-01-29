@@ -4,21 +4,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Cargo object to hold information about the rules and facts (Excel Data) we are working with
+ * and the results returned by the Rule Engine
  * @author paul
  *
  */
 public class RedModel {
 	
-	// Logger
-	private Logger log = LoggerFactory.getLogger(this.getClass());
+	private Config config;
 	
 	//internal data
 	private String dslFileLocation;
@@ -27,19 +23,36 @@ public class RedModel {
 
 	private HashMap<String, Cell> globals = new HashMap<String, Cell>();
 
+	private String inputFileLocation;
+
 	private String knowledgeBaseLocation;
 
+	
+	private String outputFileLocation;
+
+	private String ruleFileLocation;
+
 	private String ruleFlowFileUrl;
-
-	private ArrayList<String> rulesLocation = new ArrayList<String>();
-
-	private Config config;
-
+	
+	/**
+	 * Default constructor
+	 */
 	public RedModel() {}
 	
-	public RedModel(Config config) {
-		this.config = config;
+	/**
+	 * Convenience constructor - most commonly used use case
+	 * @param inputfileLocation
+	 * @param ruleFileLocation
+	 * @param outputFileLocation
+	 */
+	public RedModel(String inputFileLocation, String ruleFileLocation, String outputFileLocation) {
+		
+		this.inputFileLocation=inputFileLocation;
+		this.ruleFileLocation = ruleFileLocation;
+		this.outputFileLocation = outputFileLocation;
+		
 	}
+	
 	
 	public void addFact(Cell fact) {
 
@@ -49,7 +62,7 @@ public class RedModel {
 
 		facts.add(fact);
 	}
-
+	
 	public void addFacts(Collection<Cell> facts) {
 
 		if(this.facts ==null){
@@ -59,6 +72,7 @@ public class RedModel {
 		this.facts.addAll(facts);
 	}
 
+	
 	public void addGlobal(String globalName, Cell global) {
 
 		if(globals==null){
@@ -75,46 +89,59 @@ public class RedModel {
 		this.globals.putAll(globals);
 	}
 
+	public Config getConfig() {
+		return this.config;
+	}
+
 	public String getDslFileLocation() {
 		return dslFileLocation;
 	}
-
 
 	public Collection<Cell> getFacts() {
 		return facts;
 	}
 
+
 	public HashMap<String, Cell> getGlobals() {
 		return globals;
+	}
+
+	public String getInputFileLocation() {
+		return inputFileLocation;
 	}
 
 	public String getKnowledgeBaseLocation() {
 		return knowledgeBaseLocation;
 	}
 
+	public String getOutputFileLocation() {
+		return outputFileLocation;
+	}
+
+
+	public String getRuleFileLocation() {
+		return ruleFileLocation;
+	}
+	
+	/**
+	 * Convenience method - some code expects an array
+	 * @return
+	 */
+	public String[] getRulesFilesLocations() {
+		
+		String[] returnValues = new String [1];
+		returnValues[0] = ruleFileLocation;
+		return returnValues;
+		
+	}
+
 	public String getRuleFlowFileUrl() {
 		return ruleFlowFileUrl;
 	}
 
-	public String[] getRulesLocation() {
-		log.debug("ruleslocation:"+rulesLocation.getClass());
-		
-		ArrayList<String> outputList = new ArrayList<String>();
-		String thisLocation;
-		
-		//we need to check for empty rules
-		Iterator<String> loopList = rulesLocation.iterator();
-		while (loopList.hasNext()){
-			thisLocation= loopList.next();
-			if(!Config.EMPTY.equals(thisLocation)) {
-				outputList.add(thisLocation);
-			}
-			
-		}
-		
-		return (String[]) outputList.toArray(new String[outputList.size()]);
+	public void setConfig(Config config) {
+		this.config = config;
 	}
-
 
 	public void setDslFileLocation(String dslFileLocation) {
 		this.dslFileLocation = dslFileLocation;
@@ -134,40 +161,25 @@ public class RedModel {
 		this.globals = globals;
 	}
 
+	public void setInputFileLocation(String inputFileLocation) {
+		this.inputFileLocation = inputFileLocation;
+	}
+
 	public void setKnowledgeBaseLocation(String knowledgeBaseLocation) {
 		this.knowledgeBaseLocation = knowledgeBaseLocation;
 	}
 
+	public void setOutputFileLocation(String outputFileLocation) {
+		this.outputFileLocation = outputFileLocation;
+	}
+
+	
+	public void setRuleFileLocation(String ruleFileLocation) {
+		this.ruleFileLocation = ruleFileLocation;
+	}
+
 	public void setRuleFlowFileUrl(String ruleFlowFileUrl) {
 		this.ruleFlowFileUrl = ruleFlowFileUrl;
-	}
-
-	/**
-	 * Asd rule location
-	 * Takes string instead of array
-	 * @param ruleLocation
-	 */
-	public void addRuleLocation(String ruleLocation) {
-
-		this.rulesLocation.add(ruleLocation);
-	}
-	
-	public void addRuleLocation(String[] ruleLocation) {
-
-		if(ruleLocation!=null) {
-			for (int counter=0; counter <ruleLocation.length; counter++) {
-				addRuleLocation(ruleLocation[counter]);
-			}
-		}
-		
-	}
-	
-	public Config getConfig() {
-		return this.config;
-	}
-
-	public void setConfig(Config config) {
-		this.config = config;
 	}
 
 

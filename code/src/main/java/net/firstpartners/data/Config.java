@@ -1,9 +1,10 @@
 package net.firstpartners.data;
 
+import java.util.List;
+
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Component;
@@ -21,9 +22,14 @@ public class Config {
 
 	
 	// Constant to denote empty values
-	public final static String EMPTY = "empty";
+	//public final static String EMPTY = "empty";
 
 	// Properties autowired by spring
+	//@Autowired
+	//@Value("${LOG_FILE_NAME}")
+	//private String forcedLogFileName;
+
+/*	
 	@Value("${FILE_INPUT}")
 	private String inputFileName;
 
@@ -31,10 +37,7 @@ public class Config {
 	@Value("${FILE_OUTPUT}")
 	private String outputFileName;
 
-	@Autowired
-	@Value("${LOG_FILE_NAME}")
-	private String forcedLogFileName;
-
+	
 	@Autowired
 	@Value("${DSL ?:empty}")
 	private String dslName;
@@ -50,10 +53,22 @@ public class Config {
 	@Autowired
 	@Value("${RULE3 ?:empty}")
 	private String rule3;
+*/
+	//@Autowired
+	//@Value("${SHOW_FULL_RULE_ENGINE_LOGS}")
+	private boolean showFullRuleEngineLogs;
 
 	@Autowired
-	@Value("${SHOW_FULL_RULE_ENGINE_LOGS}")
-	private boolean showFullRuleEngineLogs;
+	//@Value("${SHOW_FULL_RULE_ENGINE_LOGS}")
+	private List<String> sampleBaseDir;
+	
+	public List<String> getSampleBaseDir() {
+		return sampleBaseDir;
+	}
+
+	public void setSampleBaseDir(List<String> sampleBaseDir) {
+		this.sampleBaseDir = sampleBaseDir;
+	}
 
 	public boolean getShowFullRuleEngineLogs() {
 		return showFullRuleEngineLogs;
@@ -63,61 +78,7 @@ public class Config {
 		this.showFullRuleEngineLogs = showFullRuleEngineLogs;
 	}
 
-	public String getRule1() {
-		return rule1;
-	}
-
-	public void setRule1(String rule1) {
-		this.rule1 = rule1;
-	}
-
-	public String getRule2() {
-		return rule2;
-	}
-
-	public void setRule2(String rule2) {
-		this.rule2 = rule2;
-	}
-
-	public String getRule3() {
-		return rule3;
-	}
-
-	public void setRule3(String rule3) {
-		this.rule3 = rule3;
-	}
-
-
-	public String getInputFileName() {
-		return inputFileName;
-	}
-
-	public void setInputFileName(String inputFileName) {
-		this.inputFileName = inputFileName;
-	}
-
-	public String getOutputFileName() {
-		return outputFileName;
-	}
-
-	public void setOutputFileName(String outputFileName) {
-		this.outputFileName = outputFileName;
-	}
-
-	public String getDslFileName() {
-		
-		//Check Empty
-		if (dslName.equals(EMPTY)) {
-			dslName="";
-		}
-		
-		return dslName;
-	}
-
-	public void setDslFileName(String dslName) {
-		this.dslName = dslName;
-	}
-
+	
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
 	}

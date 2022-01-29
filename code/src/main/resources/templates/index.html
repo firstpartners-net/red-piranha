@@ -34,111 +34,104 @@
 			'English like' language, it makes it very easy for you (and
 			colleagues) to see what checks are being made.</p>
 
+		<form class="form-inline" action="#" th:action="@{/runRules}"
+			method="post" th:object="${redModel}">
 
-		<!-- Columns are always 50% wide, on mobile and desktop -->
-		<div class="row">
-			<div class="col-xs-6">
-				<img src="splash.png" alt="Red Piranha GUI Splash" width="100"
-					height="66">
-			</div>
-			<div class="col-xs-6">
+			<!-- Columns are always 50% wide, on mobile and desktop -->
+			<div class="row">
+				<div class="col-xs-6">
+					<img src="splash.png" alt="Red Piranha GUI Splash" width="100"
+						height="66">
+				</div>
+				<div class="col-xs-6">
 
-				<form class="form-inline" action="#" th:action="@{/runRules}"
-					method="post" th:object="${configDisplay}">
+
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<button type="submit" class="btn btn-primary">Run All
 								Steps</button>
 						</div>
 					</div>
-				</form>
+		</form>
 
 
-			</div>
-		</div>
-		<p />
+	</div>
+	</div>
+	<p />
 
-		<div id="contents-main">
-			<div>
-				<p class="bg-primary">&nbsp;Current Settings</p>
-				<form class="form-inline" action="#" th:action="@{/updateConfig}"
-					method="post" th:object="${configDisplay}">
+	<div id="contents-main">
+		<div>
+			<p class="bg-primary">&nbsp;Current Settings</p>
+			<form class="form-inline" action="#" th:action="@{runRules}"
+				method="post" th:object="${redModel}">
 
-					<div class="form-group">
+				<div class="form-group">
 
-						<label for="inputEmail3" class="col-sm-2 control-label">Input&nbsp;File&nbsp;Name:</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control"
-								th:field="*{inputFileName}" />
-						</div>
+					<label for="inputEmail3" class="col-sm-2 control-label">Input&nbsp;File&nbsp;Name:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control"
+							th:field="*{inputFileName}" />
 					</div>
-
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Business&nbsp;Rules&nbsp;File&nbsp;1:</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" th:field="*{rule1}" />
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Domain&nbsp;Specific&nbsp;Language&nbsp;(DSL)&nbsp;File&nbsp;-&nbsp;Optional</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" th:field="*{dslFileName}" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Output&nbsp;File&nbsp;Name:</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control"
-								th:field="*{outputFileName}" />
-						</div>
-
-					</div>
-
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">Update
-								Config</button>
-						</div>
-						<br/>
-					</div>
-
-				</form>
-				<p class="bg-primary">&nbsp;Samples</p>
-				<div id="sampleDataDiv">
-					<!-- This will get replaced by our sample JSON data-->
-
-
 				</div>
-	
 
-				<p class="bg-primary">&nbsp;Sample-dev</p>
-				<div id="sampleDataDiv2">
-					<!-- Only to create out layout-->
-					<div class="row">
-						<div class="col-md-1">
-								<button type="submit" class="btn btn-default">Run Sample</button>
-						/div>
-						<div class="col-md-4">ExcelDataRules/chocolate-data.xls</div>
-						<div class="col-md-4">ExcelDataRules/log-then-modify-rules.drl</div>
-						<div class="col-md-8">Some blurb that we might repeat several times. Some blurb that we might repeat several times.Some blurb that we might repeat several times.Some blurb that we might repeat several times.Some blurb that we might repeat several times.Some blurb that we might repeat several times.Some blurb that we might repeat several times.</div>
-					  </div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">Business&nbsp;Rules&nbsp;File&nbsp;1:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{rule1}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">Domain&nbsp;Specific&nbsp;Language&nbsp;(DSL)&nbsp;File&nbsp;-&nbsp;Optional</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{dslFileName}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">Output&nbsp;File&nbsp;Name:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control"
+							th:field="*{outputFileName}" />
+					</div>
 
 				</div>
 
-				<p class="bg-primary">&nbsp;Progress</p>
-				<p th:text="${updateMessage}" /></p>
-				<p class="bg-primary">&nbsp;Information from Input File</p>
-				<p th:text="${inputFacts}" /></p>
-				<p class="bg-primary">&nbsp;Messages as Business Rules are
-					applied</p>
-				<p th:text="${ruleFileMessages}" /></p>
-				<p class="bg-primary">&nbsp;Information after Business Rules</p>
-				<p th:text="${outputFacts}" /></p>
-				<p class="bg-primary">&nbsp;Did anything go wrong?</p>
-				<p th:text="${displayException}" /></p>
+
+			</form>
+
+
+			<p class="bg-primary">&nbsp;Samples</p>
+			<div id="sampleDataDiv">
+				<!-- Only to create out layout-->
+				<div class="row">
+					<div class="col-md-1">
+						<button type="submit" class="btn btn-default">Run Sample</button>
+					</div>
+					<div class="col-md-4">ExcelDataRules/chocolate-data.xls</div>
+					<div class="col-md-4">ExcelDataRules/log-then-modify-rules.drl</div>
+					<div class="col-md-8">Some blurb that we might repeat several
+						times. Some blurb that we might repeat several times.Some blurb
+						that we might repeat several times.Some blurb that we might repeat
+						several times.Some blurb that we might repeat several times.Some
+						blurb that we might repeat several times.Some blurb that we might
+						repeat several times.</div>
+				</div>
+
 			</div>
+
+			<p class="bg-primary">&nbsp;Progress</p>
+			<p th:text="${updateMessage}" /></p>
+			<p class="bg-primary">&nbsp;Information from Input File</p>
+			<p th:text="${inputFacts}" /></p>
+			<p class="bg-primary">&nbsp;Messages as Business Rules are
+				applied</p>
+			<p th:text="${ruleFileMessages}" /></p>
+			<p class="bg-primary">&nbsp;Information after Business Rules</p>
+			<p th:text="${outputFacts}" /></p>
+			<p class="bg-primary">&nbsp;Did anything go wrong?</p>
+			<p th:text="${displayException}" /></p>
 		</div>
+	</div>
 	</div>
 
 

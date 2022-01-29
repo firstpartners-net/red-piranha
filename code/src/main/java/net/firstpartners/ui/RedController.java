@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import net.firstpartners.core.RedModelFactory;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.log.BufferStatusUpdate;
@@ -18,7 +17,7 @@ import net.firstpartners.data.Config;
 import net.firstpartners.data.RedModel;
 
 /**
- * Class that Spring will delegate most web (not rest) requests to in order to
+ * Class that Spring will delegate most web requests to in order to
  * decide what to do next
  * 
  * @return
@@ -26,7 +25,7 @@ import net.firstpartners.data.RedModel;
 @Controller
 public class RedController {
 
-	private static final String CONFIG_DISPLAY = "configDisplay";
+	private static final String RED_MODEL = "redModel";
 
 
 	// handle for our config
@@ -38,18 +37,20 @@ public class RedController {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	/**
-	 * Original Request
+	 * Original Request - setup and display the main page
 	 * 
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
+		
 
 		
 		// this attribute will be available in the view index.html as a thymeleaf
 		// variable
-		model.addAttribute(CONFIG_DISPLAY, appConfig);
+		log.info("\nCreating new Red Model - Forgetting any previous settings\n");
+		model.addAttribute(RED_MODEL, new RedModel());
 		
 		model.addAttribute("updateMessage", "Please hit the 'Run Rules' button");
 
@@ -57,39 +58,12 @@ public class RedController {
 		return "index";
 	}
 
-	/**
-	 * Method called by Spring in response to Form submission
-	 * @param model
-	 * @param configBean
-	 * @return
-	 */
-	@PostMapping("/updateConfig")
-	public String submitForm(Model model, @ModelAttribute(CONFIG_DISPLAY) Config configDisplay) {
 
-		// Make sure our Global Application Config gets updated with incoming values
-		appConfig.setInputFileName(configDisplay.getInputFileName());
-		appConfig.setRule1(configDisplay.getRule1());
-		appConfig.setDslFileName(configDisplay.getDslFileName());
-		appConfig.setOutputFileName(configDisplay.getOutputFileName());
-
-		// update the web values with system value (in case we missed any)
-		model.addAttribute(CONFIG_DISPLAY, appConfig);
-
-		return "index";
-	}
 
 	@PostMapping("/runRules")
-	public String runRules(Model model, @ModelAttribute(CONFIG_DISPLAY) Config configBean) {
+	public String runRules(Model model, @ModelAttribute(RED_MODEL) RedModel redModel) {
 
-		// Make sure our Global Config gets updated with incoming values
-		// Get the params
-		String inputFileName = appConfig.getInputFileName();
-		String outputFileName = appConfig.getOutputFileName();
 		
-		//create a validate the info we are going to use to run the rules
-		RedModel redModel = RedModelFactory.getFreshRedModelUsingConfiguration(appConfig);
-		RedModelFactory.validateModel(redModel);
-
 		log.debug("DSL?" + redModel.getDslFileLocation());
 		
 
@@ -103,7 +77,7 @@ public class RedController {
 		try {
 
 			// The Factory auto-generates the input and output strategy based on the filenames
-			RuleRunner runner = RuleRunnerFactory.getRuleRunner(inputFileName, redModel, outputFileName);
+			RuleRunner runner = RuleRunnerFactory.getRuleRunner( redModel);
 			
 			
 			// Call the rules using this datafile
@@ -134,7 +108,7 @@ public class RedController {
 		model.addAttribute("outputFacts", userUpdates.getPostRulesSnapShotAsJson());
 
 		// make the config we used available as well
-		model.addAttribute(CONFIG_DISPLAY, appConfig);
+		model.addAttribute(RED_MODEL, appConfig);
 
 		//set the html page we want to display
 		return "index";

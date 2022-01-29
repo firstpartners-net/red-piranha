@@ -12,9 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.RedModelFactory;
 import net.firstpartners.core.file.Utils;
-import net.firstpartners.data.Config;
 import net.firstpartners.data.RedModel;
 
 class RedRuleBuilderTest {
@@ -25,8 +23,8 @@ class RedRuleBuilderTest {
 	@Test
 	void test() {
 
-		RedModel myModel = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
-		myModel.addRuleLocation(TestConstants.RULES_FILES);
+		RedModel myModel = new RedModel();
+		myModel.setRuleFileLocation(TestConstants.RULES_FILE);
 
 		KieBuilder myBuilder = new RedRuleBuilder().loadRules(myModel);
 		KieModule myModule = myBuilder.getKieModule();
@@ -39,8 +37,8 @@ class RedRuleBuilderTest {
 
 		log.debug("Starting to compile rules");
 
-		RedModel rulesToCompile = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
-		rulesToCompile.addRuleLocation(TestConstants.RULES_FILES[0]);
+		RedModel rulesToCompile = new RedModel();
+		rulesToCompile.setRuleFileLocation(TestConstants.RULES_FILE);
 
 		KieBuilder myBuilder = new RedRuleBuilder().loadRules(rulesToCompile);
 		KieModule myModule = myBuilder.getKieModule();
@@ -58,8 +56,8 @@ class RedRuleBuilderTest {
 
 		// String rulesToCompile = "examples/private/sef-copy-proposal-data.dslr";
 
-		RedModel rulesToCompile = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
-		rulesToCompile.addRuleLocation(TestConstants.EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR);
+		RedModel rulesToCompile = new RedModel();
+		rulesToCompile.setRuleFileLocation(TestConstants.EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR);
 		rulesToCompile.setDslFileLocation(TestConstants.EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL);
 
 		KieBuilder myBuilder = new RedRuleBuilder().loadRules(rulesToCompile);

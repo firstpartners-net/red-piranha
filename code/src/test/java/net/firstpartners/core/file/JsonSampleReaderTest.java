@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
  * @author paulf
  *
  */
-class JsonSampleReaderTEst {
+class JsonSampleReaderTest {
 
 	/**
 	 * @throws java.lang.Exception

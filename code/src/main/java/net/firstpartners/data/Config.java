@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Component;
@@ -20,68 +21,44 @@ import org.springframework.stereotype.Component;
 @ManagedResource
 public class Config {
 
-	
-	// Constant to denote empty values
-	//public final static String EMPTY = "empty";
-
-	// Properties autowired by spring
-	//@Autowired
-	//@Value("${LOG_FILE_NAME}")
-	//private String forcedLogFileName;
-
-/*	
-	@Value("${FILE_INPUT}")
-	private String inputFileName;
+	@Autowired
+	@Value("${sample.Base.Directory.Alternate}")
+	private String sampleBaseDirAlternate;
 
 	@Autowired
-	@Value("${FILE_OUTPUT}")
-	private String outputFileName;
-
+	@Value("${sample.Base.Directory.Default}")
+	private String sampleBaseDirDefault;
 	
 	@Autowired
-	@Value("${DSL ?:empty}")
-	private String dslName;
-
-	@Autowired
-	@Value("${RULE1}")
-	private String rule1;
-
-	@Autowired
-	@Value("${RULE2 ?:empty}")
-	private String rule2;
-
-	@Autowired
-	@Value("${RULE3 ?:empty}")
-	private String rule3;
-*/
-	//@Autowired
-	//@Value("${SHOW_FULL_RULE_ENGINE_LOGS}")
+	@Value("${SHOW_FULL_RULE_ENGINE_LOGS}")
 	private boolean showFullRuleEngineLogs;
 
-	@Autowired
-	//@Value("${SHOW_FULL_RULE_ENGINE_LOGS}")
-	private List<String> sampleBaseDir;
-	
-	public List<String> getSampleBaseDir() {
-		return sampleBaseDir;
+	public String getSampleBaseDirAlternate() {
+		return sampleBaseDirAlternate;
 	}
 
-	public void setSampleBaseDir(List<String> sampleBaseDir) {
-		this.sampleBaseDir = sampleBaseDir;
+	public String getSampleBaseDirDefault() {
+		return sampleBaseDirDefault;
 	}
 
 	public boolean getShowFullRuleEngineLogs() {
 		return showFullRuleEngineLogs;
 	}
 
+	public void setSampleBaseDirAlternate(String sampleBaseDirAlternate) {
+		this.sampleBaseDirAlternate = sampleBaseDirAlternate;
+	}
+
+	public void setSampleBaseDirDefault(String sampleBaseDirDefault) {
+		this.sampleBaseDirDefault = sampleBaseDirDefault;
+	}
+
 	public void setShowFullRuleEngineLogs(boolean showFullRuleEngineLogs) {
 		this.showFullRuleEngineLogs = showFullRuleEngineLogs;
 	}
 
-	
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
 	}
-	
 
 }

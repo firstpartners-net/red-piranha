@@ -31,14 +31,6 @@ public class ConfigTest {
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	@Test
-	public final void testCurrentLocation() {
-		
-		// Check where we are
-		File whereAmI = new File(".");
-		log.debug("Default file location:" + whereAmI.getAbsolutePath());
-	}
-	
 	public final void testReadPreviousData() throws IOException, ClassNotFoundException {
 		
 		FileInputStream fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
@@ -49,15 +41,15 @@ public class ConfigTest {
 		fileIn.close();
 	}
 	
-
-
 	
 	@Test
 	public final void testSampleBaseDirNotNullOrEmpty() {
-		List<String> sampleBaseDir =myConfig.getSampleBaseDir();
+		String sampleBaseDir =myConfig.getSampleBaseDirDefault();
 		assertNotNull(sampleBaseDir);
-		assertFalse(sampleBaseDir.isEmpty());
-		
+
+		String sampleBaseDirAlternate =myConfig.getSampleBaseDirAlternate();
+		assertNotNull(sampleBaseDirAlternate);
+
 		
 	} 
 	

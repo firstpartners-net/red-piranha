@@ -60,15 +60,5 @@ public class TestConstants {
 
 
 	
-	/**
-	 * Testing utility to generate test Data
-	 */
-	public static void main (String [] args) throws Exception
-	{
-		
-		SpreadSheetConvertorTest.main(null);
-		DocumentConvertorTest.main(null);
-		DocumentXConvertorTest.main(null);
-		
-	}
+
 }

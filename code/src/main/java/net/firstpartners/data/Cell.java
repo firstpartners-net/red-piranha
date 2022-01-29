@@ -18,29 +18,22 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	private static final long serialVersionUID = -763504507901540819L;
 
-	private String name = null;
-
-	private String nextName =null;
-	
-	public String getNextName() {
-		return nextName;
-	}
-
-	public void setNextName(String nextName) {
-		this.nextName = nextName;
-	}
-
 	private transient PropertyChangeSupport changes = new PropertyChangeSupport(this);
 
 	private String comment;
-
+	
 	private boolean modified = false;
+
+	private String name = null;
+
+	private String nextName =null;
 
 	private int originalCellCol = -1;
 
 	private int originalCellRow = -1;
 
 	private String originalTableReference = null;
+
 	private Object value;
 
 	/**
@@ -48,7 +41,6 @@ public class Cell implements PropertyChangeListener, Serializable {
 	 */
 	public Cell() {
 	}
-
 	/**
 	 * Most Basic useful Cell - with a name and value
 	 * 
@@ -63,6 +55,31 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	public void addPropertyChangeListener(final PropertyChangeListener l) {
 		this.changes.addPropertyChangeListener(l);
+	}
+
+	/**
+	 * Appends textToAdd to existing value.
+	 * Converts existing cell value to string if it already is there.
+	 * If cell is null, then textToAdd will be the new value
+	 * @param textToAdd
+	 */
+	public void appendValue(String textToAdd) {
+		
+		//for property change listener
+		Object oldValue =value;
+		
+		if(value ==null) {
+			value="";
+		}
+		
+		StringBuffer tmpValue = new StringBuffer();
+		tmpValue.append(value); //handles version of numbers
+		tmpValue.append(textToAdd);
+		
+		value=tmpValue.toString();
+		
+		this.changes.firePropertyChange("value", oldValue, value);
+		
 	}
 
 	/**
@@ -99,12 +116,12 @@ public class Cell implements PropertyChangeListener, Serializable {
 		return true;
 	}
 
-	public String getName() {
-		return name;
-	}
-
 	public String getComment() {
 		return comment;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	/**
@@ -120,6 +137,10 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 		// otherwise
 		return false;
+	}
+
+	public String getNextName() {
+		return nextName;
 	}
 
 	public int getOriginalCellCol() {
@@ -301,15 +322,6 @@ public class Cell implements PropertyChangeListener, Serializable {
 //		this.holdingRange = holdingRange;
 //	}
 
-	public void setName(String name) {
-
-		String oldValue = this.name;
-		this.name = name;
-		this.modified = true;
-		this.changes.firePropertyChange("name", oldValue, name);
-
-	}
-
 	public void setComment(String comment) {
 		String oldValue = this.comment;
 		this.comment = comment;
@@ -319,6 +331,19 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	public void setModified(boolean modified) {
 		this.modified = modified;
+	}
+
+	public void setName(String name) {
+
+		String oldValue = this.name;
+		this.name = name;
+		this.modified = true;
+		this.changes.firePropertyChange("name", oldValue, name);
+
+	}
+
+	public void setNextName(String nextName) {
+		this.nextName = nextName;
 	}
 
 	/**
@@ -377,7 +402,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 				+ getValueAsBoolean() + "\n    valueAsLong==" + getValueAsLong() + "\n)";
 
 	}
-
+	
 	/**
 	 * @see toLongString() if more comprehensive data needed This is the short
 	 *      version.
@@ -386,31 +411,6 @@ public class Cell implements PropertyChangeListener, Serializable {
 	public String toString() {
 
 		return "Cell ( name==\"" + name + "\" )";
-	}
-	
-	/**
-	 * Appends textToAdd to existing value.
-	 * Converts existing cell value to string if it already is there.
-	 * If cell is null, then textToAdd will be the new value
-	 * @param textToAdd
-	 */
-	public void appendValue(String textToAdd) {
-		
-		//for property change listener
-		Object oldValue =value;
-		
-		if(value ==null) {
-			value="";
-		}
-		
-		StringBuffer tmpValue = new StringBuffer();
-		tmpValue.append(value); //handles version of numbers
-		tmpValue.append(textToAdd);
-		
-		value=tmpValue.toString();
-		
-		this.changes.firePropertyChange("value", oldValue, value);
-		
 	}
 
 }

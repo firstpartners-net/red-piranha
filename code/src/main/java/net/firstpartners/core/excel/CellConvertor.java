@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 
 
 /**
- * Convert from Excel values (as represented by Apache POI) to Javaeans (used by
+ * Convert from Excel values (as represented by Apache POI) to JavaBeans (used by
  * RedPiranha / Rules) and vice versa
  */
 public class CellConvertor {
@@ -33,7 +33,7 @@ public class CellConvertor {
 	public static net.firstpartners.data.Cell convertPoiCellToRedCell(String cellNameFromRange,
 			org.apache.poi.ss.usermodel.Cell poiCell) {
 
-		// Check for null paramater
+		// Check for null parameter
 		if (poiCell == null) {
 			return new net.firstpartners.data.Cell();
 		}
@@ -45,7 +45,7 @@ public class CellConvertor {
 		redCell.setOriginalCellReference(poiCell.getAddress().getRow(),poiCell.getAddress().getColumn());
 		redCell.setOriginalTableReference(poiCell.getSheet().getSheetName());
 
-		// The name makes them as a ranage
+		// The name makes them as a range
 		redCell.setName(cellNameFromRange);
 
 		org.apache.poi.ss.usermodel.CellType myCellType = poiCell.getCellType();
@@ -71,7 +71,7 @@ public class CellConvertor {
 			break;
 		case "FORMULA":
 
-			// treat forumlas using their cached values
+			// treat formulas using their cached values
 			switch (poiCell.getCachedFormulaResultType()) {
 			case BOOLEAN:
 				value = poiCell.getBooleanCellValue();
@@ -116,7 +116,7 @@ public class CellConvertor {
 
 		// If the cell has no value , then it is null
 		// We should create the cell, as we have a value to update into it
-		// but for now we just ignfore the update
+		// but for now we just ignore the update
 		if (poiCell == null) {
 			log.debug("Ignoring null Poi Cell:");
 			return;

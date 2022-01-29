@@ -66,6 +66,7 @@ class RuleBuilderTest {
 		rulesToCompile.setDslFileLocation(TestConstants.EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL);
 
 		Config testConfig = new Config();
+		testConfig.setSampleBaseDirDefault("src/main/resources/");
 		
 		KieBuilder myBuilder = new RuleBuilder().loadRules(rulesToCompile,testConfig);
 		KieModule myModule = myBuilder.getKieModule();

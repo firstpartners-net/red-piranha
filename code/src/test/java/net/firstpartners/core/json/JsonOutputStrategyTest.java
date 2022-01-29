@@ -10,6 +10,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
 
 import net.firstpartners.TestConstants;
+import net.firstpartners.core.file.Utils;
 import net.firstpartners.data.RangeList;
 import net.firstpartners.ui.RedControllerTest;
 
@@ -17,10 +18,16 @@ public class JsonOutputStrategyTest {
 
 	@Test
 	public final void testOutputJsoThenDelete() throws IOException, ClassNotFoundException, InvalidFormatException {
+
 		
+		//Make sure we can delete file
+		Utils.deleteOutputFileIfExists(TestConstants.JSON_TMP_FILE); //object remembers file name from earlier
+		File f = new File(TestConstants.JSON_TMP_FILE);
+		assertFalse ("Found file that should exist", f.exists() );
+		
+		
+		// Now get and output our test data
 		RangeList TestData = RedControllerTest.getTestDataFromExcel();
-	
-		
 		JsonOutputStrategy jsonOut = new JsonOutputStrategy(TestConstants.JSON_TMP_FILE);
 
 		// test the class
@@ -29,14 +36,10 @@ public class JsonOutputStrategyTest {
 
 		
 		//check that this exists
-		File f = new File(TestConstants.JSON_TMP_FILE);
-		assertTrue ("Cannot find file that should exist", f.exists() );
-		f =null; //avoid any interference in the next step
+		File newFile = new File(TestConstants.JSON_TMP_FILE);
+		assertTrue ("Cannot find file that should exist", newFile.exists() );
 		
-//		//Make sure we can delete file
-//		Utils.deleteOutputFileIfExists(TestConstants.JSON_TMP_FILE); //object remembers file name from earlier
-//		f = new File(TestConstants.JSON_TMP_FILE);
-//		assertFalse ("Found file that should exist", f.exists() );
+
 		
 		
 	}

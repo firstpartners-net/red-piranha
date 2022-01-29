@@ -9,8 +9,10 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+//import com.google.gson.Gson;
+//import com.google.gson.GsonBuilder;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
@@ -95,18 +97,22 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 		log.debug("Writing Json to :" +fileToOutput.getAbsolutePath());
 		
 		// Objects for use in our loop
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//		ObjectMapper mapper = new ObjectMapper();	
 		
-		String tmpJson = gson.toJson(processedRange);
-		writer.write(tmpJson);
-
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.writeValue(new File(outputFile), processedRange);
+		
+//		String tmpJson = gson.toJson(processedRange);
+//		writer.write(tmpJson);
+//
 //		HashMap<String, Cell> returnValues = new HashMap<String, Cell>();
 //		log.debug("combining all cells in all ranges, returning as Hashmap");
 //
 //		for (Range range : processedRange) {
 //
 //			for (net.firstpartners.data.Cell cell : range.values()) {
-//				if (cell.getCellName() != null) {
+//				if (cell.getName() != null) {
 //
 //					tmpJson = gson.toJson(cell);
 //					log.debug(tmpJson);

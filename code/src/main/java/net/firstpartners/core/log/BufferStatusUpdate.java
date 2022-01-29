@@ -1,7 +1,12 @@
 package net.firstpartners.core.log;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+//import com.google.gson.Gson;
+//import com.google.gson.GsonBuilder;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * An Adaptor that allows us and hold Logs in Memory While Useful for Testing ,
@@ -85,8 +90,15 @@ public class BufferStatusUpdate extends AbstractStatusUpdate implements IStatusU
 		// We want to keep a snapshot in JSON (as the object tree will be updated later
 		// by the rule engine
 
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		this.preRulesSnapShotAsJson = gson.toJson(dataToSnapshotToUser);
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		//Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		try {
+			this.preRulesSnapShotAsJson = objectMapper.writeValueAsString(dataToSnapshotToUser);
+		} catch (JsonProcessingException e) {
+			this.exception("", e);
+		
+		}
 
 		// Also log (if set) in the super class
 		super.setPreRulesSnapShot(dataToSnapshotToUser.toString());
@@ -100,9 +112,16 @@ public class BufferStatusUpdate extends AbstractStatusUpdate implements IStatusU
 		
 		// We want to keep a snapshot in JSON (as the object tree will be updated later
 		// by the rule engine
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		try {
+			this.postRulesSnapShotAsJson = objectMapper.writeValueAsString(dataToSnapshotToUser);
+		} catch (JsonProcessingException e) {
+			this.exception("", e);
+		
+		}
 
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		this.postRulesSnapShotAsJson = gson.toJson(dataToSnapshotToUser);
+
 
 		// Also log (if set) in the super class
 		super.setPostRulesSnapShot(dataToSnapshotToUser.toString());

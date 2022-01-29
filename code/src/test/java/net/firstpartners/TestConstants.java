@@ -1,9 +1,5 @@
 package net.firstpartners;
 
-import net.firstpartners.core.excel.SpreadSheetConvertorTest;
-import net.firstpartners.core.word.DocumentConvertorTest;
-import net.firstpartners.core.word.DocumentXConvertorTest;
-
 /**
  * Constants used for testing - mainly where we store data
  * 

@@ -1,0 +1,14 @@
+[
+    {
+        "id": "1",
+        "xlsFile": "ExcelDataRules/chocolate-data.xls",
+        "ruleFile": "ExcelDataRules/log-then-modify-rules.drl",
+        "explanation" : "This is the explanation"
+    },
+    {
+        "id": "2",
+        "xlsFile": "Peter",
+        "ruleFile": "someRule",
+        "explanation" : "add the blurb here"
+    }
+]

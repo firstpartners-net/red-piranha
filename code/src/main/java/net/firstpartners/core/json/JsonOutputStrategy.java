@@ -19,7 +19,7 @@ import net.firstpartners.data.RangeList;
 
 /**
  * Strategy class to output a Json Document. <p
- * 
+ *
  * @author paul
  *
  */
@@ -32,7 +32,7 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 	private String outputFile = null;
 
 	// Hold the data until we are asked to process it
-	//@SuppressWarnings("unused") // eclipse mistakenly marks this as unused
+	// @SuppressWarnings("unused") // eclipse mistakenly marks this as unused
 	private RangeList processedRange;
 
 	// Handle to logger to GUI
@@ -40,7 +40,7 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
-	 * 
+	 *
 	 * @param outputFileName - file we want to output to
 	 */
 	public JsonOutputStrategy(String outputFileName) {
@@ -65,7 +65,7 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * String representing where our output is going to
-	 * 
+	 *
 	 * @return String - where we will output this to
 	 */
 	@Override
@@ -79,23 +79,23 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * Process the output from the system
-	 * 
+	 *
 	 * @throws IOException            - from underlying libs
 	 * @throws InvalidFormatException - from underlying libs
 	 */
+	@Override
 	public void processOutput() throws IOException, InvalidFormatException {
 
 		// create a writer - set to append (true)
-		
-		
-		userLogger.debug("Writing Json to :" +outputFile);
-		
+
+		userLogger.debug("Writing Json to :" + outputFile);
+		log.debug("Writing Json to :" + outputFile);
+
 		// Objects for use in our loop
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
 		writer.writeValue(new File(outputFile), processedRange);
-		
 
 		log.debug("Output complete");
 
@@ -103,7 +103,7 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * Handle that we can pass informration back to the user
-	 * 
+	 *
 	 * @param userLogger - this strategy does not use
 	 */
 	@Override
@@ -113,12 +113,13 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * Update a copy of our Original Document with new data
-	 * 
+	 *
 	 * @param ignored      - normally the original file, but this strategy ignores
 	 *                     it
 	 * @param incomingData - our Javabeans to output
 	 * @throws IOException fileToProcess
 	 */
+	@Override
 	public void setUpdates(OfficeDocument ignored, RangeList incomingData) throws IOException {
 
 		// this converter ignores any original , we just store the range output

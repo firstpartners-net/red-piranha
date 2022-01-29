@@ -14,6 +14,7 @@ import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.file.CSVOutputStrategy;
 import net.firstpartners.core.file.PDFOutputStrategy;
+import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.core.json.JsonOutputStrategy;
 import net.firstpartners.core.word.WordInputStrategy;
 import net.firstpartners.core.word.WordXInputStrategy;
@@ -62,6 +63,8 @@ public class RuleRunnerFactory {
 			inputSuffixMaps.put(SUFFIX_WORDX, WordXInputStrategy.class);
 			inputSuffixMaps.put(SUFFIX_EXCEL, ExcelInputStrategy.class);
 			inputSuffixMaps.put(SUFFIX_EXCELX, ExcelInputStrategy.class); // same
+			inputSuffixMaps.put(SUFFIX_JSON, JsonInputStrategy.class);
+			
 		}
 
 		if (outputSuffixMaps == null) {
@@ -70,7 +73,7 @@ public class RuleRunnerFactory {
 			outputSuffixMaps.put(SUFFIX_PDF, PDFOutputStrategy.class);
 			outputSuffixMaps.put(SUFFIX_EXCEL, ExcelOutputStrategy.class);
 			outputSuffixMaps.put(SUFFIX_EXCELX, ExcelOutputStrategy.class); // same
-			outputSuffixMaps.put(SUFFIX_JSON, JsonOutputStrategy.class); // same
+			outputSuffixMaps.put(SUFFIX_JSON, JsonOutputStrategy.class); 
 
 		}
 

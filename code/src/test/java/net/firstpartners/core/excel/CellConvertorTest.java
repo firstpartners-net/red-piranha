@@ -63,7 +63,7 @@ public class CellConvertorTest {
 			// Get a handle to the Excel cell at Sheet / reference
 			org.apache.poi.ss.usermodel.Sheet thisSheet = SheetConvertor.getOrCreateSheet(wb, thisRedCell);
 
-			String tmpCellRef = thisRedCell.getOriginalCellReference();
+			//String tmpCellRef = thisRedCell.getOriginalCellReference();
 			int tmpCellRow = thisRedCell.getOriginalCellRow();
 			int tmpCellCol = thisRedCell.getOriginalCellCol();
 			

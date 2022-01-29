@@ -15,6 +15,7 @@ import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.file.CSVOutputStrategy;
 import net.firstpartners.core.file.PDFOutputStrategy;
+import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.core.json.JsonOutputStrategy;
 import net.firstpartners.core.word.WordInputStrategy;
 import net.firstpartners.core.word.WordXInputStrategy;
@@ -169,11 +170,11 @@ public class RuleRunnerFactoryTest {
 	public void testJsonFileFactory() throws NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		
-		RedModel testModel = new RedModel("generic.xls", "someFile",
+		RedModel testModel = new RedModel("generic.json", "someFile",
 				"generic.json");
 		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
-		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
+		assertTrue(myRunner.getDocumentInputStrategy() instanceof JsonInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof JsonOutputStrategy);
 																									// is stored
 

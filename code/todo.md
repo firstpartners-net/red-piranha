@@ -6,6 +6,10 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 Next: samples load - Javascript reading json
 readup on react.js
+* table
+* url to call
+* show hide sample
+
 
 ## Aim of Next Sprint
 

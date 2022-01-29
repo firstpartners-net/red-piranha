@@ -1,14 +1,20 @@
 [
     {
         "id": "1",
-        "name": "John"
+        "xlsFile": "src/main/resources/examples/ExcelDataRules/chocolate-data.xls",
+        "ruleFile": "src/main/resources/examples/ExcelDataRules/log-then-modify-rules.drl",
+        "explanation" : "This is the explanation"
     },
     {
         "id": "2",
-        "name": "Mary"
+        "xlsFile": "Peter",
+        "ruleFile": "someRule",
+        "explanation" : "add the blurb here"
     },
     {
         "id": "3",
-        "name": "George"
+        "xlsFile": "Mary",
+        "ruleFile": "someRule",
+        "explanation" : "add the blurb here"
     }
 ]

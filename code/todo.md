@@ -6,39 +6,29 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 
 Next: 
-* get view working again (red controller / index.html)
-* table render via thyme
-
-Then
-* load JSON in Java (in unit)
-* Use red as table model
-* Sample Dire x2 
+* load *SAMPLE* JSON in Java (in unit)
+* Use red as table model and render in thyme
+* url to call to run samples
 
 
 READ JSON - UNIT TEST
 * unit test loading
+* Serialsiation - Into Tests of convertor / Java test data in JSON
+* use to trest cell conversion
 
 
 READ JSON - MAKE AVAILABLE TO index.html
 * Run one samples as integration test in java
 * Run all Samples as integration test (in json / Java)
 
-* Refactor - remove redmodelfactory
 
 
-Serialsiation
-* Into Tests of convertor
-* use to trest cell conversion
 
-
-* url to call
-* show hide sample
-* transform call to "get"
 
 LATER
 * Move bootstrap offline
 * tidy DSL example
-* Serialize Java test data to JSON
+* show hide sample
 
 BOOK NOTES
 * csv as part of a chain

@@ -93,7 +93,6 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 		// create a writer - set to append (true)
 		String outputDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
 		
-
 		userLogger.debug("Writing Json to :" + outputFile);
 		log.debug("Writing Json to :" + outputFile);
 

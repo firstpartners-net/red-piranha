@@ -1,0 +1,15 @@
+[ {
+  "id" : 1,
+  "inputFileLocation" : "/examples/input.xls",
+  "ruleFileLocation" : "/examples/rule.drl",
+  "outputFileLocation" : "/examples.output.xls",
+  "dslFileLocation" : "/examples/rule.dsl",
+  "descriptiontext" : "blah blah blah"
+}, {
+  "id" : 2,
+  "inputFileLocation" : "/examples/input2.xls",
+  "ruleFileLocation" : "/examples/rule2.drl",
+  "outputFileLocation" : "/examples/output2.xls",
+  "dslFileLocation" : "/examples/rule2.dsl",
+  "descriptiontext" : "blah2 blah2 blah2 "
+} ]

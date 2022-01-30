@@ -43,7 +43,7 @@ public class ResourceFinder {
 		
 		// We need config info to try backups
 		if(appConfig==null) {
-			throw new FileNotFoundException("1 Cannot find :"+resourceName+" no config provided");
+			throw new FileNotFoundException("1 Cannot find :"+resourceName+" and no config provided to try other locations");
 		}
 		
 		String defaultDir = appConfig.getSampleBaseDirDefault();

@@ -2,18 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- Include Bootstrap to style the page-->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Include Bootstrap to style the page-->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
 
 
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
 </head>
 
 <body>
@@ -32,20 +36,16 @@
 			'English like' language, it makes it very easy for you (and
 			colleagues) to see what checks are being made.</p>
 
-		<form class="form-inline" action="#" th:action="@{/runRules}" method="get" th:object="${redModel}">
+		<form class="form-inline" action="#" th:action="@{/runRules}"
+			method="get" th:object="${redModel}">
 
 			<!-- Columns are always 50% wide, on mobile and desktop -->
 			<div class="row">
 				<div class="col-xs-6">
-					<img src="splash.png" alt="Red Piranha GUI Splash" width="100" height="66">
+					<img src="splash.png" alt="Red Piranha GUI Splash" width="100"
+						height="66">
 				</div>
-				<div class="col-xs-6">
-
-
-
-
-
-				</div>
+				<div class="col-xs-6"></div>
 			</div>
 			<p />
 
@@ -58,28 +58,31 @@
 
 						<label class="col-sm-2 control-label">Input&nbsp;File&nbsp;Name:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" th:field="*{inputFileLocation}" />
+							<input type="text" class="form-control"
+								th:field="*{inputFileLocation}" />
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Business&nbsp;Rules&nbsp;File&nbsp;1:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" th:field="*{ruleFileLocation}" />
+							<input type="text" class="form-control"
+								th:field="*{ruleFileLocation}" />
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="inputEmail3"
-							class="col-sm-2 control-label">Domain&nbsp;Specific&nbsp;Language&nbsp;(DSL)&nbsp;File&nbsp;-&nbsp;Optional</label>
+						<label for="inputEmail3" class="col-sm-2 control-label">Domain&nbsp;Specific&nbsp;Language&nbsp;(DSL)&nbsp;File&nbsp;-&nbsp;Optional</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" th:field="*{dslFileLocation}" />
+							<input type="text" class="form-control"
+								th:field="*{dslFileLocation}" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">Output&nbsp;File&nbsp;Location:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" th:field="*{outputFileLocation}" />
+							<input type="text" class="form-control"
+								th:field="*{outputFileLocation}" />
 						</div>
 
 					</div>
@@ -89,39 +92,46 @@
 						<button type="submit" class="btn btn-primary">Run Rules</button>
 					</div>
 				</div>
-
 		</form>
 
 
 		<p class="bg-primary">&nbsp;Samples</p>
 		<div id="sampleDataDiv">
-			<!-- Only to create out layout-->
-			<div class="row">
+
+			<div th:each="sample : ${samples}" class="row">
 				<div class="col-md-1">
-					<button onclick="window.location.href='http://localhost:7000/runRules?inputFileLocation=ExcelDataRules/chocolate-data.xls&ruleFileLocation=d.drl&dslFileLocation=&outputFileLocation=o.xls';" class="btn btn-default">Run Sample</button>
+					<button
+						onclick="window.location.href='http://localhost:7000/runRules?inputFileLocation=ExcelDataRules/chocolate-data.xls&ruleFileLocation=d.drl&dslFileLocation=&outputFileLocation=o.xls';"
+						class="btn btn-default">Run Sample</button>
 				</div>
-				<div class="col-md-4">ExcelDataRules/chocolate-data.xls</div>
-				<div class="col-md-4">ExcelDataRules/log-then-modify-rules.drl</div>
-				<div class="col-md-8">Some blurb that we might repeat several
-					times. Some blurb that we might repeat several times.Some blurb
-					that we might repeat several times.Some blurb that we might repeat
-					several times.Some blurb that we might repeat several times.Some
-					blurb that we might repeat several times.Some blurb that we might
-					repeat several times.</div>
+				<div class="col-md-4">
+					<p th:text="${sample.id}"></p>
+				</div>
+				<div class="col-md-4">
+					<p th:text="${sample.inputFileLocation}"></p>
+				</div>
+				<div class="col-md-4">
+					<p th:text="${sample.ruleFileLocation}"></p>
+				</div>
+				<div class="col-md-4">
+					<p th:text="${sample.outputFileLocation}"></p>
+				</div>
+				<div class="col-md-8">
+					<p th:text="${sample.descriptiontext}"></p>
+				</div>
+
 			</div>
 
 		</div>
 		<p class="bg-primary">&nbsp;Did anything go wrong?</p>
-		<p th:text="${displayException}" />
-		</p>	
+		<p th:text="${displayException}"></p>
 		<p class="bg-primary">&nbsp;Progress</p>
 		<p th:text="${updateMessage}" />
 		</p>
 		<p class="bg-primary">&nbsp;Information from Input File</p>
 		<p th:text="${inputFacts}" />
 		</p>
-		<p class="bg-primary">&nbsp;Messages as Business Rules are
-			applied</p>
+		<p class="bg-primary">&nbsp;Messages as Business Rules are applied</p>
 		<p th:text="${ruleFileMessages}" />
 		</p>
 		<p class="bg-primary">&nbsp;Information after Business Rules</p>

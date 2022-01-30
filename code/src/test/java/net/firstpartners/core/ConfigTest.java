@@ -23,6 +23,7 @@ public class ConfigTest {
 	// handle for our config
 	@Autowired
 	Config myConfig;
+	
 	public final void testReadPreviousData() throws IOException, ClassNotFoundException {
 		
 		FileInputStream fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);

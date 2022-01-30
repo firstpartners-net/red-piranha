@@ -1,5 +1,8 @@
 package net.firstpartners.ui;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,8 @@ import net.firstpartners.core.Config;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
+import net.firstpartners.core.json.SampleData;
+import net.firstpartners.core.json.SampleDataLoader;
 import net.firstpartners.core.log.BufferStatusUpdate;
 
 /**
@@ -25,6 +30,7 @@ import net.firstpartners.core.log.BufferStatusUpdate;
 public class RedController {
 
 	private static final String RED_MODEL = "redModel";
+	private static final String SAMPLE_INFO = "samples";
 
 	// handle for our config
 	@Autowired
@@ -46,6 +52,15 @@ public class RedController {
 		// variable
 		log.info("\nCreating new Red Model - replacing any previous settings with incoming values\n");
 		model.addAttribute(RED_MODEL, new RedModel());
+
+		// (re)load sample information
+		try {
+			List<SampleData> sampleData = 
+					SampleDataLoader.loadSampleInformation(SampleDataLoader.EXAMPLE_INFO_IN_JSON,appConfig);
+			model.addAttribute(SAMPLE_INFO, sampleData);
+		} catch (IOException e) {
+			log.warn("Error loading Sample information" + e.getMessage());
+		}
 
 		model.addAttribute("updateMessage", "Please hit the 'Run Rules' button");
 

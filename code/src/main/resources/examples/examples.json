@@ -1,14 +1,16 @@
-[
-    {
-        "id": "1",
-        "xlsFile": "ExcelDataRules/chocolate-data.xls",
-        "ruleFile": "ExcelDataRules/log-then-modify-rules.drl",
-        "explanation" : "This is the explanation"
-    },
-    {
-        "id": "2",
-        "xlsFile": "Peter",
-        "ruleFile": "someRule",
-        "explanation" : "add the blurb here"
-    }
-]
+[ {
+  "id" : 1,
+  "inputFileLocation" : "chocolate-factory/chocolate-data.xls",
+  "ruleFileLocation" : "chocolate-factory/log-then-modify-rules.drl",
+  "outputFileLocation" : "chocolate-factory/output.xls",
+  "dslFileLocation" : "",
+  "descriptiontext" : "This is a basic example. It reads in the data from the Excel file, causes a rule to fire against each cell. Each cell is logged, and marked as changed"
+},
+{
+  "id" : 2,
+  "inputFileLocation" : "/examples/input2.xls",
+  "ruleFileLocation" : "/examples/rule2.drl",
+  "outputFileLocation" : "/examples/output2.xls",
+  "dslFileLocation" : "/examples/rule2.dsl",
+  "descriptiontext" : "blah2 blah2 blah2 "
+} ]

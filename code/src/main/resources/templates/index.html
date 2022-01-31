@@ -99,13 +99,10 @@
 		<div id="sampleDataDiv">
 
 			<div th:each="sample : ${samples}" class="row">
+
 				<div class="col-md-1">
-					<button
-						onclick="window.location.href='http://localhost:7000/runRules?inputFileLocation=ExcelDataRules/chocolate-data.xls&ruleFileLocation=d.drl&dslFileLocation=&outputFileLocation=o.xls';"
-						class="btn btn-default">Run Sample</button>
-				</div>
-				<div class="col-md-4">
-					<p th:text="${sample.id}"></p>
+					<a th:href="'runRules'+${sample.sampleUrlParams}"
+						class="btn btn-default">Run Sample</a>
 				</div>
 				<div class="col-md-4">
 					<p th:text="${sample.inputFileLocation}"></p>

@@ -221,7 +221,7 @@ public class RuleRunnerFactory {
 		log.debug("Using DocumentInputStrategy:" + inputStrat.getClass());
 		log.debug("Using DocumentOutputStrategy:" + outputStrat);
 
-		return new RuleRunner(inputStrat, outputStrat);
+		return new RuleRunner(inputStrat, outputStrat, appConfig);
 
 	}
 

@@ -130,7 +130,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	void outputToFile(Workbook wb) throws IOException {
 
-		File outputFile = ResourceFinder.getFileResourceUsingConfig(this.outputFileName, appConfig);
+		String outputFile = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
 		
 		// Write out modified Excel sheet
 		try {

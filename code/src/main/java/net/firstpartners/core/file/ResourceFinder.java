@@ -72,6 +72,7 @@ public class ResourceFinder {
 	 * Try to load the file at resource name , in this order 1) in working directory
 	 * 2) in directory as specified in Config.sampleBaseDirDefault + ResourceName 3)
 	 * 3) in directory as specified in Config.sampleBaseDirAlternate + ResourceName
+	 * @param outputFileName 
 	 * 
 	 * @param resourceName
 	 * @param appConfig

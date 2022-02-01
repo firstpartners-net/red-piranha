@@ -6,22 +6,25 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 
 Next: 
-* load *SAMPLE* JSON in Java (in unit)
-* Use red as table model and render in thyme
-* url to call to run samples
+* Run one samples as integration test in java
+* Run all Samples as integration test (in json / Java)
+
+
+* tidy html display and UI
+    * line by line display of logs (loop in th)
+    * if samples empty, display link to main page "Reset and view sameples)
+    * Tidy current settings fields
+    * samples - url to view input, out and rule files
+    * Better json like dispaly as tree
+    * Dive through stack - can bring back any more info to user
+
+Try running file in docker
 
 
 READ JSON - UNIT TEST
 * unit test loading
 * Serialsiation - Into Tests of convertor / Java test data in JSON
 * use to trest cell conversion
-
-
-READ JSON - MAKE AVAILABLE TO index.html
-* Run one samples as integration test in java
-* Run all Samples as integration test (in json / Java)
-
-
 
 
 

@@ -36,7 +36,7 @@ import net.firstpartners.data.RangeList;
 public class RuleRunner {
 
 	//Application Config - if passed in
-	private Config appConfig = new Config();
+	private Config appConfig;
 
 	// Handle to the Strategy Class for specific incoming document (Excel, Word etc
 	// tasks)
@@ -60,9 +60,10 @@ public class RuleRunner {
 	 * @param ruleLoader
 	 * @param outputStrategy
 	 */
-	protected RuleRunner(IDocumentInStrategy documentStrategy, 	IDocumentOutStrategy outputStrategy) {
+	protected RuleRunner(IDocumentInStrategy documentStrategy, 	IDocumentOutStrategy outputStrategy, Config appConfig) {
 		this.inputStrategy = documentStrategy;
 		this.outputStrategy = outputStrategy;
+		this.appConfig=appConfig;
 	}
 
 	/**
@@ -253,9 +254,6 @@ public class RuleRunner {
 		return runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger,showFullRuleEngineLogs);
 	}
 
-	public void setAppConfig(Config appConfig) {
-		this.appConfig = appConfig;
-	}
 
 
 	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {

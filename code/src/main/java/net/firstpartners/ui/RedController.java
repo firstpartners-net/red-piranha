@@ -87,7 +87,7 @@ public class RedController {
 
 			// The Factory auto-generates the input and output strategy based on the
 			// filenames
-			RuleRunner runner = RuleRunnerFactory.getRuleRunner(redModel);
+			RuleRunner runner = RuleRunnerFactory.getRuleRunner(redModel,appConfig);
 
 			// Call the rules using this datafile
 			userUpdates.info("Running Rules:" + redModel);
@@ -111,10 +111,10 @@ public class RedController {
 		// make our full log objects available in the session
 
 		// update the web values with the values coming back
-//		model.addAttribute("updateMessage", userUpdates.getCurrentStatus());
-//		model.addAttribute("inputFacts", userUpdates.getPreRulesSnapShotAsJson());
-//		model.addAttribute("ruleFileMessages", userUpdates.getContents());
-//		model.addAttribute("outputFacts", userUpdates.getPostRulesSnapShotAsJson());
+		model.addAttribute("updateMessage", userUpdates.getCurrentStatus());
+		model.addAttribute("inputFacts", userUpdates.getPreRulesSnapShotAsJson());
+		model.addAttribute("ruleFileMessages", userUpdates.getContents());
+		model.addAttribute("outputFacts", userUpdates.getPostRulesSnapShotAsJson());
 
 		// make the config we used available as well
 		model.addAttribute(RED_MODEL, redModel);

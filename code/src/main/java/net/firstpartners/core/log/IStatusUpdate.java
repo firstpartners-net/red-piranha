@@ -17,13 +17,6 @@ public interface IStatusUpdate {
 	public void addUIDebugMessage(String output);
 
 	/**
-	 * Log at Info Level
-	 * 
-	 * @param output
-	 */
-	public void addUIInfoMessage(String output);
-
-	/**
 	 * Log Exception
 	 * 
 	 * @param output
@@ -32,11 +25,11 @@ public interface IStatusUpdate {
 	public void addUIExceptionMessage(String output, Throwable t);
 
 	/**
-	 * Allows us to notify the user of a snapshot post rules
+	 * Log at Info Level
 	 * 
-	 * @param message
+	 * @param output
 	 */
-	public void setPreRulesSnapShot(Object dataToSnapshotToUser);
+	public void addUIInfoMessage(String output);
 
 	/**
 	 * Allows us to notify the user of a snapshot post rules
@@ -44,6 +37,13 @@ public interface IStatusUpdate {
 	 * @param message
 	 */
 	public void setPostRulesSnapShot(Object dataToSnapshotToUser);
+
+	/**
+	 * Allows us to notify the user of a snapshot post rules
+	 * 
+	 * @param message
+	 */
+	public void setPreRulesSnapShot(Object dataToSnapshotToUser);
 
 	/**
 	 * Notifies the user of percentage progress made

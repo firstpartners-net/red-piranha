@@ -19,6 +19,6 @@ rule "log then modify cell values"
     	$cell.setModified(true);
     	
     	 //Logging message
-    	log.info("initial cell value:"+$cell);
+    	log.addUIInfoMessage("initial cell value:"+$cell);
     	
 end

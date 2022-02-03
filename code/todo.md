@@ -8,9 +8,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 
 Next: 
-* compile
 * tests running
-* rename methods in redmodel and Javadoc
 
 * tidy html display and UI
     * line by line display of logs (loop in th)

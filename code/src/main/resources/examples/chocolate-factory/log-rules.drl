@@ -20,7 +20,7 @@ rule "print cell initial values"
     then
         	   
         //Logging message
-    	log.info("initial cell value:"+$cell);
+    	log.addUIInfoMessage("initial cell value:"+$cell);
     	
     	
 end

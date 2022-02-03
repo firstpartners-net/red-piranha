@@ -22,12 +22,12 @@ import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 
 import net.firstpartners.core.Config;
+import net.firstpartners.core.MemoryOutputStrategy;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.json.SampleData;
 import net.firstpartners.core.json.SampleDataLoader;
-import net.firstpartners.core.log.BufferStatusUpdate;
 
 /**
  * Test Harness to run through all the Red Piranha examples - make sure that
@@ -79,19 +79,21 @@ class IntegrationTests {
 			testModel.setDslFileLocation(thisExample.getDslFileLocation());
 
 			log.debug("Running:\n" + thisExample);
-
 			RuleRunner runner = RuleRunnerFactory.getRuleRunner(testModel, appConfig);
-			BufferStatusUpdate userUpdates = new BufferStatusUpdate();
-			runner.callRules(userUpdates, testModel);
+			
+			// set out OutputStrategy so we can test the output later
+			// this overrides the normal output
+			MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
+			runner.setOutputStrategy(outputStrategy);
 
-			log.debug("\n=======\n");	
-			log.debug(userUpdates.toString());
+			runner.callRules(testModel);
+
 			log.debug("\n=======\n");
 			log.debug(testModel.toString());
 			
 			
-			//check not blowing up
-			assertNotNull(userUpdates.getPostRulesSnapShotAsJson());
+			//check not blowing up and that we have
+			assertNotNull(outputStrategy.getProcessedDocument());
 			fail("need to change above line to check for real object not json");
 			
 		}

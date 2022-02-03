@@ -18,7 +18,6 @@ import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.json.SampleData;
 import net.firstpartners.core.json.SampleDataLoader;
-import net.firstpartners.core.log.BufferStatusUpdate;
 
 /**
  * Class that Spring will delegate most web requests to in order to decide what
@@ -76,34 +75,30 @@ public class RedController {
 		log.debug("DRL?" + redModel.getRuleFileLocation());
 		log.debug("Output?" + redModel.getOutputFileLocation());
 
-		// Create objects to gather feedback
-		BufferStatusUpdate userUpdates = new BufferStatusUpdate();
 
 		try {
 
 			// Just in Case Status message that we will update as we progress
-			userUpdates
-					.updateCurrentStatus("Something has gone wrong, please check the messages below and in the logs.");
+			redModel.setCurrentStatus("Something has gone wrong, please check the messages below and in the logs.");
 
 			// The Factory auto-generates the input and output strategy based on the
 			// filenames
 			RuleRunner runner = RuleRunnerFactory.getRuleRunner(redModel,appConfig);
 
 			// Call the rules using this datafile
-			userUpdates.info("Running Rules:" + redModel);
-			runner.callRules(userUpdates, redModel);
-			userUpdates.info("Complete");
+			redModel.addUIInfoMessage("Running Rules:" + redModel);
+			runner.callRules(redModel);
+			redModel.addUIInfoMessage("Complete");
 
 			// update our main status message
-			userUpdates.updateCurrentStatus("Rules Complete");
+			redModel.setCurrentStatus("Rules Complete");
 
 		} catch (Throwable t) {
 
 			// We try to show as much details as possible (in the logs) without scaring the
 			// user
 			log.error("Full details of error", t);
-			userUpdates.exception("Uncaught Exception", t);
-			userUpdates.notifyExceptionOccured();
+			redModel.addUIExceptionMessage("Uncaught Exception", t);
 			model.addAttribute("displayException", t);
 
 		}
@@ -111,10 +106,10 @@ public class RedController {
 		// make our full log objects available in the session
 
 		// update the web values with the values coming back
-		model.addAttribute("updateMessage", userUpdates.getCurrentStatus());
-		model.addAttribute("inputFacts", userUpdates.getPreRulesSnapShotAsJson());
-		model.addAttribute("ruleFileMessages", userUpdates.getContents());
-		model.addAttribute("outputFacts", userUpdates.getPostRulesSnapShotAsJson());
+		model.addAttribute("updateMessage", redModel.getCurrentStatus());
+		model.addAttribute("inputFacts", redModel.getPreRulesSnapShotAsJson());
+		model.addAttribute("ruleFileMessages", redModel.getUserMessageContents());
+		model.addAttribute("outputFacts", redModel.getPostRulesSnapShotAsJson());
 
 		// make the config we used available as well
 		model.addAttribute(RED_MODEL, redModel);

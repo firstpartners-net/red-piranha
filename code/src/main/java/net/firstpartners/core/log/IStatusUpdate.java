@@ -14,14 +14,14 @@ public interface IStatusUpdate {
 	 * 
 	 * @param output
 	 */
-	public void debug(String output);
+	public void addUIDebugMessage(String output);
 
 	/**
 	 * Log at Info Level
 	 * 
 	 * @param output
 	 */
-	public void info(String output);
+	public void addUIInfoMessage(String output);
 
 	/**
 	 * Log Exception
@@ -29,7 +29,7 @@ public interface IStatusUpdate {
 	 * @param output
 	 * @param t
 	 */
-	public void exception(String output, Throwable t);
+	public void addUIExceptionMessage(String output, Throwable t);
 
 	/**
 	 * Allows us to notify the user of a snapshot post rules
@@ -50,5 +50,5 @@ public interface IStatusUpdate {
 	 * 
 	 * @param percentProgressMade 0 to 100
 	 */
-	public void notifyProgress(int percentProgressMade);
+	public void setUIProgressStatus(int percentProgressMade);
 }

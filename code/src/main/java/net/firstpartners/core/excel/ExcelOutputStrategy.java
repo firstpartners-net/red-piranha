@@ -1,6 +1,5 @@
 package net.firstpartners.core.excel;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,8 +13,6 @@ import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.core.file.Utils;
-import net.firstpartners.core.log.IStatusUpdate;
-import net.firstpartners.core.log.SpreadSheetStatusUpdate;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
@@ -27,7 +24,6 @@ import net.firstpartners.data.RangeList;
  */
 public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
-	private static final String RULES_LOG = "rules-log";
 
 	private Config appConfig;
 	
@@ -37,7 +33,6 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	// Name of the outputfile
 	private String outputFileName = null;
 
-	private IStatusUpdate spreadSheetLogger;
 
 	private Workbook workbook;
 
@@ -50,36 +45,6 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 		this.outputFileName = outputFileName;
 	}
 
-	/**
-	 * Write out and logs we hold to the document
-	 * 
-	 * @param excelWorkBook
-	 * @param nameOfLogSheet
-	 */
-	@Override
-	public void flush() {
-		if (this.spreadSheetLogger instanceof SpreadSheetStatusUpdate) {
-
-			((SpreadSheetStatusUpdate) this.spreadSheetLogger).flush(workbook, RULES_LOG);
-
-		}
-
-	}
-
-	/**
-	 * Write out any documents we hold to anybody else interested
-	 * 
-	 * @param logger
-	 */
-	@Override
-	public void flush(IStatusUpdate logger) {
-		this.flush();
-		if (this.spreadSheetLogger instanceof SpreadSheetStatusUpdate) {
-
-			((SpreadSheetStatusUpdate) this.spreadSheetLogger).flush(logger);
-		}
-
-	}
 
 	/**
 	 * String representing where our output is going to
@@ -177,17 +142,6 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 	public void setConfig(Config appConfig) {
 		this.appConfig = appConfig;
-	}
-
-	/**
-	 * Allows us to set a Logger that will flush to an Excel Spreadheet
-	 * 
-	 * @param spreadSheetLogger
-	 */
-	@Override
-	public void setDocumentLogger(IStatusUpdate spreadSheetLogger) {
-		this.spreadSheetLogger = spreadSheetLogger;
-
 	}
 
 	/**

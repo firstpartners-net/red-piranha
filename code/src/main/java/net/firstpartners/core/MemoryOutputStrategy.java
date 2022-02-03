@@ -7,8 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.excel.SpreadSheetConvertor;
 import net.firstpartners.core.file.OfficeDocument;
-import net.firstpartners.core.log.IStatusUpdate;
-import net.firstpartners.core.log.SpreadSheetStatusUpdate;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -22,7 +20,6 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 
 	private Config appConfig;
 
-	private IStatusUpdate docLogger;
 	
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -30,29 +27,6 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	// Name of the outputfile
 	private OfficeDocument processedDoc = null;
 
-	/**
-	 * Write out and logs we hold to the document
-	 * 
-	 */
-	@Override
-	public void flush() {
-
-	}
-
-	/**
-	 * Write out any documents we hold to anybody else interested
-	 * 
-	 * @param logger
-	 */
-	@Override
-	public void flush(IStatusUpdate logger) {
-
-		if (logger instanceof SpreadSheetStatusUpdate) {
-
-			((SpreadSheetStatusUpdate) this.docLogger).flush(logger);
-
-		}
-	}
 
 	/**
 	 * Makes more sense for other implementions of this interface - tells users
@@ -84,17 +58,6 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 
 	public void setConfig(Config appConfig) {
 		this.appConfig = appConfig;
-	}
-
-	/**
-	 * Allows us to set a Logger that will flush to an Document such as Spreadheet
-	 * 
-	 * @param spreadSheetLogger
-	 */
-	@Override
-	public void setDocumentLogger(IStatusUpdate spreadSheetLogger) {
-		this.docLogger = spreadSheetLogger;
-
 	}
 
 	protected void setProcessedDocument(OfficeDocument processedWorkbook) {

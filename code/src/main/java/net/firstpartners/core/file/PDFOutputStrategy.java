@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
-import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
@@ -44,17 +43,6 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 		this.outputFileName = outputFileName;
 	}
 
-	/**
-	 * Not needing to be implemented as part of this strategy
-	 */
-	@Override
-	public void flush() {
-
-	}
-
-	@Override
-	public void flush(IStatusUpdate logger) {
-	}
 
 	/**
 	 * String representing where our output is going to
@@ -120,13 +108,6 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 		this.appConfig = appConfig;
 	}
 
-	/**
-	 * Not needing to be implemented as part of this strategy
-	 */
-	@Override
-	public void setDocumentLogger(IStatusUpdate spreadSheetLogger) {
-
-	}
 
 	/**
 	 * Update a copy of our Original Document with new data

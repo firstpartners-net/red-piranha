@@ -15,8 +15,6 @@ import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
-import net.firstpartners.core.log.EmptyStatusUpdate;
-import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -39,9 +37,7 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 	// @SuppressWarnings("unused") // eclipse mistakenly marks this as unused
 	private RangeList processedRange;
 
-	// Handle to logger to GUI
-	private IStatusUpdate userLogger = new EmptyStatusUpdate(); // we may change later -null safe
-
+	
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
 	 *
@@ -51,21 +47,7 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 		this.outputFile = outputFileName;
 	}
 
-	/**
-	 * Not needing to be implemented as part of this strategy
-	 */
-	@Override
-	public void flush() {
 
-	}
-
-	/**
-	 * We implement this is part of the interface, but don't do anything with it.
-	 */
-	@Override
-	public void flush(IStatusUpdate logger) {
-
-	}
 
 	/**
 	 * String representing where our output is going to
@@ -93,7 +75,6 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 		// create a writer - set to append (true)
 		String outputDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
 		
-		userLogger.debug("Writing Json to :" + outputFile);
 		log.debug("Writing Json to :" + outputFile);
 
 		// Objects for use in our loop
@@ -108,16 +89,6 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 
 	public void setConfig(Config appConfig) {
 		this.appConfig = appConfig;
-	}
-
-	/**
-	 * Handle that we can pass informration back to the user
-	 *
-	 * @param userLogger - this strategy does not use
-	 */
-	@Override
-	public void setDocumentLogger(IStatusUpdate userLogger) {
-		this.userLogger = userLogger;
 	}
 
 	/**

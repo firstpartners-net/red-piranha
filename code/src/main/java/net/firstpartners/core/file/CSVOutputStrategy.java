@@ -21,8 +21,6 @@ import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
-import net.firstpartners.core.log.EmptyStatusUpdate;
-import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
@@ -110,8 +108,6 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	//@SuppressWarnings("unused") // eclipse mistakenly marks this as unused
 	private RangeList processedRange;
 
-	//Handle to logger to GUI
-	private IStatusUpdate userLogger = new EmptyStatusUpdate(); // we may change later -null safe
 	
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
@@ -122,21 +118,6 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 		this.appendFileName = outputFileName;
 	}
 
-	/**
-	 * Not needing to be implemented as part of this strategy
-	 */
-	@Override
-	public void flush() {
-
-	}
-
-	/**
-	 * We implement this is part of the interface, but don't do anything with it.
-	 */
-	@Override
-	public void flush(IStatusUpdate logger) {
-		
-	}
 
 	List<String> getHeadersFromFile() throws IOException {
 
@@ -243,7 +224,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 		for (String thisHeader : headers) {	
 
 			dataToWrite[counter] = outputValues.get(thisHeader);
-			userLogger.info("CSV Output for header:" + thisHeader + " value:" + dataToWrite[counter]);
+			log.info("CSV Output for header:" + thisHeader + " value:" + dataToWrite[counter]);
 
 			counter++;
 		}
@@ -261,16 +242,6 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 
 	public void setConfig(Config appConfig) {
 		this.appConfig = appConfig;
-	}
-
-	/**
-	 * Handle that we can pass informration back to the user
-	 * 
-	 * @param userLogger - this strategy does not use
-	 */
-	@Override
-	public void setDocumentLogger(IStatusUpdate userLogger) {
-		this.userLogger = userLogger;
 	}
 
 	/**

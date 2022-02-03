@@ -5,10 +5,12 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ##
 
 
-Next: 
-* Run one samples as integration test in java
-* Run all Samples as integration test (in json / Java)
 
+
+Next: 
+* compile
+* tests running
+* rename methods in redmodel and Javadoc
 
 * tidy html display and UI
     * line by line display of logs (loop in th)
@@ -46,7 +48,7 @@ Platform (with existing examples) and good draft of user and dev documentation.
 * Could be run by simple end-user
     * (e.g. (with Docker or Native) - )
     * NTH - auto maven build on Githib 
-* Maven build jar - to try out object model on business central
+    * datamodel jar -try out object model on business central
 
 * Move Later
     * Find More info on docker

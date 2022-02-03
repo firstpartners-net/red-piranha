@@ -17,7 +17,6 @@ import net.firstpartners.core.MemoryOutputStrategy;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
-import net.firstpartners.core.log.EmptyStatusUpdate;
 
 /**
  * @author paulf
@@ -68,7 +67,7 @@ class JsonInputStrategyTest {
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 		runner.setOutputStrategy(outputStrategy);
 
-		runner.callRules(new EmptyStatusUpdate(), redModel);
+		runner.callRules(redModel);
 		assertNotNull(outputStrategy.getProcessedDocument());
 
 	}

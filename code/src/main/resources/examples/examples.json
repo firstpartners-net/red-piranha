@@ -4,13 +4,7 @@
   "ruleFileLocation" : "chocolate-factory/log-then-modify-rules.drl",
   "outputFileLocation" : "chocolate-factory/output.xls",
   "dslFileLocation" : "",
-  "descriptiontext" : "This is a basic example. It reads in the data from the Excel file, causes a rule to fire against each cell. Each cell is logged, and marked as changed"
-},
-{
-  "id" : 2,
-  "inputFileLocation" : "/examples/input2.xls",
-  "ruleFileLocation" : "/examples/rule2.drl",
-  "outputFileLocation" : "/examples/output2.xls",
-  "dslFileLocation" : "/examples/rule2.dsl",
-  "descriptiontext" : "blah2 blah2 blah2 "
+  "descriptiontext" : "This is a basic example. It reads in the data from the Excel file, causes a rule to fire against each cell. Each cell is logged, and marked as changed",
+  "testingResult" : ""
+  		
 } ]

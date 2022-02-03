@@ -26,7 +26,7 @@ import net.firstpartners.core.file.ResourceFinder;
  */
 public class SampleDataLoader {
 
-	public final static String EXAMPLE_INFO_IN_JSON="examples.json";
+	public final static String SAMPLE_INFO_IN_JSON="examples.json";
 	
 	// Logger
 	private static Logger log = LoggerFactory.getLogger(SampleDataLoader.class);

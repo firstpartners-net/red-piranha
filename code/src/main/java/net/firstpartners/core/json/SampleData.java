@@ -21,6 +21,15 @@ public class SampleData {
 	private String outputFileLocation;
 	private String dslFileLocation;
 	private String descriptiontext;
+	private String testingResult;
+
+	public String getTestingResult() {
+		return testingResult;
+	}
+
+	public void setTestingResult(String testingResult) {
+		this.testingResult = testingResult;
+	}
 
 	public int getId() {
 		return id;

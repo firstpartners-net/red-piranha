@@ -1,6 +1,9 @@
 package net.firstpartners.core.log;
 
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 
@@ -134,4 +137,9 @@ public class BufferStatusUpdate extends AbstractStatusUpdate implements IStatusU
 		// Also log (if set) in the super class
 		super.setPreRulesSnapShot(dataToSnapshotToUser.toString());
 	}
+	
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}
+
 }

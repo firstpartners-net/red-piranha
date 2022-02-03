@@ -68,7 +68,7 @@ class SampleDataLoaderTest {
 		
 		
 		//load the samples - passing in null means we only look relative to working directory
-		List<SampleData> samples = SampleDataLoader.loadSampleInformation(SampleDataLoader.EXAMPLE_INFO_IN_JSON,myConfig);
+		List<SampleData> samples = SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON,myConfig);
 		
 		assertNotNull(samples);
 		assertFalse (samples.isEmpty());

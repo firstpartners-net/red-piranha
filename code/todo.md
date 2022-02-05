@@ -5,8 +5,6 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ##
 
 
-
-
 Next: 
 * tests running
 

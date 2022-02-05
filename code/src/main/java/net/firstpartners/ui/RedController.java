@@ -106,7 +106,7 @@ public class RedController {
 		// make our full log objects available in the session
 
 		// update the web values with the values coming back
-		model.addAttribute("updateMessage", redModel.getCurrentStatus());
+		model.addAttribute("updateMessage", redModel.getUICurrentStatus());
 		model.addAttribute("inputFacts", redModel.getPreRulesSnapShotAsJson());
 		model.addAttribute("ruleFileMessages", redModel.getUserMessageContents());
 		model.addAttribute("outputFacts", redModel.getPostRulesSnapShotAsJson());

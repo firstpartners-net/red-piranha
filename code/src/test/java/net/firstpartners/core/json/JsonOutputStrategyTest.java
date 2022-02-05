@@ -17,7 +17,7 @@ import net.firstpartners.ui.RedControllerTest;
 public class JsonOutputStrategyTest {
 
 	@Test
-	public final void testOutputJsoThenDelete() throws IOException, ClassNotFoundException, InvalidFormatException {
+	public final void testOutputJsonThenDelete() throws IOException, ClassNotFoundException, InvalidFormatException {
 
 		// Make sure we can delete file
 		Utils.deleteOutputFileIfExists(TestConstants.JSON_TMP_FILE); // object remembers file name from earlier

@@ -29,9 +29,6 @@ import net.firstpartners.data.Cell;
  */
 public class RedModel implements IStatusUpdate {
 
-	private String currentStatus;
-
-	// internal data
 	private String dslFileLocation;
 
 	private Collection<Cell> facts = new ArrayList<>();
@@ -54,6 +51,8 @@ public class RedModel implements IStatusUpdate {
 	private String ruleFileLocation;
 
 	private String ruleFlowFileUrl;
+
+	private String UICurrentStatus;
 
 	private int uIProgressStatus;
 
@@ -133,10 +132,6 @@ public class RedModel implements IStatusUpdate {
 
 	}
 
-	public String getCurrentStatus() {
-		return currentStatus;
-	}
-
 	public String getDslFileLocation() {
 		return dslFileLocation;
 	}
@@ -190,16 +185,16 @@ public class RedModel implements IStatusUpdate {
 
 	}
 
+	public String getUICurrentStatus() {
+		return UICurrentStatus;
+	}
+
 	public int getUIProgressStatus() {
 		return uIProgressStatus;
 	}
 
 	public String getUserMessageContents() {
 		return messageUIBuffer.toString();
-	}
-
-	public void setCurrentStatus(String currentStatus) {
-		this.currentStatus = currentStatus;
 	}
 
 	public void setDslFileLocation(String dslFileLocation) {
@@ -287,6 +282,10 @@ public class RedModel implements IStatusUpdate {
 
 	public void setRuleFlowFileUrl(String ruleFlowFileUrl) {
 		this.ruleFlowFileUrl = ruleFlowFileUrl;
+	}
+
+	public void setUICurrentStatus(String currentStatus) {
+		this.UICurrentStatus = currentStatus;
 	}
 
 	/**

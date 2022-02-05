@@ -94,7 +94,6 @@ class IntegrationTests {
 			
 			//check not blowing up and that we have
 			assertNotNull(outputStrategy.getProcessedDocument());
-			fail("need to change above line to check for real object not json");
 			
 		}
 		

@@ -103,9 +103,8 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 			outputToStream(wb, fileOutputStream);
 			fileOutputStream.close();
 		} catch (Exception ace) {
-			// Unable to output file (e.g. as in Google App Engine) - drop back and log via
-			// console instead
-			log.error("Unable to output to file - logging to console instead");
+			// Unable to output file, then drop back and log via console instead
+			log.error("Unable to output to file - logging to console instead",ace);
 			outputToConsole(wb);
 		}
 

@@ -18,7 +18,7 @@ import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.data.RangeList;
 
 /**
- * Strategy class to output a Json Document. <p
+ * Strategy class to output a Json Document. 
  *
  * @author paul
  *
@@ -75,10 +75,9 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 		// create a writer - set to append (true)
 		String outputDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
 		
-		log.debug("Writing Json to :" + outputFile);
+		log.debug("Writing Json to :" +outputDir+ outputFile);
 
 		// Objects for use in our loop
-
 		ObjectMapper objectMapper = new ObjectMapper();
 		ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
 		writer.writeValue(new File(outputDir+outputFile), processedRange);

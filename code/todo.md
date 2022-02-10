@@ -2,29 +2,25 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
-##
+## Next
 
-
-Next: 
 * Example for simple hellow world
-    * 2nd sample
-    * some UI improvements
-    * link to inspect inputfiles
-    * link to inspect outputfiles
-    * tidy of readme x2
-    * setup UI
+  * Show errors better when samples blow up
+  * colour on warning messages
+  * 2nd sample running ok
+  * trigger exception, make sure it displays ok
+  * link to inspect inputfiles
+  * link to inspect outputfiles
+  * tidy of readme x2
+  * setup UI
+  * line by line display of logs (loop in th)
+  * samples - url to view input, out and rule files
+  * Better json like dispaly as tree
+  * Dive through stack - can bring back any more info to user
+  * Tidy Bootstrap on page
+  * Try running file in docker
+  * tests running
 
-
-* tests running
-* tidy html display and UI
-    * line by line display of logs (loop in th)
-    * if samples empty, display link to main page "Reset and view sameples)
-    * Tidy current settings fields
-    * samples - url to view input, out and rule files
-    * Better json like dispaly as tree
-    * Dive through stack - can bring back any more info to user
-    * Tidy Bookstrap
-    * Try running file in docker
 
 
 
@@ -33,7 +29,7 @@ LATER
 * Move bootstrap offline
 * tidy DSL example
 * show hide sample
-* Serialsiation - Into Tests of convertor / Java test data in JSON
+* Serialsiation - Into Tests of convertor / Java test data in JSONu
 * use to trest cell conversion
 
 ## Aim of Next Sprint
@@ -75,7 +71,6 @@ Set in place key design principles
 - [ ] rules Steps (break out compile)
 - [ ] Figure out why current excel example is outputting incorrectly
 - [ ] More info through to front end
-- [ ] Tidy front end
 - [ ] more tests compile / rule - currently 
 - [ ] look at moving over private samples
 - [ ] Understand Github pages, Jekyll and see if can build an even 'friendlier' version of this site.

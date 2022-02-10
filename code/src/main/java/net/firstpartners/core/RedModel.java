@@ -40,7 +40,7 @@ public class RedModel implements IStatusUpdate {
 	private String knowledgeBaseLocation;
 
 	// Hold messages that we want to pass back to the User
-	final StringBuffer messageUIBuffer = new StringBuffer();
+	final List<String>  messagesUI = new ArrayList<String>();
 
 	private String outputFileLocation;
 
@@ -115,20 +115,21 @@ public class RedModel implements IStatusUpdate {
 
 	@Override
 	public void addUIDebugMessage(String output) {
-		messageUIBuffer.append("DEBUG:" + output + "\n");
+		messagesUI.add("DEBUG:" + output + "\n");
 
 	}
 
 	@Override
-	public void addUIExceptionMessage(String output, Throwable t) {
-		messageUIBuffer.append("EXCEPTION:" + output + "\n");
-		messageUIBuffer.append(t.fillInStackTrace());
-
+	public void addUIWarnMessage(String output, Throwable t) {
+		messagesUI.add("WARN:" + output + "\n");
+		if(t!=null) {
+			messagesUI.add(t.getMessage());	
+		}
 	}
 
 	@Override
 	public void addUIInfoMessage(String output) {
-		messageUIBuffer.append("INFO:" + output + "\n");
+		messagesUI.add("INFO:" + output + "\n");
 
 	}
 
@@ -193,8 +194,8 @@ public class RedModel implements IStatusUpdate {
 		return uIProgressStatus;
 	}
 
-	public String getUserMessageContents() {
-		return messageUIBuffer.toString();
+	public List<String> getUserMessageContents() {
+		return messagesUI;
 	}
 
 	public void setDslFileLocation(String dslFileLocation) {
@@ -246,7 +247,7 @@ public class RedModel implements IStatusUpdate {
 		try {
 			this.postRulesSnapShotAsJson = writer.writeValueAsString(dataToSnapshotToUser);
 		} catch (JsonProcessingException e) {
-			this.addUIExceptionMessage("", e);
+			this.addUIWarnMessage("", e);
 
 		}
 
@@ -270,7 +271,7 @@ public class RedModel implements IStatusUpdate {
 		try {
 			this.preRulesSnapShotAsJson = writer.writeValueAsString(dataToSnapshotToUser);
 		} catch (JsonProcessingException e) {
-			this.addUIExceptionMessage("", e);
+			this.addUIWarnMessage("", e);
 
 		}
 
@@ -300,6 +301,16 @@ public class RedModel implements IStatusUpdate {
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}
+
+	public void addUIDebugMessage(List<String> messages) {
+		this.messagesUI.addAll(messages);
+		
+	}
+
+	public void addUIWarnMessage(List<String> messages) {
+		this.messagesUI.addAll(messages);
+		
 	}
 
 }

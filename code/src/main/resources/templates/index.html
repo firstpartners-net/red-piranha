@@ -40,7 +40,6 @@
 		<form class="form-inline" action="#" th:action="@{/runRules}"
 			method="get" th:object="${redModel}">
 
-			<!-- Columns are always 50% wide, on mobile and desktop -->
 			<div class="row">
 				<div class="col-xs-6">
 					<img src="splash.png" alt="Red Piranha GUI Splash" width="100"
@@ -51,59 +50,59 @@
 			<p />
 
 			<div id="contents-main">
-				
-					<p class="bg-primary">&nbsp;Current Settings</p>
 
-					<div class="form-group">
+				<p class="bg-primary">&nbsp;Current Settings</p>
+
+				<div class="form-group">
 
 
-						<div class="col-sm-10">
-							<label class="col-sm-2 control-label">Input&nbsp;File&nbsp;Name:
-								<input type="text" class="form-control"
-								th:field="*{inputFileLocation}" />
-							</label>
-						</div>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">Input&nbsp;File&nbsp;Name:
+							<input type="text" class="form-control"
+							th:field="*{inputFileLocation}" />
+						</label>
 					</div>
-
-					<div class="form-group">
-
-						<div class="col-sm-10">
-							<label class="col-sm-2 control-label">Business&nbsp;Rules&nbsp;File&nbsp;1:
-								<input type="text" class="form-control"
-								th:field="*{ruleFileLocation}" />
-							</label>
-						</div>
-					</div>
-
-					<div class="form-group">
-
-						<div class="col-sm-10">
-							<label for="inputEmail3" class="col-sm-2 control-label">Domain&nbsp;Specific&nbsp;Language&nbsp;(DSL)&nbsp;File&nbsp;-&nbsp;Optional
-								<input type="text" class="form-control"
-								th:field="*{dslFileLocation}" />
-							</label>
-						</div>
-					</div>
-					<div class="form-group">
-
-						<div class="col-sm-10">
-							<label for="inputEmail3" class="col-sm-2 control-label">Output&nbsp;File&nbsp;Location:
-								<input type="text" class="form-control"
-								th:field="*{outputFileLocation}" />
-							</label>
-						</div>
-
-					</div>
-					
-					<div class="form-group">
-
-						<div class="col-sm-10">
-							<button type="submit" class="btn btn-primary">Run Rules</button>
-						</div>
-
-					</div>
-					
 				</div>
+
+				<div class="form-group">
+
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">Business&nbsp;Rules&nbsp;File&nbsp;1:
+							<input type="text" class="form-control"
+							th:field="*{ruleFileLocation}" />
+						</label>
+					</div>
+				</div>
+
+				<div class="form-group">
+
+					<div class="col-sm-10">
+						<label for="inputEmail3" class="col-sm-2 control-label">Domain&nbsp;Specific&nbsp;Language&nbsp;(DSL)&nbsp;File&nbsp;-&nbsp;Optional
+							<input type="text" class="form-control"
+							th:field="*{dslFileLocation}" />
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+
+					<div class="col-sm-10">
+						<label for="inputEmail3" class="col-sm-2 control-label">Output&nbsp;File&nbsp;Location:
+							<input type="text" class="form-control"
+							th:field="*{outputFileLocation}" />
+						</label>
+					</div>
+
+				</div>
+
+				<div class="form-group">
+
+					<div class="col-sm-10">
+						<button type="submit" class="btn btn-primary">Run Rules</button>
+					</div>
+
+				</div>
+
+			</div>
 
 		</form>
 
@@ -111,53 +110,79 @@
 		<p class="bg-primary">&nbsp;Samples</p>
 		<div id="sampleDataDiv">
 
-			
-			<div th:if= "${samples == null}" class="row">
+
+			<div th:if="${samples == null}" class="row">
 				<!-- Only show this button if samples list is empty-->
 				<div class="col-md-6"></div>
 				<p>
-				<a href="/" class="btn btn-default">Return to Main Samples
-					List</a>
+					<a href="/" class="btn btn-default">Return to Main Samples List</a>
 				</p>
-				</div>
 			</div>
+		</div>
 
-			<!-- Loop through samples list-->
-			<div th:each="sample : ${samples}" class="row">
+		<!-- Loop through samples list-->
+		<div th:each="sample : ${samples}" class="row">
 
-				<div class="col-md-1">
-					<a th:href="'runRules'+${sample.sampleUrlParams}"
-						class="btn btn-default">Run Sample</a>
-				</div>
-				<div class="col-md-4">
-					<p th:text="${sample.inputFileLocation}"></p>
-				</div>
-				<div class="col-md-4">
-					<p th:text="${sample.ruleFileLocation}"></p>
-				</div>
-				<div class="col-md-4">
-					<p th:text="${sample.outputFileLocation}"></p>
-				</div>
-				<div class="col-md-8">
-					<p th:text="${sample.descriptiontext}"></p>
-				</div>
-
+			<div class="col-md-1">
+				<a th:href="'runRules'+${sample.sampleUrlParams}"
+					class="btn btn-default">Run Sample</a>
 			</div>
+			<div class="col-md-4">
+				<p>Input</p>
+				<p th:text="${sample.inputFileLocation}"></p>
+			</div>
+			<div class="col-md-4">
+				<p th:text="${sample.ruleFileLocation}"></p>
+			</div>
+			<div class="col-md-4">
+				<p th:text="${sample.outputFileLocation}"></p>
+			</div>
+			<div class="col-md-8">
+				<p th:text="${sample.descriptiontext}"></p>
+			</div>
+			<p/>
+			<div class="col-md-8">
+				<hr/>
+			</div>
+		</div>
+
+
+		<p class="bg-primary">&nbsp;Progress</p>
+
 
 		
-		<p class="bg-primary">&nbsp;Progress / Did anything go wrong?</p>
-		<p th:text="${updateMessage}" />
-		<p th:text="${displayException}"></p>
+		
+		<div th:if="${displayException !=null}">
+			<div class="alert alert-danger show">
+		
+			<!-- only if there is an Error Alert -->
+			<p><strong>Error</strong></p>
+			<p th:text="${displayException}"></p>
+			</div>
+		</div>
+		
+		<div th:if="${updateMessage !=''}" class="alert alert-info show">
+			<!-- only if there is not an message to show  -->
+			<p th:text="${updateMessage}"></p>
+		</div>
+
+		<p class="bg-primary">&nbsp;More Detailed Messages</p>
+		<table class="table table-bordered table-hover table-striped">
+			<tr th:each="msg : ${ruleFileMessages}">
+				<td th:text="${msg}" />
+			</tr>
+
+		</table>
 
 		<p class="bg-primary">&nbsp;Information from Input File</p>
+
+
 		<p th:text="${inputFacts}" />
-		
-		<p class="bg-primary">&nbsp;Messages as Business Rules are applied</p>
-		<p th:text="${ruleFileMessages}" />
-		
-		<p class="bg-primary">&nbsp;Information after Business Rules</p>
+
+
+		<p class="bg-primary">&nbsp;Information Output from Business Rules</p>
 		<p th:text="${outputFacts}" />
-		
+
 
 	</div>
 

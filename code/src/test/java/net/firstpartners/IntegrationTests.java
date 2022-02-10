@@ -1,13 +1,9 @@
 package net.firstpartners;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -17,9 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
 
 import net.firstpartners.core.Config;
 import net.firstpartners.core.MemoryOutputStrategy;
@@ -63,9 +56,7 @@ class IntegrationTests {
 	}
 
 	@Test
-	void testAllSamples() throws StreamReadException, DatabindException, IOException, NoSuchMethodException,
-			SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException,
-			InvocationTargetException, ClassNotFoundException, InvalidFormatException, DroolsParserException {
+	void testAllSamples() throws Exception {
 
 		List<SampleData> examples = SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON,
 				appConfig);

@@ -1,8 +1,9 @@
 package net.firstpartners.core.drools.loader;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
@@ -23,24 +24,22 @@ import net.firstpartners.core.file.ResourceFinder;
  * filesystem. May need to compile if needed
  * 
  * @author paulf
- * @todo refactor into Rule Loader pattern, part of move to KIE / Drools 7.5
  */
 public class RuleBuilder {
 
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-
 	/**
 	 * Load the rules from the sources listed in the Data model and configuration
 	 * 
-	 * @param ruleSource - the data model
-	 * @param appConfig  - application configuration, including where the rules
-	 *                   files are stored
+	 * @param redModel  - the data model
+	 * @param appConfig - application configuration, including where the rules files
+	 *                  are stored
 	 * @return
-	 * @throws FileNotFoundException 
+	 * @throws Exception 
 	 */
-	public KieBuilder loadRules(RedModel ruleSource, Config appConfig) throws FileNotFoundException {
+	public KieBuilder loadRules(RedModel redModel, Config appConfig) throws Exception {
 
 		// Handles
 		File currentFile;
@@ -50,7 +49,7 @@ public class RuleBuilder {
 		KieFileSystem kfs = ks.newKieFileSystem();
 
 		// Loop through and read rule files locations
-		String[] rulesLocs = ruleSource.getRulesFilesLocations();
+		String[] rulesLocs = redModel.getRulesFilesLocations();
 		for (int counter = 0; counter < rulesLocs.length; counter++) {
 
 			log.debug("loading into KFS:" + rulesLocs[counter]);
@@ -64,22 +63,42 @@ public class RuleBuilder {
 		kBuilder.buildAll();
 		Results results = kBuilder.getResults();
 
-		if (results.hasMessages(Message.Level.ERROR)) {
-			log.warn("There are warning in a score DRL:\n{}", results);
-			throw new IllegalStateException("There are errors in a score DRL:\n");
-
-		}
-
-		// Log the messages
+		// Log the messages and rule building errors as appropriate
 		log.debug("Rule Compilation results:");
 
-		Message thisCompileMessage;
+		Message thisRuleBuildMessage;
+		String messageAsString;
+		List<String> messages = new ArrayList<String>();
 
 		Iterator<Message> iter = results.getMessages().iterator();
 		while (iter.hasNext()) {
-			thisCompileMessage = iter.next();
-			log.debug(thisCompileMessage.getLevel() + " | " + thisCompileMessage.getPath() + " | "
-					+ thisCompileMessage.getLine() + " | " + thisCompileMessage.getText());
+			thisRuleBuildMessage = iter.next();
+			
+			// build our user friendly messages for display line by line
+			messages.add("Rule Build Message: "+thisRuleBuildMessage.getText());
+			messages.add("File: "+thisRuleBuildMessage.getPath());
+			messages.add("Line: "+thisRuleBuildMessage.getLine());
+			messages.add("Column: "+thisRuleBuildMessage.getColumn());
+			
+			//More compact message for logging
+			messageAsString =  " + thisRuleBuildMessage.getPath()" + " | "+ thisRuleBuildMessage.getLine() + " | " + thisRuleBuildMessage.getText();
+
+			if (thisRuleBuildMessage.getLevel() == Message.Level.ERROR) {
+				log.warn(messageAsString);
+				redModel.addUIWarnMessage(messages);
+			} else {
+				log.debug(messageAsString);
+				redModel.addUIDebugMessage(messages);
+			}
+
+		}
+
+		// Check if we have an errors and raise excpetion
+		if (results.hasMessages(Message.Level.ERROR)) {
+
+			log.warn("There are warning in a score DRL:\n{}", results);
+			throw new Exception("There were errors in a building a Rule file\n");
+
 		}
 
 		return kBuilder;

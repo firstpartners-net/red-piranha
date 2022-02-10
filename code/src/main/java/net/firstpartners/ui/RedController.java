@@ -58,10 +58,10 @@ public class RedController {
 					SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON,appConfig);
 			model.addAttribute(SAMPLE_INFO, sampleData);
 		} catch (IOException e) {
-			log.warn("Error loading Sample information" + e.getMessage());
+			log.warn("Error loading Sample information " + e.getMessage());
 		}
 
-		model.addAttribute("updateMessage", "Please hit the 'Run Rules' button");
+		model.addAttribute("updateMessage", "Please hit the 'Run Rules' or 'Run Sample' button");
 
 		// this just means render index.html from static/ area
 		return "index";
@@ -74,8 +74,7 @@ public class RedController {
 		log.debug("DSL?" + redModel.getDslFileLocation());
 		log.debug("DRL?" + redModel.getRuleFileLocation());
 		log.debug("Output?" + redModel.getOutputFileLocation());
-
-
+		
 		try {
 
 			// Just in Case Status message that we will update as we progress
@@ -86,9 +85,9 @@ public class RedController {
 			RuleRunner runner = RuleRunnerFactory.getRuleRunner(redModel,appConfig);
 
 			// Call the rules using this datafile
-			redModel.addUIInfoMessage("Running Rules:" + redModel);
+			redModel.addUIInfoMessage("Running Rules:");
 			runner.callRules(redModel);
-			redModel.addUIInfoMessage("Complete");
+			redModel.addUIInfoMessage("Rules Completed");
 
 			// update our main status message
 			redModel.setUICurrentStatus("Rules Complete");
@@ -98,12 +97,11 @@ public class RedController {
 			// We try to show as much details as possible (in the logs) without scaring the
 			// user
 			log.error("Full details of error", t);
-			redModel.addUIExceptionMessage("Uncaught Exception", t);
+			redModel.addUIWarnMessage("Uncaught Exception", t);
 			model.addAttribute("displayException", t);
 
 		}
 
-		// make our full log objects available in the session
 
 		// update the web values with the values coming back
 		model.addAttribute("updateMessage", redModel.getUICurrentStatus());

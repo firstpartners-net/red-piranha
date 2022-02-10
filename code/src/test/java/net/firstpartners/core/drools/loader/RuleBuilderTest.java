@@ -2,9 +2,6 @@ package net.firstpartners.core.drools.loader;
 
 import static org.junit.Assert.assertNotNull;
 
-import java.io.IOException;
-
-import org.drools.compiler.compiler.DroolsParserException;
 import org.junit.jupiter.api.Test;
 import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieModule;
@@ -22,7 +19,7 @@ class RuleBuilderTest {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Test
-	void testDefaultBuild() throws ClassNotFoundException, DroolsParserException, IOException {
+	void testDefaultBuild() throws Exception {
 
 		RedModel myModel = new RedModel();
 		Config testConfig = new Config();
@@ -36,7 +33,7 @@ class RuleBuilderTest {
 	}
 
 	@Test
-	public final void testCompileRules() throws ClassNotFoundException, DroolsParserException, IOException {
+	public final void testCompileRules() throws Exception {
 
 		log.debug("Starting to compile rules");
 
@@ -55,7 +52,7 @@ class RuleBuilderTest {
 
 	@Test
 	public final void testCompileDomainLanguageRules()
-			throws ClassNotFoundException, DroolsParserException, IOException {
+			throws Exception {
 
 		log.debug("Starting to compile rules");
 

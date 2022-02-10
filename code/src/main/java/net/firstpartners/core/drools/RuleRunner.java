@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.drools.compiler.compiler.DroolsParserException;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieModule;
@@ -69,16 +68,13 @@ public class RuleRunner {
 	 * creation of this class
 	 *
 	 * @param redModel - containing the info we need to run the rule engine
-	 * @throws DroolsParserException
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 * @throws InvalidFormatException
 	 * @throws CsvRequiredFieldEmptyException
 	 * @throws CsvDataTypeMismatchException
 	 * @return our Model with all the information so we can display back to the user
+	 * @throws Exception 
 	 */
 	public RedModel callRules(RedModel ruleModel)
-			throws IOException, ClassNotFoundException, InvalidFormatException, DroolsParserException {
+			throws Exception {
 
 
 		// Convert the cell and log if we have a handle
@@ -212,13 +208,10 @@ public class RuleRunner {
 	 * @param globals    - global variables to pass to the rule engine
 	 * @param logger     - handle to a logging object
 	 * @return
-	 * @throws IOException
-	 * @throws DroolsParserException
-	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
 	private Collection<Cell> runStatelessRules(RedModel model)
-			throws IOException, ClassNotFoundException, DroolsParserException {
+			throws Exception {
 
 		// The most common operation on a rulebase is to create a new rule
 		// session; either stateful or stateless.

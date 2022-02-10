@@ -22,7 +22,7 @@ public interface IStatusUpdate {
 	 * @param output
 	 * @param t
 	 */
-	public void addUIExceptionMessage(String output, Throwable t);
+	public void addUIWarnMessage(String output, Throwable t);
 
 	/**
 	 * Log at Info Level
@@ -31,6 +31,7 @@ public interface IStatusUpdate {
 	 */
 	public void addUIInfoMessage(String output);
 
+	
 	/**
 	 * Allows us to notify the user of a snapshot post rules
 	 * 

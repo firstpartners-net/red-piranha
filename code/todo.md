@@ -4,13 +4,11 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Next
 
+* rollback json rendering
+
 * Example for simple hellow world
-  * Show errors better when samples blow up
-  * colour on warning messages
-  * 2nd sample running ok
+  * 1st sample to "Hello world"
   * trigger exception, make sure it displays ok
-  * link to inspect inputfiles
-  * link to inspect outputfiles
   * tidy of readme x2
   * setup UI
   * line by line display of logs (loop in th)

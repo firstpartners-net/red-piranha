@@ -19,6 +19,53 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
 	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
 	crossorigin="anonymous">
+
+
+<!--  For JSON Rendering -->
+
+<style>
+.renderjson a {
+	text-decoration: none;
+}
+
+.renderjson .disclosure {
+	color: crimson;
+	font-size: 150%;
+}
+
+.renderjson .syntax {
+	color: grey;
+}
+
+.renderjson .string {
+	color: darkred;
+}
+
+.renderjson .number {
+	color: darkcyan;
+}
+
+.renderjson .boolean {
+	color: blueviolet;
+}
+
+.renderjson .key {
+	color: darkblue;
+}
+
+.renderjson .keyword {
+	color: blue;
+}
+
+.renderjson .object.syntax {
+	color: lightseagreen;
+}
+
+.renderjson .array.syntax {
+	color: orange;
+}
+</style>
+
 </head>
 
 <body>
@@ -59,10 +106,7 @@
 					<div class="col-sm-10">
 						<label class="col-sm-2 control-label">Input&nbsp;File&nbsp;Name:
 							<input type="text" class="form-control"
-							th:field="*{inputFileLocation}" /> <a
-							th:href="*{inputFileLocation}" class="btn btn-default">Download
-								Copy</a>
-
+							th:field="*{inputFileLocation}" />
 						</label>
 					</div>
 				</div>
@@ -177,9 +221,24 @@
 
 		</table>
 
-		<p class="bg-primary">&nbsp;Information from Input File</p>
 
-		<p th:text="${inputFacts}" />
+		<!-- Load Javascript-->
+		<script type="text/javascript" src="renderjson.js"></script>
+
+		<p class="bg-primary">&nbsp;Information from Input File</p>
+		<p id="showresulthere">Result</p>
+
+		<script th:inline="javascript">
+    		var inputJson = [[${inputFacts}]];
+    		//var str = JSON.stringify(inputJson, undefined, 4);
+    		//document.getElementById("showresulthere").innerHTML=syntaxHighlight (str);
+    		
+    		document.getElementById("showresulthere").appendChild(
+    		        renderjson(inputJson)
+    		    );
+
+		</script>
+
 
 
 		<p class="bg-primary">&nbsp;Information Output from Business Rules</p>
@@ -190,8 +249,6 @@
 
 
 
-	<!-- Load Javascript-->
-	<script src="sample-load.js"></script>
 </body>
 
 </html>

@@ -35,7 +35,7 @@ rule "print cell modified values"
     then
         	   
         //Logging message
-    	log.info("modified cell value:"+$cell);
+    	log.addUIInfoMessage("modified cell value:"+$cell);
     	
     	
 end
@@ -53,6 +53,6 @@ rule "print range"
     then
         	   
         //Logging message
-    	log.info("rule:"+$range.toShortString());
+    	log.addUIInfoMessage("rule:"+$range.toShortString());
 
 end*/

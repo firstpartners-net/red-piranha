@@ -62,7 +62,7 @@ public class ResourceFinder {
 		} else {
 			log.debug("3 No resource in alternate dir:"+alternateFile);
 			
-			throw new FileNotFoundException("Cannot find after 3 attempts:"+resourceName);
+			throw new FileNotFoundException("Cannot find:"+resourceName +" in any of 3 locations - default , "+defaultDir+" , "+alternatDir);
 		}
 		
 		

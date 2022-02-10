@@ -79,7 +79,7 @@ public class RedController {
 		try {
 
 			// Just in Case Status message that we will update as we progress
-			redModel.setCurrentStatus("Something has gone wrong, please check the messages below and in the logs.");
+			redModel.setUICurrentStatus("Something has gone wrong, please check the messages below and in the logs.");
 
 			// The Factory auto-generates the input and output strategy based on the
 			// filenames
@@ -91,7 +91,7 @@ public class RedController {
 			redModel.addUIInfoMessage("Complete");
 
 			// update our main status message
-			redModel.setCurrentStatus("Rules Complete");
+			redModel.setUICurrentStatus("Rules Complete");
 
 		} catch (Throwable t) {
 

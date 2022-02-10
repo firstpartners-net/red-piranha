@@ -1,5 +1,6 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<title>Red-Piranha - run Business Rules in Word and Excel</title>
 
 <head>
 <meta charset="utf-8">
@@ -50,54 +51,78 @@
 			<p />
 
 			<div id="contents-main">
-				<div>
+				
 					<p class="bg-primary">&nbsp;Current Settings</p>
 
-
 					<div class="form-group">
 
-						<label class="col-sm-2 control-label">Input&nbsp;File&nbsp;Name:</label>
+
 						<div class="col-sm-10">
-							<input type="text" class="form-control"
+							<label class="col-sm-2 control-label">Input&nbsp;File&nbsp;Name:
+								<input type="text" class="form-control"
 								th:field="*{inputFileLocation}" />
+							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-2 control-label">Business&nbsp;Rules&nbsp;File&nbsp;1:</label>
+
 						<div class="col-sm-10">
-							<input type="text" class="form-control"
+							<label class="col-sm-2 control-label">Business&nbsp;Rules&nbsp;File&nbsp;1:
+								<input type="text" class="form-control"
 								th:field="*{ruleFileLocation}" />
+							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Domain&nbsp;Specific&nbsp;Language&nbsp;(DSL)&nbsp;File&nbsp;-&nbsp;Optional</label>
+
 						<div class="col-sm-10">
-							<input type="text" class="form-control"
+							<label for="inputEmail3" class="col-sm-2 control-label">Domain&nbsp;Specific&nbsp;Language&nbsp;(DSL)&nbsp;File&nbsp;-&nbsp;Optional
+								<input type="text" class="form-control"
 								th:field="*{dslFileLocation}" />
+							</label>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Output&nbsp;File&nbsp;Location:</label>
+
 						<div class="col-sm-10">
-							<input type="text" class="form-control"
+							<label for="inputEmail3" class="col-sm-2 control-label">Output&nbsp;File&nbsp;Location:
+								<input type="text" class="form-control"
 								th:field="*{outputFileLocation}" />
+							</label>
 						</div>
 
 					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-primary">Run Rules</button>
+					
+					<div class="form-group">
+
+						<div class="col-sm-10">
+							<button type="submit" class="btn btn-primary">Run Rules</button>
+						</div>
+
 					</div>
+					
 				</div>
+
 		</form>
 
 
 		<p class="bg-primary">&nbsp;Samples</p>
 		<div id="sampleDataDiv">
 
+			
+			<div th:if= "${samples == null}" class="row">
+				<!-- Only show this button if samples list is empty-->
+				<div class="col-md-6"></div>
+				<p>
+				<a href="/" class="btn btn-default">Return to Main Samples
+					List</a>
+				</p>
+				</div>
+			</div>
+
+			<!-- Loop through samples list-->
 			<div th:each="sample : ${samples}" class="row">
 
 				<div class="col-md-1">
@@ -119,25 +144,23 @@
 
 			</div>
 
-		</div>
+		
 		<p class="bg-primary">&nbsp;Progress / Did anything go wrong?</p>
 		<p th:text="${updateMessage}" />
 		<p th:text="${displayException}"></p>
 
-		</p>
 		<p class="bg-primary">&nbsp;Information from Input File</p>
 		<p th:text="${inputFacts}" />
-		</p>
+		
 		<p class="bg-primary">&nbsp;Messages as Business Rules are applied</p>
 		<p th:text="${ruleFileMessages}" />
-		</p>
+		
 		<p class="bg-primary">&nbsp;Information after Business Rules</p>
 		<p th:text="${outputFacts}" />
-		</p>
+		
 
 	</div>
-	</div>
-	</div>
+
 
 
 	<!-- Load Javascript-->

@@ -6,8 +6,16 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 
 Next: 
-* tests running
+* Example for simple hellow world
+    * 2nd sample
+    * some UI improvements
+    * link to inspect inputfiles
+    * link to inspect outputfiles
+    * tidy of readme x2
+    * setup UI
 
+
+* tests running
 * tidy html display and UI
     * line by line display of logs (loop in th)
     * if samples empty, display link to main page "Reset and view sameples)
@@ -15,24 +23,18 @@ Next:
     * samples - url to view input, out and rule files
     * Better json like dispaly as tree
     * Dive through stack - can bring back any more info to user
-
-Try running file in docker
-
-
-READ JSON - UNIT TEST
-* unit test loading
-* Serialsiation - Into Tests of convertor / Java test data in JSON
-* use to trest cell conversion
+    * Tidy Bookstrap
+    * Try running file in docker
 
 
 
 LATER
+
 * Move bootstrap offline
 * tidy DSL example
 * show hide sample
-
-BOOK NOTES
-* csv as part of a chain
+* Serialsiation - Into Tests of convertor / Java test data in JSON
+* use to trest cell conversion
 
 ## Aim of Next Sprint
 
@@ -69,24 +71,13 @@ Set in place key design principles
 * WorkingMemoryEventListener ->  RuleRuntimeEventListener for new cells - wokring?
 * Understand bootstrap and different layout options
 
-## Next Step
-
-* Example Template (for chocolate rules)
-    * Standard format
-	* Automatically gets picked up by RP Index.html
-	* Config to turn off?
-	* readme.md
-* Maven build (Java Model)
-
 ## Todo Next 
 - [ ] rules Steps (break out compile)
 - [ ] Figure out why current excel example is outputting incorrectly
 - [ ] More info through to front end
 - [ ] Tidy front end
 - [ ] more tests compile / rule - currently 
-- [ ] Tests compiling Testing: 55 tests, 2 Errors, 2 failures
 - [ ] look at moving over private samples
-- [ ] Integrate test examples into application (can be run from standard deployment) and UI upgrade to faciltiate.
 - [ ] Understand Github pages, Jekyll and see if can build an even 'friendlier' version of this site.
 - [ ] (another) review and tidy of two readme pages
 

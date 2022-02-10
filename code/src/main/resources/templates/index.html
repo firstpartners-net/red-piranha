@@ -59,7 +59,10 @@
 					<div class="col-sm-10">
 						<label class="col-sm-2 control-label">Input&nbsp;File&nbsp;Name:
 							<input type="text" class="form-control"
-							th:field="*{inputFileLocation}" />
+							th:field="*{inputFileLocation}" /> <a
+							th:href="*{inputFileLocation}" class="btn btn-default">Download
+								Copy</a>
+
 						</label>
 					</div>
 				</div>
@@ -128,7 +131,6 @@
 					class="btn btn-default">Run Sample</a>
 			</div>
 			<div class="col-md-4">
-				<p>Input</p>
 				<p th:text="${sample.inputFileLocation}"></p>
 			</div>
 			<div class="col-md-4">
@@ -140,9 +142,9 @@
 			<div class="col-md-8">
 				<p th:text="${sample.descriptiontext}"></p>
 			</div>
-			<p/>
+			<p />
 			<div class="col-md-8">
-				<hr/>
+				<hr />
 			</div>
 		</div>
 
@@ -150,17 +152,18 @@
 		<p class="bg-primary">&nbsp;Progress</p>
 
 
-		
-		
+
 		<div th:if="${displayException !=null}">
 			<div class="alert alert-danger show">
-		
-			<!-- only if there is an Error Alert -->
-			<p><strong>Error</strong></p>
-			<p th:text="${displayException}"></p>
+
+				<!-- only if there is an Error Alert -->
+				<p>
+					<strong>Error</strong>
+				</p>
+				<p th:text="${displayException}"></p>
 			</div>
 		</div>
-		
+
 		<div th:if="${updateMessage !=''}" class="alert alert-info show">
 			<!-- only if there is not an message to show  -->
 			<p th:text="${updateMessage}"></p>
@@ -175,7 +178,6 @@
 		</table>
 
 		<p class="bg-primary">&nbsp;Information from Input File</p>
-
 
 		<p th:text="${inputFacts}" />
 

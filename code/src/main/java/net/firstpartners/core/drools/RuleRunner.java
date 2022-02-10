@@ -110,6 +110,9 @@ public class RuleRunner {
 
 		ruleModel.addUIInfoMessage("Write to Output file:" + outputStrategy.getOutputDestination());
 		ruleModel.setUIProgressStatus(90);
+		
+		//update our post rules snapshot
+		ruleModel.setPostRulesSnapShot(ranges); 
 
 
 		// make sure both get written (to disk?)

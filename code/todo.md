@@ -4,16 +4,13 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Next
 
-* rollback json rendering
 
 * Example for simple hellow world
   * 1st sample to "Hello world"
+  * understand model back and forward better
   * trigger exception, make sure it displays ok
   * tidy of readme x2
-  * setup UI
-  * line by line display of logs (loop in th)
-  * samples - url to view input, out and rule files
-  * Better json like dispaly as tree
+  * conversion to-from excel - make sure it works better, json better?
   * Dive through stack - can bring back any more info to user
   * Tidy Bootstrap on page
   * Try running file in docker
@@ -24,11 +21,14 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 LATER
 
+* RP using model from business central
 * Move bootstrap offline
 * tidy DSL example
 * show hide sample
 * Serialsiation - Into Tests of convertor / Java test data in JSONu
 * use to trest cell conversion
+ * samples - url to view input, out and rule files
+ *  do interim docker release
 
 ## Aim of Next Sprint
 

@@ -35,10 +35,11 @@ public class ResourceFinder {
 		
 		
 		File bareFile = new File(resourceName);
+		File workingDir = new File(".");
 		if (bareFile.exists()) {
 			return bareFile;
 		} else {
-			log.debug("No resource:"+resourceName+ " attempting another approach?");
+			log.debug("No resource:"+resourceName+ " found in "+workingDir.getAbsolutePath()+" attempting another approach?");
 		}
 		
 		// We need config info to try backups
@@ -46,18 +47,21 @@ public class ResourceFinder {
 			throw new FileNotFoundException("1 Cannot find :"+resourceName+" and no config provided to try other locations");
 		}
 		
+		
 		String defaultDir = appConfig.getSampleBaseDirDefault();
 		File defaultFile = new File(defaultDir+resourceName);
 		if (defaultFile.exists()) {
+			log.debug("2 Found Resource:"+defaultFile);
 			return defaultFile;
 		} else {
-			log.debug("2 No resource in default dir:"+defaultFile+ " attempting another approach");
+			log.debug("2 No resource in default location:"+defaultFile.getAbsolutePath()+ " attempting another approach");
 		}
 		
 		
 		String alternatDir = appConfig.getSampleBaseDirAlternate();
 		File alternateFile = new File(alternatDir+resourceName);
 		if (alternateFile.exists()) {
+			log.debug("2 Found Resource:"+alternateFile);
 			return alternateFile;
 		} else {
 			log.debug("3 No resource in alternate dir:"+alternateFile);

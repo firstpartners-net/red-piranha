@@ -3,68 +3,30 @@
 <title>Red-Piranha - run Business Rules in Word and Excel</title>
 
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Include Bootstrap to style the page-->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
+	<!-- Include Bootstrap to style the page-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
 
-<!--  For JSON Rendering -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/json2html/1.3.0/json2html.min.js"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.json2html/1.2.0/jquery.json2html.min.js"
+		crossorigin="anonymous"></script>
 
-<style>
-.renderjson a {
-	text-decoration: none;
-}
+	<!-- Json Visualizer Core -->
+	<link href="visualizer.css" rel="stylesheet">
+	<script src="visualizer.js"></script>
 
-.renderjson .disclosure {
-	color: crimson;
-	font-size: 150%;
-}
-
-.renderjson .syntax {
-	color: grey;
-}
-
-.renderjson .string {
-	color: darkred;
-}
-
-.renderjson .number {
-	color: darkcyan;
-}
-
-.renderjson .boolean {
-	color: blueviolet;
-}
-
-.renderjson .key {
-	color: darkblue;
-}
-
-.renderjson .keyword {
-	color: blue;
-}
-
-.renderjson .object.syntax {
-	color: lightseagreen;
-}
-
-.renderjson .array.syntax {
-	color: orange;
-}
-</style>
 
 </head>
 
@@ -74,7 +36,7 @@
 			Excel and Office Power users.</h3>
 		<p></p>
 		<p>
-			It packages <a href="https://www.drools.org/">the Drools Business
+			It bridges <a href="https://www.drools.org/">the Drools Business
 				Rules Management System (BRMS) solution from RedHat (IBM)</a> to be more
 			accessible to Excel users. In particular, it makes it easier to feed
 			information from Excel and Word (Office) Documents, apply business
@@ -84,13 +46,11 @@
 			'English like' language, it makes it very easy for you (and
 			colleagues) to see what checks are being made.</p>
 
-		<form class="form-inline" action="#" th:action="@{/runRules}"
-			method="get" th:object="${redModel}">
+		<form class="form-inline" action="#" th:action="@{/runRules}" method="get" th:object="${redModel}">
 
 			<div class="row">
 				<div class="col-xs-6">
-					<img src="splash.png" alt="Red Piranha GUI Splash" width="100"
-						height="66">
+					<img src="splash.png" alt="Red Piranha GUI Splash" width="100" height="66">
 				</div>
 				<div class="col-xs-6"></div>
 			</div>
@@ -105,8 +65,7 @@
 
 					<div class="col-sm-10">
 						<label class="col-sm-2 control-label">Input&nbsp;File&nbsp;Name:
-							<input type="text" class="form-control"
-							th:field="*{inputFileLocation}" />
+							<input type="text" class="form-control" th:field="*{inputFileLocation}" />
 						</label>
 					</div>
 				</div>
@@ -115,8 +74,7 @@
 
 					<div class="col-sm-10">
 						<label class="col-sm-2 control-label">Business&nbsp;Rules&nbsp;File&nbsp;1:
-							<input type="text" class="form-control"
-							th:field="*{ruleFileLocation}" />
+							<input type="text" class="form-control" th:field="*{ruleFileLocation}" />
 						</label>
 					</div>
 				</div>
@@ -124,9 +82,9 @@
 				<div class="form-group">
 
 					<div class="col-sm-10">
-						<label for="inputEmail3" class="col-sm-2 control-label">Domain&nbsp;Specific&nbsp;Language&nbsp;(DSL)&nbsp;File&nbsp;-&nbsp;Optional
-							<input type="text" class="form-control"
-							th:field="*{dslFileLocation}" />
+						<label for="inputEmail3"
+							class="col-sm-2 control-label">Domain&nbsp;Specific&nbsp;Language&nbsp;(DSL)&nbsp;File&nbsp;-&nbsp;Optional
+							<input type="text" class="form-control" th:field="*{dslFileLocation}" />
 						</label>
 					</div>
 				</div>
@@ -134,8 +92,7 @@
 
 					<div class="col-sm-10">
 						<label for="inputEmail3" class="col-sm-2 control-label">Output&nbsp;File&nbsp;Location:
-							<input type="text" class="form-control"
-							th:field="*{outputFileLocation}" />
+							<input type="text" class="form-control" th:field="*{outputFileLocation}" />
 						</label>
 					</div>
 
@@ -171,8 +128,7 @@
 		<div th:each="sample : ${samples}" class="row">
 
 			<div class="col-md-1">
-				<a th:href="'runRules'+${sample.sampleUrlParams}"
-					class="btn btn-default">Run Sample</a>
+				<a th:href="'runRules'+${sample.sampleUrlParams}" class="btn btn-default">Run Sample</a>
 			</div>
 			<div class="col-md-4">
 				<p th:text="${sample.inputFileLocation}"></p>
@@ -222,27 +178,48 @@
 		</table>
 
 
-		<!-- Load Javascript-->
-		<script type="text/javascript" src="renderjson.js"></script>
 
 		<p class="bg-primary">&nbsp;Information from Input File</p>
-		<p id="showresulthere">Result</p>
+		<div id="input"></div>
 
 		<script th:inline="javascript">
-    		var inputJson = [[${inputFacts}]];
-    		//var str = JSON.stringify(inputJson, undefined, 4);
-    		//document.getElementById("showresulthere").innerHTML=syntaxHighlight (str);
-    		
-    		document.getElementById("showresulthere").appendChild(
-    		        renderjson(inputJson)
-    		    );
+		
+			
+			//Next line is auto-generated by Thymeleaf based on server side value
+			var inputJson = [(${inputFacts})];
+		
+			$(function () {
+
+				//Create a new visualizer object
+				var _visualizer = new visualizer($("#input"));
+
+				//Visualize the demo json object
+				_visualizer.visualize(inputJson);
+
+			});
 
 		</script>
 
 
-
 		<p class="bg-primary">&nbsp;Information Output from Business Rules</p>
-		<p th:text="${outputFacts}" />
+		<div id="output"></div>
+
+		<script th:inline="javascript">
+			
+			//Next line is auto-generated by Thymeleaf based on server side value
+			var outputJson = [(${outputFacts})];
+		
+			$(function () {
+
+				//Create a new visualizer object
+				var _visualizer = new visualizer($("#output"));
+
+				//Visualize the demo json object
+				_visualizer.visualize(outputJson);
+
+			});
+
+		</script>
 
 
 	</div>

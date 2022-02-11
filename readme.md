@@ -31,7 +31,7 @@ Because business rules can be written in 'near English' language they are much m
 
 ## 3 Minute Quickstart
 
-The information in this document is aimed at getting Excel Power Users up and running with Red Piranha. If you're a developer, or want to dive 'under the covers' [more detailed info is here](code/readme-dev.md).
+The information in this document is aimed at getting Excel Power Users up and running with Red Piranha. If you're a developer, or want to dive 'under the covers' [more detailed info is here](doc).
 
 _TODO Docker_
 

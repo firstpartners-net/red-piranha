@@ -7,15 +7,12 @@ import java.io.OutputStream;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
+import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
+import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.core.file.Utils;
-import net.firstpartners.core.log.IStatusUpdate;
-import net.firstpartners.core.log.SpreadSheetStatusUpdate;
-import net.firstpartners.data.Config;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
@@ -27,15 +24,15 @@ import net.firstpartners.data.RangeList;
  */
 public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
-	private static final String RULES_LOG = "rules-log";
 
+	private Config appConfig;
+	
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	// Name of the outputfile
 	private String outputFileName = null;
 
-	private IStatusUpdate spreadSheetLogger;
 
 	private Workbook workbook;
 
@@ -48,36 +45,6 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 		this.outputFileName = outputFileName;
 	}
 
-	/**
-	 * Write out and logs we hold to the document
-	 * 
-	 * @param excelWorkBook
-	 * @param nameOfLogSheet
-	 */
-	@Override
-	public void flush() {
-		if (this.spreadSheetLogger instanceof SpreadSheetStatusUpdate) {
-
-			((SpreadSheetStatusUpdate) this.spreadSheetLogger).flush(workbook, RULES_LOG);
-
-		}
-
-	}
-
-	/**
-	 * Write out any documents we hold to anybody else interested
-	 * 
-	 * @param logger
-	 */
-	@Override
-	public void flush(IStatusUpdate logger) {
-		this.flush();
-		if (this.spreadSheetLogger instanceof SpreadSheetStatusUpdate) {
-
-			((SpreadSheetStatusUpdate) this.spreadSheetLogger).flush(logger);
-		}
-
-	}
 
 	/**
 	 * String representing where our output is going to
@@ -128,15 +95,16 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	void outputToFile(Workbook wb) throws IOException {
 
+		String outputFile = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
+		
 		// Write out modified Excel sheet
 		try {
-			FileOutputStream fileOutputStream = new FileOutputStream(this.outputFileName);
+			FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
 			outputToStream(wb, fileOutputStream);
 			fileOutputStream.close();
 		} catch (Exception ace) {
-			// Unable to output file (e.g. as in Google App Engine) - drop back and log via
-			// console instead
-			log.error("Unable to output to file - logging to console instead");
+			// Unable to output file, then drop back and log via console instead
+			log.error("Unable to output to file - logging to console instead",ace);
 			outputToConsole(wb);
 		}
 
@@ -171,19 +139,8 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 	}
 
-	/**
-	 * Allows us to set a Logger that will flush to an Excel Spreadheet
-	 * 
-	 * @param spreadSheetLogger
-	 */
-	@Override
-	public void setDocumentLogger(IStatusUpdate spreadSheetLogger) {
-		this.spreadSheetLogger = spreadSheetLogger;
-
-	}
-
-	public void setWorkbook(Workbook workbook) {
-		this.workbook = workbook;
+	public void setConfig(Config appConfig) {
+		this.appConfig = appConfig;
 	}
 
 	/**
@@ -197,6 +154,10 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 		this.workbook = fileToProcess.getOriginalAsPoiWorkbook();
 		SpreadSheetConvertor.updateRedRangeintoPoiExcel(this.workbook, range);
 
+	}
+
+	public void setWorkbook(Workbook workbook) {
+		this.workbook = workbook;
 	}
 
 }

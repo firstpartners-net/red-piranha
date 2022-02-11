@@ -1,9 +1,5 @@
 package net.firstpartners;
 
-import net.firstpartners.core.excel.SpreadSheetConvertorTest;
-import net.firstpartners.core.word.DocumentConvertorTest;
-import net.firstpartners.core.word.DocumentXConvertorTest;
-
 /**
  * Constants used for testing - mainly where we store data
  * 
@@ -27,8 +23,7 @@ public class TestConstants {
 	
 	
 	//Sample Rules files
-	public static final String[] RULES_FILES = new String[] {
-			"src/test/resources/testrules/log-then-modify-rules.drl" };
+	public static final String RULES_FILE = "src/test/resources/testrules/log-then-modify-rules.drl";
 	
 	public static final String[] RULES_FILES_IN_EXCEL = new String[] {
 			"src/test/resources/testrules/log-rules.drl", "src/test/resources/testrules/TradingRules.xls" };
@@ -37,12 +32,15 @@ public class TestConstants {
 
 	public static final String FILE_OUTPUT_FILE = "src/test/resources/testdata/chocolate-output.xls";
 	
+	//Serialised files
+	public static final String JSON_SERIAL_FILE ="src/test/resources/testdata/sample_xls_serialised.json";
+	
 	//tmp files
 	public static final String EXCEL_TMP_FILE = "src/test/resources/testdata/tmp.xls";
 	public static final String CSV_TMP_FILE = "src/test/resources/testdata/tmp.csv";
 	public static final String PDF_TMP_FILE = "src/test/resources/testdata/tmp.pdf";
 	public static final String JSON_TMP_FILE = "src/test/resources/testdata/tmp.json";
-	
+
 	public static final String KNOWLEDGE_BASE_FILE = "src/test/resources/testrules/log-then-modify-rules.KnowledgeBase";
 	public static final String KNOWLEDGE_BASE_FILE_TMP ="src/test/resources/testrules/tmp.KnowledgeBase";
 
@@ -61,15 +59,5 @@ public class TestConstants {
 
 
 	
-	/**
-	 * Testing utility to generate test Data
-	 */
-	public static void main (String [] args) throws Exception
-	{
-		
-		SpreadSheetConvertorTest.main(null);
-		DocumentConvertorTest.main(null);
-		DocumentXConvertorTest.main(null);
-		
-	}
+
 }

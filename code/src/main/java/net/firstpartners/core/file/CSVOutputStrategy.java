@@ -8,9 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,12 +16,11 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
-import net.firstpartners.core.log.EmptyStatusUpdate;
-import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
@@ -99,19 +95,20 @@ import net.firstpartners.data.RangeList;
  */
 public class CSVOutputStrategy implements IDocumentOutStrategy {
 
-	// Logger
-	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
+	private Config appConfig;
 
 	// Name of the output file
 	private String appendFileName = null;
+	
+	// Logger
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	// Hold the data until we are asked to process it
 	//@SuppressWarnings("unused") // eclipse mistakenly marks this as unused
 	private RangeList processedRange;
-	
-	//Handle to logger to GUI
-	private IStatusUpdate userLogger = new EmptyStatusUpdate(); // we may change later -null safe
 
+	
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
 	 * 
@@ -121,30 +118,14 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 		this.appendFileName = outputFileName;
 	}
 
-	/**
-	 * Not needing to be implemented as part of this strategy
-	 */
-	@Override
-	public void flush() {
-
-	}
-
-	/**
-	 * We implement this is part of the interface, but don't do anything with it.
-	 */
-	@Override
-	public void flush(IStatusUpdate logger) {
-		
-	}
 
 	List<String> getHeadersFromFile() throws IOException {
 
 		// We must have a pre existing file
-		Path path = Paths.get(appendFileName);
-		log.info("Looking for CSV path:"+ path.getFileName());
+		File appendFile = ResourceFinder.getFileResourceUsingConfig(appendFileName, appConfig);
 		
-		if (!Files.exists(path)) {
-			throw new IllegalArgumentException("For writing to a CSV file "+ path.getFileName()+" should already exist with headers in first row");
+		if (!appendFile.exists()) {
+			throw new IllegalArgumentException("For writing to a CSV file "+ appendFileName+" should already exist with headers in first row");
 		}
 
 		log.debug("Found CSV:" + appendFileName);
@@ -243,7 +224,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 		for (String thisHeader : headers) {	
 
 			dataToWrite[counter] = outputValues.get(thisHeader);
-			userLogger.info("CSV Output for header:" + thisHeader + " value:" + dataToWrite[counter]);
+			log.info("CSV Output for header:" + thisHeader + " value:" + dataToWrite[counter]);
 
 			counter++;
 		}
@@ -259,14 +240,8 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 
 	}
 
-	/**
-	 * Handle that we can pass informration back to the user
-	 * 
-	 * @param userLogger - this strategy does not use
-	 */
-	@Override
-	public void setDocumentLogger(IStatusUpdate userLogger) {
-		this.userLogger = userLogger;
+	public void setConfig(Config appConfig) {
+		this.appConfig = appConfig;
 	}
 
 	/**

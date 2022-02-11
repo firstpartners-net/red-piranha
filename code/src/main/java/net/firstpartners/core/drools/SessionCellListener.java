@@ -50,7 +50,6 @@ public class SessionCellListener implements RuleRuntimeEventListener {
 	
 	@Override
 	public void objectUpdated(ObjectUpdatedEvent event) {
-		// TODO Auto-generated method stub
 		
 	}
 

@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.drools.compiler.compiler.DroolsParserException;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieModule;
@@ -17,143 +16,120 @@ import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
-import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
-import net.firstpartners.core.drools.loader.RedRuleBuilder;
+import net.firstpartners.core.RedModel;
+import net.firstpartners.core.drools.loader.RuleBuilder;
 import net.firstpartners.core.log.IStatusUpdate;
-import net.firstpartners.core.log.SpreadSheetStatusUpdate;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
-import net.firstpartners.data.RedModel;
 
 /**
  * Call JBoss Drools (Rules Engine) passing in Document data as Java Objects
- * 
+ *
  * This class uses an IDocumentStrategy Object to handle different types
  */
 public class RuleRunner {
+
+	// Application Config - if passed in
+	private Config appConfig;
+
+	// Handle to the Strategy Class for specific incoming document (Excel, Word etc
+	// tasks)
+	// Setup by RuleRunnerFactory
+	private IDocumentInStrategy inputStrategy = null;
 
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	// Handle to the strategy Class to write out the document
+	// Setup by RuleRunnerFactory
 	private IDocumentOutStrategy outputStrategy = null;
 
-	// Handle to loader
-	private final IRuleLoaderStrategy ruleLoader;
-
-	// Handle to the Strategy Class for specific incoming document (Excel, Word etc
-	// tasks)
-	private IDocumentInStrategy inputStrategy = null;
-
-
-	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {
-		this.outputStrategy = newStrategy;
-	}
-	
 	/**
 	 * Construct a new RuleRunner.
-	 * 
+	 *
 	 * @see RuleRunnerFactory in this package which we use to build a properly
 	 *      constructed instance of this class
 	 * @param documentStrategy
 	 * @param ruleLoader
 	 * @param outputStrategy
 	 */
-	protected RuleRunner(IDocumentInStrategy documentStrategy, IRuleLoaderStrategy ruleLoader,
-			IDocumentOutStrategy outputStrategy) {
-		this.ruleLoader = ruleLoader;
+	protected RuleRunner(IDocumentInStrategy documentStrategy, IDocumentOutStrategy outputStrategy, Config appConfig) {
 		this.inputStrategy = documentStrategy;
 		this.outputStrategy = outputStrategy;
+		this.appConfig = appConfig;
 	}
-
 
 	/**
 	 * Call the rule Engine - data input / output has already been set during the
 	 * creation of this class
-	 * 
-	 * @param userDataDisplay - feedback e.g. to GUI
-	 * @param userMessages    - to display
-	 * @throws DroolsParserException
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 * @throws InvalidFormatException
+	 *
+	 * @param redModel - containing the info we need to run the rule engine
 	 * @throws CsvRequiredFieldEmptyException
 	 * @throws CsvDataTypeMismatchException
 	 * @return our Model with all the information so we can display back to the user
+	 * @throws Exception 
 	 */
-	public RedModel callRules(IStatusUpdate userMessages, RedModel ruleModel)
-			throws IOException, ClassNotFoundException, InvalidFormatException {
+	public RedModel callRules(RedModel ruleModel)
+			throws Exception {
 
-
-		// Create a new Logging object
-		outputStrategy.setDocumentLogger(new SpreadSheetStatusUpdate());
-		if (userMessages != null) {
-			userMessages.notifyProgress(20);
-			userMessages.info("Opening Input :" + this.inputStrategy.getInputName());
-		}
 
 		// Convert the cell and log if we have a handle
+		ruleModel.addUIInfoMessage("Opening Input :" + this.inputStrategy.getInputName());
 		RangeList ranges = inputStrategy.getJavaBeansFromSource();
 		ranges.cascadeResetIsModifiedFlag();
-
-		if (userMessages != null) {
-			userMessages.notifyProgress(35);
-			userMessages.showPreRulesSnapShot(ranges);
-			userMessages.notifyProgress(50);
-		}
+		ruleModel.setPreRulesSnapShot(ranges);
+		ruleModel.setUIProgressStatus(10);
+		
 
 		// Add the document contents as facts
+		ruleModel.addUIInfoMessage("Adding Excel Cells as facts into Rule Engine Memory");
 		ruleModel.addFacts(ranges.getAllCellsInAllRanges());
-		if (userMessages != null) {
-			userMessages.notifyProgress(60);
-		}
+		ruleModel.setUIProgressStatus(30);
+		
 
 		// Load and fire our rules files against the data
-		Collection<Cell> newFacts = runStatelessRules(ruleModel, userMessages);
-		
-		if (userMessages != null) {
-			userMessages.showPostRulesSnapShot(ranges);
-			userMessages.notifyProgress(80);
-		}
+		Collection<Cell> newFacts = runStatelessRules(ruleModel);
+		ruleModel.setUIProgressStatus(60);
 
-		//Make a note of any new facts added
+		// Make a note of any new facts added
+		ruleModel.addUIInfoMessage("Collecting New Cells and put them into Excel");
 		Range newRange = new Range("New Facts");
 		newRange.put(newFacts);
 		ranges.add(newRange);
-		
-		
+		ruleModel.setUIProgressStatus(80);
+
 		// update a copy of the original document (to be saved as copy) with the result
 		// of our rules
 		log.debug("RunRules - object " + inputStrategy.getOriginalDocument());
 		outputStrategy.setUpdates(inputStrategy.getOriginalDocument(), ranges);
 
-		if (userMessages != null) {
-			userMessages.notifyProgress(90);
-			userMessages.info("Write to Output file:" + outputStrategy.getOutputDestination());
 
-		}
+		ruleModel.addUIInfoMessage("Write to Output file:" + outputStrategy.getOutputDestination());
+		ruleModel.setUIProgressStatus(90);
+		
+		//update our post rules snapshot
+		ruleModel.setPostRulesSnapShot(ranges); 
 
-		// update the document (e.g. excel spreadsheet) with our log file as appropriate
-		outputStrategy.flush(userMessages);
 
 		// make sure both get written (to disk?)
 		outputStrategy.processOutput();
+		ruleModel.setUIProgressStatus(100);
 
-		// signal to GUI we are complete
-		if (userMessages != null) {
-			userMessages.notifyProgress(100);
-		}
-		
 		return ruleModel;
 
 	}
 
+	public Config getAppConfig() {
+		return appConfig;
+	}
+
 	/**
 	 * The strategy we use for dealing with incoming documents
-	 * 
+	 *
 	 * @return the strategy object
 	 */
 	public IDocumentInStrategy getDocumentInputStrategy() {
@@ -162,49 +138,13 @@ public class RuleRunner {
 
 	/**
 	 * Handle to the the Strategy Delegate we use for outputting
-	 * 
+	 *
 	 * @return the strategy object
 	 */
 	public IDocumentOutStrategy getDocumentOutputStrategy() {
 		return outputStrategy;
 	}
 
-	public IRuleLoaderStrategy getRuleLoader() {
-		return ruleLoader;
-	}
-
-
-
-
-	/**
-	 * Run the rules
-	 *
-	 * @param rulesUrl   - array of rule files that we need to load
-	 * @param dslFileUrl - optional dsl file name (can be null)
-	 * @param facts      - Javabeans to pass to the rule engine
-	 * @param globals    - global variables to pass to the rule engine
-	 * @param logger     - handle to a logging object
-	 * @return 
-	 * @throws IOException
-	 * @throws DroolsParserException
-	 * @throws ClassNotFoundException
-	 * @throws Exception
-	 */
-	private Collection<Cell> runStatelessRules(RedModel ruleSource, IStatusUpdate logger)
-			throws IOException, ClassNotFoundException {
-
-		
-			
-		// The most common operation on a rulebase is to create a new rule
-		// session; either stateful or stateless.
-		log.debug("Creating new rule base");
-		KieModule masterRulebase = new RedRuleBuilder().loadRules(ruleSource).getKieModule();
-		
-		
-		log.debug("running stateless rules");
-		return runStatelessRules(masterRulebase, ruleSource.getFacts(), ruleSource.getGlobals(), logger);
-	}
-	
 	/**
 	 * Run Stateless rules using a pre built knowledge base
 	 *
@@ -217,17 +157,17 @@ public class RuleRunner {
 	 * @throws IOException
 	 */
 	private Collection<Cell> runStatelessRules(KieModule preBuiltKnowledgeBase, Collection<Cell> facts,
-			HashMap<String, Cell> globals, IStatusUpdate logger) throws IOException {
+			HashMap<String, Cell> globals, boolean logRuleDetails, IStatusUpdate modelAsLogger) throws IOException {
 
 		log.debug("Creating new stateless working memory");
-		
+
 		KieContainer kc = KieServices.Factory.get().newKieContainer(preBuiltKnowledgeBase.getReleaseId());
 		StatelessKieSession kSession = kc.newStatelessKieSession();
-		
+
 		
 		// Add the logger
 		log.debug("Inserting handle to logger (via global)");
-		kSession.setGlobal("log", logger);
+		kSession.setGlobal("log",modelAsLogger );
 
 		log.debug("Checking for globals");
 		if (globals != null) {
@@ -237,28 +177,58 @@ public class RuleRunner {
 			}
 		}
 
-		//We need to 'listen' for new cells being created so we can add to our results
+		// We need to 'listen' for new cells being created so we can add to our results
 		SessionCellListener cellListener = new SessionCellListener();
 		kSession.addEventListener(cellListener);
-		
-        // setup listeners
-        kSession.addEventListener( new DebugAgendaEventListener() );
-        kSession.addEventListener( new DebugRuleRuntimeEventListener() );
 
-        // Set up a file based audit logger
-        KnowledgeRuntimeLoggerFactory.newFileLogger(kSession, "log/WorkItemConsequence.log");
-        
-        log.debug("==================== Starting Rules ====================");
-		
+		// setup listeners
+		if (logRuleDetails) {
+			kSession.addEventListener(new DebugAgendaEventListener());
+			kSession.addEventListener(new DebugRuleRuntimeEventListener());
+		}
+
+		// Set up a file based audit logger
+		KnowledgeRuntimeLoggerFactory.newFileLogger(kSession, "log/WorkItemConsequence.log");
+
+		log.debug("==================== Starting Rules ====================");
+
 		// Fire using the facts
 		kSession.execute(facts);
 
 		log.debug("==================== Rules Complete ====================");
-		List<Cell> additionalFacts =cellListener.getNewCells(facts);
-		
+		List<Cell> additionalFacts = cellListener.getNewCells(facts);
+
 		return additionalFacts;
 
 	}
 
+	/**
+	 * Run the rules
+	 *
+	 * @param rulesUrl   - array of rule files that we need to load
+	 * @param dslFileUrl - optional dsl file name (can be null)
+	 * @param facts      - Javabeans to pass to the rule engine
+	 * @param globals    - global variables to pass to the rule engine
+	 * @param logger     - handle to a logging object
+	 * @return
+	 * @throws Exception
+	 */
+	private Collection<Cell> runStatelessRules(RedModel model)
+			throws Exception {
+
+		// The most common operation on a rulebase is to create a new rule
+		// session; either stateful or stateless.
+		log.debug("Creating new rule base");
+		KieModule masterRulebase = new RuleBuilder().loadRules(model, appConfig).getKieModule();
+
+		boolean showFullRuleEngineLogs = appConfig.getShowFullRuleEngineLogs();
+
+		log.debug("running stateless rules");
+		return runStatelessRules(masterRulebase, model.getFacts(), model.getGlobals(), showFullRuleEngineLogs,model);
+	}
+
+	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {
+		this.outputStrategy = newStrategy;
+	}
 
 }

@@ -79,18 +79,6 @@ public class DocumentXConvertorTest {
 
 	}
 	
-	@Test
-	public void testWordAndWordXEquivalence() throws InvalidFormatException, IOException {
-		
-		RangeList docXRangeList = new DocumentXConvertorTest().getTestDataFromWorkbook();
-		RangeList docRangeList = new DocumentConvertorTest().getTestDataFromWorkbook();
-		
-		//Note for fixing this later
-		//might need to work through RangeList.equals and cell.Equals methods
-		//or use Apache Commonss
-		assertEquals("doc and docx should be same file, different formats yet with similar results when converted. ", docRangeList, docXRangeList);
-		
-		
-	}
+
 
 }

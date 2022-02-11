@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-import net.firstpartners.data.Config;
+import net.firstpartners.core.Config;
 
 
 /**
@@ -36,7 +36,7 @@ public class Application {
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {
 			
-			log.info("Configuration:"+myConfig);
+			log.info("Configuration:\n"+myConfig);
 
 			/**
 			log.debug("Inspect the beans provided by Spring Boot:");

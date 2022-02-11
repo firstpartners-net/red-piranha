@@ -1,0 +1,19 @@
+[ {
+  "id" : 1,
+  "inputFileLocation" : "/examples/input.xls",
+  "ruleFileLocation" : "/examples/rule.drl",
+  "outputFileLocation" : "/examples.output.xls",
+  "dslFileLocation" : "/examples/rule.dsl",
+  "descriptiontext" : "blah blah blah",
+  "testingResult" : null,
+  "sampleUrlParams" : "?inputFileLocation=%2Fexamples%2Finput.xls&ruleFileLocation=%2Fexamples%2Frule.drl&outputFileLocation=%2Fexamples.output.xls&dslFileLocation=%2Fexamples%2Frule.dsl"
+}, {
+  "id" : 2,
+  "inputFileLocation" : "/examples/input2.xls",
+  "ruleFileLocation" : "/examples/rule2.drl",
+  "outputFileLocation" : "/examples/output2.xls",
+  "dslFileLocation" : "/examples/rule2.dsl",
+  "descriptiontext" : "blah2 blah2 blah2 ",
+  "testingResult" : null,
+  "sampleUrlParams" : "?inputFileLocation=%2Fexamples%2Finput2.xls&ruleFileLocation=%2Fexamples%2Frule2.drl&outputFileLocation=%2Fexamples%2Foutput2.xls&dslFileLocation=%2Fexamples%2Frule2.dsl"
+} ]

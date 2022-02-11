@@ -1,8 +1,8 @@
 package net.firstpartners.core.log;
 
 /**
- * Marks a class as being one that we can log to. Focus is on messages going
- * back to the user
+ * Marks a class as being one that can pass 'friendly' messages to the user 
+ * rather than the system level details we output to the logs.
  * 
  * @author paulbrowne
  *
@@ -14,14 +14,7 @@ public interface IStatusUpdate {
 	 * 
 	 * @param output
 	 */
-	public void debug(String output);
-
-	/**
-	 * Log at Info Level
-	 * 
-	 * @param output
-	 */
-	public void info(String output);
+	public void addUIDebugMessage(String output);
 
 	/**
 	 * Log Exception
@@ -29,26 +22,34 @@ public interface IStatusUpdate {
 	 * @param output
 	 * @param t
 	 */
-	public void exception(String output, Throwable t);
+	public void addUIWarnMessage(String output, Throwable t);
+
+	/**
+	 * Log at Info Level
+	 * 
+	 * @param output
+	 */
+	public void addUIInfoMessage(String output);
+
+	
+	/**
+	 * Allows us to notify the user of a snapshot post rules
+	 * 
+	 * @param message
+	 */
+	public void setPostRulesSnapShot(Object dataToSnapshotToUser);
 
 	/**
 	 * Allows us to notify the user of a snapshot post rules
 	 * 
 	 * @param message
 	 */
-	public void showPreRulesSnapShot(Object dataToSnapshotToUser);
-
-	/**
-	 * Allows us to notify the user of a snapshot post rules
-	 * 
-	 * @param message
-	 */
-	public void showPostRulesSnapShot(Object dataToSnapshotToUser);
+	public void setPreRulesSnapShot(Object dataToSnapshotToUser);
 
 	/**
 	 * Notifies the user of percentage progress made
 	 * 
 	 * @param percentProgressMade 0 to 100
 	 */
-	public void notifyProgress(int percentProgressMade);
+	public void setUIProgressStatus(int percentProgressMade);
 }

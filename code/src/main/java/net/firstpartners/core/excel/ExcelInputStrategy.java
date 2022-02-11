@@ -1,5 +1,6 @@
 package net.firstpartners.core.excel;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,8 +11,10 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.file.OfficeDocument;
+import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -29,6 +32,12 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	private String excelInputFileName = null;
 	private Workbook excelWorkBook = null;
 
+	private Config appConfig;
+
+	public void setConfig(Config appConfig) {
+		this.appConfig = appConfig;
+	}
+	
 	/**
 	 * Construct a new Strategy Object
 	 * 
@@ -59,7 +68,9 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException {
 
-		InputStream inputAsStream = new FileInputStream(this.excelInputFileName);
+		File xlFile = ResourceFinder.getFileResourceUsingConfig(excelInputFileName, appConfig);
+		
+		InputStream inputAsStream = new FileInputStream(xlFile);
 
 		log.debug("converting incoming excel stream to Javabeans");
 		excelWorkBook = WorkbookFactory.create(inputAsStream);

@@ -62,7 +62,17 @@ public class CellConvertorTest {
 
 			// Get a handle to the Excel cell at Sheet / reference
 			org.apache.poi.ss.usermodel.Sheet thisSheet = SheetConvertor.getOrCreateSheet(wb, thisRedCell);
-			CellReference cellReference = new CellReference(thisRedCell.getOriginalCellReference());
+
+			//String tmpCellRef = thisRedCell.getOriginalCellReference();
+			int tmpCellRow = thisRedCell.getOriginalCellRow();
+			int tmpCellCol = thisRedCell.getOriginalCellCol();
+			
+			log.debug("Tmp Cell Row,Col:" + tmpCellRow+","+tmpCellCol);
+
+			//CellReference cellReference = new CellReference(tmpCellRef);
+			CellReference cellReference = new CellReference(tmpCellRow,tmpCellCol);
+			
+			
 			Row row = SheetConvertor.getOrCreateRow(thisSheet, cellReference);
 
 			log.debug("found Row:" + row);
@@ -72,12 +82,12 @@ public class CellConvertorTest {
 			assertNotNull(poiCell);
 			assertNotNull(thisRedCell);
 			String tmp = thisRedCell.getValueAsText();
-			
-			//Excel stores booleann in a differt way
-			if(!("[false]".contains(tmp))) {
+
+			// Excel stores booleann in a differt way
+			if (!("[false]".contains(tmp))) {
 				assertEquals(tmp, poiCell.getStringCellValue());
 			}
-			
+
 		}
 
 		// Save the Excel data - we will need it later
@@ -85,7 +95,6 @@ public class CellConvertorTest {
 		subTestConvertPoiCellToRedCell();
 	}
 
-	
 	public final void subTestConvertPoiCellToRedCell() {
 		assertNotNull(excelData);
 

@@ -15,9 +15,9 @@ import java.util.Map;
  * Holder of all multiple Named Ranges from a spreadsheet. Also provides
  * convenience methods to access all the Cells (avoid the intermediate step of
  * getting the Ranges). Since we also map from other sources into these classes,
- * a RangeHolder could instead contain tables from a Word Document.
+ * a RangeList could instead contain tables from a Word Document.
  * 
- * It is designed to be a 'collection' which allows us to
+ * It is designed to be a 'collection' which allows us to manipulate using standard Java iterators.
  * 
  * @author paul
  *
@@ -106,7 +106,7 @@ public class RangeList implements List<Range>, Serializable {
 	}
 	
 	/**
-	 * returns the first cell with an exact manth
+	 * returns the first cell with an exact match
 	 * 
 	 * @param exactName - search criteria
 	 * 

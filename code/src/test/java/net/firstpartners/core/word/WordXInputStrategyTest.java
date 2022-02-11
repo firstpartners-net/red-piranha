@@ -9,13 +9,10 @@ import org.slf4j.LoggerFactory;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.MemoryOutputStrategy;
-import net.firstpartners.core.RedModelFactory;
+import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RuleRunnerFactory;
 import net.firstpartners.core.file.PDFOutputStrategy;
-import net.firstpartners.core.log.EmptyStatusUpdate;
-import net.firstpartners.data.Config;
-import net.firstpartners.data.RedModel;
 
 public class WordXInputStrategyTest {
 
@@ -29,20 +26,20 @@ public class WordXInputStrategyTest {
 	public final void testdoxcCallRulesFromFile() throws Exception {
 	
 
-		RedModel redModel = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
-		redModel.addRuleLocation(TestConstants.RULES_FILES);
+		RedModel redModel = new RedModel(TestConstants.WORDX_DATA_FILE, TestConstants.RULES_FILE,
+				"some-dummy.pdf");
+		
 
 		log.debug("rule source created");
 
-		RuleRunner runner = RuleRunnerFactory.getRuleRunner(TestConstants.WORDX_DATA_FILE, redModel,
-				"some-dummy.pdf");
+		RuleRunner runner = RuleRunnerFactory.getRuleRunner(redModel);
 		assertTrue(runner.getDocumentOutputStrategy() instanceof PDFOutputStrategy);
 
 		// set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 		runner.setOutputStrategy(outputStrategy);
 
-		runner.callRules(new EmptyStatusUpdate(),redModel);
+		runner.callRules(redModel);
 		assertNotNull(outputStrategy.getProcessedDocument());
 
 	}

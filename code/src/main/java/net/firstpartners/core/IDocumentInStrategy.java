@@ -26,6 +26,11 @@ public interface IDocumentInStrategy {
 	OfficeDocument getOriginalDocument();
 
 	/**
+	 * Allows us to pass details of the environment
+	 */
+	void setConfig(Config config);
+	
+	/**
 	 * State where out input is coming from
 	 * 
 	 * @return

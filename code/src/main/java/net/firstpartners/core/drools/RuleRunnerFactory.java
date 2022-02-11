@@ -8,20 +8,18 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
-import net.firstpartners.core.RedModelFactory;
-import net.firstpartners.core.drools.loader.IRuleLoaderStrategy;
-import net.firstpartners.core.drools.loader.RuleLoaderFactory;
+import net.firstpartners.core.RedModel;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.file.CSVOutputStrategy;
-import net.firstpartners.core.file.JsonOutputStrategy;
 import net.firstpartners.core.file.PDFOutputStrategy;
+import net.firstpartners.core.json.JsonInputStrategy;
+import net.firstpartners.core.json.JsonOutputStrategy;
 import net.firstpartners.core.word.WordInputStrategy;
 import net.firstpartners.core.word.WordXInputStrategy;
-import net.firstpartners.data.Config;
-import net.firstpartners.data.RedModel;
 
 /**
  * Return an instance of RuleRunner, Appropriately configured with the various
@@ -34,7 +32,7 @@ public class RuleRunnerFactory {
 
 	// Handle to the logger
 	private static final Logger log = LoggerFactory.getLogger(RuleRunnerFactory.class);
-	
+
 	// How we identify file types
 	public static final String SUFFIX_WORD = ".doc";
 	public static final String SUFFIX_WORDX = ".docx";
@@ -65,6 +63,8 @@ public class RuleRunnerFactory {
 			inputSuffixMaps.put(SUFFIX_WORDX, WordXInputStrategy.class);
 			inputSuffixMaps.put(SUFFIX_EXCEL, ExcelInputStrategy.class);
 			inputSuffixMaps.put(SUFFIX_EXCELX, ExcelInputStrategy.class); // same
+			inputSuffixMaps.put(SUFFIX_JSON, JsonInputStrategy.class);
+			
 		}
 
 		if (outputSuffixMaps == null) {
@@ -73,9 +73,8 @@ public class RuleRunnerFactory {
 			outputSuffixMaps.put(SUFFIX_PDF, PDFOutputStrategy.class);
 			outputSuffixMaps.put(SUFFIX_EXCEL, ExcelOutputStrategy.class);
 			outputSuffixMaps.put(SUFFIX_EXCELX, ExcelOutputStrategy.class); // same
-			outputSuffixMaps.put(SUFFIX_JSON, JsonOutputStrategy.class); // same
-			
-			
+			outputSuffixMaps.put(SUFFIX_JSON, JsonOutputStrategy.class); 
+
 		}
 
 	}
@@ -90,8 +89,8 @@ public class RuleRunnerFactory {
 	static Class<?> getInputMapping(String fileName) {
 
 		assert fileName != null;
-		
-		//change to lower case
+
+		// change to lower case
 		fileName = fileName.toLowerCase();
 
 		buildReferenceTables();
@@ -99,17 +98,17 @@ public class RuleRunnerFactory {
 		int splitPoint = fileName.lastIndexOf(".");
 		if (splitPoint == -1) {
 			// nothing found
-			throw new IllegalArgumentException("Unable to guess the type of file (based on where '. is) for:" + fileName);
+			throw new IllegalArgumentException(
+					"Unable to guess the type of file (based on where '. is) for:" + fileName);
 		}
 		String suffix = fileName.substring(splitPoint, fileName.length());
 
 		log.debug("Looking for input Mapping against suffix:" + suffix);
 
 		Class<?> strategyClass = inputSuffixMaps.get(suffix);
-		
+
 		log.debug("Found strategy class:" + strategyClass);
 
-		
 		if (strategyClass == null) {
 			throw new IllegalArgumentException("No Input Strategy Found to read files of type:" + suffix);
 		}
@@ -129,10 +128,16 @@ public class RuleRunnerFactory {
 		assert fileName != null;
 
 		fileName = fileName.toLowerCase();
-		
+
 		buildReferenceTables();
 
 		int splitPoint = fileName.lastIndexOf(".");
+		if (splitPoint == -1) {
+			// nothing found
+			throw new IllegalArgumentException(
+					"Unable to guess the type of Output file (based on where '. is) for:" + fileName);
+		}
+		
 		String suffix = fileName.substring(splitPoint, fileName.length());
 
 		log.debug("Looking for output Mapping against suffix:" + suffix);
@@ -147,83 +152,77 @@ public class RuleRunnerFactory {
 	}
 
 	/**
-	 * Convenience constructor, state rules as single string
+	 * Overloaded method, for convenience
 	 * 
-	 * @param inputFileName      - where we get the data from
-	 * @param ruleSourceAsString - name of a single rule file
-	 * @param outputFileName     - where we will output the file to
-	 * @return RuleRunner Object with the correct input / output Strategies
-	 *         configured
-	 * @throws InvocationTargetException - from underlying input - output libs
-	 * @throws IllegalArgumentException- from underlying input - output libs
-	 * @throws IllegalAccessException    - from underlying input - output libs
-	 * @throws InstantiationException    - from underlying input - output libs
-	 * @throws SecurityException         - from underlying input - output libs
-	 * @throws NoSuchMethodException     - from underlying input - output libs
+	 * @param dataModel
+	 * @return
+	 * @throws InvocationTargetException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
 	 */
-	public static RuleRunner getRuleRunner(String inputFileName, String ruleSourceAsString, String outputFileName)
-			throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException,
-			IllegalArgumentException, InvocationTargetException {
+	public static RuleRunner getRuleRunner(RedModel dataModel) throws NoSuchMethodException, SecurityException,
+			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 
-		RedModel mySource = RedModelFactory.getFreshRedModelUsingConfiguration(new Config());
-		mySource.addRuleLocation(ruleSourceAsString);
+		return getRuleRunner(dataModel, new Config());
 
-		return getRuleRunner(inputFileName, mySource, outputFileName);
 	}
 
 	/**
 	 * Create a properly configured RuleRunner for the Input / Output file types we
-	 * are passing
+	 * are passing within the RedModel cargo object
 	 * 
-	 * @param inputFileName      - where we get the data from
-	 * @param ruleSourceAsString - name of a multiple rule files
-	 * @param outputFileName     - where we will output the file to
+	 * @param dataModel - where we get the data from
+	 * @param appConfig - application Configuration
 	 * @return RuleRunner Object with the correct input / output Strategies
 	 *         configured
 	 * @throws InvocationTargetException - from underlying input - output libs
 	 * @throws IllegalArgumentException- from underlying input - output libs
 	 * @throws IllegalAccessException    - from underlying input - output libs
 	 * @throws InstantiationException    - from underlying input - output libs
-	 * @sthrows SecurityException         - from underlying input - output libs
-	 * @throws NoSuchMethodException     - from underlying input - output libs
+	 * @sthrows SecurityException - from underlying input - output libs
+	 * @throws NoSuchMethodException - from underlying input - output libs
 	 */
-	public static RuleRunner getRuleRunner(String inputFileName, RedModel ruleSource, String outputFileName)
+	public static RuleRunner getRuleRunner(RedModel dataModel, Config appConfig)
 			throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException {
 
 		// check our incoming params
-		assert inputFileName != null;
-		assert ruleSource != null;
-		assert outputFileName != null;
+		assert dataModel != null;
+		assert dataModel.getInputFileLocation() != null;
+		assert dataModel.getOutputFileLocation() != null;
 
-		// Make sure we get the right type of loader
-		IRuleLoaderStrategy ruleLoaderStrategy = RuleLoaderFactory.getRuleLoader(ruleSource);
 
 		// Decide on our input strategy
-		Class<?> strategyClass = getInputMapping(inputFileName);
+		Class<?> strategyClass = getInputMapping(dataModel.getInputFileLocation());
 
 		log.debug("trying to create Strategy Object from class:" + strategyClass);
 		Constructor<?> constructor = strategyClass.getConstructor(String.class);
-		IDocumentInStrategy inputStrat = (IDocumentInStrategy) constructor.newInstance(inputFileName);
+		IDocumentInStrategy inputStrat = (IDocumentInStrategy) constructor
+				.newInstance(dataModel.getInputFileLocation());
+		
+		//pass in the config
+		inputStrat.setConfig(appConfig);
 
 		// Decide on our output strategy
 		strategyClass = null;
-		strategyClass = getOutputMapping(outputFileName);
+		strategyClass = getOutputMapping(dataModel.getOutputFileLocation());
 
 		log.debug("trying to create Strategy Object from class:" + strategyClass);
 		constructor = strategyClass.getConstructor(String.class);
-		IDocumentOutStrategy outputStrat = (IDocumentOutStrategy) constructor.newInstance(outputFileName);
+		IDocumentOutStrategy outputStrat = (IDocumentOutStrategy) constructor
+				.newInstance(dataModel.getOutputFileLocation());
+		
+		//pass in the config
+		outputStrat.setConfig(appConfig);
 
 		log.debug("Using DocumentInputStrategy:" + inputStrat.getClass());
-		log.debug("Using RuleLoader:" + ruleLoaderStrategy);
 		log.debug("Using DocumentOutputStrategy:" + outputStrat);
 
-		return new RuleRunner(inputStrat, ruleLoaderStrategy, outputStrat);
+		return new RuleRunner(inputStrat, outputStrat, appConfig);
 
 	}
-	
-
-
-
 
 }

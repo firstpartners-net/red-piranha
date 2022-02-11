@@ -1,5 +1,6 @@
 package net.firstpartners.core.word;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,28 +13,32 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.file.OfficeDocument;
+import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.data.RangeList;
 
 /**
  * Specific steps needed for feeding Word (pre 2003) Documents into and out of the Rule
  * Engine
- * 
+ *
  * @author PBrowne
  *
  */
 public class WordInputStrategy implements IDocumentInStrategy {
 
+	private Config appConfig;
+
 	// Handle to the loggers
 	private Logger log = LoggerFactory.getLogger(this.getClass());
+	private XWPFDocument poiDoc = null;
 
 	private String wordInputFileName = null;
-	private XWPFDocument poiDoc = null;
 
 	/**
 	 * Construct a new Strategy Object
-	 * 
+	 *
 	 * @param wordInputFileName
 	 */
 	public WordInputStrategy(String wordInputFileName) {
@@ -41,17 +46,13 @@ public class WordInputStrategy implements IDocumentInStrategy {
 	}
 
 	@Override
-	public OfficeDocument getOriginalDocument() {
-		return new OfficeDocument(poiDoc);
-	}
-
 	public String getInputName() {
 		return wordInputFileName;
 	}
 
 	/**
 	 * Access a Stream, convert it to Red JavaBeans (representing Office Ojbects)
-	 * 
+	 *
 	 * @return RangeList
 	 * @throws EncryptedDocumentException
 	 * @throws IOException
@@ -62,17 +63,29 @@ public class WordInputStrategy implements IDocumentInStrategy {
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException {
 
 		log.debug("converting incoming word stream to Javabeans");
-		
-		InputStream inputAsStream = new FileInputStream(wordInputFileName);
+
+		File wordFile = ResourceFinder.getFileResourceUsingConfig(wordInputFileName, appConfig);
+
+		InputStream inputAsStream = new FileInputStream(wordFile);
 		POIFSFileSystem fs = new POIFSFileSystem(inputAsStream);
 		HWPFDocument poiDoc = new HWPFDocument(fs);
-		
-	
+
+
 		RangeList myRange = DocumentConvertor.convertFromPoiWordIntoRedRange(poiDoc);
 		inputAsStream.close();
 
 		return myRange;
 
+	}
+
+	@Override
+	public OfficeDocument getOriginalDocument() {
+		return new OfficeDocument(poiDoc);
+	}
+
+	@Override
+	public void setConfig(Config appConfig) {
+		this.appConfig = appConfig;
 	}
 
 	public void setInputFileName(String wordInputFileName) {

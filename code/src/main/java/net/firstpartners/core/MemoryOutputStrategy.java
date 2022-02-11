@@ -2,10 +2,11 @@ package net.firstpartners.core;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.firstpartners.core.excel.SpreadSheetConvertor;
 import net.firstpartners.core.file.OfficeDocument;
-import net.firstpartners.core.log.IStatusUpdate;
-import net.firstpartners.core.log.SpreadSheetStatusUpdate;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -17,34 +18,15 @@ import net.firstpartners.data.RangeList;
  */
 public class MemoryOutputStrategy implements IDocumentOutStrategy {
 
-	private IStatusUpdate docLogger;
+	private Config appConfig;
 
+	
+	// Logger
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	// Name of the outputfile
 	private OfficeDocument processedDoc = null;
 
-	/**
-	 * Write out and logs we hold to the document
-	 * 
-	 */
-	@Override
-	public void flush() {
-
-	}
-
-	/**
-	 * Write out any documents we hold to anybody else interested
-	 * 
-	 * @param logger
-	 */
-	@Override
-	public void flush(IStatusUpdate logger) {
-
-		if (logger instanceof SpreadSheetStatusUpdate) {
-
-			((SpreadSheetStatusUpdate) this.docLogger).flush(logger);
-
-		}
-	}
 
 	/**
 	 * Makes more sense for other implementions of this interface - tells users
@@ -70,17 +52,12 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	public void processOutput() throws IOException {
 
 		// do nothing - we just keep it in momeory
+		log.debug("Config:"+appConfig);// to clear compiliation warning
+		
 	}
 
-	/**
-	 * Allows us to set a Logger that will flush to an Document such as Spreadheet
-	 * 
-	 * @param spreadSheetLogger
-	 */
-	@Override
-	public void setDocumentLogger(IStatusUpdate spreadSheetLogger) {
-		this.docLogger = spreadSheetLogger;
-
+	public void setConfig(Config appConfig) {
+		this.appConfig = appConfig;
 	}
 
 	protected void setProcessedDocument(OfficeDocument processedWorkbook) {

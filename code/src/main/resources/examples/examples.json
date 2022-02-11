@@ -1,0 +1,22 @@
+[ 
+{
+  "id" : 1,
+  "inputFileLocation" : "1_Hello_World/sample-excel.xls",
+  "ruleFileLocation" : "1_Hello_World/hello.drl",
+  "outputFileLocation" : "1_Hello_World/output.xls",
+  "dslFileLocation" : "",
+  "descriptiontext" : "Just a basic Hello World Sample. It reads in the Excel file, causes a rule to fire against the first cell, changing it to 'HelloWorld'. Note that the outputfile is different, we don't overwrite any Excel files.",
+  "testingResult" : ""
+  		
+} 
+,
+{
+  "id" : 2,
+  "inputFileLocation" : "chocolate-factory/chocolate-data.xls",
+  "ruleFileLocation" : "chocolate-factory/log-then-modify-rules.drl",
+  "outputFileLocation" : "chocolate-factory/output.xls",
+  "dslFileLocation" : "",
+  "descriptiontext" : "This is a simple example. It reads in the data from the Excel file, causes a rule to fire against each cell. Each cell is logged, and marked as changed",
+  "testingResult" : ""
+  		
+} ]

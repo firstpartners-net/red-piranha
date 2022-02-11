@@ -24,7 +24,6 @@ public class ExcelOutputStrategyTest {
 		ExcelOutputStrategy excelOut = new ExcelOutputStrategy(TestConstants.EXCEL_TMP_FILE);
 		excelOut.setWorkbook(wb);
 		
-		
 		//Process the output
 		excelOut.processOutput();
 		

@@ -12,10 +12,6 @@ Excel is great for collecting data. But once things get more complicated, you ma
 
 Powered by [RedHat Drools](http://www.jboss.org/drools), Red-Piranha allows you to state your Excel business rules in a simple **when ... then** format that everybody can understand.  It acts as a bridge between Excel / Microsoft Office and Business Rules and workflow Engine (including AI and Planner) from Red Hat.
 
-_TODO Diagram Showing how RP maps Excel to Business Rule Engine_
-
-* _Spreadsheet + Business Rules = Result_
-
 Instead of having your knowledge 'disappear' into complicated formulas that you can't read, a Rules Engine keeps things in a simple 'English' like format. Even better, because of the way it works 'under the covers' it is faster and more powerful than code translated into a technical language.
 
 ## What is a Business Rule
@@ -29,134 +25,56 @@ All people have business rules. Examples of a 'real' busniess rules that can be 
 
 Because business rules can be written in 'near English' language they are much more meaningful to non-technical domain experts. In this format, the knowledge they contain is easier to manage, maintain and share. They also carry the advantage of separating the meaning of the business from the actual technical implementation.
 
+## What is Red Piranha
+
+By default, Drools,  doesn't read in Excel Data. Red Piranha fills in this gap with:
+
+* A user Interface to run the rules from your desktop
+* Conversion of your Excel Data into a format the rule engine can read.
+* Conversion of the outout back into a (different) Excel file.
+* Samples to get your started.
+* Information to show you what is going on within the Rule Engine.
+
+## Main features 
+
+
+![Red Piranha Screenshot](/doc/images/main-screenshot.jpg)
+
+* View in your favourite browser
+* Running on Localhost (your local machine)
+* Current Settings - shows the current input file, the rules being applied to it, the output file.
+* Samples to help you get started.
+* Progress messages - did the rules run successfully?
+* More detailled messages from within the Rule Engine
+* Information from Input files - what our conversion from Excel into Java Objects looks like.
+* Information output - what the information coming out of the rule engine looks like before we save it as Excel.
+
 ## 3 Minute Quickstart
 
-The information in this document is aimed at getting Excel Power Users up and running with Red Piranha. If you're a developer, or want to dive 'under the covers' [more detailed info is here](doc).
+_Work in progress_ - 
+The information in this document is aimed at getting Excel Power Users up and running with Red Piranha. Take a 
+[look at the guides in this folder](doc).
 
-_TODO Docker_
+## Docker Example
+If you're into Docker, a packaged example is available on Dockerhub.
+https://hub.docker.com/repository/docker/paulbrowne/redpiranha
 
-* Explain what docker is 
-Docker setup
-* Starting Docker image(s)
-* Red Piranha
-* Business Centraal (?)
-* Screenshot of webpage
+When running the image, map port 7000, so that you can connect your browser to the application running within docker.
 
-## Running the Examples
-### How does it work
+The docker  build is not yet automated, so could be slightly (or a lot) behind the code in this repository.
 
-In General, to Use Red Piranha you:
+## Downloading and running the code
 
-  1. Tell it where the Spreadsheet is, containing all your information, numbers and other data.
-  1. Tell it there Business Rules are that you want to apply to this spreadsheet.
-  1. Run the Rules
-  1. View the Result
+The Project follows a standard structure, using the Spring Boot Framework and the Maven build tool. So if you're a Java developer, it's pretty easy for you to download and run.
 
-### View the included examples
+1. Download and install Java
+1. Download and install Apache Maven
+1. Download (or checkout) the code from this GitHub Repository, unzip it if needed.
+1. Open the `code` folder within this project in a console / terminal
+1. Start the application using  `mvn spring-boot:run`
+1. Open a Browser and point at `http://localhost:7000/`
 
-_TODO Complete Section_
-
-### Notes on the examples the Example
-
-_TODO tidy_
-* Running
-* Does not overwrite
-* Config
-* Logs
-* Screens
-* Step through what it is doing
-* Reads from Word ..
-* Applies rules
-* Appends to CSV
-* Useful Tools
-* GUI Notes
-* Drill down , view cell, can copy paste into rules (and remove filters)
-* DRL Notes
-* Case senstive
-* CSV Notes
-* Doesn't like it when file is left open
-* Notion of templating
-### Screens - details
-
-_TODO tidy_
-### Logs - More info on what is going on
-
-
-_TODO tidy_
-Log then modified - simple sample of where modified
-
-* Launch4j.log
-* Red-piranha.log
-
-
-
-## Writing your own Rules
-
-_TODO Update Section_
-* _Editing using Business Central_
-* _Editing Manually_
-* _Editing using IDE_
-
-
-  1. Edit rules online - e.g. using Google Docs, or host them anywhere on the web (e.g. Google Sites, file on webserver _TODO instructions for these_
-  1. Make the rules publicly available (so Red-Piranha can find them)
-  1. _TODO Helps if links to red-piranha project_
-  1. _TODO Suggest copy existing template_
-## Sharing and the Community
-
-_TODO Tie this doc to the community_
-
-* How do I get help
-* Where do I find more examples?
-* Where can I show off my example?
-* Auto submit of successful deploys
-* why your email is added to email list (and how to remove?)
-* Gallery
-
-# Frequently Asked Questions
-
-_TODO Explain what business rules are_
-
-
-
-### Writing your first rule
-
-_TODO tidy_
-
-Writing your first rule
-
-* Refer to install notes
-* Start with existing Batch
-* Update config file
-
-* Input and output ; close to what you want as possible
-* Data Model is same, but there may be small differneces
-
-* First run
-
-* What you should see (work through tabs)
-* Possible exceptions
-
-* Esp around
-
-### More rules 
-
-_TODO tidy_
-
-* Refer to showcase (of every possible rule)
-
-* Using drl
-* Without using drl
-
-Checks for values
-
-Using offsets
-
-Cell Object (and javadoc on it)
-
-Iterative development
-
-Link to sample rules catalog
+Samples are integrated into the main webpage - so take a look at them as a next step.
 
 ## Older Book - Beginning Business rules with JBoss Drools
 
@@ -166,4 +84,4 @@ You may be here looking looking for the code samples from the book **Beginning B
 
 We have snapshotted the [code that the book was written on here](https://github.com/paulbrowne-irl/red-piranha/tree/v0.9). You probably don't want this, the libraries this code is based on are now deprecated. The code in this site is much more up to date.
 
-Images from [here under GPL](http://www.iconarchive.com/show/glaze-icons-by-mart/spreadsheet-icon.html)
+

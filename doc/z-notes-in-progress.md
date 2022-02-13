@@ -54,6 +54,9 @@ Server URL : http://localhost:8080/kie-server/services/rest/server
 Main docker image: https://github.com/jboss-dockerfiles/business-central/tree/main/server
 
 
+Red Hat Process Automation Manager - guide
+https://access.redhat.com/documentation/en-us/red_hat_process_automation_manager/7.12/html-single/installing_and_configuring_red_hat_process_automation_manager/index#eap-users-create-proc_install-on-eap
+
 
 Drools Articles - useful for 
 https://sergiuoltean.com/2021/02/15/drools-workbench-and-kie-server/

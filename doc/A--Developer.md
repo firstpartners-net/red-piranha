@@ -1,4 +1,26 @@
-# Red Piranha - Information for Developers
+# Notes on extending Red Piranha as a developer
+
+* FIND HOME FOR
+  * Setup Eclipse
+
+Bonus Chapter 	The above 12 chapters are a complete book, aimed at the Business user, with a full solution that they can run on their own PC
+ 
+The bonus chapter shows how to evolve the tool into a full Enterprise solution – reassuring them that they are on “the right track” with the Business rules based approach. 
+ 
+Since this bonus chapters can be more code based, it makes the rest of the book cleaner (e.g. here’s a graphical way of doing it – if you want to dive deeper look at the Bonus chapter …)
+ 
+Based on an existing GitHub repository, this chapter gives a Java developer with knowledge of standard tools (e.g. Maven, Spring) a worked starter example that they can quickly expand into a fully deployable Enterprise Web Project customized to specific business needs.
+ 
+To repeat – this is *not* needed for Business Users to give full value out of the book, but readers do want a clear roadmap to build on what they have learned.	•	P2
+•	Why this chapter is here (for business users)
+•	From Power user to Developer
+•	Walk through of Red Piranha archiecture
+•	Java, Maven, Spring
+•	Running examples locally	Simple Example of how to extend
+
+
+* NOTES
+
 
 Red Piranha is aimed at 'Excel Power Users'. The information in this page goes 'under the covers' if you (as a Developer) are looking to understand and extend the project.
 
@@ -16,7 +38,8 @@ Red Piranha is aimed at 'Excel Power Users'. The information in this page goes '
 * The project is based on Java, Spring and Maven, so many of the directories should be in the standard locations. JUnit tests are also included.
 * The `mvn eclipse:eclipse` command (or equivalent for your favourite IDE ) will generate files for you to easily open and run in the editor.
 * In general, the system is stateless and input files are **not** overwritten. This means you can run it (several times) and get the same results, or make changes without breaking too much.
-### Key files
+
+## Key files
 
 * `pom.xml` lists the dependencies for the project. Maven will auto-download these
 * `application.properties` contains the values Spring will pass in as it auto-wires the project on startup. `Config.java` will hold many of these at runtime.
@@ -26,6 +49,15 @@ Red Piranha is aimed at 'Excel Power Users'. The information in this page goes '
 * Different implementations of `IStatusUpdate.java` allow us to log what is happening in th system / pass back user friendly updates.
 * `Ìndex.html`is templated using Spring Thymeleaf - displays the output value back to the user.
 * Samples are contained in `src/main/resources/examples`. 
+
+### Design
+
+Key design principles
+
+* Robust simple
+* As much Established frameowrks as possible
+* integration and pre/post release tests (e.g. Selenumum)
+* Examples easy to use
 
 ## Other Project Notes
 
@@ -44,22 +76,5 @@ Most business users are more comfortable with Excel and the Web than with Java. 
 * With Drools, you normally supply (1) The rules file (2) A Model (or data structure) holding the information that the rules act on (3) Java code to tie it all together.
 * With Red-Piranha all you need is 1) the rules file. The Data structure is always excel, and there is standard Java code to combine the Rules and the excel spreadsheet. This makes it easier, although Drools gives you more flexibility (with a bit more work!).
 
-
-### The Datamodel
-
-Red Piranha converts all office documents intot a standad datamodel, to make it easier to write rules against it.
-
-* Main Javadoc <https://paulbrowne-irl.github.io/red-piranha/javadocs/>
-* Cell - <https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/data/Cell.html>
-* Range  - <https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/data/Range.html>
-* RangeList - <https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/data/RangeList.html>
-* Convertors
-    * Excel Input Strategy <https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/excel/ExcelInputStrategy.html>
-    * Excel Output Strategy <https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/excel/ExcelOutputStrategy.html>
-    * CSV Output Strategy <https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/file/CSVOutputStrategy.html>
-    * JSON Output Strategy <https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/file/JsonOutputStrategy.html>
-    * WordInput Strategy <https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/word/WordInputStrategy.html>
-    * Word (newer version) Input Strategy
-<https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/word/WordXInputStrategy.html>
 
 

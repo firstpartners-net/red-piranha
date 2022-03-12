@@ -4,8 +4,15 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## NEXT Book Samples
 
-* What book samples
+* What book samples - open examples.txt
+* synch fully to github , new branch
+* 
 
+* Example for simple hellow world
+  * 1st sample to "Hello world"
+  * look at moving over private samples as basis for book
+
+  
 ### Aim of Next Sprint
 
 Platform (with existing examples) and good draft of user and dev documentation.
@@ -18,9 +25,7 @@ Platform (with existing examples) and good draft of user and dev documentation.
 
 ## Next
 
-* Example for simple hellow world
-  * 1st sample to "Hello world"
-  * look at moving over private samples as basis for book
+
 
 * LATER
   * understand model back and forward better

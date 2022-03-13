@@ -20,7 +20,7 @@ Platform (with specific examples)
 
 ## Examples
 
-### First examples rules
+* First examples rules
 
 * 02-example-HelloWorld.md - Most simple possible
 * 03-example-write-first-rule.md
@@ -36,10 +36,7 @@ Platform (with specific examples)
 07-example-workflow.md
 08-example-forms.md
 
-	• Power Automoate flow sample
-		○ Watches for onedrive file chagnes
-		○ Runs flow
-	* Then extend for AI 
+
 
 ## examples decision tables and text based
 

@@ -13,4 +13,30 @@
  
 Move intro to project to Chap 2.
  
+
+ NOTES
+• Chapter 1 - add to "list of problems"
+	• Business Logic trapped in ancient code 
+• Cover the Red Piranha Data Model in detail
+
+
+
+WHO IS THIS BOOK FOR
+
+
+
+
+Who is this book for?
+	• Excel Power user
+		○ Don't need to code
+		○ Willing to look at "next step"
+		○ When solving problems Used to splitting big problems into little problems and solving htem one by one
+	• Height of tech skills
+		○ Download and install programs app
+		○ Willing to google for answers
+		○ Windows explorer
+	• Or Developer looking to evvaluate what buisness rules technology can do for you
+	• Other document types
+
+
  	 

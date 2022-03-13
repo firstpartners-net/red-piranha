@@ -1,3 +1,6 @@
+
+Example: how to deploy example built in 4-5-6 to azure
+
 Tnotes - Azure and Openshift
 
 Wednesday 22 December 2021

@@ -8,6 +8,9 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
   * 1st sample to "Hello world"
   * look at moving over private samples as basis for book
 
+* Named ranges in Excel
+* Script 
+
 ## Remember
 
 Platform (with specific examples)

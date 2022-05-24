@@ -7,7 +7,6 @@ Book notes
 	• Docker compose of several images needed
 		○ Script and notes in docker folder
 		○ SCREENSHOT OF WHAT DOCKER PROCESSES LOOK LIKE IN DOCKER DESKTOP
-		○ 
 		○ Trouble shooting - run separately
 
 
@@ -49,8 +48,6 @@ BUILDING DOCKER IMAGE USING SPRING
 
 
 
-
-
 SCREENSHOT OF CONFIGURATION THAT APPEARS WHEN BUILDING IMAGE
 
 The configuration used in this image
@@ -61,9 +58,6 @@ In container, maps to : /workspace/BOOT-INF/classes/examples$
 
 	• Can use Bash within Spring generated image
 	
-
-
-
 
 
 
@@ -85,4 +79,7 @@ PUSHING BUILD TO DOCKERHUB
 	• docker tag 902ab60e9998 paulbrowne/redpiranha:latest
 	• docker push paulbrowne/redpiranha:latest
 	
+
+HOW TO MODIFY JBOSS DOCKER IMAGE
+https://linuxhandbook.com/modifying-docker-image/
 

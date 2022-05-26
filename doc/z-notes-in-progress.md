@@ -32,11 +32,7 @@ http://www.mastertheboss.com/bpm/jbpm6/installing-the-business-central-on-wildfl
 Drools onboarding
 https://nicolas-heron.gitbook.io/droolsonboarding/
 
-Deploying Kogito on Azure
-https://medium.com/kie-foundation/deploying-a-custom-kogito-service-on-kubernetes-with-kogito-operator-be031a2fba94
 
-Is it possible to deploy Kogito to Azure, use that as a kieserver?
-https://github.com/kiegroup/kogito-images
 
 
 Jboss on Azure

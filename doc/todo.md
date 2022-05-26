@@ -4,30 +4,70 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## NEXT Book Samples
 
-* What book samples - open examples.txt
-* synch fully to github , new branch
-* 
-
 * Example for simple hellow world
   * 1st sample to "Hello world"
   * look at moving over private samples as basis for book
 
-  
-### Aim of Next Sprint
+* Named ranges in Excel
+* Script 
 
-Platform (with existing examples) and good draft of user and dev documentation.
+## Remember
 
+Platform (with specific examples)
+
+* Good draft of user and dev documentation.
 * Can hand to Java developer and build
 * Could be run by simple end-user
-    * (e.g. (with Docker or Native) - )
+  * (e.g. (with Docker or Native) - )
+* Tests automoated
+
+## Examples
+
+* First examples rules
+
+* 02-example-HelloWorld.md - Most simple possible
+* 03-example-write-first-rule.md
+
+
+### examples build test chapter 4-6
+
+04-example-rule-main-features.md
+05-example-testing.md
+06-example-rule-other-features.md
+
+## examples workflow forms chapter 7 and 8
+07-example-workflow.md
+08-example-forms.md
+
+
+
+## examples decision tables and text based
+
+09-example-decision-table.md
+09-example-dsl.md
+12-example-text-based-rules.md
+?? any other - RPify existing drools sample
+
+
+
+## Example deploy notes Azure
+10-example-azure.md
+
+* Azure (Plan B?)
+* Possible use of App Service
+
+
+
+## Walk through extending - Bonus Chapter
+Current Tech Example needed
+
 
     
 
-## Next
+## later
 
 
-
-* LATER
+* Tidy Later
   * understand model back and forward better
   * trigger exception, make sure it displays ok
   * tidy of readme x2
@@ -51,6 +91,10 @@ Platform (with existing examples) and good draft of user and dev documentation.
   * Add Spring MVC Tests
   * Review update dependencies (in Pom.xml)
 
+* what features needed for book examples - Possible
+  * Extract Named ranges from Excel
+  * Choice of colours to update (?)
+
 ## Todo Next 
 
 * Figure out why current excel example is outputting incorrectly
@@ -60,9 +104,7 @@ Platform (with existing examples) and good draft of user and dev documentation.
 * Understand Github pages, Jekyll and see if can build an even 'friendlier' version of this site.
 * (another) review and tidy of two readme pages
 
-* what features needed for book examples - Possible
-    * Extract Named ranges from Excel
-    * Choice of colours to update (?)
+
 
 
 
@@ -164,32 +206,3 @@ LATER
 		
 			
 
-Current Tech Example needed
-	• Docker version of Jboss / Wildfly / Business Centraal - 
-		○ CONFIG
-			§ How to use GUI to configure share (local, then Network)
-		○ EXTRA  - extend
-			§ Code to watch for excel loaded, then run rules (Red Piranha)
-	• Sample that can be loaded by user into this
-	• Excel sheet to tie to existing sample (e.g. Mortgage application)
-	• Power Automoate flow sample
-		○ Watches for onedrive file chagnes
-		○ Runs flow
-	• Testing
-		○ ??
-	• AI
-		○ ??
-	• Possible
-		○ Calling Drools from Python
-	• SAMPLEt
-		○ Docker (for use in main book)
-		○ Azure (Plan B?)
-			§ Possible use of App Service
-		○ Intructions (Plan C - give to tech department)
-			§ How to set everything up from first principles
-		○ Red Hat Tooling (based on Eclipse)
-		
-
-Update table below
-	• Straight run through on docker local examples
-Move Azure / other options to appendix

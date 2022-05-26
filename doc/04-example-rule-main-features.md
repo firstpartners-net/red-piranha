@@ -1,1 +1,0 @@
-Simple writing of first rule in workbench

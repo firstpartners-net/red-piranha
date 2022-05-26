@@ -10,9 +10,6 @@ Go trhoguh actions
 
 
 
-
-
-
 7 Workflows with Rules and Microsoft Power Automate	
 
 •	Danger! When you have a hammer, everything looks like a nail – understand why we are introducing other tools.

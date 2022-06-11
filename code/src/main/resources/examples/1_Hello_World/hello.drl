@@ -1,15 +1,15 @@
 package net.firstpartners.sample.ExcelDataRules;
 
-
 import net.firstpartners.core.log.IStatusUpdate;
 
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.Range;
 
+//Red Piranha gives us a logging object
 global IStatusUpdate log;
 
 
-
+	
 rule "print cell initial values" 
 
 

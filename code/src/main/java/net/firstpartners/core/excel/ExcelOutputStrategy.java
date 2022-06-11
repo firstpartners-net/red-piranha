@@ -95,18 +95,20 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	void outputToFile(Workbook wb) throws IOException {
 
-		String outputFile = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
+		String outputFileDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
+		String outputFile = outputFileDir+"//"+outputFileName;
 		
 		// Write out modified Excel sheet
 		try {
+			log.debug("trying to output Excel to:"+outputFile);
 			FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
 			outputToStream(wb, fileOutputStream);
 			fileOutputStream.close();
-		} catch (Exception ace) {
+	 	} catch (Exception ace) {
 			// Unable to output file, then drop back and log via console instead
-			log.error("Unable to output to file - logging to console instead",ace);
+			log.error("Unable to output to file - logging to console and default dir instead",ace);
 			outputToConsole(wb);
-		}
+		
 
 	}
 

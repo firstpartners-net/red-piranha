@@ -108,6 +108,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 			// Unable to output file, then drop back and log via console instead
 			log.error("Unable to output to file - logging to console and default dir instead",ace);
 			outputToConsole(wb);
+		 }
 		
 
 	}

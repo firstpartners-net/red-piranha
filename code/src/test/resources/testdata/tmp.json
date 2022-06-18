@@ -9,8 +9,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 300.0,
     "valueAsText" : "300.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 300,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R5C3"
   },
   "A_Broker_5" : {
@@ -23,8 +23,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R5C4"
   },
   "A_Broker_1" : {
@@ -37,8 +37,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "A Broker",
     "valueAsText" : "A Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R5C0"
   },
   "A_Broker_2" : {
@@ -51,8 +51,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : true,
     "valueAsText" : "true",
-    "valueAsBoolean" : true,
     "valueAsLong" : null,
+    "valueAsBoolean" : true,
     "originalCellReference" : "R5C1"
   },
   "A_Broker_3" : {
@@ -65,8 +65,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 110.0,
     "valueAsText" : "110.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 110,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R5C2"
   }
 }, {
@@ -80,8 +80,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R6C4"
   },
   "B_Broker_2" : {
@@ -94,8 +94,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : false,
     "valueAsText" : "false",
-    "valueAsBoolean" : false,
     "valueAsLong" : null,
+    "valueAsBoolean" : false,
     "originalCellReference" : "R6C1"
   },
   "B_Broker_1" : {
@@ -108,8 +108,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "B Broker",
     "valueAsText" : "B Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R6C0"
   },
   "B_Broker_4" : {
@@ -122,8 +122,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 500.0,
     "valueAsText" : "500.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 500,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R6C3"
   },
   "B_Broker_3" : {
@@ -136,8 +136,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 120.0,
     "valueAsText" : "120.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 120,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R6C2"
   }
 }, {
@@ -151,8 +151,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R7C4"
   },
   "C_Broker_4" : {
@@ -165,8 +165,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 700.0,
     "valueAsText" : "700.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 700,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R7C3"
   },
   "C_Broker_3" : {
@@ -179,8 +179,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 130.0,
     "valueAsText" : "130.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 130,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R7C2"
   },
   "C_Broker_2" : {
@@ -193,8 +193,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : true,
     "valueAsText" : "true",
-    "valueAsBoolean" : true,
     "valueAsLong" : null,
+    "valueAsBoolean" : true,
     "originalCellReference" : "R7C1"
   },
   "C_Broker_1" : {
@@ -207,8 +207,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "C Broker",
     "valueAsText" : "C Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R7C0"
   }
 }, {
@@ -222,8 +222,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 2000.0,
     "valueAsText" : "2000.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 2000,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R2C1"
   },
   "Current_Stock_1" : {
@@ -236,8 +236,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "Current Stock",
     "valueAsText" : "Current Stock",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R2C0"
   }
 }, {
@@ -251,8 +251,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 140.0,
     "valueAsText" : "140.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 140,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R8C2"
   },
   "D_Broker_4" : {
@@ -265,8 +265,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 300.0,
     "valueAsText" : "300.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 300,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R8C3"
   },
   "D_Broker_5" : {
@@ -279,8 +279,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R8C4"
   },
   "D_Broker_1" : {
@@ -293,8 +293,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "D Broker",
     "valueAsText" : "D Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R8C0"
   },
   "D_Broker_2" : {
@@ -307,8 +307,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : false,
     "valueAsText" : "false",
-    "valueAsBoolean" : false,
     "valueAsLong" : null,
+    "valueAsBoolean" : false,
     "originalCellReference" : "R8C1"
   }
 }, {
@@ -322,8 +322,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : true,
     "valueAsText" : "true",
-    "valueAsBoolean" : true,
     "valueAsLong" : null,
+    "valueAsBoolean" : true,
     "originalCellReference" : "R9C1"
   },
   "E_Broker_3" : {
@@ -336,8 +336,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 150.0,
     "valueAsText" : "150.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 150,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R9C2"
   },
   "E_Broker_1" : {
@@ -350,8 +350,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "E Broker",
     "valueAsText" : "E Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R9C0"
   },
   "E_Broker_4" : {
@@ -364,8 +364,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 500.0,
     "valueAsText" : "500.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 500,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R9C3"
   },
   "E_Broker_5" : {
@@ -378,8 +378,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R9C4"
   }
 }, {
@@ -393,8 +393,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R10C4"
   },
   "F_Broker_4" : {
@@ -407,8 +407,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 700.0,
     "valueAsText" : "700.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 700,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R10C3"
   },
   "F_Broker_3" : {
@@ -421,8 +421,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 160.0,
     "valueAsText" : "160.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 160,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R10C2"
   },
   "F_Broker_2" : {
@@ -435,8 +435,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : false,
     "valueAsText" : "false",
-    "valueAsBoolean" : false,
     "valueAsLong" : null,
+    "valueAsBoolean" : false,
     "originalCellReference" : "R10C1"
   },
   "F_Broker_1" : {
@@ -449,8 +449,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "F Broker",
     "valueAsText" : "F Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R10C0"
   }
 }, {
@@ -464,8 +464,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : true,
     "valueAsText" : "true",
-    "valueAsBoolean" : true,
     "valueAsLong" : null,
+    "valueAsBoolean" : true,
     "originalCellReference" : "R11C1"
   },
   "G_Broker_3" : {
@@ -478,8 +478,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 170.0,
     "valueAsText" : "170.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 170,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R11C2"
   },
   "G_Broker_4" : {
@@ -492,8 +492,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 300.0,
     "valueAsText" : "300.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 300,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R11C3"
   },
   "G_Broker_5" : {
@@ -506,8 +506,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R11C4"
   },
   "G_Broker_1" : {
@@ -520,8 +520,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "G  Broker",
     "valueAsText" : "G  Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R11C0"
   }
 }, {
@@ -535,8 +535,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R12C4"
   },
   "H_Broker_3" : {
@@ -549,8 +549,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 180.0,
     "valueAsText" : "180.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 180,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R12C2"
   },
   "H_Broker_4" : {
@@ -563,8 +563,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 500.0,
     "valueAsText" : "500.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 500,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R12C3"
   },
   "H_Broker_1" : {
@@ -577,8 +577,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "H  Broker",
     "valueAsText" : "H  Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R12C0"
   },
   "H_Broker_2" : {
@@ -591,8 +591,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : false,
     "valueAsText" : "false",
-    "valueAsBoolean" : false,
     "valueAsLong" : null,
+    "valueAsBoolean" : false,
     "originalCellReference" : "R12C1"
   }
 }, {
@@ -606,8 +606,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R13C4"
   },
   "I_Broker_4" : {
@@ -620,8 +620,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 700.0,
     "valueAsText" : "700.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 700,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R13C3"
   },
   "I_Broker_3" : {
@@ -634,8 +634,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 190.0,
     "valueAsText" : "190.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 190,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R13C2"
   },
   "I_Broker_2" : {
@@ -648,8 +648,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : true,
     "valueAsText" : "true",
-    "valueAsBoolean" : true,
     "valueAsLong" : null,
+    "valueAsBoolean" : true,
     "originalCellReference" : "R13C1"
   },
   "I_Broker_1" : {
@@ -662,8 +662,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "I  Broker",
     "valueAsText" : "I  Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R13C0"
   }
 }, {
@@ -677,8 +677,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : false,
     "valueAsText" : "false",
-    "valueAsBoolean" : false,
     "valueAsLong" : null,
+    "valueAsBoolean" : false,
     "originalCellReference" : "R14C1"
   },
   "J_Broker_1" : {
@@ -691,8 +691,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "J  Broker",
     "valueAsText" : "J  Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R14C0"
   },
   "J_Broker_4" : {
@@ -705,8 +705,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 300.0,
     "valueAsText" : "300.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 300,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R14C3"
   },
   "J_Broker_3" : {
@@ -719,8 +719,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 200.0,
     "valueAsText" : "200.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 200,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R14C2"
   },
   "J_Broker_5" : {
@@ -733,8 +733,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R14C4"
   }
 }, {
@@ -748,8 +748,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "K  Broker",
     "valueAsText" : "K  Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R15C0"
   },
   "K_Broker_4" : {
@@ -762,8 +762,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 500.0,
     "valueAsText" : "500.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 500,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R15C3"
   },
   "K_Broker_5" : {
@@ -776,8 +776,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R15C4"
   },
   "K_Broker_2" : {
@@ -790,8 +790,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : true,
     "valueAsText" : "true",
-    "valueAsBoolean" : true,
     "valueAsLong" : null,
+    "valueAsBoolean" : true,
     "originalCellReference" : "R15C1"
   },
   "K_Broker_3" : {
@@ -804,8 +804,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 210.0,
     "valueAsText" : "210.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 210,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R15C2"
   }
 }, {
@@ -819,8 +819,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 220.0,
     "valueAsText" : "220.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 220,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R16C2"
   },
   "L_Broker_4" : {
@@ -833,8 +833,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 700.0,
     "valueAsText" : "700.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 700,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R16C3"
   },
   "L_Broker_5" : {
@@ -847,8 +847,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R16C4"
   },
   "L_Broker_1" : {
@@ -861,8 +861,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "L  Broker",
     "valueAsText" : "L  Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R16C0"
   },
   "L_Broker_2" : {
@@ -875,8 +875,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : false,
     "valueAsText" : "false",
-    "valueAsBoolean" : false,
     "valueAsLong" : null,
+    "valueAsBoolean" : false,
     "originalCellReference" : "R16C1"
   }
 }, {
@@ -890,8 +890,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "M Broker",
     "valueAsText" : "M Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R17C0"
   },
   "M_Broker_3" : {
@@ -904,8 +904,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 230.0,
     "valueAsText" : "230.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 230,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R17C2"
   },
   "M_Broker_2" : {
@@ -918,8 +918,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : true,
     "valueAsText" : "true",
-    "valueAsBoolean" : true,
     "valueAsLong" : null,
+    "valueAsBoolean" : true,
     "originalCellReference" : "R17C1"
   },
   "M_Broker_5" : {
@@ -932,8 +932,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R17C4"
   },
   "M_Broker_4" : {
@@ -946,8 +946,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 300.0,
     "valueAsText" : "300.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 300,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R17C3"
   }
 }, {
@@ -961,8 +961,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R18C4"
   },
   "N_Broker_3" : {
@@ -975,8 +975,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 240.0,
     "valueAsText" : "240.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 240,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R18C2"
   },
   "N_Broker_4" : {
@@ -989,8 +989,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 500.0,
     "valueAsText" : "500.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 500,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R18C3"
   },
   "N_Broker_1" : {
@@ -1003,8 +1003,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "N Broker",
     "valueAsText" : "N Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R18C0"
   },
   "N_Broker_2" : {
@@ -1017,8 +1017,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : false,
     "valueAsText" : "false",
-    "valueAsBoolean" : false,
     "valueAsLong" : null,
+    "valueAsBoolean" : false,
     "originalCellReference" : "R18C1"
   }
 }, {
@@ -1032,8 +1032,8 @@
     "originalTableReference" : null,
     "value" : null,
     "valueAsText" : null,
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : null
   },
   "non_contiguous_range_test_1" : {
@@ -1046,8 +1046,8 @@
     "originalTableReference" : null,
     "value" : null,
     "valueAsText" : null,
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : null
   }
 }, {
@@ -1061,8 +1061,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "O Broker",
     "valueAsText" : "O Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R19C0"
   },
   "O_Broker_2" : {
@@ -1075,8 +1075,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : true,
     "valueAsText" : "true",
-    "valueAsBoolean" : true,
     "valueAsLong" : null,
+    "valueAsBoolean" : true,
     "originalCellReference" : "R19C1"
   },
   "O_Broker_3" : {
@@ -1089,8 +1089,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 250.0,
     "valueAsText" : "250.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 250,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R19C2"
   },
   "O_Broker_4" : {
@@ -1103,8 +1103,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 700.0,
     "valueAsText" : "700.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 700,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R19C3"
   },
   "O_Broker_5" : {
@@ -1117,8 +1117,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R19C4"
   }
 }, {
@@ -1132,8 +1132,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : false,
     "valueAsText" : "false",
-    "valueAsBoolean" : false,
     "valueAsLong" : null,
+    "valueAsBoolean" : false,
     "originalCellReference" : "R20C1"
   },
   "P_Broker_1" : {
@@ -1146,8 +1146,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "P Broker",
     "valueAsText" : "P Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R20C0"
   },
   "P_Broker_4" : {
@@ -1160,8 +1160,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 300.0,
     "valueAsText" : "300.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 300,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R20C3"
   },
   "P_Broker_3" : {
@@ -1174,8 +1174,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 260.0,
     "valueAsText" : "260.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 260,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R20C2"
   },
   "P_Broker_5" : {
@@ -1188,8 +1188,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R20C4"
   }
 }, {
@@ -1203,8 +1203,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 270.0,
     "valueAsText" : "270.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 270,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R21C2"
   },
   "Q_Broker_2" : {
@@ -1217,8 +1217,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : true,
     "valueAsText" : "true",
-    "valueAsBoolean" : true,
     "valueAsLong" : null,
+    "valueAsBoolean" : true,
     "originalCellReference" : "R21C1"
   },
   "Q_Broker_1" : {
@@ -1231,8 +1231,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "Q Broker",
     "valueAsText" : "Q Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R21C0"
   },
   "Q_Broker_5" : {
@@ -1245,8 +1245,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R21C4"
   },
   "Q_Broker_4" : {
@@ -1259,8 +1259,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 500.0,
     "valueAsText" : "500.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 500,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R21C3"
   }
 }, {
@@ -1274,8 +1274,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R22C4"
   },
   "R_Broker_1" : {
@@ -1288,8 +1288,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "R Broker",
     "valueAsText" : "R Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R22C0"
   },
   "R_Broker_2" : {
@@ -1302,8 +1302,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : false,
     "valueAsText" : "false",
-    "valueAsBoolean" : false,
     "valueAsLong" : null,
+    "valueAsBoolean" : false,
     "originalCellReference" : "R22C1"
   },
   "R_Broker_3" : {
@@ -1316,8 +1316,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 280.0,
     "valueAsText" : "280.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 280,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R22C2"
   },
   "R_Broker_4" : {
@@ -1330,8 +1330,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 700.0,
     "valueAsText" : "700.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 700,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R22C3"
   }
 }, {
@@ -1345,8 +1345,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "S Broker",
     "valueAsText" : "S Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R23C0"
   },
   "S_Broker_4" : {
@@ -1359,8 +1359,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 300.0,
     "valueAsText" : "300.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 300,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R23C3"
   },
   "S_Broker_5" : {
@@ -1373,8 +1373,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R23C4"
   },
   "S_Broker_2" : {
@@ -1387,8 +1387,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : true,
     "valueAsText" : "true",
-    "valueAsBoolean" : true,
     "valueAsLong" : null,
+    "valueAsBoolean" : true,
     "originalCellReference" : "R23C1"
   },
   "S_Broker_3" : {
@@ -1401,8 +1401,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 290.0,
     "valueAsText" : "290.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 290,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R23C2"
   }
 }, {
@@ -1416,8 +1416,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R24C4"
   },
   "T_Broker_4" : {
@@ -1430,8 +1430,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 500.0,
     "valueAsText" : "500.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 500,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R24C3"
   },
   "T_Broker_3" : {
@@ -1444,8 +1444,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 300.0,
     "valueAsText" : "300.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 300,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R24C2"
   },
   "T_Broker_2" : {
@@ -1458,8 +1458,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : false,
     "valueAsText" : "false",
-    "valueAsBoolean" : false,
     "valueAsLong" : null,
+    "valueAsBoolean" : false,
     "originalCellReference" : "R24C1"
   },
   "T_Broker_1" : {
@@ -1472,8 +1472,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "T Broker",
     "valueAsText" : "T Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R24C0"
   }
 }, {
@@ -1487,8 +1487,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R25C4"
   },
   "U_Broker_4" : {
@@ -1501,8 +1501,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 300.0,
     "valueAsText" : "300.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 300,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R25C3"
   },
   "U_Broker_1" : {
@@ -1515,8 +1515,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "U Broker",
     "valueAsText" : "U Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R25C0"
   },
   "U_Broker_3" : {
@@ -1529,8 +1529,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 290.0,
     "valueAsText" : "290.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 290,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R25C2"
   },
   "U_Broker_2" : {
@@ -1543,8 +1543,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : true,
     "valueAsText" : "true",
-    "valueAsBoolean" : true,
     "valueAsLong" : null,
+    "valueAsBoolean" : true,
     "originalCellReference" : "R25C1"
   }
 }, {
@@ -1558,8 +1558,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 300.0,
     "valueAsText" : "300.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 300,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R26C2"
   },
   "V_Broker_4" : {
@@ -1572,8 +1572,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 500.0,
     "valueAsText" : "500.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 500,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R26C3"
   },
   "V_Broker_1" : {
@@ -1586,8 +1586,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "V Broker",
     "valueAsText" : "V Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R26C0"
   },
   "V_Broker_2" : {
@@ -1600,8 +1600,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : false,
     "valueAsText" : "false",
-    "valueAsBoolean" : false,
     "valueAsLong" : null,
+    "valueAsBoolean" : false,
     "originalCellReference" : "R26C1"
   },
   "V_Broker_5" : {
@@ -1614,8 +1614,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R26C4"
   }
 }, {
@@ -1629,8 +1629,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "W Broker",
     "valueAsText" : "W Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R27C0"
   },
   "W_Broker_5" : {
@@ -1643,8 +1643,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R27C4"
   },
   "W_Broker_4" : {
@@ -1657,8 +1657,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 300.0,
     "valueAsText" : "300.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 300,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R27C3"
   },
   "W_Broker_3" : {
@@ -1671,8 +1671,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 290.0,
     "valueAsText" : "290.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 290,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R27C2"
   },
   "W_Broker_2" : {
@@ -1685,8 +1685,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : true,
     "valueAsText" : "true",
-    "valueAsBoolean" : true,
     "valueAsLong" : null,
+    "valueAsBoolean" : true,
     "originalCellReference" : "R27C1"
   }
 }, {
@@ -1700,8 +1700,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 500.0,
     "valueAsText" : "500.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 500,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R28C3"
   },
   "X_Broker_3" : {
@@ -1714,8 +1714,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 300.0,
     "valueAsText" : "300.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 300,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R28C2"
   },
   "X_Broker_5" : {
@@ -1728,8 +1728,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R28C4"
   },
   "X_Broker_2" : {
@@ -1742,8 +1742,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : false,
     "valueAsText" : "false",
-    "valueAsBoolean" : false,
     "valueAsLong" : null,
+    "valueAsBoolean" : false,
     "originalCellReference" : "R28C1"
   },
   "X_Broker_1" : {
@@ -1756,8 +1756,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "X Broker",
     "valueAsText" : "X Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R28C0"
   }
 }, {
@@ -1771,8 +1771,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 300.0,
     "valueAsText" : "300.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 300,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R29C3"
   },
   "Y_Broker_5" : {
@@ -1785,8 +1785,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R29C4"
   },
   "Y_Broker_2" : {
@@ -1799,8 +1799,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : true,
     "valueAsText" : "true",
-    "valueAsBoolean" : true,
     "valueAsLong" : null,
+    "valueAsBoolean" : true,
     "originalCellReference" : "R29C1"
   },
   "Y_Broker_3" : {
@@ -1813,8 +1813,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 290.0,
     "valueAsText" : "290.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 290,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R29C2"
   },
   "Y_Broker_1" : {
@@ -1827,8 +1827,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "Y Broker",
     "valueAsText" : "Y Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R29C0"
   }
 }, {
@@ -1842,8 +1842,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "Z Broker",
     "valueAsText" : "Z Broker",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R30C0"
   },
   "Z_Broker_2" : {
@@ -1856,8 +1856,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : false,
     "valueAsText" : "false",
-    "valueAsBoolean" : false,
     "valueAsLong" : null,
+    "valueAsBoolean" : false,
     "originalCellReference" : "R30C1"
   },
   "Z_Broker_3" : {
@@ -1870,8 +1870,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 300.0,
     "valueAsText" : "300.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 300,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R30C2"
   },
   "Z_Broker_4" : {
@@ -1884,8 +1884,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : 500.0,
     "valueAsText" : "500.0",
-    "valueAsBoolean" : null,
     "valueAsLong" : 500,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R30C3"
   },
   "Z_Broker_5" : {
@@ -1898,8 +1898,8 @@
     "originalTableReference" : "Chocolate Sheet",
     "value" : "n/a",
     "valueAsText" : "n/a",
-    "valueAsBoolean" : null,
     "valueAsLong" : null,
+    "valueAsBoolean" : null,
     "originalCellReference" : "R30C4"
   }
 } ]

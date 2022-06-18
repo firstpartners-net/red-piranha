@@ -1,5 +1,7 @@
 package net.firstpartners.core.drools;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
@@ -76,17 +78,20 @@ public class RuleRunner {
 	public RedModel callRules(RedModel ruleModel)
 			throws Exception {
 
-
 		// Convert the cell and log if we have a handle
 		ruleModel.addUIInfoMessage("Opening Input :" + this.inputStrategy.getInputName());
 		RangeList ranges = inputStrategy.getJavaBeansFromSource();
-		ranges.cascadeResetIsModifiedFlag();
+		if(ranges!=null){
+			ranges.cascadeResetIsModifiedFlag();
+		}
+		
 		ruleModel.setPreRulesSnapShot(ranges);
 		ruleModel.setUIProgressStatus(10);
-		
 
 		// Add the document contents as facts
 		ruleModel.addUIInfoMessage("Adding Excel Cells as facts into Rule Engine Memory");
+
+		assertTrue("No Data (Ranges =null) was passed in, this is unlikely to be what you want",ranges!=null);
 		ruleModel.addFacts(ranges.getAllCellsInAllRanges());
 		ruleModel.setUIProgressStatus(30);
 		

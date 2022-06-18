@@ -91,15 +91,21 @@ public class RangeList implements List<Range>, Serializable {
 
 		Collection<Cell> returnValues = new ArrayList<Cell>();
 
-		for (Range range : allRanges) {
+		if(allRanges!=null){
 
-			// Add the cells within the range
+			for (Range range : allRanges) {
 
-			for (net.firstpartners.data.Cell cell : range.values()) {
-				returnValues.add(cell);
+				// Add the cells within the range
+
+				for (net.firstpartners.data.Cell cell : range.values()) {
+					returnValues.add(cell);
+				}
+
 			}
 
 		}
+
+		
 
 		return returnValues;
 

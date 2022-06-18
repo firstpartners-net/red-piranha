@@ -68,7 +68,7 @@ public class CSVOutputStrategyTest {
 
 			fail("expected exception never thrown");
 
-		} catch (IllegalArgumentException iae) {
+		} catch (java.io.FileNotFoundException iae) {
 			// ok to ignore as we expect it
 		}
 

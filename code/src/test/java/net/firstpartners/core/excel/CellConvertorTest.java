@@ -72,7 +72,6 @@ public class CellConvertorTest {
 			//CellReference cellReference = new CellReference(tmpCellRef);
 			CellReference cellReference = new CellReference(tmpCellRow,tmpCellCol);
 			
-			
 			Row row = SheetConvertor.getOrCreateRow(thisSheet, cellReference);
 
 			log.debug("found Row:" + row);

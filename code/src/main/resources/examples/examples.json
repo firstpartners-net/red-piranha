@@ -1,7 +1,7 @@
 [ 
 {
   "id" : 1,
-  "inputFileLocation" : "1_Hello_World/hello-excel.xlsx",
+  "inputFileLocation" : "1_Hello_World/hello-excel.xls",
   "ruleFileLocation" : "1_Hello_World/hello.drl",
   "outputFileLocation" : "1_Hello_World/output.xls",
   "dslFileLocation" : "",

@@ -51,9 +51,11 @@ public class SpreadSheetConvertor {
 
 		// retrieve the named range - Iterator not available
 		List<? extends Name> namedRanges = wb.getAllNames();
+		
 		if (namedRanges == null) {
-			log.debug("No Named Ranges in workbook- skipping");
-			return returnValues;
+			log.info("No Named Ranges in workbook- skipping");
+			throw new IOException("No Named Ranges in workbook- skipping");
+			//return returnValues;
 		}
 
 		// Setup loop through named ranges

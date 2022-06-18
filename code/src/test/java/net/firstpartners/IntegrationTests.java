@@ -82,7 +82,7 @@ class IntegrationTests {
 		appConfig);
 
 		//counter
-		Integer counter =0;
+		
 		log.info("Sample to run:"+sampleToRun);
 
 
@@ -90,12 +90,12 @@ class IntegrationTests {
 
 			//check if we're running in single test mode
 			if(sampleToRun>0){
-				counter++;
-				if(counter != sampleToRun){
-					log.info("Running in single sample mode - skip sample:"+counter);
+				
+				if(sampleToRun != thisExample.getId()){
+					log.info("Running in single sample mode - skip sample:"+thisExample.getId());
 					continue; //skips this iteration of the loop
 				} else {
-					log.info("Running single sample:"+counter);
+					log.info("Running single sample:"+sampleToRun);
 				}
 
 			}

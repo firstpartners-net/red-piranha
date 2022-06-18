@@ -3,8 +3,7 @@ package net.firstpartners;
 import net.firstpartners.core.excel.SpreadSheetConvertorTest;
 import net.firstpartners.core.word.DocumentConvertorTest;
 import net.firstpartners.core.word.DocumentXConvertorTest;
-
-import java.io.File;
+import net.firstpartners.core.json.JsonInputStrategyTest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,6 +47,7 @@ public class RegenerateTestData {
 		SpreadSheetConvertorTest.main(subArgs);
 		DocumentConvertorTest.main(subArgs);
 		DocumentXConvertorTest.main(subArgs);
+		JsonInputStrategyTest.main(subArgs);
 		
 	}
 	

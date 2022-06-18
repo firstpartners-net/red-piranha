@@ -54,7 +54,7 @@ public class SpreadSheetConvertorTest {
 	 * This is implemented as a sub method so we can call from tests and convenience main[] method
 	 * @throws IOException 
 	 */
-	private final RangeList getTestDataFromWorkbook() throws IOException {
+	public final RangeList getTestDataFromWorkbook() throws IOException {
 	
 		FileInputStream inputStream = new FileInputStream(dirPrefix+TestConstants.XLSX_DATA_FILE);
 		wb = WorkbookFactory.create(inputStream);

@@ -82,7 +82,7 @@ public class CellConvertorTest {
 			assertNotNull(thisRedCell);
 			String tmp = thisRedCell.getValueAsText();
 
-			// Excel stores booleann in a differt way
+			// Excel stores boolean in a differt way
 			if (!("[false]".contains(tmp))) {
 				assertEquals(tmp, poiCell.getStringCellValue());
 			}

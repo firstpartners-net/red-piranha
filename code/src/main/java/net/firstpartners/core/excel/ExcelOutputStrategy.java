@@ -96,7 +96,14 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	void outputToFile(Workbook wb) throws IOException {
 
 		String outputFileDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
-		String outputFile = outputFileDir+"//"+outputFileName;
+		
+		//Construct the output file including directory
+		String outputFile;
+		if(outputFileDir!=""){
+			outputFile = outputFileDir+"//"+outputFileName;
+		} else {
+			outputFile = outputFileName;
+		}
 		
 		// Write out modified Excel sheet
 		try {

@@ -56,12 +56,49 @@ class IntegrationTests {
 	}
 
 	@Test
+	/**
+	 * Useful if we want to unit test a specfici example
+	 * @throws Exception
+	 */
+	void testSpecificExample() throws Exception {
+		sampleTestRunner(1);
+	}
+
+
+ 	@Test
 	void testAllSamples() throws Exception {
+		sampleTestRunner(-1);
+	}
+
+	/**
+	 * Pass in Integer = null or -1 to run all tests
+	 * Or single number to run single test
+	 * @param sampleToRun
+	 * @throws Exception
+	 */
+	private void sampleTestRunner(int sampleToRun) throws Exception{
 
 		List<SampleData> examples = SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON,
-				appConfig);
+		appConfig);
+
+		//counter
+		Integer counter =0;
+		log.info("Sample to run:"+sampleToRun);
+
 
 		for (SampleData thisExample : examples) {
+
+			//check if we're running in single test mode
+			if(sampleToRun>0){
+				counter++;
+				if(counter != sampleToRun){
+					log.info("Running in single sample mode - skip sample:"+counter);
+					continue; //skips this iteration of the loop
+				} else {
+					log.info("Running single sample:"+counter);
+				}
+
+			}
 
 			RedModel testModel = new RedModel();
 			testModel.setInputFileLocation(thisExample.getInputFileLocation());
@@ -87,8 +124,7 @@ class IntegrationTests {
 			assertNotNull(outputStrategy.getProcessedDocument());
 			
 		}
-		
-	
+
 
 	}
 

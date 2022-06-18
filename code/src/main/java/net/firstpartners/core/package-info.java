@@ -1,6 +1,6 @@
 /**
  * 
- * Key Classes used Across Red-Piranha, regardless of GUI
+ * Key Classes used Across Red-Piranha, regardless of User interface
  *  
  * @since 1.0
  * @author pbrowne

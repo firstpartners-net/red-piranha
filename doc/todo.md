@@ -6,6 +6,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * ONENOTE
 * Named ranges in Excel
 * Script 
+* update version of Droosl core
 
 ## Remember
 

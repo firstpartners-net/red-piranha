@@ -17,16 +17,16 @@ Notes
 * Make need to delete "target" directory to force refresh
   ○ Check that any new samples are loaded
 * To run from docker command line
-  ○ docker run -p 7000:7000 redpiranha:2.1.1-SNAPSHOT
+  ○ docker run -p 7000:7000 redpiranha:2.2.1-SNAPSHOT
 
 PUSHING BUILD TO DOCKERHUB
 * docker login
 ** or docker login -u paulbrowne -p <password>
 * docker images
 * docker tag xxxxx-image-id paulbrowne/redpiranha:latest     		 #without this tag then it doesn't matchup to repository
-* docker tag xxxxx-image-id paulbrowne/redpiranha:2.1.1-SNAPSHOT     
+* docker tag xxxxx-image-id paulbrowne/redpiranha:2.2.1-SNAPSHOT     
 * docker push paulbrowne/redpiranha
-* docker push paulbrowne/redpiranha:redpiranha:2.1.1-SNAPSHOT		 # Looks like we need to tell dockerhub about the version tag
+* docker push paulbrowne/redpiranha:redpiranha:2.2.1-SNAPSHOT		 # Looks like we need to tell dockerhub about the version tag
 
 TO TEST DOCKER HUB IMAGE
 * check images are on dockerhub first

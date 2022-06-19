@@ -5,11 +5,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.drools.core.impl.KnowledgeBaseFactory;
+import org.kie.api.KieBaseConfiguration;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
 import org.kie.api.builder.Message;
 import org.kie.api.builder.Results;
+import org.kie.api.conf.DeclarativeAgendaOption;
+import org.kie.api.conf.EventProcessingOption;
 import org.kie.api.io.Resource;
 import org.kie.api.io.ResourceType;
 import org.slf4j.Logger;
@@ -43,6 +47,16 @@ public class RuleBuilder {
 
 		// Handles
 		File currentFile;
+
+//		final KieBaseConfiguration config = KnowledgeBaseFactory.newKnowledgeBaseConfiguration();
+		
+//		config.setOption(DeclarativeAgendaOption.DISABLED); //this is default, but resolves another issue?
+		
+		//config.setOption( EventProcessingOption.STREAM);
+	//	config.setOption("","");
+
+		//Set system property
+		//java.lang.System.setProperty("org.kie.api.internal.assembler.KieAssemblers","org.kie.api.internal.utils.AnotherMockAssemblersImpl;4"); 
 
 		// For Kie later
 		KieServices ks = KieServices.Factory.get();

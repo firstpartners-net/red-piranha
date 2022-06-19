@@ -7,19 +7,16 @@ import net.firstpartners.data.Range;
 
 //Red Piranha gives us a logging object
 global IStatusUpdate log;
-
-
 	
 rule "print cell initial values" 
 
-
 	when
-		$cell : Cell(modified==false)
+		$cell : Cell(value=="hello")
        
     then
         	   
         //Logging message
-    	log.addUIInfoMessage("initial cell value:"+$cell);
+    	log.addUIInfoMessage("The Rule Engine says back - Hello World!");
     	
     	
 end

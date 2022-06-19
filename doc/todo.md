@@ -3,13 +3,10 @@
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
 ## NEXT Book Samples
-
-* Example for simple hellow world
-  * 1st sample to "Hello world"
-  * look at moving over private samples as basis for book
-
+* ONENOTE
 * Named ranges in Excel
 * Script 
+* update version of Droosl core
 
 ## Remember
 

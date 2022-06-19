@@ -76,17 +76,22 @@ public class RuleRunner {
 	public RedModel callRules(RedModel ruleModel)
 			throws Exception {
 
-
 		// Convert the cell and log if we have a handle
 		ruleModel.addUIInfoMessage("Opening Input :" + this.inputStrategy.getInputName());
 		RangeList ranges = inputStrategy.getJavaBeansFromSource();
-		ranges.cascadeResetIsModifiedFlag();
+		if(ranges!=null){
+			ranges.cascadeResetIsModifiedFlag();
+		}
+		assert ranges!=null:"No Data (Ranges =null) was passed in, this is unlikely to be what you want";
+		
+
 		ruleModel.setPreRulesSnapShot(ranges);
 		ruleModel.setUIProgressStatus(10);
-		
 
 		// Add the document contents as facts
 		ruleModel.addUIInfoMessage("Adding Excel Cells as facts into Rule Engine Memory");
+
+		
 		ruleModel.addFacts(ranges.getAllCellsInAllRanges());
 		ruleModel.setUIProgressStatus(30);
 		

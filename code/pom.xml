@@ -4,14 +4,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.2</version> <!-- lookup parent from repository -->
+		<version>2.7.0</version> <!-- lookup parent from repository -->
 	</parent>
 
 	<groupId>net.firstpartners</groupId>
 	<artifactId>redpiranha</artifactId>
-	<version>2.0.1-SNAPSHOT</version>
-	<name>RedGui</name>
-	<description>GUI for mapping Excel Data to Java and Business Rules</description>
+	<version>2.1.1-SNAPSHOT</version>
+	<name>Red-Piranha</name>
+	<description>User Interface and samples mapping Excel Data to Java and Business Rules</description>
 	<properties>
 		<java.version>17</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -82,7 +82,7 @@
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-core</artifactId>
-			<version>7.60.0.Final</version>
+			<version>7.59.0.Final</version>
 		</dependency>
 
 		<dependency>

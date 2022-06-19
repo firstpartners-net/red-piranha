@@ -81,7 +81,7 @@ public class RuleBuilder {
 			messages.add("Column: "+thisRuleBuildMessage.getColumn());
 			
 			//More compact message for logging
-			messageAsString =  " + thisRuleBuildMessage.getPath()" + " | "+ thisRuleBuildMessage.getLine() + " | " + thisRuleBuildMessage.getText();
+			messageAsString =  thisRuleBuildMessage.getPath() + " | "+ thisRuleBuildMessage.getLine() + " | " + thisRuleBuildMessage.getText();
 
 			if (thisRuleBuildMessage.getLevel() == Message.Level.ERROR) {
 				log.warn(messageAsString);

@@ -25,7 +25,7 @@ import net.firstpartners.core.Config;
 @SpringBootTest
 class SampleDataLoaderTest {
 	
-	private final static String SAMPLE_OUTPUT_FORMAT_FILENAME="src/test/resources/testdata/sample-output-rename-me.json";
+	private final static String SAMPLE_OUTPUT_FORMAT_FILENAME="src/test/resources/testdata/config-sample-format-rename-me.json";
 	
 	@Autowired
 	Config myConfig;

@@ -91,7 +91,17 @@ public class ResourceFinder {
 		// We need config info to try backups - default to current working directory
 		if(appConfig==null) {
 			log.debug("Config is null - defaulting to working dir");
-			return new File(".").getAbsolutePath();
+			
+			String workingDir = new File(".").getAbsolutePath();
+
+			//handle bug of . being appended to this path name
+			if(workingDir.endsWith(".")){
+				workingDir =workingDir.replaceAll(".", "");
+			}
+
+			return workingDir;
+
+
 		}
 		
 		String defaultDir = appConfig.getSampleBaseDirDefault();
@@ -106,12 +116,13 @@ public class ResourceFinder {
 		String alternateDir = appConfig.getSampleBaseDirAlternate();
 		File alternateFile = new File(alternateDir);
 		if (alternateFile.exists()) {
+			log.debug("Using Alternate Dir:"+alternateDir);
 			return alternateDir;
 		} else {
 			log.debug("2 No resource in alternate dir:"+alternateDir);	
 		}
 		
-		log.debug("BackupPlan- defaulting to working dir");
+		log.debug("BackupPlan- defaulting to base dir");
 		return new File(".").getAbsolutePath();
 			
 		

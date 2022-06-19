@@ -23,6 +23,9 @@ public class SpreadSheetConvertorTest {
 
 	private Workbook wb;
 
+	//if we need to change the directory prefix
+	private static String dirPrefix="";
+
 	//Logging
 	private static final Logger log = LoggerFactory.getLogger(SpreadSheetConvertorTest.class);
 
@@ -35,22 +38,25 @@ public class SpreadSheetConvertorTest {
 	 */
 	public static void main (String args[]) throws IOException {
 		
+		//have we been requested to modfiy the directoyr
+		dirPrefix = args[0];
+
 		RangeList myRange = new SpreadSheetConvertorTest().getTestDataFromWorkbook();
-		FileOutputStream fileOut =new FileOutputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
+		FileOutputStream fileOut =new FileOutputStream(dirPrefix+TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
         ObjectOutputStream out = new ObjectOutputStream(fileOut);
         out.writeObject(myRange);
         out.close();
         fileOut.close();
-        log.debug("Serialized data is saved in:"+ TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
+        log.debug("Serialized data is saved in:"+ dirPrefix+TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
 	}
 
 	/**
 	 * This is implemented as a sub method so we can call from tests and convenience main[] method
 	 * @throws IOException 
 	 */
-	private final RangeList getTestDataFromWorkbook() throws IOException {
+	public final RangeList getTestDataFromWorkbook() throws IOException {
 	
-		FileInputStream inputStream = new FileInputStream(TestConstants.XLSX_DATA_FILE);
+		FileInputStream inputStream = new FileInputStream(dirPrefix+TestConstants.XLSX_DATA_FILE);
 		wb = WorkbookFactory.create(inputStream);
 		return SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		

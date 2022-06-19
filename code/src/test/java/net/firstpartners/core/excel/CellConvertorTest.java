@@ -72,7 +72,6 @@ public class CellConvertorTest {
 			//CellReference cellReference = new CellReference(tmpCellRef);
 			CellReference cellReference = new CellReference(tmpCellRow,tmpCellCol);
 			
-			
 			Row row = SheetConvertor.getOrCreateRow(thisSheet, cellReference);
 
 			log.debug("found Row:" + row);
@@ -83,7 +82,7 @@ public class CellConvertorTest {
 			assertNotNull(thisRedCell);
 			String tmp = thisRedCell.getValueAsText();
 
-			// Excel stores booleann in a differt way
+			// Excel stores boolean in a differt way
 			if (!("[false]".contains(tmp))) {
 				assertEquals(tmp, poiCell.getStringCellValue());
 			}

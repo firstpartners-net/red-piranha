@@ -29,7 +29,7 @@ public class SpringBootMvcApplicationIntegrationTest {
     public void shouldLoadCorrectIndexPage() throws Exception {
         mockMvc.perform(get("/")).andExpect(status().isOk()).
                 andExpect(MockMvcResultMatchers.content()
-                        .string(containsString("Red-Piranha is a set of Power tools for Excel and Office Power users")));
+                        .string(containsString("Red-Piranha - run Business Rules in Word and Excel")));
     }
 
 }

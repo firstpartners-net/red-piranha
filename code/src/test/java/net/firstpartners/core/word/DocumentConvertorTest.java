@@ -26,6 +26,9 @@ public class DocumentConvertorTest {
 	// Logger
 	private static final Logger log = LoggerFactory.getLogger(DocumentConvertorTest.class);
 
+	//if we need to change the directory prefix
+	private static String dirPrefix="";
+
 	/**
 	 * s Convenience method - serialize test data for use by Cell Tests
 	 * 
@@ -35,13 +38,16 @@ public class DocumentConvertorTest {
 	 */
 	public static void main(String args[]) throws IOException, InvalidFormatException {
 
+		//have we been requested to modfiy the directoyr
+		dirPrefix = args[0];
+		
 		RangeList myRange = new DocumentConvertorTest().getTestDataFromWorkbook();
-		FileOutputStream fileOut = new FileOutputStream(TestConstants.SAVED_WORD_RANGEHOLDER_DATA);
+		FileOutputStream fileOut = new FileOutputStream(dirPrefix+TestConstants.SAVED_WORD_RANGEHOLDER_DATA);
 		ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		out.writeObject(myRange);
 		out.close();
 		fileOut.close();
-		log.debug("Serialized data is saved in:" + (TestConstants.SAVED_WORD_RANGEHOLDER_DATA));
+		log.debug("Serialized data is saved in:" + (dirPrefix+TestConstants.SAVED_WORD_RANGEHOLDER_DATA));
 	}
 
 	/**
@@ -53,7 +59,7 @@ public class DocumentConvertorTest {
 	 */
 	final RangeList getTestDataFromWorkbook() throws IOException, InvalidFormatException{
 
-		InputStream fis = new FileInputStream(TestConstants.WORD_DATA_FILE);
+		InputStream fis = new FileInputStream(dirPrefix+TestConstants.WORD_DATA_FILE);
 		POIFSFileSystem fs = new POIFSFileSystem(fis);
 		HWPFDocument xdoc = new HWPFDocument(fs);
 

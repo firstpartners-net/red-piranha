@@ -2,11 +2,6 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
-## NEXT Book Samples
-* ONENOTE
-* Named ranges in Excel
-* Script 
-* update version of Droosl core
 
 ## Remember
 
@@ -26,16 +21,6 @@ Platform (with specific examples)
 * 03-example-write-first-rule.md
 
 
-### examples build test chapter 4-6
-
-04-example-rule-main-features.md
-05-example-testing.md
-06-example-rule-other-features.md
-
-## examples workflow forms chapter 7 and 8
-07-example-workflow.md
-08-example-forms.md
-
 
 
 ## examples decision tables and text based
@@ -44,14 +29,6 @@ Platform (with specific examples)
 09-example-dsl.md
 12-example-text-based-rules.md
 ?? any other - RPify existing drools sample
-
-
-
-## Example deploy notes Azure
-10-example-azure.md
-
-* Azure (Plan B?)
-* Possible use of App Service
 
 
 

@@ -38,7 +38,7 @@ By default, Drools,  doesn't read in Excel Data. Red Piranha fills in this gap w
 ## Main features 
 
 
-![Red Piranha Screenshot](/doc/images/main-screenshot.jpg)
+![Red Piranha Screenshot](/images/main-screenshot.jpg)
 
 * View in your favourite browser
 * Running on Localhost (your local machine)

@@ -38,7 +38,7 @@ By default, Drools,  doesn't read in Excel Data. Red Piranha fills in this gap w
 ## Main features 
 
 
-![Red Piranha Screenshot](/doc/images/main-screenshot.jpg)
+![Red Piranha Screenshot](/images/main-screenshot.jpg)
 
 * View in your favourite browser
 * Running on Localhost (your local machine)
@@ -53,7 +53,7 @@ By default, Drools,  doesn't read in Excel Data. Red Piranha fills in this gap w
 
 _Work in progress_ - 
 The information in this document is aimed at getting Excel Power Users up and running with Red Piranha. Take a 
-[look at the guides in this folder](doc).
+[look at the notes in this folder](.).
 
 ## Docker Example
 If you're into Docker, a packaged example is available on Dockerhub.

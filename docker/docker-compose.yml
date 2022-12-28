@@ -12,9 +12,11 @@ services:
 
 # Sample applications Provided by RedHat Jboss
 # This image contains both Business Central Editor and KIE Server for execution
-  jbpm-server-full :
+  business-central :
     container_name: Business-Central-and-KIE-Server     
-    image: jboss/jbpm-server-full:latest
+    # image: jboss/jbpm-server-full:latest                              #older version , hosted on docker
+    # image: quay.io/kiegroup/business-central-workbench-showcase:latest       #latest version, hosted on Red Hat Quay - showcase variant gives users setup
+    image: quay.io/kiegroup/business-central-workbench-showcase:7.73.0.Final # Specific version, so new updates don't break the book
 
     ports:
       - 8080:8080
@@ -30,7 +32,7 @@ services:
 
 
   red:
-    #image: paulbrowne/redpiranha:latest
+    #image: paulbrowne/redpiranha:latest                    # if we just want to make sure we get the latest
     image: paulbrowne/redpiranha:2.2.1-SNAPSHOT
     
     ports:
@@ -39,7 +41,7 @@ services:
       - redexamples:/workspace/BOOT-INF/classes/examples
 
     depends_on:
-      - jbpm-server-full 
+      - business-central
 
 # the names we can find in windows explorer under \\wsl$\docker-desktop-data\version-pack-data\community\docker\volumes
 volumes:

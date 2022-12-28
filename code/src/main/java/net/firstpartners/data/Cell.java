@@ -14,6 +14,7 @@ import org.apache.commons.lang3.math.NumberUtils;
  * cell (to make writing rules easier)
  * 
  */
+
 public class Cell implements PropertyChangeListener, Serializable {
 
 	private static final long serialVersionUID = -763504507901540819L;

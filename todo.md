@@ -19,7 +19,6 @@ Platform (with specific examples)
 * More info through to front end
 * more tests compile / rule
 * tidy of all readme pages
-* (another) review and tidy of two readme pages
 
 ## later
 

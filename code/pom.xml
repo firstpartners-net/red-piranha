@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -13,7 +15,7 @@
 	<name>Red-Piranha</name>
 	<description>User Interface and samples mapping Excel Data to Java and Business Rules</description>
 	<properties>
-		<java.version>11</java.version> <!-- try out 11-->
+		<java.version>11</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
@@ -51,14 +53,14 @@
 		<!-- Enable Web Management of Beans
 		<dependency>
 			<groupId>org.jolokia</groupId>
-			<artifactId>jolokia-core</artifactId>
+		<artifactId>jolokia-core</artifactId>
 		</dependency>-->
 
 		<!-- Swagger - self documenting REST endpoints
 		<dependency>
-			<groupId>io.springfox</groupId>
+		<groupId>io.springfox</groupId>
 			<artifactId>springfox-boot-starter</artifactId>
-			<version>3.0.0</version>
+		<version>3.0.0</version>
 		</dependency>-->
 
 		<dependency>
@@ -92,24 +94,11 @@
 			<version>8.32.0.Final</version>
 		</dependency>
 
-		<!-- 
-		<dependency>
-			<groupId>org.drools</groupId>
-			<artifactId>knowledge-api</artifactId>
-			<version>8.32.0.Final</version>
-		</dependency>
--->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
 			<version>5.2.3</version>
 		</dependency>
-<!--
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml-schemas</artifactId>
-			<version>4.1.2</version>
-		</dependency>-->
 
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -122,13 +111,6 @@
 			<artifactId>poi-scratchpad</artifactId>
 			<version>5.2.3</version>
 		</dependency>
-
-		<!--
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.12.0</version>
-		</dependency> -->
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -148,7 +130,7 @@
 			<version>2.0.27</version>
 		</dependency>
 
-		<!-- For Java to JSON 2 way mapping-->
+		<!-- For Java to JSON two way mapping-->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -194,7 +176,9 @@
 						<configuration>
 							<target>
 								<!-- includes only classes in our data model -->
-								<jar destfile="target/rp-data-model-${project.version}.jar" basedir="target/classes" includes="net/firstpartners/data/**" excludes="**/Test.class" />
+								<jar destfile="target/rp-data-model-${project.version}.jar"
+									basedir="target/classes" includes="net/firstpartners/data/**"
+									excludes="**/Test.class" />
 
 							</target>
 						</configuration>

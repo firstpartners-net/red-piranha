@@ -16,15 +16,17 @@ import org.slf4j.LoggerFactory;
  * A range is just a holder for a group of named cells - maps to a similar
  * Concept in MS Excel We use it as a convenience for loading our values into
  * working memory
- * 
+ *
  * Since we also map from other sources into these classes, a Range could
  * contain one table from a Word Document.
- * 
+ *
  * @see Map which it implmements for convenience
  * @author paul
+ * @version $Id: $Id
  */
 public class Range implements Map<String, Cell>, Serializable {
 
+	/** Constant <code>CELLNAME_NUM_SEPARATOR="_"</code> */
 	public static final String CELLNAME_NUM_SEPARATOR = "_";
 
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -48,13 +50,16 @@ public class Range implements Map<String, Cell>, Serializable {
 	/**
 	 * Create the bean , the name of the original name e.g. equivalent to named
 	 * range in Excel
-	 * 
-	 * @param rangeName
+	 *
+	 * @param rangeName a {@link java.lang.String} object
 	 */
 	public Range(String rangeName) {
 		this.rangeName = rangeName;
 	}
 
+	/**
+	 * <p>cascadeResetIsModifiedFlag.</p>
+	 */
 	public void cascadeResetIsModifiedFlag() {
 		
 		for (Cell  cell : cells.values()) {
@@ -63,23 +68,34 @@ public class Range implements Map<String, Cell>, Serializable {
 		
 	}
 
+	/**
+	 * <p>clear.</p>
+	 */
 	public void clear() {
 		cells.clear();
 	}
 
+	/** {@inheritDoc} */
 	public boolean containsKey(Object arg0) {
 		return cells.containsKey(arg0);
 	}
 
+	/** {@inheritDoc} */
 	public boolean containsValue(Object arg0) {
 
 		return cells.containsValue(arg0);
 	}
 
+	/**
+	 * <p>entrySet.</p>
+	 *
+	 * @return a {@link java.util.Set} object
+	 */
 	public Set<java.util.Map.Entry<String, Cell>> entrySet() {
 		return cells.entrySet();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -102,6 +118,7 @@ public class Range implements Map<String, Cell>, Serializable {
 		return true;
 	}
 
+	/** {@inheritDoc} */
 	public Cell get(Object arg0) {
 		return cells.get(arg0);
 	}
@@ -109,9 +126,9 @@ public class Range implements Map<String, Cell>, Serializable {
 	/**
 	 * Get the Actual Cell of a position cell in the range e.g. if the cell name is
 	 * range_8 then , we can ask for the first cell range_0
-	 * 
-	 * @param newCellPosition
-	 * @return
+	 *
+	 * @param newCellPosition a int
+	 * @return a {@link net.firstpartners.data.Cell} object
 	 */
 	public Cell getCell(int newCellPosition) {
 
@@ -132,10 +149,10 @@ public class Range implements Map<String, Cell>, Serializable {
 	/**
 	 * Get the Actual Cell of a position cell in the range e.g. if the cell name is
 	 * range_8 then , we can ask for the first cell range_0
-	 * 
-	 * @param currentFullCellName
-	 * @param newCellPosition
-	 * @return
+	 *
+	 * @param currentFullCellName a {@link java.lang.String} object
+	 * @param newCellPosition a int
+	 * @return a {@link net.firstpartners.data.Cell} object
 	 */
 	public Cell getCellInRange(String currentFullCellName, int newCellPosition) {
 
@@ -147,9 +164,9 @@ public class Range implements Map<String, Cell>, Serializable {
 	/**
 	 * Get the name of a position cell in the range e.g. if the cell name is range_8
 	 * then , we can ask for the first cell range_0
-	 * 
-	 * @param currentFullCellName
-	 * @param newCellPosition
+	 *
+	 * @param currentFullCellName a {@link java.lang.String} object
+	 * @param newCellPosition a int
 	 * @return String with the name
 	 */
 	public String getCellName(String currentFullCellName, int newCellPosition) {
@@ -171,8 +188,8 @@ public class Range implements Map<String, Cell>, Serializable {
 	/**
 	 * Get the Actual Cell of a position cell in the range e.g. if the cell name is
 	 * range_8 then , we can ask for the first cell range_0
-	 * 
-	 * @param newCellPosition
+	 *
+	 * @param newCellPosition a int
 	 * @return - Object, Representing the cell Value
 	 */
 	public Object getCellValue(int newCellPosition) {
@@ -195,6 +212,11 @@ public class Range implements Map<String, Cell>, Serializable {
 //
 //	}
 
+	/**
+	 * <p>getCellValueList.</p>
+	 *
+	 * @return a {@link java.util.List} object
+	 */
 	public List<Object> getCellValueList() {
 
 		ArrayList<Object> returnList = new ArrayList<Object>();
@@ -213,9 +235,9 @@ public class Range implements Map<String, Cell>, Serializable {
 	/**
 	 * Matches on contents of cells, unlike conventional containsValue method that
 	 * matches exact objects
-	 * 
-	 * @param value
-	 * @return
+	 *
+	 * @param value a {@link java.lang.Object} object
+	 * @return a boolean
 	 */
 	public boolean getRangeContainsValue(Object value) {
 
@@ -223,15 +245,20 @@ public class Range implements Map<String, Cell>, Serializable {
 
 	}
 
+	/**
+	 * <p>Getter for the field <code>rangeName</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getRangeName() {
 		return rangeName;
 	}
 
 	/**
 	 * Generate cell name based on internal string
-	 * 
-	 * @param cellInRange
-	 * @return
+	 *
+	 * @param cellInRange a int
+	 * @return a {@link java.lang.String} object
 	 */
 	public String getUniqueCellName(int cellInRange) {
 
@@ -241,9 +268,10 @@ public class Range implements Map<String, Cell>, Serializable {
 
 	/**
 	 * Generate cell name based on supplied string
-	 * 
-	 * @param cellInRange
-	 * @return
+	 *
+	 * @param cellInRange a int
+	 * @param rangeNameExt a {@link java.lang.String} object
+	 * @return a {@link java.lang.String} object
 	 */
 	public String getUniqueCellName(String rangeNameExt, int cellInRange) {
 
@@ -251,6 +279,7 @@ public class Range implements Map<String, Cell>, Serializable {
 
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -260,15 +289,32 @@ public class Range implements Map<String, Cell>, Serializable {
 		return result;
 	}
 
+	/**
+	 * <p>isEmpty.</p>
+	 *
+	 * @return a boolean
+	 */
 	public boolean isEmpty() {
 		return cells.isEmpty();
 	}
 
 
+	/**
+	 * <p>keySet.</p>
+	 *
+	 * @return a {@link java.util.Set} object
+	 */
 	public Set<String> keySet() {
 		return cells.keySet();
 	}
 
+	/**
+	 * <p>put.</p>
+	 *
+	 * @param rangeName a {@link java.lang.String} object
+	 * @param cell a {@link net.firstpartners.data.Cell} object
+	 * @return a {@link net.firstpartners.data.Cell} object
+	 */
 	public Cell put(String rangeName, Cell cell) {
 		assert rangeName != null;
 		assert cell != null;
@@ -276,31 +322,53 @@ public class Range implements Map<String, Cell>, Serializable {
 
 	}
 
+	/** {@inheritDoc} */
 	public void putAll(Map<? extends String, ? extends Cell> arg0) {
 		cells.putAll(arg0);
 	}
 
 
+	/** {@inheritDoc} */
 	public Cell remove(Object arg0) {
 		return cells.remove(arg0);
 
 	}
 
+	/**
+	 * <p>Setter for the field <code>rangeName</code>.</p>
+	 *
+	 * @param rangeName a {@link java.lang.String} object
+	 */
 	public void setRangeName(String rangeName) {
 		this.rangeName = rangeName;
 
 	}
 
+	/**
+	 * <p>size.</p>
+	 *
+	 * @return a int
+	 */
 	public int size() {
 		return cells.size();
 	}
 
+	/**
+	 * <p>toShortString.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String toShortString() {
 
 		return "Range:" + rangeName;
 
 	}
 
+	/**
+	 * <p>toString.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String toString() {
 
 		StringBuffer returnString = new StringBuffer("Range:" + rangeName + "\n");
@@ -312,11 +380,17 @@ public class Range implements Map<String, Cell>, Serializable {
 		return returnString.toString();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public Collection<Cell> values() {
 		return cells.values();
 	}
 
+	/**
+	 * <p>put.</p>
+	 *
+	 * @param newFacts a {@link java.util.Collection} object
+	 */
 	public void put(Collection<Cell> newFacts) {
 		
 		for(Cell c: newFacts) {

@@ -10,8 +10,9 @@ import net.firstpartners.core.Config;
 
 /**
  * Find and load resources
- * @author paulf
  *
+ * @author paulf
+ * @version $Id: $Id
  */
 public class ResourceFinder {
 	
@@ -24,12 +25,11 @@ public class ResourceFinder {
 	 * Try to load the file at resource name , in this order 1) in working directory
 	 * 2) in directory as specified in Config.sampleBaseDirDefault + ResourceName 3)
 	 * 3) in directory as specified in Config.sampleBaseDirAlternate + ResourceName
-	 * 
-	 * @param resourceName
-	 * @param appConfig
-	 * @param directoryOnly - check for directory and not file
-	 * @return
-	 * @throws FileNotFoundException 
+	 *
+	 * @param resourceName a {@link java.lang.String} object
+	 * @param appConfig a {@link net.firstpartners.core.Config} object
+	 * @throws java.io.FileNotFoundException
+	 * @return a {@link java.io.File} object
 	 */
 	public static File getFileResourceUsingConfig(String resourceName, Config appConfig) throws FileNotFoundException {
 		
@@ -76,13 +76,10 @@ public class ResourceFinder {
 	 * Try to load the file at resource name , in this order 1) in working directory
 	 * 2) in directory as specified in Config.sampleBaseDirDefault + ResourceName 3)
 	 * 3) in directory as specified in Config.sampleBaseDirAlternate + ResourceName
-	 * @param outputFileName 
-	 * 
-	 * @param resourceName
-	 * @param appConfig
-	 * @param directoryOnly - check for directory and not file
-	 * @return
-	 * @throws FileNotFoundException 
+	 *
+	 * @param appConfig a {@link net.firstpartners.core.Config} object
+	 * @throws java.io.FileNotFoundException
+	 * @return a {@link java.lang.String} object
 	 */
 	public static String getDirectoryResourceUsingConfig(Config appConfig) throws FileNotFoundException {
 		

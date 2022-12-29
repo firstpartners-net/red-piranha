@@ -12,9 +12,9 @@ import net.firstpartners.data.RangeList;
 /**
  * Strategy Class for Output of Documents to memory Doesn't actually output
  * anything, but holds data so we can unit test.
- * 
- * @author paul
  *
+ * @author paul
+ * @version $Id: $Id
  */
 public class MemoryOutputStrategy implements IDocumentOutStrategy {
 
@@ -29,6 +29,8 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Makes more sense for other implementions of this interface - tells users
 	 * where the data is going
 	 */
@@ -38,16 +40,19 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 		return "Held in Memory";
 	}
 
+	/**
+	 * <p>getProcessedDocument.</p>
+	 *
+	 * @return a {@link net.firstpartners.core.file.OfficeDocument} object
+	 */
 	public OfficeDocument getProcessedDocument() {
 		return processedDoc;
 	}
 
 	/**
 	 * Hold the output file for later testing
-	 * 
-	 * @param fileToProcess
-	 * @param outputFileName
-	 * @throws IOException
+	 *
+	 * @throws java.io.IOException
 	 */
 	public void processOutput() throws IOException {
 
@@ -56,14 +61,21 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 		
 	}
 
+	/** {@inheritDoc} */
 	public void setConfig(Config appConfig) {
 		this.appConfig = appConfig;
 	}
 
+	/**
+	 * <p>setProcessedDocument.</p>
+	 *
+	 * @param processedWorkbook a {@link net.firstpartners.core.file.OfficeDocument} object
+	 */
 	protected void setProcessedDocument(OfficeDocument processedWorkbook) {
 		this.processedDoc = processedWorkbook;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setUpdates(OfficeDocument fileToProcess, RangeList ranges) throws IOException {
 		this.processedDoc = fileToProcess;

@@ -12,9 +12,10 @@ import org.apache.commons.lang3.math.NumberUtils;
  * other sources into these classes, a Cell could be a cell from a table in a
  * Word Document. For simplicity, we map Paragraphs from a word document into a
  * cell (to make writing rules easier)
- * 
+ *
+ * @author paulf
+ * @version $Id: $Id
  */
-
 public class Cell implements PropertyChangeListener, Serializable {
 
 	private static final long serialVersionUID = -763504507901540819L;
@@ -44,9 +45,9 @@ public class Cell implements PropertyChangeListener, Serializable {
 	}
 	/**
 	 * Most Basic useful Cell - with a name and value
-	 * 
-	 * @param name
-	 * @param value
+	 *
+	 * @param name a {@link java.lang.String} object
+	 * @param value a {@link java.lang.Object} object
 	 */
 	public Cell(String name, Object value) {
 		super();
@@ -54,6 +55,11 @@ public class Cell implements PropertyChangeListener, Serializable {
 		this.value = value;
 	}
 
+	/**
+	 * <p>addPropertyChangeListener.</p>
+	 *
+	 * @param l a {@link java.beans.PropertyChangeListener} object
+	 */
 	public void addPropertyChangeListener(final PropertyChangeListener l) {
 		this.changes.addPropertyChangeListener(l);
 	}
@@ -62,7 +68,8 @@ public class Cell implements PropertyChangeListener, Serializable {
 	 * Appends textToAdd to existing value.
 	 * Converts existing cell value to string if it already is there.
 	 * If cell is null, then textToAdd will be the new value
-	 * @param textToAdd
+	 *
+	 * @param textToAdd a {@link java.lang.String} object
 	 */
 	public void appendValue(String textToAdd) {
 		
@@ -84,9 +91,9 @@ public class Cell implements PropertyChangeListener, Serializable {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Check for equality with another Object / cell
-	 * 
-	 * @param obj - the object to compare us to
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -117,18 +124,29 @@ public class Cell implements PropertyChangeListener, Serializable {
 		return true;
 	}
 
+	/**
+	 * <p>Getter for the field <code>comment</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getComment() {
 		return comment;
 	}
 
+	/**
+	 * <p>Getter for the field <code>name</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
 	 * checks if a name starts with this text we supply*
-	 * 
+	 *
 	 * @return true if it is
+	 * @param textToCompareAgainst a {@link java.lang.String} object
 	 */
 	public boolean getNameStartsWith(String textToCompareAgainst) {
 		if (name != null) {
@@ -140,10 +158,20 @@ public class Cell implements PropertyChangeListener, Serializable {
 		return false;
 	}
 
+	/**
+	 * <p>Getter for the field <code>nextName</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getNextName() {
 		return nextName;
 	}
 
+	/**
+	 * <p>Getter for the field <code>originalCellCol</code>.</p>
+	 *
+	 * @return a int
+	 */
 	public int getOriginalCellCol() {
 		return originalCellCol;
 	}
@@ -151,7 +179,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 	/**
 	 * Get the original Cell reference (if available) - e.g. the Cell address from
 	 * the Original (Apache Poi) Spreadsheet
-	 * 
+	 *
 	 * @return - null if this is not available
 	 */
 	public String getOriginalCellReference() {
@@ -162,6 +190,11 @@ public class Cell implements PropertyChangeListener, Serializable {
 		return null;
 	}
 
+	/**
+	 * <p>Getter for the field <code>originalCellRow</code>.</p>
+	 *
+	 * @return a int
+	 */
 	public int getOriginalCellRow() {
 		return originalCellRow;
 	}
@@ -169,21 +202,26 @@ public class Cell implements PropertyChangeListener, Serializable {
 	/**
 	 * Get the original Table reference (if available) - e.g.from the Original (Word
 	 * Table, sheet in Spreadsheet) that this came from
-	 * 
-	 * @return
+	 *
+	 * @return a {@link java.lang.String} object
 	 */
 	public String getOriginalTableReference() {
 
 		return originalTableReference;
 	}
 
+	/**
+	 * <p>Getter for the field <code>value</code>.</p>
+	 *
+	 * @return a {@link java.lang.Object} object
+	 */
 	public Object getValue() {
 		return value;
 	}
 
 	/**
 	 * If possible, get the value of the Cell as a Boolean
-	 * 
+	 *
 	 * @return null if this conversion is not possible
 	 */
 	public Boolean getValueAsBoolean() {
@@ -210,7 +248,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	/**
 	 * If possible, get the value of the Cell as an Long
-	 * 
+	 *
 	 * @return null if this conversion is not possible
 	 */
 	public Long getValueAsLong() {
@@ -233,7 +271,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	/**
 	 * Get the value of the Cell as a String
-	 * 
+	 *
 	 * @return null if this conversion is not possible
 	 */
 	public String getValueAsText() {
@@ -246,6 +284,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 		return null;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -259,13 +298,14 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	/**
 	 * Flag that allows us to signal if we have modified the cell
-	 * 
-	 * @return
+	 *
+	 * @return a boolean
 	 */
 	public boolean isModified() {
 		return modified;
 	}
 
+	/** {@inheritDoc} */
 	public void propertyChange(PropertyChangeEvent arg0) {
 
 		// Pass on the event to the registered listener
@@ -315,6 +355,11 @@ public class Cell implements PropertyChangeListener, Serializable {
 		return "\"" + value.toString() + "\"";
 	}
 
+	/**
+	 * <p>removePropertyChangeListener.</p>
+	 *
+	 * @param l a {@link java.beans.PropertyChangeListener} object
+	 */
 	public void removePropertyChangeListener(final PropertyChangeListener l) {
 		this.changes.removePropertyChangeListener(l);
 	}
@@ -323,6 +368,11 @@ public class Cell implements PropertyChangeListener, Serializable {
 //		this.holdingRange = holdingRange;
 //	}
 
+	/**
+	 * <p>Setter for the field <code>comment</code>.</p>
+	 *
+	 * @param comment a {@link java.lang.String} object
+	 */
 	public void setComment(String comment) {
 		String oldValue = this.comment;
 		this.comment = comment;
@@ -330,10 +380,20 @@ public class Cell implements PropertyChangeListener, Serializable {
 		this.changes.firePropertyChange("comment", oldValue, comment);
 	}
 
+	/**
+	 * <p>Setter for the field <code>modified</code>.</p>
+	 *
+	 * @param modified a boolean
+	 */
 	public void setModified(boolean modified) {
 		this.modified = modified;
 	}
 
+	/**
+	 * <p>Setter for the field <code>name</code>.</p>
+	 *
+	 * @param name a {@link java.lang.String} object
+	 */
 	public void setName(String name) {
 
 		String oldValue = this.name;
@@ -343,6 +403,11 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	}
 
+	/**
+	 * <p>Setter for the field <code>nextName</code>.</p>
+	 *
+	 * @param nextName a {@link java.lang.String} object
+	 */
 	public void setNextName(String nextName) {
 		this.nextName = nextName;
 	}
@@ -350,9 +415,9 @@ public class Cell implements PropertyChangeListener, Serializable {
 	/**
 	 * * set the original Cell reference (if available) - e.g. the Cell address from
 	 * the Original (Apache Poi) Spreadsheet
-	 * 
-	 * @param cellCol
-	 * @param cellRow
+	 *
+	 * @param cellCol a int
+	 * @param cellRow a int
 	 */
 	public void setOriginalCellReference(int cellRow, int cellCol) {
 
@@ -369,8 +434,8 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	/**
 	 * Set the original Table (Word Table, sheet in Spreadsheet) that this came from
-	 * 
-	 * @param newOriginalSheetReference
+	 *
+	 * @param newOriginalSheetReference a {@link java.lang.String} object
 	 */
 	public void setOriginalTableReference(String newOriginalSheetReference) {
 
@@ -380,6 +445,11 @@ public class Cell implements PropertyChangeListener, Serializable {
 		this.changes.firePropertyChange("value", oldValue, value);
 	}
 
+	/**
+	 * <p>Setter for the field <code>value</code>.</p>
+	 *
+	 * @param value a {@link java.lang.Object} object
+	 */
 	public void setValue(Object value) {
 		Object oldValue = this.value;
 		this.value = value;
@@ -391,8 +461,9 @@ public class Cell implements PropertyChangeListener, Serializable {
 	 * Print an internal representation of the Cell contents. This is the long
 	 * version. If used for every cell in a large dataset it could cause an
 	 * OutOfMemoryError. This version should be copy-pastable into rules / drl files
-	 * 
+	 *
 	 * @see toString()
+	 * @return a {@link java.lang.String} object
 	 */
 	public String toLongString() {
 
@@ -404,10 +475,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 
 	}
 	
-	/**
-	 * @see toLongString() if more comprehensive data needed This is the short
-	 *      version.
-	 */
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 

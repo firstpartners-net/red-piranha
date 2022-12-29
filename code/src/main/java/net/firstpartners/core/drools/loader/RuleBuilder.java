@@ -23,8 +23,9 @@ import net.firstpartners.core.file.ResourceFinder;
 /**
  * Obtain the Drools Rules in a runnable format Could be from the Web, local
  * filesystem. May need to compile if needed
- * 
+ *
  * @author paulf
+ * @version $Id: $Id
  */
 public class RuleBuilder {
 
@@ -33,12 +34,12 @@ public class RuleBuilder {
 
 	/**
 	 * Load the rules from the sources listed in the Data model and configuration
-	 * 
+	 *
 	 * @param redModel  - the data model
 	 * @param appConfig - application configuration, including where the rules files
 	 *                  are stored
-	 * @return
-	 * @throws Exception 
+	 * @throws java.lang.Exception
+	 * @return a {@link org.kie.api.builder.KieBuilder} object
 	 */
 	public KieBuilder loadRules(RedModel redModel, Config appConfig) throws Exception {
 

@@ -22,8 +22,9 @@ import net.firstpartners.core.json.SampleDataLoader;
 /**
  * Class that Spring will delegate most web requests to in order to decide what
  * to do next
- * 
- * @return
+ *
+ * @author paulf
+ * @version $Id: $Id
  */
 @Controller
 public class RedController {
@@ -40,9 +41,9 @@ public class RedController {
 
 	/**
 	 * Original Request - setup and display the main page
-	 * 
-	 * @param model
-	 * @return
+	 *
+	 * @param model a {@link org.springframework.ui.Model} object
+	 * @return a {@link java.lang.String} object
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
@@ -67,6 +68,13 @@ public class RedController {
 		return "index";
 	}
 
+	/**
+	 * <p>runRules.</p>
+	 *
+	 * @param model a {@link org.springframework.ui.Model} object
+	 * @param redModel a {@link net.firstpartners.core.RedModel} object
+	 * @return a {@link java.lang.String} object
+	 */
 	@RequestMapping(value = "/runRules")
 	public String runRules(Model model, @ModelAttribute(RED_MODEL) RedModel redModel) {
 

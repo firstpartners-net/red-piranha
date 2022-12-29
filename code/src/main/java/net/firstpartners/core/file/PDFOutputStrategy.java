@@ -18,9 +18,9 @@ import net.firstpartners.data.RangeList;
 
 /**
  * Strategy class to output of PDF Document
- * 
- * @author paul
  *
+ * @author paul
+ * @version $Id: $Id
  */
 public class PDFOutputStrategy implements IDocumentOutStrategy {
 
@@ -36,8 +36,8 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
-	 * 
-	 * @param outputFileName
+	 *
+	 * @param outputFileName a {@link java.lang.String} object
 	 */
 	public PDFOutputStrategy(String outputFileName) {
 		this.outputFileName = outputFileName;
@@ -45,6 +45,8 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * String representing where our output is going to
 	 */
 	@Override
@@ -52,6 +54,11 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 		return "File:" + outputFileName;
 	}
 
+	/**
+	 * <p>Getter for the field <code>outputFileName</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getOutputFileName() {
 		return outputFileName;
 	}
@@ -69,11 +76,9 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * Process the output from the system
-	 * 
-	 * @param fileToProcess
-	 * @param outputFileName
-	 * @throws IOException
-	 * @throws InvalidFormatException
+	 *
+	 * @throws java.io.IOException
+	 * @throws org.apache.poi.openxml4j.exceptions.InvalidFormatException
 	 */
 	public void processOutput() throws IOException, InvalidFormatException {
 
@@ -104,16 +109,16 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 
 	}
 
+	/** {@inheritDoc} */
 	public void setConfig(Config appConfig) {
 		this.appConfig = appConfig;
 	}
 
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Update a copy of our Original Document with new data
-	 * 
-	 * @param ranges
-	 * @throws IOException
 	 */
 	public void setUpdates(OfficeDocument fileToProcess, RangeList range) throws IOException {
 

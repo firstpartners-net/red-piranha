@@ -29,7 +29,7 @@ import net.firstpartners.data.RangeList;
  * <p>
  * CSV will try to append to an existing CSV file. In general, one document
  * processed equals one line in the CSV file.
- * 
+ *
  * The table below might help understand this Outputers behaviour.
  * <table style="border: 1px solid black;">
  * <tr>
@@ -89,9 +89,9 @@ import net.firstpartners.data.RangeList;
  * "https://paulbrowne-irl.github.io/red-piranha/images/GuiRangeHolder.png"
  * alt="Red Piranha GUI showing RangeHolder Data></img>
  * </p>
- * 
- * @author paul
  *
+ * @author paul
+ * @version $Id: $Id
  */
 public class CSVOutputStrategy implements IDocumentOutStrategy {
 
@@ -111,7 +111,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
-	 * 
+	 *
 	 * @param outputFileName - file we want to output to
 	 */
 	public CSVOutputStrategy(String outputFileName) {
@@ -145,8 +145,9 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	}
 
 	/**
-	 * /** Get the values from our Beans (RangeList) that match the headers
-	 * 
+	/**
+	 * Get the values from our Beans (RangeList) that match the headers
+	 *
 	 * @param headers  that we are looking to match in the data
 	 * @param beanData that we have collected.
 	 * @return Map <header-key, matching-value>
@@ -189,24 +190,29 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * String representing where our output is going to
-	 * 
-	 * @return String - where we will output this to
 	 */
 	@Override
 	public String getOutputDestination() {
 		return "File:" + appendFileName;
 	}
 
+	/**
+	 * <p>getOutputFileName.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getOutputFileName() {
 		return appendFileName;
 	}
 
 	/**
 	 * Process the output from the system
-	 * 
-	 * @throws IOException            - from underlying libs
-	 * @throws InvalidFormatException - from underlying libs
+	 *
+	 * @throws java.io.IOException            - from underlying libs
+	 * @throws org.apache.poi.openxml4j.exceptions.InvalidFormatException - from underlying libs
 	 */
 	public void processOutput() throws IOException, InvalidFormatException {
 
@@ -240,17 +246,15 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 
 	}
 
+	/** {@inheritDoc} */
 	public void setConfig(Config appConfig) {
 		this.appConfig = appConfig;
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Update a copy of our Original Document with new data
-	 * 
-	 * @param ignored      - normally the original file, but this strategy ignores
-	 *                     it
-	 * @param incomingData - our Javabeans to output
-	 * @throws IOException fileToProcess
 	 */
 	public void setUpdates(OfficeDocument ignored, RangeList incomingData) throws IOException {
 

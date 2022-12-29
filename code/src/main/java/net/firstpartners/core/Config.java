@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 
 /**
  * Bean to hold Configuration from the specified property file
- * 
- * @author PBrowne
  *
+ * @author PBrowne
+ * @version $Id: $Id
  */
 @Component
 @PropertySource(value = "classpath:application.properties", ignoreResourceNotFound = true)
@@ -31,30 +31,65 @@ public class Config {
 	@Value("${SHOW_FULL_RULE_ENGINE_LOGS}")
 	private boolean showFullRuleEngineLogs = false;
 
+	/**
+	 * <p>Getter for the field <code>sampleBaseDirAlternate</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getSampleBaseDirAlternate() {
 		return sampleBaseDirAlternate;
 	}
 
+	/**
+	 * <p>Getter for the field <code>sampleBaseDirDefault</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getSampleBaseDirDefault() {
 		return sampleBaseDirDefault;
 	}
 
+	/**
+	 * <p>Getter for the field <code>showFullRuleEngineLogs</code>.</p>
+	 *
+	 * @return a boolean
+	 */
 	public boolean getShowFullRuleEngineLogs() {
 		return showFullRuleEngineLogs;
 	}
 
+	/**
+	 * <p>Setter for the field <code>sampleBaseDirAlternate</code>.</p>
+	 *
+	 * @param sampleBaseDirAlternate a {@link java.lang.String} object
+	 */
 	public void setSampleBaseDirAlternate(String sampleBaseDirAlternate) {
 		this.sampleBaseDirAlternate = sampleBaseDirAlternate;
 	}
 
+	/**
+	 * <p>Setter for the field <code>sampleBaseDirDefault</code>.</p>
+	 *
+	 * @param sampleBaseDirDefault a {@link java.lang.String} object
+	 */
 	public void setSampleBaseDirDefault(String sampleBaseDirDefault) {
 		this.sampleBaseDirDefault = sampleBaseDirDefault;
 	}
 
+	/**
+	 * <p>Setter for the field <code>showFullRuleEngineLogs</code>.</p>
+	 *
+	 * @param showFullRuleEngineLogs a boolean
+	 */
 	public void setShowFullRuleEngineLogs(boolean showFullRuleEngineLogs) {
 		this.showFullRuleEngineLogs = showFullRuleEngineLogs;
 	}
 
+	/**
+	 * <p>toString.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
 	}

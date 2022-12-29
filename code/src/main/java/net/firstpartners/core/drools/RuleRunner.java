@@ -29,6 +29,9 @@ import net.firstpartners.data.RangeList;
  * Call JBoss Drools (Rules Engine) passing in Document data as Java Objects
  *
  * This class uses an IDocumentStrategy Object to handle different types
+ *
+ * @author paulf
+ * @version $Id: $Id
  */
 public class RuleRunner {
 
@@ -52,9 +55,9 @@ public class RuleRunner {
 	 *
 	 * @see RuleRunnerFactory in this package which we use to build a properly
 	 *      constructed instance of this class
-	 * @param documentStrategy
-	 * @param ruleLoader
-	 * @param outputStrategy
+	 * @param documentStrategy a {@link net.firstpartners.core.IDocumentInStrategy} object
+	 * @param outputStrategy a {@link net.firstpartners.core.IDocumentOutStrategy} object
+	 * @param appConfig a {@link net.firstpartners.core.Config} object
 	 */
 	protected RuleRunner(IDocumentInStrategy documentStrategy, IDocumentOutStrategy outputStrategy, Config appConfig) {
 		this.inputStrategy = documentStrategy;
@@ -66,11 +69,9 @@ public class RuleRunner {
 	 * Call the rule Engine - data input / output has already been set during the
 	 * creation of this class
 	 *
-	 * @param redModel - containing the info we need to run the rule engine
-	 * @throws CsvRequiredFieldEmptyException
-	 * @throws CsvDataTypeMismatchException
 	 * @return our Model with all the information so we can display back to the user
-	 * @throws Exception 
+	 * @throws java.lang.Exception
+	 * @param ruleModel a {@link net.firstpartners.core.RedModel} object
 	 */
 	public RedModel callRules(RedModel ruleModel)
 			throws Exception {
@@ -127,6 +128,11 @@ public class RuleRunner {
 
 	}
 
+	/**
+	 * <p>Getter for the field <code>appConfig</code>.</p>
+	 *
+	 * @return a {@link net.firstpartners.core.Config} object
+	 */
 	public Config getAppConfig() {
 		return appConfig;
 	}
@@ -231,6 +237,11 @@ public class RuleRunner {
 		return runStatelessRules(masterRulebase, model.getFacts(), model.getGlobals(), showFullRuleEngineLogs,model);
 	}
 
+	/**
+	 * <p>Setter for the field <code>outputStrategy</code>.</p>
+	 *
+	 * @param newStrategy a {@link net.firstpartners.core.IDocumentOutStrategy} object
+	 */
 	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {
 		this.outputStrategy = newStrategy;
 	}

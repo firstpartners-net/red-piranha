@@ -19,9 +19,9 @@ import net.firstpartners.data.RangeList;
 
 /**
  * Convert a Word (.docX) into our (Red) Javabeans.  Currently does not support the reverse translation.
- * 
- * @author PBrowne
  *
+ * @author PBrowne
+ * @version $Id: $Id
  */
 public class DocumentXConvertor {
 
@@ -142,10 +142,11 @@ public class DocumentXConvertor {
 
 	/**
 	 * Convert from WordDocX (Apache Poi) into our Javabean format
-	 * @param wordDoc 
+	 *
+	 * @param wordDoc a {@link org.apache.poi.xwpf.usermodel.XWPFDocument} object
 	 * @return RangeList
-	 * @throws IOException
-	 * @throws InvalidFormatException
+	 * @throws java.io.IOException
+	 * @throws org.apache.poi.openxml4j.exceptions.InvalidFormatException
 	 */
 	public static RangeList convertFromPoiWordIntoRedRange(XWPFDocument wordDoc)
 			throws InvalidFormatException, IOException {

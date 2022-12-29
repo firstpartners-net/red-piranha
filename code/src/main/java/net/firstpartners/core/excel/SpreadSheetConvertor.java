@@ -28,7 +28,7 @@ import net.firstpartners.data.RangeList;
  * Based on Sample from Apache POI
  *
  * @author paulbrowne
- *
+ * @version $Id: $Id
  */
 public class SpreadSheetConvertor {
 
@@ -37,10 +37,10 @@ public class SpreadSheetConvertor {
 
 	/**
 	 * Read an excel file and return what we find as a set of simple JavaBeans
-	 * 
+	 *
 	 * @param wb - Apache Poi workbook to convert
 	 * @return RangeHolder - can be empty if no names are definded
-	 * @throws IOException
+	 * @throws java.io.IOException
 	 */
 	@SuppressWarnings("unused")
 	public static RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook wb)
@@ -146,10 +146,10 @@ public class SpreadSheetConvertor {
 	/**
 	 * Update an excel file with our new values uses the original sheet and original
 	 * cell reference within the red cell to copy backk
-	 * 
-	 * @param wb
-	 * @param updatedValues
-	 * @throws IOException
+	 *
+	 * @param wb a {@link org.apache.poi.ss.usermodel.Workbook} object
+	 * @param updatedValues a {@link net.firstpartners.data.RangeList} object
+	 * @throws java.io.IOException
 	 */
 	public static void updateRedRangeintoPoiExcel(Workbook wb, RangeList updatedValues) throws IOException {
 

@@ -23,7 +23,7 @@ import net.firstpartners.data.RangeList;
  * Engine
  *
  * @author PBrowne
- *
+ * @version $Id: $Id
  */
 public class WordXInputStrategy implements IDocumentInStrategy {
 
@@ -44,21 +44,18 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 		this.wordInputFileName = wordxInputFileName;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String getInputName() {
 		return wordInputFileName;
 	}
 
 	/**
-	 * Access a Stream, convert it to Red JavaBeans (representing Excel Ojbects)
+	 * {@inheritDoc}
 	 *
-	 * @return RangeList
-	 * @throws EncryptedDocumentException
-	 * @throws IOException
-	 * @throws InvalidFormatException
+	 * Access a Stream, convert it to Red JavaBeans (representing Excel Ojbects)
 	 */
 	@Override
-
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException {
 
 		log.debug("converting incoming word stream to Javabeans");
@@ -74,20 +71,28 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public OfficeDocument getOriginalDocument() {
 		return new OfficeDocument(poiDoc);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setConfig(Config appConfig) {
 		this.appConfig = appConfig;
 	}
 
+	/**
+	 * <p>setInputFileName.</p>
+	 *
+	 * @param wordInputFileName a {@link java.lang.String} object
+	 */
 	public void setInputFileName(String wordInputFileName) {
 		this.wordInputFileName = wordInputFileName;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setOriginalDocument(OfficeDocument originalDoc) {
 		this.poiDoc = originalDoc.getOriginalAsPoiWordDoc();

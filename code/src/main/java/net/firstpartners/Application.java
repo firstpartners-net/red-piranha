@@ -14,9 +14,9 @@ import net.firstpartners.core.Config;
 
 /**
  * Main class called by Spring on Command line to start Application
- * 
- * @author paulf
  *
+ * @author paulf
+ * @version $Id: $Id
  */
 @SpringBootApplication
 public class Application {
@@ -28,10 +28,21 @@ public class Application {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	
+	/**
+	 * <p>main.</p>
+	 *
+	 * @param args an array of {@link java.lang.String} objects
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
+	/**
+	 * <p>commandLineRunner.</p>
+	 *
+	 * @param ctx a {@link org.springframework.context.ApplicationContext} object
+	 * @return a {@link org.springframework.boot.CommandLineRunner} object
+	 */
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {

@@ -17,6 +17,9 @@ import org.slf4j.Logger;
 /**
  * Convert from Excel values (as represented by Apache POI) to JavaBeans (used
  * by RedPiranha / Rules) and vice versa
+ *
+ * @author paulf
+ * @version $Id: $Id
  */
 public class CellConvertor {
 
@@ -24,11 +27,11 @@ public class CellConvertor {
 
 	/**
 	 * Convert from Excel(Apache) to RedPiranha - Javabean version of a Cell
-	 * 
+	 *
 	 * @param cellNameFromRange - allows us to treat this cell as a member of a
 	 *                          range
-	 * @param poiCell
-	 * @return
+	 * @param poiCell a {@link org.apache.poi.ss.usermodel.Cell} object
+	 * @return a {@link net.firstpartners.data.Cell} object
 	 */
 	public static net.firstpartners.data.Cell convertPoiCellToRedCell(String cellNameFromRange,
 			org.apache.poi.ss.usermodel.Cell poiCell) {
@@ -106,10 +109,10 @@ public class CellConvertor {
 
 	/**
 	 * Convert from Standard JavaBean to Excel (Apache Poi) Cells
-	 * 
-	 * @param rangeName
-	 * @param poiCell
-	 * @param redCell
+	 *
+	 * @param poiCell a {@link org.apache.poi.ss.usermodel.Cell} object
+	 * @param redCell a {@link net.firstpartners.data.Cell} object
+	 * @param wb a {@link org.apache.poi.ss.usermodel.Workbook} object
 	 */
 	public static void convertRedCellToPoiCell(org.apache.poi.ss.usermodel.Workbook wb,
 			org.apache.poi.ss.usermodel.Cell poiCell, net.firstpartners.data.Cell redCell) {
@@ -189,8 +192,9 @@ public class CellConvertor {
 	/**
 	 * Get the 'updated' style that we use to show that a cell value has been
 	 * changed
-	 * 
-	 * @return
+	 *
+	 * @param wb a {@link org.apache.poi.ss.usermodel.Workbook} object
+	 * @return a {@link org.apache.poi.ss.usermodel.CellStyle} object
 	 */
 	protected static org.apache.poi.ss.usermodel.CellStyle getUpdatedPoiCellStyle(
 			org.apache.poi.ss.usermodel.Workbook wb) {

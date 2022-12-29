@@ -16,9 +16,9 @@ import net.firstpartners.data.Cell;
 
 /**
  * Observes working memory of drools to see if any new facts are created
- * 
- * @author PBrowne
  *
+ * @author PBrowne
+ * @version $Id: $Id
  */
 public class SessionCellListener implements RuleRuntimeEventListener {
 
@@ -28,6 +28,8 @@ public class SessionCellListener implements RuleRuntimeEventListener {
 	ArrayList<Cell> newCells = new ArrayList<Cell>();
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * We need to know about new Objects inserted in working memory
 	 * So if new facts (Cells) are created, we can capture them on exit
 	 */
@@ -45,15 +47,18 @@ public class SessionCellListener implements RuleRuntimeEventListener {
 
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * We get notified of these events, but we don't really care about updates
 	 */
-	
+
 	@Override
 	public void objectUpdated(ObjectUpdatedEvent event) {
 		
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void objectDeleted(ObjectDeletedEvent event) {
 		newCells.remove(event.getOldObject());
@@ -61,6 +66,11 @@ public class SessionCellListener implements RuleRuntimeEventListener {
 
 	}
 
+	/**
+	 * <p>Getter for the field <code>newCells</code>.</p>
+	 *
+	 * @return a {@link java.util.List} object
+	 */
 	public List<Cell> getNewCells() {
 		return newCells;
 
@@ -69,8 +79,9 @@ public class SessionCellListener implements RuleRuntimeEventListener {
 	/**
 	 * Compare the list of facts we are given
 	 * and return any new ones that we know about
-	 * @param facts
-	 * @return 
+	 *
+	 * @param facts a {@link java.util.Collection} object
+	 * @return a {@link java.util.List} object
 	 */
 	public List<Cell> getNewCells(Collection<Cell> facts) {
 		

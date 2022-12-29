@@ -18,9 +18,9 @@ import net.firstpartners.data.RangeList;
 
 /**
  * Strategy class of output of Excel Document
- * 
- * @author paul
  *
+ * @author paul
+ * @version $Id: $Id
  */
 public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
@@ -38,8 +38,8 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
-	 * 
-	 * @param outputFileName
+	 *
+	 * @param outputFileName a {@link java.lang.String} object
 	 */
 	public ExcelOutputStrategy(String outputFileName) {
 		this.outputFileName = outputFileName;
@@ -47,6 +47,8 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * String representing where our output is going to
 	 */
 	@Override
@@ -54,10 +56,20 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 		return "File:" + outputFileName;
 	}
 
+	/**
+	 * <p>Getter for the field <code>outputFileName</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getOutputFileName() {
 		return outputFileName;
 	}
 
+	/**
+	 * <p>Getter for the field <code>workbook</code>.</p>
+	 *
+	 * @return a {@link org.apache.poi.ss.usermodel.Workbook} object
+	 */
 	public Workbook getWorkbook() {
 		return workbook;
 	}
@@ -122,10 +134,10 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * Outputs an Apache POI Workbook to a Stream (e.g Servlet response)
-	 * 
-	 * @param wb
-	 * @param stream
-	 * @throws IOException
+	 *
+	 * @param wb a {@link org.apache.poi.ss.usermodel.Workbook} object
+	 * @param stream a {@link java.io.OutputStream} object
+	 * @throws java.io.IOException
 	 */
 	public void outputToStream(Workbook wb, OutputStream stream) throws IOException {
 
@@ -134,10 +146,8 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 	/**
 	 * Process the output from the system
-	 * 
-	 * @param fileToProcess
-	 * @param outputFileName
-	 * @throws IOException
+	 *
+	 * @throws java.io.IOException
 	 */
 	public void processOutput() throws IOException {
 
@@ -149,15 +159,15 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 	}
 
+	/** {@inheritDoc} */
 	public void setConfig(Config appConfig) {
 		this.appConfig = appConfig;
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Update a copy of our Original Document with new data
-	 * 
-	 * @param ranges
-	 * @throws IOException
 	 */
 	public void setUpdates(OfficeDocument fileToProcess, RangeList range) throws IOException {
 
@@ -166,6 +176,11 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 	}
 
+	/**
+	 * <p>Setter for the field <code>workbook</code>.</p>
+	 *
+	 * @param workbook a {@link org.apache.poi.ss.usermodel.Workbook} object
+	 */
 	public void setWorkbook(Workbook workbook) {
 		this.workbook = workbook;
 	}

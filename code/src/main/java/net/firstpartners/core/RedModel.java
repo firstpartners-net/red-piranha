@@ -24,8 +24,7 @@ import net.firstpartners.data.Cell;
  * Implements IStatusUpdate to passback information to the user
  *
  * @author paul
- *
- *
+ * @version $Id: $Id
  */
 public class RedModel implements IStatusUpdate {
 
@@ -64,10 +63,10 @@ public class RedModel implements IStatusUpdate {
 
 	/**
 	 * Convenience constructor - most commonly used use case
-	 * 
-	 * @param inputfileLocation
-	 * @param ruleFileLocation
-	 * @param outputFileLocation
+	 *
+	 * @param ruleFileLocation a {@link java.lang.String} object
+	 * @param outputFileLocation a {@link java.lang.String} object
+	 * @param inputFileLocation a {@link java.lang.String} object
 	 */
 	public RedModel(String inputFileLocation, String ruleFileLocation, String outputFileLocation) {
 
@@ -79,6 +78,11 @@ public class RedModel implements IStatusUpdate {
 
 	}
 
+	/**
+	 * <p>addFact.</p>
+	 *
+	 * @param fact a {@link net.firstpartners.data.Cell} object
+	 */
 	public void addFact(Cell fact) {
 
 		if (facts == null) {
@@ -88,6 +92,11 @@ public class RedModel implements IStatusUpdate {
 		facts.add(fact);
 	}
 
+	/**
+	 * <p>addFacts.</p>
+	 *
+	 * @param facts a {@link java.util.Collection} object
+	 */
 	public void addFacts(Collection<Cell> facts) {
 
 		if (this.facts == null) {
@@ -97,6 +106,12 @@ public class RedModel implements IStatusUpdate {
 		this.facts.addAll(facts);
 	}
 
+	/**
+	 * <p>addGlobal.</p>
+	 *
+	 * @param globalName a {@link java.lang.String} object
+	 * @param global a {@link net.firstpartners.data.Cell} object
+	 */
 	public void addGlobal(String globalName, Cell global) {
 
 		if (globals == null) {
@@ -105,6 +120,11 @@ public class RedModel implements IStatusUpdate {
 		globals.put(globalName, global);
 	}
 
+	/**
+	 * <p>addGlobals.</p>
+	 *
+	 * @param globals a {@link java.util.HashMap} object
+	 */
 	public void addGlobals(HashMap<String, Cell> globals) {
 
 		if (this.globals == null) {
@@ -113,12 +133,14 @@ public class RedModel implements IStatusUpdate {
 		this.globals.putAll(globals);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void addUIDebugMessage(String output) {
 		messagesUI.add("DEBUG:" + output + "\n");
 
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void addUIWarnMessage(String output, Throwable t) {
 		messagesUI.add("WARN:" + output + "\n");
@@ -127,56 +149,107 @@ public class RedModel implements IStatusUpdate {
 		}
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void addUIInfoMessage(String output) {
 		messagesUI.add("INFO:" + output + "\n");
 
 	}
 
+	/**
+	 * <p>Getter for the field <code>dslFileLocation</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getDslFileLocation() {
 		return dslFileLocation;
 	}
 
+	/**
+	 * <p>Getter for the field <code>facts</code>.</p>
+	 *
+	 * @return a {@link java.util.Collection} object
+	 */
 	public Collection<Cell> getFacts() {
 		return facts;
 	}
 
+	/**
+	 * <p>Getter for the field <code>globals</code>.</p>
+	 *
+	 * @return a {@link java.util.HashMap} object
+	 */
 	public HashMap<String, Cell> getGlobals() {
 		return globals;
 	}
 
+	/**
+	 * <p>Getter for the field <code>inputFileLocation</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getInputFileLocation() {
 		return inputFileLocation;
 	}
 
+	/**
+	 * <p>Getter for the field <code>knowledgeBaseLocation</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getKnowledgeBaseLocation() {
 		return knowledgeBaseLocation;
 	}
 
+	/**
+	 * <p>Getter for the field <code>outputFileLocation</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getOutputFileLocation() {
 		return outputFileLocation;
 	}
 
+	/**
+	 * <p>Getter for the field <code>postRulesSnapShotAsJson</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getPostRulesSnapShotAsJson() {
 		return postRulesSnapShotAsJson;
 	}
 
+	/**
+	 * <p>Getter for the field <code>preRulesSnapShotAsJson</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getPreRulesSnapShotAsJson() {
 		return preRulesSnapShotAsJson;
 	}
 
+	/**
+	 * <p>Getter for the field <code>ruleFileLocation</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getRuleFileLocation() {
 		return ruleFileLocation;
 	}
 
+	/**
+	 * <p>Getter for the field <code>ruleFlowFileUrl</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getRuleFlowFileUrl() {
 		return ruleFlowFileUrl;
 	}
 
 	/**
 	 * Convenience method - some code expects an array
-	 * 
-	 * @return
+	 *
+	 * @return an array of {@link java.lang.String} objects
 	 */
 	public String[] getRulesFilesLocations() {
 
@@ -186,52 +259,102 @@ public class RedModel implements IStatusUpdate {
 
 	}
 
+	/**
+	 * <p>getUICurrentStatus.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getUICurrentStatus() {
 		return UICurrentStatus;
 	}
 
+	/**
+	 * <p>Getter for the field <code>uIProgressStatus</code>.</p>
+	 *
+	 * @return a int
+	 */
 	public int getUIProgressStatus() {
 		return uIProgressStatus;
 	}
 
+	/**
+	 * <p>getUserMessageContents.</p>
+	 *
+	 * @return a {@link java.util.List} object
+	 */
 	public List<String> getUserMessageContents() {
 		return messagesUI;
 	}
 
+	/**
+	 * <p>Setter for the field <code>dslFileLocation</code>.</p>
+	 *
+	 * @param dslFileLocation a {@link java.lang.String} object
+	 */
 	public void setDslFileLocation(String dslFileLocation) {
 		this.dslFileLocation = dslFileLocation;
 	}
 
+	/**
+	 * <p>Setter for the field <code>facts</code>.</p>
+	 *
+	 * @param facts an array of {@link net.firstpartners.data.Cell} objects
+	 */
 	public void setFacts(Cell[] facts) {
 		List<Cell> factsCollection = Arrays.asList(facts);
 		setFacts(factsCollection);
 
 	}
 
+	/**
+	 * <p>Setter for the field <code>facts</code>.</p>
+	 *
+	 * @param facts a {@link java.util.Collection} object
+	 */
 	public void setFacts(Collection<Cell> facts) {
 		this.facts = facts;
 	}
 
+	/**
+	 * <p>Setter for the field <code>globals</code>.</p>
+	 *
+	 * @param globals a {@link java.util.HashMap} object
+	 */
 	public void setGlobals(HashMap<String, Cell> globals) {
 		this.globals = globals;
 	}
 
+	/**
+	 * <p>Setter for the field <code>inputFileLocation</code>.</p>
+	 *
+	 * @param inputFileLocation a {@link java.lang.String} object
+	 */
 	public void setInputFileLocation(String inputFileLocation) {
 		this.inputFileLocation = inputFileLocation;
 	}
 
+	/**
+	 * <p>Setter for the field <code>knowledgeBaseLocation</code>.</p>
+	 *
+	 * @param knowledgeBaseLocation a {@link java.lang.String} object
+	 */
 	public void setKnowledgeBaseLocation(String knowledgeBaseLocation) {
 		this.knowledgeBaseLocation = knowledgeBaseLocation;
 	}
 
+	/**
+	 * <p>Setter for the field <code>outputFileLocation</code>.</p>
+	 *
+	 * @param outputFileLocation a {@link java.lang.String} object
+	 */
 	public void setOutputFileLocation(String outputFileLocation) {
 		this.outputFileLocation = outputFileLocation;
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Allows us to notify the user of a snapshot post rules
-	 * 
-	 * @param message
 	 */
 	@Override
 	public void setPostRulesSnapShot(Object dataToSnapshotToUser) {
@@ -254,9 +377,9 @@ public class RedModel implements IStatusUpdate {
 	}
 
 	/**
-	 * Allows us to notify the user of a snapshot post rules
+	 * {@inheritDoc}
 	 *
-	 * @param message
+	 * Allows us to notify the user of a snapshot post rules
 	 */
 	@Override
 	public void setPreRulesSnapShot(Object dataToSnapshotToUser) {
@@ -277,37 +400,63 @@ public class RedModel implements IStatusUpdate {
 
 	}
 
+	/**
+	 * <p>Setter for the field <code>ruleFileLocation</code>.</p>
+	 *
+	 * @param ruleFileLocation a {@link java.lang.String} object
+	 */
 	public void setRuleFileLocation(String ruleFileLocation) {
 		this.ruleFileLocation = ruleFileLocation;
 	}
 
+	/**
+	 * <p>Setter for the field <code>ruleFlowFileUrl</code>.</p>
+	 *
+	 * @param ruleFlowFileUrl a {@link java.lang.String} object
+	 */
 	public void setRuleFlowFileUrl(String ruleFlowFileUrl) {
 		this.ruleFlowFileUrl = ruleFlowFileUrl;
 	}
 
+	/**
+	 * <p>setUICurrentStatus.</p>
+	 *
+	 * @param currentStatus a {@link java.lang.String} object
+	 */
 	public void setUICurrentStatus(String currentStatus) {
 		this.UICurrentStatus = currentStatus;
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Notifies the user of percentage progress made
-	 * 
-	 * @param percentProgressMade 0 to 100
 	 */
 	public void setUIProgressStatus(int uIProgressStatus) {
 		this.uIProgressStatus = uIProgressStatus;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
 	}
 
+	/**
+	 * <p>addUIDebugMessage.</p>
+	 *
+	 * @param messages a {@link java.util.List} object
+	 */
 	public void addUIDebugMessage(List<String> messages) {
 		this.messagesUI.addAll(messages);
 		
 	}
 
+	/**
+	 * <p>addUIWarnMessage.</p>
+	 *
+	 * @param messages a {@link java.util.List} object
+	 */
 	public void addUIWarnMessage(List<String> messages) {
 		this.messagesUI.addAll(messages);
 		

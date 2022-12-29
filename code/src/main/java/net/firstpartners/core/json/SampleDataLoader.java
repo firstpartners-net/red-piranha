@@ -21,11 +21,13 @@ import net.firstpartners.core.file.ResourceFinder;
 
 /**
  * Class to load our sample data from JSON
- * @author paulf
  *
+ * @author paulf
+ * @version $Id: $Id
  */
 public class SampleDataLoader {
 
+	/** Constant <code>SAMPLE_INFO_IN_JSON="examples.json"</code> */
 	public final static String SAMPLE_INFO_IN_JSON="examples.json";
 	
 	// Logger
@@ -33,13 +35,13 @@ public class SampleDataLoader {
 	
 	/**
 	 * Loads information on our samples
-	 * @param jsonSampleDataFileName
-	 * @param appConfig - can be null, or can contain information on the directories to look in 
 	 *
-	 * @return
-	 * @throws IOException 
-	 * @throws DatabindException 
-	 * @throws StreamReadException 
+	 * @param jsonSampleDataFileName a {@link java.lang.String} object
+	 * @param appConfig - can be null, or can contain information on the directories to look in
+	 * @throws java.io.IOException
+	 * @throws com.fasterxml.jackson.databind.DatabindException
+	 * @throws com.fasterxml.jackson.core.exc.StreamReadException
+	 * @return a {@link java.util.List} object
 	 */
 	public static List<SampleData> loadSampleInformation(String jsonSampleDataFileName,Config appConfig) throws StreamReadException, DatabindException, IOException{
 		
@@ -54,14 +56,15 @@ public class SampleDataLoader {
 		return sampleData;
 	}
 
-		/**
+	/**
 	 * Generate a sample outputfile to show the format
-	 * Rename the sample file once you have generated the format - no guarantee that 
+	 * Rename the sample file once you have generated the format - no guarantee that
 	 * it will not be overwritten later.
-	 * @param outputFileName
-	 * @throws IOException 
-	 * @throws DatabindException 
-	 * @throws StreamWriteException 
+	 *
+	 * @param outputFileName a {@link java.lang.String} object
+	 * @throws java.io.IOException
+	 * @throws com.fasterxml.jackson.databind.DatabindException
+	 * @throws com.fasterxml.jackson.core.exc.StreamWriteException
 	 */
 	public static void outputSampleFormat(String outputFileName) throws StreamWriteException, DatabindException, IOException {
 		

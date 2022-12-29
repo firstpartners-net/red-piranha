@@ -18,10 +18,10 @@ import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.data.RangeList;
 
 /**
- * Strategy class to output a Json Document. 
+ * Strategy class to output a Json Document.
  *
  * @author paul
- *
+ * @version $Id: $Id
  */
 public class JsonOutputStrategy implements IDocumentOutStrategy {
 
@@ -50,24 +50,28 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 
 
 	/**
-	 * String representing where our output is going to
+	 * {@inheritDoc}
 	 *
-	 * @return String - where we will output this to
+	 * String representing where our output is going to
 	 */
 	@Override
 	public String getOutputDestination() {
 		return "File:" + outputFile;
 	}
 
+	/**
+	 * <p>getOutputFileName.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getOutputFileName() {
 		return outputFile;
 	}
 
 	/**
-	 * Process the output from the system
+	 * {@inheritDoc}
 	 *
-	 * @throws IOException            - from underlying libs
-	 * @throws InvalidFormatException - from underlying libs
+	 * Process the output from the system
 	 */
 	@Override
 	public void processOutput() throws IOException, InvalidFormatException {
@@ -86,17 +90,15 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 
 	}
 
+	/** {@inheritDoc} */
 	public void setConfig(Config appConfig) {
 		this.appConfig = appConfig;
 	}
 
 	/**
-	 * Update a copy of our Original Document with new data
+	 * {@inheritDoc}
 	 *
-	 * @param ignored      - normally the original file, but this strategy ignores
-	 *                     it
-	 * @param incomingData - our Javabeans to output
-	 * @throws IOException fileToProcess
+	 * Update a copy of our Original Document with new data
 	 */
 	@Override
 	public void setUpdates(OfficeDocument ignored, RangeList incomingData) throws IOException {

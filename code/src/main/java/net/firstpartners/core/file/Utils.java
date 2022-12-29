@@ -4,15 +4,17 @@ import java.io.File;
 
 /**
  * Utilities for dealing with files
- * @author PBrowne
  *
+ * @author PBrowne
+ * @version $Id: $Id
  */
 public class Utils {
 
 
 	/**
 	 * Delete the output file if it already exists
-	 * @param fileToDelete
+	 *
+	 * @param fileToDelete a {@link java.lang.String} object
 	 */
 	public static void deleteOutputFileIfExists(String fileToDelete) {
 

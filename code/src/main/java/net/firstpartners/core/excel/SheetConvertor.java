@@ -12,10 +12,11 @@ import org.apache.poi.ss.util.CellReference;
 
 /**
  * A class that helps up map Excel Worksheets into Javabeans.
- * 
- * In general, we operate at the Named Range level, so the function is primarily ensuring that we can convert JavaBeans back into Excel
- * @author PBrowne
  *
+ * In general, we operate at the Named Range level, so the function is primarily ensuring that we can convert JavaBeans back into Excel
+ *
+ * @author PBrowne
+ * @version $Id: $Id
  */
 public class SheetConvertor {
 

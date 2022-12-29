@@ -20,9 +20,9 @@ import net.firstpartners.data.RangeList;
 /**
  * Convert a Word (.docX) into our (Red) Javabeans. Currently does not support
  * the reverse translation.
- * 
- * @author PBrowne
  *
+ * @author PBrowne
+ * @version $Id: $Id
  */
 public class DocumentConvertor {
 
@@ -33,6 +33,7 @@ public class DocumentConvertor {
 
 
 	// first number of chars we use in names
+	/** Constant <code>FIRST_X_IN_NAMES=30</code> */
 	public static final int FIRST_X_IN_NAMES = 30;
 
 	/**
@@ -232,10 +233,11 @@ public class DocumentConvertor {
 
 	/**
 	 * Convert from WordDoc (Apache Poi) into our Javabean format
-	 * @param wordDoc
-	 * @return
-	 * @throws IOException
-	 * @throws InvalidFormatException
+	 *
+	 * @param wordDoc a {@link org.apache.poi.hwpf.HWPFDocument} object
+	 * @throws java.io.IOException
+	 * @throws org.apache.poi.openxml4j.exceptions.InvalidFormatException
+	 * @return a {@link net.firstpartners.data.RangeList} object
 	 */
 	public static RangeList convertFromPoiWordIntoRedRange(HWPFDocument wordDoc)
 			throws InvalidFormatException, IOException {

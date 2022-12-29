@@ -21,8 +21,9 @@ import net.firstpartners.data.RangeList;
  * Class to read info on our samples from a JSON file.
  * It means we can be consistent between the samples we display in the WebApp
  * And the samples we use in our integration tests
- * @author paulf
  *
+ * @author paulf
+ * @version $Id: $Id
  */
 public class JsonInputStrategy implements IDocumentInStrategy {
 
@@ -41,23 +42,22 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 	/**
 	 * Construct a new Strategy Object
 	 *
-	 * @param jsonInputFileName
+	 * @param jsonInputFileName a {@link java.lang.String} object
 	 */
 	public JsonInputStrategy(String jsonInputFileName) {
 		this.jsonInputFileName = jsonInputFileName;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String getInputName() {
 		return jsonInputFileName;
 	}
 
 	/**
-	 * Access a Stream, convert it to Red JavaBeans (representing grid like data)
+	 * {@inheritDoc}
 	 *
-	 * @return RangeList of data from our json
-	 * @throws EncryptedDocumentException
-	 * @throws IOException
+	 * Access a Stream, convert it to Red JavaBeans (representing grid like data)
 	 */
 	@Override
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException {
@@ -75,12 +75,18 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 		return null;
 	}
 
+	/**
+	 * <p>Getter for the field <code>jsonInputFileName</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getJsonInputFileName() {
 		return jsonInputFileName;
 	}
 
 
 
+	/** {@inheritDoc} */
 	@Override
 	public OfficeDocument getOriginalDocument() {
 		return officeDocument;
@@ -88,15 +94,22 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 
 
 
+	/** {@inheritDoc} */
 	public void setConfig(Config appConfig) {
 		this.appConfig = appConfig;
 	}
 
+	/**
+	 * <p>Setter for the field <code>jsonInputFileName</code>.</p>
+	 *
+	 * @param jsonInputFileName a {@link java.lang.String} object
+	 */
 	public void setJsonInputFileName(String jsonInputFileName) {
 		this.jsonInputFileName = jsonInputFileName;
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void setOriginalDocument(OfficeDocument officeDocument) {
 		this.officeDocument = officeDocument;

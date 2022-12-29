@@ -20,9 +20,9 @@ import net.firstpartners.data.RangeList;
 /**
  * Specific steps needed for feeding Excel Documents into and out of the Rule
  * Engine
- * 
- * @author PBrowne
  *
+ * @author PBrowne
+ * @version $Id: $Id
  */
 public class ExcelInputStrategy implements IDocumentInStrategy {
 
@@ -34,38 +34,41 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 
 	private Config appConfig;
 
+	/** {@inheritDoc} */
 	public void setConfig(Config appConfig) {
 		this.appConfig = appConfig;
 	}
 	
 	/**
 	 * Construct a new Strategy Object
-	 * 
-	 * @param excelInputFileName
+	 *
+	 * @param excelInputFileName a {@link java.lang.String} object
 	 */
 	public ExcelInputStrategy(String excelInputFileName) {
 		this.excelInputFileName = excelInputFileName;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public OfficeDocument getOriginalDocument() {
 		return new OfficeDocument(excelWorkBook);
 	}
 
+	/**
+	 * <p>getInputName.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
 	public String getInputName() {
 		return excelInputFileName;
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Access a Stream, convert it to Red JavaBeans (representing Excel Ojbects)
-	 * 
-	 * @param inputFromExcel
-	 * @return
-	 * @throws EncryptedDocumentException
-	 * @throws IOException
 	 */
 	@Override
-
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException {
 
 		File xlFile = ResourceFinder.getFileResourceUsingConfig(excelInputFileName, appConfig);
@@ -80,10 +83,16 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 
 	}
 
+	/**
+	 * <p>Setter for the field <code>excelInputFileName</code>.</p>
+	 *
+	 * @param excelInputFileName a {@link java.lang.String} object
+	 */
 	public void setExcelInputFileName(String excelInputFileName) {
 		this.excelInputFileName = excelInputFileName;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setOriginalDocument(OfficeDocument excelWorkBook) {
 		this.excelWorkBook = excelWorkBook.getOriginalAsPoiWorkbook();

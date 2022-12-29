@@ -24,9 +24,9 @@ import net.firstpartners.core.word.WordXInputStrategy;
 /**
  * Return an instance of RuleRunner, Appropriately configured with the various
  * IDocumentStrategy etc to handle the current document request
- * 
- * @author PBrowne
  *
+ * @author PBrowne
+ * @version $Id: $Id
  */
 public class RuleRunnerFactory {
 
@@ -34,12 +34,19 @@ public class RuleRunnerFactory {
 	private static final Logger log = LoggerFactory.getLogger(RuleRunnerFactory.class);
 
 	// How we identify file types
+	/** Constant <code>SUFFIX_WORD=".doc"</code> */
 	public static final String SUFFIX_WORD = ".doc";
+	/** Constant <code>SUFFIX_WORDX=".docx"</code> */
 	public static final String SUFFIX_WORDX = ".docx";
+	/** Constant <code>SUFFIX_EXCEL=".xls"</code> */
 	public static final String SUFFIX_EXCEL = ".xls";
+	/** Constant <code>SUFFIX_EXCELX=".xlsx"</code> */
 	public static final String SUFFIX_EXCELX = ".xlsx";
+	/** Constant <code>SUFFIX_CSV=".csv"</code> */
 	public static final String SUFFIX_CSV = ".csv";
+	/** Constant <code>SUFFIX_PDF=".pdf"</code> */
 	public static final String SUFFIX_PDF = ".pdf";
+	/** Constant <code>SUFFIX_JSON=".json"</code> */
 	public static final String SUFFIX_JSON = ".json";
 
 	// mappings between the suffix and class we want to load
@@ -153,15 +160,15 @@ public class RuleRunnerFactory {
 
 	/**
 	 * Overloaded method, for convenience
-	 * 
-	 * @param dataModel
-	 * @return
-	 * @throws InvocationTargetException
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws InstantiationException
-	 * @throws SecurityException
-	 * @throws NoSuchMethodException
+	 *
+	 * @param dataModel a {@link net.firstpartners.core.RedModel} object
+	 * @throws java.lang.reflect.InvocationTargetException
+	 * @throws java.lang.IllegalArgumentException
+	 * @throws java.lang.IllegalAccessException
+	 * @throws java.lang.InstantiationException
+	 * @throws java.lang.SecurityException
+	 * @throws java.lang.NoSuchMethodException
+	 * @return a {@link net.firstpartners.core.drools.RuleRunner} object
 	 */
 	public static RuleRunner getRuleRunner(RedModel dataModel) throws NoSuchMethodException, SecurityException,
 			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
@@ -173,17 +180,18 @@ public class RuleRunnerFactory {
 	/**
 	 * Create a properly configured RuleRunner for the Input / Output file types we
 	 * are passing within the RedModel cargo object
-	 * 
+	 *
 	 * @param dataModel - where we get the data from
 	 * @param appConfig - application Configuration
 	 * @return RuleRunner Object with the correct input / output Strategies
 	 *         configured
-	 * @throws InvocationTargetException - from underlying input - output libs
-	 * @throws IllegalArgumentException- from underlying input - output libs
-	 * @throws IllegalAccessException    - from underlying input - output libs
-	 * @throws InstantiationException    - from underlying input - output libs
+	 * @throws java.lang.reflect.InvocationTargetException - from underlying input - output libs
+	 * @throws java.lang.IllegalAccessException    - from underlying input - output libs
+	 * @throws java.lang.InstantiationException    - from underlying input - output libs
 	 * @sthrows SecurityException - from underlying input - output libs
-	 * @throws NoSuchMethodException - from underlying input - output libs
+	 * @throws java.lang.NoSuchMethodException - from underlying input - output libs
+	 * @throws java.lang.SecurityException if any.
+	 * @throws java.lang.IllegalArgumentException if any.
 	 */
 	public static RuleRunner getRuleRunner(RedModel dataModel, Config appConfig)
 			throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException,

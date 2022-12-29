@@ -104,23 +104,23 @@
 			<artifactId>poi</artifactId>
 			<version>5.2.3</version>
 		</dependency>
-
+<!--
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml-schemas</artifactId>
 			<version>4.1.2</version>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>4.1.2</version>
+			<version>5.2.3</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-scratchpad</artifactId>
-			<version>5.2.1</version>
+			<version>5.2.3</version>
 		</dependency>
 
 		<!--

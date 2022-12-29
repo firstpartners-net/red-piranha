@@ -32,6 +32,29 @@ public class SampleDataLoader {
 	private static Logger log = LoggerFactory.getLogger(SampleDataLoader.class);
 	
 	/**
+	 * Loads information on our samples
+	 * @param jsonSampleDataFileName
+	 * @param appConfig - can be null, or can contain information on the directories to look in 
+	 *
+	 * @return
+	 * @throws IOException 
+	 * @throws DatabindException 
+	 * @throws StreamReadException 
+	 */
+	public static List<SampleData> loadSampleInformation(String jsonSampleDataFileName,Config appConfig) throws StreamReadException, DatabindException, IOException{
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		File jsonSource = ResourceFinder.getFileResourceUsingConfig(jsonSampleDataFileName, appConfig);
+		
+		List<SampleData> sampleData = objectMapper.readValue(
+		        jsonSource, 
+		        new TypeReference<List<SampleData>>(){});
+		
+		return sampleData;
+	}
+
+		/**
 	 * Generate a sample outputfile to show the format
 	 * Rename the sample file once you have generated the format - no guarantee that 
 	 * it will not be overwritten later.
@@ -71,27 +94,5 @@ public class SampleDataLoader {
 		
 	}
 	
-	/**
-	 * Loads information on our samples
-	 * @param jsonSampleDataFileName
-	 * @param appConfig - can be null, or can contain information on the directories to look in 
-	 *
-	 * @return
-	 * @throws IOException 
-	 * @throws DatabindException 
-	 * @throws StreamReadException 
-	 */
-	public static List<SampleData> loadSampleInformation(String jsonSampleDataFileName,Config appConfig) throws StreamReadException, DatabindException, IOException{
-		
-		ObjectMapper objectMapper = new ObjectMapper();
-
-		File jsonSource = ResourceFinder.getFileResourceUsingConfig(jsonSampleDataFileName, appConfig);
-		
-		List<SampleData> sampleData = objectMapper.readValue(
-		        jsonSource, 
-		        new TypeReference<List<SampleData>>(){});
-		
-		return sampleData;
-	}
 	
 }

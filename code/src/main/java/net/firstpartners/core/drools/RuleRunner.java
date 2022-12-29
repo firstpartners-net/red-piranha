@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-import org.drools.compiler.compiler.DroolsParserException;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieModule;
 import org.kie.api.event.rule.DebugAgendaEventListener;

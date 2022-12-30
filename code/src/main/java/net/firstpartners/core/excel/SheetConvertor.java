@@ -34,10 +34,12 @@ public class SheetConvertor {
 		Cell cell = row.getCell(cellReference.getCol());
 
 		if(cell==null) {
+
+			log.debug("Cell was null - Creating new one");
 			cell = row.createCell(cellReference.getCol());
 		}
 		
-		//log.debug("found:" + cell.getStringCellValue());
+		log.debug("found:" + cell.getStringCellValue());
 
 		return cell;
 	}

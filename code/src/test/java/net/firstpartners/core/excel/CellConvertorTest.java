@@ -46,11 +46,16 @@ public class CellConvertorTest {
 	public final void testConvertRedCellToPoiCell() throws IOException {
 		assertNotNull(redData);
 
+		int counter =1;
+
 		Workbook wb = WorkbookFactory.create(true); // create new boolean
 
 		// loop through and check ranges
 		Map<String, Cell> map = redData.getAllCellsWithNames();
 		for (Map.Entry<String, Cell> entry : map.entrySet()) {
+
+			log.debug("Counter:"+counter+" ========");
+			counter++;
 
 			log.debug(entry.getKey() + ":" + entry.getValue());
 
@@ -80,11 +85,17 @@ public class CellConvertorTest {
 			CellConvertor.convertRedCellToPoiCell(wb, poiCell, thisRedCell);
 			assertNotNull(poiCell);
 			assertNotNull(thisRedCell);
+
+			log.debug("poiCell:"+poiCell);
+			log.debug("redCell:"+thisRedCell);
+			
 			String tmp = thisRedCell.getValueAsText();
+
+			String poiValue= poiCell.getStringCellValue();
 
 			// Excel stores boolean in a differt way
 			if (!("[false]".contains(tmp))) {
-				assertEquals(tmp, poiCell.getStringCellValue());
+				assertEquals(tmp, poiValue);
 			}
 
 		}

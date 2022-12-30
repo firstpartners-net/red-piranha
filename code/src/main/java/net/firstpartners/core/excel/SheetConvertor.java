@@ -39,7 +39,8 @@ public class SheetConvertor {
 			cell = row.createCell(cellReference.getCol());
 		}
 		
-		log.debug("found:" + cell.getStringCellValue());
+		
+		log.debug("found:" + cell.toString());
 
 		return cell;
 	}

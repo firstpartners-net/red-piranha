@@ -56,6 +56,7 @@ public class CellConvertorTest {
 
 			log.debug("Counter:"+counter+" ========");
 			counter++;
+			if(counter>15) {break;}
 
 			log.debug(entry.getKey() + ":" + entry.getValue());
 

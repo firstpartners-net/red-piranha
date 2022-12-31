@@ -73,5 +73,27 @@ class RuleBuilderTest {
 
 	}
 	
+	@Test
+	public final void testCompileDmnModel()
+			throws Exception {
+
+		log.debug("Starting to compile rules");
+
+		// String rulesToCompile = "examples/private/sef-copy-proposal-data.dslr";
+
+		RedModel rulesToCompile = new RedModel();
+		rulesToCompile.setRuleFileLocation(TestConstants.EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR);
+		rulesToCompile.setDslFileLocation(TestConstants.EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL);
+
+		Config testConfig = new Config();
+		testConfig.setSampleBaseDirDefault("src/main/resources/");
+		
+		KieBuilder myBuilder = new RuleBuilder().loadRules(rulesToCompile,testConfig);
+		KieModule myModule = myBuilder.getKieModule();
+
+		assertNotNull(myModule);
+		Utils.deleteOutputFileIfExists(TestConstants.KNOWLEDGE_BASE_FILE_TMP);
+
+	}
 	
 }

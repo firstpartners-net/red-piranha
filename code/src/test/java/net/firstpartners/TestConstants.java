@@ -53,10 +53,11 @@ public class TestConstants {
 	public final static String SAVED_WORDX_RANGEHOLDER_DATA="src/test/resources/testdata/RANGEHOLDER_RANGE_WORDX.testdata";
 	
 	
+	//Rules and Models used in tests
 	public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR = "examples/domain-specific-language/log-rules.dslr";
-
 	public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL = "examples/domain-specific-language/cell-logging.dsl";
 
+	public static final String EXAMPLES_DECISION_MODEL = "examples/3_simple_dmn/decision_model.dmn";
 
 	
 

@@ -12,11 +12,24 @@
 ,
 {
   "id" : 2,
-  "inputFileLocation" : "chocolate-factory/chocolate-data.xls",
-  "ruleFileLocation" : "chocolate-factory/log-then-modify-rules.drl",
-  "outputFileLocation" : "chocolate-factory/output.xls",
+  "inputFileLocation" : "2_chocolate-factory/chocolate-data.xls",
+  "ruleFileLocation" : "2_chocolate-factory/log-then-modify-rules.drl",
+  "outputFileLocation" : "2_chocolate-factory/output.xls",
   "dslFileLocation" : "",
   "descriptiontext" : "Reads in the data from the Excel file, causes a rule to fire against each cell. Each cell is logged, and marked as changed",
   "testingResult" : ""
   		
-} ]
+}
+, 
+{
+  "id" : 3,
+  "inputFileLocation" : "3_simple_dmn/data.xls",
+  "ruleFileLocation" : "3_simple_dmn/decision_model.dmn",
+  "outputFileLocation" : "3_simple_dmn/output.xls",
+  "dslFileLocation" : "",
+  "descriptiontext" : "A simple sample, showcasing the use of a Decision Model instead of a rules file",
+  "testingResult" : ""
+  		
+}
+
+]

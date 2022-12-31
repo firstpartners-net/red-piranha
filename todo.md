@@ -13,7 +13,14 @@ Platform (with specific examples)
 * Example - simple for book
 * Example - more in detail - for me
 
-## Todo Next
+## TODO this sprint
+
+* tidy some docs
+* create new sample
+* junit to create dmn loader
+
+
+## Todo Next 
 
 * Figure out why current excel example is outputting incorrectly
 * More info through to front end

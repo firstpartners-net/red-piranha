@@ -79,25 +79,27 @@ public class RuleRunner {
 		// Convert the cell and log if we have a handle
 		ruleModel.addUIInfoMessage("Opening Input :" + this.inputStrategy.getInputName());
 		RangeList ranges = inputStrategy.getJavaBeansFromSource();
+
+		//Set the Modified flag on the cells
 		if(ranges!=null){
 			ranges.cascadeResetIsModifiedFlag();
 		}
-		assert ranges!=null:"No Data (Ranges =null) was passed in, this is unlikely to be what you want";
-		
 
 		ruleModel.setPreRulesSnapShot(ranges);
 		ruleModel.setUIProgressStatus(10);
 
-		// Add the document contents as facts
+		// Add the document contents as facts into the working Memory
 		ruleModel.addUIInfoMessage("Adding Excel Cells as facts into Rule Engine Memory");
-
-		
+		assert ranges!=null:"No Data (Ranges =null) was passed in, this is unlikely to be what you want";
 		ruleModel.addFacts(ranges.getAllCellsInAllRanges());
 		ruleModel.setUIProgressStatus(30);
 		
 
 		// Load and fire our rules files against the data
 		Collection<Cell> newFacts = runStatelessRules(ruleModel);
+
+
+		//update the progress bar
 		ruleModel.setUIProgressStatus(60);
 
 		// Make a note of any new facts added

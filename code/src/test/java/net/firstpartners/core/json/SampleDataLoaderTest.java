@@ -49,13 +49,6 @@ class SampleDataLoaderTest {
 	void tearDown() throws Exception {
 	}
 
-	@Test
-	void testSaveSampleConfigJson() throws StreamWriteException, DatabindException, IOException {
-		
-		SampleDataLoader.outputSampleFormat(SAMPLE_OUTPUT_FORMAT_FILENAME);
-		
-		// no assertions if this doesn't blow up!
-	}
 	
 	/**
 	 * We try loading the "real" sample information, partly as an integration test

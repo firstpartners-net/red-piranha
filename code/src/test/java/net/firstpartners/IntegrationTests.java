@@ -61,7 +61,7 @@ class IntegrationTests {
 	 * @throws Exception
 	 */
 	void testSpecificExample() throws Exception {
-		sampleTestRunner(1);
+		sampleTestRunner(3);
 	}
 
 
@@ -82,8 +82,12 @@ class IntegrationTests {
 		appConfig);
 
 		//counter
+		if(sampleToRun<0){
+			log.info("running all integrations samples");
+		} else {
+			log.info("running single integration sample:"+sampleToRun);
+		}
 		
-		log.info("Sample to run:"+sampleToRun);
 
 
 		for (SampleData thisExample : examples) {

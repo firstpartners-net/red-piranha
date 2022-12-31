@@ -64,6 +64,11 @@ public class RuleBuilder {
 		String[] rulesLocs = redModel.getRulesFilesLocations();
 		for (int counter = 0; counter < rulesLocs.length; counter++) {
 
+			//Check for DMN Model - shouldn't need this - just in case
+			if(rulesLocs[counter].toLowerCase().endsWith(".dmn")){
+				throw new Exception("rule loader not configured to process decision models");
+			}
+
 			log.debug("loading into KFS:" + rulesLocs[counter]);
 			currentFile = ResourceFinder.getFileResourceUsingConfig(rulesLocs[counter], appConfig);
 			Resource resource = ks.getResources().newFileSystemResource(currentFile).setResourceType(ResourceType.DRL);

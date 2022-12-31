@@ -94,6 +94,9 @@
 			<version>8.32.0.Final</version>
 		</dependency>
 
+		<!-- Wider KIE / Kogito dependencies-->
+
+		<!-- Apache Poi for reading MS office files-->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>

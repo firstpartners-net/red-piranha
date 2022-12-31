@@ -55,9 +55,11 @@ public class RuleRunner {
 	 *
 	 * @see RuleRunnerFactory in this package which we use to build a properly
 	 *      constructed instance of this class
-	 * @param documentStrategy a {@link net.firstpartners.core.IDocumentInStrategy} object
-	 * @param outputStrategy a {@link net.firstpartners.core.IDocumentOutStrategy} object
-	 * @param appConfig a {@link net.firstpartners.core.Config} object
+	 * @param documentStrategy a {@link net.firstpartners.core.IDocumentInStrategy}
+	 *                         object
+	 * @param outputStrategy   a {@link net.firstpartners.core.IDocumentOutStrategy}
+	 *                         object
+	 * @param appConfig        a {@link net.firstpartners.core.Config} object
 	 */
 	protected RuleRunner(IDocumentInStrategy documentStrategy, IDocumentOutStrategy outputStrategy, Config appConfig) {
 		this.inputStrategy = documentStrategy;
@@ -80,8 +82,8 @@ public class RuleRunner {
 		ruleModel.addUIInfoMessage("Opening Input :" + this.inputStrategy.getInputName());
 		RangeList ranges = inputStrategy.getJavaBeansFromSource();
 
-		//Set the Modified flag on the cells
-		if(ranges!=null){
+		// Set the Modified flag on the cells
+		if (ranges != null) {
 			ranges.cascadeResetIsModifiedFlag();
 		}
 
@@ -90,16 +92,19 @@ public class RuleRunner {
 
 		// Add the document contents as facts into the working Memory
 		ruleModel.addUIInfoMessage("Adding Excel Cells as facts into Rule Engine Memory");
-		assert ranges!=null:"No Data (Ranges =null) was passed in, this is unlikely to be what you want";
-		ruleModel.addFacts(ranges.getAllCellsInAllRanges());
+
+		if (ranges != null) {
+			ruleModel.addFacts(ranges.getAllCellsInAllRanges());
+		} else {
+			assert ranges != null : "No Data (Ranges =null) was passed in, this is unlikely to be what you want";
+		}
+
 		ruleModel.setUIProgressStatus(30);
-		
 
 		// Load and fire our rules files against the data
 		Collection<Cell> newFacts = runStatelessRules(ruleModel);
 
-
-		//update the progress bar
+		// update the progress bar
 		ruleModel.setUIProgressStatus(60);
 
 		// Make a note of any new facts added
@@ -114,13 +119,11 @@ public class RuleRunner {
 		log.debug("RunRules - object " + inputStrategy.getOriginalDocument());
 		outputStrategy.setUpdates(inputStrategy.getOriginalDocument(), ranges);
 
-
 		ruleModel.addUIInfoMessage("Write to Output file:" + outputStrategy.getOutputDestination());
 		ruleModel.setUIProgressStatus(90);
-		
-		//update our post rules snapshot
-		ruleModel.setPostRulesSnapShot(ranges); 
 
+		// update our post rules snapshot
+		ruleModel.setPostRulesSnapShot(ranges);
 
 		// make sure both get written (to disk?)
 		outputStrategy.processOutput();
@@ -131,7 +134,9 @@ public class RuleRunner {
 	}
 
 	/**
-	 * <p>Getter for the field <code>appConfig</code>.</p>
+	 * <p>
+	 * Getter for the field <code>appConfig</code>.
+	 * </p>
 	 *
 	 * @return a {@link net.firstpartners.core.Config} object
 	 */
@@ -176,10 +181,9 @@ public class RuleRunner {
 		KieContainer kc = KieServices.Factory.get().newKieContainer(preBuiltKnowledgeBase.getReleaseId());
 		StatelessKieSession kSession = kc.newStatelessKieSession();
 
-		
 		// Add the logger
 		log.debug("Inserting handle to logger (via global)");
-		kSession.setGlobal("log",modelAsLogger );
+		kSession.setGlobal("log", modelAsLogger);
 
 		log.debug("Checking for globals");
 		if (globals != null) {
@@ -236,13 +240,16 @@ public class RuleRunner {
 		boolean showFullRuleEngineLogs = appConfig.getShowFullRuleEngineLogs();
 
 		log.debug("running stateless rules");
-		return runStatelessRules(masterRulebase, model.getFacts(), model.getGlobals(), showFullRuleEngineLogs,model);
+		return runStatelessRules(masterRulebase, model.getFacts(), model.getGlobals(), showFullRuleEngineLogs, model);
 	}
 
 	/**
-	 * <p>Setter for the field <code>outputStrategy</code>.</p>
+	 * <p>
+	 * Setter for the field <code>outputStrategy</code>.
+	 * </p>
 	 *
-	 * @param newStrategy a {@link net.firstpartners.core.IDocumentOutStrategy} object
+	 * @param newStrategy a {@link net.firstpartners.core.IDocumentOutStrategy}
+	 *                    object
 	 */
 	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {
 		this.outputStrategy = newStrategy;

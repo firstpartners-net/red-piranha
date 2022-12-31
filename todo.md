@@ -18,7 +18,10 @@ Platform (with specific examples)
 * tidy some docs
 * create new sample
 * junit to create dmn loader
+* add method to load dmn
 
+Data type into Decision Model
+Simplify down to Cells (remove all notion or ranges?)
 
 ## Todo Next 
 

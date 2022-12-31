@@ -48,6 +48,8 @@ public class SampleDataLoader {
 		List<SampleData> sampleData = objectMapper.readValue(
 		        jsonSource, 
 		        new TypeReference<List<SampleData>>(){});
+
+	log.debug("Read in Sample Data:"+sampleData);
 		
 		return sampleData;
 	}

@@ -4,6 +4,44 @@
   <dmn:itemDefinition id="_EC09DB7E-54F7-4F01-AC68-1860FC0974C1" name="Insert a name" isCollection="false">
     <dmn:typeRef>Any</dmn:typeRef>
   </dmn:itemDefinition>
+  <dmn:itemDefinition id="_FC91DB09-C7ED-459D-A3CC-1400567FBAF8" name="Cell" isCollection="false">
+    <dmn:itemComponent id="_3340B692-EB2F-4CFC-AC6B-BE2364F8ED18" name="valueAsText" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_8F1C5BDB-E646-4ACC-929E-07F16B000B12" name="valueAsLong" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_74AD535E-DA95-43A3-9F53-9EF292DA4D7E" name="valueAsBoolean" isCollection="false">
+      <dmn:typeRef>boolean</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_E1C6F22C-FB7B-4D41-A3A9-DCD08B524B10" name="value" isCollection="false">
+      <dmn:typeRef>Any</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_00735337-9983-4B26-BDAE-91728EC704B7" name="originalTableReference" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_C43DA162-0C31-40E7-AD56-F0EF9435822B" name="originalCellRow" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_46D47BC9-6A6C-4A37-A2FF-98139F8DE4FF" name="originalCellReference" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_6EF01725-C713-45EA-A628-16C26741FCE6" name="originalCellCol" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_B505E445-7EA7-4350-A365-EE8E58C5F15D" name="nextName" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_D1E0ADD6-D93E-47F3-B79B-B5CA46D5F258" name="name" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_1A843973-DD91-4D03-91DD-578BD682F597" name="modified" isCollection="false">
+      <dmn:typeRef>boolean</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_8113DC0A-0133-4AA4-BAEE-3E357FEA18A4" name="comment" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram id="_5084353C-B2B8-47B4-A4B5-CE2AD2B4A223" name="DRG">
       <di:extension>

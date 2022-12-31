@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
@@ -13,6 +12,7 @@ import org.kie.api.builder.Message;
 import org.kie.api.builder.Results;
 import org.kie.api.io.Resource;
 import org.kie.api.io.ResourceType;
+import org.kie.api.runtime.KieRuntimeFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,15 +46,17 @@ public class RuleBuilder {
 		// Handles
 		File currentFile;
 
-//		final KieBaseConfiguration config = KnowledgeBaseFactory.newKnowledgeBaseConfiguration();
-		
-//		config.setOption(DeclarativeAgendaOption.DISABLED); //this is default, but resolves another issue?
-		
-		//config.setOption( EventProcessingOption.STREAM);
-	//	config.setOption("","");
+		// final KieBaseConfiguration config =
+		// KnowledgeBaseFactory.newKnowledgeBaseConfiguration();
 
-		//Set system property
-		//java.lang.System.setProperty("org.kie.api.internal.assembler.KieAssemblers","org.kie.api.internal.utils.AnotherMockAssemblersImpl;4"); 
+		// config.setOption(DeclarativeAgendaOption.DISABLED); //this is default, but
+		// resolves another issue?
+
+		// config.setOption( EventProcessingOption.STREAM);
+		// config.setOption("","");
+
+		// Set system property
+		// java.lang.System.setProperty("org.kie.api.internal.assembler.KieAssemblers","org.kie.api.internal.utils.AnotherMockAssemblersImpl;4");
 
 		// For Kie later
 		KieServices ks = KieServices.Factory.get();
@@ -64,15 +66,19 @@ public class RuleBuilder {
 		String[] rulesLocs = redModel.getRulesFilesLocations();
 		for (int counter = 0; counter < rulesLocs.length; counter++) {
 
-			//Check for DMN Model - shouldn't need this - just in case
-			if(rulesLocs[counter].toLowerCase().endsWith(".dmn")){
+			// Check for DMN Model - shouldn't need this - just in case
+			if (rulesLocs[counter].toLowerCase().endsWith(".dmn")) {
 				throw new Exception("rule loader not configured to process decision models");
+			} else {
+
+				log.debug("loading into KFS:" + rulesLocs[counter]);
+				currentFile = ResourceFinder.getFileResourceUsingConfig(rulesLocs[counter], appConfig);
+				Resource resource = ks.getResources().newFileSystemResource(currentFile)
+						.setResourceType(ResourceType.DRL);
+				kfs.write(resource);
+
 			}
 
-			log.debug("loading into KFS:" + rulesLocs[counter]);
-			currentFile = ResourceFinder.getFileResourceUsingConfig(rulesLocs[counter], appConfig);
-			Resource resource = ks.getResources().newFileSystemResource(currentFile).setResourceType(ResourceType.DRL);
-			kfs.write(resource);
 		}
 
 		// Try to compile the rules
@@ -90,15 +96,16 @@ public class RuleBuilder {
 		Iterator<Message> iter = results.getMessages().iterator();
 		while (iter.hasNext()) {
 			thisRuleBuildMessage = iter.next();
-			
+
 			// build our user friendly messages for display line by line
-			messages.add("Rule Build Message: "+thisRuleBuildMessage.getText());
-			messages.add("File: "+thisRuleBuildMessage.getPath());
-			messages.add("Line: "+thisRuleBuildMessage.getLine());
-			messages.add("Column: "+thisRuleBuildMessage.getColumn());
-			
-			//More compact message for logging
-			messageAsString =  thisRuleBuildMessage.getPath() + " | "+ thisRuleBuildMessage.getLine() + " | " + thisRuleBuildMessage.getText();
+			messages.add("Rule Build Message: " + thisRuleBuildMessage.getText());
+			messages.add("File: " + thisRuleBuildMessage.getPath());
+			messages.add("Line: " + thisRuleBuildMessage.getLine());
+			messages.add("Column: " + thisRuleBuildMessage.getColumn());
+
+			// More compact message for logging
+			messageAsString = thisRuleBuildMessage.getPath() + " | " + thisRuleBuildMessage.getLine() + " | "
+					+ thisRuleBuildMessage.getText();
 
 			if (thisRuleBuildMessage.getLevel() == Message.Level.ERROR) {
 				log.warn(messageAsString);
@@ -113,12 +120,14 @@ public class RuleBuilder {
 		// Check if we have an errors and raise excpetion
 		if (results.hasMessages(Message.Level.ERROR)) {
 
-			log.warn("There are warning in a score DRL:\n{}", results);
+			log.warn("There are warning in a DRL:\n{}", results);
 			throw new Exception("There were errors in a building a Rule file\n");
 
 		}
 
 		return kBuilder;
 	}
+
+
 
 }

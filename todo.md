@@ -15,12 +15,17 @@ Platform (with specific examples)
 
 ## TODO this sprint
 
+* fix compilation errors
+
 * tidy some docs
 * create new sample
 * junit to create dmn loader
 * add method to load dmn
+* get rulerunner test passing
 
-Data type into Decision Model
+*move scesim to test (and use appendix to test as part of automated build)
+
+## Possible move
 Simplify down to Cells (remove all notion or ranges?)
 
 ## Todo Next 

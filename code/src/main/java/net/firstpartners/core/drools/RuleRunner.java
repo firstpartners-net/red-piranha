@@ -5,11 +5,13 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
+import org.drools.drl.parser.DroolsParserException;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieModule;
 import org.kie.api.event.rule.DebugAgendaEventListener;
 import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
 import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieRuntimeFactory;
 import org.kie.api.runtime.StatelessKieSession;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.slf4j.Logger;
@@ -163,6 +165,31 @@ public class RuleRunner {
 	}
 
 	/**
+	 * Run the rules
+	 *
+	 * @param rulesUrl   - array of rule files that we need to load
+	 * @param dslFileUrl - optional dsl file name (can be null)
+	 * @param facts      - Javabeans to pass to the rule engine
+	 * @param globals    - global variables to pass to the rule engine
+	 * @param logger     - handle to a logging object
+	 * @return
+	 * @throws Exception
+	 */
+	private Collection<Cell> runStatelessRules(RedModel model)
+			throws Exception {
+
+		// The most common operation on a rulebase is to create a new rule
+		// session; either stateful or stateless.
+		log.debug("Creating new rule base");
+		KieModule masterRulebase = new RuleBuilder().loadRules(model, appConfig).getKieModule();
+
+		boolean showFullRuleEngineLogs = appConfig.getShowFullRuleEngineLogs();
+
+		log.debug("running stateless rules");
+		return runStatelessRules(masterRulebase, model.getFacts(), model.getGlobals(), showFullRuleEngineLogs, model);
+	}
+
+	/**
 	 * Run Stateless rules using a pre built knowledge base
 	 *
 	 * @param preBuiltKnowledgeBase
@@ -216,31 +243,6 @@ public class RuleRunner {
 
 		return additionalFacts;
 
-	}
-
-	/**
-	 * Run the rules
-	 *
-	 * @param rulesUrl   - array of rule files that we need to load
-	 * @param dslFileUrl - optional dsl file name (can be null)
-	 * @param facts      - Javabeans to pass to the rule engine
-	 * @param globals    - global variables to pass to the rule engine
-	 * @param logger     - handle to a logging object
-	 * @return
-	 * @throws Exception
-	 */
-	private Collection<Cell> runStatelessRules(RedModel model)
-			throws Exception {
-
-		// The most common operation on a rulebase is to create a new rule
-		// session; either stateful or stateless.
-		log.debug("Creating new rule base");
-		KieModule masterRulebase = new RuleBuilder().loadRules(model, appConfig).getKieModule();
-
-		boolean showFullRuleEngineLogs = appConfig.getShowFullRuleEngineLogs();
-
-		log.debug("running stateless rules");
-		return runStatelessRules(masterRulebase, model.getFacts(), model.getGlobals(), showFullRuleEngineLogs, model);
 	}
 
 	/**

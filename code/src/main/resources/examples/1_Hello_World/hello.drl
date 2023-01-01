@@ -8,7 +8,7 @@ import net.firstpartners.data.Range;
 //Red Piranha gives us a logging object
 global IStatusUpdate log;
 	
-rule "print cell initial values" 
+rule "example 1 print cell initial values" 
 
 	when
 		$cell : Cell(value=="hello")

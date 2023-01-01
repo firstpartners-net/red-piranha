@@ -7,7 +7,7 @@ import net.firstpartners.data.Range;
 
 global IStatusUpdate log;
 
-rule "log then modify cell values" 
+rule "example 2 log then modify cell values" 
 
 	when
 		$cell : Cell(modified==false)

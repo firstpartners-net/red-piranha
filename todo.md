@@ -15,7 +15,7 @@ Platform (with specific examples)
 
 ## TODO this sprint
 
-* fix compilation errors
+* backout sample code in RuleRunnerTest.testRunDmnModel
 
 * tidy some docs
 * create new sample

@@ -11,7 +11,7 @@ global IStatusUpdate log;
 
 
 
-rule "print cell initial values" 
+rule "example 2 print cell initial values" 
 
 
 	when

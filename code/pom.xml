@@ -93,6 +93,14 @@
 			<version>8.32.0.Final</version>
 		</dependency>
 
+		<!-- auto loads drools - remove?-->
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-xml-support</artifactId>
+			<version>8.32.0.Final</version>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- Wider KIE / Kogito dependencies-->
 		<!-- Required for the DMN runtime API -->
 		<dependency>

@@ -15,7 +15,12 @@ Platform (with specific examples)
 
 ## TODO this sprint
 
+* tidy tests - either resolve issues or comment out (note here)
+* Pare back to what I need day/what chap12 needs simple sample
+
 * backout sample code in RuleRunnerTest.testRunDmnModel
+** Maybe reorg tests
+
 
 * tidy some docs
 * create new sample
@@ -34,6 +39,10 @@ Simplify down to Cells (remove all notion or ranges?)
 * More info through to front end
 * more tests compile / rule
 * tidy of all readme pages
+
+## restore commented out tests (put @Test back on them)
+testJSONInOut
+
 
 ## later
 

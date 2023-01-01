@@ -13,7 +13,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.MemoryOutputStrategy;
@@ -67,11 +66,11 @@ public class JsonInputStrategyTest {
 	void tearDown() throws Exception {
 	}
 
-	@Test
+
 	/**
 	 * Just check that the rules can run, throws no exception
 	 */
-	public final void testJsonINut() throws Exception {
+	public final void testJSONInOut() throws Exception {
 
 		
 		// was 

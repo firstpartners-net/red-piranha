@@ -1,27 +1,17 @@
 package net.firstpartners.core.drools;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-
 import org.junit.Test;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieRuntimeFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import net.firstpartners.core.RedModel;
-import net.firstpartners.core.excel.ExcelInputStrategy;
-import net.firstpartners.core.excel.ExcelOutputStrategy;
-
 import org.kie.dmn.api.core.DMNContext;
 import org.kie.dmn.api.core.DMNDecisionResult;
 import org.kie.dmn.api.core.DMNModel;
 import org.kie.dmn.api.core.DMNResult;
 import org.kie.dmn.api.core.DMNRuntime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import net.firstpartners.core.RedModel;
 
 public class RuleRunnerTest {
 

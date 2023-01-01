@@ -25,7 +25,7 @@ import net.firstpartners.data.RangeList;
 public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 
-	private Config appConfig;
+	Config appConfig;
 	
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -105,14 +105,14 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 * @param fileName
 	 * @throws IOException
 	 */
-	void outputToFile(Workbook wb) throws IOException {
+	String outputToFile(Workbook wb) throws IOException {
 
 		String outputFileDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
 		
 		//Construct the output file including directory
 		String outputFile;
 		if(outputFileDir!=""){
-			outputFile = outputFileDir+"//"+outputFileName;
+			outputFile = outputFileDir+"/"+outputFileName;
 		} else {
 			outputFile = outputFileName;
 		}
@@ -129,6 +129,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 			outputToConsole(wb);
 		 }
 		
+		 return outputFile
 
 	}
 

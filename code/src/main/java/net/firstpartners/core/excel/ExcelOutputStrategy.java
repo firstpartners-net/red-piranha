@@ -105,7 +105,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 * @param fileName
 	 * @throws IOException
 	 */
-	String outputToFile(Workbook wb) throws IOException {
+	void outputToFile(Workbook wb) throws IOException {
 
 		String outputFileDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
 		
@@ -129,7 +129,6 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 			outputToConsole(wb);
 		 }
 		
-		 return outputFile
 
 	}
 

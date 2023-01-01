@@ -11,7 +11,6 @@ import org.kie.api.builder.KieModule;
 import org.kie.api.event.rule.DebugAgendaEventListener;
 import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
 import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieRuntimeFactory;
 import org.kie.api.runtime.StatelessKieSession;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.slf4j.Logger;

@@ -17,8 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.MemoryOutputStrategy;
 import net.firstpartners.core.RedModel;
-import net.firstpartners.core.drools.RuleRunner;
-import net.firstpartners.core.drools.RuleRunnerFactory;
+import net.firstpartners.core.drools.IRunner;
+import net.firstpartners.core.drools.RunnerFactory;
 import net.firstpartners.core.json.SampleData;
 import net.firstpartners.core.json.SampleDataLoader;
 
@@ -111,7 +111,7 @@ class IntegrationTests {
 			testModel.setDslFileLocation(thisExample.getDslFileLocation());
 
 			log.debug("Running:\n" + thisExample);
-			RuleRunner runner = RuleRunnerFactory.getRuleRunner(testModel, appConfig);
+			IRunner runner = RunnerFactory.getRuleRunner(testModel, appConfig);
 			
 			// set out OutputStrategy so we can test the output later
 			// this overrides the normal output

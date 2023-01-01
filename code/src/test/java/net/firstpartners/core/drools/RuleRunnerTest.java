@@ -29,7 +29,7 @@ public class RuleRunnerTest {
 		RedModel testModel = new RedModel("some-in-name.xls", "examples/3_simple_dmn/decision_model.dmn",
 				"some-dummy-out.xls");
 
-		// RuleRunner myRunner = RuleRunnerFactory.getRuleRunner(testModel);
+		// RuleRunner myRunner = RunnerFactory.getRuleRunner(testModel);
 		// myRunner.callRules(testModel);
 
 		KieServices kieServices = KieServices.Factory.get();
@@ -76,7 +76,7 @@ public class RuleRunnerTest {
 		}
 
 		//Assert on values getting passed back
-		
+
 		
 	}
 }

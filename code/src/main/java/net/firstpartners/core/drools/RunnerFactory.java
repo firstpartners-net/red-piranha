@@ -28,10 +28,10 @@ import net.firstpartners.core.word.WordXInputStrategy;
  * @author PBrowne
  * @version $Id: $Id
  */
-public class RuleRunnerFactory {
+public class RunnerFactory {
 
 	// Handle to the logger
-	private static final Logger log = LoggerFactory.getLogger(RuleRunnerFactory.class);
+	private static final Logger log = LoggerFactory.getLogger(RunnerFactory.class);
 
 	// How we identify file types
 	/** Constant <code>SUFFIX_WORD=".doc"</code> */
@@ -170,7 +170,7 @@ public class RuleRunnerFactory {
 	 * @throws java.lang.NoSuchMethodException
 	 * @return a {@link net.firstpartners.core.drools.RuleRunner} object
 	 */
-	public static RuleRunner getRuleRunner(RedModel dataModel) throws NoSuchMethodException, SecurityException,
+	public static IRunner getRuleRunner(RedModel dataModel) throws NoSuchMethodException, SecurityException,
 			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 
 		return getRuleRunner(dataModel, new Config());
@@ -193,7 +193,7 @@ public class RuleRunnerFactory {
 	 * @throws java.lang.SecurityException if any.
 	 * @throws java.lang.IllegalArgumentException if any.
 	 */
-	public static RuleRunner getRuleRunner(RedModel dataModel, Config appConfig)
+	public static IRunner getRuleRunner(RedModel dataModel, Config appConfig)
 			throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException {
 

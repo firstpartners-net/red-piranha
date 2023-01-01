@@ -34,7 +34,7 @@ import net.firstpartners.data.RangeList;
  * @author paulf
  * @version $Id: $Id
  */
-public class RuleRunner implements IRunner {
+public class DecisionModelRunner implements IRunner {
 
 	// Application Config - if passed in
 	private Config appConfig;
@@ -62,7 +62,7 @@ public class RuleRunner implements IRunner {
 	 *                         object
 	 * @param appConfig        a {@link net.firstpartners.core.Config} object
 	 */
-	protected RuleRunner(IDocumentInStrategy documentStrategy, IDocumentOutStrategy outputStrategy, Config appConfig) {
+	protected DecisionModelRunner(IDocumentInStrategy documentStrategy, IDocumentOutStrategy outputStrategy, Config appConfig) {
 		this.inputStrategy = documentStrategy;
 		this.outputStrategy = outputStrategy;
 		this.appConfig = appConfig;

@@ -11,7 +11,7 @@ import net.firstpartners.TestConstants;
 import net.firstpartners.core.MemoryOutputStrategy;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.RuleRunner;
-import net.firstpartners.core.drools.RuleRunnerFactory;
+import net.firstpartners.core.drools.RunnerFactory;
 import net.firstpartners.core.file.PDFOutputStrategy;
 
 public class WordXInputStrategyTest {
@@ -32,7 +32,7 @@ public class WordXInputStrategyTest {
 
 		log.debug("rule source created");
 
-		RuleRunner runner = RuleRunnerFactory.getRuleRunner(redModel);
+		RuleRunner runner = (RuleRunner)RunnerFactory.getRuleRunner(redModel);
 		assertTrue(runner.getDocumentOutputStrategy() instanceof PDFOutputStrategy);
 
 		// set out OutputStrategy so we can test the output later

@@ -11,7 +11,8 @@ import net.firstpartners.TestConstants;
 import net.firstpartners.core.MemoryOutputStrategy;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.RuleRunner;
-import net.firstpartners.core.drools.RuleRunnerFactory;
+import net.firstpartners.core.drools.RunnerFactory;
+
 
 public class ExcelInputStrategyTest {
 
@@ -28,7 +29,7 @@ public class ExcelInputStrategyTest {
 			
 		log.debug("rule source created");
 		
-		RuleRunner runner =RuleRunnerFactory.getRuleRunner(redModel);
+		RuleRunner runner =(RuleRunner)RunnerFactory.getRuleRunner(redModel);
 		assertTrue (runner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 		
 		//set out OutputStrategy so we can test the output later
@@ -48,7 +49,7 @@ public class ExcelInputStrategyTest {
 		
 		RedModel redModel = new RedModel(TestConstants.XLSX_DATA_FILE,TestConstants.RULES_FILE,"some-dummy.xls");
 
-		RuleRunner runner =RuleRunnerFactory.getRuleRunner(redModel);
+		RuleRunner runner =(RuleRunner)RunnerFactory.getRuleRunner(redModel);
 		assertTrue (runner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
 		
 		//set out OutputStrategy so we can test the output later

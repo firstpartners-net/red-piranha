@@ -8,6 +8,7 @@ import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.dmn.api.core.DMNContext;
 import org.kie.dmn.api.core.DMNDecisionResult;
+import org.kie.dmn.api.core.DMNMessage;
 import org.kie.dmn.api.core.DMNModel;
 import org.kie.dmn.api.core.DMNResult;
 import org.kie.dmn.api.core.DMNRuntime;
@@ -69,5 +70,13 @@ public class RuleRunnerTest {
 			log.info("Result:" + dr.getDecisionName() + " : " + dr.getResult());
 		}
 
+		//Loop through messages
+		for (DMNMessage dm : dmnResult.getMessages()) {
+			log.info("Message:"+dm.getText());
+		}
+
+		//Assert on values getting passed back
+		
+		
 	}
 }

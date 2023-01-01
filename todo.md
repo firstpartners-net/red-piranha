@@ -27,7 +27,6 @@ Platform (with specific examples)
 
 * backout sample code in RuleRunnerTest.testRunDmnModel
 ** Maybe reorg tests
-** restore samples from zips
 
 * tidy some docs
 * create new sample

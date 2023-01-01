@@ -27,7 +27,7 @@
   "ruleFileLocation" : "3_simple_dmn/decision_model.dmn",
   "outputFileLocation" : "3_simple_dmn/output.xls",
   "dslFileLocation" : "",
-  "descriptiontext" : "A simple sample, showcasing the use of a Decision Model instead of a rules file",
+  "descriptiontext" : "A simple sample, showcasing the use of a Decision Model instead of a rules file. Echos back the values of the cells passed to it",
   "testingResult" : ""
   		
 }

@@ -1,4 +1,4 @@
-package examples/2_chocolate-factory
+package examples
 
 import net.firstpartners.core.log.IStatusUpdate;
 

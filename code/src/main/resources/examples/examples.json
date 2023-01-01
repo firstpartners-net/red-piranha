@@ -2,7 +2,7 @@
 {
   "id" : 1,
   "inputFileLocation" : "1_hello_world/hello-excel.xls",
-  "ruleFileLocation" : "1_wello_world/hello.drl",
+  "ruleFileLocation" : "1_hello_world/hello.drl",
   "outputFileLocation" : "1_hello_world/output.xls",
   "dslFileLocation" : "",
   "descriptiontext" : "Just a basic Hello World Sample. It reads in the Excel file, causes a rule to fire against the first cell, changing it to 'HelloWorld'. Note that the outputfile is different, we don't overwrite any Excel files.",
@@ -35,7 +35,7 @@
 , 
 {
   "id" : 4,
-  "inputFileLocation" : "4-domain-specific-language/data.xls",
+  "inputFileLocation" : "4-domain-specific-language/chocolate-data.xls",
   "ruleFileLocation" : "4-domain-specific-language/log-rules.dslr",
   "outputFileLocation" : "4-domain-specific-language/output.xls",
   "dslFileLocation" : "4-domain-specific-language/log-rules.dslr",

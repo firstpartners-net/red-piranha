@@ -1,4 +1,4 @@
-package examples/2_chocolate-factory
+package examples;
 
 import net.firstpartners.drools.log.IStatusUpdate;
 
@@ -8,7 +8,7 @@ import net.firstpartners.spreadsheet.Range;
 global IStatusUpdate log;
 
 # We must reference the dsl that we are using
-expander cell-logging.dsl
+expander cell-logging.dsl;
 
 
 rule "example 2 dsl print cell initial values" 

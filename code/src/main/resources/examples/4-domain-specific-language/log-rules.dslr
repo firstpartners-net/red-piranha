@@ -1,14 +1,12 @@
-package example/4-domain-specific-language
+package example/4-domain-specific-language;
 
 import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.Cell;
 
-
 global IStatusUpdate log;
 
 // We must reference the dsl that we are using
-expander cell-logging.dsl
-
+expander cell-logging.dsl;
 
 rule "example 4 print cell initial values" 
 

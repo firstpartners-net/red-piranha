@@ -12,7 +12,6 @@ import org.kie.api.builder.Message;
 import org.kie.api.builder.Results;
 import org.kie.api.io.Resource;
 import org.kie.api.io.ResourceType;
-import org.kie.api.runtime.KieRuntimeFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -32,16 +32,5 @@
   		
 }
 
-, 
-{
-  "id" : 4,
-  "inputFileLocation" : "4-domain-specific-language/chocolate-data.xls",
-  "ruleFileLocation" : "4-domain-specific-language/log-rules.dslr",
-  "outputFileLocation" : "4-domain-specific-language/output.xls",
-  "dslFileLocation" : "4-domain-specific-language/log-rules.dslr",
-  "descriptiontext" : "Writing rules in a more english-like language, using a DSL (Domain specific language) to translate into actual rules file",
-  "testingResult" : ""
-  		
-}
 
 ]

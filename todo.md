@@ -15,6 +15,13 @@ Platform (with specific examples)
 
 ## TODO this sprint
 
+* Current Sample
+** update to list
+** add tests
+** add to rulerunner
+** add to webapp
+
+
 * tidy tests - either resolve issues or comment out (note here)
 * Pare back to what I need day/what chap12 needs simple sample
 

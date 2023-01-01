@@ -21,15 +21,15 @@ public class RuleRunnerTest {
 
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Test
 	public void testRunDmnModel() throws Exception {
-		
-		RedModel testModel = new RedModel("some-in-name.xls", "examples/3_simple_dmn/decision_model.dmn", "some-dummy-out.xls");
 
-		
-		//RuleRunner myRunner = RuleRunnerFactory.getRuleRunner(testModel);
-		//myRunner.callRules(testModel);
+		RedModel testModel = new RedModel("some-in-name.xls", "examples/3_simple_dmn/decision_model.dmn",
+				"some-dummy-out.xls");
+
+		// RuleRunner myRunner = RuleRunnerFactory.getRuleRunner(testModel);
+		// myRunner.callRules(testModel);
 
 		KieServices kieServices = KieServices.Factory.get();
 
@@ -38,39 +38,36 @@ public class RuleRunnerTest {
 		DMNRuntime dmnRuntime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
 
 		String namespace = "https://kiegroup.org/dmn/_54252F75-EDEF-4D4A-81DC-EA924A966D0E";
-//		String modelName = TestConstants.EXAMPLES_DECISION_MODEL;
+		// String modelName = TestConstants.EXAMPLES_DECISION_MODEL;
 
-		//Debugging code to see the models available to us
+		// Debugging code to see the models available to us
 		List<DMNModel> modelList = dmnRuntime.getModels();
 		Iterator<DMNModel> modelLoop = modelList.iterator();
-		while(modelLoop.hasNext()){
+		while (modelLoop.hasNext()) {
 
-			DMNModel thisModel= modelLoop.next();
-			log.info("Name:"+thisModel.getName());
-			log.info("NameSpace:"+thisModel.getNamespace());
+			DMNModel thisModel = modelLoop.next();
+			log.info("Name:" + thisModel.getName());
+			log.info("NameSpace:" + thisModel.getNamespace());
 
 		}
-		
+
 		DMNModel dmnModel = dmnRuntime.getModel(namespace, "decision_model");
 
-		if(dmnModel==null){
-			throw new Exception ("DMNModel not found");
+		if (dmnModel == null) {
+			throw new Exception("DMNModel not found");
 		}
 
-		//Create and evaluate the runtime
-		DMNContext dmnContext = dmnRuntime.newContext();  
+		// Create and evaluate the runtime
+		DMNContext dmnContext = dmnRuntime.newContext();
 
-		Cell testCell= new Cell();
+		Cell testCell = new Cell("Name", "Paul");
 
-	//	for (Integer age : Arrays.asList(1,12,13,64,65,66)) {
-			dmnContext.set("InputCell", testCell);  
-			
-			DMNResult dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);  
-			for (DMNDecisionResult dr : dmnResult.getDecisionResults()) {  
-			  log.info(dr.getDecisionName() + "' : " + dr.getResult());
-			}
-//		  }
+		dmnContext.set("InputCell", testCell);
 
+		DMNResult dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
+		for (DMNDecisionResult dr : dmnResult.getDecisionResults()) {
+			log.info("Result:" + dr.getDecisionName() + " : " + dr.getResult());
+		}
 
 	}
 }

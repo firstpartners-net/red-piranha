@@ -53,9 +53,12 @@
       <dmn:requiredInput href="#_0635BFE0-5E56-44B6-A2E1-FF0A7063A697"/>
     </dmn:informationRequirement>
     <dmn:literalExpression id="_F5FB4A59-7D56-4A36-8924-21852F37B55D">
-      <dmn:text>=InputCell.value</dmn:text>
+      <dmn:text>"Hello Back "+InputCell.valueAsText</dmn:text>
     </dmn:literalExpression>
   </dmn:decision>
+  <dmn:textAnnotation id="_C1BE6BB3-3356-4A00-AA16-24C6E07A6499" textFormat="text/plain">
+    <dmn:text>Simple Decision Model - given an InputCell echos back the value of that cell </dmn:text>
+  </dmn:textAnnotation>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram id="_5084353C-B2B8-47B4-A4B5-CE2AD2B4A223" name="DRG">
       <di:extension>
@@ -81,6 +84,15 @@
           <dmndi:FontColor red="0" green="0" blue="0"/>
         </dmndi:DMNStyle>
         <dc:Bounds x="210" y="149" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_C1BE6BB3-3356-4A00-AA16-24C6E07A6499" dmnElementRef="_C1BE6BB3-3356-4A00-AA16-24C6E07A6499" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="413" y="127" width="288" height="159"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="dmnedge-drg-_7BE42914-67B7-4F0B-B060-776E5F76C532-AUTO-TARGET" dmnElementRef="_7BE42914-67B7-4F0B-B060-776E5F76C532">

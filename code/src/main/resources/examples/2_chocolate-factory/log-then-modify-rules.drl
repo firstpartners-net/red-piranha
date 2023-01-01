@@ -1,4 +1,4 @@
-package net.firstpartners.sample.ExcelDataRules;
+package examples/2_chocolate-factory
 
 import net.firstpartners.core.log.IStatusUpdate;
 

@@ -71,7 +71,7 @@ public class JsonInputStrategyTest {
 	/**
 	 * Just check that the rules can run, throws no exception
 	 */
-	public final void testThereAndBackAgain() throws Exception {
+	public final void testJsonINut() throws Exception {
 
 		
 		// was 

@@ -1,6 +1,4 @@
-package net.firstpartners.sample.ExcelDataRules;
-
-
+package examples/2_chocolate-factory
 
 import net.firstpartners.core.log.IStatusUpdate;
 
@@ -27,7 +25,7 @@ end
 
 
 
-rule "print cell modified values" 
+rule "example 2 print cell modified values" 
 
 
 	when
@@ -36,7 +34,7 @@ rule "print cell modified values"
     then
         	   
         //Logging message
-    	log.info("modified cell value:"+$cell);
+    	log.addUIInfoMessage("modified cell value:"+$cell);
     	
     	
 end
@@ -54,6 +52,6 @@ rule "print range"
     then
         	   
         //Logging message
-    	log.info("rule:"+$range.toShortString());
+    	log.addUIInfoMessage("rule:"+$range.toShortString());
 
 end*/

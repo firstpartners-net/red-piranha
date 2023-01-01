@@ -1,4 +1,4 @@
-package net.firstpartners.sample.ExcelDataRules;
+package examples/1_hello_world;
 
 import net.firstpartners.core.log.IStatusUpdate;
 
@@ -23,7 +23,7 @@ end
 
 
 
-rule "print cell modified values" 
+rule "example print cell modified values" 
 
 
 	when

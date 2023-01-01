@@ -1,4 +1,4 @@
-package example
+package example/4-domain-specific-language
 
 import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.Cell;
@@ -10,7 +10,7 @@ global IStatusUpdate log;
 expander cell-logging.dsl
 
 
-rule "print cell initial values" 
+rule "example 4 print cell initial values" 
 
 	when
 

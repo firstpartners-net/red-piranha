@@ -54,8 +54,8 @@ public class TestConstants {
 	
 	
 	//Rules and Models used in tests
-	public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR = "examples/domain-specific-language/log-rules.dslr";
-	public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL = "examples/domain-specific-language/cell-logging.dsl";
+	public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR = "examples/4-domain-specific-language/log-rules.dslr";
+	public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL = "examples/4-domain-specific-language/cell-logging.dsl";
 
 	public static final String EXAMPLES_DECISION_MODEL = "examples/3_simple_dmn/decision_model.dmn";
 

@@ -1,4 +1,4 @@
-package net.firstpartners.sample.ExcelDataRules;
+package examples/2_chocolate-factory
 
 import net.firstpartners.drools.log.IStatusUpdate;
 
@@ -11,7 +11,7 @@ global IStatusUpdate log;
 expander cell-logging.dsl
 
 
-rule "print cell initial values" 
+rule "example 2 dsl print cell initial values" 
 
 	when
 

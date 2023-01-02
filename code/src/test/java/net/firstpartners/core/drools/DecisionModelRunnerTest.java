@@ -22,8 +22,8 @@ public class DecisionModelRunnerTest {
 	@Test
 	public void testRunDmnModel() throws RPException {
 
-		RedModel testModel = new RedModel("some-in-name.xls", "decision_model.dmn",
-				"some-dummy-out.csv");
+		RedModel testModel = new RedModel(TestConstants.SIMPLE_EXCEL, TestConstants.SIMPLE_DECISION_MODEL,
+		TestConstants.CSV_TMP_FILE);
 
 		//implicit test - we should always get a decision model		
 		DecisionModelRunner myRunner = (DecisionModelRunner)RunnerFactory.getRuleRunner(testModel);
@@ -33,7 +33,7 @@ public class DecisionModelRunnerTest {
 		
 		/// TODO REFACTOR AFTER H
 		/// DECIDE HOW TO TREAT CELLS
-		myRunner.callRules(testModel);
+		RedModel returnModel = myRunner.callRules(testModel);
 
 
 
@@ -66,7 +66,7 @@ public class DecisionModelRunnerTest {
 
 		DecisionModelRunner testRunner = new DecisionModelRunner(null,null,null);
 
-		DMNModel myModel = testRunner.getDmnModel("namespace-wont-match",TestConstants.EXAMPLES_DECISION_MODEL);
+		DMNModel myModel = testRunner.getDmnModel("namespace-wont-match",TestConstants.SIMPLE_DECISION_MODEL);
 
 		assertNotNull(myModel);
 
@@ -77,7 +77,7 @@ public class DecisionModelRunnerTest {
 
 		DecisionModelRunner testRunner = new DecisionModelRunner(null,null,null);
 
-		DMNModel myModel = testRunner.getDmnModel("https://kiegroup.org/dmn/_54252F75-EDEF-4D4A-81DC-EA924A966D0E",TestConstants.EXAMPLES_DECISION_MODEL);
+		DMNModel myModel = testRunner.getDmnModel("https://kiegroup.org/dmn/_54252F75-EDEF-4D4A-81DC-EA924A966D0E",TestConstants.SIMPLE_DECISION_MODEL);
 
 		assertNotNull(myModel);
 

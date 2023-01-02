@@ -23,9 +23,9 @@
 , 
 {
   "id" : 3,
-  "inputFileLocation" : "3_simple_dmn/data.xls",
+  "inputFileLocation" : "3_simple_dmn/data.xlsx",
   "ruleFileLocation" : "3_simple_dmn/decision_model.dmn",
-  "outputFileLocation" : "3_simple_dmn/output.xls",
+  "outputFileLocation" : "3_simple_dmn/output.csv",
   "dslFileLocation" : "",
   "descriptiontext" : "A simple sample, showcasing the use of a Decision Model instead of a rules file. Echos back the values of the cells passed to it",
   "testingResult" : ""

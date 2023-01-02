@@ -45,71 +45,6 @@ public class DecisionModelRunner extends AbstractRunner {
 	}
 
 	/**
-	 * Run the Decision Model
-	 * 
-	 * @param model - contaiing inputfile, outputfile and decision model name
-	 * @return Collection of <Cell> objects as a response
-	 * @throws RPException
-	 */
-	Collection<Cell> runModel(RedModel model)
-			throws RPException {
-
-		// The most common operation on a rulebase is to create a new rule
-		// session; either stateful or stateless.
-		log.debug("Finding Decision Model new rule base");
-		DMNModel modelToRun = getDmnModel("", model.getRuleFileLocation());
-
-		boolean showFullRuleEngineLogs = appConfig.getShowFullRuleEngineLogs();
-
-		log.debug("running Decision Model");
-		// return runDecisionModel(masterRulebase, model.getFacts(), model.getGlobals(),
-		// showFullRuleEngineLogs, model);
-
-		log.debug("Creating new stateless working memory");
-/*
-		KieContainer kc = KieServices.Factory.get().newKieContainer(preBuiltKnowledgeBase.getReleaseId());
-		StatelessKieSession kSession = kc.newStatelessKieSession();
-
-		// Add the logger
-		log.debug("Inserting handle to logger (via global)");
-		kSession.setGlobal("log", modelAsLogger);
-
-		log.debug("Checking for globals");
-		if (globals != null) {
-			for (String o : globals.keySet()) {
-				log.debug("Inserting global name: " + o + " value:" + globals.get(o));
-				kSession.setGlobal(o, globals.get(o));
-			}
-		}
-
-		// We need to 'listen' for new cells being created so we can add to our results
-		SessionCellListener cellListener = new SessionCellListener();
-		kSession.addEventListener(cellListener);
-
-		// setup listeners
-		if (logRuleDetails) {
-			kSession.addEventListener(new DebugAgendaEventListener());
-			kSession.addEventListener(new DebugRuleRuntimeEventListener());
-		}
-
-		// Set up a file based audit logger
-		KnowledgeRuntimeLoggerFactory.newFileLogger(kSession, "log/WorkItemConsequence.log");
-
-		log.debug("==================== Starting Rules ====================");
-
-		// Fire using the facts
-		kSession.execute(facts);
-
-		log.debug("==================== Rules Complete ====================");
-		List<Cell> additionalFacts = cellListener.getNewCells(facts);
-
-		return additionalFacts;
- */
-
- return null;
-	}
-
-	/**
 	 * Use the KIE Tools to access the Decision Models in this package
 	 * 
 	 * @param nameSpace         - optional, we will interate over available models
@@ -165,6 +100,75 @@ public class DecisionModelRunner extends AbstractRunner {
 
 		return dmnModel;
 
+	}
+
+	/**
+	 * Run the Decision Model
+	 * 
+	 * @param model - containing inputfile, outputfile and decision model name
+	 * @return Collection of <Cell> objects as a response
+	 * @throws RPException
+	 */
+	Collection<Cell> runModel(RedModel model)
+			throws RPException {
+
+		// The most common operation on a rulebase is to create a new rule
+		// session; either stateful or stateless.
+		log.debug("Finding Decision Model new rule base");
+		DMNModel modelToRun = getDmnModel("", model.getRuleFileLocation());
+
+		boolean showFullRuleEngineLogs = appConfig.getShowFullRuleEngineLogs();
+
+		log.debug("running Decision Model");
+		// return runDecisionModel(masterRulebase, model.getFacts(), model.getGlobals(),
+		// showFullRuleEngineLogs, model);
+
+		log.debug("Creating new stateless working memory");
+		/*
+		 * KieContainer kc =
+		 * KieServices.Factory.get().newKieContainer(preBuiltKnowledgeBase.getReleaseId(
+		 * ));
+		 * StatelessKieSession kSession = kc.newStatelessKieSession();
+		 * 
+		 * // Add the logger
+		 * log.debug("Inserting handle to logger (via global)");
+		 * kSession.setGlobal("log", modelAsLogger);
+		 * 
+		 * log.debug("Checking for globals");
+		 * if (globals != null) {
+		 * for (String o : globals.keySet()) {
+		 * log.debug("Inserting global name: " + o + " value:" + globals.get(o));
+		 * kSession.setGlobal(o, globals.get(o));
+		 * }
+		 * }
+		 * 
+		 * // We need to 'listen' for new cells being created so we can add to our
+		 * results
+		 * SessionCellListener cellListener = new SessionCellListener();
+		 * kSession.addEventListener(cellListener);
+		 * 
+		 * // setup listeners
+		 * if (logRuleDetails) {
+		 * kSession.addEventListener(new DebugAgendaEventListener());
+		 * kSession.addEventListener(new DebugRuleRuntimeEventListener());
+		 * }
+		 * 
+		 * // Set up a file based audit logger
+		 * KnowledgeRuntimeLoggerFactory.newFileLogger(kSession,
+		 * "log/WorkItemConsequence.log");
+		 * 
+		 * log.debug("==================== Starting Rules ====================");
+		 * 
+		 * // Fire using the facts
+		 * kSession.execute(facts);
+		 * 
+		 * log.debug("==================== Rules Complete ====================");
+		 * List<Cell> additionalFacts = cellListener.getNewCells(facts);
+		 * 
+		 * return additionalFacts;
+		 */
+
+		return null;
 	}
 
 }

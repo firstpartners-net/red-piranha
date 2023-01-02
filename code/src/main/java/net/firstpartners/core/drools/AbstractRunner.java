@@ -107,7 +107,7 @@ public abstract class AbstractRunner implements IRunner {
 		if (ranges != null) {
 			ruleModel.addFacts(ranges.getAllCellsInAllRanges());
 		} else {
-			assert ranges != null : "No Data (Ranges =null) was passed in, this is unlikely to be what you want";
+			throw new RPException("No Data (Ranges =null) was passed in, this is unlikely to be what you want");
 		}
 
 		ruleModel.setUIProgressStatus(30);

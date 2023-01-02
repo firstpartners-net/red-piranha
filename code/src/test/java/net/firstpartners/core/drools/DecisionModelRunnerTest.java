@@ -1,5 +1,6 @@
 package net.firstpartners.core.drools;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
@@ -53,18 +54,31 @@ public class DecisionModelRunnerTest {
 		//implicit test - we should always get a decision model		
 		DecisionModelRunner myRunner = (DecisionModelRunner)RunnerFactory.getRuleRunner(testModel);
 
-		log.debug(""+myRunner.convertDecisionResultToCells("Hello"));
-		log.debug(""+myRunner.convertDecisionResultToCells(true));
-		log.debug(""+myRunner.convertDecisionResultToCells(-100));
+		Collection<Cell>tr1=myRunner.convertDecisionResultToCells("Hello");
+		assert(tr1.toString().equals("[Cell (name=='' value=='Hello')]"));
+		//log.debug("TEST1!!!! "+myRunner.convertDecisionResultToCells("Hello"));
+		
+		Collection<Cell>tr2=myRunner.convertDecisionResultToCells(true);
+		assert(tr2.toString().equals("[Cell (name=='' value=='true')]"));
+		//log.debug("TEST2!!!! "+myRunner.convertDecisionResultToCells(true));
+		
+		Collection<Cell>tr3=myRunner.convertDecisionResultToCells(-100);
+		assert(tr3.toString().equals("[Cell (name=='' value=='-100')]"));
+		//	log.debug("TEST3!!!! "+myRunner.convertDecisionResultToCells(-100));
 		
 		Cell testCell = new Cell("myName","myValue");
-		log.debug(""+myRunner.convertDecisionResultToCells(testCell));
+		Collection<Cell>tr4=myRunner.convertDecisionResultToCells(testCell);
+		log.debug(""+tr4);
+		assert(tr4.size()==1);
 
 		ArrayList<Cell> testCells = new ArrayList<Cell>();
 		testCells.add(new Cell("n1","v1"));
 		testCells.add(new Cell("n2","v2"));
 		testCells.add(new Cell("n3","v3"));
-		log.debug(""+myRunner.convertDecisionResultToCells(testCells));
+		Collection<Cell>tr5=myRunner.convertDecisionResultToCells(testCells);
+		log.debug(""+tr5);
+		assert(tr5.size()==3);
+		
 
 	}
 

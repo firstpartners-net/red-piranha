@@ -127,7 +127,7 @@ public class DecisionModelRunner extends AbstractRunner {
 
 		ArrayList<Cell> outputCells = new ArrayList<Cell>();
 
-		//Find the Decision Model
+		// Find the Decision Model
 		log.debug("Finding Decision Model new rule base");
 		DMNModel modelToRun = getDmnModel("", model.getRuleFileLocation());
 
@@ -165,7 +165,6 @@ public class DecisionModelRunner extends AbstractRunner {
 		return outputCells;
 	}
 
-
 	/**
 	 * Convert the Result of the Decision Model into Cell Ojbects
 	 * 
@@ -174,29 +173,30 @@ public class DecisionModelRunner extends AbstractRunner {
 	 */
 	Collection<Cell> convertDecisionResultToCells(Object inputObject) {
 
-
 		ArrayList<Cell> cellResult = new ArrayList<Cell>();
 
-		//Check for a list
-		if(inputObject instanceof List){
+		// Check for a list
+		if (inputObject instanceof List) {
 
-			List loopList = (List)inputObject;
+			List loopList = (List) inputObject;
 
 			for (int i = 0; i < loopList.size(); i++) {
 				cellResult.addAll(convertDecisionResultToCells(loopList.get(i)));
 			}
+			return cellResult;
 		}
 
 		if (inputObject != null) {
-			log.debug("Converting Decision Result of Type:"+inputObject.getClass());
+			log.debug("Converting Decision Result of Type:" + inputObject.getClass());
 
-			if(inputObject instanceof Cell){
-				cellResult.add((Cell)inputObject);
+			if (inputObject instanceof Cell) {
+				cellResult.add((Cell) inputObject);
+			} else {
+
+				// generic conversation based on cell toString
+				Cell tmpCell = new Cell("", inputObject.toString());
+				cellResult.add(tmpCell);
 			}
-
-			//generic conversation based on cell toString
-			Cell tmpCell = new Cell("",inputObject.toString());
-			cellResult.add(tmpCell);
 
 		} else {
 			log.warn("convertDecisionResultToCells called with a null value - unlikely to be what you want");

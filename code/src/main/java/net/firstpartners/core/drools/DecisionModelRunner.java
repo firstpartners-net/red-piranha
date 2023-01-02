@@ -53,11 +53,16 @@ public class DecisionModelRunner extends AbstractRunner {
 		this.outputStrategy = outputStrategy;
 		this.appConfig = appConfig;
 
-		// setup KIE resources
+	}
 
-		this.kieServices = KieServices.Factory.get();
-		this.kieContainer = kieServices.getKieClasspathContainer();
-		this.dmnRuntime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
+	protected void instantiateKIEifNecessary(){
+
+		if(this.dmnRuntime==null){
+			this.kieServices = KieServices.Factory.get();
+			this.kieContainer = kieServices.getKieClasspathContainer();
+			this.dmnRuntime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
+		}
+
 	}
 
 	/**
@@ -69,6 +74,9 @@ public class DecisionModelRunner extends AbstractRunner {
 	 * @throws RPException if cannot find any models
 	 */
 	DMNModel getDmnModel(String nameSpace, String decisionModelName) throws RPException {
+
+		//make sure our KIE environment is setup
+		instantiateKIEifNecessary();
 
 		log.debug("Looking for model:" + decisionModelName);
 
@@ -125,6 +133,10 @@ public class DecisionModelRunner extends AbstractRunner {
 	Collection<Cell> runModel(RedModel model)
 			throws RPException {
 
+		//make sure our KIE environment is setup
+		instantiateKIEifNecessary();
+
+		//our results objects
 		ArrayList<Cell> outputCells = new ArrayList<Cell>();
 
 		// Find the Decision Model

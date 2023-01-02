@@ -20,7 +20,7 @@ public class PDFOutputStrategyTest {
 
 
 		PDFOutputStrategy pdfOut = new PDFOutputStrategy(TestConstants.PDF_TMP_FILE);
-		RangeList TestData=RedControllerTest.getTestDataFromWord();
+		RangeList TestData=RedControllerTest.getTestDataFromExcel();
 		pdfOut.setUpdates(null, TestData);
 
 		// Process the output

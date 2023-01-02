@@ -30,6 +30,9 @@ public class DecisionModelRunnerTest {
 		RedModel testModel = new RedModel(TestConstants.SIMPLE_EXCEL, TestConstants.SIMPLE_DECISION_MODEL,
 		TestConstants.CSV_TMP_FILE);
 
+		Cell testCell = new Cell("Name","Paul");
+		testModel.addFact(testCell);
+
 		//implicit test - we should always get a decision model		
 		DecisionModelRunner myRunner = (DecisionModelRunner)RunnerFactory.getRuleRunner(testModel);
 
@@ -103,6 +106,5 @@ public class DecisionModelRunnerTest {
 		assertNotNull(myModel);
 
 	}
-
 	
 }

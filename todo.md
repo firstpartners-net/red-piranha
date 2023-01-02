@@ -13,32 +13,20 @@ Platform (with specific examples)
 * Example - simple for book
 * Example - more in detail - for me
 
-## TODO this sprint
+## TODO this sprint : aim book sample, just enough to talk about c12
 
 * Current Sample
+** resolve spring boot issue
+** get rulerunner test passing
+** run from web app
+** check output through to csv
+** tidy docs to first draft
+== what I need to chapter 12
 
-** add tests
-** add to rulerunner
-** add to webapp
-** update to list
 
-
-* tidy tests - either resolve issues or comment out (note here)
-* Pare back to what I need day/what chap12 needs simple sample
-
-* backout sample code in RuleRunnerTest.testRunDmnModel
-** Maybe reorg tests
-
-* tidy some docs
-* create new sample
-* junit to create dmn loader
-* add method to load dmn
-* get rulerunner test passing
-
-*move scesim to test (and use appendix to test as part of automated build)
 
 ## Possible move
-Simplify down to Cells (remove all notion or ranges?)
+
 
 ## Todo Next 
 
@@ -53,6 +41,8 @@ testJSONInOut
 
 ## refactor
 (Move RuleRunner.java remove RuleBuilder to same pre-built model that DecisionModel uses)
+Simplify down to Cells (remove all notion or ranges?)
+Remove .xls support
 
 ## later
 

@@ -30,7 +30,7 @@ public class RedModel implements IStatusUpdate {
 
 	private String dslFileLocation;
 
-	private Collection<Cell> facts = new ArrayList<>();
+	private List<Cell> facts = new ArrayList<>();
 
 	private HashMap<String, Cell> globals = new HashMap<>();
 
@@ -175,6 +175,15 @@ public class RedModel implements IStatusUpdate {
 	}
 
 	/**
+	 * Covenience method to get facts as a list
+	 * @return
+	 */
+	public List<Cell> getFactsAsList() {
+		return facts;
+	}
+
+
+	/**
 	 * <p>Getter for the field <code>globals</code>.</p>
 	 *
 	 * @return a {@link java.util.HashMap} object
@@ -312,7 +321,7 @@ public class RedModel implements IStatusUpdate {
 	 * @param facts a {@link java.util.Collection} object
 	 */
 	public void setFacts(Collection<Cell> facts) {
-		this.facts = facts;
+		this.facts = new ArrayList<Cell>(facts);
 	}
 
 	/**

@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.firstpartners.core.Config;
 import net.firstpartners.core.RedModel;
-import net.firstpartners.core.drools.RuleRunner;
-import net.firstpartners.core.drools.RuleRunnerFactory;
+import net.firstpartners.core.drools.IRunner;
+import net.firstpartners.core.drools.RunnerFactory;
 import net.firstpartners.core.json.SampleData;
 import net.firstpartners.core.json.SampleDataLoader;
 
@@ -90,7 +90,7 @@ public class RedController {
 
 			// The Factory auto-generates the input and output strategy based on the
 			// filenames
-			RuleRunner runner = RuleRunnerFactory.getRuleRunner(redModel,appConfig);
+			IRunner runner = RunnerFactory.getRuleRunner(redModel,appConfig);
 
 			// Call the rules using this datafile
 			redModel.addUIInfoMessage("Running Rules:");

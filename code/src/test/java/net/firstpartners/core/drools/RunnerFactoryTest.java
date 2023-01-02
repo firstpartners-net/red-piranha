@@ -5,12 +5,11 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
@@ -21,57 +20,58 @@ import net.firstpartners.core.json.JsonOutputStrategy;
 import net.firstpartners.core.word.WordInputStrategy;
 import net.firstpartners.core.word.WordXInputStrategy;
 
-public class RuleRunnerFactoryTest {
+public class RunnerFactoryTest {
 
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Test
-	public void testGenericXLSFactory() throws NoSuchMethodException, SecurityException, InstantiationException,
-			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void testGenericXLSFactory() throws RPException{
 		
 		RedModel testModel = new RedModel("some-in-name.xls", "filename", "some-dummy-out.xls");
 
 		
-		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner(testModel);
+		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
+		assertTrue (myRunner instanceof RuleRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 
 	}
 
 	@Test
-	public void testGenericXLSXFactory() throws NoSuchMethodException, SecurityException, InstantiationException,
-			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void testGenericXLSXFactory() throws RPException {
 		
 		RedModel testModel = new RedModel("some-in-name.xlsx", "filename", "some-dummy-out.xlsx");
 		
-		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner(testModel);
+		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
+		assertTrue (myRunner instanceof RuleRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 
 	}
 
 	@Test
-	public void testGenericDocFactory() throws NoSuchMethodException, SecurityException, InstantiationException,
-			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void testGenericDocFactory() throws RPException {
 		
 		RedModel testModel = new RedModel("some-in-name.doc", "filename", "some-dummy-out.csv");
-		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner(testModel);
+		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
+		assertTrue (myRunner instanceof RuleRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof CSVOutputStrategy);
 
 	}
 
 	@Test
-	public void testGenericDocXFactory() throws NoSuchMethodException, SecurityException, InstantiationException,
-			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void testGenericDocXFactory() throws RPException
+		{
 		
 		RedModel testModel = new RedModel("some-in-name.docx", "filename", "some-dummy-out.pdf");
-		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner(testModel);
+		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
+		assertTrue (myRunner instanceof RuleRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordXInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof PDFOutputStrategy);
 
@@ -79,25 +79,24 @@ public class RuleRunnerFactoryTest {
 
 	
 	@Test
-	public void testCsvOutAndIn() throws NoSuchMethodException, SecurityException, InstantiationException,
-			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void testCsvOutAndIn() throws RPException {
 		
 		RedModel testModel = new RedModel("some-in-name.doc", "filename", "some-dummy-out.csv");
-		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner(testModel);
+		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
+		assertTrue (myRunner instanceof RuleRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof CSVOutputStrategy);
 
 	}
 	
 	@Test
-	public void testGenericFactory() throws NoSuchMethodException, SecurityException, InstantiationException,
-			IllegalAccessException, InvocationTargetException {
+	public void testGenericFactory() throws RPException{
 		
 		try {
 			RedModel testModel = new RedModel("some-name-that-should-match-to-nothing", "filename",
 					"another-name-to-match-to-nothing");
-			RuleRunnerFactory.getRuleRunner(testModel);
+			RunnerFactory.getRuleRunner(testModel);
 			
 			fail("Expected exception not thrown");
 		} catch (IllegalArgumentException iae) {
@@ -109,14 +108,14 @@ public class RuleRunnerFactoryTest {
 	}
 
 	@Test
-	public void testFileFactory() throws NoSuchMethodException, SecurityException, InstantiationException,
-			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void testFileFactory() throws RPException {
 		
 		
 		RedModel testModel = new RedModel("generic.xls", "someFile",
 				"generic.xls");
-		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner(testModel);
+		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
+		assertTrue (myRunner instanceof RuleRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 																									// is stored
@@ -124,59 +123,78 @@ public class RuleRunnerFactoryTest {
 	}
 
 	@Test
-	public void testUrlFactory() throws NoSuchMethodException, SecurityException, InstantiationException,
-			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void testUrlFactory() throws RPException {
 		
 		RedModel testModel = new RedModel("some-gernic.xls",
 				"http-something-else", "some-gernic.xls");
-		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner(testModel);
+		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
+		assertTrue (myRunner instanceof RuleRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 
 	}
 
 	@Test
-	public void testBuildSuffixReferenceTables() throws NoSuchMethodException, SecurityException,
-			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void testBuildSuffixReferenceTables() throws RPException {
 
-		assertNotNull(RuleRunnerFactory.inputSuffixMaps);
-		assertNotNull(RuleRunnerFactory.outputSuffixMaps);
+		assertNotNull(RunnerFactory.inputSuffixMaps);
+		assertNotNull(RunnerFactory.outputSuffixMaps);
 
-		RuleRunnerFactory.resetReferenceTables();
-		assertNull(RuleRunnerFactory.inputSuffixMaps);
-		assertNull(RuleRunnerFactory.outputSuffixMaps);
+		RunnerFactory.resetReferenceTables();
+		assertNull(RunnerFactory.inputSuffixMaps);
+		assertNull(RunnerFactory.outputSuffixMaps);
 
 		// Now force the rebuild
 		RedModel testModel = new RedModel("some-in-name.xlsx", "filename", "some-dummy-out.xlsx");
-		RuleRunnerFactory.getRuleRunner(testModel);
-		assertNotNull(RuleRunnerFactory.inputSuffixMaps);
-		assertNotNull(RuleRunnerFactory.outputSuffixMaps);
+		RunnerFactory.getRuleRunner(testModel);
+		assertNotNull(RunnerFactory.inputSuffixMaps);
+		assertNotNull(RunnerFactory.outputSuffixMaps);
 
-		assertTrue(RuleRunnerFactory.inputSuffixMaps.size() > 3);
-		assertTrue(RuleRunnerFactory.outputSuffixMaps.size() > 3);
+		assertTrue(RunnerFactory.inputSuffixMaps.size() > 3);
+		assertTrue(RunnerFactory.outputSuffixMaps.size() > 3);
 
 	}
 
 	@Test
 	public void testInputMappings() {
 
-		Object tmpObject = RuleRunnerFactory.getInputMapping("something.xlsx");
+		Object tmpObject = RunnerFactory.getInputMapping("something.xlsx");
 		log.debug("InputMapping:"+tmpObject);
-		assertTrue(RuleRunnerFactory.getInputMapping("something.xlsx") == ExcelInputStrategy.class);
+		assertTrue(RunnerFactory.getInputMapping("something.xlsx") == ExcelInputStrategy.class);
 	}
 	
 	@Test
-	public void testJsonFileFactory() throws NoSuchMethodException, SecurityException, InstantiationException,
-			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void testJsonFileFactory() throws RPException {
 		
 		RedModel testModel = new RedModel("generic.json", "someFile",
 				"generic.json");
-		RuleRunner myRunner = RuleRunnerFactory.getRuleRunner(testModel);
+		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
+		assertTrue (myRunner instanceof RuleRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof JsonInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof JsonOutputStrategy);
 																									// is stored
+
+	}
+
+	@Test
+	public void testDecisionModelFactoryCreation() throws RPException{
+	
+		RedModel testModel = new RedModel("some-in-name.xlsx", "filename.dmn", "some-dummy-out.xlsx");	
+		
+		
+		IRunner myRunner = RunnerFactory.getRuleRunner(testModel);
+		assertNotNull(myRunner);
+
+		//this is the key test
+		assertTrue (myRunner instanceof DecisionModelRunner);
+
+		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
+		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
+
+
+
 
 	}
 

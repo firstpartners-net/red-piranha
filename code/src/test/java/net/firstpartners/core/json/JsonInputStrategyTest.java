@@ -13,13 +13,13 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.MemoryOutputStrategy;
+import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.RuleRunner;
-import net.firstpartners.core.drools.RuleRunnerFactory;
+import net.firstpartners.core.drools.RunnerFactory;
 import net.firstpartners.core.excel.SpreadSheetConvertorTest;
 
 import net.firstpartners.data.RangeList;
@@ -67,22 +67,23 @@ public class JsonInputStrategyTest {
 	void tearDown() throws Exception {
 	}
 
-	@Test
+
 	/**
 	 * Just check that the rules can run, throws no exception
+	 * @throws RPException
 	 */
-	public final void testThereAndBackAgain() throws Exception {
+	public final void testJSONInOut() throws Exception, RPException {
 
 		
 		// was 
 		RedModel redModel = new RedModel(TestConstants.JSON_SERIAL_FILE, TestConstants.RULES_FILE, "some-dummy.xls");
 
-		RuleRunner runner = RuleRunnerFactory.getRuleRunner(redModel);
+		RuleRunner runner = (RuleRunner)RunnerFactory.getRuleRunner(redModel);
 		assertTrue(runner.getDocumentInputStrategy() instanceof JsonInputStrategy);
 
 		// set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
-		runner.setOutputStrategy(outputStrategy);
+		runner.setDocumentOutputStrategy(outputStrategy);
 
 		runner.callRules(redModel);
 		assertNotNull(outputStrategy.getProcessedDocument());

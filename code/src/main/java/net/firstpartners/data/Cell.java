@@ -479,7 +479,7 @@ public class Cell implements PropertyChangeListener, Serializable {
 	@Override
 	public String toString() {
 
-		return "Cell ( name==\"" + name + "\" )";
+		return "Cell (name=='" + name + "' value=='"+value+"')";
 	}
 
 }

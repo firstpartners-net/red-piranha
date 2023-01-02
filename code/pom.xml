@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.7</version> <!-- lookup parent from repository -->
+		<version>2.7.7</version>		<!-- lookup parent from repository -->
 	</parent>
 
 	<groupId>net.firstpartners</groupId>
@@ -94,6 +93,30 @@
 			<version>8.32.0.Final</version>
 		</dependency>
 
+		<!-- auto loads drools - remove?-->
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-xml-support</artifactId>
+			<version>8.32.0.Final</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Wider KIE / Kogito dependencies-->
+		<!-- Required for the DMN runtime API -->
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-dmn-core</artifactId>
+			<version>8.32.0.Final</version>
+		</dependency>
+
+		<!-- Required if not using classpath kie container -->
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-ci</artifactId>
+			<version>8.32.0.Final</version>
+		</dependency>
+
+		<!-- Apache Poi for reading MS office files-->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
@@ -176,9 +199,7 @@
 						<configuration>
 							<target>
 								<!-- includes only classes in our data model -->
-								<jar destfile="target/rp-data-model-${project.version}.jar"
-									basedir="target/classes" includes="net/firstpartners/data/**"
-									excludes="**/Test.class" />
+								<jar destfile="target/rp-data-model-${project.version}.jar" basedir="target/classes" includes="net/firstpartners/data/**" excludes="**/Test.class" />
 
 							</target>
 						</configuration>
@@ -222,7 +243,7 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.4.1</version>
 				<configuration></configuration>
-			  </plugin>
+			</plugin>
 
 		</plugins>
 	</build>

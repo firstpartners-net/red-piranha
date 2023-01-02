@@ -1,4 +1,4 @@
-package net.firstpartners.sample.ExcelDataRules;
+package examples;
 
 import net.firstpartners.core.log.IStatusUpdate;
 
@@ -8,7 +8,7 @@ import net.firstpartners.data.Range;
 //Red Piranha gives us a logging object
 global IStatusUpdate log;
 	
-rule "print cell initial values" 
+rule "example 1 print cell initial values" 
 
 	when
 		$cell : Cell(value=="hello")
@@ -23,7 +23,7 @@ end
 
 
 
-rule "print cell modified values" 
+rule "example print cell modified values" 
 
 
 	when

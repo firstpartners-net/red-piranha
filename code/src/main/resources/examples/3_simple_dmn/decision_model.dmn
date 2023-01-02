@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_54252F75-EDEF-4D4A-81DC-EA924A966D0E" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_F40DF3DC-216A-46D4-9B6E-38AB8449BD12" name="decision_model" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_54252F75-EDEF-4D4A-81DC-EA924A966D0E">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_FC91DB09-C7ED-459D-A3CC-1400567FBAF8" name="Cell" isCollection="false">
+    <dmn:itemComponent id="_3340B692-EB2F-4CFC-AC6B-BE2364F8ED18" name="valueAsText" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_8F1C5BDB-E646-4ACC-929E-07F16B000B12" name="valueAsLong" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_74AD535E-DA95-43A3-9F53-9EF292DA4D7E" name="valueAsBoolean" isCollection="false">
+      <dmn:typeRef>boolean</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_E1C6F22C-FB7B-4D41-A3A9-DCD08B524B10" name="value" isCollection="false">
+      <dmn:typeRef>Any</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_00735337-9983-4B26-BDAE-91728EC704B7" name="originalTableReference" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_C43DA162-0C31-40E7-AD56-F0EF9435822B" name="originalCellRow" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_46D47BC9-6A6C-4A37-A2FF-98139F8DE4FF" name="originalCellReference" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_6EF01725-C713-45EA-A628-16C26741FCE6" name="originalCellCol" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_B505E445-7EA7-4350-A365-EE8E58C5F15D" name="nextName" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_D1E0ADD6-D93E-47F3-B79B-B5CA46D5F258" name="name" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_1A843973-DD91-4D03-91DD-578BD682F597" name="modified" isCollection="false">
+      <dmn:typeRef>boolean</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_8113DC0A-0133-4AA4-BAEE-3E357FEA18A4" name="comment" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_244A7D49-A2BD-4022-AF83-4CB5110CC12C" name="tRange" isCollection="true">
+    <dmn:typeRef>Cell</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:decision id="_FF0EF10E-3755-4646-8AA6-87D11637C0F3" name="EchoDecision">
+    <dmn:extensionElements/>
+    <dmn:variable id="_8F6FD0CD-1A35-4876-9A57-0F51016E61C0" name="EchoDecision" typeRef="Cell"/>
+    <dmn:informationRequirement id="_89489D10-FBCC-43F3-9AA0-FE6BDA67DC4C">
+      <dmn:requiredInput href="#_1E326F9C-DB6D-4135-A37E-46E53AAC1FF3"/>
+    </dmn:informationRequirement>
+    <dmn:literalExpression id="_F5FB4A59-7D56-4A36-8924-21852F37B55D">
+      <dmn:text>InputCells[1]</dmn:text>
+    </dmn:literalExpression>
+  </dmn:decision>
+  <dmn:inputData id="_1E326F9C-DB6D-4135-A37E-46E53AAC1FF3" name="InputCells">
+    <dmn:extensionElements/>
+    <dmn:variable id="_488288F6-3F4B-4110-ABCC-3D726D49867A" name="InputCells" typeRef="tRange"/>
+  </dmn:inputData>
+  <dmn:textAnnotation id="_C1BE6BB3-3356-4A00-AA16-24C6E07A6499" textFormat="text/plain">
+    <dmn:text>Simple Decision Model - given a list of Cells, echos back the first cell in that list </dmn:text>
+  </dmn:textAnnotation>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_5084353C-B2B8-47B4-A4B5-CE2AD2B4A223" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_F5FB4A59-7D56-4A36-8924-21852F37B55D">
+            <kie:width>300</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_FF0EF10E-3755-4646-8AA6-87D11637C0F3" dmnElementRef="_FF0EF10E-3755-4646-8AA6-87D11637C0F3" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="210" y="149" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_C1BE6BB3-3356-4A00-AA16-24C6E07A6499" dmnElementRef="_C1BE6BB3-3356-4A00-AA16-24C6E07A6499" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="413" y="127" width="121" height="200"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_1E326F9C-DB6D-4135-A37E-46E53AAC1FF3" dmnElementRef="_1E326F9C-DB6D-4135-A37E-46E53AAC1FF3" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="210" y="265" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_89489D10-FBCC-43F3-9AA0-FE6BDA67DC4C-AUTO-TARGET" dmnElementRef="_89489D10-FBCC-43F3-9AA0-FE6BDA67DC4C">
+        <di:waypoint x="260" y="290"/>
+        <di:waypoint x="260" y="199"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>

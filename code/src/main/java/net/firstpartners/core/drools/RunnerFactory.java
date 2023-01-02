@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
+import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
@@ -28,10 +29,10 @@ import net.firstpartners.core.word.WordXInputStrategy;
  * @author PBrowne
  * @version $Id: $Id
  */
-public class RuleRunnerFactory {
+public class RunnerFactory {
 
 	// Handle to the logger
-	private static final Logger log = LoggerFactory.getLogger(RuleRunnerFactory.class);
+	private static final Logger log = LoggerFactory.getLogger(RunnerFactory.class);
 
 	// How we identify file types
 	/** Constant <code>SUFFIX_WORD=".doc"</code> */
@@ -71,7 +72,7 @@ public class RuleRunnerFactory {
 			inputSuffixMaps.put(SUFFIX_EXCEL, ExcelInputStrategy.class);
 			inputSuffixMaps.put(SUFFIX_EXCELX, ExcelInputStrategy.class); // same
 			inputSuffixMaps.put(SUFFIX_JSON, JsonInputStrategy.class);
-			
+
 		}
 
 		if (outputSuffixMaps == null) {
@@ -80,7 +81,7 @@ public class RuleRunnerFactory {
 			outputSuffixMaps.put(SUFFIX_PDF, PDFOutputStrategy.class);
 			outputSuffixMaps.put(SUFFIX_EXCEL, ExcelOutputStrategy.class);
 			outputSuffixMaps.put(SUFFIX_EXCELX, ExcelOutputStrategy.class); // same
-			outputSuffixMaps.put(SUFFIX_JSON, JsonOutputStrategy.class); 
+			outputSuffixMaps.put(SUFFIX_JSON, JsonOutputStrategy.class);
 
 		}
 
@@ -144,7 +145,7 @@ public class RuleRunnerFactory {
 			throw new IllegalArgumentException(
 					"Unable to guess the type of Output file (based on where '. is) for:" + fileName);
 		}
-		
+
 		String suffix = fileName.substring(splitPoint, fileName.length());
 
 		log.debug("Looking for output Mapping against suffix:" + suffix);
@@ -162,16 +163,10 @@ public class RuleRunnerFactory {
 	 * Overloaded method, for convenience
 	 *
 	 * @param dataModel a {@link net.firstpartners.core.RedModel} object
-	 * @throws java.lang.reflect.InvocationTargetException
-	 * @throws java.lang.IllegalArgumentException
-	 * @throws java.lang.IllegalAccessException
-	 * @throws java.lang.InstantiationException
-	 * @throws java.lang.SecurityException
-	 * @throws java.lang.NoSuchMethodException
+	 * @throws RPException
 	 * @return a {@link net.firstpartners.core.drools.RuleRunner} object
 	 */
-	public static RuleRunner getRuleRunner(RedModel dataModel) throws NoSuchMethodException, SecurityException,
-			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public static IRunner getRuleRunner(RedModel dataModel) throws RPException {
 
 		return getRuleRunner(dataModel, new Config());
 
@@ -185,51 +180,79 @@ public class RuleRunnerFactory {
 	 * @param appConfig - application Configuration
 	 * @return RuleRunner Object with the correct input / output Strategies
 	 *         configured
-	 * @throws java.lang.reflect.InvocationTargetException - from underlying input - output libs
-	 * @throws java.lang.IllegalAccessException    - from underlying input - output libs
-	 * @throws java.lang.InstantiationException    - from underlying input - output libs
+	 * @throws java.lang.reflect.InvocationTargetException - from underlying input -
+	 *                                                     output libs
+	 * @throws java.lang.IllegalAccessException            - from underlying input -
+	 *                                                     output libs
+	 * @throws java.lang.InstantiationException            - from underlying input -
+	 *                                                     output libs
 	 * @sthrows SecurityException - from underlying input - output libs
-	 * @throws java.lang.NoSuchMethodException - from underlying input - output libs
-	 * @throws java.lang.SecurityException if any.
+	 * @throws java.lang.NoSuchMethodException    - from underlying input - output
+	 *                                            libs
+	 * @throws java.lang.SecurityException        if any.
 	 * @throws java.lang.IllegalArgumentException if any.
 	 */
-	public static RuleRunner getRuleRunner(RedModel dataModel, Config appConfig)
-			throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException,
-			IllegalArgumentException, InvocationTargetException {
+	public static IRunner getRuleRunner(RedModel dataModel, Config appConfig)
+			throws RPException {
 
 		// check our incoming params
 		assert dataModel != null;
 		assert dataModel.getInputFileLocation() != null;
+		assert dataModel.getRuleFileLocation() != null;
 		assert dataModel.getOutputFileLocation() != null;
 
+		// handle on our  strategy objects
+		IRunner myRunner;
+		IDocumentInStrategy inputStrat;
+		IDocumentOutStrategy outputStrat;
 
 		// Decide on our input strategy
 		Class<?> strategyClass = getInputMapping(dataModel.getInputFileLocation());
 
 		log.debug("trying to create Strategy Object from class:" + strategyClass);
-		Constructor<?> constructor = strategyClass.getConstructor(String.class);
-		IDocumentInStrategy inputStrat = (IDocumentInStrategy) constructor
-				.newInstance(dataModel.getInputFileLocation());
-		
-		//pass in the config
-		inputStrat.setConfig(appConfig);
+		Constructor<?> constructor;
+		try {
+			constructor = strategyClass.getConstructor(String.class);
+			inputStrat = (IDocumentInStrategy) constructor
+					.newInstance(dataModel.getInputFileLocation());
+
+			// pass in the config
+			inputStrat.setConfig(appConfig);
+
+		} catch (NoSuchMethodException | SecurityException |InstantiationException | InvocationTargetException |IllegalAccessException e) {
+			throw new RPException("Error when creating input strategy Object", e);
+		}
 
 		// Decide on our output strategy
 		strategyClass = null;
 		strategyClass = getOutputMapping(dataModel.getOutputFileLocation());
 
 		log.debug("trying to create Strategy Object from class:" + strategyClass);
-		constructor = strategyClass.getConstructor(String.class);
-		IDocumentOutStrategy outputStrat = (IDocumentOutStrategy) constructor
-				.newInstance(dataModel.getOutputFileLocation());
-		
-		//pass in the config
+		try {
+			constructor = strategyClass.getConstructor(String.class);
+			 outputStrat = (IDocumentOutStrategy) constructor
+			.newInstance(dataModel.getOutputFileLocation());
+
+		} catch (NoSuchMethodException | SecurityException |InstantiationException | InvocationTargetException |IllegalAccessException e) {
+			throw new RPException("Error when creating output strategy Object", e);
+		}
+
+		// pass in the config
 		outputStrat.setConfig(appConfig);
 
 		log.debug("Using DocumentInputStrategy:" + inputStrat.getClass());
 		log.debug("Using DocumentOutputStrategy:" + outputStrat);
 
-		return new RuleRunner(inputStrat, outputStrat, appConfig);
+		// Decide on the Strategy (runner) we want to execute this model
+		if (dataModel.getRuleFileLocation().toLowerCase().endsWith(".dmn")) {
+
+			myRunner = new DecisionModelRunner(inputStrat, outputStrat, appConfig);
+		} else {
+			myRunner = new RuleRunner(inputStrat, outputStrat, appConfig);
+
+		}
+
+		return myRunner;
 
 	}
 

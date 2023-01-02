@@ -25,7 +25,7 @@ import net.firstpartners.data.RangeList;
 public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 
-	private Config appConfig;
+	Config appConfig;
 	
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -112,7 +112,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 		//Construct the output file including directory
 		String outputFile;
 		if(outputFileDir!=""){
-			outputFile = outputFileDir+"//"+outputFileName;
+			outputFile = outputFileDir+"/"+outputFileName;
 		} else {
 			outputFile = outputFileName;
 		}

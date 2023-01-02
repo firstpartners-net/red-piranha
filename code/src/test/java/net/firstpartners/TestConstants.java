@@ -10,7 +10,6 @@ public class TestConstants {
 
 	// Tmp rules and data file names
 	public static final String XLS_DATA_FILE = "src/test/resources/testdata/chocolate-data-tricky-formatting.xls";
-	//public static final String XLS_DATA_FILE_AS_URL = "https://github.com/paulbrowne-irl/red-piranha/blob/master/test/testdata/chocolate-data.xls?raw=true";
 	
 	public static final String XLSX_DATA_FILE = "src/test/resources/testdata/chocolate-data-tricky-formatting.xlsx";
 	
@@ -36,7 +35,7 @@ public class TestConstants {
 	public static final String JSON_SERIAL_FILE ="src/test/resources/testdata/sample_xls_serialised.json";
 	
 	//tmp files
-	public static final String EXCEL_TMP_FILE = "src/test/resources/testdata/tmp.xls";
+	public static final String EXCEL_TMP_FILE = "tmp.xls"; // was src/test/resources/testdata/tmp.xls"
 	public static final String CSV_TMP_FILE = "src/test/resources/testdata/tmp.csv";
 	public static final String PDF_TMP_FILE = "src/test/resources/testdata/tmp.pdf";
 	public static final String JSON_TMP_FILE = "src/test/resources/testdata/tmp.json";
@@ -53,10 +52,14 @@ public class TestConstants {
 	public final static String SAVED_WORDX_RANGEHOLDER_DATA="src/test/resources/testdata/RANGEHOLDER_RANGE_WORDX.testdata";
 	
 	
-	public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR = "examples/domain-specific-language/log-rules.dslr";
+	//Rules and Models used in tests
+	//public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR = "examples/4-domain-specific-language/log-rules.dslr";
+	//public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL = "examples/4-domain-specific-language/cell-logging.dsl";
 
-	public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL = "examples/domain-specific-language/cell-logging.dsl";
 
+	//Decision model test
+	public static final String SIMPLE_DECISION_MODEL = "decision_model.dmn";
+	public final static String SIMPLE_EXCEL="src/main/resources/examples/3_simple_dmn/data.xlsx";
 
 	
 

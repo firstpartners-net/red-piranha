@@ -13,25 +13,47 @@ Platform (with specific examples)
 * Example - simple for book
 * Example - more in detail - for me
 
-## Todo Next
+## TODO this sprint : aim book sample, just enough to talk about c12
+
+* Current Sample
+** resolve spring boot issue
+** get rulerunner test passing
+** run from web app
+** check output through to csv
+** tidy docs to first draft
+== what I need to chapter 12
+
+
+
+## Possible move
+
+
+## Todo Next 
 
 * Figure out why current excel example is outputting incorrectly
 * More info through to front end
 * more tests compile / rule
 * tidy of all readme pages
 
+## restore commented out tests (put @Test back on them)
+testJSONInOut
+
+
+## refactor
+(Move RuleRunner.java remove RuleBuilder to same pre-built model that DecisionModel uses)
+Simplify down to Cells (remove all notion or ranges?)
+Remove .xls support
+
 ## later
 
 * recover and reused previous examples (to web)
 * run from command line
 * understand model back and forward better
-* trigger exception, make sure it displays ok
-* tidy of readme x2
 * conversion to-from excel - make sure it works better, json better?
 * Dive through stack - can bring back any more info to user
 * Tidy Bootstrap on page
-* tests running
-* RP using model from business central
+* final tests running
+* RP using model from business central or simliar exported backage
 * Move bootstrap offline (and other javascript to make more robust)
 * tidy DSL example
 * show hide sample
@@ -43,10 +65,6 @@ Platform (with specific examples)
 * Read drools doc in more detail
 * Outline how to integrate with KIE Server
 * Review / tidy Javadoc
-* Add Spring MVC Tests
-
-## Todo Later
-
 * Maven site - document rp code?
 * Update red-piranha-sourceforge.com to point to github (grab info first)
 * Enable Swagger

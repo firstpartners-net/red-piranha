@@ -1,10 +1,10 @@
 package net.firstpartners.core.drools.loader;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.Config;
+import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.file.ResourceFinder;
 
@@ -41,20 +42,22 @@ public class RuleBuilder {
 	 * @throws java.lang.Exception
 	 * @return a {@link org.kie.api.builder.KieBuilder} object
 	 */
-	public KieBuilder loadRules(RedModel redModel, Config appConfig) throws Exception {
+	public KieBuilder loadRules(RedModel redModel, Config appConfig) throws RPException {
 
 		// Handles
 		File currentFile;
 
-//		final KieBaseConfiguration config = KnowledgeBaseFactory.newKnowledgeBaseConfiguration();
-		
-//		config.setOption(DeclarativeAgendaOption.DISABLED); //this is default, but resolves another issue?
-		
-		//config.setOption( EventProcessingOption.STREAM);
-	//	config.setOption("","");
+		// final KieBaseConfiguration config =
+		// KnowledgeBaseFactory.newKnowledgeBaseConfiguration();
 
-		//Set system property
-		//java.lang.System.setProperty("org.kie.api.internal.assembler.KieAssemblers","org.kie.api.internal.utils.AnotherMockAssemblersImpl;4"); 
+		// config.setOption(DeclarativeAgendaOption.DISABLED); //this is default, but
+		// resolves another issue?
+
+		// config.setOption( EventProcessingOption.STREAM);
+		// config.setOption("","");
+
+		// Set system property
+		// java.lang.System.setProperty("org.kie.api.internal.assembler.KieAssemblers","org.kie.api.internal.utils.AnotherMockAssemblersImpl;4");
 
 		// For Kie later
 		KieServices ks = KieServices.Factory.get();
@@ -64,10 +67,23 @@ public class RuleBuilder {
 		String[] rulesLocs = redModel.getRulesFilesLocations();
 		for (int counter = 0; counter < rulesLocs.length; counter++) {
 
-			log.debug("loading into KFS:" + rulesLocs[counter]);
-			currentFile = ResourceFinder.getFileResourceUsingConfig(rulesLocs[counter], appConfig);
-			Resource resource = ks.getResources().newFileSystemResource(currentFile).setResourceType(ResourceType.DRL);
-			kfs.write(resource);
+			// Check for DMN Model - shouldn't need this - just in case
+			if (rulesLocs[counter].toLowerCase().endsWith(".dmn")) {
+				throw new RPException("Rule Builder not configured to process decision models");
+			} else {
+
+				log.debug("loading into KFS:" + rulesLocs[counter]);
+				try {
+					currentFile = ResourceFinder.getFileResourceUsingConfig(rulesLocs[counter], appConfig);
+				} catch (FileNotFoundException e) {
+					throw new RPException("Error when loading rules",e);
+				}
+				Resource resource = ks.getResources().newFileSystemResource(currentFile)
+						.setResourceType(ResourceType.DRL);
+				kfs.write(resource);
+
+			}
+
 		}
 
 		// Try to compile the rules
@@ -85,15 +101,16 @@ public class RuleBuilder {
 		Iterator<Message> iter = results.getMessages().iterator();
 		while (iter.hasNext()) {
 			thisRuleBuildMessage = iter.next();
-			
+
 			// build our user friendly messages for display line by line
-			messages.add("Rule Build Message: "+thisRuleBuildMessage.getText());
-			messages.add("File: "+thisRuleBuildMessage.getPath());
-			messages.add("Line: "+thisRuleBuildMessage.getLine());
-			messages.add("Column: "+thisRuleBuildMessage.getColumn());
-			
-			//More compact message for logging
-			messageAsString =  thisRuleBuildMessage.getPath() + " | "+ thisRuleBuildMessage.getLine() + " | " + thisRuleBuildMessage.getText();
+			messages.add("Rule Build Message: " + thisRuleBuildMessage.getText());
+			messages.add("File: " + thisRuleBuildMessage.getPath());
+			messages.add("Line: " + thisRuleBuildMessage.getLine());
+			messages.add("Column: " + thisRuleBuildMessage.getColumn());
+
+			// More compact message for logging
+			messageAsString = thisRuleBuildMessage.getPath() + " | " + thisRuleBuildMessage.getLine() + " | "
+					+ thisRuleBuildMessage.getText();
 
 			if (thisRuleBuildMessage.getLevel() == Message.Level.ERROR) {
 				log.warn(messageAsString);
@@ -108,12 +125,14 @@ public class RuleBuilder {
 		// Check if we have an errors and raise excpetion
 		if (results.hasMessages(Message.Level.ERROR)) {
 
-			log.warn("There are warning in a score DRL:\n{}", results);
-			throw new Exception("There were errors in a building a Rule file\n");
+			log.warn("There are warning in a DRL:\n{}", results);
+			throw new RPException("There were errors in a building a Rule file\n");
 
 		}
 
 		return kBuilder;
 	}
+
+
 
 }

@@ -39,7 +39,7 @@ public class SessionCellListener implements RuleRuntimeEventListener {
 		if (event.getObject() instanceof Cell) {
 
 			newCells.add((Cell) event.getObject());
-	//		log.debug("Object Inserted:" + event.getObject());
+			log.debug("Object Inserted:" + event.getObject());
 
 		}
 
@@ -62,7 +62,7 @@ public class SessionCellListener implements RuleRuntimeEventListener {
 	@Override
 	public void objectDeleted(ObjectDeletedEvent event) {
 		newCells.remove(event.getOldObject());
-		//log.debug("Object retracted:" + event.getOldObject());
+		log.debug("Object retracted:" + event.getOldObject());
 
 	}
 

@@ -1,12 +1,17 @@
 package net.firstpartners.core.drools;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
+import org.kie.dmn.api.core.DMNContext;
+import org.kie.dmn.api.core.DMNDecisionResult;
+import org.kie.dmn.api.core.DMNMessage;
 import org.kie.dmn.api.core.DMNModel;
+import org.kie.dmn.api.core.DMNResult;
 import org.kie.dmn.api.core.DMNRuntime;
 
 import net.firstpartners.core.Config;
@@ -26,6 +31,11 @@ import net.firstpartners.data.Cell;
  */
 public class DecisionModelRunner extends AbstractRunner {
 
+	// Handle to KIE resources needed.
+	KieServices kieServices;
+	KieContainer kieContainer;
+	DMNRuntime dmnRuntime;
+
 	/**
 	 * Construct a new Runner.
 	 *
@@ -42,6 +52,12 @@ public class DecisionModelRunner extends AbstractRunner {
 		this.inputStrategy = documentStrategy;
 		this.outputStrategy = outputStrategy;
 		this.appConfig = appConfig;
+
+		// setup KIE resources
+
+		this.kieServices = KieServices.Factory.get();
+		this.kieContainer = kieServices.getKieClasspathContainer();
+		this.dmnRuntime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
 	}
 
 	/**
@@ -64,9 +80,6 @@ public class DecisionModelRunner extends AbstractRunner {
 		}
 
 		// First pass - use KIE to find based on namespace and name
-		KieServices kieServices = KieServices.Factory.get();
-		KieContainer kieContainer = kieServices.getKieClasspathContainer();
-		DMNRuntime dmnRuntime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
 		DMNModel dmnModel = dmnRuntime.getModel(nameSpace, decisionModelName);
 
 		// check if this was successful
@@ -112,63 +125,84 @@ public class DecisionModelRunner extends AbstractRunner {
 	Collection<Cell> runModel(RedModel model)
 			throws RPException {
 
-		// The most common operation on a rulebase is to create a new rule
-		// session; either stateful or stateless.
+		ArrayList<Cell> outputCells = new ArrayList<Cell>();
+
+		//Find the Decision Model
 		log.debug("Finding Decision Model new rule base");
 		DMNModel modelToRun = getDmnModel("", model.getRuleFileLocation());
 
-		boolean showFullRuleEngineLogs = appConfig.getShowFullRuleEngineLogs();
+		// Create the runtime using the KIE system we initialised earlier
+		log.debug("running Decision Context ");
+		DMNContext dmnContext = this.dmnRuntime.newContext();
 
-		log.debug("running Decision Model");
-		// return runDecisionModel(masterRulebase, model.getFacts(), model.getGlobals(),
-		// showFullRuleEngineLogs, model);
+		// set cells into context
+		Cell testCell = new Cell("Name", "Paul"); /// Testing
+		List<Cell> convertList = model.getFactsAsList();
+		convertList.add(testCell);
+		log.debug("Number of Cells passed in:" + convertList.size());
+		dmnContext.set("InputCells", convertList);
 
-		log.debug("Creating new stateless working memory");
-		/*
-		 * KieContainer kc =
-		 * KieServices.Factory.get().newKieContainer(preBuiltKnowledgeBase.getReleaseId(
-		 * ));
-		 * StatelessKieSession kSession = kc.newStatelessKieSession();
-		 * 
-		 * // Add the logger
-		 * log.debug("Inserting handle to logger (via global)");
-		 * kSession.setGlobal("log", modelAsLogger);
-		 * 
-		 * log.debug("Checking for globals");
-		 * if (globals != null) {
-		 * for (String o : globals.keySet()) {
-		 * log.debug("Inserting global name: " + o + " value:" + globals.get(o));
-		 * kSession.setGlobal(o, globals.get(o));
-		 * }
-		 * }
-		 * 
-		 * // We need to 'listen' for new cells being created so we can add to our
-		 * results
-		 * SessionCellListener cellListener = new SessionCellListener();
-		 * kSession.addEventListener(cellListener);
-		 * 
-		 * // setup listeners
-		 * if (logRuleDetails) {
-		 * kSession.addEventListener(new DebugAgendaEventListener());
-		 * kSession.addEventListener(new DebugRuleRuntimeEventListener());
-		 * }
-		 * 
-		 * // Set up a file based audit logger
-		 * KnowledgeRuntimeLoggerFactory.newFileLogger(kSession,
-		 * "log/WorkItemConsequence.log");
-		 * 
-		 * log.debug("==================== Starting Rules ====================");
-		 * 
-		 * // Fire using the facts
-		 * kSession.execute(facts);
-		 * 
-		 * log.debug("==================== Rules Complete ====================");
-		 * List<Cell> additionalFacts = cellListener.getNewCells(facts);
-		 * 
-		 * return additionalFacts;
-		 */
+		// evaluate the runtime
+		DMNResult dmnResult = this.dmnRuntime.evaluateAll(modelToRun, dmnContext);
+		for (DMNDecisionResult dr : dmnResult.getDecisionResults()) {
 
-		return null;
+			log.debug("Status:" + dr.getEvaluationStatus());
+			log.debug("Result:" + dr.getDecisionName() + " : " + dr.getResult());
+			outputCells.addAll(convertDecisionResultToCells(dr.getResult()));
+
+		}
+
+		// Loop through messages and raise exception if needed
+		boolean warningFlag = false;
+		for (DMNMessage dm : dmnResult.getMessages()) {
+			log.warn("Message:" + dm.getText());
+			warningFlag = true;
+		}
+		if (warningFlag) {
+			throw new RPException("Errors when executing Decision Model - please check logs for details");
+		}
+
+		return outputCells;
+	}
+
+
+	/**
+	 * Convert the Result of the Decision Model into Cell Ojbects
+	 * 
+	 * @param inputObject
+	 * @return
+	 */
+	Collection<Cell> convertDecisionResultToCells(Object inputObject) {
+
+
+		ArrayList<Cell> cellResult = new ArrayList<Cell>();
+
+		//Check for a list
+		if(inputObject instanceof List){
+
+			List loopList = (List)inputObject;
+
+			for (int i = 0; i < loopList.size(); i++) {
+				cellResult.addAll(convertDecisionResultToCells(loopList.get(i)));
+			}
+		}
+
+		if (inputObject != null) {
+			log.debug("Converting Decision Result of Type:"+inputObject.getClass());
+
+			if(inputObject instanceof Cell){
+				cellResult.add((Cell)inputObject);
+			}
+
+			//generic conversation based on cell toString
+			Cell tmpCell = new Cell("",inputObject.toString());
+			cellResult.add(tmpCell);
+
+		} else {
+			log.warn("convertDecisionResultToCells called with a null value - unlikely to be what you want");
+		}
+
+		return cellResult;
 	}
 
 }

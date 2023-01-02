@@ -49,12 +49,10 @@ Remove .xls support
 * recover and reused previous examples (to web)
 * run from command line
 * understand model back and forward better
-* trigger exception, make sure it displays ok
-* tidy of readme x2
 * conversion to-from excel - make sure it works better, json better?
 * Dive through stack - can bring back any more info to user
 * Tidy Bootstrap on page
-* tests running
+* final tests running
 * RP using model from business central or simliar exported backage
 * Move bootstrap offline (and other javascript to make more robust)
 * tidy DSL example

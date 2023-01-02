@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import net.firstpartners.core.Config;
 import net.firstpartners.core.MemoryOutputStrategy;
+import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.IRunner;
 import net.firstpartners.core.drools.RunnerFactory;
@@ -60,13 +61,13 @@ class IntegrationTests {
 	 * Useful if we want to unit test a specfici example
 	 * @throws Exception
 	 */
-	void testSpecificExample() throws Exception {
+	void testSpecificExample() throws Exception, RPException {
 		sampleTestRunner(3);
 	}
 
 
  	@Test
-	void testAllSamples() throws Exception {
+	void testAllSamples() throws Exception, RPException {
 		sampleTestRunner(-1);
 	}
 
@@ -75,8 +76,9 @@ class IntegrationTests {
 	 * Or single number to run single test
 	 * @param sampleToRun
 	 * @throws Exception
+	 * @throws RPException
 	 */
-	private void sampleTestRunner(int sampleToRun) throws Exception{
+	private void sampleTestRunner(int sampleToRun) throws Exception, RPException{
 
 		List<SampleData> examples = SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON,
 		appConfig);
@@ -116,7 +118,7 @@ class IntegrationTests {
 			// set out OutputStrategy so we can test the output later
 			// this overrides the normal output
 			MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
-			runner.setOutputStrategy(outputStrategy);
+			runner.setDocumentOutputStrategy(outputStrategy);
 
 			runner.callRules(testModel);
 

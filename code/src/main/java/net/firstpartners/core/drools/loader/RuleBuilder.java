@@ -1,6 +1,7 @@
 package net.firstpartners.core.drools.loader;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -16,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.Config;
+import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.file.ResourceFinder;
 
@@ -40,7 +42,7 @@ public class RuleBuilder {
 	 * @throws java.lang.Exception
 	 * @return a {@link org.kie.api.builder.KieBuilder} object
 	 */
-	public KieBuilder loadRules(RedModel redModel, Config appConfig) throws Exception {
+	public KieBuilder loadRules(RedModel redModel, Config appConfig) throws RPException {
 
 		// Handles
 		File currentFile;
@@ -67,11 +69,15 @@ public class RuleBuilder {
 
 			// Check for DMN Model - shouldn't need this - just in case
 			if (rulesLocs[counter].toLowerCase().endsWith(".dmn")) {
-				throw new Exception("rule loader not configured to process decision models");
+				throw new RPException("Rule Builder not configured to process decision models");
 			} else {
 
 				log.debug("loading into KFS:" + rulesLocs[counter]);
-				currentFile = ResourceFinder.getFileResourceUsingConfig(rulesLocs[counter], appConfig);
+				try {
+					currentFile = ResourceFinder.getFileResourceUsingConfig(rulesLocs[counter], appConfig);
+				} catch (FileNotFoundException e) {
+					throw new RPException("Error when loading rules",e);
+				}
 				Resource resource = ks.getResources().newFileSystemResource(currentFile)
 						.setResourceType(ResourceType.DRL);
 				kfs.write(resource);

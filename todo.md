@@ -16,10 +16,11 @@ Platform (with specific examples)
 ## TODO this sprint
 
 * Current Sample
-** update to list
+
 ** add tests
 ** add to rulerunner
 ** add to webapp
+** update to list
 
 
 * tidy tests - either resolve issues or comment out (note here)
@@ -50,6 +51,9 @@ Simplify down to Cells (remove all notion or ranges?)
 testJSONInOut
 
 
+## refactor
+(Move RuleRunner.java remove RuleBuilder to same pre-built model that DecisionModel uses)
+
 ## later
 
 * recover and reused previous examples (to web)
@@ -61,7 +65,7 @@ testJSONInOut
 * Dive through stack - can bring back any more info to user
 * Tidy Bootstrap on page
 * tests running
-* RP using model from business central
+* RP using model from business central or simliar exported backage
 * Move bootstrap offline (and other javascript to make more robust)
 * tidy DSL example
 * show hide sample
@@ -73,10 +77,6 @@ testJSONInOut
 * Read drools doc in more detail
 * Outline how to integrate with KIE Server
 * Review / tidy Javadoc
-* Add Spring MVC Tests
-
-## Todo Later
-
 * Maven site - document rp code?
 * Update red-piranha-sourceforge.com to point to github (grab info first)
 * Enable Swagger

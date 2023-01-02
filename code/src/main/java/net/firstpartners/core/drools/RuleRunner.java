@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
+import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.loader.RuleBuilder;
 import net.firstpartners.core.log.IStatusUpdate;
@@ -73,11 +74,11 @@ public class RuleRunner implements IRunner {
 	 * creation of this class
 	 *
 	 * @return our Model with all the information so we can display back to the user
-	 * @throws java.lang.Exception
+	 * @throws java.lang.RPException
 	 * @param ruleModel a {@link net.firstpartners.core.RedModel} object
 	 */
 	public RedModel callRules(RedModel ruleModel)
-			throws Exception {
+			throws RPException {
 
 		// Convert the cell and log if we have a handle
 		ruleModel.addUIInfoMessage("Opening Input :" + this.inputStrategy.getInputName());
@@ -164,6 +165,19 @@ public class RuleRunner implements IRunner {
 	}
 
 	/**
+	 * <p>
+	 * Setter for the field <code>outputStrategy</code>.
+	 * </p>
+	 *
+	 * @param newStrategy a {@link net.firstpartners.core.IDocumentOutStrategy}
+	 *                    object
+	 */
+	public void setDocumentOutputStrategy(IDocumentOutStrategy newStrategy) {
+		this.outputStrategy = newStrategy;
+	}
+
+
+	/**
 	 * Run the rules
 	 *
 	 * @param rulesUrl   - array of rule files that we need to load
@@ -175,7 +189,7 @@ public class RuleRunner implements IRunner {
 	 * @throws Exception
 	 */
 	private Collection<Cell> runStatelessRules(RedModel model)
-			throws Exception {
+			throws RPException {
 
 		// The most common operation on a rulebase is to create a new rule
 		// session; either stateful or stateless.
@@ -244,16 +258,5 @@ public class RuleRunner implements IRunner {
 
 	}
 
-	/**
-	 * <p>
-	 * Setter for the field <code>outputStrategy</code>.
-	 * </p>
-	 *
-	 * @param newStrategy a {@link net.firstpartners.core.IDocumentOutStrategy}
-	 *                    object
-	 */
-	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {
-		this.outputStrategy = newStrategy;
-	}
 
 }

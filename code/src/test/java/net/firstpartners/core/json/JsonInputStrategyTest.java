@@ -16,6 +16,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.MemoryOutputStrategy;
+import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RunnerFactory;
@@ -69,8 +70,9 @@ public class JsonInputStrategyTest {
 
 	/**
 	 * Just check that the rules can run, throws no exception
+	 * @throws RPException
 	 */
-	public final void testJSONInOut() throws Exception {
+	public final void testJSONInOut() throws Exception, RPException {
 
 		
 		// was 
@@ -81,7 +83,7 @@ public class JsonInputStrategyTest {
 
 		// set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
-		runner.setOutputStrategy(outputStrategy);
+		runner.setDocumentOutputStrategy(outputStrategy);
 
 		runner.callRules(redModel);
 		assertNotNull(outputStrategy.getProcessedDocument());

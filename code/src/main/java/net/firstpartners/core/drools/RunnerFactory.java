@@ -71,7 +71,7 @@ public class RunnerFactory {
 			inputSuffixMaps.put(SUFFIX_EXCEL, ExcelInputStrategy.class);
 			inputSuffixMaps.put(SUFFIX_EXCELX, ExcelInputStrategy.class); // same
 			inputSuffixMaps.put(SUFFIX_JSON, JsonInputStrategy.class);
-			
+
 		}
 
 		if (outputSuffixMaps == null) {
@@ -80,7 +80,7 @@ public class RunnerFactory {
 			outputSuffixMaps.put(SUFFIX_PDF, PDFOutputStrategy.class);
 			outputSuffixMaps.put(SUFFIX_EXCEL, ExcelOutputStrategy.class);
 			outputSuffixMaps.put(SUFFIX_EXCELX, ExcelOutputStrategy.class); // same
-			outputSuffixMaps.put(SUFFIX_JSON, JsonOutputStrategy.class); 
+			outputSuffixMaps.put(SUFFIX_JSON, JsonOutputStrategy.class);
 
 		}
 
@@ -144,7 +144,7 @@ public class RunnerFactory {
 			throw new IllegalArgumentException(
 					"Unable to guess the type of Output file (based on where '. is) for:" + fileName);
 		}
-		
+
 		String suffix = fileName.substring(splitPoint, fileName.length());
 
 		log.debug("Looking for output Mapping against suffix:" + suffix);
@@ -200,7 +200,11 @@ public class RunnerFactory {
 		// check our incoming params
 		assert dataModel != null;
 		assert dataModel.getInputFileLocation() != null;
+		assert dataModel.getRuleFileLocation() !=null;
 		assert dataModel.getOutputFileLocation() != null;
+
+		//handle on our execution strategy
+		IRunner myRunner;
 
 
 		// Decide on our input strategy
@@ -229,7 +233,18 @@ public class RunnerFactory {
 		log.debug("Using DocumentInputStrategy:" + inputStrat.getClass());
 		log.debug("Using DocumentOutputStrategy:" + outputStrat);
 
-		return new RuleRunner(inputStrat, outputStrat, appConfig);
+		// Decide on the Strategy (runner) we want to execute this model
+		if(dataModel.getRuleFileLocation().toLowerCase().endsWith(".dmn")){
+
+			myRunner=new DecisionModelRunner(inputStrat, outputStrat, appConfig);
+		}
+		else
+		{
+			myRunner=new RuleRunner(inputStrat, outputStrat, appConfig);
+
+		}
+
+		return myRunner;
 
 	}
 

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
+import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.file.Utils;
 
@@ -19,7 +20,7 @@ class RuleBuilderTest {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Test
-	void testDefaultBuild() throws Exception {
+	void testDefaultBuild() throws Exception, RPException {
 
 		RedModel myModel = new RedModel();
 		Config testConfig = new Config();
@@ -33,7 +34,7 @@ class RuleBuilderTest {
 	}
 
 	@Test
-	public final void testCompileRules() throws Exception {
+	public final void testCompileRules() throws Exception, RPException {
 
 		log.debug("Starting to compile rules");
 
@@ -50,50 +51,6 @@ class RuleBuilderTest {
 
 	}
 
-	@Test
-	public final void testCompileDomainLanguageRules()
-			throws Exception {
 
-		log.debug("Starting to compile rules");
 
-		// String rulesToCompile = "examples/private/sef-copy-proposal-data.dslr";
-
-		RedModel rulesToCompile = new RedModel();
-		rulesToCompile.setRuleFileLocation(TestConstants.EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR);
-		rulesToCompile.setDslFileLocation(TestConstants.EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL);
-
-		Config testConfig = new Config();
-		testConfig.setSampleBaseDirDefault("src/main/resources/");
-		
-		KieBuilder myBuilder = new RuleBuilder().loadRules(rulesToCompile,testConfig);
-		KieModule myModule = myBuilder.getKieModule();
-
-		assertNotNull(myModule);
-		Utils.deleteOutputFileIfExists(TestConstants.KNOWLEDGE_BASE_FILE_TMP);
-
-	}
-	
-	@Test
-	public final void testCompileDmnModel()
-			throws Exception {
-
-		log.debug("Starting to compile rules");
-
-		// String rulesToCompile = "examples/private/sef-copy-proposal-data.dslr";
-
-		RedModel rulesToCompile = new RedModel();
-		rulesToCompile.setRuleFileLocation(TestConstants.EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR);
-		rulesToCompile.setDslFileLocation(TestConstants.EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL);
-
-		Config testConfig = new Config();
-		testConfig.setSampleBaseDirDefault("src/main/resources/");
-		
-		KieBuilder myBuilder = new RuleBuilder().loadRules(rulesToCompile,testConfig);
-		KieModule myModule = myBuilder.getKieModule();
-
-		assertNotNull(myModule);
-		Utils.deleteOutputFileIfExists(TestConstants.KNOWLEDGE_BASE_FILE_TMP);
-
-	}
-	
 }

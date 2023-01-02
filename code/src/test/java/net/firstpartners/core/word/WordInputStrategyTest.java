@@ -28,7 +28,7 @@ public class WordInputStrategyTest {
 		
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
-		runner.setOutputStrategy(outputStrategy);
+		runner.setDocumentOutputStrategy(outputStrategy);
 
 		runner.callRules(redModel);
 		assertNotNull(outputStrategy.getProcessedDocument());

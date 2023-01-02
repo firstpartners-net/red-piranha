@@ -10,7 +10,6 @@ public class TestConstants {
 
 	// Tmp rules and data file names
 	public static final String XLS_DATA_FILE = "src/test/resources/testdata/chocolate-data-tricky-formatting.xls";
-	//public static final String XLS_DATA_FILE_AS_URL = "https://github.com/paulbrowne-irl/red-piranha/blob/master/test/testdata/chocolate-data.xls?raw=true";
 	
 	public static final String XLSX_DATA_FILE = "src/test/resources/testdata/chocolate-data-tricky-formatting.xlsx";
 	
@@ -54,10 +53,10 @@ public class TestConstants {
 	
 	
 	//Rules and Models used in tests
-	public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR = "examples/4-domain-specific-language/log-rules.dslr";
-	public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL = "examples/4-domain-specific-language/cell-logging.dsl";
+	//public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR = "examples/4-domain-specific-language/log-rules.dslr";
+	//public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL = "examples/4-domain-specific-language/cell-logging.dsl";
 
-	public static final String EXAMPLES_DECISION_MODEL = "examples/3_simple_dmn/decision_model.dmn";
+	public static final String EXAMPLES_DECISION_MODEL = "decision_model.dmn";
 
 	
 

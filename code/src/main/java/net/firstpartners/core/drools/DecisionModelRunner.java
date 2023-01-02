@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Iterator;
 
 import org.drools.drl.parser.DroolsParserException;
 import org.kie.api.KieServices;
@@ -12,6 +13,8 @@ import org.kie.api.event.rule.DebugAgendaEventListener;
 import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.StatelessKieSession;
+import org.kie.dmn.api.core.DMNModel;
+import org.kie.dmn.api.core.DMNRuntime;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,8 +22,8 @@ import org.slf4j.LoggerFactory;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
+import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
-import net.firstpartners.core.drools.loader.RuleBuilder;
 import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.Range;
@@ -34,25 +37,10 @@ import net.firstpartners.data.RangeList;
  * @author paulf
  * @version $Id: $Id
  */
-public class DecisionModelRunner implements IRunner {
-
-	// Application Config - if passed in
-	private Config appConfig;
-
-	// Handle to the Strategy Class for specific incoming document (Excel, Word etc
-	// tasks)
-	// Setup by RunnerFactory
-	private IDocumentInStrategy inputStrategy = null;
-
-	// Handle to the logger
-	private Logger log = LoggerFactory.getLogger(this.getClass());
-
-	// Handle to the strategy Class to write out the document
-	// Setup by RunnerFactory
-	private IDocumentOutStrategy outputStrategy = null;
+public class DecisionModelRunner extends AbstractRunner {
 
 	/**
-	 * Construct a new RuleRunner.
+	 * Construct a new Runner.
 	 *
 	 * @see RunnerFactory in this package which we use to build a properly
 	 *      constructed instance of this class
@@ -62,145 +50,33 @@ public class DecisionModelRunner implements IRunner {
 	 *                         object
 	 * @param appConfig        a {@link net.firstpartners.core.Config} object
 	 */
-	protected DecisionModelRunner(IDocumentInStrategy documentStrategy, IDocumentOutStrategy outputStrategy, Config appConfig) {
+	protected DecisionModelRunner(IDocumentInStrategy documentStrategy, IDocumentOutStrategy outputStrategy,
+			Config appConfig) {
 		this.inputStrategy = documentStrategy;
 		this.outputStrategy = outputStrategy;
 		this.appConfig = appConfig;
 	}
 
 	/**
-	 * Call the rule Engine - data input / output has already been set during the
-	 * creation of this class
-	 *
-	 * @return our Model with all the information so we can display back to the user
-	 * @throws java.lang.Exception
-	 * @param ruleModel a {@link net.firstpartners.core.RedModel} object
+	 * Run the Decision Model
+	 * 
+	 * @param model - contaiing inputfile, outputfile and decision model name
+	 * @return Collection of <Cell> objects as a response
+	 * @throws RPException
 	 */
-	public RedModel callRules(RedModel ruleModel)
-			throws Exception {
-
-		// Convert the cell and log if we have a handle
-		ruleModel.addUIInfoMessage("Opening Input :" + this.inputStrategy.getInputName());
-		RangeList ranges = inputStrategy.getJavaBeansFromSource();
-
-		// Set the Modified flag on the cells
-		if (ranges != null) {
-			ranges.cascadeResetIsModifiedFlag();
-		}
-
-		ruleModel.setPreRulesSnapShot(ranges);
-		ruleModel.setUIProgressStatus(10);
-
-		// Add the document contents as facts into the working Memory
-		ruleModel.addUIInfoMessage("Adding Excel Cells as facts into Rule Engine Memory");
-
-		if (ranges != null) {
-			ruleModel.addFacts(ranges.getAllCellsInAllRanges());
-		} else {
-			assert ranges != null : "No Data (Ranges =null) was passed in, this is unlikely to be what you want";
-		}
-
-		ruleModel.setUIProgressStatus(30);
-
-		// Load and fire our rules files against the data
-		Collection<Cell> newFacts = runStatelessRules(ruleModel);
-
-		// update the progress bar
-		ruleModel.setUIProgressStatus(60);
-
-		// Make a note of any new facts added
-		ruleModel.addUIInfoMessage("Collecting New Cells and put them into Excel");
-		Range newRange = new Range("New Facts");
-		newRange.put(newFacts);
-		ranges.add(newRange);
-		ruleModel.setUIProgressStatus(80);
-
-		// update a copy of the original document (to be saved as copy) with the result
-		// of our rules
-		log.debug("RunRules - object " + inputStrategy.getOriginalDocument());
-		outputStrategy.setUpdates(inputStrategy.getOriginalDocument(), ranges);
-
-		ruleModel.addUIInfoMessage("Write to Output file:" + outputStrategy.getOutputDestination());
-		ruleModel.setUIProgressStatus(90);
-
-		// update our post rules snapshot
-		ruleModel.setPostRulesSnapShot(ranges);
-
-		// make sure both get written (to disk?)
-		outputStrategy.processOutput();
-		ruleModel.setUIProgressStatus(100);
-
-		return ruleModel;
-
-	}
-
-	/**
-	 * <p>
-	 * Getter for the field <code>appConfig</code>.
-	 * </p>
-	 *
-	 * @return a {@link net.firstpartners.core.Config} object
-	 */
-	public Config getAppConfig() {
-		return appConfig;
-	}
-
-	/**
-	 * The strategy we use for dealing with incoming documents
-	 *
-	 * @return the strategy object
-	 */
-	public IDocumentInStrategy getDocumentInputStrategy() {
-		return inputStrategy;
-	}
-
-	/**
-	 * Handle to the the Strategy Delegate we use for outputting
-	 *
-	 * @return the strategy object
-	 */
-	public IDocumentOutStrategy getDocumentOutputStrategy() {
-		return outputStrategy;
-	}
-
-	/**
-	 * Run the rules
-	 *
-	 * @param rulesUrl   - array of rule files that we need to load
-	 * @param dslFileUrl - optional dsl file name (can be null)
-	 * @param facts      - Javabeans to pass to the rule engine
-	 * @param globals    - global variables to pass to the rule engine
-	 * @param logger     - handle to a logging object
-	 * @return
-	 * @throws Exception
-	 */
-	private Collection<Cell> runStatelessRules(RedModel model)
-			throws Exception {
+	Collection<Cell> runModel(RedModel model)
+			throws RPException {
 
 		// The most common operation on a rulebase is to create a new rule
 		// session; either stateful or stateless.
-		log.debug("Creating new rule base");
-		KieModule masterRulebase = new RuleBuilder().loadRules(model, appConfig).getKieModule();
+		log.debug("Finding Decision Model new rule base");
+		DMNModel modelToRun = getDmnModel("", model.getRuleFileLocation());
 
 		boolean showFullRuleEngineLogs = appConfig.getShowFullRuleEngineLogs();
 
 		log.debug("running stateless rules");
-		return runStatelessRules(masterRulebase, model.getFacts(), model.getGlobals(), showFullRuleEngineLogs, model);
-	}
-
-	/**
-	 * Run Stateless rules using a pre built knowledge base
-	 *
-	 * @param preBuiltKnowledgeBase
-	 * @param facts
-	 * @param globals
-	 * @param logger
-	 * @return any new facts created by the working memory
-	 * @throws DroolsParserException
-	 * @throws IOException
-	 */
-	private Collection<Cell> runStatelessRules(KieModule preBuiltKnowledgeBase, Collection<Cell> facts,
-			HashMap<String, Cell> globals, boolean logRuleDetails, IStatusUpdate modelAsLogger) throws IOException {
+		// return runDecisionModel(masterRulebase, model.getFacts(), model.getGlobals(),
+		// showFullRuleEngineLogs, model);
 
 		log.debug("Creating new stateless working memory");
 
@@ -245,15 +121,61 @@ public class DecisionModelRunner implements IRunner {
 	}
 
 	/**
-	 * <p>
-	 * Setter for the field <code>outputStrategy</code>.
-	 * </p>
-	 *
-	 * @param newStrategy a {@link net.firstpartners.core.IDocumentOutStrategy}
-	 *                    object
+	 * Use the KIE Tools to access the Decision Models in this package
+	 * 
+	 * @param nameSpace         - optional, we will interate over available models
+	 * @param decisionModelName
+	 * @return DMNRuntime corresponding to this name
+	 * @throws DroolsParserException
 	 */
-	public void setOutputStrategy(IDocumentOutStrategy newStrategy) {
-		this.outputStrategy = newStrategy;
+	DMNModel getDmnModel(String nameSpace, String decisionModelName) throws DroolsParserException {
+
+		log.debug("Looking for model:" + decisionModelName);
+
+		// remove .dmn from model name
+		if ((decisionModelName != null) && (decisionModelName.toLowerCase().endsWith(".dmn"))) {
+			decisionModelName = decisionModelName.substring(0, decisionModelName.length() - 4);
+			log.debug("Updated DecisionModelName to:" + decisionModelName);
+
+		}
+
+		// First pass - use KIE to find based on namespace and name
+		KieServices kieServices = KieServices.Factory.get();
+		KieContainer kieContainer = kieServices.getKieClasspathContainer();
+		DMNRuntime dmnRuntime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
+		DMNModel dmnModel = dmnRuntime.getModel(nameSpace, decisionModelName);
+
+		// check if this was successful
+		if (dmnModel != null) {
+			return dmnModel;
+		} else {
+			log.debug("Did Not match using namespace - interating over models ");
+		}
+
+		// Debugging code to see the models available to us
+		List<DMNModel> modelList = dmnRuntime.getModels();
+		Iterator<DMNModel> modelLoop = modelList.iterator();
+		while (modelLoop.hasNext()) {
+
+			DMNModel thisModel = modelLoop.next();
+			String name = thisModel.getName().toLowerCase();
+
+			log.debug("Testing match against Name:" + thisModel.getName());
+			// log.debug("NameSpace:" + thisModel.getNamespace());
+
+			if (name.equalsIgnoreCase(decisionModelName)) {
+				log.debug("Matched");
+				return thisModel;
+			}
+
+		}
+
+		if (dmnModel == null) {
+			throw new DroolsParserException("DMNModel not found");
+		}
+
+		return dmnModel;
+
 	}
 
 }

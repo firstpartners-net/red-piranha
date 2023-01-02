@@ -136,9 +136,7 @@ public class DecisionModelRunner extends AbstractRunner {
 		DMNContext dmnContext = this.dmnRuntime.newContext();
 
 		// set cells into context
-		Cell testCell = new Cell("Name", "Paul"); /// Testing
 		List<Cell> convertList = model.getFactsAsList();
-		convertList.add(testCell);
 		log.debug("Number of Cells passed in:" + convertList.size());
 		dmnContext.set("InputCells", convertList);
 

@@ -2,7 +2,6 @@ package net.firstpartners.core.drools;
 
 import static org.junit.Assert.assertNotNull;
 
-import org.drools.drl.parser.DroolsParserException;
 import org.junit.Test;
 import org.kie.dmn.api.core.DMNModel;
 import org.slf4j.Logger;
@@ -63,7 +62,7 @@ public class DecisionModelRunnerTest {
 	}
 
 	@Test
-	public void testGetModelMadeupNoNameSpace() throws DroolsParserException{
+	public void testGetModelMadeupNoNameSpace() throws RPException{
 
 		DecisionModelRunner testRunner = new DecisionModelRunner(null,null,null);
 
@@ -74,7 +73,7 @@ public class DecisionModelRunnerTest {
 	}
 
 	@Test
-	public void testGetModelWithNameSpace() throws DroolsParserException{
+	public void testGetModelWithNameSpace() throws RPException{
 
 		DecisionModelRunner testRunner = new DecisionModelRunner(null,null,null);
 

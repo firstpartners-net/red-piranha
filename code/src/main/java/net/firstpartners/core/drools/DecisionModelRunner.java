@@ -1,33 +1,20 @@
 package net.firstpartners.core.drools;
 
-import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Iterator;
+import java.util.List;
 
-import org.drools.drl.parser.DroolsParserException;
 import org.kie.api.KieServices;
-import org.kie.api.builder.KieModule;
-import org.kie.api.event.rule.DebugAgendaEventListener;
-import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
 import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.StatelessKieSession;
 import org.kie.dmn.api.core.DMNModel;
 import org.kie.dmn.api.core.DMNRuntime;
-import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
-import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.Cell;
-import net.firstpartners.data.Range;
-import net.firstpartners.data.RangeList;
 
 /**
  * Call JBoss Drools (Rules Engine) passing in Document data as Java Objects
@@ -74,12 +61,12 @@ public class DecisionModelRunner extends AbstractRunner {
 
 		boolean showFullRuleEngineLogs = appConfig.getShowFullRuleEngineLogs();
 
-		log.debug("running stateless rules");
+		log.debug("running Decision Model");
 		// return runDecisionModel(masterRulebase, model.getFacts(), model.getGlobals(),
 		// showFullRuleEngineLogs, model);
 
 		log.debug("Creating new stateless working memory");
-
+/*
 		KieContainer kc = KieServices.Factory.get().newKieContainer(preBuiltKnowledgeBase.getReleaseId());
 		StatelessKieSession kSession = kc.newStatelessKieSession();
 
@@ -117,7 +104,9 @@ public class DecisionModelRunner extends AbstractRunner {
 		List<Cell> additionalFacts = cellListener.getNewCells(facts);
 
 		return additionalFacts;
+ */
 
+ return null;
 	}
 
 	/**
@@ -126,9 +115,9 @@ public class DecisionModelRunner extends AbstractRunner {
 	 * @param nameSpace         - optional, we will interate over available models
 	 * @param decisionModelName
 	 * @return DMNRuntime corresponding to this name
-	 * @throws DroolsParserException
+	 * @throws RPException if cannot find any models
 	 */
-	DMNModel getDmnModel(String nameSpace, String decisionModelName) throws DroolsParserException {
+	DMNModel getDmnModel(String nameSpace, String decisionModelName) throws RPException {
 
 		log.debug("Looking for model:" + decisionModelName);
 
@@ -171,7 +160,7 @@ public class DecisionModelRunner extends AbstractRunner {
 		}
 
 		if (dmnModel == null) {
-			throw new DroolsParserException("DMNModel not found");
+			throw new RPException("DMNModel not found");
 		}
 
 		return dmnModel;

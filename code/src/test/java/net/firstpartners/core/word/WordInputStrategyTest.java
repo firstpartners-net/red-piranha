@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.MemoryOutputStrategy;
+import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RunnerFactory;
@@ -19,7 +20,7 @@ public class WordInputStrategyTest {
 	 * Just check that the rules can run, throws no exception
 	 */
 	@Test
-	public final void testdocCallRulesFromFile() throws Exception {
+	public final void testdocCallRulesFromFile() throws RPException {
 
 		RedModel redModel = new RedModel(TestConstants.WORD_DATA_FILE,TestConstants.RULE_FILE_FOR_WORD,"some-dummy.pdf");
 		

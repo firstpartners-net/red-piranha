@@ -2,20 +2,9 @@ package net.firstpartners.core.drools;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Iterator;
 
-import org.drools.drl.parser.DroolsParserException;
-import org.kie.api.KieServices;
-import org.kie.api.builder.KieModule;
-import org.kie.api.event.rule.DebugAgendaEventListener;
-import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.StatelessKieSession;
-import org.kie.dmn.api.core.DMNModel;
-import org.kie.dmn.api.core.DMNRuntime;
-import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +13,6 @@ import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
-import net.firstpartners.core.log.IStatusUpdate;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
@@ -53,7 +41,6 @@ public abstract class AbstractRunner implements IRunner {
 	// Handle to the strategy Class to write out the document
 	// Setup by RunnerFactory
 	protected IDocumentOutStrategy outputStrategy = null;
-
 
 	/**
 	 * The strategy we use for dealing with incoming documents
@@ -99,7 +86,12 @@ public abstract class AbstractRunner implements IRunner {
 
 		// Convert the cell and log if we have a handle
 		ruleModel.addUIInfoMessage("Opening Input :" + this.inputStrategy.getInputName());
-		RangeList ranges = inputStrategy.getJavaBeansFromSource();
+		RangeList ranges;
+		try {
+			ranges = inputStrategy.getJavaBeansFromSource();
+		} catch (EncryptedDocumentException | InvalidFormatException | IOException e) {
+			throw new RPException("Error when opening Input", e);
+		}
 
 		// Set the Modified flag on the cells
 		if (ranges != null) {
@@ -136,7 +128,11 @@ public abstract class AbstractRunner implements IRunner {
 		// update a copy of the original document (to be saved as copy) with the result
 		// of our rules
 		log.debug("RunRules - object " + inputStrategy.getOriginalDocument());
-		outputStrategy.setUpdates(inputStrategy.getOriginalDocument(), ranges);
+		try {
+			outputStrategy.setUpdates(inputStrategy.getOriginalDocument(), ranges);
+		} catch (IOException e) {
+			throw new RPException("Error when updating document", e);
+		}
 
 		ruleModel.addUIInfoMessage("Write to Output file:" + outputStrategy.getOutputDestination());
 		ruleModel.setUIProgressStatus(90);
@@ -145,12 +141,23 @@ public abstract class AbstractRunner implements IRunner {
 		ruleModel.setPostRulesSnapShot(ranges);
 
 		// make sure both get written (to disk?)
-		outputStrategy.processOutput();
+		try {
+			outputStrategy.processOutput();
+		} catch (InvalidFormatException | IOException e) {
+			throw new RPException("Error when writing out document", e);
+		}
 		ruleModel.setUIProgressStatus(100);
 
 		return ruleModel;
 
 	}
 
+	/**
+	 * Abstract Method to be implemented by subclasses
+	 * 
+	 * @param model
+	 * @return
+	 */
+	abstract Collection<Cell> runModel(RedModel model) throws RPException;
 
 }

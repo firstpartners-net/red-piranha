@@ -126,7 +126,7 @@ public class RuleBuilder {
 		if (results.hasMessages(Message.Level.ERROR)) {
 
 			log.warn("There are warning in a DRL:\n{}", results);
-			throw new Exception("There were errors in a building a Rule file\n");
+			throw new RPException("There were errors in a building a Rule file\n");
 
 		}
 

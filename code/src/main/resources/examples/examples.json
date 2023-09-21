@@ -31,6 +31,20 @@
   "testingResult" : ""
   		
 }
+, 
+{
+  "id" : 4,
+  "inputFileLocation" : "4_pmml/data.xlsx",
+  "ruleFileLocation" : "11_Product_Recommendation_ML.dmn",
+  "outputFileLocation" : "4_pmml/output.csv",
+  "dslFileLocation" : "",
+  "descriptiontext" : "test example calling of a pmml model",
+  "testingResult" : ""
+  		
+}
+
+
+
 
 
 ]

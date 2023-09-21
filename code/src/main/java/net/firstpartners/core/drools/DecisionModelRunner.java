@@ -61,6 +61,7 @@ public class DecisionModelRunner extends AbstractRunner {
 			this.kieServices = KieServices.Factory.get();
 			this.kieContainer = kieServices.getKieClasspathContainer();
 			this.dmnRuntime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
+	
 		}
 
 	}

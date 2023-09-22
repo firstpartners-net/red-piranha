@@ -13,7 +13,7 @@ Platform (with specific examples)
 * Example - simple for book
 * Example - more in detail - for me
 
-## TODO this sprint : aim book sample, just enough to talk about c12
+## TODO confirm as complete print : aim book sample, just enough to talk about c12
 
 * Current Sample
 ** resolve spring boot issue
@@ -23,6 +23,11 @@ Platform (with specific examples)
 ** tidy docs to first draft
 == what I need to chapter 12
 
+## TODO Next Sprint
+* mountable folder
+* watch folder and extract
+* multiple output options
+* decision test
 
 
 ## Possible move

@@ -19,3 +19,5 @@ Release
     mvn javadoc:test-jar
     mvn javadoc:test-aggregate
     mvn javadoc:test-aggregate-jar
+
+    test new branch

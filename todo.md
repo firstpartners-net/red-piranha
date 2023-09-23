@@ -2,7 +2,46 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
-## Core Aims of next sprint
+
+## Refresh knowledge
+* Current Sample
+* Confirm book tagging (i.e. nothing we do here will distrub)
+* tidy docs to first draft
+* Add note on book to here
+* go through book branch and pull in here
+* go through pcv and pull into sample
+
+## TODO Next Sprint
+* Create folder sample
+** Financial Data (sanitized)
+** JSON and notes (for sample)
+** Link RP App page to home back
+** Read all files in folder
+** Output
+* Docs
+** Tidy current docs - next pass
+* Future
+** Create Fiancial extraction Sample - analsyis of single case
+** multiple output options
+* decision test
+* Release
+** Automate release (package and docker)
+** Or at least update release notes
+
+## Tidy
+* Clear down warnings
+* resolve spring boot issue
+* get rulerunner test passing
+* check output through to csv
+* Figure out why current excel example is outputting incorrectly
+* More info through to front end
+* more tests compile / rule
+* tidy of all readme pages
+
+## TODO on Deployment
+* Can deploy and work against true docs
+
+## Confirm delivered on previous spring
 
 Platform (with specific examples)
 
@@ -12,40 +51,24 @@ Platform (with specific examples)
 * Tests automated and running
 * Example - simple for book
 * Example - more in detail - for me
-
-## TODO this sprint : aim book sample, just enough to talk about c12
-
-* Current Sample
-** resolve spring boot issue
-** get rulerunner test passing
-** run from web app
-** check output through to csv
-** tidy docs to first draft
-== what I need to chapter 12
-
-
+s
 
 ## Possible move
 
 
-## Todo Next 
-
-* Figure out why current excel example is outputting incorrectly
-* More info through to front end
-* more tests compile / rule
-* tidy of all readme pages
-
-## restore commented out tests (put @Test back on them)
-testJSONInOut
 
 
 ## refactor
-(Move RuleRunner.java remove RuleBuilder to same pre-built model that DecisionModel uses)
-Simplify down to Cells (remove all notion or ranges?)
-Remove .xls support
+* (Move RuleRunner.java remove RuleBuilder to same pre-built model that 
+* DecisionModel uses)
+* Simplify down to Cells (remove all notion or ranges?)
+* Remove .xls support
+* restore commented out tests (put @Test back on them)
+** testJSONInOut
 
-## later
 
+
+## later - tidy off these
 * recover and reused previous examples (to web)
 * run from command line
 * understand model back and forward better

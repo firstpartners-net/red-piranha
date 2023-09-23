@@ -1,43 +1,21 @@
 # Notes on extending Red Piranha as a developer
 
-* FIND HOME FOR
-  * Setup Eclipse
-
-Bonus Chapter 	The above 12 chapters are a complete book, aimed at the Business user, with a full solution that they can run on their own PC
- 
-The bonus chapter shows how to evolve the tool into a full Enterprise solution – reassuring them that they are on “the right track” with the Business rules based approach. 
- 
-Since this bonus chapters can be more code based, it makes the rest of the book cleaner (e.g. here’s a graphical way of doing it – if you want to dive deeper look at the Bonus chapter …)
- 
-Based on an existing GitHub repository, this chapter gives a Java developer with knowledge of standard tools (e.g. Maven, Spring) a worked starter example that they can quickly expand into a fully deployable Enterprise Web Project customized to specific business needs.
- 
-To repeat – this is *not* needed for Business Users to give full value out of the book, but readers do want a clear roadmap to build on what they have learned.	•	P2
-•	Why this chapter is here (for business users)
-•	From Power user to Developer
-•	Walk through of Red Piranha archiecture
-•	Java, Maven, Spring
-•	Running examples locally	Simple Example of how to extend
-
-
-* NOTES
-
-
 Red Piranha is aimed at 'Excel Power Users'. The information in this page goes 'under the covers' if you (as a Developer) are looking to understand and extend the project.
 
 ## Get, Build and Run the Code
 
 * Checkout project as normal from GitHub
-* Ensure you have Java installed on your machine. The current codebase has been tested against `JDK 17` (Open JDK from RedHat), but other (and earlier versions) should work.
+* Ensure you have Java installed on your machine. The current codebase has been tested against `JDK 11` (Open JDK from RedHat), but other (and earlier versions) should work.
 * Install the `Maven` Build tool on your machine.
-* Open a Command prompt in this directory containing `pom.xml`
-* Since the project contains `Spring Boot` you can start the embedded web server by typing `spring-boot:run` in the command prompt.
+* Open a Command prompt in this directory containing `pom.xml`. Normally this is in the code directory
+* Since the project contains `Spring Boot` you can start the embedded web server by typing `mvn spring-boot:run` in the command prompt.
 * If you don't see any error messages open a web browser at `http://localhost:7000`and the Red Piranha home page should be displayed.
 
 ## Project Layout and Setup for Editing
 
 * The project is based on Java, Spring and Maven, so many of the directories should be in the standard locations. JUnit tests are also included.
 * The `mvn eclipse:eclipse` command (or equivalent for your favourite IDE ) will generate files for you to easily open and run in the editor.
-* In general, the system is stateless and input files are **not** overwritten. This means you can run it (several times) and get the same results, or make changes without breaking too much.
+* In general, the system is stateless and input files are **not** overwritten. This means you can run it (several times) and get the same results, or make changes without breaking too much. Output files might be deleted, but  they can always be regenerated.
 
 ## Key files
 
@@ -63,8 +41,6 @@ Key design principles
 
 * Running `main` method in `TestConstants.java regenerates the serialized test data
 * Unit tests are contained in the `test` folder and give additional code samples.
-
-
 
 ## Red Piranha for Drools Developers
 

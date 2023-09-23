@@ -70,7 +70,7 @@ The Project follows a standard structure, using the Spring Boot Framework and th
 1. Download and install Java
 1. Download and install Apache Maven
 1. Download (or checkout) the code from this GitHub Repository, unzip it if needed.
-1. Open the `code` folder within this project in a console / terminal
+1. Open the `code` folder within this project in a console / terminal. You'll know you're in the correct place if you see a `pom.xml` file. 
 1. Start the application using  `mvn spring-boot:run`
 1. Open a Browser and point at `http://localhost:7000/`
 

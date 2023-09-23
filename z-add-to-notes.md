@@ -25,4 +25,8 @@ Release
 
     where to find properties
     how to generate release
+
+## Testing
+mvn test to run tests
+** output in 
     

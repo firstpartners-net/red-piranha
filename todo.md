@@ -4,6 +4,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 
 ## Refresh knowledge
+* Snapshot current code and make note for book readers
 * Current Sample
 * tidy docs to first draft
 * Add note on book to here

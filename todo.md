@@ -3,19 +3,21 @@
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
 
-## Refresh knowledge
+## Refresh knowledge and tidy
 * Snapshot current code and make note for book readers
 * Current Sample
 * tidy docs to first draft
 * Add note on book to here
 * go through pcv and pull into sample
 * Resolve GitHub [firstpartners-net/red-piranha] pages build and deployment workflow run 
-
+* Tests passing
 
 ## TODO Next Sprint
+
 * Create folder sample
-** Financial Data (sanitized)
-** JSON and notes (for sample)
+
+    * Financial Data (sanitized)
+    * JSON and notes (for sample)
 ** Link RP App page to home back
 ** Read all files in folder
 ** Output
@@ -38,6 +40,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * More info through to front end
 * more tests compile / rule
 * tidy of all readme pages
+* view vulneribilty report (right click top right of tabs and renable)
 
 ## TODO on Deployment
 * Can deploy and work against true docs
@@ -51,9 +54,6 @@ Platform (with specific examples)
 * (Y) Could be run by simple end-user with docker - proper release
 * Tests automated and running
 
-
-## Possible move
-
 ## refactor
 * (Move RuleRunner.java remove RuleBuilder to same pre-built model that 
 * DecisionModel uses)
@@ -62,11 +62,11 @@ Platform (with specific examples)
 * restore commented out tests (put @Test back on them)
 ** testJSONInOut
 
-
+## Upgrades
+* Migrate to latest version of all libs
 
 ## later - tidy off these
-* recover and reused previous examples (to web)
-* run from command line
+* recover and reused previous examples (to web) - currently in test folder
 * understand model back and forward better
 * conversion to-from excel - make sure it works better, json better?
 * Dive through stack - can bring back any more info to user

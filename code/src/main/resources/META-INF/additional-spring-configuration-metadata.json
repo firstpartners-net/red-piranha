@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "SHOW_FULL_RULE_ENGINE_LOGS",
+    "type": "java.lang.String",
+    "description": "Toggle on / off the logs originating from the Rule Engine (verbose)"
+  },
+  {
+    "name": "SHOW_FULL_RULE_ENGINE_LOGS",
+    "type": "java.lang.String",
+    "description": "A description for 'SHOW_FULL_RULE_ENGINE_LOGS'"
+  }
+]}

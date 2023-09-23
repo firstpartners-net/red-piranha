@@ -2,6 +2,8 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
+# NEXT STEP (single line)
+* get CellConvertorTest passing
 
 ## Refresh knowledge and tidy
 * Snapshot current code and make note for book readers
@@ -11,6 +13,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * go through pcv and pull into sample
 * Resolve GitHub [firstpartners-net/red-piranha] pages build and deployment workflow run 
 * Tests passing
+* ensure file logging working
 
 ## TODO Next Sprint
 

@@ -7,7 +7,7 @@
 #     Open in Docker Desktop, stop there
 
 
-version: '2.2.1'
+version: '2.3.1'
 services:
 
 # Sample applications Provided by RedHat Jboss
@@ -33,7 +33,7 @@ services:
 
   red:
     #image: paulbrowne/redpiranha:latest                    # if we just want to make sure we get the latest
-    image: paulbrowne/redpiranha:2.2.1-SNAPSHOT
+    image: paulbrowne/redpiranha:2.3.1-SNAPSHOT
     
     ports:
       - 7000:7000

@@ -73,28 +73,29 @@ public class CellConvertorTest {
 			int tmpCellRow = thisRedCell.getOriginalCellRow();
 			int tmpCellCol = thisRedCell.getOriginalCellCol();
 			
-			log.debug("Tmp Cell Row,Col:" + tmpCellRow+","+tmpCellCol);
+			log.info("Tmp Cell Row,Col:" + tmpCellRow+","+tmpCellCol);
 
 			//CellReference cellReference = new CellReference(tmpCellRef);
 			CellReference cellReference = new CellReference(tmpCellRow,tmpCellCol);
 			
 			Row row = SheetConvertor.getOrCreateRow(thisSheet, cellReference);
 
-			log.debug("found Row:" + row);
+			log.info("found Row:" + row);
 			org.apache.poi.ss.usermodel.Cell poiCell = SheetConvertor.getOrCreateCell(row, cellReference);
 
-			CellConvertor.convertRedCellToPoiCell(wb, poiCell, thisRedCell);
-			assertNotNull(poiCell);
 			assertNotNull(thisRedCell);
+			log.info("redCell:"+thisRedCell);
 
-			log.debug("poiCell:"+poiCell);
-			log.debug("redCell:"+thisRedCell);
+			CellConvertor.convertRedCellToPoiCell(wb, poiCell, thisRedCell);
 			
+			assertNotNull(poiCell);
+			log.info("poiCell:"+poiCell);
+			
+			//check that values have been copieed over
 			String tmp = thisRedCell.getValueAsText();
-
 			String poiValue= poiCell.getStringCellValue();
 
-			// Excel stores boolean in a differt way
+			// Excel stores boolean in a different way
 			if (!("[false]".contains(tmp))) {
 				assertEquals(tmp, poiValue);
 			}

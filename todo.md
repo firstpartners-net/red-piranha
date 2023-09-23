@@ -5,14 +5,10 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Refresh knowledge
 * Current Sample
-* Confirm book tagging (i.e. nothing we do here will distrub)
 * tidy docs to first draft
 * Add note on book to here
-* go through book branch and pull in here
 * go through pcv and pull into sample
-
-GitHub
-[firstpartners-net/red-piranha] pages build and deployment workflow run 
+* Resolve GitHub [firstpartners-net/red-piranha] pages build and deployment workflow run 
 
 
 ## TODO Next Sprint

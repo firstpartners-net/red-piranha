@@ -4,6 +4,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -201,7 +204,15 @@ public class RunnerFactory {
 		assert dataModel.getRuleFileLocation() != null;
 		assert dataModel.getOutputFileLocation() != null;
 
-		// handle on our  strategy objects
+		//check that these files exists - easier to track than error thrown from within Rule engine
+		Path path = Paths.get(dataModel.getInputFileLocation());
+		assert Files.exists(path);
+
+		path = Paths.get(dataModel.getRuleFileLocation());
+		assert Files.exists(path);
+
+
+		// handle on our strategy objects
 		IRunner myRunner;
 		IDocumentInStrategy inputStrat;
 		IDocumentOutStrategy outputStrat;

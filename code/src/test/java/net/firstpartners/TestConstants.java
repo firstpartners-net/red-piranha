@@ -58,7 +58,7 @@ public class TestConstants {
 
 
 	//Decision model test
-	public static final String SIMPLE_DECISION_MODEL = "decision_model.dmn";
+	public static final String SIMPLE_DECISION_MODEL = "src/main/resources/examples/3_simple_dmn/decision_model.dmn";
 	public final static String SIMPLE_EXCEL="src/main/resources/examples/3_simple_dmn/data.xlsx";
 
 	

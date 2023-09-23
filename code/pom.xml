@@ -8,13 +8,14 @@
 		<version>2.7.16</version>		<!-- lookup parent from repository -->
 	</parent>
 
+	<!-- Name and Version Number of the Artifact we are building -->
 	<groupId>net.firstpartners</groupId>
 	<artifactId>redpiranha</artifactId>
 	<version>2.3.1-SNAPSHOT</version>
 	<name>Red-Piranha</name>
 	<description>User Interface and samples mapping Excel Data to Java and Business Rules</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>

@@ -7,7 +7,7 @@ Red Piranha is aimed at 'Excel Power Users'. The information in this page goes '
 * Checkout project as normal from GitHub
 * Ensure you have Java installed on your machine. The current codebase has been tested against `JDK 11` (Open JDK from RedHat), but other (and earlier versions) should work.
 * Install the `Maven` Build tool on your machine.
-* Open a Command prompt in this directory containing `pom.xml`
+* Open a Command prompt in this directory containing `pom.xml`. Normally this is in the code directory
 * Since the project contains `Spring Boot` you can start the embedded web server by typing `mvn spring-boot:run` in the command prompt.
 * If you don't see any error messages open a web browser at `http://localhost:7000`and the Red Piranha home page should be displayed.
 

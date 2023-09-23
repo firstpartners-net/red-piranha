@@ -2,7 +2,27 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
-## Core Aims of next sprint
+## Next
+* Confirm book tagging (i.e. nothing we do here will distrub)
+
+## TODO Next Sprint
+* Create folder sample
+** Financial Data (sanitized)
+** JSON and notes (for sample)
+** Link RP App page to home back
+** Read all files in folder
+** Output
+* Docs
+** Tidy current docs - next pass
+* Future
+** Create Fiancial extraction Sample - analsyis of single case
+** multiple output options
+* decision test
+
+## TODO on Deployment
+* Can deploy and work against true docs
+
+## Confirm delivered on previous spring
 
 Platform (with specific examples)
 
@@ -23,11 +43,6 @@ Platform (with specific examples)
 ** tidy docs to first draft
 == what I need to chapter 12
 
-## TODO Next Sprint
-* mountable folder
-* watch folder and extract
-* multiple output options
-* decision test
 
 
 ## Possible move

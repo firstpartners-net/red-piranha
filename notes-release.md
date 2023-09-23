@@ -1,6 +1,9 @@
 # RELEASE PREP
 
-These notes outline what is need to move from source coe to full release
+These notes outline what is need to move from source coe to full release.
+
+Note the book "AI and Business Rules for Excel
+Power Users" refers to both the main version branch of the project on GitHub, and the latest version in DockerHub. So, we develop on a branch and then only pull the working version into main as a release.
 
 ## GITHUB RELEASE
 * Run build and all tests - mvn spring-boot:run

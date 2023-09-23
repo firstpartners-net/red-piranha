@@ -21,3 +21,8 @@ Release
     mvn javadoc:test-aggregate-jar
 
     test new branch
+
+
+    where to find properties
+    how to generate release
+    

@@ -18,4 +18,13 @@ Release
     mvn javadoc:test-javadoc
     mvn javadoc:test-jar
     mvn javadoc:test-aggregate
-    mvn javadoc:test-aggregate-jar 
+
+    mvn javadoc:test-aggregate-jar
+
+    test new branch
+
+
+    where to find properties
+    how to generate release
+    
+

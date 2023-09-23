@@ -16,7 +16,7 @@ Red Piranha converts all office documents intot a standad datamodel, to make it 
 <https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/core/word/WordXInputStrategy.html>
 
 
-Data Model Build
+# Data Model Build
 
 mvn package -DskipTests from code in maven to build
 rp-data-model-2.2.1-SNAPSHOT.jar - built by this script

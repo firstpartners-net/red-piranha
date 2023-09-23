@@ -1,18 +1,28 @@
-RELEASE PREP
+# RELEASE PREP
+
+These notes outline what is need to move from source coe to full release.
+
+Note the book "AI and Business Rules for Excel
+Power Users" refers to both the main version branch of the project on GitHub, and the latest version in DockerHub. So, we develop on a branch and then only pull the working version into main as a release.
+
+## GITHUB RELEASE
 * Run build and all tests - mvn spring-boot:run
 * search and update version number (all files)
+** ??
 * tag version number
+** ??
 * Release on github 
-** (more info)
+** (?? more info)
 * Build image in docker (below)
 * push image (as version number and latest)
+** ?? more info on how to do this in docker hub
 
-BUILD IMAGE IN SPRING
+## BUILD IMAGE IN SPRING
 
 * Navigate to code directory
 * mvn spring-boot:build-image -Dmaven.test.skip=true
 
-Notes
+## Notes
 * Needs docker daemon running
 * Make need to delete "target" directory to force refresh
   ○ Check that any new samples are loaded
@@ -21,7 +31,7 @@ Notes
 
 PUSHING BUILD TO DOCKERHUB
 * docker login
-** or docker login -u paulbrowne -p <password>
+** e.g. docker login -u paulbrowne -p <password>
 * docker images
 * docker tag xxxxx-image-id paulbrowne/redpiranha:latest     		 #without this tag then it doesn't matchup to repository
 * docker tag xxxxx-image-id paulbrowne/redpiranha:2.2.1-SNAPSHOT     
@@ -34,45 +44,6 @@ TO TEST DOCKER HUB IMAGE
 ** (more info https://www.tutorialspoint.com/how-does-one-remove-a-docker-image)
 ** useful:  docker image prune --all
 * Run docker compose using config file in this directory
-
-RUNNING DOCKER IMAGES
-
-Install Logs
-* C:\Users\paulf\AppData\Local\Docker
-
-Sources
-* <https://www.baeldung.com/spring-native-intro>
-* Spring Book
-* Build run docker on Github  <https://blog.hildenco.com/2020/10/building-and-hosting-docker-images-on.html>
-* Docker compose <https://github.com/docker/labs/blob/master/developer-tools/java/chapters/ch05-compose.adoc>
-
-RUNNING WITHOUT BUILD
-docker run -p 8080:8080 -p 8001:8001 -d --name jbpm-server-full jboss/jbpm-server-full:latesT
-
-
- 
-Docker Volumes
-* Can be found in docker
-* Windows Explorer
-  ○ \\wsl$\docker-desktop-data\version-pack-data\community\docker\volumes
-* Note that images persist localy
-
-HOW TO MODIFY JBOSS DOCKER IMAGE
-<https://linuxhandbook.com/modifying-docker-image/>
-
-
-
-
-RUNNING DOCKER IMAGES
-Install Logs
-    • C:\Users\paulf\AppData\Local\Docker 
-
-Sources
-    • https://www.baeldung.com/spring-native-intro
-    • Spring Book
-    • Build run docker on Github  https://blog.hildenco.com/2020/10/building-and-hosting-docker-images-on.html
-    • Docker compose https://github.com/docker/labs/blob/master/developer-tools/java/chapters/ch05-compose.adoc
-
 
 
 BUILDING DOCKER IMAGE USING SPRING

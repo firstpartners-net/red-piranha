@@ -11,6 +11,10 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * go through book branch and pull in here
 * go through pcv and pull into sample
 
+GitHub
+[firstpartners-net/red-piranha] pages build and deployment workflow run 
+
+
 ## TODO Next Sprint
 * Create folder sample
 ** Financial Data (sanitized)
@@ -49,14 +53,9 @@ Platform (with specific examples)
 * (Y) Can hand to Java developer and build - proper release
 * (Y) Could be run by simple end-user with docker - proper release
 * Tests automated and running
-* Example - simple for book
-* Example - more in detail - for me
-s
+
 
 ## Possible move
-
-
-
 
 ## refactor
 * (Move RuleRunner.java remove RuleBuilder to same pre-built model that 

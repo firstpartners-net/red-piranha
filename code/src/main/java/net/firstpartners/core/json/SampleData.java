@@ -174,8 +174,8 @@ public class SampleData {
 		StringBuffer returnValue = new StringBuffer();
 		
 		String enc = StandardCharsets.UTF_8.toString();
-
-		returnValue.append("?inputFileLocation=" + URLEncoder.encode(this.inputFileLocation, enc));
+		returnValue.append("?baseDirectory=" + URLEncoder.encode(this.baseDirectory, enc));
+		returnValue.append("&inputFileLocation=" + URLEncoder.encode(this.inputFileLocation, enc));
 		returnValue.append("&ruleFileLocation=" + URLEncoder.encode(this.ruleFileLocation, enc));
 		returnValue.append("&outputFileLocation=" + URLEncoder.encode(this.outputFileLocation, enc));
 

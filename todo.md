@@ -2,15 +2,16 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
+# NEXT STEP 
+* baseDirectory - work through
+* 
+
 # DECIDE
 * Alternative approach: Airflow, Apache Nifi etc
 * Alternative approach: RP calls Python or Grovy script to extract (** most likely **)
 * Decide Template - python or groovy script and call from Java
 
-# NEXT STEP (single line)
-* readme files to the other samples - note named ranges used in other samples
-* base directory
-* Current Sample - decide and note approach
+
 
 
 ## Refresh knowledge and tidy

@@ -218,7 +218,7 @@ public class RunnerFactory {
 		try {
 			constructor = strategyClass.getConstructor(String.class);
 			inputStrat = (IDocumentInStrategy) constructor
-					.newInstance(dataModel.getInputFileLocation());
+					.newInstance(dataModel.getBaseDirectory()+dataModel.getInputFileLocation());
 
 			// pass in the config
 			inputStrat.setConfig(appConfig);
@@ -235,7 +235,7 @@ public class RunnerFactory {
 		try {
 			constructor = strategyClass.getConstructor(String.class);
 			 outputStrat = (IDocumentOutStrategy) constructor
-			.newInstance(dataModel.getOutputFileLocation());
+			.newInstance(dataModel.getBaseDirectory()+dataModel.getOutputFileLocation());
 
 		} catch (NoSuchMethodException | SecurityException |InstantiationException | InvocationTargetException |IllegalAccessException e) {
 			throw new RPException("Error when creating output strategy Object", e);

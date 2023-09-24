@@ -1,5 +1,6 @@
 package net.firstpartners.core.json;
 
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -58,7 +59,8 @@ class SampleDataLoaderTest {
 	@Test
 	void testLoadSampleConfigJson() throws StreamWriteException, DatabindException, IOException {
 		
-		
+		fail("just checking");
+
 		//load the samples - passing in null means we only look relative to working directory
 		List<SampleData> samples = SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON,myConfig);
 		

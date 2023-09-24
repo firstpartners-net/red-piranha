@@ -33,7 +33,7 @@
 <body>
 	<div class="container-fluid">
 		<h3 class="display-3">Red-Piranha is a set of Power tools for
-			Excel and Office Power users. </h3>
+			Excel and Office Power users using Rule Based AI. </h3>
 		<p></p>
 		<p>
 			Red Piranha (<a href="https://github.com/firstpartners-net/red-piranha/">Home page</a>) 
@@ -61,6 +61,16 @@
 			<div id="contents-main">
 
 				<p class="bg-primary">&nbsp;Current Settings</p>
+
+				<div class="form-group">
+
+
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">Base&nbsp;Directory:
+							<input type="text" class="form-control" th:field="*{baseDirectory}" />
+						</label>
+					</div>
+				</div>
 
 				<div class="form-group">
 
@@ -133,6 +143,9 @@
 				<a th:href="'runRules'+${sample.sampleUrlParams}" class="btn btn-default">Run Sample</a>
 			</div>
 			<div class="col-md-4">
+				<p th:text="${sample.baseDirectory}"></p>
+			</div>
+			<div class="col-md-4">
 				<p th:text="${sample.inputFileLocation}"></p>
 			</div>
 			<div class="col-md-4">
@@ -140,9 +153,6 @@
 			</div>
 			<div class="col-md-4">
 				<p th:text="${sample.outputFileLocation}"></p>
-			</div>
-			<div class="col-md-8">
-				<p th:text="${sample.descriptiontext}"></p>
 			</div>
 			<p />
 			<div class="col-md-8">

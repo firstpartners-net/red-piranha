@@ -1,10 +1,10 @@
 [ 
 {
   "id" : 1,
-  "baseDirectory":"",
-  "inputFileLocation" : "1_hello_world/hello-excel.xls",
-  "ruleFileLocation" : "1_hello_world/hello.drl",
-  "outputFileLocation" : "1_hello_world/output.xls",
+  "baseDirectory":"1_hello_world/",
+  "inputFileLocation" : "hello-excel.xls",
+  "ruleFileLocation" : "hello.drl",
+  "outputFileLocation" : "output.xls",
   "dslFileLocation" : "",
   "testingResult" : ""
   		
@@ -12,10 +12,10 @@
 ,
 {
   "id" : 2,
-  "baseDirectory":"",
-  "inputFileLocation" : "2_chocolate-factory/chocolate-data.xls",
-  "ruleFileLocation" : "2_chocolate-factory/log-then-modify-rules.drl",
-  "outputFileLocation" : "2_chocolate-factory/output.xls",
+  "baseDirectory":"2_chocolate-factory/",
+  "inputFileLocation" : "chocolate-data.xls",
+  "ruleFileLocation" : "log-then-modify-rules.drl",
+  "outputFileLocation" : "output.xls",
   "dslFileLocation" : "",
   "testingResult" : ""
   		
@@ -23,20 +23,20 @@
 , 
 {
   "id" : 3,
-  "baseDirectory":"",
-  "inputFileLocation" : "3_simple_dmn/data.xlsx",
+  "baseDirectory":"3_simple_dmn/",
+  "inputFileLocation" : "data.xlsx",
   "ruleFileLocation" : "decision_model.dmn",
-  "outputFileLocation" : "3_simple_dmn/output.csv",
+  "outputFileLocation" : "output.csv",
   "dslFileLocation" : "",
   "testingResult" : ""
   		
 },
 {
   "id" : 4,
-  "baseDirectory":"",
-  "inputFileLocation" : "4_complex_excel/Complex_Financial.xlsx",
-  "ruleFileLocation" : "4_complex_excel/log-then-modify-rules.drl",
-  "outputFileLocation" : "4_complex_excel/output.csv",
+  "baseDirectory":"4_complex_excel/",
+  "inputFileLocation" : "Complex_Financial.xlsx",
+  "ruleFileLocation" : "log-then-modify-rules.drl",
+  "outputFileLocation" : "output.csv",
   "dslFileLocation" : "",
   "testingResult" : ""
   		

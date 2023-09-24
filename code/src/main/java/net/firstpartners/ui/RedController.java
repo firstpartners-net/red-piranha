@@ -78,6 +78,7 @@ public class RedController {
 	@RequestMapping(value = "/runRules")
 	public String runRules(Model model, @ModelAttribute(RED_MODEL) RedModel redModel) {
 
+		log.debug("baseDirectory:" + redModel.getBaseDirectory());	
 		log.debug("inputFileLocation:" + redModel.getInputFileLocation());
 		log.debug("DSL?" + redModel.getDslFileLocation());
 		log.debug("DRL?" + redModel.getRuleFileLocation());

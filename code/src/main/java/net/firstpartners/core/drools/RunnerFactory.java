@@ -204,13 +204,6 @@ public class RunnerFactory {
 		assert dataModel.getRuleFileLocation() != null;
 		assert dataModel.getOutputFileLocation() != null;
 
-		//check that these files exists - easier to track than error thrown from within Rule engine
-		Path path = Paths.get(dataModel.getInputFileLocation());
-		assert Files.exists(path);
-
-		path = Paths.get(dataModel.getRuleFileLocation());
-		assert Files.exists(path);
-
 
 		// handle on our strategy objects
 		IRunner myRunner;

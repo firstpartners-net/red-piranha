@@ -33,9 +33,9 @@
 },
 {
   "id" : 4,
-  "inputFileLocation" : "4_complex-excel/Complex_Financial.xlsx",
-  "ruleFileLocation" : "4_complex-excel/XYZ.drl",
-  "outputFileLocation" : "4_complex-excel/output.csv",
+  "inputFileLocation" : "4_complex_excel/Complex_Financial.xlsx",
+  "ruleFileLocation" : "4_complex_excel/log-then-modify-rules.drl",
+  "outputFileLocation" : "4_complex_excel/output.csv",
   "dslFileLocation" : "",
   "descriptiontext" : "Read information for a complex Excel Datafile and summarize as json/csv. More information in the Readme file in the sample folder",
   "testingResult" : ""

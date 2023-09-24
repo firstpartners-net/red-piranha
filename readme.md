@@ -21,7 +21,7 @@ A business rule is a simple statement that represents some important aspect of a
 All people have business rules. Examples of a 'real' busniess rules that can be fed into the engine are:
 
 * `When the market rises by more than 25%, Then sell the stock`
-* `When the total is less than €100 And the claimant is low risk Then transfer the funds` `
+* `When the total is less than €100 And the claimant is low risk Then transfer the funds`
 
 Because business rules can be written in 'near English' language they are much more meaningful to non-technical domain experts. In this format, the knowledge they contain is easier to manage, maintain and share. They also carry the advantage of separating the meaning of the business from the actual technical implementation.
 

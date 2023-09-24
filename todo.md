@@ -4,7 +4,6 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 # NEXT STEP 
 * baseDirectory - work through
-* 
 
 # DECIDE
 * Alternative approach: Airflow, Apache Nifi etc

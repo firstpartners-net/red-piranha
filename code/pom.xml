@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.16</version>		<!-- lookup parent from repository -->
+		<version>3.1.4</version>		<!-- lookup parent from repository was 2.7.16 -->
 	</parent>
 
 	<!-- Name and Version Number of the Artifact we are building -->
@@ -236,7 +236,7 @@
 			<plugin>
 				<groupId>org.owasp</groupId>
 				<artifactId>dependency-check-maven</artifactId>
-				<version>7.4.2</version>
+				<version>8.4.0</version> <!-- was 7.4.2-->
 				<executions>
 					<execution>
 						<goals>

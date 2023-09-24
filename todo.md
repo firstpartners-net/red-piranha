@@ -3,26 +3,22 @@
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
 # NEXT STEP (single line)
-* Unit test to drive - simple
-* dsl based on existing - working and sharable
+* readme files to the other samples - note named ranges used in other samples
+* Current Sample - decide and note approach
 
 ## Refresh knowledge and tidy
 * Snapshot current code and make note for book readers
-* Current Sample
+
+* dsl based on existing - working and sharable
 * tidy docs to first draft
 * Add note on book to here
-* go through pcv and pull into sample
 * Resolve GitHub [firstpartners-net/red-piranha] pages build and deployment workflow run 
 * Tests passing
-* ensure file logging working
 
 ## TODO Next Sprint
 
 * Create folder sample
-
-    * Financial Data (sanitized)
-    * JSON and notes (for sample)
-** Link RP App page to home back
+    * update readme in folder
 ** Read all files in folder
 ** Output
 * Docs

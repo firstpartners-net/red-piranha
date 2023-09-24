@@ -11,7 +11,6 @@ dist
 .project
 .classpath
 
-
 code/.settings/org.eclipse.core.resources.prefs
 code/.settings/org.eclipse.jdt.core.prefs
 
@@ -39,3 +38,6 @@ code/src/test/resources/testdata/tmp.json
 code/src/test/resources/testdata/tmp.pdf
 code/src/test/resources/testdata/tmp.pdf
 code/src/main/resources/examples/4_folder_scan/.~lock.Complex_Financial.xlsx#
+
+#Local logs
+RedPiranha.log

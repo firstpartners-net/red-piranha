@@ -1,43 +1,43 @@
 [ 
 {
   "id" : 1,
+  "baseDirectory":"",
   "inputFileLocation" : "1_hello_world/hello-excel.xls",
   "ruleFileLocation" : "1_hello_world/hello.drl",
   "outputFileLocation" : "1_hello_world/output.xls",
   "dslFileLocation" : "",
-  "descriptiontext" : "Just a basic Hello World Sample. It reads in the Excel file, causes a rule to fire against the first cell, changing it to 'HelloWorld'. Note that the outputfile is different, we don't overwrite any Excel files.",
   "testingResult" : ""
   		
 } 
 ,
 {
   "id" : 2,
+  "baseDirectory":"",
   "inputFileLocation" : "2_chocolate-factory/chocolate-data.xls",
   "ruleFileLocation" : "2_chocolate-factory/log-then-modify-rules.drl",
   "outputFileLocation" : "2_chocolate-factory/output.xls",
   "dslFileLocation" : "",
-  "descriptiontext" : "Reads in the data from the Excel file, causes a rule to fire against each cell. Each cell is logged, and marked as changed",
   "testingResult" : ""
   		
 }
 , 
 {
   "id" : 3,
+  "baseDirectory":"",
   "inputFileLocation" : "3_simple_dmn/data.xlsx",
   "ruleFileLocation" : "decision_model.dmn",
   "outputFileLocation" : "3_simple_dmn/output.csv",
   "dslFileLocation" : "",
-  "descriptiontext" : "A simple sample, showcasing the use of a Decision Model instead of a rules file. Echos back the values of the cells passed to it",
   "testingResult" : ""
   		
 },
 {
   "id" : 4,
+  "baseDirectory":"",
   "inputFileLocation" : "4_complex_excel/Complex_Financial.xlsx",
   "ruleFileLocation" : "4_complex_excel/log-then-modify-rules.drl",
   "outputFileLocation" : "4_complex_excel/output.csv",
   "dslFileLocation" : "",
-  "descriptiontext" : "Read information for a complex Excel Datafile and summarize as json/csv. More information in the Readme file in the sample folder",
   "testingResult" : ""
   		
 }

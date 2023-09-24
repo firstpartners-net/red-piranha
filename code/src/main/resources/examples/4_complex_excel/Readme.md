@@ -1,1 +1,0 @@
-More information on this sample

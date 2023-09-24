@@ -73,7 +73,7 @@ public class SpreadSheetConvertor {
 			// retrieve the cells at the named range
 			log.debug("Processing named range:" + aNamedRange.getNameName());
 
-			// Reset to empty array - so we're covered even if an exception is through
+			// Reset to empty array - so we're covered even if an exception is thrown
 			AreaReference aRef[] = new AreaReference[0];
 
 			try {

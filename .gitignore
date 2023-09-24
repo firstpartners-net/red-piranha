@@ -11,7 +11,6 @@ dist
 .project
 .classpath
 
-
 code/.settings/org.eclipse.core.resources.prefs
 code/.settings/org.eclipse.jdt.core.prefs
 
@@ -35,3 +34,11 @@ vendor
 
 #output from running examples
 code/src/main/resources/examples/1_Hello_World/output.xls
+code/src/test/resources/testdata/tmp.json
+code/src/test/resources/testdata/tmp.pdf
+code/src/test/resources/testdata/tmp.pdf
+code/src/main/resources/examples/4_folder_scan/.~lock.Complex_Financial.xlsx#
+
+#Local logs
+RedPiranha.log
+code/src/main/resources/examples/4_complex_excel/.~lock.Complex_Financial.xlsx#

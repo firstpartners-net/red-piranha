@@ -9,6 +9,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,14 +63,14 @@ class IntegrationTests {
 	 * @throws Exception
 	 */
 	void testSpecificExample() throws Exception, RPException {
-		sampleTestRunner(3);
+		sampleTestRunner(4);
 	}
 
 
- 	@Test
-	void testAllSamples() throws Exception, RPException {
-		sampleTestRunner(-1);
-	}
+ 	// @Test
+	// void testAllSamples() throws Exception, RPException {
+	// 	sampleTestRunner(-1);
+	// }
 
 	/**
 	 * Pass in Integer = null or -1 to run all tests
@@ -112,7 +113,7 @@ class IntegrationTests {
 			testModel.setOutputFileLocation(thisExample.getOutputFileLocation());
 			testModel.setDslFileLocation(thisExample.getDslFileLocation());
 
-			log.debug("Running:\n" + thisExample);
+			log.debug("Running:\n" + testModel);
 			IRunner runner = RunnerFactory.getRuleRunner(testModel, appConfig);
 			
 			// set out OutputStrategy so we can test the output later

@@ -33,12 +33,12 @@
 <body>
 	<div class="container-fluid">
 		<h3 class="display-3">Red-Piranha is a set of Power tools for
-			Excel and Office Power users.</h3>
+			Excel and Office Power users using Rule Based AI. </h3>
 		<p></p>
 		<p>
-			It bridges <a href="https://www.drools.org/">the Drools Business
-				Rules Management System (BRMS) solution from RedHat (IBM)</a> to be more
-			accessible to Excel users. In particular, it makes it easier to feed
+			Red Piranha (<a href="https://github.com/firstpartners-net/red-piranha/">Home page</a>) 
+			extends the KIE / Drools Business AI Rules Management System (BRMS) solution from RedHat (IBM)
+			to be more accessible to Excel users. In particular, it makes it easier to feed
 			information from Excel and Word (Office) Documents, apply business
 			rules to these documents, and get useful results.
 		</p>
@@ -61,6 +61,16 @@
 			<div id="contents-main">
 
 				<p class="bg-primary">&nbsp;Current Settings</p>
+
+				<div class="form-group">
+
+
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">Base&nbsp;Directory:
+							<input type="text" class="form-control" th:field="*{baseDirectory}" />
+						</label>
+					</div>
+				</div>
 
 				<div class="form-group">
 
@@ -95,9 +105,10 @@
 					<div class="col-sm-10">
 						<label for="inputEmail3" class="col-sm-2 control-label">Output&nbsp;File&nbsp;Location:
 							<input type="text" class="form-control" th:field="*{outputFileLocation}" />
-						</label>
-					</div>
 
+						</label>
+						
+					</div>
 				</div>
 
 				<div class="form-group">
@@ -133,6 +144,9 @@
 				<a th:href="'runRules'+${sample.sampleUrlParams}" class="btn btn-default">Run Sample</a>
 			</div>
 			<div class="col-md-4">
+				<p th:text="${sample.baseDirectory}"></p>
+			</div>
+			<div class="col-md-4">
 				<p th:text="${sample.inputFileLocation}"></p>
 			</div>
 			<div class="col-md-4">
@@ -141,8 +155,8 @@
 			<div class="col-md-4">
 				<p th:text="${sample.outputFileLocation}"></p>
 			</div>
-			<div class="col-md-8">
-				<p th:text="${sample.descriptiontext}"></p>
+			<div class="col-md-12">
+				<p th:utext="${sample.sampleDescription}"></p>
 			</div>
 			<p />
 			<div class="col-md-8">

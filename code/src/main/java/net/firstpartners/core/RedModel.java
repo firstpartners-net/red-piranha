@@ -34,6 +34,8 @@ public class RedModel implements IStatusUpdate {
 
 	private HashMap<String, Cell> globals = new HashMap<>();
 
+	private String baseDirectory;
+
 	private String inputFileLocation;
 
 	private String knowledgeBaseLocation;
@@ -63,15 +65,29 @@ public class RedModel implements IStatusUpdate {
 
 	/**
 	 * Convenience constructor - most commonly used use case
-	 *
+	 * @param baseDirectory - the folder there all the base files are located
 	 * @param ruleFileLocation a {@link java.lang.String} object
 	 * @param outputFileLocation a {@link java.lang.String} object
 	 * @param inputFileLocation a {@link java.lang.String} object
 	 */
 	public RedModel(String inputFileLocation, String ruleFileLocation, String outputFileLocation) {
 
+		this("",inputFileLocation,ruleFileLocation,outputFileLocation);
+
+	}
+
+	/**
+	 * Convenience constructor - most commonly used use case
+	 * @param baseDirectory - the folder there all the base files are located
+	 * @param ruleFileLocation a {@link java.lang.String} object
+	 * @param outputFileLocation a {@link java.lang.String} object
+	 * @param inputFileLocation a {@link java.lang.String} object
+	 */
+	public RedModel(String baseDirectory, String inputFileLocation, String ruleFileLocation, String outputFileLocation) {
+
 		this();
 
+		this.baseDirectory = baseDirectory;
 		this.inputFileLocation = inputFileLocation;
 		this.ruleFileLocation = ruleFileLocation;
 		this.outputFileLocation = outputFileLocation;
@@ -200,6 +216,16 @@ public class RedModel implements IStatusUpdate {
 	public String getInputFileLocation() {
 		return inputFileLocation;
 	}
+
+	/**
+	 * <p>Getter for the field <code>baseDirectory</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
+	public String getBaseDirectory() {
+		return this.baseDirectory;
+	}
+
 
 	/**
 	 * <p>Getter for the field <code>knowledgeBaseLocation</code>.</p>
@@ -332,6 +358,16 @@ public class RedModel implements IStatusUpdate {
 	public void setGlobals(HashMap<String, Cell> globals) {
 		this.globals = globals;
 	}
+
+		/**
+	 * <p>Setter for the field <code>baseDirectory</code>.</p>
+	 *
+	 * @param baseDirectory a {@link java.lang.String} object
+	 */
+	public void setBaseDirectory(String baseDirectory) {
+		this.baseDirectory = baseDirectory;
+	}
+
 
 	/**
 	 * <p>Setter for the field <code>inputFileLocation</code>.</p>

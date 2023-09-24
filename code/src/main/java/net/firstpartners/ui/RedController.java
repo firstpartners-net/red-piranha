@@ -58,6 +58,7 @@ public class RedController {
 			List<SampleData> sampleData = 
 					SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON,appConfig);
 			model.addAttribute(SAMPLE_INFO, sampleData);
+			
 		} catch (IOException e) {
 			log.warn("Error loading Sample information " + e.getMessage());
 		}
@@ -78,6 +79,7 @@ public class RedController {
 	@RequestMapping(value = "/runRules")
 	public String runRules(Model model, @ModelAttribute(RED_MODEL) RedModel redModel) {
 
+		log.debug("baseDirectory:" + redModel.getBaseDirectory());	
 		log.debug("inputFileLocation:" + redModel.getInputFileLocation());
 		log.debug("DSL?" + redModel.getDslFileLocation());
 		log.debug("DRL?" + redModel.getRuleFileLocation());

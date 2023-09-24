@@ -1,6 +1,5 @@
 package net.firstpartners.core.drools;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;

@@ -25,7 +25,7 @@ public class RegenerateTestData {
 
 
 	/**
-	 * Call the main methods to regen test data
+	 * Call the main methods to regenerate test data
 	 */
 	public static void main (String [] args) throws Exception
 	{

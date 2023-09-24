@@ -5,41 +5,39 @@ Red Piranha is aimed at 'Excel Power Users'. The information in this page goes '
 ## Get, Build and Run the Code
 
 * Checkout project as normal from GitHub
-* Ensure you have Java installed on your machine. The current codebase has been tested against `JDK 11` (Open JDK from RedHat), but other (and earlier versions) should work.
+* Ensure you have Java installed on your machine. The current codebase has been tested against `JDK 17` (Open JDK from RedHat), but other versions should work.
 * Install the `Maven` Build tool on your machine.
-* Open a Command prompt in this directory containing `pom.xml`. Normally this is in the code directory
+* Open a Command prompt in this directory containing `pom.xml`. Normally this is in the `code` directory of this project.
 * Since the project contains `Spring Boot` you can start the embedded web server by typing `mvn spring-boot:run` in the command prompt.
 * If you don't see any error messages open a web browser at `http://localhost:7000`and the Red Piranha home page should be displayed.
 
 ## Project Layout and Setup for Editing
 
 * The project is based on Java, Spring and Maven, so many of the directories should be in the standard locations. JUnit tests are also included.
-* The `mvn eclipse:eclipse` command (or equivalent for your favourite IDE ) will generate files for you to easily open and run in the editor.
 * In general, the system is stateless and input files are **not** overwritten. This means you can run it (several times) and get the same results, or make changes without breaking too much. Output files might be deleted, but  they can always be regenerated.
 
 ## Key files
 
 * `pom.xml` lists the dependencies for the project. Maven will auto-download these
-* `application.properties` contains the values Spring will pass in as it auto-wires the project on startup. `Config.java` will hold many of these at runtime.
-* `RedController.java` and `RedRestController.java`have Spring annotations, to it knows to pass any web requests to them.
+* `application.properties` contains the values Spring will pass in as it auto-wires the project on startup. Spring Auto-magically passes these to `Config.java`  at runtime.
+* `RedController.java` have Spring annotations, Web Requests are passed to it.
 * `RedModel.java` holds much of the information as it is passed around the system - the configuration, the input files, the rules to apply and the output once the rules has run.
-* `RuleRunner.java` carries out the call to the Rule Engine. It is created using a factory method - so it will the appropriate implmentation of `ÌDocumentInStrategy.java` to import data from XLS, XSLX, Word etc. A similar pattern is for output files.
+* `RuleRunner.java` carries out the call to the Rule Engine. It is created using a factory method - so it will the appropriate implmentation of `ÌDocumentInStrategy.java` to import data from XLS, XSLX, Word, entire Directory etc. A similar pattern is for output files.
 * Different implementations of `IStatusUpdate.java` allow us to log what is happening in th system / pass back user friendly updates.
 * `Ìndex.html`is templated using Spring Thymeleaf - displays the output value back to the user.
-* Samples are contained in `src/main/resources/examples`. 
+* Samples are contained in `src/main/resources/examples`. When running the web application, all the samples listed in `examples.json` are displayed, to allow an end-user to run. `IntegrationTests.java` is a Unit test that runs all of these samples during the testing phase of the build.
 
 ### Design
 
-Key design principles
+Key Project design principles
 
-* Robust simple
-* As much Established frameowrks as possible
-* integration and pre/post release tests (e.g. Selenumum)
+* Robust and Simple
+* Use As much established frameowrks as possible
 * Examples easy to use
 
 ## Other Project Notes
 
-* Running `main` method in `TestConstants.java regenerates the serialized test data
+* Running `main` method in `RegenerateTestData.java regenerates the serialized test data
 * Unit tests are contained in the `test` folder and give additional code samples.
 
 ## Red Piranha for Drools Developers

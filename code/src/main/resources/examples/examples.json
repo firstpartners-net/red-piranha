@@ -1,33 +1,43 @@
 [ 
 {
   "id" : 1,
-  "inputFileLocation" : "1_hello_world/hello-excel.xls",
-  "ruleFileLocation" : "1_hello_world/hello.drl",
-  "outputFileLocation" : "1_hello_world/output.xls",
+  "baseDirectory":"1_hello_world/",
+  "inputFileLocation" : "hello-excel.xls",
+  "ruleFileLocation" : "hello.drl",
+  "outputFileLocation" : "output.xls",
   "dslFileLocation" : "",
-  "descriptiontext" : "Just a basic Hello World Sample. It reads in the Excel file, causes a rule to fire against the first cell, changing it to 'HelloWorld'. Note that the outputfile is different, we don't overwrite any Excel files.",
   "testingResult" : ""
   		
 } 
 ,
 {
   "id" : 2,
-  "inputFileLocation" : "2_chocolate-factory/chocolate-data.xls",
-  "ruleFileLocation" : "2_chocolate-factory/log-then-modify-rules.drl",
-  "outputFileLocation" : "2_chocolate-factory/output.xls",
+  "baseDirectory":"2_chocolate-factory/",
+  "inputFileLocation" : "chocolate-data.xls",
+  "ruleFileLocation" : "log-then-modify-rules.drl",
+  "outputFileLocation" : "output.xls",
   "dslFileLocation" : "",
-  "descriptiontext" : "Reads in the data from the Excel file, causes a rule to fire against each cell. Each cell is logged, and marked as changed",
   "testingResult" : ""
   		
 }
 , 
 {
   "id" : 3,
-  "inputFileLocation" : "3_simple_dmn/data.xlsx",
+  "baseDirectory":"3_simple_dmn/",
+  "inputFileLocation" : "data.xlsx",
   "ruleFileLocation" : "decision_model.dmn",
-  "outputFileLocation" : "3_simple_dmn/output.csv",
+  "outputFileLocation" : "output.csv",
   "dslFileLocation" : "",
-  "descriptiontext" : "A simple sample, showcasing the use of a Decision Model instead of a rules file. Echos back the values of the cells passed to it",
+  "testingResult" : ""
+  		
+},
+{
+  "id" : 4,
+  "baseDirectory":"4_complex_excel/",
+  "inputFileLocation" : "Complex_Financial.xlsx",
+  "ruleFileLocation" : "log-then-modify-rules.drl",
+  "outputFileLocation" : "output.csv",
+  "dslFileLocation" : "",
   "testingResult" : ""
   		
 }

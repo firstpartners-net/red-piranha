@@ -10,7 +10,7 @@ Excel is great for collecting data. But once things get more complicated, you ma
 * Are you sharing your spreadsheets? What if somebody changes a formula without you noticing?
 * Your business absolutely needs to be sure the rules are being applied - and you need a way of checking what those rules are later.
 
-Powered by [RedHat Drools](http://www.jboss.org/drools), Red-Piranha allows you to state your Excel business rules in a simple **when ... then** format that everybody can understand.  It acts as a bridge between Excel / Microsoft Office and Business Rules and workflow Engine (including AI and Planner) from Red Hat.
+Powered by [KIE from IBM and RedHat Drools](https://incubator.apache.org/clutch/kie.html), Red-Piranha allows you to state your Excel business rules in a simple **when ... then** format that everybody can understand.  It acts as a bridge between Excel / Microsoft Office and Business Rules and workflow Engine (including AI and Planner) from Red Hat.
 
 Instead of having your knowledge 'disappear' into complicated formulas that you can't read, a Rules Engine keeps things in a simple 'English' like format. Even better, because of the way it works 'under the covers' it is faster and more powerful than code translated into a technical language.
 
@@ -70,7 +70,7 @@ The Project follows a standard structure, using the Spring Boot Framework and th
 1. Download and install Java
 1. Download and install Apache Maven
 1. Download (or checkout) the code from this GitHub Repository, unzip it if needed.
-1. Open the `code` folder within this project in a console / terminal
+1. Open the `code` folder within this project in a console / terminal. You'll know you're in the correct place if you see a `pom.xml` file. 
 1. Start the application using  `mvn spring-boot:run`
 1. Open a Browser and point at `http://localhost:7000/`
 

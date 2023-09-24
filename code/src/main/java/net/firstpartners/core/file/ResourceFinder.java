@@ -35,6 +35,7 @@ public class ResourceFinder {
 		
 		
 		File bareFile = new File(resourceName);
+		
 		File workingDir = new File(".");
 		if (bareFile.exists()) {
 			return bareFile;

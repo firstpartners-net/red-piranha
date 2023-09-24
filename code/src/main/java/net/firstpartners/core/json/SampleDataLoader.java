@@ -1,9 +1,11 @@
 package net.firstpartners.core.json;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,7 +51,26 @@ public class SampleDataLoader {
 		        jsonSource, 
 		        new TypeReference<List<SampleData>>(){});
 
-	log.debug("Read in Sample Data:"+sampleData);
+		log.debug("Read in Sample Data:"+sampleData);
+
+		String contents="";
+
+		// Now loop through and try loading readme.html if exists in directory
+		for (SampleData singleSample : sampleData) {
+
+			String sampleReadme = singleSample.getBaseDirectory()+"readme.html";
+			log.debug("trying to find readme.html for:"+sampleReadme);
+
+			File readmeHtml = ResourceFinder.getFileResourceUsingConfig(sampleReadme, appConfig);
+			log.debug("Found file:"+readmeHtml.exists());
+
+			//Read the contents of this file	
+			try(FileInputStream inputStream = new FileInputStream(readmeHtml)) {     
+    			contents = IOUtils.toString(inputStream);
+    			// do something with everything string
+				singleSample.setSampleDescription(contents);
+}				//log.debug("contents:"+contents);
+			}
 		
 		return sampleData;
 	}

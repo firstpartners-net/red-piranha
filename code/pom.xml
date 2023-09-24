@@ -5,16 +5,17 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.7</version>		<!-- lookup parent from repository -->
+		<version>3.1.4</version>		<!-- lookup parent from repository was 2.7.16 -->
 	</parent>
 
+	<!-- Name and Version Number of the Artifact we are building -->
 	<groupId>net.firstpartners</groupId>
 	<artifactId>redpiranha</artifactId>
-	<version>2.2.1-SNAPSHOT</version>
+	<version>2.3.1-SNAPSHOT</version>
 	<name>Red-Piranha</name>
 	<description>User Interface and samples mapping Excel Data to Java and Business Rules</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
@@ -166,10 +167,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.junit.vintage</groupId>
 			<artifactId>junit-vintage-engine</artifactId>
+			<version>5.9.2</version>
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
@@ -177,6 +179,13 @@
 					<artifactId>hamcrest-core</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.9.2</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -227,7 +236,7 @@
 			<plugin>
 				<groupId>org.owasp</groupId>
 				<artifactId>dependency-check-maven</artifactId>
-				<version>7.4.2</version>
+				<version>8.4.0</version> <!-- was 7.4.2-->
 				<executions>
 					<execution>
 						<goals>

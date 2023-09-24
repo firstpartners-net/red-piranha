@@ -2,20 +2,31 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
+# NEXT STEP 
+* baseDirectory - work through
+* 
 
-## Refresh knowledge
-* Current Sample
-* Confirm book tagging (i.e. nothing we do here will distrub)
+# DECIDE
+* Alternative approach: Airflow, Apache Nifi etc
+* Alternative approach: RP calls Python or Grovy script to extract (** most likely **)
+* Decide Template - python or groovy script and call from Java
+
+
+
+
+## Refresh knowledge and tidy
+* Snapshot current code and make note for book readers
+
+* dsl based on existing - working and sharable
 * tidy docs to first draft
 * Add note on book to here
-* go through book branch and pull in here
-* go through pcv and pull into sample
+* Resolve GitHub [firstpartners-net/red-piranha] pages build and deployment workflow run 
+* Tests passing
 
 ## TODO Next Sprint
+
 * Create folder sample
-** Financial Data (sanitized)
-** JSON and notes (for sample)
-** Link RP App page to home back
+    * update readme in folder
 ** Read all files in folder
 ** Output
 * Docs
@@ -37,6 +48,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * More info through to front end
 * more tests compile / rule
 * tidy of all readme pages
+* view vulneribilty report (right click top right of tabs and renable)
 
 ## TODO on Deployment
 * Can deploy and work against true docs
@@ -49,14 +61,6 @@ Platform (with specific examples)
 * (Y) Can hand to Java developer and build - proper release
 * (Y) Could be run by simple end-user with docker - proper release
 * Tests automated and running
-* Example - simple for book
-* Example - more in detail - for me
-s
-
-## Possible move
-
-
-
 
 ## refactor
 * (Move RuleRunner.java remove RuleBuilder to same pre-built model that 
@@ -66,11 +70,11 @@ s
 * restore commented out tests (put @Test back on them)
 ** testJSONInOut
 
-
+## Upgrades
+* Migrate to latest version of all libs
 
 ## later - tidy off these
-* recover and reused previous examples (to web)
-* run from command line
+* recover and reused previous examples (to web) - currently in test folder
 * understand model back and forward better
 * conversion to-from excel - make sure it works better, json better?
 * Dive through stack - can bring back any more info to user

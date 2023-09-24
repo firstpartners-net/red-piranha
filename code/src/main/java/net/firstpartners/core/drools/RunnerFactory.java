@@ -4,6 +4,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -201,7 +204,8 @@ public class RunnerFactory {
 		assert dataModel.getRuleFileLocation() != null;
 		assert dataModel.getOutputFileLocation() != null;
 
-		// handle on our  strategy objects
+
+		// handle on our strategy objects
 		IRunner myRunner;
 		IDocumentInStrategy inputStrat;
 		IDocumentOutStrategy outputStrat;
@@ -214,7 +218,7 @@ public class RunnerFactory {
 		try {
 			constructor = strategyClass.getConstructor(String.class);
 			inputStrat = (IDocumentInStrategy) constructor
-					.newInstance(dataModel.getInputFileLocation());
+					.newInstance(dataModel.getBaseDirectory()+dataModel.getInputFileLocation());
 
 			// pass in the config
 			inputStrat.setConfig(appConfig);
@@ -231,7 +235,7 @@ public class RunnerFactory {
 		try {
 			constructor = strategyClass.getConstructor(String.class);
 			 outputStrat = (IDocumentOutStrategy) constructor
-			.newInstance(dataModel.getOutputFileLocation());
+			.newInstance(dataModel.getBaseDirectory()+dataModel.getOutputFileLocation());
 
 		} catch (NoSuchMethodException | SecurityException |InstantiationException | InvocationTargetException |IllegalAccessException e) {
 			throw new RPException("Error when creating output strategy Object", e);

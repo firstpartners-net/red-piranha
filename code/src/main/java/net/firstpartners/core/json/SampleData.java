@@ -16,30 +16,15 @@ import java.nio.charset.StandardCharsets;
 public class SampleData {
 
 	private int id;
+	private String baseDirectory;
 	private String inputFileLocation;
 	private String ruleFileLocation;
 	private String outputFileLocation;
 	private String dslFileLocation;
-	private String descriptiontext;
+	private String sampleDescription;
 	private String testingResult;
 
-	/**
-	 * <p>Getter for the field <code>testingResult</code>.</p>
-	 *
-	 * @return a {@link java.lang.String} object
-	 */
-	public String getTestingResult() {
-		return testingResult;
-	}
 
-	/**
-	 * <p>Setter for the field <code>testingResult</code>.</p>
-	 *
-	 * @param testingResult a {@link java.lang.String} object
-	 */
-	public void setTestingResult(String testingResult) {
-		this.testingResult = testingResult;
-	}
 
 	/**
 	 * <p>Getter for the field <code>id</code>.</p>
@@ -57,6 +42,25 @@ public class SampleData {
 	 */
 	public void setId(int id) {
 		this.id = id;
+	}
+
+
+	/**
+	 * <p>Getter for the field <code>baseDirectory</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
+	public String getBaseDirectory() {
+		return baseDirectory;
+	}
+
+	/**
+	 * <p>Setter for the field <code>baseDirectory</code>.</p>
+	 *
+	 * @param descriptiontext a {@link java.lang.String} object
+	 */
+	public void setBaseDirectory(String baseDirectory) {
+		this.baseDirectory = baseDirectory;
 	}
 
 	/**
@@ -123,6 +127,16 @@ public class SampleData {
 	}
 
 	/**
+	 * <p>Getter for the field <code>sampleDescription</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
+	public String getSampleDescription() {
+		return sampleDescription;
+	}
+	
+
+	/**
 	 * <p>Setter for the field <code>dslFileLocation</code>.</p>
 	 *
 	 * @param dslFileLocation a {@link java.lang.String} object
@@ -131,22 +145,32 @@ public class SampleData {
 		this.dslFileLocation = dslFileLocation;
 	}
 
+		/**
+	 * <p>Setter for the field <code>sampleDescription</code>.</p>
+	 *
+	 * @param sampleDescription a {@link java.lang.String} object
+	 */
+	public void setSampleDescription(String sampleDescription) {
+		this.sampleDescription = sampleDescription;
+	}
+
+
 	/**
-	 * <p>Getter for the field <code>descriptiontext</code>.</p>
+	 * <p>Getter for the field <code>testingResult</code>.</p>
 	 *
 	 * @return a {@link java.lang.String} object
 	 */
-	public String getDescriptiontext() {
-		return descriptiontext;
+	public String getTestingResult() {
+		return testingResult;
 	}
 
 	/**
-	 * <p>Setter for the field <code>descriptiontext</code>.</p>
+	 * <p>Setter for the field <code>testingResult</code>.</p>
 	 *
-	 * @param descriptiontext a {@link java.lang.String} object
+	 * @param testingResult a {@link java.lang.String} object
 	 */
-	public void setDescriptiontext(String descriptiontext) {
-		this.descriptiontext = descriptiontext;
+	public void setTestingResult(String testingResult) {
+		this.testingResult = testingResult;
 	}
 
 	/**
@@ -170,8 +194,8 @@ public class SampleData {
 		StringBuffer returnValue = new StringBuffer();
 		
 		String enc = StandardCharsets.UTF_8.toString();
-
-		returnValue.append("?inputFileLocation=" + URLEncoder.encode(this.inputFileLocation, enc));
+		returnValue.append("?baseDirectory=" + URLEncoder.encode(this.baseDirectory, enc));
+		returnValue.append("&inputFileLocation=" + URLEncoder.encode(this.inputFileLocation, enc));
 		returnValue.append("&ruleFileLocation=" + URLEncoder.encode(this.ruleFileLocation, enc));
 		returnValue.append("&outputFileLocation=" + URLEncoder.encode(this.outputFileLocation, enc));
 

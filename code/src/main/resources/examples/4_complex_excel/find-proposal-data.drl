@@ -1,0 +1,28 @@
+package pcv;
+
+import net.firstpartners.core.log.ILogger
+import net.firstpartners.data.Cell;
+
+global ILogger log;
+
+rule "log then modify cell values" 
+
+	when
+		//$cell : Cell(modified==false)
+		//$cell : Cell(originalTableReference=="TABLE_4")
+		$cell : Cell( valueAsLong >0 )
+       
+       
+    then
+        	   
+    	//Note: use the 'modify' block instead 
+    	//want to give the rule engine a chance to react to these changes
+    	//$cell.setModified(true);
+    	$cell.setOriginalTableReference("UPDATE");
+    	$cell.setCellName("Company (Application) Address_2");
+   	   	
+    	 //Logging message
+    	log.info("Updating cell Name to flag on cell value:"+$cell);	
+    	
+end
+	

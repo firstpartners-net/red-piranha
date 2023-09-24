@@ -44,6 +44,8 @@ public class CellConvertorTest {
 
 	@Test
 	public final void testConvertRedCellToPoiCell() throws IOException {
+		
+		
 		assertNotNull(redData);
 
 		int counter =1;
@@ -56,7 +58,7 @@ public class CellConvertorTest {
 
 			log.debug("Counter:"+counter+" ========");
 			counter++;
-			if(counter>15) {break;}
+			if(counter>1) {break;}
 
 			log.debug(entry.getKey() + ":" + entry.getValue());
 

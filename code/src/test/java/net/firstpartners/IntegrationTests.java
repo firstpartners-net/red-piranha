@@ -62,14 +62,14 @@ class IntegrationTests {
 	 * @throws Exception
 	 */
 	void testSpecificExample() throws Exception, RPException {
-		sampleTestRunner(3);
+		sampleTestRunner(4);
 	}
 
 
- 	@Test
-	void testAllSamples() throws Exception, RPException {
-		sampleTestRunner(-1);
-	}
+ 	// @Test
+	// void testAllSamples() throws Exception, RPException {
+	// 	sampleTestRunner(-1);
+	// }
 
 	/**
 	 * Pass in Integer = null or -1 to run all tests

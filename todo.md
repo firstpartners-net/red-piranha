@@ -3,7 +3,8 @@
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
 # NEXT STEP (single line)
-* get CellConvertorTest passing
+* Unit test to drive - simple
+* dsl based on existing - working and sharable
 
 ## Refresh knowledge and tidy
 * Snapshot current code and make note for book readers

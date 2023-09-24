@@ -30,6 +30,16 @@
   "descriptiontext" : "A simple sample, showcasing the use of a Decision Model instead of a rules file. Echos back the values of the cells passed to it",
   "testingResult" : ""
   		
+},
+{
+  "id" : 4,
+  "inputFileLocation" : "4_complex-excel/Complex_Financial.xlsx",
+  "ruleFileLocation" : "4_complex-excel/XYZ.drl",
+  "outputFileLocation" : "4_complex-excel/output.csv",
+  "dslFileLocation" : "",
+  "descriptiontext" : "Read information for a complex Excel Datafile and summarize as json/csv. More information in the Readme file in the sample folder",
+  "testingResult" : ""
+  		
 }
 
 

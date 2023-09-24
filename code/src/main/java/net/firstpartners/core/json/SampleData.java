@@ -21,6 +21,7 @@ public class SampleData {
 	private String ruleFileLocation;
 	private String outputFileLocation;
 	private String dslFileLocation;
+	private String sampleDescription;
 	private String testingResult;
 
 
@@ -126,12 +127,31 @@ public class SampleData {
 	}
 
 	/**
+	 * <p>Getter for the field <code>sampleDescription</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
+	public String getSampleDescription() {
+		return sampleDescription;
+	}
+	
+
+	/**
 	 * <p>Setter for the field <code>dslFileLocation</code>.</p>
 	 *
 	 * @param dslFileLocation a {@link java.lang.String} object
 	 */
 	public void setDslFileLocation(String dslFileLocation) {
 		this.dslFileLocation = dslFileLocation;
+	}
+
+		/**
+	 * <p>Setter for the field <code>sampleDescription</code>.</p>
+	 *
+	 * @param sampleDescription a {@link java.lang.String} object
+	 */
+	public void setSampleDescription(String sampleDescription) {
+		this.sampleDescription = sampleDescription;
 	}
 
 

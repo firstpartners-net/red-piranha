@@ -58,6 +58,7 @@ public class RedController {
 			List<SampleData> sampleData = 
 					SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON,appConfig);
 			model.addAttribute(SAMPLE_INFO, sampleData);
+			
 		} catch (IOException e) {
 			log.warn("Error loading Sample information " + e.getMessage());
 		}

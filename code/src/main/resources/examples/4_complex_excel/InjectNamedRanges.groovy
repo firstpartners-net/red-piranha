@@ -8,9 +8,19 @@ This is important as only cells that are part of Excel Named ranges will be adde
 Rule Engine working memory, and we can't always guarantee that our incoming Excel files
 will have them set*/
 
-def preProcess() {
-    println 'Groovy world!'
+//the next section allows this script to interact with the Workbook
+import org.apache.poi.ss.usermodel.Workbook
+
+println 'Groovy world outside!'
+println xlWorkbook==null
+
+
+def preProcess(xlWorkbook, arg2) {
+    println 'Groovy world!'+arg2
 }
+
+// the final value in our script will be returned to Red Piranha
+"hello:"+arg2
 
 
 

@@ -3,6 +3,7 @@ package net.firstpartners.core.script;
 
 import java.io.IOException;
 
+import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,11 +33,12 @@ public class PreProcessor {
 	 * Run the Specified Groovy Script
 	 *
 	 * @param groovyScriptName a {@link java.lang.String} name of a Groovy file to run
+	 * @param xlWorkbook - an Apache POI workbook representing the file we want to preprocess
 	 * @throws IOException
 	 * @throws ScriptException
 	 * @throws ResourceException
 	 */
-	public void runGroovyScript (String groovyScriptName) throws IOException, ResourceException, ScriptException {
+	public void preprocessXlWorkbook (String groovyScriptName, Workbook xlWorkbook) throws IOException, ResourceException, ScriptException {
 
 		if(engine==null){
 			engine = new GroovyScriptEngine(new String[]{ "." });
@@ -44,8 +46,8 @@ public class PreProcessor {
 
 
 		Binding binding = new Binding();
-		//binding.setVariable("arg1", "Mr.");
-		//binding.setVariable("arg2", "Bob");
+		binding.setVariable("xlWorkbook", xlWorkbook);
+		binding.setVariable("arg2", "Bob");
 		Object result = engine.run(groovyScriptName, binding); 
 		log.info("Result:"+result);
 		

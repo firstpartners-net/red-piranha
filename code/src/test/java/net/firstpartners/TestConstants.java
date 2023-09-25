@@ -63,6 +63,7 @@ public class TestConstants {
 
 	//Groovy Language test
 	public final static String SIMPLE_GROOVY="src/main/resources/examples/4_complex_excel/InjectNamedRanges.groovy";
+	public final static String COMPLEX_EXCEL="src/main/resources/examples/4_complex_excel/Complex_Financial.xlsx";
 	
 
 }

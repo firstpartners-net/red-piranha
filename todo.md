@@ -67,7 +67,6 @@ Platform (with specific examples)
 * (Move RuleRunner.java remove RuleBuilder to same pre-built model that 
 * DecisionModel uses)
 * Simplify down to Cells (remove all notion or ranges?)
-* Remove .xls support
 * restore commented out tests (put @Test back on them)
 ** testJSONInOut
 

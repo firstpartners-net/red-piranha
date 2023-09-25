@@ -161,6 +161,16 @@
 			<version>2.14.1</version>
 		</dependency>
 
+		<!--To run the Groovy preprocessing scripts-->
+		<dependency>
+			<groupId>org.apache.groovy</groupId> 
+			<artifactId>groovy-all</artifactId>
+			<version>4.0.15</version>
+			<type>pom</type>
+		</dependency>
+
+
+
 		<!-- Unit Testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

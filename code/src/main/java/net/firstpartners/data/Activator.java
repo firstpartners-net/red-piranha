@@ -11,5 +11,5 @@ import net.firstpartners.data.Cell;
 public class Activator {
 
     // reference to remove unused import error
-    static Cell myCell;
+    static Cell myCell = new Cell();
 }

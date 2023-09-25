@@ -1,6 +1,5 @@
 package net.firstpartners.core.script;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 
@@ -8,8 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import groovy.lang.Binding;
-import groovy.lang.GroovyObject;
-import groovy.util.Eval;
+
 import groovy.util.GroovyScriptEngine;
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;

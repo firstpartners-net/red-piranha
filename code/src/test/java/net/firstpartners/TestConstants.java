@@ -53,7 +53,7 @@ public class TestConstants {
 	
 	
 	//Rules and Models used in tests
-	//public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR = "examples/4-domain-specific-language/log-rules.dslr";
+	//public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_LOG_RULES_DSLR = "exaprmples/4-domain-specific-language/log-rules.dslr";
 	//public static final String EXAMPLES_DOMAIN_SPECIFIC_LANGUAGE_CELL_LOGGING_DSL = "examples/4-domain-specific-language/cell-logging.dsl";
 
 
@@ -61,6 +61,8 @@ public class TestConstants {
 	public static final String SIMPLE_DECISION_MODEL = "src/main/resources/examples/3_simple_dmn/decision_model.dmn";
 	public final static String SIMPLE_EXCEL="src/main/resources/examples/3_simple_dmn/data.xlsx";
 
+	//Groovy Language test
+	public final static String SIMPLE_GROOVY="src/main/resources/examples/4_complex_excel/InjectNamedRanges.groovy";
 	
 
 }

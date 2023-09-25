@@ -1,6 +1,18 @@
 package net.firstpartners.core.script;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.IOException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import groovy.lang.Binding;
+import groovy.lang.GroovyObject;
 import groovy.util.Eval;
+import groovy.util.GroovyScriptEngine;
+import groovy.util.ResourceException;
+import groovy.util.ScriptException;
 
 
 /**
@@ -12,16 +24,33 @@ import groovy.util.Eval;
 public class PreProcessor {
 
 
+	// Handle to the loggers
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+
+	//Handle to the Groovy script engine
+	private GroovyScriptEngine engine = null;
+
 	/**
-	 * Delete the output file if it already exists
+	 * Run the Specified Groovy Script
 	 *
-	 * @param fileToDelete a {@link java.lang.String} object
+	 * @param groovyScriptName a {@link java.lang.String} name of a Groovy file to run
+	 * @throws IOException
+	 * @throws ScriptException
+	 * @throws ResourceException
 	 */
-	public static void main (String[] args) {
+	public void runGroovyScript (String groovyScriptName) throws IOException, ResourceException, ScriptException {
 
-		Object result = Eval.me("33*3");
+		if(engine==null){
+			engine = new GroovyScriptEngine(new String[]{ "." });
+		}
 
-		System.out.println("Hello World:"+result);
+
+		Binding binding = new Binding();
+		//binding.setVariable("arg1", "Mr.");
+		//binding.setVariable("arg2", "Bob");
+		Object result = engine.run(groovyScriptName, binding); 
+		log.info("Result:"+result);
+		
 
 	}
 }

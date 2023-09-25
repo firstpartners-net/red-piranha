@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.TestConstants;
 import net.firstpartners.core.file.OfficeDocument;
 
 import org.slf4j.Logger;
@@ -21,12 +22,15 @@ public class PreProcessorTest {
 	
 	// Handle to the loggers
 	private Logger log = LoggerFactory.getLogger(this.getClass());
+
+	// handle to the class under test
+	PreProcessor processor = new PreProcessor();
 	
 	
 	@Test
-	public final void testRunPreProcessor() {
+	public final void testRunPreProcessor() throws Exception {
 		
-		PreProcessor.main(null);
+		processor.runGroovyScript(TestConstants.SIMPLE_GROOVY);
 		
 		
 	}

@@ -3,7 +3,9 @@
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
 # NEXT STEP 
-* baseDirectory - work through
+* add additonal parameters (boolean all)
+* call dsl to idtneify cells
+* tidy files not needed to another examples folder
 
 # DECIDE
 * Alternative approach: Airflow, Apache Nifi etc
@@ -15,17 +17,14 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Refresh knowledge and tidy
 * Snapshot current code and make note for book readers
-
 * dsl based on existing - working and sharable
-* tidy docs to first draft
+* Read all docs and refresh
 * Add note on book to here
 * Resolve GitHub [firstpartners-net/red-piranha] pages build and deployment workflow run 
 * Tests passing
 
 ## TODO Next Sprint
 
-* Create folder sample
-    * update readme in folder
 ** Read all files in folder
 ** Output
 * Docs
@@ -40,9 +39,6 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Tidy
 * Clear down warnings
-* resolve spring boot issue
-* get rulerunner test passing
-* check output through to csv
 * Figure out why current excel example is outputting incorrectly
 * More info through to front end
 * more tests compile / rule
@@ -59,7 +55,6 @@ Platform (with specific examples)
 * Good draft of user and dev documentation.
 * (Y) Can hand to Java developer and build - proper release
 * (Y) Could be run by simple end-user with docker - proper release
-* Tests automated and running
 
 ## refactor
 * (Move RuleRunner.java remove RuleBuilder to same pre-built model that 
@@ -82,8 +77,7 @@ Platform (with specific examples)
 * RP using model from business central or simliar exported backage
 * Move bootstrap offline (and other javascript to make more robust)
 * tidy DSL example
-* show hide sample
-* Serialsiation - Into Tests of convertor / Java test data in JSONu
+* Serialsiation - Into Tests of convertor / Java test data in JSON
 * use to trest cell conversion
 * samples - url to view input, out and rule files (or note how to do this)
 * do interim github and docker release

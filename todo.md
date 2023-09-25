@@ -2,14 +2,22 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
+
 # NEXT STEP 
-* baseDirectory - work through
+* Groovy
+    * in pom.xml
+    * create preprocessor to call script
+    * test script running and binding strings
+    * test script running and binding excel
+    * update documentation sample 4
+    * web page (top, samples, button),model, examples.json, sample class add pre-process
+    * redcontroller - run script if it is available
+
 
 # DECIDE
-* Alternative approach: Airflow, Apache Nifi etc
-* Alternative approach: RP calls Python or Grovy script to extract (** most likely **)
-* Decide Template - python or groovy script and call from Java
-
+* Groovy script 
+* BACKUP: Airflow, Apache Nifi etc
+* BACKUP: RP calls Python or Grovy script to extract (** most likely **)
 
 
 

@@ -38,18 +38,22 @@ public class PreProcessor {
 	 * @throws ScriptException
 	 * @throws ResourceException
 	 */
-	public void preprocessXlWorkbook (String groovyScriptName, Workbook xlWorkbook) throws IOException, ResourceException, ScriptException {
+	public Workbook preprocessXlWorkbook (String groovyScriptName, Workbook xlWorkbook) throws IOException, ResourceException, ScriptException {
 
 		if(engine==null){
 			engine = new GroovyScriptEngine(new String[]{ "." });
 		}
 
-
+		//Pass the Workbook in and call the script
 		Binding binding = new Binding();
 		binding.setVariable("xlWorkbook", xlWorkbook);
-		binding.setVariable("arg2", "Bob");
 		Object result = engine.run(groovyScriptName, binding); 
-		log.info("Result:"+result);
+		
+
+		//check the script returns a workbook
+		assert result instanceof org.apache.poi.ss.usermodel.Workbook : "Script should return type of Workbook";
+
+		return (org.apache.poi.ss.usermodel.Workbook)result;
 		
 
 	}

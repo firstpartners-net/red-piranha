@@ -24,7 +24,7 @@ public class PreProcessorTest {
 	
 	
 	@Test
-	public final void testRunEventRulesExample() {
+	public final void testRunPreProcessor() {
 		
 		PreProcessor.main(null);
 		

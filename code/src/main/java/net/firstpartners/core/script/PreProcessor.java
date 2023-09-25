@@ -1,5 +1,7 @@
 package net.firstpartners.core.script;
 
+import groovy.util.Eval;
+
 
 /**
  * Utilities for running the pre-processing script
@@ -17,7 +19,9 @@ public class PreProcessor {
 	 */
 	public static void main (String[] args) {
 
-		System.out.println("Hello Word");
+		Object result = Eval.me("33*3");
+
+		System.out.println("Hello World:"+result);
 
 	}
 }

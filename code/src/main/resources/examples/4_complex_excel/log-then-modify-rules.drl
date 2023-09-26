@@ -1,4 +1,4 @@
-package examples;
+package examples.4_complex_excel;
 
 import net.firstpartners.core.log.IStatusUpdate;
 

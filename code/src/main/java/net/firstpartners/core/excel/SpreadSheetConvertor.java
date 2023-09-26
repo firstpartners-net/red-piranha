@@ -84,8 +84,9 @@ public class SpreadSheetConvertor {
 
 		if (preProcess.isPreProcessFileExists(baseDir,preprocessScript)){
 			log.debug("Pre Process file exists");
-
 			wb= preProcess.preprocessXlWorkbook(baseDir,preprocessScript, wb);
+		} else {
+			log.debug("Unable to find Pre Process file:"+preprocessScript);
 		}
 
 		// hold all the named ranges from our sheet
@@ -115,14 +116,71 @@ public class SpreadSheetConvertor {
 
 			aNamedRange = loopList.next(); // wb.getNameAt(namedRangeIdx);
 
-			// retrieve the cells at the named range
-			log.debug("Processing named range:" + aNamedRange.getNameName());
-
 			// Reset to empty array - so we're covered even if an exception is thrown
 			AreaReference aRef[] = new AreaReference[0];
 
 			try {
 				aRef = AreaReference.generateContiguous(wb.getSpreadsheetVersion(), aNamedRange.getRefersToFormula());
+
+				//only proceed if we can get an actual handle to this
+				// retrieve the cells at the named range
+				log.debug("Processing named range:" + aNamedRange.getNameName());
+
+				ArrayList<CellReference> cellArray = new ArrayList<CellReference>();
+				for (int a = 0; a < aRef.length; a++) {
+
+					Collections.addAll(cellArray, aRef[a].getAllReferencedCells());
+
+				}
+
+				// A Range that we will put the new cells into
+				Range redRange = new Range(aNamedRange.getNameName());
+
+				// Iterator to loop over POI Cells
+				Iterator<CellReference> loop = cellArray.iterator();
+				int thisCellinRange = 0;
+				Row r = null;
+
+				while (loop.hasNext()) {
+
+					CellReference thisCellRef = loop.next();
+					thisCellinRange++;
+
+					Sheet sheet = wb.getSheet(thisCellRef.getSheetName());
+					try {
+						r = sheet.getRow(thisCellRef.getRow()); // ISSUE HERE
+					} catch (NullPointerException npe) {
+						log.error("Excel Read error on Cell:" + thisCellRef, npe);
+
+					}
+
+					org.apache.poi.ss.usermodel.Cell thisExcelCell = null;
+
+					if (r != null) {
+
+						// extract the cell contents based on cell type etc.
+						thisExcelCell = r.getCell(thisCellRef.getCol());
+
+					}
+
+					// Create our JavaBean representing the cell
+					String cellHandle = redRange.getUniqueCellName(thisCellinRange);
+					assert cellHandle != null;
+
+					net.firstpartners.data.Cell redCell = CellConvertor.convertPoiCellToRedCell(cellHandle, thisExcelCell);
+
+					// log.debug("Converted Cell:" + redCell);
+					log.debug("Converted Number:" + thisCellinRange + " of " + cellArray.size());
+
+					// Add the list of cells to a range
+					redRange.put(cellHandle, redCell);
+
+					//save for use later
+					returnValues.add(redRange);
+
+				}
+
+
 			} catch (IllegalArgumentException iae) {
 
 				// It is possible that a named range exists in excel but, the actual cell as
@@ -130,58 +188,9 @@ public class SpreadSheetConvertor {
 				log.debug("Ignoring invalid range ref:" + iae);
 			}
 
-			ArrayList<CellReference> cellArray = new ArrayList<CellReference>();
-			for (int a = 0; a < aRef.length; a++) {
+				
 
-				Collections.addAll(cellArray, aRef[a].getAllReferencedCells());
-
-			}
-
-			// A Range that we will put the new cells into
-			Range redRange = new Range(aNamedRange.getNameName());
-
-			// Iterator to loop over POI Cells
-			Iterator<CellReference> loop = cellArray.iterator();
-			int thisCellinRange = 0;
-			Row r = null;
-
-			while (loop.hasNext()) {
-
-				CellReference thisCellRef = loop.next();
-				thisCellinRange++;
-
-				Sheet sheet = wb.getSheet(thisCellRef.getSheetName());
-				try {
-					r = sheet.getRow(thisCellRef.getRow()); // ISSUE HERE
-				} catch (NullPointerException npe) {
-					log.error("Excel Read error on Cell:" + thisCellRef, npe);
-
-				}
-
-				org.apache.poi.ss.usermodel.Cell thisExcelCell = null;
-
-				if (r != null) {
-
-					// extract the cell contents based on cell type etc.
-					thisExcelCell = r.getCell(thisCellRef.getCol());
-
-				}
-
-				// Create our JavaBean representing the cell
-				String cellHandle = redRange.getUniqueCellName(thisCellinRange);
-				assert cellHandle != null;
-
-				net.firstpartners.data.Cell redCell = CellConvertor.convertPoiCellToRedCell(cellHandle, thisExcelCell);
-
-				// log.debug("Converted Cell:" + redCell);
-				log.debug("Converted Number:" + thisCellinRange + " of " + cellArray.size());
-
-				// Add the list of cells to a range
-				redRange.put(cellHandle, redCell);
-
-			}
-
-			returnValues.add(redRange);
+			
 		}
 
 		return returnValues;

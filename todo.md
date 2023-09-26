@@ -3,12 +3,16 @@
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
 # NEXT STEP 
-* Compile and run tests
+* Compile and run test
+    * change to get URL for file in Preprocessor
 * Run and working preprocessor test
-    * Strentehn unit test
-* Compile and run via Web - ensure simple sample working
+    * Stengthen unit test
+* Remove empty cells from report
+* Test run again via Web - ensure simple sample working
 * Update documentation (go through again)
 * Update script to set headings 
+    * Helper Script - set block?
+    * Unit test on helper script
 * test through
 * update documentation sample 4
 

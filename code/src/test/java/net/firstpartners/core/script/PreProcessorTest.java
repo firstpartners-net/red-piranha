@@ -1,6 +1,5 @@
 package net.firstpartners.core.script;
 
-
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,12 +27,8 @@ import org.junit.jupiter.api.BeforeEach;
 //@SpringBootTest
 public class PreProcessorTest {
 
-	
 	// Handle to the loggers
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-
-	// handle to the class under test
-	PreProcessor processor = null;
 
 	// handle for our config
 	@Autowired
@@ -41,23 +36,24 @@ public class PreProcessorTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		processor = new PreProcessor(appConfig);
+
 	}
-	
-	
+
 	@Test
 	public final void testRunPreProcessor() throws Exception {
-		
+
+		// handle to the class under test
+		PreProcessor processor = new PreProcessor(appConfig);
+
 		File xlFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.COMPLEX_EXCEL, appConfig);
 
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 
-		Workbook returnBook = processor.preprocessXlWorkbook("",TestConstants.SIMPLE_GROOVY,excelWorkBook);
+		Workbook returnBook = processor.preprocessXlWorkbook("", TestConstants.SIMPLE_GROOVY, excelWorkBook);
 
 		// retrieve the named range - Iterator not available
 		List<? extends Name> namedRanges = returnBook.getAllNames();
-		
 
 		// Setup loop through named ranges
 		int namedRangeIdx = -1;
@@ -75,11 +71,8 @@ public class PreProcessorTest {
 			log.debug("Processing named range:" + aNamedRange.getNameName());
 		}
 
-
 		log.debug("test complete");
-		
-		
+
 	}
 
 }
-

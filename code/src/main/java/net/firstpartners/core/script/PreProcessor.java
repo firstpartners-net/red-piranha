@@ -86,6 +86,7 @@ public class PreProcessor {
 		//get a handle to the script - Groovy Engine needs file name
 		File script = ResourceFinder.getFileResourceUsingConfig(baseDir+groovyScriptName, appConfig);
 		String scriptPath =script.getAbsolutePath();
+		log.debug("ScriptPath:"+scriptPath);
 
 		//Pass the Workbook in and call the script
 		Binding binding = new Binding();

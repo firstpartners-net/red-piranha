@@ -4,6 +4,8 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 # NEXT STEP 
 * Compile and run tests
+* Run and working preprocessor test
+    * Strentehn unit test
 * Compile and run via Web - ensure simple sample working
 * Update documentation (go through again)
 * Update script to set headings 

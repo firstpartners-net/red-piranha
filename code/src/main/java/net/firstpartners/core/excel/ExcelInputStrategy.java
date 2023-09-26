@@ -56,6 +56,7 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	
 	/** {@inheritDoc} */
 	public void setConfig(Config appConfig) {
+		log.debug("Config set");
 		this.appConfig = appConfig;
 	}
 
@@ -84,13 +85,18 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	@Override
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, ResourceException, ScriptException {
 
+		log.debug("App config is null:"+(appConfig==null));
+
 		File xlFile = ResourceFinder.getFileResourceUsingConfig(excelInputFileName, appConfig);
 		
 		InputStream inputAsStream = new FileInputStream(xlFile);
 
 		log.debug("converting incoming excel stream to Javabeans");
 		excelWorkBook = WorkbookFactory.create(inputAsStream);
-		RangeList myRange = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(baseDirectory,appConfig.getPreprocessScript(),excelWorkBook);
+
+		//Get handle and use convertor
+		SpreadSheetConvertor convertor = new SpreadSheetConvertor(appConfig);
+		RangeList myRange = convertor.convertNamesFromPoiWorkbookIntoRedRange(baseDirectory,appConfig.getPreprocessScript(),excelWorkBook);
 		inputAsStream.close();
 		return myRange;
 

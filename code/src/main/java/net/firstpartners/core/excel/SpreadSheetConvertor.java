@@ -42,25 +42,81 @@ public class SpreadSheetConvertor {
 	// Logging
 	private static final Logger log = LoggerFactory.getLogger(SpreadSheetConvertor.class);
 
-	// handle for our config
-	@Autowired
-	static Config appConfig;
-
 	// Handle to the preprocessor
 	static PreProcessor preProcess = null;
 
-		/**
-	 * Read an excel file and return what we find as a set of simple JavaBeans
-	 *
-	 * @param wb - Apache Poi workbook to convert
-	 * @return RangeHolder - can be empty if no names are definded
-	 * @throws java.io.IOException
-		 * @throws ScriptException
-		 * @throws ResourceException
-	 */
-	public static RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook wb) throws IOException, ResourceException, ScriptException{
-	 	return convertNamesFromPoiWorkbookIntoRedRange(null,null,wb);
+	public SpreadSheetConvertor(Config appConfig){
+		this.appConfig=appConfig;
 	}
+
+	/**
+	 * Update an excel file with our new values uses the original sheet and original
+	 * cell reference within the red cell to copy backk
+	 *
+	 * @param wb a {@link org.apache.poi.ss.usermodel.Workbook} object
+	 * @param updatedValues a {@link net.firstpartners.data.RangeList} object
+	 * @throws java.io.IOException
+	 */
+	public static void updateRedRangeintoPoiExcel(Workbook wb, RangeList updatedValues) throws IOException {
+
+		// Get all the Cells that we have been keeping track of
+		Map<String, net.firstpartners.data.Cell> allCells = updatedValues.getAllCellsWithNames();
+
+		// Loop through the cells
+		Iterator<net.firstpartners.data.Cell> redCells = allCells.values().iterator();
+		while (redCells.hasNext()) {
+
+			net.firstpartners.data.Cell thisRedCell = redCells.next();
+			String orignalSheetRef = thisRedCell.getOriginalTableReference();
+			String originalPoiRef = thisRedCell.getOriginalCellReference();
+
+			if (originalPoiRef == null || orignalSheetRef == null) {
+				log.debug("Cells has no ref to original sheet or cell - ignoring:" + thisRedCell);
+			} else {
+
+				// Get a handle to the Excel cell at Sheet / reference
+				org.apache.poi.ss.usermodel.Sheet thisSheet = SheetConvertor.getOrCreateSheet(wb, thisRedCell);
+
+				CellReference cellReference = new CellReference(thisRedCell.getOriginalCellRow(),thisRedCell.getOriginalCellRow());
+				
+				
+				Row row = SheetConvertor.getOrCreateRow(thisSheet, cellReference);
+
+				org.apache.poi.ss.usermodel.Cell excelCell = SheetConvertor.getOrCreateCell(row, cellReference);
+
+				// update the values into the cell
+				CellConvertor.convertRedCellToPoiCell(wb, excelCell, thisRedCell);
+
+			}
+
+		}
+
+	}
+
+	// handle for our config
+	@Autowired
+	Config appConfig;
+
+	public Config getAppConfig() {
+		return appConfig;
+	}
+
+		public void setAppConfig(Config appConfig) {
+			this.appConfig = appConfig;
+		}
+
+	/**
+ * Read an excel file and return what we find as a set of simple JavaBeans
+ *
+ * @param wb - Apache Poi workbook to convert
+ * @return RangeHolder - can be empty if no names are definded
+ * @throws java.io.IOException
+	 * @throws ScriptException
+	 * @throws ResourceException
+ */
+public RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook wb) throws IOException, ResourceException, ScriptException{
+	return convertNamesFromPoiWorkbookIntoRedRange(null,null,wb);
+}
 
 	/**
 	 * Read an excel file and return what we find as a set of simple JavaBeans
@@ -73,20 +129,14 @@ public class SpreadSheetConvertor {
 	 * @throws ResourceException
 	 */
 	//@SuppressWarnings("unused")
-	public static RangeList convertNamesFromPoiWorkbookIntoRedRange(String baseDir, String preprocessScript,org.apache.poi.ss.usermodel.Workbook wb)
+	public RangeList convertNamesFromPoiWorkbookIntoRedRange(String baseDir, String preprocessScript,org.apache.poi.ss.usermodel.Workbook wb)
 			throws IOException, ResourceException, ScriptException {
 
 		//Run any preprocessing script needed
 		if(preProcess ==null){
 			preProcess = new PreProcessor(appConfig);
 		}
-
-		if (preProcess.isPreProcessFileExists(baseDir,preprocessScript)){
-			log.debug("Pre Process file exists");
-			wb= preProcess.preprocessXlWorkbook(baseDir,preprocessScript, wb);
-		} else {
-			log.debug("Unable to find Pre Process file:"+preprocessScript);
-		}
+		wb= preProcess.preprocessXlWorkbook(baseDir,preprocessScript, wb);
 
 		// hold all the named ranges from our sheet
 		RangeList returnValues = new RangeList();
@@ -193,50 +243,6 @@ public class SpreadSheetConvertor {
 		}
 
 		return returnValues;
-
-	}
-
-	/**
-	 * Update an excel file with our new values uses the original sheet and original
-	 * cell reference within the red cell to copy backk
-	 *
-	 * @param wb a {@link org.apache.poi.ss.usermodel.Workbook} object
-	 * @param updatedValues a {@link net.firstpartners.data.RangeList} object
-	 * @throws java.io.IOException
-	 */
-	public static void updateRedRangeintoPoiExcel(Workbook wb, RangeList updatedValues) throws IOException {
-
-		// Get all the Cells that we have been keeping track of
-		Map<String, net.firstpartners.data.Cell> allCells = updatedValues.getAllCellsWithNames();
-
-		// Loop through the cells
-		Iterator<net.firstpartners.data.Cell> redCells = allCells.values().iterator();
-		while (redCells.hasNext()) {
-
-			net.firstpartners.data.Cell thisRedCell = redCells.next();
-			String orignalSheetRef = thisRedCell.getOriginalTableReference();
-			String originalPoiRef = thisRedCell.getOriginalCellReference();
-
-			if (originalPoiRef == null || orignalSheetRef == null) {
-				log.debug("Cells has no ref to original sheet or cell - ignoring:" + thisRedCell);
-			} else {
-
-				// Get a handle to the Excel cell at Sheet / reference
-				org.apache.poi.ss.usermodel.Sheet thisSheet = SheetConvertor.getOrCreateSheet(wb, thisRedCell);
-
-				CellReference cellReference = new CellReference(thisRedCell.getOriginalCellRow(),thisRedCell.getOriginalCellRow());
-				
-				
-				Row row = SheetConvertor.getOrCreateRow(thisSheet, cellReference);
-
-				org.apache.poi.ss.usermodel.Cell excelCell = SheetConvertor.getOrCreateCell(row, cellReference);
-
-				// update the values into the cell
-				CellConvertor.convertRedCellToPoiCell(wb, excelCell, thisRedCell);
-
-			}
-
-		}
 
 	}
 

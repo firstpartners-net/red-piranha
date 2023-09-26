@@ -34,13 +34,15 @@ public class ResourceFinder {
 	public static File getFileResourceUsingConfig(String resourceName, Config appConfig) throws FileNotFoundException {
 		
 		
+		log.debug("Seeking:"+resourceName);
+
 		File bareFile = new File(resourceName);
 		
 		File workingDir = new File(".");
 		if (bareFile.exists()) {
 			return bareFile;
 		} else {
-			log.debug("No resource:"+resourceName+ " found in "+workingDir.getAbsolutePath()+" attempting another approach?");
+			log.debug("1 No resource:"+resourceName+ " found in "+workingDir.getAbsolutePath()+" attempting another approach?");
 		}
 		
 		// We need config info to try backups

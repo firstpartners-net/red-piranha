@@ -50,25 +50,25 @@ public class PreProcessor {
 	 * @param baseDir
 	 * @param preprocessScript
 	 */
-	public boolean isPreProcessFileExists(String baseDir,String preProcessScript){
+	// public boolean isPreProcessFileExists(String baseDir,String preProcessScript){
 
-		if(baseDir==null||preProcessScript==null){
-			return false;
-		}
+	// 	if(baseDir==null||preProcessScript==null){
+	// 		return false;
+	// 	}
 
-		//See if we can get a handle to this script file
-		File script;
-		try {
-			script = ResourceFinder.getFileResourceUsingConfig(baseDir+preProcessScript, appConfig);
-		} catch (FileNotFoundException e) {
-			// No file?
-			return false;
-		}
+	// 	//See if we can get a handle to this script file
+	// 	File script;
+	// 	try {
+	// 		script = ResourceFinder.getFileResourceUsingConfig(baseDir+preProcessScript, appConfig);
+	// 	} catch (FileNotFoundException e) {
+	// 		// No file?
+	// 		return false;
+	// 	}
 
-		//Otherwirse return script
-		return script.exists();
+	// 	//Otherwirse return script
+	// 	return script.exists();
 
-	}
+	// }
 
 	/**
 	 * Run the Specified Groovy Script
@@ -88,6 +88,7 @@ public class PreProcessor {
 
 		//get a handle to the script - Groovy Engine needs file name
 		File script = ResourceFinder.getFileResourceUsingConfig(baseDir+groovyScriptName, appConfig);
+		
 		String scriptPath =script.getAbsolutePath();
 		log.debug("ScriptPath:"+scriptPath);
 

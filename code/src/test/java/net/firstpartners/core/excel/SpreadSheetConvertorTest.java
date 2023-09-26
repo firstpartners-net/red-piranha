@@ -14,14 +14,20 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
 import net.firstpartners.TestConstants;
+import net.firstpartners.core.Config;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
 public class SpreadSheetConvertorTest {
+
+	// handle for our config
+	@Autowired
+	Config appConfig;
 
 	//if we need to change the directory prefix
 	private static String dirPrefix="";
@@ -64,7 +70,9 @@ public class SpreadSheetConvertorTest {
 	
 		FileInputStream inputStream = new FileInputStream(dirPrefix+TestConstants.XLSX_DATA_FILE);
 		wb = WorkbookFactory.create(inputStream);
-		return SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
+
+		SpreadSheetConvertor convertor = new SpreadSheetConvertor(appConfig);
+		return convertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		
 	}
 	

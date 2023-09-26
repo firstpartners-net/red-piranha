@@ -97,7 +97,8 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	void outputToConsole(Workbook wb) throws IOException, ResourceException, ScriptException {
 
-		RangeList ranges = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
+		SpreadSheetConvertor convertor = new SpreadSheetConvertor(appConfig);
+		RangeList ranges = convertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		outputToConsole(ranges);
 
 	}

@@ -73,7 +73,8 @@ public class PreProcessor {
 	 *
 	 * @param groovyScriptName a {@link java.lang.String} name of a Groovy file to run
 	 * @param xlWorkbook - an Apache POI workbook representing the file we want to preprocess
-	 * @throws IOException
+	 * @return 
+	 * @throwpreprocessXlWorkbooks IOException
 	 * @throws ScriptException
 	 * @throws ResourceException
 	 */

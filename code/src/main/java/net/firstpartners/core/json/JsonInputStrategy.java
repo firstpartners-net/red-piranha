@@ -37,7 +37,14 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 
 	private OfficeDocument officeDocument;
 	
-	
+	private String baseDirectory;
+
+	/**
+	 * Set the base Directory
+	 */
+	public void setBaseDirectory(String baseDirectory){
+		this.baseDirectory= baseDirectory;
+	}
 
 	/**
 	 * Construct a new Strategy Object

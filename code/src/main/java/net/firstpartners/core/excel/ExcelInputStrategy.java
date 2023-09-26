@@ -36,6 +36,15 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 
 	private Config appConfig;
 
+	private String baseDirectory;
+
+	/**
+	 * Set the base Directory
+	 */
+	public void setBaseDirectory(String baseDirectory){
+		this.baseDirectory= baseDirectory;
+	}
+
 	/** {@inheritDoc} */
 	public void setConfig(Config appConfig) {
 		this.appConfig = appConfig;
@@ -81,7 +90,7 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 
 		log.debug("converting incoming excel stream to Javabeans");
 		excelWorkBook = WorkbookFactory.create(inputAsStream);
-		RangeList myRange = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(excelWorkBook);
+		RangeList myRange = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(baseDirectory,appConfig.getPreprocessScript(),excelWorkBook);
 		inputAsStream.close();
 		return myRange;
 

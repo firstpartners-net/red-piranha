@@ -94,6 +94,9 @@ public class RedController {
 			// filenames
 			IRunner runner = RunnerFactory.getRuleRunner(redModel,appConfig);
 
+			//Update configuration on this
+			runner.getDocumentInputStrategy().setBaseDirectory(redModel.getBaseDirectory());
+
 			// Call the rules using this datafile
 			redModel.addUIInfoMessage("Running Rules:");
 			runner.callRules(redModel);

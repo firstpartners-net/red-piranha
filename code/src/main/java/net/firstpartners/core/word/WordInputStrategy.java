@@ -36,6 +36,15 @@ public class WordInputStrategy implements IDocumentInStrategy {
 
 	private String wordInputFileName = null;
 
+	private String baseDirectory;
+
+	/**
+	 * Set the base Directory
+	 */
+	public void setBaseDirectory(String baseDirectory){
+		this.baseDirectory= baseDirectory;
+	}
+
 	/**
 	 * Construct a new Strategy Object
 	 *

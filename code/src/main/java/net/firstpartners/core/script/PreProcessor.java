@@ -4,13 +4,15 @@ package net.firstpartners.core.script;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.StringReader;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import groovy.lang.Binding;
-
+import groovy.lang.GroovyShell;
 import groovy.util.GroovyScriptEngine;
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
@@ -89,10 +91,18 @@ public class PreProcessor {
 		String scriptPath =script.getAbsolutePath();
 		log.debug("ScriptPath:"+scriptPath);
 
-		//Pass the Workbook in and call the script
+		//read the script contents
+		String scriptContents = FileUtils.readFileToString(script, "utf-8");
+		//log.debug("Script Contents\n"+scriptContents);
+
+		//Pass the Workbook in 
 		Binding binding = new Binding();
 		binding.setVariable("xlWorkbook", xlWorkbook);
-		Object result = engine.run(scriptPath, binding); 
+		
+		//and call the script
+		GroovyShell shell = new GroovyShell(binding);                       
+		Object result = shell.evaluate(scriptContents); 
+		//Object result = engine.run(scriptPath, binding); 
 		
 
 		//check the script returns a workbook

@@ -40,19 +40,19 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 	private String baseDirectory;
 
 	/**
-	 * Set the base Directory
-	 */
-	public void setBaseDirectory(String baseDirectory){
-		this.baseDirectory= baseDirectory;
-	}
-
-	/**
 	 * Construct a new Strategy Object
 	 *
 	 * @param jsonInputFileName a {@link java.lang.String} object
 	 */
 	public JsonInputStrategy(String jsonInputFileName) {
 		this.jsonInputFileName = jsonInputFileName;
+	}
+
+	/**
+	 * Set the base Directory
+	 */
+	public void setBaseDirectory(String baseDirectory){
+		this.baseDirectory= baseDirectory;
 	}
 
 	/** {@inheritDoc} */

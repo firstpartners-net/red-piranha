@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import groovy.lang.GroovyShell;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.file.ResourceFinder;
 
@@ -65,6 +66,7 @@ public class SampleDataLoader {
 			File readmeHtml = ResourceFinder.getFileResourceUsingConfig(sampleReadme, appConfig);
 			log.debug("Found file:"+readmeHtml.exists());
 
+			
 			//Read the contents of this  readmefile	
 			try(FileInputStream inputStream = new FileInputStream(readmeHtml)) {     
     			contents = IOUtils.toString(inputStream);
@@ -72,6 +74,8 @@ public class SampleDataLoader {
 				singleSample.setSampleDescription(contents);
 }				//log.debug("contents:"+contents);
 			}
+			 
+ 
 		
 		return sampleData;
 	}

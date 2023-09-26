@@ -38,19 +38,19 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 	private String baseDirectory;
 
 	/**
-	 * Set the base Directory
-	 */
-	public void setBaseDirectory(String baseDirectory){
-		this.baseDirectory= baseDirectory;
-	}
-
-	/**
 	 * Construct a new Strategy Object
 	 *
 	 * @param wordxInputFileName that we are reading from
 	 */
 	public WordXInputStrategy(String wordxInputFileName) {
 		this.wordInputFileName = wordxInputFileName;
+	}
+
+	/**
+	 * Set the base Directory
+	 */
+	public void setBaseDirectory(String baseDirectory){
+		this.baseDirectory= baseDirectory;
 	}
 
 	/** {@inheritDoc} */

@@ -39,24 +39,24 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	private String baseDirectory;
 
 	/**
-	 * Set the base Directory
-	 */
-	public void setBaseDirectory(String baseDirectory){
-		this.baseDirectory= baseDirectory;
-	}
-
-	/** {@inheritDoc} */
-	public void setConfig(Config appConfig) {
-		this.appConfig = appConfig;
-	}
-	
-	/**
 	 * Construct a new Strategy Object
 	 *
 	 * @param excelInputFileName a {@link java.lang.String} object
 	 */
 	public ExcelInputStrategy(String excelInputFileName) {
 		this.excelInputFileName = excelInputFileName;
+	}
+
+	/**
+	 * Set the base Directory
+	 */
+	public void setBaseDirectory(String baseDirectory){
+		this.baseDirectory= baseDirectory;
+	}
+	
+	/** {@inheritDoc} */
+	public void setConfig(Config appConfig) {
+		this.appConfig = appConfig;
 	}
 
 	/** {@inheritDoc} */

@@ -23,16 +23,12 @@ import net.firstpartners.data.RangeList;
 
 public class SpreadSheetConvertorTest {
 
-	private Workbook wb;
-
 	//if we need to change the directory prefix
 	private static String dirPrefix="";
 
 	//Logging
 	private static final Logger log = LoggerFactory.getLogger(SpreadSheetConvertorTest.class);
 
-	
-	
 	/** 
 	 * Convenience method - serialize testdata for use by Cell Tasts
 	 * @param args
@@ -53,6 +49,10 @@ public class SpreadSheetConvertorTest {
         fileOut.close();
         log.debug("Serialized data is saved in:"+ dirPrefix+TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
 	}
+
+	
+	
+	private Workbook wb;
 
 	/**
 	 * This is implemented as a sub method so we can call from tests and convenience main[] method

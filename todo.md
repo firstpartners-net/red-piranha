@@ -7,12 +7,12 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     * change to get URL for file in Preprocessor
 * Run and working preprocessor test
     * Stengthen unit test
-* Remove empty cells from report
-* Test run again via Web - ensure simple sample working
 * Update documentation (go through again)
 * Update script to set headings 
     * Helper Script - set block?
     * Unit test on helper script
+* Output to CSV
+    * output as 2 or three columns
 * test through
 * update documentation sample 4
 

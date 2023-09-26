@@ -31,6 +31,20 @@ public class Config {
 	@Value("${SHOW_FULL_RULE_ENGINE_LOGS}")
 	private boolean showFullRuleEngineLogs = false;
 
+
+	@Autowired
+	@Value("${script.preprocess}")
+	private String preprocessScript="";
+
+	/**
+	 * <p>Getter for the field <code>sampleBaseDirAlternate</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
+	public String getPreprocessScript() {
+		return preprocessScript;
+	}
+
 	/**
 	 * <p>Getter for the field <code>sampleBaseDirAlternate</code>.</p>
 	 *

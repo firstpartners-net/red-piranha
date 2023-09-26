@@ -4,23 +4,15 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 
 # NEXT STEP 
-* add additonal parameters (boolean all)
-* call dsl to idtneify cells
-* tidy files not needed to another examples folder
+* decide config setup for running script and notifying users
 * Groovy
-    * test script running and binding excel / as part of Unit test
-    * decide on model to pass in script
     * check if preprocesser needed in red controller
+    * call from Excel input strategy
     * update documentation sample 4
     * web page (top, samples, button),model, examples.json, sample class add pre-process
-
-
-# DECIDE
-* Groovy script 
-* BACKUP: Airflow, Apache Nifi etc
-* BACKUP: RP calls Python or Grovy script to extract (** most likely **)
-
-
+* Update documentation 
+* Update script to set headings 
+* test through
 
 ## Refresh knowledge and tidy
 * Snapshot current code and make note for book readers

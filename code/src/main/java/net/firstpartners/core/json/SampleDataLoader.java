@@ -58,13 +58,14 @@ public class SampleDataLoader {
 		// Now loop through and try loading readme.html if exists in directory
 		for (SampleData singleSample : sampleData) {
 
+			//check for readme.html	
 			String sampleReadme = singleSample.getBaseDirectory()+"readme.html";
 			log.debug("trying to find readme.html for:"+sampleReadme);
 
 			File readmeHtml = ResourceFinder.getFileResourceUsingConfig(sampleReadme, appConfig);
 			log.debug("Found file:"+readmeHtml.exists());
 
-			//Read the contents of this file	
+			//Read the contents of this  readmefile	
 			try(FileInputStream inputStream = new FileInputStream(readmeHtml)) {     
     			contents = IOUtils.toString(inputStream);
     			// do something with everything string

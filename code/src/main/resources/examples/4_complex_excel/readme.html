@@ -1,3 +1,12 @@
-<b>Notes:</b> Read information from a complex Excel Datafile and summarize as json/csv. <I>Sample Under Development.</I>
-The sample will demonstrate preprocessing to add Named ranges to an Excel file that didn't previously have it -
- often the case for historical documents and needed to identify the Cells we pass into the Rule Engine. 
+<I>Sample Under Development.</I><br/>
+<b>Notes:</b> Read information from a complex Excel Spreadsheet and summarize as json/csv.
+<p></p>
+The sample demonstrates preprocessing to add Named ranges to an Excel file -
+ often needed for historical documents and used to identify the Cells we want to extact and pass into the Rule Engine. 
+</p><p>
+The sample directory contains a prepropssing script called <I>InjectNamedRange.Groovy</I>. There is a setting in
+<i>application.properties</i> that causes files with this name to be excecuted after the Spreadsheet is loaded but 
+before the business rules are executed.  
+</p><p>
+This script is passed a copy of the incoming spreadsheet which allows it to be manipulated. In this cases the 
+script adds Excel Named Ranges tagging the areas of the sheet we are most interested in.

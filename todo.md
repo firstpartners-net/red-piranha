@@ -2,17 +2,13 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
-
 # NEXT STEP 
-* decide config setup for running script and notifying users
-* Groovy
-    * check if preprocesser needed in red controller
-    * call from Excel input strategy
-    * update documentation sample 4
-    * web page (top, samples, button),model, examples.json, sample class add pre-process
-* Update documentation 
+* Compile and run tests
+* Compile and run via Web - ensure simple sample working
+* Update documentation (go through again)
 * Update script to set headings 
 * test through
+* update documentation sample 4
 
 ## Refresh knowledge and tidy
 * Snapshot current code and make note for book readers

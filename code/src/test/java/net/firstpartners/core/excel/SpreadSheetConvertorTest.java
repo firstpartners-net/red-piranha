@@ -15,6 +15,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import groovy.util.ResourceException;
+import groovy.util.ScriptException;
 import net.firstpartners.TestConstants;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
@@ -35,8 +37,10 @@ public class SpreadSheetConvertorTest {
 	 * Convenience method - serialize testdata for use by Cell Tasts
 	 * @param args
 	 * @throws IOException 
+	 * @throws ScriptException
+	 * @throws ResourceException
 	 */
-	public static void main (String args[]) throws IOException {
+	public static void main (String args[]) throws IOException, ResourceException, ScriptException {
 		
 		//have we been requested to modfiy the directoyr
 		dirPrefix = args[0];
@@ -53,8 +57,10 @@ public class SpreadSheetConvertorTest {
 	/**
 	 * This is implemented as a sub method so we can call from tests and convenience main[] method
 	 * @throws IOException 
+	 * @throws ScriptException
+	 * @throws ResourceException
 	 */
-	public final RangeList getTestDataFromWorkbook() throws IOException {
+	public final RangeList getTestDataFromWorkbook() throws IOException, ResourceException, ScriptException {
 	
 		FileInputStream inputStream = new FileInputStream(dirPrefix+TestConstants.XLSX_DATA_FILE);
 		wb = WorkbookFactory.create(inputStream);
@@ -63,7 +69,7 @@ public class SpreadSheetConvertorTest {
 	}
 	
 	@Test
-	public final void testRangeConversation() throws IOException {
+	public final void testRangeConversation() throws IOException, ResourceException, ScriptException {
 		
 		RangeList myRange = getTestDataFromWorkbook();
 		assertNotNull(wb);

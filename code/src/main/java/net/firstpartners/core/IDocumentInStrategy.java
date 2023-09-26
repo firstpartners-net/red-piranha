@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
+import groovy.util.ResourceException;
+import groovy.util.ScriptException;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.word.WordXInputStrategy;
 import net.firstpartners.data.RangeList;
@@ -47,8 +49,10 @@ public interface IDocumentInStrategy {
 	 * @throws org.apache.poi.openxml4j.exceptions.InvalidFormatException
 	 * @throws org.apache.poi.EncryptedDocumentException
 	 * @throws java.io.IOException
+	 * @throws ScriptException
+	 * @throws ResourceException
 	 */
-	RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException;
+	RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException, ResourceException, ScriptException;
 
 	/**
 	 * Update the document we are dealing with

@@ -19,8 +19,11 @@ import java.io.*;
 // end of imports
 
 //Red Piranha will pass in a handle to the Excel workbook - the next line confirms this
-//Details on the Workbook model are at 
+//Details on the Workbook model are at the Apache POI website
+// do-not-change
 assert xlWorkbook!=null
+println "InjectNamedRanges.groovy running"
+
 
 //Loop through the sheets
 // for (int i = 0; i < xlWorkbook.getNumberOfSheets(); i++)
@@ -40,6 +43,7 @@ name2.setRefersToFormula("Accounts!B14:I14")
 
 
 // the final value in our script will be returned to Red Piranha
+// do-not-change
 xlWorkbook
 
 

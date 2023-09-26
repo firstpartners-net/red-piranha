@@ -9,6 +9,11 @@ import java.util.ListIterator;
 import java.util.Map;
 
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import groovy.util.ResourceException;
+import groovy.util.ScriptException;
+
 import org.slf4j.Logger;
 
 import org.apache.poi.ss.usermodel.Name;
@@ -18,6 +23,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.AreaReference;
 import org.apache.poi.ss.util.CellReference;
 
+import net.firstpartners.core.Config;
+import net.firstpartners.core.script.PreProcessor;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
@@ -35,22 +42,60 @@ public class SpreadSheetConvertor {
 	// Logging
 	private static final Logger log = LoggerFactory.getLogger(SpreadSheetConvertor.class);
 
-	/**
+	// handle for our config
+	@Autowired
+	static Config appConfig;
+
+	// Handle to the preprocessor
+	static PreProcessor preProcess = null;
+
+		/**
 	 * Read an excel file and return what we find as a set of simple JavaBeans
 	 *
 	 * @param wb - Apache Poi workbook to convert
 	 * @return RangeHolder - can be empty if no names are definded
 	 * @throws java.io.IOException
+		 * @throws ScriptException
+		 * @throws ResourceException
 	 */
-	@SuppressWarnings("unused")
-	public static RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook wb)
-			throws IOException {
+	//@SuppressWarnings("unused")
+	public static RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook wb) throws IOException, ResourceException, ScriptException{
+		return convertNamesFromPoiWorkbookIntoRedRange(null,null,wb);
+	}
+
+	/**
+	 * Read an excel file and return what we find as a set of simple JavaBeans
+	 *
+	 * @param baseDir of this dataset
+	 * @param wb - Apache Poi workbook to convert
+	 * @return RangeHolder - can be empty if no names are definded
+	 * @throws java.io.IOException
+	 * @throws ScriptException
+	 * @throws ResourceException
+	 */
+	//@SuppressWarnings("unused")
+	public static RangeList convertNamesFromPoiWorkbookIntoRedRange(String baseDir, String preprocessScript,org.apache.poi.ss.usermodel.Workbook wb)
+			throws IOException, ResourceException, ScriptException {
+
+		//Run any preprocessing script needed
+		if(preProcess ==null){
+			preProcess = new PreProcessor(appConfig);
+		}
+
+		if (preProcess.isPreProcessFileExists(baseDir,preprocessScript)){
+			log.debug("Pre Process file exists");
+
+			wb= preProcess.preprocessXlWorkbook(baseDir,preprocessScript, wb);
+		}
 
 		// hold all the named ranges from our sheet
 		RangeList returnValues = new RangeList();
 
 		// retrieve the named range - Iterator not available
 		List<? extends Name> namedRanges = wb.getAllNames();
+
+
+		
 		
 		if (namedRanges == null) {
 			log.info("No Named Ranges in workbook- skipping");

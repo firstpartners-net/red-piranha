@@ -22,6 +22,7 @@ import org.apache.poi.ss.usermodel.Name;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@SpringBootTest
@@ -32,11 +33,16 @@ public class PreProcessorTest {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	// handle to the class under test
-	PreProcessor processor = new PreProcessor();
+	PreProcessor processor = null;
 
 	// handle for our config
 	@Autowired
 	Config appConfig;
+
+	@BeforeEach
+	void setUp() throws Exception {
+		processor = new PreProcessor(appConfig);
+	}
 	
 	
 	@Test
@@ -47,7 +53,7 @@ public class PreProcessorTest {
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 
-		Workbook returnBook = processor.preprocessXlWorkbook(TestConstants.SIMPLE_GROOVY,excelWorkBook);
+		Workbook returnBook = processor.preprocessXlWorkbook("",TestConstants.SIMPLE_GROOVY,excelWorkBook);
 
 		// retrieve the named range - Iterator not available
 		List<? extends Name> namedRanges = returnBook.getAllNames();

@@ -11,6 +11,8 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import groovy.util.ResourceException;
+import groovy.util.ScriptException;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.file.OfficeDocument;
@@ -67,9 +69,11 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	 * {@inheritDoc}
 	 *
 	 * Access a Stream, convert it to Red JavaBeans (representing Excel Ojbects)
+	 * @throws ScriptException
+	 * @throws ResourceException
 	 */
 	@Override
-	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException {
+	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, ResourceException, ScriptException {
 
 		File xlFile = ResourceFinder.getFileResourceUsingConfig(excelInputFileName, appConfig);
 		

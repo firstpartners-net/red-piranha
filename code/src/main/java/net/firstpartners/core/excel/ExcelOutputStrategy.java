@@ -8,6 +8,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import groovy.util.ResourceException;
+import groovy.util.ScriptException;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
@@ -90,8 +92,10 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 * 
 	 * @param wb
 	 * @throws IOException
+	 * @throws ScriptException
+	 * @throws ResourceException
 	 */
-	void outputToConsole(Workbook wb) throws IOException {
+	void outputToConsole(Workbook wb) throws IOException, ResourceException, ScriptException {
 
 		RangeList ranges = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		outputToConsole(ranges);
@@ -125,8 +129,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 			fileOutputStream.close();
 	 	} catch (Exception ace) {
 			// Unable to output file, then drop back and log via console instead
-			log.error("Unable to output to file - logging to console and default dir instead",ace);
-			outputToConsole(wb);
+			log.error("Unable to output to file",ace);
 		 }
 		
 

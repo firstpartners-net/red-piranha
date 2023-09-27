@@ -3,19 +3,19 @@
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
 # NEXT STEP 
-*
+
 * Run and working preprocessor test
     * Stengthen unit test
     * Pullback exact info and test for it
+    * remove loop through anems
 
 * SheetNames and Test
-    * outline class
-        * table
-    * outline unit tests
+    * Table method - Unit test
+    * Table method - write code
     * update doc-script-support.md
     
 * Groovy Script update
-    * Update script to use new calass
+    * Update script to use new calass (Table and Body) against sample
 
 * Update documentation (go through again)
     * In example 4 
@@ -25,17 +25,14 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
         * Name of Class
         * See scripts in exampleds
 
-* Update script to set headings 
-    * Helper Script - set block?
-    * Unit test on helper script
-
-* Output to CSV
-    * output as 2 or three columns
-
 * test through
 * update documentation sample 4
 
-Generate 2nd File into 5th sample folder (for multiplel filtes test)
+# Next part of sample
+* Output to CSV
+    * output as 2 or three columns
+
+* Generate 2nd File into 5th sample folder (for multiplel filtes test)
     * copy generate spreasheet
 
 

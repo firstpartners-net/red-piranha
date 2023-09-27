@@ -41,8 +41,8 @@ public class PreProcessorTest {
 		// handle to the class under test
 		PreProcessor processor = new PreProcessor(appConfig);
 
+		//Handle to test data
 		File xlFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.COMPLEX_EXCEL, appConfig);
-
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 

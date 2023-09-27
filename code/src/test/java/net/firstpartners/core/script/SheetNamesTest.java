@@ -1,12 +1,12 @@
 package net.firstpartners.core.script;
 
 import static org.junit.Assert.fail;
+import static org.junit.Assert.*;	
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.List;
-import java.util.ListIterator;
+
 
 import org.apache.poi.ss.usermodel.Name;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.file.ResourceFinder;
+
 
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@SpringBootTest
@@ -38,29 +39,29 @@ public class SheetNamesTest {
 	}
 
 	@Test
-	public final void testSheetNameInjectionSupport() throws Exception {
+	public final void testSingleCellNaming() throws Exception {
+
+		File xlFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.COMPLEX_EXCEL, appConfig);
+		InputStream inputAsStream = new FileInputStream(xlFile);
+		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 
 		// handle to the class under test
-		SheetNames names = new SheetNames();
+		SheetNames names = new SheetNames(excelWorkBook);
+
+		//try out the naming
+		names.nameSingleCell("testName", "Accounts", "A1:B2");
+
+		//test the named ranges coming back
+		Name testName = excelWorkBook.getName("testName");
+		assertEquals (testName.getRefersToFormula(),"Accounts!A1:B2");
+
+	}
+
+	@Test
+	public final void testTableNaming() throws Exception {
 
 		//Test the various methos
 		fail("Not yet implemented");
 
-		//test the named ranges coming back
-		org.apache.poi.ss.usermodel.Name aNamedRange = null;
-		ListIterator<? extends Name> loopList = namedRanges.listIterator();
-
-		while (loopList.hasNext()) {
-		
-
-			aNamedRange = loopList.next(); // wb.getNameAt(namedRangeIdx);
-
-			// retrieve the cells at the named range
-			log.debug("Processing named range:" + aNamedRange.getNameName());
-		}
-
-		log.debug("test complete");
-
 	}
-
 }

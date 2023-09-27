@@ -154,14 +154,12 @@ public RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.userm
 		}
 
 		// Setup loop through named ranges
-		int namedRangeIdx = -1;
-		namedRangeIdx++;
 
 		org.apache.poi.ss.usermodel.Name aNamedRange = null;
 		ListIterator<? extends Name> loopList = namedRanges.listIterator();
 
 		while (loopList.hasNext()) {
-			namedRangeIdx++;
+
 
 			aNamedRange = loopList.next(); // wb.getNameAt(namedRangeIdx);
 

@@ -115,10 +115,9 @@ public class DecisionModelRunner extends AbstractRunner {
 
 		}
 
-		if (dmnModel == null) {
-			throw new RPException("DMNModel not found");
-		}
-
+		//Check that we have a model with that name
+		assert dmnModel != null : "Unable to find any DNMModel with that Name";
+		
 		return dmnModel;
 
 	}

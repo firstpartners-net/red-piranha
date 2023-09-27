@@ -132,7 +132,9 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 
 		// Open in a reader
 		Reader reader = new BufferedReader(new FileReader(appendFileName));
+		
 		CSVParser csvParser = CSVParser.parse(reader, CSVFormat.EXCEL.withFirstRecordAsHeader());
+	
 
 		List<String> returnValues = csvParser.getHeaderNames();
 		log.debug("Found Headers" + returnValues + " headers");

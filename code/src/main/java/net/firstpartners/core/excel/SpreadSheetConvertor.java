@@ -144,8 +144,6 @@ public RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.userm
 		// retrieve the named range - Iterator not available
 		List<? extends Name> namedRanges = wb.getAllNames();
 
-
-		
 		
 		if (namedRanges == null) {
 			log.info("No Named Ranges in workbook- skipping");

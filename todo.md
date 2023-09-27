@@ -4,18 +4,15 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 # NEXT STEP 
 
+* SheetNames and Test
+    * Table method - write code to implement
+    * Table method - Unit test testTableNaming()- running and add more
+    * Update Docs
+
 * Run and working preprocessor test
     * Stengthen unit test
     * Pullback exact info and test for it
     * remove loop through anems
-
-* SheetNames and Test
-    * Table method - Unit test
-    * Table method - write code
-    * update doc-script-support.md
-    
-* Groovy Script update
-    * Update script to use new calass (Table and Body) against sample
 
 * Update documentation (go through again)
     * In example 4 
@@ -31,6 +28,9 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 # Next part of sample
 * Output to CSV
     * output as 2 or three columns
+
+* Groovy Script update
+    * Update script to use new calass (Table and Body) against sample - all tables
 
 * Generate 2nd File into 5th sample folder (for multiplel filtes test)
     * copy generate spreasheet

@@ -1,6 +1,5 @@
 package net.firstpartners.core.script;
 
-import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,7 +7,11 @@ import org.slf4j.LoggerFactory;
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
 
+import org.apache.poi.ss.SpreadsheetVersion;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.AreaReference;
+import org.apache.poi.ss.util.CellReference;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 
 
@@ -52,7 +55,6 @@ public class SheetNames {
 
 		nameTable(baseName,sheetName,mainTableRef,1,1);
 		
-
 	}
 
 
@@ -66,8 +68,35 @@ public class SheetNames {
 	*/
 	public void nameTable (String baseName, String sheetName, String mainTableRef ,int numberOfHeaderRows, int numberOfColumnRows )  {
 
-		assert 1>2 : "method not implemented yet";
 		
+		//get handle to block of cells at maintable ref
+		String formula = sheetName+"!"+mainTableRef; 	// should give us same as in Excel e.g. Accounts!B14:I14
+		log.debug("Looking for Table Formula:"+formula);
+		AreaReference aref = new AreaReference(formula,SpreadsheetVersion.EXCEL2007);
+
+		//Setup our loop
+		Sheet s = wb.getSheet(sheetName);
+		CellReference[] crefs = aref.getAllReferencedCells();
+
+		for (int i=0; i<crefs.length; i++) {
+
+			Row r = s.getRow(crefs[i].getRow());
+			Cell c = r.getCell(crefs[i].getCol());
+
+			log.debug(crefs[i].formatAsString()+" Row:"+r+" Col:"+c.toString());
+
+		}
+
+
+		//loop through rows
+
+			// check for header
+
+			// loop through cols
+
+				// check for name row
+
+				//add anme to spreadsheet
 
 	}
 
@@ -82,7 +111,7 @@ public class SheetNames {
 	 */
 	public void nameSingleCell (String baseName, String sheetName, String cellRef)  {
 
-		String formula = sheetName+"!"+cellRef; 	// should same as in Excel e.g. Accounts!B14:I14
+		String formula = sheetName+"!"+cellRef; 	// should give us same as in Excel e.g. Accounts!B14:I14
 
 		Name newXlNamedRange = wb.createName();
 		newXlNamedRange.setNameName(baseName);

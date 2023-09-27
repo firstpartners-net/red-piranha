@@ -2,9 +2,7 @@ package net.firstpartners.core.script;
 
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.StringReader;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -44,31 +42,6 @@ public class PreProcessor {
 	public PreProcessor(Config appConfig){
 		this.appConfig = appConfig;
 	}
-
-	/*
-	 * Convenicence method to check if preProcess file exists
-	 * @param baseDir
-	 * @param preprocessScript
-	 */
-	// public boolean isPreProcessFileExists(String baseDir,String preProcessScript){
-
-	// 	if(baseDir==null||preProcessScript==null){
-	// 		return false;
-	// 	}
-
-	// 	//See if we can get a handle to this script file
-	// 	File script;
-	// 	try {
-	// 		script = ResourceFinder.getFileResourceUsingConfig(baseDir+preProcessScript, appConfig);
-	// 	} catch (FileNotFoundException e) {
-	// 		// No file?
-	// 		return false;
-	// 	}
-
-	// 	//Otherwirse return script
-	// 	return script.exists();
-
-	// }
 
 	/**
 	 * Run the Specified Groovy Script

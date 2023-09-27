@@ -1,11 +1,10 @@
 package net.firstpartners.core.json;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +13,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import groovy.lang.GroovyShell;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.file.ResourceFinder;
 
@@ -63,17 +61,14 @@ public class SampleDataLoader {
 			String sampleReadme = singleSample.getBaseDirectory()+"readme.html";
 			log.debug("trying to find readme.html for:"+sampleReadme);
 
+			//Dind the sample file and read teh contents
 			File readmeHtml = ResourceFinder.getFileResourceUsingConfig(sampleReadme, appConfig);
 			log.debug("Found file:"+readmeHtml.exists());
 
-			
-			//Read the contents of this  readmefile	
-			try(FileInputStream inputStream = new FileInputStream(readmeHtml)) {     
-    			contents = IOUtils.toString(inputStream);
-    			// do something with everything string
-				singleSample.setSampleDescription(contents);
-}				//log.debug("contents:"+contents);
-			}
+			contents = FileUtils.readFileToString(readmeHtml, "utf-8");
+			singleSample.setSampleDescription(contents);
+		
+		}
 			 
  
 		

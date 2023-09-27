@@ -52,14 +52,14 @@ public class PreProcessorTest {
 		List<? extends Name> namedRanges = returnBook.getAllNames();
 
 		// Setup loop through named ranges
-		int namedRangeIdx = -1;
-		namedRangeIdx++;
+		// int namedRangeIdx = -1;
+		// namedRangeIdx++;
 
 		org.apache.poi.ss.usermodel.Name aNamedRange = null;
 		ListIterator<? extends Name> loopList = namedRanges.listIterator();
 
 		while (loopList.hasNext()) {
-			namedRangeIdx++;
+			//namedRangeIdx++;
 
 			aNamedRange = loopList.next(); // wb.getNameAt(namedRangeIdx);
 

@@ -1,6 +1,5 @@
 package net.firstpartners.core.script;
 
-import static org.junit.Assert.fail;
 import static org.junit.Assert.*;	
 
 import java.io.File;
@@ -60,8 +59,24 @@ public class SheetNamesTest {
 	@Test
 	public final void testTableNaming() throws Exception {
 
+		File xlFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.COMPLEX_EXCEL, appConfig);
+		InputStream inputAsStream = new FileInputStream(xlFile);
+		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
+
+		// handle to the class under test
+		SheetNames names = new SheetNames(excelWorkBook);
+
+		//try out the naming
+		names.nameTable("Key Info","Accounts","A12:I30");
+
 		//Test the various methos
 		fail("Not yet implemented");
+
+		//test the named ranges coming back
+		Name testName = excelWorkBook.getName("testName");
+		assertEquals (testName.getRefersToFormula(),"Accounts!A1:B2");
+
+
 
 	}
 }

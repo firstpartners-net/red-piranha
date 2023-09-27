@@ -28,12 +28,14 @@ println "InjectNamedRanges.groovy running"
 // Setup a reference to our helper class - makes script easier to write
 SheetNames sn = new SheetNames(xlWorkbook)
 
-
 // end careful change =====================================================================
 
-// Start setting names
-sn.nameSingleCell("testName", "Accounts", "A1:B2")
+// Start setting names - single cells
+sn.nameSingleCell("CompanyName", "Accounts", "A4")
 
+// Start Naming Tables - each cell in table will be named individually using 
+//the base value, then a combination of the the header and rows
+sn.nameTable("Key Info","Accounts","A12:I30")
 
 // the final value in our script will be returned to Red Piranha
 // do-not-change as it expects an Excel Workbook back

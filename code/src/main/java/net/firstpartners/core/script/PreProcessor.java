@@ -75,9 +75,7 @@ public class PreProcessor {
 		
 		//and call the script
 		GroovyShell shell = new GroovyShell(binding);                       
-		Object result = shell.evaluate(scriptContents); 
-		//Object result = engine.run(scriptPath, binding); 
-		
+		Object result = shell.evaluate(scriptContents); 	
 
 		//check the script returns a workbook
 		assert result instanceof org.apache.poi.ss.usermodel.Workbook : "Script should return type of Workbook";

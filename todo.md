@@ -3,18 +3,41 @@
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
 # NEXT STEP 
-* Compile and run test
-    * change to get URL for file in Preprocessor
+*
 * Run and working preprocessor test
     * Stengthen unit test
+    * Pullback exact info and test for it
+
+* SheetNames and Test
+    * outline class
+        * table
+    * outline unit tests
+    * update doc-script-support.md
+    
+* Groovy Script update
+    * Update script to use new calass
+
 * Update documentation (go through again)
+    * In example 4 
+    * In script comments
+    * In Javadoc
+        * What is is
+        * Name of Class
+        * See scripts in exampleds
+
 * Update script to set headings 
     * Helper Script - set block?
     * Unit test on helper script
+
 * Output to CSV
     * output as 2 or three columns
+
 * test through
 * update documentation sample 4
+
+Generate 2nd File into 5th sample folder (for multiplel filtes test)
+    * copy generate spreasheet
+
 
 ## Refresh knowledge and tidy
 * Snapshot current code and make note for book readers
@@ -49,7 +72,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## TODO on Deployment
 * Can deploy and work against true docs
 
-## Confirm delivered on previous spring
+## Confirm delivered on previous sprint
 
 Platform (with specific examples)
 

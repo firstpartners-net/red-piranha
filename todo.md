@@ -27,13 +27,17 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 # Next part of sample
 * Output to CSV
-    * output as 2 or three columns
+    * output as 2 or three columns - update previous class with this
 
 * Groovy Script update
     * Update script to use new calass (Table and Body) against sample - all tables
 
 * Generate 2nd File into 5th sample folder (for multiplel filtes test)
     * copy generate spreasheet
+    * create new DirectortInputStrategy
+
+* Simple Check
+    * just enough rule to filter / check for dud data
 
 
 ## Refresh knowledge and tidy
@@ -46,10 +50,10 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## TODO Next Sprint
 
-** Read all files in folder
-** Output
+    ** Read all files in folder
+    ** Output
 * Docs
-** Tidy current docs - next pass
+    ** Tidy current docs - next pass
 * Future
 ** Create Fiancial extraction Sample - analsyis of single case
 ** multiple output options

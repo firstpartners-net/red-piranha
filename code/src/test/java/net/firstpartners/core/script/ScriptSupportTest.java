@@ -23,7 +23,7 @@ import net.firstpartners.core.file.ResourceFinder;
 
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@SpringBootTest
-public class SheetNamesTest {
+public class ScriptSupportTest {
 
 	// Handle to the loggers
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -45,7 +45,7 @@ public class SheetNamesTest {
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 
 		// handle to the class under test
-		SheetNames names = new SheetNames(excelWorkBook);
+		ScriptSupport names = new ScriptSupport(excelWorkBook);
 
 		//try out the naming
 		names.nameSingleCell("testName", "Accounts", "A1:B2");
@@ -64,7 +64,7 @@ public class SheetNamesTest {
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 
 		// handle to the class under test
-		SheetNames names = new SheetNames(excelWorkBook);
+		ScriptSupport names = new ScriptSupport(excelWorkBook);
 
 		//try out the naming
 		names.nameTable("Key Info","Accounts","A12:I30");

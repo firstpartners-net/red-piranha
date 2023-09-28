@@ -11,7 +11,6 @@ import org.apache.poi.ss.SpreadsheetVersion;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.AreaReference;
 import org.apache.poi.ss.util.CellReference;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 
 
@@ -23,7 +22,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
  * @author PBrowne
  * @version $Id: $Id
  */
-public class SheetNames {
+public class ScriptSupport {
 
 
 	// Handle to the loggers
@@ -36,7 +35,7 @@ public class SheetNames {
 	 * Constructor
 	 * @param xlWorkbook that we 
 	 */
-	public SheetNames(Workbook xlWorkbook){
+	public ScriptSupport(Workbook xlWorkbook){
 		this.wb = xlWorkbook;
 	}
 

@@ -5,11 +5,17 @@ import static org.junit.Assert.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
 
-
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Name;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.ss.util.CellReference;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.slf4j.Logger;
@@ -45,10 +51,10 @@ public class ScriptSupportTest {
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 
 		// handle to the class under test
-		ScriptSupport names = new ScriptSupport(excelWorkBook);
+		ScriptSupport sprt = new ScriptSupport(excelWorkBook);
 
 		//try out the naming
-		names.nameSingleCell("testName", "Accounts", "A1:B2");
+		sprt.nameSingleCell("testName", "Accounts", "A1:B2");
 
 		//test the named ranges coming back
 		Name testName = excelWorkBook.getName("testName");
@@ -64,10 +70,10 @@ public class ScriptSupportTest {
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 
 		// handle to the class under test
-		ScriptSupport names = new ScriptSupport(excelWorkBook);
+		ScriptSupport sprt = new ScriptSupport(excelWorkBook);
 
 		//try out the naming
-		names.nameTable("Key Info","Accounts","A12:I30");
+		sprt.nameTable("Key Info","Accounts","A12:I30");
 
 		//test the named ranges coming back
 		Name testName = excelWorkBook.getName("KeyInfo_YearEnd_BaseYear_minus_2");
@@ -77,4 +83,47 @@ public class ScriptSupportTest {
 		assertEquals (testName.getRefersToFormula(),"Accounts!R22C6");
 
 	}
+
+	/**
+	 * Test the formatter - especially useful to get dates as "31/12/20" etc
+	 * @throws Exception
+	 */
+	@Test
+	public final void testCellStringExtraction() throws Exception {
+
+		File xlFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.COMPLEX_EXCEL, appConfig);
+		InputStream inputAsStream = new FileInputStream(xlFile);
+		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
+
+		// handle to the class under test
+		ScriptSupport sprt = new ScriptSupport(excelWorkBook);
+
+		//Get a handle to a cell, format, check return value
+		org.apache.poi.ss.usermodel.Sheet sheet = excelWorkBook.getSheet("Accounts");
+
+		//setup a hasmhap of cells and the values we expect to extract 
+		HashMap<String, String> testMap = new HashMap<String, String>();
+		//testMap.put("Accounts!B39","2751.0");
+		testMap.put("Accounts!A14","No. of Global Employees @ y/e (incl Irish employment)");
+		testMap.put("Accounts!B34","31/12/18");
+		
+
+		// Iterating HashMap through for loop
+		for (Map.Entry<String, String> set : testMap.entrySet()) {
+	
+			CellReference cellReference = new CellReference(set.getKey());
+			log.debug("Testing cell:"+set.getKey()+ " hoping for:"+set.getValue());
+		
+			Row row = sheet.getRow(cellReference.getRow());
+			Cell cell = row.getCell(cellReference.getCol()); 
+
+			assertEquals(set.getValue(),sprt.getCellAsStringForceDateConversion(cell));
+
+		   }
+
+
+
+
+	}
+
 }

@@ -51,10 +51,37 @@ public class CellConvertor {
 		// The name makes them as a range
 		redCell.setName(cellNameFromRange);
 
-		org.apache.poi.ss.usermodel.CellType myCellType = poiCell.getCellType();
-		log.debug("Working with Poi Cell Type:" + myCellType);
+		//Get the cell contents and update our object model
+		Object value = getCellContents(poiCell);
+		redCell.setValue(value);
+
+		// copy over the comments
+		Comment anyComment = poiCell.getCellComment();
+		if (anyComment != null) {
+			redCell.setComment(anyComment.getString().toString());
+		}
+
+		// Reset the modified flag
+		redCell.setModified(false);
+
+		return redCell;
+
+	}
+
+	/**
+	 * Helper Method to get the contents of an Apache POI Cell using a reference.
+	 * @param org.apache.poi.ss.usermodel.Cell - Apache POI Cell
+	 * @return Object (Boolean , Number or String). It attempts to get the values, and the result of a formula.
+	 */
+	public static Object getCellContents(org.apache.poi.ss.usermodel.Cell poiCell){
 
 		Object value = null; // to capture the output
+
+		//Determine the cell type
+		org.apache.poi.ss.usermodel.CellType myCellType = poiCell.getCellType();
+		//log.debug("Working with Poi Cell Type:" + myCellType);
+
+
 		switch (myCellType.toString()) {
 
 		case "BOOLEAN":
@@ -92,20 +119,10 @@ public class CellConvertor {
 
 		}
 
-		redCell.setValue(value);
-
-		// copy over the comments
-		Comment anyComment = poiCell.getCellComment();
-		if (anyComment != null) {
-			redCell.setComment(anyComment.getString().toString());
-		}
-
-		// Reset the modified flag
-		redCell.setModified(false);
-
-		return redCell;
+		return value;
 
 	}
+
 
 	/**
 	 * Convert from Standard JavaBean to Excel (Apache Poi) Cells

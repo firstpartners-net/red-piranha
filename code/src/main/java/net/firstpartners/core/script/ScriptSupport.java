@@ -2,12 +2,14 @@ package net.firstpartners.core.script;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
+import net.firstpartners.core.excel.CellConvertor;
 
 import org.apache.poi.ss.SpreadsheetVersion;
 import org.apache.poi.ss.usermodel.*;
@@ -78,29 +80,34 @@ public class ScriptSupport {
 
 		//Setup our loop
 		Sheet s = wb.getSheet(sheetName);
-		
 		CellReference[] crefs = aref.getAllReferencedCells();
+		String currentCellText="";
+		Row poiRow = null;
+		Cell poiCell =null;
+
+		//Hashmaps Column and header names - since our table might start at col 3, cell 3
+		//we need to hold the col name as "3" rather than relying on the 0 based index of an array
+		HashMap<String,String> headerNames = new HashMap<String,String>();
+		HashMap<String,String> colNames =  new HashMap<String,String>();
 
 		//set first row based on first cell (assume it is at top left of block)
 		int firstRow = crefs[0].getRow();
 		int firstCol = crefs[0].getCol();
-
-		//Column and header names
-		ArrayList<String> headerNames = new ArrayList<String>();
-		ArrayList<String> ColNames = new ArrayList<String>();
-
-		// setup loop through cells
-		boolean rowLabel=false;
-		boolean colLabel=false;
-		String currentCellText="";
-
 		for (int i=0; i<crefs.length; i++) {
 
-			//Get the current cells value
-			currentCellText = ### add in string value;
+			//reset header flags
+			boolean rowLabel=false;
+			boolean colLabel=false;
 
-			//Row r = s.getRow(crefs[i].getRow());
-			//Cell c = r.getCell(crefs[i].getCol());
+			//Get Cell from Spreadhseet
+			poiRow = s.getRow(crefs[i].getRow());
+			poiCell = poiRow.getCell(crefs[i].getCol());
+
+			//Get the current cells value use our main convertor
+			//for this use case, we just want it as a string.
+			currentCellText= ""+CellConvertor.getCellContents(poiCell);
+			
+			//Make a note of how many cells / rows deep in the table we are
 			int row = crefs[i].getRow();
 			int col = crefs[i].getCol();
 
@@ -122,53 +129,47 @@ public class ScriptSupport {
 
 			if(rowLabel&&colLabel){
 				// we are in top left corner 'dead space'
-				log.debug(" Row:"+row+" Col:"+col+" "+Arrays.toString(crefs[i].getCellRefParts())+" dead space");
+				log.debug(" Row:"+row+" Col:"+col+" "+Arrays.toString(crefs[i].getCellRefParts())+" dead space"+currentCellText);
 				// ignore
 			} 
 
 			if(!colLabel&&rowLabel){
 				// we are in top row(s)
-				log.debug(" Row:"+row+" Col:"+col+" "+Arrays.toString(crefs[i].getCellRefParts())+" row header");
-				### add to row header list;
+				log.debug(" Row:"+row+" Col:"+col+" "+Arrays.toString(crefs[i].getCellRefParts())+" row header:"+currentCellText);
+				headerNames.put(""+col,currentCellText);
 			}
 
 			if(colLabel&&!rowLabel){
 				// we are in col labels(s)
-				log.debug(" Row:"+row+" Col:"+col+" "+Arrays.toString(crefs[i].getCellRefParts())+" col labels");
-				## add to col lables list;
+				log.debug(" Row:"+row+" Col:"+col+" "+Arrays.toString(crefs[i].getCellRefParts())+" col labels:"+currentCellText);
+				colNames.put(""+row,currentCellText);
 			}
 
 			if(!colLabel&&!rowLabel){
 				// we are in main body of table labels(s)
-				log.debug(" Row:"+row+" Col:"+col+" "+Arrays.toString(crefs[i].getCellRefParts())+" table body values");
+				log.debug(" Row:"+row+" Col:"+col+" "+Arrays.toString(crefs[i].getCellRefParts())+" table body value:"+currentCellText);
 
 				//Calculate namedRangeName based on header and col
-				String refName = ### ;
-					### default to row number if either of these not available;
+				//remember it is a table, so the col names will differ by row (and vice versa)
+				String refName = baseName+"_"+colNames.get(""+row)+"_"+headerNames.get(""+col);
 
-				//calc the cell ref to pass in 
-				String cellRef = ####;
+				//tidy to remove spaces etc as Excel won't allow them in named range
+				refName = refName.replaceAll("-","_minus_");
+				refName = refName.replaceAll("[^A-Za-z0-9_.]", "");
 
 				// name this cell	
-				nameSingleCell (refName, sheetName, cellRef);
+				log.debug("Would name cell:"+refName+" sheetname:"+sheetName+" excelref:"+crefs[i].formatAsR1C1String());
+				nameSingleCell (refName, sheetName, crefs[i].formatAsR1C1String(false));
 				
 
 			}
 
 
-
 		}
 
+		log.debug("HeaderNames size:"+headerNames.size()+" values "+Arrays.toString(headerNames.entrySet().toArray())); 
+		log.debug("ColNames size:"+colNames.size()+" values "+Arrays.toString(colNames.entrySet().toArray()));
 
-		//loop through rows
-
-			// check for header
-
-			// loop through cols
-
-				// check for name row
-
-				//add anme to spreadsheet
 
 	}
 

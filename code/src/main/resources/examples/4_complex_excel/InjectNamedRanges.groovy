@@ -25,7 +25,7 @@ assert xlWorkbook!=null
 assert xlWorkbook instanceof org.apache.poi.ss.usermodel.Workbook
 println "InjectNamedRanges.groovy running"   
 
-// Setup a reference to our helper class - makes script easier to write
+// Setup a reference to our helper class - makes this script easier to write
 ScriptSupport sprt = new ScriptSupport(xlWorkbook)
 
 // end careful change =====================================================================
@@ -35,7 +35,13 @@ sprt.nameSingleCell("CompanyName", "Accounts", "A4")
 
 // Start Naming Tables - each cell in table will be named individually using 
 //the base value, then a combination of the the header and rows
-sprt.nameTable("Key Info","Accounts","A12:I30")
+// from our example XL - the range will *not* include the black header row
+// but start immediately below it
+sprt.nameTable("Info","Accounts","A12:I30")
+sprt.nameTable("PL","Accounts","A34:I75")
+sprt.nameTable("BS","Accounts","A81:I124")
+sprt.nameTable("Cash","Accounts","A131:I195")
+
 
 // the final value in our script will be returned to Red Piranha
 // do-not-change as it expects an Excel Workbook back

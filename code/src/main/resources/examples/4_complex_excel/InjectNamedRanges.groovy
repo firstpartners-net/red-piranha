@@ -30,6 +30,9 @@ ScriptSupport sprt = new ScriptSupport(xlWorkbook)
 
 // end careful change =====================================================================
 
+
+
+
 // Start setting names - single cells
 sprt.nameSingleCell("CompanyName", "Accounts", "A4")
 

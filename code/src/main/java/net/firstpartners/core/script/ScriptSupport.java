@@ -155,6 +155,7 @@ public class ScriptSupport {
 
 				//tidy to remove spaces etc as Excel won't allow them in named range
 				refName = refName.replaceAll("-","_minus_");
+				refName = refName.replaceAll("\\+","_plus_");
 				refName = refName.replaceAll("[^A-Za-z0-9_.]", "");
 
 				// name this cell	
@@ -167,8 +168,8 @@ public class ScriptSupport {
 
 		}
 
-		log.debug("HeaderNames size:"+headerNames.size()+" values "+Arrays.toString(headerNames.entrySet().toArray())); 
-		log.debug("ColNames size:"+colNames.size()+" values "+Arrays.toString(colNames.entrySet().toArray()));
+		//log.debug("HeaderNames size:"+headerNames.size()+" values "+Arrays.toString(headerNames.entrySet().toArray())); 
+		//log.debug("ColNames size:"+colNames.size()+" values "+Arrays.toString(colNames.entrySet().toArray()));
 
 
 	}

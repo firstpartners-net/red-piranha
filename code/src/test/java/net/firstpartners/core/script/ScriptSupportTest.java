@@ -69,14 +69,12 @@ public class ScriptSupportTest {
 		//try out the naming
 		names.nameTable("Key Info","Accounts","A12:I30");
 
-		//Test the various methos
-		fail("Not yet implemented");
-
 		//test the named ranges coming back
-		Name testName = excelWorkBook.getName("testName");
-		assertEquals (testName.getRefersToFormula(),"Accounts!A1:B2");
+		Name testName = excelWorkBook.getName("KeyInfo_YearEnd_BaseYear_minus_2");
+		assertEquals (testName.getRefersToFormula(),"Accounts!R13C2");
 
-
+		testName = excelWorkBook.getName("KeyInfo_InvoicediscountingProjectedYearEndBalance_BaseYear_plus_2");
+		assertEquals (testName.getRefersToFormula(),"Accounts!R22C6");
 
 	}
 }

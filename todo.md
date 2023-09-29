@@ -4,11 +4,12 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## NEXT STEP 
 
-
-
-* Expand Groovy Script
+* Test more real life
     * Run against three tables in first sheet #### DEBUG ###
         * PL header has date, being pulled as number instead of string - write mini convertor + unit test on cellconvertor
+    * Review and tweak other anmes being output
+    * PreprocessTest Unit to green
+    * Example 4 running via webpage
 
 
 * Update documentation (go through again)
@@ -21,20 +22,22 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     * Readme.md
     * Other .md files
 
-## Next part of sample
+## Next - CSV Output
 * Output to CSV
     * output as 2 or three columns - update previous class with this
 
+## Next - Multiple files
 
 * Generate 2nd File into 5th sample folder (for multiplel filtes test)
     * copy generate spreasheet
     * create new DirectortInputStrategy to "walk" folder and call other input strategy
 
+## Next - Data Quality
 * Simple Check rules
     * just enough rule to filter / check for dud data
     * may need to see if can write rule to remove all
 
-## Deployment
+## Next - Deployment
 * Can deploy and work against true docs
 
 
@@ -54,12 +57,16 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     * Create Fiancial extraction Sample - analsyis of single case
     * multiple output options
     * decision test
-* Release
-    * Automate release (package and docker)
-    * Or at least update release notes
+
+## Release
+* Automate release (package and docker)
+* Or at least update release notes
+* do interim github and docker release
+* Merge back into main, create new branch?
+
 
 ## Tidy
-* Clear down warnings
+* Clear down warning
 * Figure out why current excel example is outputting incorrectly
 * More info through to front end
 * more tests compile / rule
@@ -79,10 +86,10 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * (Move RuleRunner.java remove RuleBuilder to same pre-built model that * DecisionModel uses)
 * Simplify down to Cells (remove all notion or ranges?)
 * restore commented out tests (put @Test back on them)
-** testJSONInOut
+    * testJSONInOut
 * run JavaDoc checker and tidy comments
-
 * Migrate to latest version of all libs
+* tidy DSL example
 
 ## Move to above, delete, or capture as future dieas
 * recover and reused previous examples (to web) - currently in test folder
@@ -93,15 +100,11 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * final tests running
 * RP using model from business central or simliar exported backage
 * Move bootstrap offline (and other javascript to make more robust)
-* tidy DSL example
 * Serialsiation - Into Tests of convertor / Java test data in JSON
-* use to trest cell conversion
-* samples - url to view input, out and rule files (or note how to do this)
-* do interim github and docker release
+* use to test cell conversion
 * Better display of Java objects
 * Read drools doc in more detail
 * Outline how to integrate with KIE Server
-* Maven site - document rp code?
 * Update red-piranha-sourceforge.com to point to github (grab info first)
 * Enable Swagger
 * Turn back on Spring Services in applicaiton.properites

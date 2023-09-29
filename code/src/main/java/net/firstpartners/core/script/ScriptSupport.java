@@ -119,6 +119,8 @@ public class ScriptSupport {
 			// Get the current cells value use our main convertor
 			// for this use case, we just want it as a string.
 			currentCellText = getCellAsStringForceDateConversion(poiCell);
+			// log.debug("CurrentCellText:"+currentCellText+"
+			// length"+currentCellText.length());
 
 			// Make a note of how many cells / rows deep in the table we are
 			int row = crefs[i].getRow();
@@ -151,6 +153,13 @@ public class ScriptSupport {
 				// we are in top row(s)
 				log.debug(" Row:" + row + " Col:" + col + " " + Arrays.toString(crefs[i].getCellRefParts())
 						+ " row header:" + currentCellText);
+
+				// fill in for blank names
+				if (currentCellText.length() == 0) {
+					currentCellText = "Col" + col + 1;
+					// log.debug("Updated blank row");
+				}
+
 				headerNames.put("" + col, currentCellText);
 			}
 
@@ -158,6 +167,13 @@ public class ScriptSupport {
 				// we are in col labels(s)
 				log.debug(" Row:" + row + " Col:" + col + " " + Arrays.toString(crefs[i].getCellRefParts())
 						+ " col labels:" + currentCellText);
+
+				// fill in for blank names
+				if (currentCellText.length() == 0) {
+					currentCellText = "Row" + col + 1;
+					// log.debug("Updated blank col");
+				}
+
 				colNames.put("" + row, currentCellText);
 			}
 
@@ -208,11 +224,15 @@ public class ScriptSupport {
 
 		String formula = sheetName + "!" + cellRef; // should give us same as in Excel e.g. Accounts!B14:I14
 
-		Name newXlNamedRange = wb.createName();
-		newXlNamedRange.setNameName(baseName);
-		newXlNamedRange.setRefersToFormula(formula);
+		try {
+			Name newXlNamedRange = wb.createName();
+			newXlNamedRange.setNameName(baseName);
+			newXlNamedRange.setRefersToFormula(formula);
+			log.debug("Added Name:" + baseName + " formula:" + formula);
+		} catch (IllegalArgumentException iae) {
+			log.info("Ignoring Duplicate or invalid Name:" + baseName + " formula:" + formula);
 
-		log.debug("Added Name:" + baseName + " formula:" + formula);
+		}
 
 	}
 
@@ -220,33 +240,39 @@ public class ScriptSupport {
 	 * Convert Cell to the String
 	 * for this use case, we just want it as a string.
 	 * e.g. for headers like "20/12/21" we want it as that value, not string
-	 * Note that numbers will often be treated as dates - since these are more likely to be headers
+	 * Note that numbers will often be treated as dates - since these are more
+	 * likely to be headers
+	 * 
 	 * @param poiCell
 	 * @return
 	 */
 	public String getCellAsStringForceDateConversion(Cell poiCell) {
 
-		//Convert our cell differently depending if is a date or note
-		log.debug("Cell Type:"+(poiCell.getCellType()));
+		// Convert our cell differently depending if is a date or note
+		// log.debug("Cell Type:"+(poiCell.getCellType()));
 
-		String simpleConversion = ""+CellConvertor.getCellContents(poiCell);
-		log.debug("Simple Conversion:"+simpleConversion);
+		String simpleConversion = "" + CellConvertor.getCellContents(poiCell);
+		// log.debug("Simple Conversion:"+simpleConversion);
 
-		CellType type =poiCell.getCellType();
+		CellType type = poiCell.getCellType();
 
-		if(type==CellType.NUMERIC||(poiCell.getCellType()==CellType.FORMULA)&&(DateUtil.isCellDateFormatted(poiCell))){
-			
-			//return df.formatCellValue(poiCell);
-			Date javaDate= DateUtil.getJavaDate( Double.parseDouble(simpleConversion));
-			return new SimpleDateFormat("dd/MM/yy").format(javaDate);
+		if (type == CellType.NUMERIC
+				|| (poiCell.getCellType() == CellType.FORMULA) && (DateUtil.isCellDateFormatted(poiCell))) {
 
-		} 
+			// convert using null checks
+			if(simpleConversion!=null){
+				Date javaDate = DateUtil.getJavaDate(Double.parseDouble(simpleConversion));
+				if(javaDate!=null){
+					return new SimpleDateFormat("dd/MM/yy").format(javaDate);
+				}
+			}
+
+		}
 
 		// return default conversion if we get this far
 		return simpleConversion;
-		
-		
-		// 
+
+		//
 
 	}
 }

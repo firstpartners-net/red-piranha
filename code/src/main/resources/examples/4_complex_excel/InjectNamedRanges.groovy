@@ -17,7 +17,7 @@ will have them set
 
 //the next section imports libs that allow this script to interact with the Workbook
 import org.apache.poi.ss.usermodel.Workbook;
-import net.firstpartners.core.script.SheetNames;
+import net.firstpartners.core.script.ScriptSupport;
 
 
 // check that the script has been called in a way that it expects

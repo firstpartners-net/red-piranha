@@ -59,8 +59,6 @@ class SampleDataLoaderTest {
 	@Test
 	void testLoadSampleConfigJson() throws StreamWriteException, DatabindException, IOException {
 		
-		fail("just checking");
-
 		//load the samples - passing in null means we only look relative to working directory
 		List<SampleData> samples = SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON,myConfig);
 		

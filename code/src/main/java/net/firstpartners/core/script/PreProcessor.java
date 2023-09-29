@@ -2,6 +2,7 @@ package net.firstpartners.core.script;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
@@ -61,27 +62,35 @@ public class PreProcessor {
 		}
 
 		//get a handle to the script - Groovy Engine needs file name
-		File script = ResourceFinder.getFileResourceUsingConfig(baseDir+groovyScriptName, appConfig);
+		try{
+			File script = ResourceFinder.getFileResourceUsingConfig(baseDir+groovyScriptName, appConfig);
+			
+			String scriptPath =script.getAbsolutePath();
+			log.debug("ScriptPath:"+scriptPath);
+
+			//read the script contents
+			String scriptContents = FileUtils.readFileToString(script, "utf-8");
+			//log.debug("Script Contents\n"+scriptContents);
+
+			//Pass the Workbook in 
+			Binding binding = new Binding();
+			binding.setVariable("xlWorkbook", xlWorkbook);
+			
+			//and call the script
+			GroovyShell shell = new GroovyShell(binding);                       
+			Object result = shell.evaluate(scriptContents); 	
+
+			//check the script returns a workbook
+			assert result instanceof org.apache.poi.ss.usermodel.Workbook : "Script should return type of Workbook";
+			return (org.apache.poi.ss.usermodel.Workbook)result;
+			
+		} catch (FileNotFoundException fnfe){
+			log.warn("Could not find preprocess Script - continueing without script");
+		}
+
+		//default - return the incoming workbook
+		return xlWorkbook;
 		
-		String scriptPath =script.getAbsolutePath();
-		log.debug("ScriptPath:"+scriptPath);
-
-		//read the script contents
-		String scriptContents = FileUtils.readFileToString(script, "utf-8");
-		//log.debug("Script Contents\n"+scriptContents);
-
-		//Pass the Workbook in 
-		Binding binding = new Binding();
-		binding.setVariable("xlWorkbook", xlWorkbook);
-		
-		//and call the script
-		GroovyShell shell = new GroovyShell(binding);                       
-		Object result = shell.evaluate(scriptContents); 	
-
-		//check the script returns a workbook
-		assert result instanceof org.apache.poi.ss.usermodel.Workbook : "Script should return type of Workbook";
-
-		return (org.apache.poi.ss.usermodel.Workbook)result;
 		
 
 	}

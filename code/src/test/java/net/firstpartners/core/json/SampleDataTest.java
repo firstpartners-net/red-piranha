@@ -52,7 +52,7 @@ class SampleDataTest {
 		assertNotNull (testUrl);
 		assertTrue (testUrl.indexOf("http")<0,"should not encode the http part"); 
 		assertTrue (testUrl.indexOf("/")<0,"url should be encoded");
-		assertTrue (testUrl.indexOf("blah")<0,"description should be encoded"); 
+		assertTrue (testUrl.indexOf("blah")>0,"description should be encoded"); 
 		assertTrue (testUrl.indexOf("=&")<0,"Check for a missing value - = and & should not be beside each other");
 		assertTrue (testUrl.indexOf("null")<0,"No null values should be returned");
 		

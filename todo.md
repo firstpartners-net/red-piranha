@@ -5,10 +5,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## NEXT STEP 
 
 * Test more real life
-    * Run against three tables in first sheet #### DEBUG ###
-        * check for already exists and how deal with it
-        * check for blank header
-    * Review and tweak other anmes being output
+    * Review and tweak other names being output
     * PreprocessTest Unit to green
     * Example 4 running via webpage
 

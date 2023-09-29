@@ -14,6 +14,10 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     * Pullback exact info and test for it
     * remove loop through anems
 
+* Expand Groovy Script
+    * Run against three tables in first sheet
+
+
 * Update documentation (go through again)
     * In example 4 
     * In script comments

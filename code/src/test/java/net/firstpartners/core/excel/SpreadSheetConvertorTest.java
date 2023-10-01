@@ -2,6 +2,7 @@ package net.firstpartners.core.excel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -68,7 +69,10 @@ public class SpreadSheetConvertorTest {
 	 */
 	public final RangeList getTestDataFromWorkbook() throws IOException, ResourceException, ScriptException {
 	
-		FileInputStream inputStream = new FileInputStream(dirPrefix+TestConstants.XLSX_DATA_FILE);
+		String testDataLocation=dirPrefix+TestConstants.XLSX_DATA_FILE;
+		log.debug("Reading test data from :"+testDataLocation);
+
+		FileInputStream inputStream = new FileInputStream(testDataLocation);
 		wb = WorkbookFactory.create(inputStream);
 
 		SpreadSheetConvertor convertor = new SpreadSheetConvertor(appConfig);
@@ -77,17 +81,17 @@ public class SpreadSheetConvertorTest {
 	}
 	
 	@Test
-	public final void testRangeConversation() throws IOException, ResourceException, ScriptException {
+	public final void testRangeConversationSimpleExcel() throws IOException, ResourceException, ScriptException {
 		
-		RangeList myRange = getTestDataFromWorkbook();
+		RangeList myRedRangeList = getTestDataFromWorkbook();
 		assertNotNull(wb);
 		
 		// Convert over and back again
-		assertNotNull(myRange);
-		assertEquals(myRange.getAllCellsWithNames().size(), 132);
+		assertNotNull(myRedRangeList);
+		assertEquals(myRedRangeList.getAllCellsWithNames().size(), 132);
 
 		// loop through and checck rnages
-		Map<String, Cell> map = myRange.getAllCellsWithNames();
+		Map<String, Cell> map = myRedRangeList.getAllCellsWithNames();
 		for (Map.Entry<String, Cell> entry : map.entrySet()) {
 	        System.out.println(entry.getKey() + ":" + entry.getValue());
 	        assertNotNull(entry.getKey());
@@ -95,7 +99,17 @@ public class SpreadSheetConvertorTest {
 	        
 	    }
 			
-		SpreadSheetConvertor.updateRedRangeintoPoiExcel(wb, myRange);
+		SpreadSheetConvertor.updateRedRangeintoPoiExcel(wb, myRedRangeList);
+		fail("Remove the previous line");
+
+		fail("add additional assertions to data");
+
+	}
+
+	@Test
+	public final void testRangeConversationCompleExcel() throws IOException, ResourceException, ScriptException {
+		
+		fail("Get Complex Excel like sample 4, repeat test like above (with no preprocess script as gnarlyey sheet)");
 
 	}
 

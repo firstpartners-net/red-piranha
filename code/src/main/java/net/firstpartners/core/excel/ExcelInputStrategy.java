@@ -98,6 +98,7 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 		//call the processor if available
 		if(appConfig.getPreprocessScript()!=null){
 
+			log.debug("Configured to use pre-processor subDir:"+subDirectory+" script:"+appConfig.getPreprocessScript());
 			PreProcessor preProcess = new PreProcessor(appConfig);
 			excelWorkBook= preProcess.preprocessXlWorkbook(subDirectory,appConfig.getPreprocessScript(), excelWorkBook);
 
@@ -107,7 +108,7 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 
 		//Get handle and use convertor
 		SpreadSheetConvertor convertor = new SpreadSheetConvertor(appConfig);
-		RangeList myRange = convertor.convertNamesFromPoiWorkbookIntoRedRange(subDirectory,appConfig.getPreprocessScript(),excelWorkBook);
+		RangeList myRange = convertor.convertNamesFromPoiWorkbookIntoRedRange(excelWorkBook);
 		inputAsStream.close();
 		return myRange;
 

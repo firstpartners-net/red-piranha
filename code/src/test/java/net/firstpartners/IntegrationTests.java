@@ -115,6 +115,7 @@ class IntegrationTests {
 			testModel.setBaseDirectory(thisExample.getBaseDirectory());
 
 			log.debug("Running:\n" + testModel);
+
 			IRunner runner = RunnerFactory.getRuleRunner(testModel, appConfig);
 			
 			// set out OutputStrategy so we can test the output later

@@ -37,9 +37,7 @@ public class CellConvertor {
 			org.apache.poi.ss.usermodel.Cell poiCell) {
 
 		// Check for null parameter
-		if (poiCell == null) {
-			return new net.firstpartners.data.Cell();
-		}
+		assert (poiCell!=null) : "incoming POI Cell (from Excel) should not be null";
 
 		// Start building our new (Red) Cell
 		net.firstpartners.data.Cell redCell = new net.firstpartners.data.Cell();

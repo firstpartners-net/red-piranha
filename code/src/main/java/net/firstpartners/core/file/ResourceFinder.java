@@ -50,26 +50,32 @@ public class ResourceFinder {
 	 */
 	public static File getFileResourceUsingConfig(String baseDir,String resourceName, Config appConfig) throws FileNotFoundException {
 		
-		
+		String seekName= resourceName;
+
+		if(baseDir!=null && baseDir!=""){
+			seekName = baseDir+resourceName;
+			
+		}
+
 		log.debug("Seeking:"+resourceName);
 
-		File bareFile = new File(resourceName);
+		File bareFile = new File(seekName);
 		
 		File workingDir = new File(".");
 		if (bareFile.exists()) {
 			return bareFile;
 		} else {
-			log.debug("1 No resource:"+resourceName+ " found in "+workingDir.getAbsolutePath()+" attempting another approach?");
+			log.debug("1 No resource:"+seekName+ " found in "+workingDir.getAbsolutePath()+" attempting another approach?");
 		}
 		
 		// We need config info to try backups
 		if(appConfig==null) {
-			throw new FileNotFoundException("1 Cannot find :"+resourceName+" and no config provided to try other locations");
+			throw new FileNotFoundException("1 Cannot find :"+seekName+" and no config provided to try other locations");
 		}
 		
 		
 		String defaultDir = appConfig.getSampleBaseDirDefault();
-		File defaultFile = new File(defaultDir+resourceName);
+		File defaultFile = new File(defaultDir+seekName);
 		if (defaultFile.exists()) {
 			log.debug("2 Found Resource:"+defaultFile);
 			return defaultFile;
@@ -79,14 +85,14 @@ public class ResourceFinder {
 		
 		
 		String alternateDir = appConfig.getSampleBaseDirAlternate();
-		File alternateFile = new File(alternateDir+resourceName);
+		File alternateFile = new File(alternateDir+seekName);
 		if (alternateFile.exists()) {
 			log.debug("2 Found Resource:"+alternateFile);
 			return alternateFile;
 		} else {
 			log.debug("3 No resource in alternate dir:"+alternateFile);
 			
-			throw new FileNotFoundException("Cannot find:"+resourceName +" in any of 3 locations - default , "+defaultDir+" , "+alternateDir);
+			throw new FileNotFoundException("Cannot find:"+seekName +" in any of 3 locations - default , "+defaultDir+" , "+alternateDir);
 		}
 		
 		

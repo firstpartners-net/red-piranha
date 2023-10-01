@@ -74,10 +74,10 @@ public class ScriptSupportTest {
 
 		// test the named ranges coming back
 		Name testName = excelWorkBook.getName("KeyInfo_YearEnd_BaseYear_minus_2");
-		assertEquals(testName.getRefersToFormula(), "Accounts!R13C2");
+		assertEquals(testName.getRefersToFormula(), "Accounts!B13");
 
 		testName = excelWorkBook.getName("KeyInfo_InvoicediscountingProjectedYearEndBalance_BaseYear_plus_2");
-		assertEquals(testName.getRefersToFormula(), "Accounts!R22C6");
+		assertEquals(testName.getRefersToFormula(), "Accounts!F22");
 
 	}
 

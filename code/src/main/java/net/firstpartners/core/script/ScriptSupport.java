@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -180,8 +179,8 @@ public class ScriptSupport {
 
 			if (!colLabel && !rowLabel) {
 				// we are in main body of table labels(s)
-				log.debug(" Row:" + row + " Col:" + col + " " + Arrays.toString(crefs[i].getCellRefParts())
-						+ " table body value:" + currentCellText);
+				//log.debug(" Row:" + row + " Col:" + col + " " + Arrays.toString(crefs[i].getCellRefParts())
+				//		+ " table body value:" + currentCellText);
 
 				// Calculate namedRangeName based on header and col
 				// remember it is a table, so the col names will differ by row (and vice versa)
@@ -195,9 +194,8 @@ public class ScriptSupport {
 
 				// name this cell
 				//log.debug("Would name cell:" + refName + " sheetname:" + sheetName + " excelref:"
-				//		+ crefs[i].formatAsR1C1String());
-				nameSingleCell(refName, sheetName, crefs[i].formatAsR1C1String(false));
-
+				//		+ crefs[i].formatAsString());
+				nameSingleCell(refName, sheetName, crefs[i].formatAsString(false));
 			}
 
 		}

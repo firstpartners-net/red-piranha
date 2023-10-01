@@ -47,7 +47,7 @@ public class PreProcessor {
 
 	/**
 	 * Run the Specified Groovy Script
-	 *
+	 * @param SubDir - that contains the script we are looking for. Normally added to the script file
 	 * @param groovyScriptName a {@link java.lang.String} name of a Groovy file to run
 	 * @param xlWorkbook - an Apache POI workbook representing the file we want to preprocess
 	 * @return 
@@ -55,7 +55,7 @@ public class PreProcessor {
 	 * @throws ScriptException
 	 * @throws ResourceException
 	 */
-	public Workbook preprocessXlWorkbook (String baseDir, String groovyScriptName, Workbook xlWorkbook) throws IOException, ResourceException, ScriptException {
+	public Workbook preprocessXlWorkbook (String subDirectory, String groovyScriptName, Workbook xlWorkbook) throws IOException, ResourceException, ScriptException {
 
 		if(engine==null){
 			engine = new GroovyScriptEngine(new String[]{ "." });
@@ -63,7 +63,7 @@ public class PreProcessor {
 
 		//get a handle to the script - Groovy Engine needs file name
 		try{
-			File script = ResourceFinder.getFileResourceUsingConfig(baseDir,groovyScriptName, appConfig);
+			File script = ResourceFinder.getFileResourceUsingConfig(subDirectory,groovyScriptName, appConfig);
 			
 			String scriptPath =script.getAbsolutePath();
 			log.debug("ScriptPath:"+scriptPath);

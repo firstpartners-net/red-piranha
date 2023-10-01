@@ -136,12 +136,7 @@ public RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.userm
 		
 		//check incoming values
 		assert wb!=null : "Incoming workboook should not be null";
-		
-		//Run any preprocessing script needed
-		if(preProcess ==null){
-			preProcess = new PreProcessor(appConfig);
-		}
-		wb= preProcess.preprocessXlWorkbook(baseDir,preprocessScript, wb);
+
 		
 		// hold all the named ranges from our sheet
 		RangeList returnValues = new RangeList();

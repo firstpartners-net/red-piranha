@@ -17,6 +17,7 @@ import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
+import net.firstpartners.core.script.PreProcessor;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -93,6 +94,16 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		log.debug("converting incoming excel stream to Javabeans");
 		excelWorkBook = WorkbookFactory.create(inputAsStream);
+
+		//call the processor if available
+		if(appConfig.getPreprocessScript()!=null){
+
+			PreProcessor preProcess = new PreProcessor(appConfig);
+			excelWorkBook= preProcess.preprocessXlWorkbook(subDirectory,appConfig.getPreprocessScript(), excelWorkBook);
+
+		} else {
+			log.debug("No pre-processor configured");
+		}
 
 		//Get handle and use convertor
 		SpreadSheetConvertor convertor = new SpreadSheetConvertor(appConfig);

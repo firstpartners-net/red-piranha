@@ -62,9 +62,9 @@ public interface IDocumentInStrategy {
 	void setOriginalDocument(OfficeDocument originalDoc);
 
 	/**
-	 * Allows the program ot set a baseDirectory to assist it in finding files
-	 * @param baseDirectory
+	 * Allows the program ot set a directory containing this sample to assist it in finding files
+	 * @param directorySampleIsIn
 	 */
-	void setBaseDirectory(String baseDirectory);
+	void setSubDirectory(String subDirectory);
 
 }

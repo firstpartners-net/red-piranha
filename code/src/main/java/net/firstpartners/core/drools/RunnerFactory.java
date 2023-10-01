@@ -176,7 +176,7 @@ public class RunnerFactory {
 	 * Create a properly configured RuleRunner for the Input / Output file types we
 	 * are passing within the RedModel cargo object
 	 *
-	 * @param dataModel - where we get the data from
+	 * @param redModel - where we get the data from
 	 * @param appConfig - application Configuration
 	 * @return RuleRunner Object with the correct input / output Strategies
 	 *         configured
@@ -192,14 +192,14 @@ public class RunnerFactory {
 	 * @throws java.lang.SecurityException        if any.
 	 * @throws java.lang.IllegalArgumentException if any.
 	 */
-	public static IRunner getRuleRunner(RedModel dataModel, Config appConfig)
+	public static IRunner getRuleRunner(RedModel redModel, Config appConfig)
 			throws RPException {
 
 		// check our incoming params
-		assert dataModel != null;
-		assert dataModel.getInputFileLocation() != null;
-		assert dataModel.getRuleFileLocation() != null;
-		assert dataModel.getOutputFileLocation() != null;
+		assert redModel != null;
+		assert redModel.getInputFileLocation() != null;
+		assert redModel.getRuleFileLocation() != null;
+		assert redModel.getOutputFileLocation() != null;
 
 
 		// handle on our strategy objects
@@ -208,16 +208,17 @@ public class RunnerFactory {
 		IDocumentOutStrategy outputStrat;
 
 		// Decide on our input strategy
-		Class<?> strategyClass = getInputMapping(dataModel.getInputFileLocation());
+		Class<?> strategyClass = getInputMapping(redModel.getInputFileLocation());
 
 		log.debug("trying to create Strategy Object from class:" + strategyClass);
 		Constructor<?> constructor;
 		try {
 			constructor = strategyClass.getConstructor(String.class);
 			inputStrat = (IDocumentInStrategy) constructor
-					.newInstance(dataModel.getBaseDirectory()+dataModel.getInputFileLocation());
+					.newInstance(redModel.getBaseDirectory()+redModel.getInputFileLocation());
 
 			// pass in the config
+			inputStrat.setSubDirectory(redModel.getBaseDirectory());
 			inputStrat.setConfig(appConfig);
 
 		} catch (NoSuchMethodException | SecurityException |InstantiationException | InvocationTargetException |IllegalAccessException e) {
@@ -226,26 +227,27 @@ public class RunnerFactory {
 
 		// Decide on our output strategy
 		strategyClass = null;
-		strategyClass = getOutputMapping(dataModel.getOutputFileLocation());
+		strategyClass = getOutputMapping(redModel.getOutputFileLocation());
 
 		log.debug("trying to create Strategy Object from class:" + strategyClass);
 		try {
 			constructor = strategyClass.getConstructor(String.class);
 			 outputStrat = (IDocumentOutStrategy) constructor
-			.newInstance(dataModel.getBaseDirectory()+dataModel.getOutputFileLocation());
+			.newInstance(redModel.getBaseDirectory()+redModel.getOutputFileLocation());
 
 		} catch (NoSuchMethodException | SecurityException |InstantiationException | InvocationTargetException |IllegalAccessException e) {
 			throw new RPException("Error when creating output strategy Object", e);
 		}
 
 		// pass in the config
+		outputStrat.setSubDirectory(redModel.getBaseDirectory());
 		outputStrat.setConfig(appConfig);
 
 		log.debug("Using DocumentInputStrategy:" + inputStrat.getClass());
 		log.debug("Using DocumentOutputStrategy:" + outputStrat);
 
 		// Decide on the Strategy (runner) we want to execute this model
-		if (dataModel.getRuleFileLocation().toLowerCase().endsWith(".dmn")) {
+		if (redModel.getRuleFileLocation().toLowerCase().endsWith(".dmn")) {
 
 			myRunner = new DecisionModelRunner(inputStrat, outputStrat, appConfig);
 		} else {

@@ -27,6 +27,17 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	// Name of the outputfile
 	private OfficeDocument processedDoc = null;
 
+	//sub directory e.g. for samples
+	private String subDirectory;
+
+
+	public String getSubDirectory() {
+		return subDirectory;
+	}
+
+	public void setSubDirectory(String subDirectory) {
+		this.subDirectory = subDirectory;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -66,15 +77,6 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 		this.appConfig = appConfig;
 	}
 
-	/**
-	 * <p>setProcessedDocument.</p>
-	 *
-	 * @param processedWorkbook a {@link net.firstpartners.core.file.OfficeDocument} object
-	 */
-	protected void setProcessedDocument(OfficeDocument processedWorkbook) {
-		this.processedDoc = processedWorkbook;
-	}
-
 	/** {@inheritDoc} */
 	@Override
 	public void setUpdates(OfficeDocument fileToProcess, RangeList ranges) throws IOException {
@@ -82,6 +84,15 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 		if (fileToProcess.isSpreadsheet()) {
 			SpreadSheetConvertor.updateRedRangeintoPoiExcel(fileToProcess.getOriginalAsPoiWorkbook(), ranges);
 		}
+	}
+
+	/**
+	 * <p>setProcessedDocument.</p>
+	 *
+	 * @param processedWorkbook a {@link net.firstpartners.core.file.OfficeDocument} object
+	 */
+	protected void setProcessedDocument(OfficeDocument processedWorkbook) {
+		this.processedDoc = processedWorkbook;
 	}
 
 }

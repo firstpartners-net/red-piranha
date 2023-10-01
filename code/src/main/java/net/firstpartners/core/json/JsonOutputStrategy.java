@@ -37,6 +37,9 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 	// @SuppressWarnings("unused") // eclipse mistakenly marks this as unused
 	private RangeList processedRange;
 
+	//sub directory e.g. for samples
+	private String subDirectory;
+
 	
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
@@ -45,6 +48,18 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 	 */
 	public JsonOutputStrategy(String outputFileName) {
 		this.outputFile = outputFileName;
+	}
+
+
+
+	public String getSubDirectory() {
+		return subDirectory;
+	}
+
+
+
+	public void setSubDirectory(String subDirectory) {
+		this.subDirectory = subDirectory;
 	}
 
 

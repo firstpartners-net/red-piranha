@@ -35,8 +35,11 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	// Name of the outputfile
 	private String outputFileName = null;
 
+	// Sub directory e.g. for samples
+	private String subDirectory =null;
 
 	private Workbook workbook;
+
 
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
@@ -45,6 +48,14 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	public ExcelOutputStrategy(String outputFileName) {
 		this.outputFileName = outputFileName;
+	}
+
+	public String getSubDirectory() {
+		return subDirectory;
+	}
+
+	public void setSubDirectory(String subDirectory) {
+		this.subDirectory = subDirectory;
 	}
 
 
@@ -74,6 +85,59 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	public Workbook getWorkbook() {
 		return workbook;
+	}
+
+	/**
+	 * Outputs an Apache POI Workbook to a Stream (e.g Servlet response)
+	 *
+	 * @param wb a {@link org.apache.poi.ss.usermodel.Workbook} object
+	 * @param stream a {@link java.io.OutputStream} object
+	 * @throws java.io.IOException
+	 */
+	public void outputToStream(Workbook wb, OutputStream stream) throws IOException {
+
+		wb.write(stream);
+	}
+
+	/**
+	 * Process the output from the system
+	 *
+	 * @throws java.io.IOException
+	 */
+	public void processOutput() throws IOException {
+
+		// delete the outputFile if it exists
+		Utils.deleteOutputFileIfExists(outputFileName);
+
+		// Open the outputfile as a stream
+		outputToFile(workbook);
+
+	}
+
+	/** {@inheritDoc} */
+	public void setConfig(Config appConfig) {
+		this.appConfig = appConfig;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * Update a copy of our Original Document with new data
+	 */
+	public void setUpdates(OfficeDocument fileToProcess, RangeList range) throws IOException {
+
+		this.workbook = fileToProcess.getOriginalAsPoiWorkbook();
+		SpreadSheetConvertor.updateRedRangeintoPoiExcel(this.workbook, range);
+
+	}
+
+	/**
+	 * <p>Setter for the field <code>workbook</code>.</p>
+	 *
+	 * @param workbook a {@link org.apache.poi.ss.usermodel.Workbook} object
+	 */
+	public void setWorkbook(Workbook workbook) {
+		this.workbook = workbook;
 	}
 
 	/**
@@ -134,59 +198,6 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 		 }
 		
 
-	}
-
-	/**
-	 * Outputs an Apache POI Workbook to a Stream (e.g Servlet response)
-	 *
-	 * @param wb a {@link org.apache.poi.ss.usermodel.Workbook} object
-	 * @param stream a {@link java.io.OutputStream} object
-	 * @throws java.io.IOException
-	 */
-	public void outputToStream(Workbook wb, OutputStream stream) throws IOException {
-
-		wb.write(stream);
-	}
-
-	/**
-	 * Process the output from the system
-	 *
-	 * @throws java.io.IOException
-	 */
-	public void processOutput() throws IOException {
-
-		// delete the outputFile if it exists
-		Utils.deleteOutputFileIfExists(outputFileName);
-
-		// Open the outputfile as a stream
-		outputToFile(workbook);
-
-	}
-
-	/** {@inheritDoc} */
-	public void setConfig(Config appConfig) {
-		this.appConfig = appConfig;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * Update a copy of our Original Document with new data
-	 */
-	public void setUpdates(OfficeDocument fileToProcess, RangeList range) throws IOException {
-
-		this.workbook = fileToProcess.getOriginalAsPoiWorkbook();
-		SpreadSheetConvertor.updateRedRangeintoPoiExcel(this.workbook, range);
-
-	}
-
-	/**
-	 * <p>Setter for the field <code>workbook</code>.</p>
-	 *
-	 * @param workbook a {@link org.apache.poi.ss.usermodel.Workbook} object
-	 */
-	public void setWorkbook(Workbook workbook) {
-		this.workbook = workbook;
 	}
 
 }

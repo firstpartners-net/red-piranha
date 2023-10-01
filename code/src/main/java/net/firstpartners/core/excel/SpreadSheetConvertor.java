@@ -1,5 +1,7 @@
 package net.firstpartners.core.excel;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -128,23 +130,24 @@ public RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.userm
 	 * @throws ScriptException
 	 * @throws ResourceException
 	 */
-	//@SuppressWarnings("unused")
 	public RangeList convertNamesFromPoiWorkbookIntoRedRange(String baseDir, String preprocessScript,org.apache.poi.ss.usermodel.Workbook wb)
 			throws IOException, ResourceException, ScriptException {
 
+		
+		//check incoming values
+		assert wb!=null : "Incoming workboook should not be null";
+		
 		//Run any preprocessing script needed
 		if(preProcess ==null){
 			preProcess = new PreProcessor(appConfig);
 		}
 		wb= preProcess.preprocessXlWorkbook(baseDir,preprocessScript, wb);
-
+		
 		// hold all the named ranges from our sheet
 		RangeList returnValues = new RangeList();
 
-		// retrieve the named range - Iterator not available
-		List<? extends Name> namedRanges = wb.getAllNames();
-
-		
+		// retrieve the named range 
+		List<? extends Name> namedRanges = wb.getAllNames();		
 		if (namedRanges == null) {
 			log.info("No Named Ranges in workbook- skipping");
 			throw new IOException("No Named Ranges in workbook- skipping");
@@ -152,12 +155,10 @@ public RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.userm
 		}
 
 		// Setup loop through named ranges
-
 		org.apache.poi.ss.usermodel.Name aNamedRange = null;
 		ListIterator<? extends Name> loopList = namedRanges.listIterator();
 
 		while (loopList.hasNext()) {
-
 
 			aNamedRange = loopList.next(); // wb.getNameAt(namedRangeIdx);
 

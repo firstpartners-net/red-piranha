@@ -36,7 +36,7 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 
 	private Config appConfig;
 
-	private String baseDirectory;
+	private String subDirectory;
 
 	/**
 	 * Construct a new Strategy Object
@@ -48,10 +48,10 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	}
 
 	/**
-	 * Set the base Directory
+	 * Set the sub Directory
 	 */
-	public void setBaseDirectory(String baseDirectory){
-		this.baseDirectory= baseDirectory;
+	public void setSubDirectory(String subDirectory){
+		this.subDirectory= subDirectory;
 	}
 	
 	/** {@inheritDoc} */
@@ -85,18 +85,18 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	@Override
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, ResourceException, ScriptException {
 
-		log.debug("App config is null:"+(appConfig==null));
+		//check incoming values	
+		assert appConfig!=null: "App Config should not be null";
 
+		// load our Excel file and convert to our internal beans
 		File xlFile = ResourceFinder.getFileResourceUsingConfig(excelInputFileName, appConfig);
-		
 		InputStream inputAsStream = new FileInputStream(xlFile);
-
 		log.debug("converting incoming excel stream to Javabeans");
 		excelWorkBook = WorkbookFactory.create(inputAsStream);
 
 		//Get handle and use convertor
 		SpreadSheetConvertor convertor = new SpreadSheetConvertor(appConfig);
-		RangeList myRange = convertor.convertNamesFromPoiWorkbookIntoRedRange(baseDirectory,appConfig.getPreprocessScript(),excelWorkBook);
+		RangeList myRange = convertor.convertNamesFromPoiWorkbookIntoRedRange(subDirectory,appConfig.getPreprocessScript(),excelWorkBook);
 		inputAsStream.close();
 		return myRange;
 

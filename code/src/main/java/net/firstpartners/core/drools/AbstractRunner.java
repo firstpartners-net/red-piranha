@@ -102,6 +102,7 @@ public abstract class AbstractRunner implements IRunner {
 			ranges.cascadeResetIsModifiedFlag();
 		}
 
+		// Update / snapshot our progress
 		ruleModel.setPreRulesSnapShot(ranges);
 		ruleModel.setUIProgressStatus(10);
 

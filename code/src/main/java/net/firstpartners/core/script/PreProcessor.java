@@ -63,7 +63,7 @@ public class PreProcessor {
 
 		//get a handle to the script - Groovy Engine needs file name
 		try{
-			File script = ResourceFinder.getFileResourceUsingConfig(baseDir+groovyScriptName, appConfig);
+			File script = ResourceFinder.getFileResourceUsingConfig(baseDir,groovyScriptName, appConfig);
 			
 			String scriptPath =script.getAbsolutePath();
 			log.debug("ScriptPath:"+scriptPath);
@@ -85,7 +85,7 @@ public class PreProcessor {
 			return (org.apache.poi.ss.usermodel.Workbook)result;
 			
 		} catch (FileNotFoundException fnfe){
-			log.warn("Could not find preprocess Script - continueing without script");
+			log.warn("Could not find preprocess Script - continue without script with unmodified workbook");
 		}
 
 		//default - return the incoming workbook

@@ -48,4 +48,6 @@ public interface IDocumentOutStrategy {
 	 */
 	void setUpdates(OfficeDocument fileToProcess,RangeList ranges) throws IOException;
 
+	public void setSubDirectory(String baseDirectory);
+
 }

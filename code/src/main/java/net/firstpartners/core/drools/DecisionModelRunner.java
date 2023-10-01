@@ -187,7 +187,7 @@ public class DecisionModelRunner extends AbstractRunner {
 		// Check for a list
 		if (inputObject instanceof List) {
 
-			List loopList = (List)inputObject;
+			List<Object> loopList = (List<Object>)inputObject;
 
 			for (int i = 0; i < loopList.size(); i++) {
 				cellResult.addAll(convertDecisionResultToCells(loopList.get(i)));

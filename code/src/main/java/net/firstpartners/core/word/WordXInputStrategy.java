@@ -35,7 +35,7 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 
 	private String wordInputFileName = null;
 
-	private String baseDirectory;
+	private String subDirectory;
 
 	/**
 	 * Construct a new Strategy Object
@@ -46,15 +46,15 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 		this.wordInputFileName = wordxInputFileName;
 	}
 
-	public String getBaseDirectory() {
-		return baseDirectory;
+	public String getSubDirectory() {
+		return subDirectory;
 	}
 
 	/**
 	 * Set the base Directory
 	 */
-	public void setBaseDirectory(String baseDirectory){
-		this.baseDirectory= baseDirectory;
+	public void setSubDirectory(String subDirectory){
+		this.subDirectory= subDirectory;
 	}
 
 	/** {@inheritDoc} */

@@ -34,6 +34,9 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 	
 	private RangeList savedRange;
 
+	//sub directory e.g. for samples
+	private String subDirectory;
+
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
 	 *
@@ -41,6 +44,16 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 	 */
 	public PDFOutputStrategy(String outputFileName) {
 		this.outputFileName = outputFileName;
+	}
+
+
+	public String getSubDirectory() {
+		return subDirectory;
+	}
+
+
+	public void setSubDirectory(String subDirectory) {
+		this.subDirectory = subDirectory;
 	}
 
 
@@ -61,17 +74,6 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 	 */
 	public String getOutputFileName() {
 		return outputFileName;
-	}
-
-	/**
-	 * Outputs Red-Piranha's own internal format to a Logging Console
-	 * 
-	 * @param ranges
-	 */
-	void outputToConsole(RangeList ranges) {
-		for (Range r : ranges) {
-			log.debug(r.toString());
-		}
 	}
 
 	/**
@@ -114,7 +116,6 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 		this.appConfig = appConfig;
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -126,6 +127,18 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 		// update
 		this.savedRange = range;
 
+	}
+
+
+	/**
+	 * Outputs Red-Piranha's own internal format to a Logging Console
+	 * 
+	 * @param ranges
+	 */
+	void outputToConsole(RangeList ranges) {
+		for (Range r : ranges) {
+			log.debug(r.toString());
+		}
 	}
 
 }

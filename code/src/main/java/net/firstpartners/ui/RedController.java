@@ -95,7 +95,7 @@ public class RedController {
 			IRunner runner = RunnerFactory.getRuleRunner(redModel,appConfig);
 
 			//Update configuration on this
-			runner.getDocumentInputStrategy().setBaseDirectory(redModel.getBaseDirectory());
+			
 			runner.getDocumentInputStrategy().setConfig(appConfig);
 
 			// Call the rules using this datafile

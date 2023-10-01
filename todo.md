@@ -4,7 +4,13 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## NEXT STEP 
 
+* Fix compilation
+    IDocumentOutStrategy setOutputDir
 * Test more real life
+    * Track behaviour through convertor and make more robust
+        * why blow up on empty range (leave in with exception to highlight)
+        * why no base dir coming through
+    * Example 4 running via unit test
     * Example 4 running via webpage
     * resotre try line 195 spreadsheet convertor
     * restore try in scriptsupport

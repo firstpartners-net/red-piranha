@@ -47,6 +47,10 @@ public class WordInputStrategy implements IDocumentInStrategy {
 		this.wordInputFileName = wordInputFileName;
 	}
 
+	public String getBaseDirectory() {
+		return baseDirectory;
+	}
+
 	/**
 	 * Set the base Directory
 	 */

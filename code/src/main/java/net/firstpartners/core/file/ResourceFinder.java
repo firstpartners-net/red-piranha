@@ -26,12 +26,29 @@ public class ResourceFinder {
 	 * 2) in directory as specified in Config.sampleBaseDirDefault + ResourceName 3)
 	 * 3) in directory as specified in Config.sampleBaseDirAlternate + ResourceName
 	 *
+	 * Functions the same as the overloaded method, but with an empty baseDirectory
+	 *
 	 * @param resourceName a {@link java.lang.String} object
 	 * @param appConfig a {@link net.firstpartners.core.Config} object
 	 * @throws java.io.FileNotFoundException
 	 * @return a {@link java.io.File} object
 	 */
 	public static File getFileResourceUsingConfig(String resourceName, Config appConfig) throws FileNotFoundException {
+		return getFileResourceUsingConfig("", resourceName,  appConfig);
+	}
+
+
+	/**
+	 * Try to load the file at resource name , in this order 1) in working directory
+	 * 2) in directory as specified in Config.sampleBaseDirDefault + ResourceName 3)
+	 * 3) in directory as specified in Config.sampleBaseDirAlternate + ResourceName
+	 * @param baseDir that will get pre-pended to the file names we are looking for
+	 * @param resourceName a {@link java.lang.String} object
+	 * @param appConfig a {@link net.firstpartners.core.Config} object
+	 * @throws java.io.FileNotFoundException
+	 * @return a {@link java.io.File} object
+	 */
+	public static File getFileResourceUsingConfig(String baseDir,String resourceName, Config appConfig) throws FileNotFoundException {
 		
 		
 		log.debug("Seeking:"+resourceName);

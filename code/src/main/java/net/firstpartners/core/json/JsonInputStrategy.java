@@ -48,6 +48,10 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 		this.jsonInputFileName = jsonInputFileName;
 	}
 
+	public String getBaseDirectory() {
+		return baseDirectory;
+	}
+
 	/**
 	 * Set the base Directory
 	 */

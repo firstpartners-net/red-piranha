@@ -4,25 +4,28 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## NEXT STEP 
 
-* Update documentation (go through again)
-    * Re
+* Update documentation (go through again) #####
     * In script comments
-    * In Javadoc
-        * What is is
-        * Name of Class
-        * See scripts in exampleds
+    * Link to Main from sample
+    * readme.md / readme.html (4)
+        * link to main sample (readmes online)
+        * link to gh-main-online groovy script
+    * In Javadoc - scriptsupport review
     *  In example 4 readme.html - bring out script comments
     * Readme.md
-    * Other .md files
-    * Push doc files to main and link samples in to them
+    * Other .md files review
 
 * test cell confversion
-    * Unit test against sample 4 converstion ###
     * Run other unit tests
         * any other unit test to try out specific conversation (search for Spreadhsheet convertor tess) ###
         * Unit test CellConvertorTest (contiguours ranes)
     * Restore all integration tests
         * maybe run them independalty so a failure in one does not block all
+    * Additional 
+        * Is Acme Corp appearning in json
+* Decide
+    * how to deploy
+    * how to extend
 
 ## Next - CSV Output
 * Output to CSV
@@ -50,10 +53,9 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Next Sprint
 
-* Docs
-    ** Tidy current docs - next pass
+
 * Future
-    * Create Fiancial extraction Sample - analsyis of single case
+    * Create Fiancial extraction Sample - analsyis of single case POC
     * multiple output options
     * decision test
 * Improve Data Extraction

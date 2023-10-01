@@ -219,10 +219,15 @@ public class RedModel implements IStatusUpdate {
 
 	/**
 	 * <p>Getter for the field <code>baseDirectory</code>.</p>
-	 *
+	 * Modified to make it null safe (will return a blank string)
 	 * @return a {@link java.lang.String} object
 	 */
 	public String getBaseDirectory() {
+
+		if(this.baseDirectory==null){
+			return "";
+		}
+
 		return this.baseDirectory;
 	}
 

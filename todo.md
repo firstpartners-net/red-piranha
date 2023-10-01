@@ -5,10 +5,9 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## NEXT STEP 
 
 * Test more real life
-    * Review and tweak other names being output
-    * PreprocessTest Unit to green
     * Example 4 running via webpage
-
+    * resotre try line 195 spreadsheet convertor
+    * restore try in scriptsupport
 
 
 * Update documentation (go through again)

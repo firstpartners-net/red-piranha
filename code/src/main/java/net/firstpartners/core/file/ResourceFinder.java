@@ -61,15 +61,15 @@ public class ResourceFinder {
 		}
 		
 		
-		String alternatDir = appConfig.getSampleBaseDirAlternate();
-		File alternateFile = new File(alternatDir+resourceName);
+		String alternateDir = appConfig.getSampleBaseDirAlternate();
+		File alternateFile = new File(alternateDir+resourceName);
 		if (alternateFile.exists()) {
 			log.debug("2 Found Resource:"+alternateFile);
 			return alternateFile;
 		} else {
 			log.debug("3 No resource in alternate dir:"+alternateFile);
 			
-			throw new FileNotFoundException("Cannot find:"+resourceName +" in any of 3 locations - default , "+defaultDir+" , "+alternatDir);
+			throw new FileNotFoundException("Cannot find:"+resourceName +" in any of 3 locations - default , "+defaultDir+" , "+alternateDir);
 		}
 		
 		

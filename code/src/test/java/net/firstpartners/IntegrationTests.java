@@ -112,6 +112,7 @@ class IntegrationTests {
 			testModel.setRuleFileLocation(thisExample.getRuleFileLocation());
 			testModel.setOutputFileLocation(thisExample.getOutputFileLocation());
 			testModel.setDslFileLocation(thisExample.getDslFileLocation());
+			testModel.setBaseDirectory(thisExample.getBaseDirectory());
 
 			log.debug("Running:\n" + testModel);
 			IRunner runner = RunnerFactory.getRuleRunner(testModel, appConfig);

@@ -193,8 +193,8 @@ public class ScriptSupport {
 				refName = refName.replaceAll("[^A-Za-z0-9_.]", "");
 
 				// name this cell
-				log.debug("Would name cell:" + refName + " sheetname:" + sheetName + " excelref:"
-						+ crefs[i].formatAsR1C1String());
+				//log.debug("Would name cell:" + refName + " sheetname:" + sheetName + " excelref:"
+				//		+ crefs[i].formatAsR1C1String());
 				nameSingleCell(refName, sheetName, crefs[i].formatAsR1C1String(false));
 
 			}
@@ -224,15 +224,15 @@ public class ScriptSupport {
 
 		String formula = sheetName + "!" + cellRef; // should give us same as in Excel e.g. Accounts!B14:I14
 
-		try {
+		//try {
 			Name newXlNamedRange = wb.createName();
 			newXlNamedRange.setNameName(baseName);
 			newXlNamedRange.setRefersToFormula(formula);
 			log.debug("Added Name:" + baseName + " formula:" + formula);
-		} catch (IllegalArgumentException iae) {
-			log.info("Ignoring Duplicate or invalid Name:" + baseName + " formula:" + formula);
+		//} catch (IllegalArgumentException iae) {
+		//	log.info("Ignoring Duplicate or invalid Name:" + baseName + " formula:" + formula);
 
-		}
+		//}
 
 	}
 

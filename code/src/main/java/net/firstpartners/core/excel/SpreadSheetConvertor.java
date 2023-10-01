@@ -192,12 +192,11 @@ public RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.userm
 					thisCellinRange++;
 
 					Sheet sheet = wb.getSheet(thisCellRef.getSheetName());
-					try {
+					//try {
 						r = sheet.getRow(thisCellRef.getRow()); // ISSUE HERE
-					} catch (NullPointerException npe) {
-						log.error("Excel Read error on Cell:" + thisCellRef, npe);
-
-					}
+					//} catch (NullPointerException npe) {
+					//	log.error("Excel Read error on Cell:" + thisCellRef, npe);
+					//}
 
 					org.apache.poi.ss.usermodel.Cell thisExcelCell = null;
 

@@ -27,6 +27,9 @@ import net.firstpartners.data.RangeList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import groovy.util.ResourceException;
+import groovy.util.ScriptException;
+
 /**
  * @author paulf
  *
@@ -96,8 +99,10 @@ public class JsonInputStrategyTest {
 	 * @param args
 	 * @throws IOException 
 	 * @throws InvalidFormatException
+	 * @throws ScriptException
+	 * @throws ResourceException
 	 */
-	public static void main (String args[]) throws IOException, InvalidFormatException {
+	public static void main (String args[]) throws IOException, InvalidFormatException, ResourceException, ScriptException {
 		
 		//have we been requested to modfiy the directoyr
 		dirPrefix = args[0];

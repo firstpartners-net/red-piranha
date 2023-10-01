@@ -2,6 +2,7 @@ package net.firstpartners.core.excel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,14 +15,20 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import groovy.util.ResourceException;
+import groovy.util.ScriptException;
 import net.firstpartners.TestConstants;
+import net.firstpartners.core.Config;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
 public class SpreadSheetConvertorTest {
 
-	private Workbook wb;
+	// handle for our config
+	@Autowired
+	Config appConfig;
 
 	//if we need to change the directory prefix
 	private static String dirPrefix="";
@@ -29,14 +36,14 @@ public class SpreadSheetConvertorTest {
 	//Logging
 	private static final Logger log = LoggerFactory.getLogger(SpreadSheetConvertorTest.class);
 
-	
-	
 	/** 
 	 * Convenience method - serialize testdata for use by Cell Tasts
 	 * @param args
 	 * @throws IOException 
+	 * @throws ScriptException
+	 * @throws ResourceException
 	 */
-	public static void main (String args[]) throws IOException {
+	public static void main (String args[]) throws IOException, ResourceException, ScriptException {
 		
 		//have we been requested to modfiy the directoyr
 		dirPrefix = args[0];
@@ -50,30 +57,41 @@ public class SpreadSheetConvertorTest {
         log.debug("Serialized data is saved in:"+ dirPrefix+TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
 	}
 
+	
+	
+	private Workbook wb;
+
 	/**
 	 * This is implemented as a sub method so we can call from tests and convenience main[] method
 	 * @throws IOException 
+	 * @throws ScriptException
+	 * @throws ResourceException
 	 */
-	public final RangeList getTestDataFromWorkbook() throws IOException {
+	public final RangeList getTestDataFromWorkbook() throws IOException, ResourceException, ScriptException {
 	
-		FileInputStream inputStream = new FileInputStream(dirPrefix+TestConstants.XLSX_DATA_FILE);
+		String testDataLocation=dirPrefix+TestConstants.XLSX_DATA_FILE;
+		log.debug("Reading test data from :"+testDataLocation);
+
+		FileInputStream inputStream = new FileInputStream(testDataLocation);
 		wb = WorkbookFactory.create(inputStream);
-		return SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
+
+		SpreadSheetConvertor convertor = new SpreadSheetConvertor(appConfig);
+		return convertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		
 	}
 	
 	@Test
-	public final void testRangeConversation() throws IOException {
+	public final void testRangeConversationSimpleExcel() throws IOException, ResourceException, ScriptException {
 		
-		RangeList myRange = getTestDataFromWorkbook();
+		RangeList myRedRangeList = getTestDataFromWorkbook();
 		assertNotNull(wb);
 		
 		// Convert over and back again
-		assertNotNull(myRange);
-		assertEquals(myRange.getAllCellsWithNames().size(), 132);
+		assertNotNull(myRedRangeList);
+		assertEquals(myRedRangeList.getAllCellsWithNames().size(), 132);
 
 		// loop through and checck rnages
-		Map<String, Cell> map = myRange.getAllCellsWithNames();
+		Map<String, Cell> map = myRedRangeList.getAllCellsWithNames();
 		for (Map.Entry<String, Cell> entry : map.entrySet()) {
 	        System.out.println(entry.getKey() + ":" + entry.getValue());
 	        assertNotNull(entry.getKey());
@@ -81,7 +99,17 @@ public class SpreadSheetConvertorTest {
 	        
 	    }
 			
-		SpreadSheetConvertor.updateRedRangeintoPoiExcel(wb, myRange);
+		SpreadSheetConvertor.updateRedRangeintoPoiExcel(wb, myRedRangeList);
+		fail("Remove the previous line");
+
+		fail("add additional assertions to data");
+
+	}
+
+	@Test
+	public final void testRangeConversationCompleExcel() throws IOException, ResourceException, ScriptException {
+		
+		fail("Get Complex Excel like sample 4, repeat test like above (with no preprocess script as gnarlyey sheet)");
 
 	}
 

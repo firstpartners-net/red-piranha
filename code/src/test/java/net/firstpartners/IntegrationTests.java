@@ -112,12 +112,15 @@ class IntegrationTests {
 			testModel.setRuleFileLocation(thisExample.getRuleFileLocation());
 			testModel.setOutputFileLocation(thisExample.getOutputFileLocation());
 			testModel.setDslFileLocation(thisExample.getDslFileLocation());
+			testModel.setBaseDirectory(thisExample.getBaseDirectory());
 
 			log.debug("Running:\n" + testModel);
+
 			IRunner runner = RunnerFactory.getRuleRunner(testModel, appConfig);
 			
 			// set out OutputStrategy so we can test the output later
 			// this overrides the normal output
+			log.info("Overriding output strategy - now will use MemoryOutputStrategy");
 			MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 			runner.setDocumentOutputStrategy(outputStrategy);
 

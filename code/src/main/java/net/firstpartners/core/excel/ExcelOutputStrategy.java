@@ -8,6 +8,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import groovy.util.ResourceException;
+import groovy.util.ScriptException;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
@@ -33,8 +35,11 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	// Name of the outputfile
 	private String outputFileName = null;
 
+	// Sub directory e.g. for samples
+	private String subDirectory =null;
 
 	private Workbook workbook;
+
 
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
@@ -43,6 +48,14 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	public ExcelOutputStrategy(String outputFileName) {
 		this.outputFileName = outputFileName;
+	}
+
+	public String getSubDirectory() {
+		return subDirectory;
+	}
+
+	public void setSubDirectory(String subDirectory) {
+		this.subDirectory = subDirectory;
 	}
 
 
@@ -72,64 +85,6 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	public Workbook getWorkbook() {
 		return workbook;
-	}
-
-	/**
-	 * Outputs Red-Piranha's own internal format to a Logging Console
-	 * 
-	 * @param ranges
-	 */
-	void outputToConsole(RangeList ranges) {
-		for (Range r : ranges) {
-			log.debug(r.toString());
-		}
-	}
-
-	/**
-	 * Outputs an Apache POI Workbook to a Logging Console
-	 * 
-	 * @param wb
-	 * @throws IOException
-	 */
-	void outputToConsole(Workbook wb) throws IOException {
-
-		RangeList ranges = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
-		outputToConsole(ranges);
-
-	}
-
-	/**
-	 * Outputs an Apache POI Workbook to a file
-	 * 
-	 * @param wb       - Apache POI Workbook (excel)
-	 * @param fileName
-	 * @throws IOException
-	 */
-	void outputToFile(Workbook wb) throws IOException {
-
-		String outputFileDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
-		
-		//Construct the output file including directory
-		String outputFile;
-		if(outputFileDir!=""){
-			outputFile = outputFileDir+"/"+outputFileName;
-		} else {
-			outputFile = outputFileName;
-		}
-		
-		// Write out modified Excel sheet
-		try {
-			log.debug("trying to output Excel to:"+outputFile);
-			FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
-			outputToStream(wb, fileOutputStream);
-			fileOutputStream.close();
-	 	} catch (Exception ace) {
-			// Unable to output file, then drop back and log via console instead
-			log.error("Unable to output to file - logging to console and default dir instead",ace);
-			outputToConsole(wb);
-		 }
-		
-
 	}
 
 	/**
@@ -183,6 +138,66 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	public void setWorkbook(Workbook workbook) {
 		this.workbook = workbook;
+	}
+
+	/**
+	 * Outputs Red-Piranha's own internal format to a Logging Console
+	 * 
+	 * @param ranges
+	 */
+	void outputToConsole(RangeList ranges) {
+		for (Range r : ranges) {
+			log.debug(r.toString());
+		}
+	}
+
+	/**
+	 * Outputs an Apache POI Workbook to a Logging Console
+	 * 
+	 * @param wb
+	 * @throws IOException
+	 * @throws ScriptException
+	 * @throws ResourceException
+	 */
+	void outputToConsole(Workbook wb) throws IOException, ResourceException, ScriptException {
+
+		SpreadSheetConvertor convertor = new SpreadSheetConvertor(appConfig);
+		RangeList ranges = convertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
+		outputToConsole(ranges);
+
+	}
+
+	/**
+	 * Outputs an Apache POI Workbook to a file
+	 * 
+	 * @param wb       - Apache POI Workbook (excel)
+	 * @param fileName
+	 * @throws IOException
+	 */
+	void outputToFile(Workbook wb) throws IOException {
+
+		String outputFileDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
+		
+		//Construct the output file including directory
+		String outputFile;
+		if(outputFileDir!=""){
+			outputFile = outputFileDir+"/"+outputFileName;
+		} else {
+			outputFile = outputFileName;
+		}
+		
+		// Write out modified Excel sheet
+		try {
+			log.debug("trying to output Excel to:"+outputFile);
+			FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
+			outputToStream(wb, fileOutputStream);
+			fileOutputStream.close();
+	 	} catch (Exception ace) {
+			// Unable to output file, then drop back and log via console instead
+			log.error("Unable to output to file",ace);
+		 }
+		
+
 	}
 
 }

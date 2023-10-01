@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import groovy.util.ResourceException;
+import groovy.util.ScriptException;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.MemoryOutputStrategy;
 import net.firstpartners.core.RPException;
@@ -18,9 +20,11 @@ public class WordInputStrategyTest {
 
 	/**
 	 * Just check that the rules can run, throws no exception
+	 * @throws ScriptException
+	 * @throws ResourceException
 	 */
 	@Test
-	public final void testdocCallRulesFromFile() throws RPException {
+	public final void testdocCallRulesFromFile() throws RPException, ResourceException, ScriptException {
 
 		RedModel redModel = new RedModel(TestConstants.WORD_DATA_FILE,TestConstants.RULE_FILE_FOR_WORD,"some-dummy.pdf");
 		

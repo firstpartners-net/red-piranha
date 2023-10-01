@@ -156,6 +156,13 @@ public class RedModel implements IStatusUpdate {
 
 	}
 
+		/** {@inheritDoc} */
+	@Override
+	public void debug(String output) {
+		addUIDebugMessage(output);
+
+	}
+
 	/** {@inheritDoc} */
 	@Override
 	public void addUIWarnMessage(String output, Throwable t) {
@@ -169,6 +176,13 @@ public class RedModel implements IStatusUpdate {
 	@Override
 	public void addUIInfoMessage(String output) {
 		messagesUI.add("INFO:" + output + "\n");
+
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public void info(String output) {
+		addUIInfoMessage("INFO:" + output + "\n");
 
 	}
 
@@ -219,10 +233,15 @@ public class RedModel implements IStatusUpdate {
 
 	/**
 	 * <p>Getter for the field <code>baseDirectory</code>.</p>
-	 *
+	 * Modified to make it null safe (will return a blank string)
 	 * @return a {@link java.lang.String} object
 	 */
 	public String getBaseDirectory() {
+
+		if(this.baseDirectory==null){
+			return "";
+		}
+
 		return this.baseDirectory;
 	}
 

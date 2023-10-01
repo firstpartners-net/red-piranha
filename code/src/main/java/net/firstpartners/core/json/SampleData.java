@@ -23,6 +23,7 @@ public class SampleData {
 	private String dslFileLocation;
 	private String sampleDescription;
 	private String testingResult;
+	private String preProcessNotice;
 
 
 
@@ -42,6 +43,24 @@ public class SampleData {
 	 */
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	/**
+	 * <p>Getter for the field <code>PreProcessNotice</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
+	public String getPreProcessNotice() {
+		return preProcessNotice;
+	}
+
+	/**
+	 * <p>Setter for the field <code>baseDirectory</code>.</p>
+	 *
+	 * @param descriptiontext a {@link java.lang.String} object
+	 */
+	public void setPreProcessNotice(String preProcessNotice) {
+		this.preProcessNotice = preProcessNotice;
 	}
 
 

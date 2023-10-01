@@ -37,7 +37,7 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 
 	private OfficeDocument officeDocument;
 	
-	
+	private String subDirectory;
 
 	/**
 	 * Construct a new Strategy Object
@@ -46,6 +46,17 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 	 */
 	public JsonInputStrategy(String jsonInputFileName) {
 		this.jsonInputFileName = jsonInputFileName;
+	}
+
+	public String getSubDirectory() {
+		return subDirectory;
+	}
+
+	/**
+	 * Set the base Directory
+	 */
+	public void setSubDirectory(String subDirectory){
+		this.subDirectory= subDirectory;
 	}
 
 	/** {@inheritDoc} */

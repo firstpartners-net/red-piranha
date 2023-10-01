@@ -1,10 +1,10 @@
 package net.firstpartners.sample.ExcelDataRules;
 
-import net.firstpartners.core.log.ILogger
+import net.firstpartners.core.log.IStatusUpdate
 
 import net.firstpartners.data.Cell;
 
-global ILogger log;
+global IStatusUpdate log;
 
 rule "log then modify cell values" 
 

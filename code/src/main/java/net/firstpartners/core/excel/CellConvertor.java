@@ -37,9 +37,7 @@ public class CellConvertor {
 			org.apache.poi.ss.usermodel.Cell poiCell) {
 
 		// Check for null parameter
-		if (poiCell == null) {
-			return new net.firstpartners.data.Cell();
-		}
+		assert (poiCell!=null) : "incoming POI Cell (from Excel) should not be null";
 
 		// Start building our new (Red) Cell
 		net.firstpartners.data.Cell redCell = new net.firstpartners.data.Cell();
@@ -51,10 +49,37 @@ public class CellConvertor {
 		// The name makes them as a range
 		redCell.setName(cellNameFromRange);
 
-		org.apache.poi.ss.usermodel.CellType myCellType = poiCell.getCellType();
-		log.debug("Working with Poi Cell Type:" + myCellType);
+		//Get the cell contents and update our object model
+		Object value = getCellContents(poiCell);
+		redCell.setValue(value);
+
+		// copy over the comments
+		Comment anyComment = poiCell.getCellComment();
+		if (anyComment != null) {
+			redCell.setComment(anyComment.getString().toString());
+		}
+
+		// Reset the modified flag
+		redCell.setModified(false);
+
+		return redCell;
+
+	}
+
+	/**
+	 * Helper Method to get the contents of an Apache POI Cell using a reference.
+	 * @param org.apache.poi.ss.usermodel.Cell - Apache POI Cell
+	 * @return Object (Boolean , Number or String). It attempts to get the values, and the result of a formula.
+	 */
+	public static Object getCellContents(org.apache.poi.ss.usermodel.Cell poiCell){
 
 		Object value = null; // to capture the output
+
+		//Determine the cell type
+		org.apache.poi.ss.usermodel.CellType myCellType = poiCell.getCellType();
+		//log.debug("Working with Poi Cell Type:" + myCellType);
+
+
 		switch (myCellType.toString()) {
 
 		case "BOOLEAN":
@@ -92,20 +117,10 @@ public class CellConvertor {
 
 		}
 
-		redCell.setValue(value);
-
-		// copy over the comments
-		Comment anyComment = poiCell.getCellComment();
-		if (anyComment != null) {
-			redCell.setComment(anyComment.getString().toString());
-		}
-
-		// Reset the modified flag
-		redCell.setModified(false);
-
-		return redCell;
+		return value;
 
 	}
+
 
 	/**
 	 * Convert from Standard JavaBean to Excel (Apache Poi) Cells
@@ -216,22 +231,38 @@ public class CellConvertor {
 	 */
 	static void setPoiCellComment(Workbook workbook, Cell cell, String author, String commentText) {
 
-		// Create the anchor onto the workbook
+		//Handle to the comment we are going to modify or update
+		Comment comment =null;
 		CreationHelper factory = workbook.getCreationHelper();
-		ClientAnchor anchor = factory.createClientAnchor();
 
-		// i found it useful to show the comment box at the bottom right corner
-		anchor.setCol1(cell.getColumnIndex() + 1); // the box of the comment starts at this given column...
-		anchor.setCol2(cell.getColumnIndex() + 3); // ...and ends at that given column
-		anchor.setRow1(cell.getRowIndex() + 1); // one row below the cell...
-		anchor.setRow2(cell.getRowIndex() + +5); // ...and 4 rows high
+		//Remove any previous cell comment
+		if(cell.getCellComment()!=null){
+			log.debug("reusing previous cell comment for "+cell.getAddress());
+			 comment = cell.getCellComment();
+		} else {
+			log.debug("creating new cell comment for "+cell.getAddress());
+		
 
-		Drawing<?> drawing = cell.getSheet().createDrawingPatriarch();
-		Comment comment = drawing.createCellComment(anchor);
+			// Create the anchor onto the workbook
+			
+			ClientAnchor anchor = factory.createClientAnchor();
+
+			// i found it useful to show the comment box at the bottom right corner
+			anchor.setCol1(cell.getColumnIndex() + 1); // the box of the comment starts at this given column...
+			anchor.setCol2(cell.getColumnIndex() + 3); // ...and ends at that given column
+			anchor.setRow1(cell.getRowIndex() + 1); // one row below the cell...
+			anchor.setRow2(cell.getRowIndex() + +5); // ...and 4 rows high
+
+			Drawing<?> drawing = cell.getSheet().createDrawingPatriarch();
+			comment = drawing.createCellComment(anchor);
+		}
 
 		// set the comment text and author
 		comment.setString(factory.createRichTextString(commentText));
 		comment.setAuthor(author);
+
+
+
 		cell.setCellComment(comment);
 	}
 

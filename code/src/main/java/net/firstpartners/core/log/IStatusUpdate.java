@@ -17,12 +17,25 @@ public interface IStatusUpdate {
 	public void addUIDebugMessage(String output);
 
 	/**
+	 * Log at Debug Level - for backward compatibility
+	 *
+	 * @param output a {@link java.lang.String} object
+	 */
+	public void debug(String output);
+
+	/**
 	 * Log Exception
 	 *
 	 * @param output a {@link java.lang.String} object
 	 * @param t a {@link java.lang.Throwable} object
 	 */
 	public void addUIWarnMessage(String output, Throwable t);
+
+	/**
+	 * for backward compatibiltiy
+	 * @param output
+	 */
+	public void info(String output);
 
 	/**
 	 * Log at Info Level

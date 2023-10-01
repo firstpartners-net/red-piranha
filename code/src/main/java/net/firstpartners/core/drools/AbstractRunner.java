@@ -8,6 +8,8 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import groovy.util.ResourceException;
+import groovy.util.ScriptException;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
@@ -80,9 +82,11 @@ public abstract class AbstractRunner implements IRunner {
 	 * @return our Model with all the information so we can display back to the user
 	 * @throws java.lang.Exception
 	 * @param ruleModel a {@link net.firstpartners.core.RedModel} object
+	 * @throws ScriptException
+	 * @throws ResourceException
 	 */
 	public RedModel callRules(RedModel ruleModel)
-			throws RPException {
+			throws RPException, ResourceException, ScriptException {
 
 		// Convert the cell and log if we have a handle
 		ruleModel.addUIInfoMessage("Opening Input :" + this.inputStrategy.getInputName());
@@ -98,6 +102,7 @@ public abstract class AbstractRunner implements IRunner {
 			ranges.cascadeResetIsModifiedFlag();
 		}
 
+		// Update / snapshot our progress
 		ruleModel.setPreRulesSnapShot(ranges);
 		ruleModel.setUIProgressStatus(10);
 

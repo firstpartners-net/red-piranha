@@ -171,8 +171,8 @@ end
 
 // info we need to tie to wider system - should not need to change
 
-import net.firstpartners.core.log.ILogger
+import net.firstpartners.core.log.IStatusUpdate
 import net.firstpartners.data.Cell;
 
-global ILogger log;
+global IStatusUpdate log;
 			

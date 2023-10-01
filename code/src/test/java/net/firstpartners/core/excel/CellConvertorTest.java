@@ -2,6 +2,7 @@ package net.firstpartners.core.excel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.FileInputStream;
@@ -29,22 +30,25 @@ public class CellConvertorTest {
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	private static RangeList redData = null;
-	private static Workbook excelData = null;
+	//private static RangeList redData = null;
+	//private static Workbook excelData = null;
 
 	@Before
 	public void beforeClass() throws IOException, ClassNotFoundException {
 
-		FileInputStream fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
-		ObjectInputStream in = new ObjectInputStream(fileIn);
-		redData = (RangeList) in.readObject();
-		in.close();
-		fileIn.close();
+
 	}
 
 	@Test
-	public final void testConvertRedCellToPoiCell() throws IOException {
+	public final void testConvertRedCellToPoiCell() throws IOException, ClassNotFoundException {
 		
+
+		FileInputStream fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
+		ObjectInputStream in = new ObjectInputStream(fileIn);
+		RangeList redData = (RangeList) in.readObject();
+
+		in.close();
+		fileIn.close();
 		
 		assertNotNull(redData);
 
@@ -54,13 +58,16 @@ public class CellConvertorTest {
 
 		// loop through and check ranges
 		Map<String, Cell> map = redData.getAllCellsWithNames();
+		assertNotNull(map);
+		assertTrue (!map.isEmpty());
+
 		for (Map.Entry<String, Cell> entry : map.entrySet()) {
 
 			log.debug("Counter:"+counter+" ========");
 			counter++;
-			if(counter>1) {break;}
+			if(counter>10) {break;}
 
-			log.debug(entry.getKey() + ":" + entry.getValue());
+			log.debug("Red Cell "+entry.getKey() + ":" + entry.getValue());
 
 			String originalName = entry.getKey();
 			Cell thisRedCell = entry.getValue();
@@ -94,22 +101,24 @@ public class CellConvertorTest {
 			log.info("poiCell:"+poiCell);
 			
 			//check that values have been copieed over
-			String tmp = thisRedCell.getValueAsText();
+			String redValue = thisRedCell.getValueAsText();
 			String poiValue= poiCell.getStringCellValue();
 
 			// Excel stores boolean in a different way
-			if (!("[false]".contains(tmp))) {
-				assertEquals(tmp, poiValue);
+			if (!("[false]".contains(redValue))) {
+				assertEquals(redValue, poiValue);
 			}
 
 		}
 
 		// Save the Excel data - we will need it later
-		excelData = wb;
-		subTestConvertPoiCellToRedCell();
+		//excelData = wb;
+
+		// try out the subtest
+		subTestConvertPoiCellToRedCell(wb);
 	}
 
-	public final void subTestConvertPoiCellToRedCell() {
+	public final void subTestConvertPoiCellToRedCell(Workbook excelData) {
 		assertNotNull(excelData);
 
 		Sheet sheet = excelData.getSheetAt(0);

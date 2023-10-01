@@ -26,31 +26,56 @@ public class ResourceFinder {
 	 * 2) in directory as specified in Config.sampleBaseDirDefault + ResourceName 3)
 	 * 3) in directory as specified in Config.sampleBaseDirAlternate + ResourceName
 	 *
+	 * Functions the same as the overloaded method, but with an empty baseDirectory
+	 *
 	 * @param resourceName a {@link java.lang.String} object
 	 * @param appConfig a {@link net.firstpartners.core.Config} object
 	 * @throws java.io.FileNotFoundException
 	 * @return a {@link java.io.File} object
 	 */
 	public static File getFileResourceUsingConfig(String resourceName, Config appConfig) throws FileNotFoundException {
+		return getFileResourceUsingConfig("", resourceName,  appConfig);
+	}
+
+
+	/**
+	 * Try to load the file at resource name , in this order 1) in working directory
+	 * 2) in directory as specified in Config.sampleBaseDirDefault + ResourceName 3)
+	 * 3) in directory as specified in Config.sampleBaseDirAlternate + ResourceName
+	 * @param baseDir that will get pre-pended to the file names we are looking for
+	 * @param resourceName a {@link java.lang.String} object
+	 * @param appConfig a {@link net.firstpartners.core.Config} object
+	 * @throws java.io.FileNotFoundException
+	 * @return a {@link java.io.File} object
+	 */
+	public static File getFileResourceUsingConfig(String baseDir,String resourceName, Config appConfig) throws FileNotFoundException {
 		
-		
-		File bareFile = new File(resourceName);
+		String seekName= resourceName;
+
+		if(baseDir!=null && baseDir!=""){
+			seekName = baseDir+resourceName;
+			
+		}
+
+		log.debug("Seeking:"+resourceName);
+
+		File bareFile = new File(seekName);
 		
 		File workingDir = new File(".");
 		if (bareFile.exists()) {
 			return bareFile;
 		} else {
-			log.debug("No resource:"+resourceName+ " found in "+workingDir.getAbsolutePath()+" attempting another approach?");
+			log.debug("1 No resource:"+seekName+ " found in "+workingDir.getAbsolutePath()+" attempting another approach?");
 		}
 		
 		// We need config info to try backups
 		if(appConfig==null) {
-			throw new FileNotFoundException("1 Cannot find :"+resourceName+" and no config provided to try other locations");
+			throw new FileNotFoundException("1 Cannot find :"+seekName+" and no config provided to try other locations");
 		}
 		
 		
 		String defaultDir = appConfig.getSampleBaseDirDefault();
-		File defaultFile = new File(defaultDir+resourceName);
+		File defaultFile = new File(defaultDir+seekName);
 		if (defaultFile.exists()) {
 			log.debug("2 Found Resource:"+defaultFile);
 			return defaultFile;
@@ -59,15 +84,15 @@ public class ResourceFinder {
 		}
 		
 		
-		String alternatDir = appConfig.getSampleBaseDirAlternate();
-		File alternateFile = new File(alternatDir+resourceName);
+		String alternateDir = appConfig.getSampleBaseDirAlternate();
+		File alternateFile = new File(alternateDir+seekName);
 		if (alternateFile.exists()) {
 			log.debug("2 Found Resource:"+alternateFile);
 			return alternateFile;
 		} else {
 			log.debug("3 No resource in alternate dir:"+alternateFile);
 			
-			throw new FileNotFoundException("Cannot find:"+resourceName +" in any of 3 locations - default , "+defaultDir+" , "+alternatDir);
+			throw new FileNotFoundException("Cannot find:"+seekName +" in any of 3 locations - default , "+defaultDir+" , "+alternateDir);
 		}
 		
 		

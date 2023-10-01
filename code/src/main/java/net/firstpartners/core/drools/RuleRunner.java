@@ -92,7 +92,7 @@ public class RuleRunner extends AbstractRunner  {
 	 * @throws IOException
 	 */
 	Collection<Cell> runModel(KieModule preBuiltKnowledgeBase, Collection<Cell> facts,
-			HashMap<String, Cell> globals, boolean logRuleDetails, IStatusUpdate modelAsLogger) throws RPException {
+			HashMap<String, Cell> globals, boolean showFullRuleEngineLogs, IStatusUpdate modelAsLogger) throws RPException {
 
 		log.debug("Creating new stateless working memory");
 
@@ -116,13 +116,15 @@ public class RuleRunner extends AbstractRunner  {
 		kSession.addEventListener(cellListener);
 
 		// setup listeners
-		if (logRuleDetails) {
+		if (showFullRuleEngineLogs) {
 			kSession.addEventListener(new DebugAgendaEventListener());
 			kSession.addEventListener(new DebugRuleRuntimeEventListener());
+
+			// Set up a file based audit logger
+			KnowledgeRuntimeLoggerFactory.newFileLogger(kSession, "WorkItemConsequence.log");
 		}
 
-		// Set up a file based audit logger
-		KnowledgeRuntimeLoggerFactory.newFileLogger(kSession, "log/WorkItemConsequence.log");
+
 
 		log.debug("==================== Starting Rules ====================");
 

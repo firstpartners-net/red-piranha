@@ -108,7 +108,10 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	//@SuppressWarnings("unused") // eclipse mistakenly marks this as unused
 	private RangeList processedRange;
 
-	
+	//sub directory e.g. for samples
+	private String subDirectory;
+
+
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
 	 *
@@ -119,30 +122,15 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	}
 
 
-	List<String> getHeadersFromFile() throws IOException {
-
-		// We must have a pre existing file
-		File appendFile = ResourceFinder.getFileResourceUsingConfig(appendFileName, appConfig);
-		
-		if (!appendFile.exists()) {
-			throw new IllegalArgumentException("For writing to a CSV file "+ appendFileName+" should already exist with headers in first row");
-		}
-
-		log.debug("Found CSV:" + appendFileName);
-
-		// Open in a reader
-		Reader reader = new BufferedReader(new FileReader(appendFileName));
-		CSVParser csvParser = CSVParser.parse(reader, CSVFormat.EXCEL.withFirstRecordAsHeader());
-
-		List<String> returnValues = csvParser.getHeaderNames();
-		log.debug("Found Headers" + returnValues + " headers");
-
-		// close everything off
-		reader.close();
-		reader = null;
-
-		return returnValues;
+	public String getSubDirectory() {
+		return subDirectory;
 	}
+
+
+	public void setSubDirectory(String subDirectory) {
+		this.subDirectory = subDirectory;
+	}
+
 
 	/**
 	/**
@@ -168,25 +156,6 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 		}
 
 		return returnValues;
-	}
-
-	/**
-	 * Count the number of entries there are in the CSV file
-	 * 
-	 * @return number of lines in CSV file
-	 * @throws IOException
-	 */
-	int getNumberOfRowsInFile() throws IOException {
-
-		File file = new File(appendFileName);
-		FileInputStream fis = new FileInputStream(file);
-		byte[] byteArray = new byte[(int) file.length()];
-		fis.read(byteArray);
-		String data = new String(byteArray);
-		String[] stringArray = data.split("\r\n");
-		fis.close();
-
-		return stringArray.length;
 	}
 
 	/**
@@ -261,6 +230,52 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 		// this converter ignores any original , we just store the range output
 		processedRange = incomingData;
 
+	}
+
+	List<String> getHeadersFromFile() throws IOException {
+
+		// We must have a pre existing file
+		File appendFile = ResourceFinder.getFileResourceUsingConfig(appendFileName, appConfig);
+		
+		if (!appendFile.exists()) {
+			throw new IllegalArgumentException("For writing to a CSV file "+ appendFileName+" should already exist with headers in first row");
+		}
+
+		log.debug("Found CSV:" + appendFileName);
+
+		// Open in a reader
+		Reader reader = new BufferedReader(new FileReader(appendFileName));
+		
+		CSVParser csvParser = CSVParser.parse(reader, CSVFormat.EXCEL.withFirstRecordAsHeader());
+	
+
+		List<String> returnValues = csvParser.getHeaderNames();
+		log.debug("Found Headers" + returnValues + " headers");
+
+		// close everything off
+		reader.close();
+		reader = null;
+
+		return returnValues;
+	}
+
+	/**
+	 * Count the number of entries there are in the CSV file
+	 * 
+	 * @return number of lines in CSV file
+	 * @throws IOException
+	 */
+	int getNumberOfRowsInFile() throws IOException {
+
+		File file = new File(appendFileName);
+		FileInputStream fis = new FileInputStream(file);
+		byte[] byteArray = new byte[(int) file.length()];
+		fis.read(byteArray);
+		String data = new String(byteArray);
+		String[] stringArray = data.split("\r\n");
+		fis.close();
+
+		return stringArray.length;
 	}
 
 }

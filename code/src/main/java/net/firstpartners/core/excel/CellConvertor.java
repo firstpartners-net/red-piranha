@@ -231,22 +231,38 @@ public class CellConvertor {
 	 */
 	static void setPoiCellComment(Workbook workbook, Cell cell, String author, String commentText) {
 
-		// Create the anchor onto the workbook
+		//Handle to the comment we are going to modify or update
+		Comment comment =null;
 		CreationHelper factory = workbook.getCreationHelper();
-		ClientAnchor anchor = factory.createClientAnchor();
 
-		// i found it useful to show the comment box at the bottom right corner
-		anchor.setCol1(cell.getColumnIndex() + 1); // the box of the comment starts at this given column...
-		anchor.setCol2(cell.getColumnIndex() + 3); // ...and ends at that given column
-		anchor.setRow1(cell.getRowIndex() + 1); // one row below the cell...
-		anchor.setRow2(cell.getRowIndex() + +5); // ...and 4 rows high
+		//Remove any previous cell comment
+		if(cell.getCellComment()!=null){
+			log.debug("reusing previous cell comment for "+cell.getAddress());
+			 comment = cell.getCellComment();
+		} else {
+			log.debug("creating new cell comment for "+cell.getAddress());
+		
 
-		Drawing<?> drawing = cell.getSheet().createDrawingPatriarch();
-		Comment comment = drawing.createCellComment(anchor);
+			// Create the anchor onto the workbook
+			
+			ClientAnchor anchor = factory.createClientAnchor();
+
+			// i found it useful to show the comment box at the bottom right corner
+			anchor.setCol1(cell.getColumnIndex() + 1); // the box of the comment starts at this given column...
+			anchor.setCol2(cell.getColumnIndex() + 3); // ...and ends at that given column
+			anchor.setRow1(cell.getRowIndex() + 1); // one row below the cell...
+			anchor.setRow2(cell.getRowIndex() + +5); // ...and 4 rows high
+
+			Drawing<?> drawing = cell.getSheet().createDrawingPatriarch();
+			comment = drawing.createCellComment(anchor);
+		}
 
 		// set the comment text and author
 		comment.setString(factory.createRichTextString(commentText));
 		comment.setAuthor(author);
+
+
+
 		cell.setCellComment(comment);
 	}
 

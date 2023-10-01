@@ -30,6 +30,11 @@ ScriptSupport sprt = new ScriptSupport(xlWorkbook)
 
 // end careful change =====================================================================
 
+// Not needed for more simple spreadhseets - but remove any previous named ranges
+// this means the only data extracted will the the ranges named in this script
+sprt.removePreviousNamedRanges()
+
+
 // Update Cell Values to avoid later naming confusion. This is done in memory and does not
 // update the original source file
 // e.g. in sample Cells A156 and A173 are both "overdraft", leading to the same name being generated 

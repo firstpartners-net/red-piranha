@@ -163,7 +163,7 @@ public RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.userm
 
 				//only proceed if we can get an actual handle to this
 				// retrieve the cells at the named range
-				log.debug("Processing named range:" + aNamedRange.getNameName());
+				log.debug("Processing named range:" + aNamedRange.getNameName()+ " refers to:"+aNamedRange.getRefersToFormula());
 
 				ArrayList<CellReference> cellArray = new ArrayList<CellReference>();
 				for (int a = 0; a < aRef.length; a++) {
@@ -173,7 +173,7 @@ public RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.userm
 				}
 
 				// A Range that we will put the new cells into
-				Range redRange = new Range(aNamedRange.getNameName());
+				net.firstpartners.data.Range redRange = new Range(aNamedRange.getNameName());
 
 				// Iterator to loop over POI Cells
 				Iterator<CellReference> loop = cellArray.iterator();
@@ -186,11 +186,11 @@ public RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.userm
 					thisCellinRange++;
 
 					Sheet sheet = wb.getSheet(thisCellRef.getSheetName());
-					//try {
+					try {
 						r = sheet.getRow(thisCellRef.getRow()); // ISSUE HERE
-					//} catch (NullPointerException npe) {
-					//	log.error("Excel Read error on Cell:" + thisCellRef, npe);
-					//}
+					} catch (NullPointerException npe) {
+						log.debug("Excel Read error on Cell:" + thisCellRef); //,npe
+					}
 
 					org.apache.poi.ss.usermodel.Cell thisExcelCell = null;
 

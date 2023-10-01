@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -314,5 +315,22 @@ public class ScriptSupport {
 		return getCellAsStringForceDateConversion(cell);
     }
 
+	/**
+	 * Remove all previous named ranges in workbook
+	 * This updates Memory only and not original source file
+	 */
+	public void removePreviousNamedRanges(){
+
+		//Loop over names and remove each one
+		// we do it in this loop fashion to give POI a chance to update
+		while(wb.getAllNames().size()>0){
+			Name thisName = wb.getAllNames().get(0);
+			//log.debug("Removing:"+thisName.getNameName());
+			wb.removeName(thisName);
+
+		}
+
+
+	}
 
 }

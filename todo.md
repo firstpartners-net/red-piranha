@@ -5,10 +5,9 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## NEXT STEP 
 
 * Test more real life
-    * Implement cell value as option to update name
     * Unit test CellConvertorTest which is showing same problem
     * Track behaviour through convertor and make more robust
-        * why blow up on empty range (leave in with exception to highlight)
+        * why blow up on empty range (leave in with exception to highlight) -- 190 in spreashdeet convertor
         * why no base dir coming through
     * Example 4 running via unit test
     * Example 4 running via webpage

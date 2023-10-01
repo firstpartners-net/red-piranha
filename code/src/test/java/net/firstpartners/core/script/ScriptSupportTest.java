@@ -140,4 +140,22 @@ public class ScriptSupportTest {
 
 	}
 
+	@Test
+	public final void testRemoveNamedRages() throws Exception {
+
+		File xlFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.COMPLEX_EXCEL, appConfig);
+		InputStream inputAsStream = new FileInputStream(xlFile);
+		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
+
+		// handle to the class under test
+		ScriptSupport sprt = new ScriptSupport(excelWorkBook);
+
+		// try out the update of values
+		assertTrue("List of Named Ranges should not be empty at start",excelWorkBook.getAllNames().size()>0);
+		sprt.removePreviousNamedRanges();
+		assertTrue("List of Named Ranges should be empty after operation",excelWorkBook.getAllNames().size()==0);
+
+
+	}
+
 }

@@ -4,17 +4,22 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## NEXT STEP 
 
-* Test more real life
+* rewrite cell confversion
+    * Unit test against sample 4 converstion ###
+        * any other unti test to try out specific conversation (search for Spreadhsheet convertor tess) ###
     * Unit test CellConvertorTest which is showing same problem
     * Track behaviour through convertor and make more robust
         * why blow up on empty range (leave in with exception to highlight) -- 190 in spreashdeet convertor
-        * why no base dir coming through
+
+
+* Test more real life
+
     * Example 4 running via unit test
     * Example 4 running via webpage
-    * resotre try line 195 spreadsheet convertor
+    * ?? remove ?? resotre try line 195 spreadsheet convertor
 
 * Update documentation (go through again)
-    *
+    * Re
     * In script comments
     * In Javadoc
         * What is is
@@ -23,6 +28,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     *  In example 4 readme.html - bring out script comments
     * Readme.md
     * Other .md files
+    * Push doc files to main and link samples in to them
 
 ## Next - CSV Output
 * Output to CSV

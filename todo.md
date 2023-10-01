@@ -4,19 +4,6 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## NEXT STEP 
 
-* test cell confversion
-    * Unit test against sample 4 converstion ###
-        * any other unti test to try out specific conversation (search for Spreadhsheet convertor tess) ###
-    * Unit test CellConvertorTest (contiguours ranes)
-    * Restore all integration tests
-
-
-* Test more real life
-
-    * Example 4 running via unit test
-    * Example 4 running via webpage
-    * ?? remove ?? resotre try line 195 spreadsheet convertor
-
 * Update documentation (go through again)
     * Re
     * In script comments
@@ -28,6 +15,16 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     * Readme.md
     * Other .md files
     * Push doc files to main and link samples in to them
+
+* test cell confversion
+    * Unit test against sample 4 converstion ###
+    * Run other unit tests
+        * any other unti test to try out specific conversation (search for Spreadhsheet convertor tess) ###
+        * Unit test CellConvertorTest (contiguours ranes)
+    * Restore all integration tests
+        * maybe run them independalty so a failure in one does not block all
+
+
 
 ## Next - CSV Output
 * Output to CSV
@@ -120,3 +117,4 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * Understand Github pages, Jekyll and see if can build an even 'friendlier' version of this site.
 
 # Medium Term Ideas
+* better display of information in JSON

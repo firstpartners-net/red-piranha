@@ -34,7 +34,7 @@ ScriptSupport sprt = new ScriptSupport(xlWorkbook)
 // update the original source file
 // e.g. in sample Cells A156 and A173 are both "overdraft", leading to the same name being generated 
 // and the second ignored.
-// Search for "Name already exists in sheet" in Logs to see if this is happening to your data
+// Search for "Ignoring existing name" in Logs to see if this is happening to your data
 sprt.setText("Overdraft_new","Accounts","A173")
 
 // Start setting names - single cells

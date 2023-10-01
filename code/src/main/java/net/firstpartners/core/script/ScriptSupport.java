@@ -225,8 +225,9 @@ public class ScriptSupport {
 		String formula = sheetName + "!" + cellRef; // should give us same as in Excel e.g. Accounts!B14:I14
 
 		//check if the name already exists
-		if(wb.getName(baseName)!=null){
-			log.info("Name already exists in sheet:"+baseName);
+		Name existingName = wb.getName(baseName);
+		if(existingName!=null){
+			log.info("Ignoring existing name:"+baseName+" refers to:"+existingName.getRefersToFormula()+" duplicate new ref:"+cellRef);
 		} else {
 
 			//try to add it

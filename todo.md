@@ -60,6 +60,8 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     * Create Fiancial extraction Sample - analsyis of single case
     * multiple output options
     * decision test
+* Improve Data Extraction
+    * Where we "Ignoring name already exists" - update script to cope better
 
 ## Release
 * Automate release (package and docker)

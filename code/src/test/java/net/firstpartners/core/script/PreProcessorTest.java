@@ -1,5 +1,9 @@
 package net.firstpartners.core.script;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -46,26 +50,45 @@ public class PreProcessorTest {
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 
-		Workbook returnBook = processor.preprocessXlWorkbook("", TestConstants.SIMPLE_GROOVY, excelWorkBook);
+		//Test out the class
+		Workbook returnBook = processor.preprocessXlWorkbook("", TestConstants.GROOVY_PREPROCESS, excelWorkBook);
 
 		// retrieve the named range - Iterator not available
 		List<? extends Name> namedRanges = returnBook.getAllNames();
 
+		// check the results
+		assertNotNull(namedRanges);
+	
 		// Setup loop through named ranges
-		// int namedRangeIdx = -1;
-		// namedRangeIdx++;
-
 		org.apache.poi.ss.usermodel.Name aNamedRange = null;
+		String namedRange ="";
 		ListIterator<? extends Name> loopList = namedRanges.listIterator();
 
+		//Some specific names we are looking for
+		boolean Info_YearEnd_BaseYear_minus_2 = false;
+		boolean Info_TotalIrishLabourCosts000s_BaseYear_plus_5 = false;
+
+
 		while (loopList.hasNext()) {
-			//namedRangeIdx++;
 
 			aNamedRange = loopList.next(); // wb.getNameAt(namedRangeIdx);
+			namedRange = aNamedRange.getNameName();
+			
+			//check that there are no nulls in range names
+			assertFalse("Range Name "+namedRange+ " should not contain null",namedRange.contains("null"));
+
+			//note if we have found specific sample ranges
+			if(namedRange.equals("Info_YearEnd_BaseYear_minus_2")){Info_YearEnd_BaseYear_minus_2=true;}
+			if(namedRange.equals("Info_TotalIrishLabourCosts000s_BaseYear_plus_5")){Info_TotalIrishLabourCosts000s_BaseYear_plus_5=true;}
 
 			// retrieve the cells at the named range
 			log.debug("Processing named range:" + aNamedRange.getNameName());
 		}
+
+		assertTrue("Did not find expected sample range:Info_YearEnd_BaseYear_minus_2",Info_YearEnd_BaseYear_minus_2);
+		assertTrue("Did not find expected sample range:Info_TotalIrishLabourCosts000s_BaseYear_plus_5",Info_TotalIrishLabourCosts000s_BaseYear_plus_5);
+		//
+
 
 		log.debug("test complete");
 

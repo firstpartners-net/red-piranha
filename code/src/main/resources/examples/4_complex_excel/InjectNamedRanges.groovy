@@ -30,15 +30,19 @@ ScriptSupport sprt = new ScriptSupport(xlWorkbook)
 
 // end careful change =====================================================================
 
-
-
+// Update Cell Values to avoid later naming confusion. This is done in memory and does not
+// update the original source file
+// e.g. in sample Cells A156 and A173 are both "overdraft", leading to the same name being generated 
+// and the second ignored.
+// Search for "Name already exists in sheet" in Logs to see if this is happening to your data
+sprt.setText("Overdraft_new","Accounts","A173")
 
 // Start setting names - single cells
 sprt.nameSingleCell("CompanyName", "Accounts", "A4")
 
 // Start Naming Tables - each cell in table will be named individually using 
 //the base value, then a combination of the the header and rows
-// from our example XL - the range will *not* include the black header row
+// from our example XL - the range will *not* include the header row
 // but start immediately below it
 sprt.nameTable("Info","Accounts","A12:I30")
 sprt.nameTable("PL","Accounts","A34:I75")

@@ -155,11 +155,12 @@ public class ScriptSupport {
 
 				// fill in for blank names
 				if (currentCellText.length() == 0) {
-					currentCellText = "Col" + col + 1;
+					currentCellText = "Col" + row + 1;
 					// log.debug("Updated blank row");
 				}
 
 				headerNames.put("" + col, currentCellText);
+
 			}
 
 			if (colLabel && !rowLabel) {
@@ -169,7 +170,7 @@ public class ScriptSupport {
 
 				// fill in for blank names
 				if (currentCellText.length() == 0) {
-					currentCellText = "Row" + col + 1;
+					currentCellText = "Row" + row + 1;
 					// log.debug("Updated blank col");
 				}
 
@@ -223,13 +224,16 @@ public class ScriptSupport {
 
 		String formula = sheetName + "!" + cellRef; // should give us same as in Excel e.g. Accounts!B14:I14
 
-		try {
+		//check if the name already exists
+		if(wb.getName(baseName)!=null){
+			log.info("Name already exists in sheet:"+baseName);
+		} else {
+
+			//try to add it
 			Name newXlNamedRange = wb.createName();
 			newXlNamedRange.setNameName(baseName);
 			newXlNamedRange.setRefersToFormula(formula);
 			log.debug("Added Name:" + baseName + " formula:" + formula);
-		} catch (IllegalArgumentException iae) {
-			log.info("Ignoring Duplicate or invalid Name:" + baseName + " formula:" + formula);
 
 		}
 
@@ -274,4 +278,40 @@ public class ScriptSupport {
 		//
 
 	}
+
+	/**
+	 * Update a value in a cell in workbook in memory (not original sheet)
+	 * This helps resolve naming clashes later
+	 * @param newValue - that we will update the cell to
+	 * @param sheetName - name of the sheet we wish to update
+	 * @param cellRef - in format B17 of cell we wish to update
+	 */
+	public void setText(String newValue, String sheetName, String cellRef) {
+
+		CellReference cr = new CellReference(sheetName+"!"+cellRef);
+        Sheet s = wb.getSheet(sheetName);
+		Row row = s.getRow(cr.getRow());
+		Cell cell = row.getCell(cr.getCol());
+
+		cell.setCellValue(newValue);
+
+	}
+
+	/**
+	 * Get a value from the workbook (as string)
+	 * @param sheetName
+	 * @param cellRef within this sheet
+	 * @return value as text of this cell
+	 */
+    public String get(String sheetName, String cellRef) {
+
+		CellReference cr = new CellReference(sheetName+"!"+cellRef);
+        Sheet s = wb.getSheet(sheetName);
+		Row row = s.getRow(cr.getRow());
+		Cell cell = row.getCell(cr.getCol());
+
+		return getCellAsStringForceDateConversion(cell);
+    }
+
+
 }

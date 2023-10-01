@@ -5,22 +5,23 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## NEXT STEP 
 
 * Test more real life
+    * Implement cell value as option to update name
+    * Unit test CellConvertorTest which is showing same problem
     * Track behaviour through convertor and make more robust
         * why blow up on empty range (leave in with exception to highlight)
         * why no base dir coming through
-    * bugfix preprocessor - duplicate name still happening (choice ignore or )
     * Example 4 running via unit test
     * Example 4 running via webpage
     * resotre try line 195 spreadsheet convertor
-    * restore try in scriptsupport
 
 * Update documentation (go through again)
-    * In example 4 readme.html
+    *
     * In script comments
     * In Javadoc
         * What is is
         * Name of Class
         * See scripts in exampleds
+    *  In example 4 readme.html - bring out script comments
     * Readme.md
     * Other .md files
 

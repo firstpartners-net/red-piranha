@@ -4,12 +4,11 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## NEXT STEP 
 
-* rewrite cell confversion
+* test cell confversion
     * Unit test against sample 4 converstion ###
         * any other unti test to try out specific conversation (search for Spreadhsheet convertor tess) ###
-    * Unit test CellConvertorTest which is showing same problem
-    * Track behaviour through convertor and make more robust
-        * why blow up on empty range (leave in with exception to highlight) -- 190 in spreashdeet convertor
+    * Unit test CellConvertorTest (contiguours ranes)
+    * Restore all integration tests
 
 
 * Test more real life

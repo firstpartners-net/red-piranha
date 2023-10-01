@@ -1,11 +1,11 @@
 package net.firstpartners.sample.ExcelDataRules;
 
-import net.firstpartners.core.log.ILogger
+import net.firstpartners.core.log.IStatusUpdate
 
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.Range;
 
-global ILogger log;
+global IStatusUpdate log;
 
 
 

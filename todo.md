@@ -19,12 +19,10 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * test cell confversion
     * Unit test against sample 4 converstion ###
     * Run other unit tests
-        * any other unti test to try out specific conversation (search for Spreadhsheet convertor tess) ###
+        * any other unit test to try out specific conversation (search for Spreadhsheet convertor tess) ###
         * Unit test CellConvertorTest (contiguours ranes)
     * Restore all integration tests
         * maybe run them independalty so a failure in one does not block all
-
-
 
 ## Next - CSV Output
 * Output to CSV
@@ -43,9 +41,6 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Next - Deployment
 * Can deploy and work against true docs
-
-
-## Refresh knowledge and tidy
 * Snapshot current code and make note for book readers
 * dsl based on existing - working and sharable
 * Read all docs and refresh

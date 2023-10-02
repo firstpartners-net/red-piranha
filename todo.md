@@ -6,13 +6,17 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 * Update documentation (go through again) #####
     * In script comments
-    * Link to Main from sample
-    * readme.md / readme.html (4)
+    * tidy main readme.md
+        * move old book to book.md
+        * new section on book
+        * add running samples section
+        * new before screenshot
+        * new after screenshot
+    * readme.html (4)
         * link to main sample (readmes online)
         * link to gh-main-online groovy script
     * In Javadoc - scriptsupport review
-    *  In example 4 readme.html - bring out script comments
-    * Readme.md
+    * In example 4 readme.html - bring out script comments
     * Other .md files review
 
 * test cell confversion

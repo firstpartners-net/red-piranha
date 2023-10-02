@@ -74,7 +74,23 @@ The Project follows a standard structure, using the Spring Boot Framework and th
 1. Start the application using  `mvn spring-boot:run`
 1. Open a Browser and point at `http://localhost:7000/`
 
-Samples are integrated into the main webpage - so take a look at them as a next step.
+Samples are integrated into the page at this link - so take a look at them as a next step.
+
+## Samples
+
+Each of the samples has a readme.html to explain what the sample is showcasing. If you want to open in your editor, these are located in `code/src/main/resources/examples` . 
+
+[Link to this folder on GitHub](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/1_hello_world)
+
+1. [Sample 1 - a simple hello world](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/1_hello_world)
+1. [Sample 2 - slightly more sophisticated example with rule based decision making](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/2_chocolate-factory)
+1. [Sample 3 - making decisions on Excel data using a graphical decision model (DMN) ](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/3_simple_dmn)
+1. [Sample 4 - Complex Excel document, extracting data using named ranges and rule based validation](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/4_complex_excel)
+
+
+
+
+
 
 ## Older Book - Beginning Business rules with JBoss Drools
 

@@ -18,6 +18,8 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     * In Javadoc - scriptsupport review
     * In example 4 readme.html - bring out script comments
     * Other .md files review
+    * Possible
+        * convert html to md (in examples) wiht reader
 
 * test cell confversion
     * Run other unit tests

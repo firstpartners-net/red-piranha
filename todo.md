@@ -5,23 +5,15 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## NEXT STEP 
 
 * Update documentation (go through again) #####
-    * In script comments
     * tidy main readme.md
         * move old book to book.md
         * new section on book
         * add running samples section
-        * new before screenshot
-        * new after screenshot
-    * readme.html (4)
-        * link to main sample (readmes online)
-        * link to gh-main-online groovy script
-    * In Javadoc - scriptsupport review
-    * In example 4 readme.html - bring out script comments
-    * Other .md files review
-    * Possible
-        * convert html to md (in examples) wiht reader
+        * new before screenshot / new after screenshot
 
-* test cell confversion
+* push / merge docs into main
+
+* test cell conversion
     * Run other unit tests
         * any other unit test to try out specific conversation (search for Spreadhsheet convertor tess) ###
         * Unit test CellConvertorTest (contiguours ranes)
@@ -38,7 +30,6 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     * output as 2 or three columns - update previous class with this
 
 ## Next - Multiple files
-
 * Generate 2nd File into 5th sample folder (for multiplel filtes test)
     * copy generate spreasheet
     * create new DirectortInputStrategy to "walk" folder and call other input strategy
@@ -57,6 +48,16 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * Resolve GitHub [firstpartners-net/red-piranha] pages build and deployment workflow run 
 * Tests passing
 
+## Next upgrade Doc pre release
+* add 3 minute quickstart
+    * Readme.md how to run the sample in VSCode online
+* add about new and old book
+* tidy off *notes*.md files
+* update notes-release.md
+* Carry out release
+    * github
+    * docker
+
 ## Next Sprint
 
 
@@ -73,6 +74,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * do interim github and docker release
 * Merge back into main, create new branch?
 
+## ##############
 
 ## Tidy
 * Clear down warning
@@ -118,6 +120,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * Enable Swagger
 * Turn back on Spring Services in applicaiton.properites
 * Understand Github pages, Jekyll and see if can build an even 'friendlier' version of this site.
+* Rengerate Javadoc, tidy to site
 
 # Medium Term Ideas
 * better display of information in JSON

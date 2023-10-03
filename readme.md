@@ -1,14 +1,14 @@
-# Red Piranha
 
 ![Red Piranha Logo](/site/images/top/02.gif)
 
-## More powerful Excel, Word and Office Documents using Business Rules
+# More powerful Excel, Word and Office Documents using Business Rules
 
 Excel is great for collecting data. But once things get more complicated, you may be asking "what next"?
 
 * Your Excel calculations are good. Maybe too good - now you can't follow what is going on. Wouldn't something a little bit clearer be better?
 * Are you sharing your spreadsheets? What if somebody changes a formula without you noticing?
 * Your business absolutely needs to be sure the rules are being applied - and you need a way of checking what those rules are later.
+* You need to extract information from Excel to feed into Machine Learning pipelines, but have no easy, robust way to do it.
 
 Powered by [KIE from IBM and RedHat Drools](https://incubator.apache.org/clutch/kie.html), Red-Piranha allows you to state your Excel business rules in a simple **when ... then** format that everybody can understand.  It acts as a bridge between Excel / Microsoft Office and Business Rules and workflow Engine (including AI and Planner) from Red Hat.
 
@@ -31,14 +31,15 @@ By default, Drools,  doesn't read in Excel Data. Red Piranha fills in this gap w
 
 * A user Interface to run the rules from your desktop
 * Conversion of your Excel Data into a format the rule engine can read.
-* Conversion of the outout back into a (different) Excel file.
+* Conversion of the outout back into a (different) Excel file or other format.
 * Samples to get your started.
 * Information to show you what is going on within the Rule Engine.
 
 ## Main features 
 
+**Main Screenshot Before**
+![Red Piranha Screenshot](/images/main-screenshot-before.jpg)
 
-![Red Piranha Screenshot](/images/main-screenshot.jpg)
 
 * View in your favourite browser
 * Running on Localhost (your local machine)
@@ -46,24 +47,19 @@ By default, Drools,  doesn't read in Excel Data. Red Piranha fills in this gap w
 * Samples to help you get started.
 * Progress messages - did the rules run successfully?
 * More detailled messages from within the Rule Engine
-* Information from Input files - what our conversion from Excel into Java Objects looks like.
+* Information from Input files - what our co
+nversion from Excel into Java Objects looks like.
 * Information output - what the information coming out of the rule engine looks like before we save it as Excel.
 
-## 3 Minute Quickstart
-
-_Work in progress_ - 
-The information in this document is aimed at getting Excel Power Users up and running with Red Piranha. Take a 
-[look at the notes in this folder](.).
-
-## Docker Example
+## Running in Docker
 If you're into Docker, a packaged example is available on Dockerhub.
 https://hub.docker.com/repository/docker/paulbrowne/redpiranha
 
 When running the image, map port 7000, so that you can connect your browser to the application running within docker.
 
-The docker  build is not yet automated, so could be slightly (or a lot) behind the code in this repository.
+The docker build is not yet automated, so could be slightly (or a lot) behind the code in this repository.
 
-## Downloading and running the code
+## Running the project on your laptop 
 
 The Project follows a standard structure, using the Spring Boot Framework and the Maven build tool. So if you're a Java developer, it's pretty easy for you to download and run.
 
@@ -76,7 +72,19 @@ The Project follows a standard structure, using the Spring Boot Framework and th
 
 Samples are integrated into the page at this link - so take a look at them as a next step.
 
+### 3 minute start Running the project online in GitHub Codespaces
+
+It is also possible to run the project in GitHub Code spaces.
+1. Click on the blue `code` button above
+1. Select the `Codespaces` tab.
+1. Select the button to `Create Codespace on main`
+
+Once the VSCode Editor and Terminal is open in your browser, follow the laptop instructions above from step 3.
+
+
 ## Samples
+
+Opening the Red Piranha webpage (normally at `http://localhost:7000/`) will show a list of ready to go samples.
 
 Each of the samples has a readme.html to explain what the sample is showcasing. If you want to open in your editor, these are located in `code/src/main/resources/examples` . 
 
@@ -87,17 +95,18 @@ Each of the samples has a readme.html to explain what the sample is showcasing. 
 1. [Sample 3 - making decisions on Excel data using a graphical decision model (DMN) ](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/3_simple_dmn)
 1. [Sample 4 - Complex Excel document, extracting data using named ranges and rule based validation](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/4_complex_excel)
 
+**After running**
+The top part of screen will alter - showing the base directory, input file, business rules, DSL (Language mapping) and output file used.
+![Red Piranha Screenshot](/images/main-screenshot-after.jpg)
+
+
+The bottom part of screen will also update - it will show messages as the sample runs, and a snapshot of the data before and after the buisness rules (to allow you to write your rules).
+![Red Piranha Screenshot](/images/main-screenshot-after-2.jpg)
 
 
 
 
 
-## Older Book - Beginning Business rules with JBoss Drools
 
-[![](http://rcm-images.amazon.com/images/I/511yB7Fl-SL._SL110_.jpg)](http://www.amazon.co.uk/dp/1847196063?tag=firstparnet-21&camp=1406&creative=6394&linkCode=as1&creativeASIN=1847196063&adid=0559JR8EAMSMXZ5S3ZWC&)
-
-You may be here looking looking for the code samples from the book **Beginning Business rules with JBoss Drools**. They're [available to download here](http://code.google.com/p/red-piranha/downloads/list?can=2&q=label%3Adroolsbook&colspec=Filename+Summary+Uploaded+ReleaseDate+Size+DownloadCount). If you've any technical issues with the code [check the existing or create a new issue here](http://code.google.com/p/red-piranha/issues/list?can=1&q=&colspec=ID+Type+Status+Priority+Milestone+Owner+Summary&cells=tiles) - remember to add a label ['Book'](http://code.google.com/p/red-piranha/issues/list?can=2&q=book&colspec=ID+Type+Status+Priority+Milestone+Owner+Labels+Summary&x=priority&y=owner&cells=tiles). A general 'comments on the book' page can also be found here [BookFeedback](BookFeedback.md)
-
-We have snapshotted the [code that the book was written on here](https://github.com/paulbrowne-irl/red-piranha/tree/v0.9). You probably don't want this, the libraries this code is based on are now deprecated. The code in this site is much more up to date.
 
 

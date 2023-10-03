@@ -1,6 +1,6 @@
 # The Datamodel
 
-Red Piranha converts all office documents intot a standad datamodel, to make it easier to write rules against it.
+Red Piranha converts all office documents into a standad datamodel, to make it easier to write rules against it.
 
 * Main Javadoc <https://paulbrowne-irl.github.io/red-piranha/javadocs/>
 * Cell - <https://paulbrowne-irl.github.io/red-piranha/javadocs/net/firstpartners/data/Cell.html>
@@ -20,8 +20,5 @@ Red Piranha converts all office documents intot a standad datamodel, to make it 
 
 mvn package -DskipTests from code in maven to build
 rp-data-model-2.2.1-SNAPSHOT.jar - built by this script
-
-code\target\
-
 
 

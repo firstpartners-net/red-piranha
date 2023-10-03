@@ -4,32 +4,32 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## NEXT STEP 
 
-* Update documentation (go through again)
-    * Re
-    * In script comments
-    * In Javadoc
-        * What is is
-        * Name of Class
-        * See scripts in exampleds
-    *  In example 4 readme.html - bring out script comments
-    * Readme.md
-    * Other .md files
-    * Push doc files to main and link samples in to them
+* Update documentation (go through again) #####
+    * tidy main readme.md
+        * move old book to book.md
+        * new section on book
+        * add running samples section
+        * new before screenshot / new after screenshot
 
-* test cell confversion
-    * Unit test against sample 4 converstion ###
+* push / merge docs into main
+
+* test cell conversion
     * Run other unit tests
         * any other unit test to try out specific conversation (search for Spreadhsheet convertor tess) ###
         * Unit test CellConvertorTest (contiguours ranes)
     * Restore all integration tests
         * maybe run them independalty so a failure in one does not block all
+    * Additional 
+        * Is Acme Corp appearning in json
+* Decide
+    * how to deploy
+    * how to extend
 
 ## Next - CSV Output
 * Output to CSV
     * output as 2 or three columns - update previous class with this
 
 ## Next - Multiple files
-
 * Generate 2nd File into 5th sample folder (for multiplel filtes test)
     * copy generate spreasheet
     * create new DirectortInputStrategy to "walk" folder and call other input strategy
@@ -48,12 +48,21 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * Resolve GitHub [firstpartners-net/red-piranha] pages build and deployment workflow run 
 * Tests passing
 
+## Next upgrade Doc pre release
+* add 3 minute quickstart
+    * Readme.md how to run the sample in VSCode online
+* add about new and old book
+* tidy off *notes*.md files
+* update notes-release.md
+* Carry out release
+    * github
+    * docker
+
 ## Next Sprint
 
-* Docs
-    ** Tidy current docs - next pass
+
 * Future
-    * Create Fiancial extraction Sample - analsyis of single case
+    * Create Fiancial extraction Sample - analsyis of single case POC
     * multiple output options
     * decision test
 * Improve Data Extraction
@@ -65,6 +74,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * do interim github and docker release
 * Merge back into main, create new branch?
 
+## ##############
 
 ## Tidy
 * Clear down warning
@@ -110,6 +120,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * Enable Swagger
 * Turn back on Spring Services in applicaiton.properites
 * Understand Github pages, Jekyll and see if can build an even 'friendlier' version of this site.
+* Rengerate Javadoc, tidy to site
 
 # Medium Term Ideas
 * better display of information in JSON

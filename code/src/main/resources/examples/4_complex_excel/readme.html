@@ -1,12 +1,31 @@
-<I>Sample Under Development.</I><br/>
-<b>Notes:</b> Read information from a complex Excel Spreadsheet and summarize as json/csv.
-<p></p>
-The sample demonstrates preprocessing to add Named ranges to an Excel file -
+
+<b>What example does:</b> Read information from a complex Excel Spreadsheet and summarize as json/csv.
+<p>
+The sample demonstrates extracting data from a complex Excel file - it uses preprocessing to tidy the Named Ranges in the document
  often needed for historical documents and used to identify the Cells we want to extact and pass into the Rule Engine. 
 </p><p>
-The sample directory contains a prepropssing script called <I>InjectNamedRange.Groovy</I>. There is a setting in
+<ul>
+<li>
+The sample directory contains a pre-processing script called <a href="https://github.com/firstpartners-net/red-piranha/blob/main/code/src/main/resources/examples/4_complex_excel/InjectNamedRanges.groovy">
+<I>InjectNamedRange.Groovy</I>. </a>
+</li><li>There is a setting in
 <i>application.properties</i> that causes files with this name to be excecuted after the Spreadsheet is loaded but 
 before the business rules are executed.  
-</p><p>
-This script is passed a copy of the incoming spreadsheet which allows it to be manipulated. In this cases the 
-script adds Excel Named Ranges tagging the areas of the sheet we are most interested in.
+</li><li>
+This script is passed a copy of the incoming spreadsheet which allows it to be manipulated. This is all done in memory (no change made to the original document).
+</li><li>In this case the 
+script adds Excel Named Ranges tagging the areas of the sheet we are most interested in, but other alterations are possible. 
+</li><li>
+After loading the document into memory, the business rules are fired against it. 
+</li><li>
+In this sample the rules are simple - but could
+be a lot more complex (e.g.) making a decision to invest, or listing the reason why not. Our sample uses rules to tidy tidy 
+and identify files not in the format we expect.
+</li><li>
+Finally the sample outputs the values to a CSV file. 
+</li><li>
+The net effect is that clean values are extracted from an untidy Excel sheet,
+tidied up, and output cleanly into a format suitable for ingestion into the next step e.g. a Machine Learning pipeline.
+</li>
+</ul>
+</p>

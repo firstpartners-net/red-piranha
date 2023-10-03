@@ -111,4 +111,29 @@ RUNNING WITHOUT BUILD
 docker run -p 8080:8080 -p 8001:8001 -d --name jbpm-server-full jboss/jbpm-server-full:latesT
     
 
+Release 
+- auto (re) generate Javadoc
+- Tag
+
+
+    mvn javadoc:javadoc
+    mvn javadoc:jar
+    mvn javadoc:aggregate
+    mvn javadoc:aggregate-jar
+    mvn javadoc:test-javadoc
+    mvn javadoc:test-jar
+    mvn javadoc:test-aggregate
+    mvn javadoc:test-aggregate-jar
+
+    test new branch
+
+
+    where to find properties
+    how to generate release
+
+## Testing
+mvn test to run tests
+** output in 
+    
+
 

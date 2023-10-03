@@ -5,11 +5,11 @@ While we can manipulate the Excel data in any way we want, for this sample we us
 to identify and inject <b>Named Ranges</b> into the Excel document.
 
 This is important as only cells that are part of Excel Named ranges will be added to the 
-Rule Engine working memory, and we can't always guarantee that our incoming Excel files
-will have them set
+Rule Engine working memory, then saved to disl. We can't always guarantee that our incoming Excel files
+will have named ranges set.
 
-* Red Piranha (RP) will pass in a handle to the Excel workbook - the next line confirms this
-* Details on the Workbook model are at the Apache POI website.
+* Red Piranha (RP) will pass to this script a handle to the Excel workbook - the line starting 
+* 'assert 'confirms this. Details on the Workbook model are at the Apache POI website.
 * Details of the helper class are available in the samples, and the JavaDoc for SheetNames.java
 */
 
@@ -30,8 +30,8 @@ ScriptSupport sprt = new ScriptSupport(xlWorkbook)
 
 // end careful change =====================================================================
 
-// Not needed for more simple spreadhseets - but remove any previous named ranges
-// this means the only data extracted will the the ranges named in this script
+// Not needed for more simple spreadhseets - but remove any previous named ranges.
+// This means the only data extracted will the the ranges named in this script
 sprt.removePreviousNamedRanges()
 
 

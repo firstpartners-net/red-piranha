@@ -246,6 +246,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 		// Open in a reader
 		Reader reader = new BufferedReader(new FileReader(appendFileName));
 		
+		@SuppressWarnings("deprecation")
 		CSVParser csvParser = CSVParser.parse(reader, CSVFormat.EXCEL.withFirstRecordAsHeader());
 	
 

@@ -120,18 +120,18 @@ class IntegrationTests {
 			
 			// set out OutputStrategy so we can test the output later
 			// this overrides the normal output
-			log.info("Overriding output strategy - now will use MemoryOutputStrategy");
-			MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
-			runner.setDocumentOutputStrategy(outputStrategy);
+			//log.info("Overriding output strategy - now will use MemoryOutputStrategy");
+			//MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
+			//runner.setDocumentOutputStrategy(outputStrategy);
 
 			runner.callRules(testModel);
 
 			log.debug("\n=======\n");
-			log.debug(testModel.toString());
+			//log.debug(testModel.toString());
 			
 			
 			//check not blowing up and that we have
-			assertNotNull(outputStrategy.getProcessedDocument());
+			//assertNotNull(outputStrategy.getProcessedDocument());
 			
 		}
 

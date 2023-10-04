@@ -36,7 +36,7 @@
   "baseDirectory":"4_complex_excel/",
   "inputFileLocation" : "Complex_Financial.xlsx",
   "ruleFileLocation" : "log-then-modify-rules.drl",
-  "outputFileLocation" : "output.json",
+  "outputFileLocation" : "output.csv",
   "dslFileLocation" : "",
   "testingResult" : ""
   		

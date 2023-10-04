@@ -2,16 +2,34 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
-## NEXT STEP 
+## Next - CSV Output
+* Output to CSV
+    * resolve error
+        * Walk through - is it file not found, or incorrect format
+        * capture json output
+        * use json as input to test
+        * unit test error
 
-* Update documentation (go through again) #####
-    * tidy main readme.md
-        * move old book to book.md
-        * new section on book
-        * add running samples section
-        * new before screenshot / new after screenshot
+    * output as 2 or three columns - update previous class with this
 
-* push / merge docs into main
+# Move to other script
+    * copy over settings 
+
+# Tidy
+code back in Integration tests line 120
+code back in all integration test run
+
+Cascade through output directory
+    * ExcelOutputStrategy
+    * CSVOutput
+    * PDFOutput
+    * JSON Output
+
+** Output as Json then pull in Unit test **
+
+
+
+## Next tidy
 
 * test cell conversion
     * Run other unit tests
@@ -25,12 +43,9 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     * how to deploy
     * how to extend
 
-## Next - CSV Output
-* Output to CSV
-    * output as 2 or three columns - update previous class with this
 
 ## Next - Multiple files
-* Generate 2nd File into 5th sample folder (for multiplel filtes test)
+* Generate 2nd File into 5th sample folder (for multiple files test)
     * copy generate spreasheet
     * create new DirectortInputStrategy to "walk" folder and call other input strategy
 

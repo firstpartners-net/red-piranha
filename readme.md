@@ -72,7 +72,7 @@ The Project follows a standard structure, using the Spring Boot Framework and th
 
 Samples are integrated into the page at this link - so take a look at them as a next step.
 
-### 3 minute start Running the project online in GitHub Codespaces
+### 3 minute start - Running the project online in GitHub Codespaces
 
 It is also possible to run the project in GitHub Code spaces.
 1. Click on the blue `code` button above

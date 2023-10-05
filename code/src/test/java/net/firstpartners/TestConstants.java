@@ -51,9 +51,11 @@ public class TestConstants {
 	//Groovy Language scripts
 	public final static String GROOVY_PREPROCESS="src/main/resources/examples/4_complex_excel/InjectNamedRanges.groovy";
 
-		//tmp files
+	//tmp files
 	public static final String EXCEL_TMP_FILE = "tmp.xls"; // was src/test/resources/testdata/tmp.xls"
-	public static final String CSV_TMP_FILE = "src/test/resources/testdata/tmp.csv";
+	public static final String CSV_TMP_FILE_SINGLE_LINE = "src/test/resources/testdata/tmp-single.csv";
+	public static final String CSV_TMP_FILE_MULTI_LINE = "src/test/resources/testdata/tmp-multi.csv";
+
 	public static final String PDF_TMP_FILE = "src/test/resources/testdata/tmp.pdf";
 	public static final String JSON_TMP_FILE = "src/test/resources/testdata/tmp.json";
 	

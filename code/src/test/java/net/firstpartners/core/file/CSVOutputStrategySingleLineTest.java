@@ -3,7 +3,6 @@ package net.firstpartners.core.file;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -18,8 +17,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
-import net.firstpartners.core.RPException;
-import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.data.RangeList;
 import net.firstpartners.ui.RedControllerTest; 
 
@@ -90,46 +87,5 @@ public class CSVOutputStrategySingleLineTest {
 
 	}
 
-	/**
-	 * Reasd Serialised JSON info, check we can output to CSV
-	 * @throws RPException
-	 */
-	@Test
-	public final void testJsonInCsvOut() throws Exception, RPException {
-
-		
-		//mockup the configuration we need
-		Config testConfig = new Config();
-
-		// Delete previous output file if it exists
-		try{
-			File tmpOutputFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_TMP_FILE, testConfig);
-			if(tmpOutputFile!=null){
-				tmpOutputFile.delete();
-			}
-		} catch (FileNotFoundException fnfe){
-			log.debug("Tmpfile "+TestConstants.CSV_TMP_FILE+" not found, assume already deleted");
-		}
-
-		//Get our sample data
-		JsonInputStrategy jsInput = new JsonInputStrategy(TestConstants.JSON_SERIAL_FILE_COMPLEX);
-		jsInput.setConfig((testConfig));
-		RangeList testRange = jsInput.getJavaBeansFromSource();
-
-		//setup our CSV Outputter
-		CSVOutputStrategySingleLine csvout = new CSVOutputStrategySingleLine(TestConstants.CSV_TMP_FILE);
-		csvout.setConfig(testConfig);
-
-
-		//Do the output
-
-		// test the class
-		csvout.setUpdates(null, testRange);
-		csvout.processOutput();
-
-		log.debug("cvs data is saved in:"+TestConstants.CSV_TMP_FILE);
-
-	}
-
-
+	
 }

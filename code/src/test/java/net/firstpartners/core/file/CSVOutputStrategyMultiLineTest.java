@@ -103,12 +103,12 @@ public class CSVOutputStrategyMultiLineTest {
 
 		// Delete previous output file if it exists
 		try{
-			File tmpOutputFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_TMP_FILE, testConfig);
+			File tmpOutputFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_TMP_FILE_MULTI_LINE, testConfig);
 			if(tmpOutputFile!=null){
 				tmpOutputFile.delete();
 			}
 		} catch (FileNotFoundException fnfe){
-			log.debug("Tmpfile "+TestConstants.CSV_TMP_FILE+" not found, assume already deleted");
+			log.debug("Tmpfile "+TestConstants.CSV_TMP_FILE_MULTI_LINE+" not found, assume already deleted");
 		}
 
 		//Get our sample data
@@ -117,7 +117,7 @@ public class CSVOutputStrategyMultiLineTest {
 		RangeList testRange = jsInput.getJavaBeansFromSource();
 
 		//setup our CSV Outputter
-		CSVOutputStrategyMultiLine csvout = new CSVOutputStrategyMultiLine(TestConstants.CSV_TMP_FILE);
+		CSVOutputStrategyMultiLine csvout = new CSVOutputStrategyMultiLine(TestConstants.CSV_TMP_FILE_MULTI_LINE);
 		csvout.setConfig(testConfig);
 
 
@@ -127,7 +127,7 @@ public class CSVOutputStrategyMultiLineTest {
 		csvout.setUpdates(null, testRange);
 		csvout.processOutput();
 
-		log.debug("cvs data is saved in:"+TestConstants.CSV_TMP_FILE);
+		log.debug("csv data is saved in:"+TestConstants.CSV_TMP_FILE_MULTI_LINE);
 
 	}
 

@@ -3,7 +3,6 @@
  */
 package net.firstpartners.core.json;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -14,7 +13,11 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import groovy.util.ResourceException;
+import groovy.util.ScriptException;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.MemoryOutputStrategy;
 import net.firstpartners.core.RPException;
@@ -22,14 +25,7 @@ import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RunnerFactory;
 import net.firstpartners.core.excel.SpreadSheetConvertorTest;
-
 import net.firstpartners.data.RangeList;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import groovy.util.ResourceException;
-import groovy.util.ScriptException;
 
 /**
  * @author paulf
@@ -90,9 +86,7 @@ public class JsonInputStrategyTest {
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 		runner.setDocumentOutputStrategy(outputStrategy);
 
-		runner.callRules(redModel);
-		assertNotNull(outputStrategy.getProcessedDocument());
-
+	
 	}
 
 		

@@ -2,6 +2,7 @@ package net.firstpartners.core.file;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -51,7 +52,41 @@ public class CSVOutputStrategyMultiLineTest {
 
 	}
 
-	//
+	@Test
+	public final void testSplitFieldNameIntoThreeParts() {
+
+		fail ("Need to implement");
+
+	}
+
+	@Test
+	public final void testGenerateHeaders() {
+
+		CSVOutputStrategyMultiLine test = new CSVOutputStrategyMultiLine("Dummy-output.csv");
+		String [] headers = test.generateHeaders();
+
+		assertNotNull(headers);
+		assertTrue(headers.length==9);
+		assertEquals(headers[0],"Name");
+		assertEquals(headers[1],"Value");
+
+	}
+
+	@Test
+	public final void testGenerateBodyLine() {
+
+		CSVOutputStrategyMultiLine test = new CSVOutputStrategyMultiLine("Dummy-output.csv");
+		String [] bodyrow = test.generateBodyRow("one","two","three");
+
+		assertNotNull(bodyrow);
+		assertTrue(bodyrow.length==3);
+		assertEquals(bodyrow[0],"one");
+		assertEquals(bodyrow[1],"two");
+
+
+
+
+	}
 
 
 	@Test
@@ -118,9 +153,13 @@ public class CSVOutputStrategyMultiLineTest {
 
 		fail("need to test for file");
 
-		fail ("Need to test for main output in memory");
+		fail ("Need to test for main output in headers");
 
-		fail ("Need to test for additional output");
+		fail ("Need to test for additional output in headers");
+
+		fail ("Need to test for additional output in body");
+
+		fail ("Need to test for additional output in body");
 
 	}
 

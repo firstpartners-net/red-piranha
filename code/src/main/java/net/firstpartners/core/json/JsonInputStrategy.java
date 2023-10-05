@@ -79,7 +79,10 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 		
 		RangeList myRange  = objectMapper.readValue(jsonSource, RangeList.class);
 		JsonNode rootNode = objectMapper.readTree(jsonSource);
-		log.debug("Found:"+rootNode);
+		
+		//beware - the following can generate a lot of Json into the log! 
+		//log.debug("Found:"+rootNode);
+		rootNode =null;
 		
 
 		

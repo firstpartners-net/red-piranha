@@ -162,11 +162,12 @@
 		</dependency>
 
 		<!--For Prepprocessing the CSV Output and analytics-->
+		<!--
 		<dependency>
 			<groupId>tech.tablesaw</groupId>
 			<artifactId>tablesaw-core</artifactId>
 			<version>0.43.1</version>
-		</dependency>
+		</dependency>-->
 
 		<!--To run the Groovy preprocessing scripts-->
 		<dependency>

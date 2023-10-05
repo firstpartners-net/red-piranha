@@ -1,17 +1,17 @@
 package net.firstpartners.core.file;
 
-import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVPrinter;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ import net.firstpartners.data.RangeList;
 /**
  * Strategy class to output of CSV Document.
  * <p>
- * CSV will try to append to a *New or Existing* CSV file. 
+ * CSV will try to append to a *New or Existing* CSV file.
  * 
  * In general, one Cell value processed equals one line in the CSV file.
  *
@@ -31,20 +31,24 @@ import net.firstpartners.data.RangeList;
  * The process by which the output strategy works is as follows:
  * <ul>
  * <li>
- *  It uses the data from  * the RangeHolder (our version of the Word / Excel / Other document that was
+ * It uses the data from * the RangeHolder (our version of the Word / Excel /
+ * Other document that was
  * passed in, that the rules then modified).
  * <li>
  * <li>
-
- * Happily, this data is displayed in the Red Piranha GUI - picture on the main page of the GitHub project site - so
+ * 
+ * Happily, this data is displayed in the Red Piranha GUI - picture on the main
+ * page of the GitHub project site - so
  * you can see the data you have to work with.</li>
  * </p>
  * <ol>
  * <li>The Outputer looks for a csv file of the name given (normally in the
  * params passed in when calling via the web - see smample web application).
- * </li><li>
+ * </li>
+ * <li>
  * If the file is not found it will be created.</li>
- * <li>It will loop through the availble cells and output one line of CSV output for each.</li>
+ * <li>It will loop through the availble cells and output one line of CSV output
+ * for each.</li>
  * </ol>
  * <p>
  * While the Outputer will not overwrite any data present, it will not check for
@@ -70,9 +74,6 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 
 	private Config appConfig;
 
-	// Name of the output file
-	private String appendFileName = null;
-
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -82,13 +83,16 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	// sub directory e.g. for samples
 	private String subDirectory;
 
+	// Name of the outputfile
+	private String outputFileName = null;
+
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
 	 *
 	 * @param outputFileName - file we want to output to
 	 */
 	public CSVOutputStrategyMultiLine(String outputFileName) {
-		this.appendFileName = outputFileName;
+		this.outputFileName = outputFileName;
 	}
 
 	public String getSubDirectory() {
@@ -106,7 +110,7 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	 */
 	@Override
 	public String getOutputDestination() {
-		return "File:" + appendFileName;
+		return "File:" + outputFileName;
 	}
 
 	/**
@@ -117,13 +121,14 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	 * @return a {@link java.lang.String} object
 	 */
 	public String getOutputFileName() {
-		return appendFileName;
+		return outputFileName;
 	}
 
 	/**
 	 * To conform to the interface - not (yet) implemented in this strategy
 	 */
-	public void setAdditionalOutputData(Map<String,String> ignored){}
+	public void setAdditionalOutputData(Map<String, String> ignored) {
+	}
 
 	/**
 	 * Process the output from the system
@@ -140,27 +145,55 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 
 		assert dataToOutput!=null : "No data available to output";
 
+		String outputFileDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
+		
+		//Construct the output file including directory
+		Path outputPath;
+		if(outputFileDir!=""){
+			outputPath = Paths.get(outputFileDir+"/"+outputFileName);
+		} else {
+			outputPath = Paths.get(outputFileName);
+		}
+
+		log.debug("trying to output Excel to:"+outputPath);
+
+		//define our CSV headers
+		String[] headers = generateHeaders();
+
 		// Get all the Cells that we have been keeping track of
 		Map<String, net.firstpartners.data.Cell> allCells = dataToOutput.getAllCellsWithNames();
 
+		//Setup the CSV Writer
+		BufferedWriter writer = Files.newBufferedWriter(outputPath);
+		CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(headers));
+        
+        
 		// Loop through the cells
 		Iterator<net.firstpartners.data.Cell> redCells = allCells.values().iterator();
 		while (redCells.hasNext()) {
 
 			net.firstpartners.data.Cell thisRedCell = redCells.next();
-			String orignalSheetRef = thisRedCell.getOriginalTableReference();
-			String originalPoiRef = thisRedCell.getOriginalCellReference();
 
-			if (originalPoiRef == null || orignalSheetRef == null) {
-				log.debug("Cells has no ref to original sheet or cell - ignoring:" + thisRedCell);
-			} else {
+			Object[] bodyRecord = generateBodyRow(
+									thisRedCell.getName(),
+									thisRedCell.getValueAsText(),
+									thisRedCell.getOriginalTableReference(),
+									thisRedCell.getOriginalCellReference(),
+									"",
+									"",
+									"",
+									"",
+									"");
 
-				log.debug("Would Output"+thisRedCell);
-			}
-
+			csvPrinter.printRecord(bodyRecord);
+	
 		}
+		csvPrinter.flush(); 
+		csvPrinter.close(); 
 
 	}
+
+
 
 	/** {@inheritDoc} */
 	public void setConfig(Config appConfig) {
@@ -177,36 +210,22 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 		// this converter ignores any original , we just store the range output
 		dataToOutput = incomingData;
 
-		log.debug("Set Data - not null:"+(incomingData!=null));
+		log.debug("Set Data - not null:" + (incomingData != null));
 
 	}
 
-	List<String> getHeadersFromFile() throws IOException {
+	String[] getCsvFileAsStringArray() throws IOException {
 
-		// We must have a pre existing file
-		File appendFile = ResourceFinder.getFileResourceUsingConfig(appendFileName, appConfig);
+		File file = new File(outputFileName);
+		FileInputStream fis = new FileInputStream(file);
+		byte[] byteArray = new byte[(int) file.length()];
+		fis.read(byteArray);
+		String data = new String(byteArray);
+		fis.close();
+		String[] stringArray = data.split("\r\n");
 
-		if (!appendFile.exists()) {
-			throw new IllegalArgumentException(
-					"For writing to a CSV file " + appendFileName + " should already exist with headers in first row");
-		}
-
-		log.debug("Found CSV:" + appendFileName);
-
-		// Open in a reader
-		Reader reader = new BufferedReader(new FileReader(appendFileName));
-
-		@SuppressWarnings("deprecation")
-		CSVParser csvParser = CSVParser.parse(reader, CSVFormat.EXCEL.withFirstRecordAsHeader());
-
-		List<String> returnValues = csvParser.getHeaderNames();
-		log.debug("Found Headers" + returnValues + " headers");
-
-		// close everything off
-		reader.close();
-		reader = null;
-
-		return returnValues;
+		return stringArray;
+		
 	}
 
 	/**
@@ -217,15 +236,29 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	 */
 	int getNumberOfRowsInFile() throws IOException {
 
-		File file = new File(appendFileName);
-		FileInputStream fis = new FileInputStream(file);
-		byte[] byteArray = new byte[(int) file.length()];
-		fis.read(byteArray);
-		String data = new String(byteArray);
-		String[] stringArray = data.split("\r\n");
-		fis.close();
+		String[] stringArray = getCsvFileAsStringArray();
 
 		return stringArray.length;
 	}
 
+	/**
+	 * Generate the headers needed for the CSV File
+	 * @return
+	 */
+	 String[] generateHeaders() {
+		
+		String[] returnValue = {"Name","Value","Sheet","Ref","Table","Row","Col","Date","Source"};
+		return returnValue;
+	}
+
+	/**
+	 * Generate the body needed needed for the CSV File
+	 * @return
+	 */
+	 String[] generateBodyRow(String ... params) {
+		
+		String[] returnValue = params;
+		return returnValue;
+	}
 }
+

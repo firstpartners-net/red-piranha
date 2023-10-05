@@ -4,27 +4,28 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Next - CSV Output
 
-    
 
 * Output to CSV
     * Update Code
-        * work through additional data
-            * compile
-            * call in test
-            * call in main controller
-            * ensure we can test for the value
+           
         * ## next ## 
-        * Print loop / save to TableSaw ### next ##
-            * add to loop
-            * output and see what we get
-            * 
+        * Print loop / save
+            * additional values 
+            * split values 3 rows - 
+
+        * append to csv??
+        
+
     * Unit test
-        * run testJsonInCsvOut - and fix and errors 
         * add tests for what is coming back
+        * replace "fails"
+        * test check that works with both create and append
 
     * CSV Multiline
         * Change output behaviour
-            * 4/5 Columns: File + CellName + Cell Value 
+            * 4/5 Columns: File + CellName + Cell Value + split out
+            * unit tests
+        * 
 
         
 

@@ -28,7 +28,7 @@ public class WordXInputStrategyTest {
 	public final void testdoxcCallRulesFromFile() throws Exception, RPException {
 	
 
-		RedModel redModel = new RedModel(TestConstants.WORDX_DATA_FILE, TestConstants.RULES_FILE,
+		RedModel redModel = new RedModel(TestConstants.WORDX_DATA_FILE, TestConstants.SIMPLE_LOG_MODIFY_RULES_FILE,
 				"some-dummy.pdf");
 		
 

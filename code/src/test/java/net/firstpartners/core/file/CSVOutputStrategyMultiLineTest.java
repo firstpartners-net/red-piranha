@@ -3,6 +3,7 @@ package net.firstpartners.core.file;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -17,25 +18,27 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
+import net.firstpartners.core.RPException;
+import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.data.RangeList;
-import net.firstpartners.ui.RedControllerTest;
+import net.firstpartners.ui.RedControllerTest; 
 
 @SpringBootTest
-public class CSVOutputStrategyTest {
+public class CSVOutputStrategyMultiLineTest {
 
 	// handle for our config
 	@Autowired
 	Config appConfig;
 
 	// Logger
-	private static Logger log = LoggerFactory.getLogger(CSVOutputStrategyTest.class);
+	private static Logger log = LoggerFactory.getLogger(CSVOutputStrategyMultiLineTest.class);
 
 	@Test
 	public final void testAppendToCSV() throws IOException, InvalidFormatException, ClassNotFoundException {
 
 		RangeList TestData = RedControllerTest.getTestDataFromWord();
 
-		CSVOutputStrategy csvOut = new CSVOutputStrategy(TestConstants.CSV_APPEND_FILE);
+		CSVOutputStrategyMultiLine csvOut = new CSVOutputStrategyMultiLine(TestConstants.CSV_APPEND_FILE);
 		int previousNumberOfCsvRows = csvOut.getNumberOfRowsInFile();
 
 		// test the class
@@ -54,7 +57,7 @@ public class CSVOutputStrategyTest {
 
 		RangeList testData = RedControllerTest.getTestDataFromWord();
 
-		CSVOutputStrategy csvOut = new CSVOutputStrategy(TestConstants.CSV_APPEND_FILE);
+		CSVOutputStrategyMultiLine csvOut = new CSVOutputStrategyMultiLine(TestConstants.CSV_APPEND_FILE);
 
 		List<String> headers = csvOut.getHeadersFromFile();
 
@@ -76,7 +79,7 @@ public class CSVOutputStrategyTest {
 
 		try {
 
-			CSVOutputStrategy testObject = new CSVOutputStrategy("some-file-that-should-never-never-exist.csv");
+			CSVOutputStrategyMultiLine testObject = new CSVOutputStrategyMultiLine("some-file-that-should-never-never-exist.csv");
 			testObject.processOutput();
 
 			fail("expected exception never thrown");
@@ -84,6 +87,47 @@ public class CSVOutputStrategyTest {
 		} catch (java.io.FileNotFoundException iae) {
 			// ok to ignore as we expect it
 		}
+
+	}
+
+	/**
+	 * Reasd Serialised JSON info, check we can output to CSV
+	 * @throws RPException
+	 */
+	@Test
+	public final void testJsonInCsvOut() throws Exception, RPException {
+
+		
+		//mockup the configuration we need
+		Config testConfig = new Config();
+
+		// Delete previous output file if it exists
+		try{
+			File tmpOutputFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_TMP_FILE, testConfig);
+			if(tmpOutputFile!=null){
+				tmpOutputFile.delete();
+			}
+		} catch (FileNotFoundException fnfe){
+			log.debug("Tmpfile "+TestConstants.CSV_TMP_FILE+" not found, assume already deleted");
+		}
+
+		//Get our sample data
+		JsonInputStrategy jsInput = new JsonInputStrategy(TestConstants.JSON_SERIAL_FILE_COMPLEX);
+		jsInput.setConfig((testConfig));
+		RangeList testRange = jsInput.getJavaBeansFromSource();
+
+		//setup our CSV Outputter
+		CSVOutputStrategyMultiLine csvout = new CSVOutputStrategyMultiLine(TestConstants.CSV_TMP_FILE);
+		csvout.setConfig(testConfig);
+
+
+		//Do the output
+
+		// test the class
+		csvout.setUpdates(null, testRange);
+		csvout.processOutput();
+
+		log.debug("cvs data is saved in:"+TestConstants.CSV_TMP_FILE);
 
 	}
 

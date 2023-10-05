@@ -93,47 +93,42 @@ import net.firstpartners.data.RangeList;
  * @author paul
  * @version $Id: $Id
  */
-public class CSVOutputStrategy implements IDocumentOutStrategy {
+public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 
-	
 	private Config appConfig;
 
 	// Name of the output file
 	private String appendFileName = null;
-	
+
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	// Hold the data until we are asked to process it
-	//@SuppressWarnings("unused") // eclipse mistakenly marks this as unused
+	// @SuppressWarnings("unused") // eclipse mistakenly marks this as unused
 	private RangeList processedRange;
 
-	//sub directory e.g. for samples
+	// sub directory e.g. for samples
 	private String subDirectory;
-
 
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
 	 *
 	 * @param outputFileName - file we want to output to
 	 */
-	public CSVOutputStrategy(String outputFileName) {
+	public CSVOutputStrategySingleLine(String outputFileName) {
 		this.appendFileName = outputFileName;
 	}
-
 
 	public String getSubDirectory() {
 		return subDirectory;
 	}
 
-
 	public void setSubDirectory(String subDirectory) {
 		this.subDirectory = subDirectory;
 	}
 
-
 	/**
-	/**
+	 * /**
 	 * Get the values from our Beans (RangeList) that match the headers
 	 *
 	 * @param headers  that we are looking to match in the data
@@ -169,7 +164,9 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	}
 
 	/**
-	 * <p>getOutputFileName.</p>
+	 * <p>
+	 * getOutputFileName.
+	 * </p>
 	 *
 	 * @return a {@link java.lang.String} object
 	 */
@@ -180,8 +177,12 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 	/**
 	 * Process the output from the system
 	 *
-	 * @throws java.io.IOException            - from underlying libs
-	 * @throws org.apache.poi.openxml4j.exceptions.InvalidFormatException - from underlying libs
+	 * @throws java.io.IOException                                        - from
+	 *                                                                    underlying
+	 *                                                                    libs
+	 * @throws org.apache.poi.openxml4j.exceptions.InvalidFormatException - from
+	 *                                                                    underlying
+	 *                                                                    libs
 	 */
 	public void processOutput() throws IOException, InvalidFormatException {
 
@@ -196,7 +197,7 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 		int counter = 0;
 
 		// Loop and add the values in order
-		for (String thisHeader : headers) {	
+		for (String thisHeader : headers) {
 
 			dataToWrite[counter] = outputValues.get(thisHeader);
 			log.info("CSV Output for header:" + thisHeader + " value:" + dataToWrite[counter]);
@@ -236,19 +237,19 @@ public class CSVOutputStrategy implements IDocumentOutStrategy {
 
 		// We must have a pre existing file
 		File appendFile = ResourceFinder.getFileResourceUsingConfig(appendFileName, appConfig);
-		
+
 		if (!appendFile.exists()) {
-			throw new IllegalArgumentException("For writing to a CSV file "+ appendFileName+" should already exist with headers in first row");
+			throw new IllegalArgumentException(
+					"For writing to a CSV file " + appendFileName + " should already exist with headers in first row");
 		}
 
 		log.debug("Found CSV:" + appendFileName);
 
 		// Open in a reader
 		Reader reader = new BufferedReader(new FileReader(appendFileName));
-		
+
 		@SuppressWarnings("deprecation")
 		CSVParser csvParser = CSVParser.parse(reader, CSVFormat.EXCEL.withFirstRecordAsHeader());
-	
 
 		List<String> returnValues = csvParser.getHeaderNames();
 		log.debug("Found Headers" + returnValues + " headers");

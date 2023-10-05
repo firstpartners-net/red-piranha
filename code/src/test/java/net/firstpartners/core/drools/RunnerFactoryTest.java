@@ -13,7 +13,7 @@ import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
-import net.firstpartners.core.file.CSVOutputStrategy;
+import net.firstpartners.core.file.CSVOutputStrategyMultiLine;
 import net.firstpartners.core.file.PDFOutputStrategy;
 import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.core.json.JsonOutputStrategy;
@@ -60,7 +60,7 @@ public class RunnerFactoryTest {
 		assertNotNull(myRunner);
 		assertTrue (myRunner instanceof RuleRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordInputStrategy);
-		assertTrue(myRunner.getDocumentOutputStrategy() instanceof CSVOutputStrategy);
+		assertTrue(myRunner.getDocumentOutputStrategy() instanceof CSVOutputStrategyMultiLine);
 
 	}
 
@@ -86,7 +86,7 @@ public class RunnerFactoryTest {
 		assertNotNull(myRunner);
 		assertTrue (myRunner instanceof RuleRunner);
 		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordInputStrategy);
-		assertTrue(myRunner.getDocumentOutputStrategy() instanceof CSVOutputStrategy);
+		assertTrue(myRunner.getDocumentOutputStrategy() instanceof CSVOutputStrategyMultiLine);
 
 	}
 	

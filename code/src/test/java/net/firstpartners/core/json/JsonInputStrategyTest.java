@@ -9,6 +9,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.junit.Test;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -75,11 +76,12 @@ public class JsonInputStrategyTest {
 	 * Just check that the rules can run, throws no exception
 	 * @throws RPException
 	 */
-	public final void testJSONInOut() throws Exception, RPException {
+	@Test
+	public final void testJSONIn() throws Exception, RPException {
 
 		
 		// was 
-		RedModel redModel = new RedModel(TestConstants.JSON_SERIAL_FILE, TestConstants.RULES_FILE, "some-dummy.xls");
+		RedModel redModel = new RedModel(TestConstants.JSON_SERIAL_FILE, TestConstants.SIMPLE_LOG_MODIFY_RULES_FILE, "some-dummy.xls");
 
 		RuleRunner runner = (RuleRunner)RunnerFactory.getRuleRunner(redModel);
 		assertTrue(runner.getDocumentInputStrategy() instanceof JsonInputStrategy);

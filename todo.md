@@ -3,28 +3,28 @@
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
 ## Next - CSV Output
-* Excel input strategy main
-    * resolve illeiague armus
+
     
 
 * Output to CSV
+    * Resolve compliation (single / multiplien VSV)
+    * setup in mapping files to use Multiline by default
     * Unit test
-        * generate JSON Data
-        * Import JSON data and export to CSV
-        * add preprocess script as that makes it better
-    * resolve error with csv output
-        * Walk through - is it file not found, or incorrect format
-        * unit test error
-        * restore previous Mem stratey
+        * run testJsonInCsvOut - and fix and errors ### next ##
+            * Create file if it doesn't exist (??)
+            * understand current header handling
+    * CSV Multiline
+        * Change output behaviour
+            * 4/5 Columns: File + CellName + Cell Value 
+        * Config
+            * always add values??
+            * 
+        
 
-    * output as 2 or three columns - update previous class with this
-
-# Move to other script
-    * copy over settings 
-
-# Tidy
+# Tidy INTEGRATION TESTS
 code back in Integration tests line 120
 code back in all integration test run
+restore previous Mem stratey F
 
 Cascade through output directory the dirPrefix+"/" for regen code?? (or already done)
     * ExcelOutputStrategy
@@ -144,3 +144,4 @@ Cascade through output directory the dirPrefix+"/" for regen code?? (or already 
 # Medium Term Ideas
 * better display of information in JSON
 * better handling of invalid cell refs - function to remove invalid?
+* Convert tesets using binary serizlied data to json (comment out in test constants)

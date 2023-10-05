@@ -25,7 +25,7 @@ class RuleBuilderTest {
 		RedModel myModel = new RedModel();
 		Config testConfig = new Config();
 		
-		myModel.setRuleFileLocation(TestConstants.RULES_FILE);
+		myModel.setRuleFileLocation(TestConstants.SIMPLE_LOG_MODIFY_RULES_FILE);
 
 		KieBuilder myBuilder = new RuleBuilder().loadRules(myModel,testConfig);
 		KieModule myModule = myBuilder.getKieModule();
@@ -39,7 +39,7 @@ class RuleBuilderTest {
 		log.debug("Starting to compile rules");
 
 		RedModel rulesToCompile = new RedModel();
-		rulesToCompile.setRuleFileLocation(TestConstants.RULES_FILE);
+		rulesToCompile.setRuleFileLocation(TestConstants.SIMPLE_LOG_MODIFY_RULES_FILE);
 		
 		Config testConfig = new Config();
 

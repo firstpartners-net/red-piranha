@@ -35,7 +35,7 @@ public class ExcelInputStrategyTest {
 	@Test
 	public final void testXlsCallRulesFromFile() throws Exception, RPException {
 
-		RedModel redModel = new RedModel(TestConstants.XLS_DATA_FILE,TestConstants.RULES_FILE,"some-dummy.xls");
+		RedModel redModel = new RedModel(TestConstants.XLS_DATA_FILE,TestConstants.SIMPLE_LOG_MODIFY_RULES_FILE,"some-dummy.xls");
 			
 		log.debug("rule source created");
 		
@@ -57,7 +57,7 @@ public class ExcelInputStrategyTest {
 	 */
 	public final void testXlsXCallRulesFromFile() throws Exception, RPException {
 		
-		RedModel redModel = new RedModel(TestConstants.XLSX_DATA_FILE,TestConstants.RULES_FILE,"some-dummy.xls");
+		RedModel redModel = new RedModel(TestConstants.XLSX_DATA_FILE,TestConstants.SIMPLE_LOG_MODIFY_RULES_FILE,"some-dummy.xls");
 
 		RuleRunner runner =(RuleRunner)RunnerFactory.getRuleRunner(redModel);
 		assertTrue (runner.getDocumentInputStrategy() instanceof ExcelInputStrategy);

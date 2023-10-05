@@ -121,6 +121,11 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	}
 
 	/**
+	 * To conform to the interface - not (yet) implemented in this strategy
+	 */
+	public void setAdditionalOutputData(Map<String,String> ignored){}
+
+	/**
 	 * Process the output from the system
 	 *
 	 * @throws java.io.IOException                                        - from

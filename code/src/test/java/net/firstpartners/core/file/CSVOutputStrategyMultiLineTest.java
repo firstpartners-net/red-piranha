@@ -7,6 +7,8 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.HashMap;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
@@ -99,7 +101,11 @@ public class CSVOutputStrategyMultiLineTest {
 		CSVOutputStrategyMultiLine csvout = new CSVOutputStrategyMultiLine(TestConstants.CSV_TMP_FILE_MULTI_LINE);
 		csvout.setConfig(testConfig);
 		
-
+		//Update our output strategy with additional info we want it to use
+		HashMap<String,String> additionalOutputs = new HashMap<String,String>();
+		additionalOutputs.put("Input","TestFile");
+		additionalOutputs.put("Runtime",LocalDateTime.now().toString());
+		csvout.setAdditionalOutputData(additionalOutputs);
 
 		
 		// pass in teh data that will be output
@@ -110,7 +116,11 @@ public class CSVOutputStrategyMultiLineTest {
 
 		log.debug("csv data is saved in:"+TestConstants.CSV_TMP_FILE_MULTI_LINE);
 
-		fail ("Need to test for output");
+		fail("need to test for file");
+
+		fail ("Need to test for main output in memory");
+
+		fail ("Need to test for additional output");
 
 	}
 

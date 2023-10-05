@@ -128,6 +128,11 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 	}
 
 	/**
+	 * To conform to the interface - not (yet) implemented in this strategy
+	 */
+	public void setAdditionalOutputData(Map<String,String> ignored){}
+
+	/**
 	 * /**
 	 * Get the values from our Beans (RangeList) that match the headers
 	 *

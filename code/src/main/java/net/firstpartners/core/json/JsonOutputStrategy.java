@@ -2,6 +2,7 @@ package net.firstpartners.core.json;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
@@ -42,7 +43,7 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 
 	
 	/**
-	 * Constructor - takes the name of the file we intend outputting to
+	 * Constructor - takes the name of the file we intend outputing to
 	 *
 	 * @param outputFileName - file we want to output to
 	 */
@@ -61,7 +62,11 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 	public void setSubDirectory(String subDirectory) {
 		this.subDirectory = subDirectory;
 	}
-
+	
+	/**
+	 * To conform to the interface - not (yet) implemented in this strategy
+	 */
+	public void setAdditionalOutputData(Map<String,String> ignored){}
 
 
 	/**

@@ -2,6 +2,8 @@ package net.firstpartners.core;
 
 import java.io.IOException;
 
+import java.util.Map;
+
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import net.firstpartners.core.file.OfficeDocument;
@@ -55,4 +57,9 @@ public interface IDocumentOutStrategy {
 	 */
 	public void processOutput() throws IOException, InvalidFormatException;
 
+	/**
+	 * Allows us to set additional output data
+	 * What the various strategies do with it is up to them.
+	 */
+	void setAdditionalOutputData(Map<String,String> additionalData);
 }

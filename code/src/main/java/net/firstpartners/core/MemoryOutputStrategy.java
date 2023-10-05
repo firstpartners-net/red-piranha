@@ -1,6 +1,7 @@
 package net.firstpartners.core;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +51,11 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 
 		return "Held in Memory";
 	}
+
+	/**
+	 * To conform to the interface - not (yet) implemented in this strategy
+	 */
+	public void setAdditionalOutputData(Map<String,String> ignored){}
 
 	/**
 	 * <p>getProcessedDocument.</p>

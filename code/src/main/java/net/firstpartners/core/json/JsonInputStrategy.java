@@ -73,17 +73,17 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 	@Override
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException {
 
+		log.debug("Convert Json to RedBeans");
 		ObjectMapper objectMapper = new ObjectMapper();
-
 		File jsonSource = ResourceFinder.getFileResourceUsingConfig(jsonInputFileName, appConfig);
 		
-		//RangeList myRange  = objectMapper.readValue(jsonSource, RangeList[].class);
+		RangeList myRange  = objectMapper.readValue(jsonSource, RangeList.class);
 		JsonNode rootNode = objectMapper.readTree(jsonSource);
 		log.debug("Found:"+rootNode);
 		
-		log.debug("Convert Json to RedBeans");
+
 		
-		return null;
+		return myRange;
 	}
 
 	/**

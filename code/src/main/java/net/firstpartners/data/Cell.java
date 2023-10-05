@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * JavaBean equivalent of a cell in an Excel Spreadsheet. Since we also map from
  * other sources into these classes, a Cell could be a cell from a table in a
@@ -16,6 +18,7 @@ import org.apache.commons.lang3.math.NumberUtils;
  * @author paulf
  * @version $Id: $Id
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Cell implements PropertyChangeListener, Serializable {
 
 	private static final long serialVersionUID = -763504507901540819L;

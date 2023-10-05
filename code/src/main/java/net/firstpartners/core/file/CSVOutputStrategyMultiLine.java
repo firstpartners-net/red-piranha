@@ -44,7 +44,7 @@ import net.firstpartners.data.RangeList;
  * params passed in when calling via the web - see smample web application).
  * </li><li>
  * If the file is not found it will be created.</li>
-
+ * <li>It will loop through the availble cells and output one line of CSV output for each.</li>
  * </ol>
  * <p>
  * While the Outputer will not overwrite any data present, it will not check for
@@ -98,7 +98,6 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	public void setSubDirectory(String subDirectory) {
 		this.subDirectory = subDirectory;
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -172,6 +171,8 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 
 		// this converter ignores any original , we just store the range output
 		dataToOutput = incomingData;
+
+		log.debug("Set Data - not null:"+(incomingData!=null));
 
 	}
 

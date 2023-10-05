@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 
 /**
@@ -22,6 +24,7 @@ import java.util.Map;
  * @author paul
  * @version $Id: $Id
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RangeList implements List<Range>, Serializable {
 
 

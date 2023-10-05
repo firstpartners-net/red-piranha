@@ -93,12 +93,13 @@ public class CSVOutputStrategyMultiLineTest {
 		JsonInputStrategy jsInput = new JsonInputStrategy(TestConstants.JSON_SERIAL_FILE_COMPLEX);
 		jsInput.setConfig((testConfig));
 		RangeList testRange = jsInput.getJavaBeansFromSource();
+		assertNotNull("input data should not be empty",testRange);
 
 		//setup our CSV Outputter
 		CSVOutputStrategyMultiLine csvout = new CSVOutputStrategyMultiLine(TestConstants.CSV_TMP_FILE_MULTI_LINE);
 		csvout.setConfig(testConfig);
 		
-		assertNotNull("input data should not be empty",testRange);
+
 
 		
 		// pass in teh data that will be output

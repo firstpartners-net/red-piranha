@@ -8,10 +8,11 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 * Output to CSV
     * Update Code
-        * Javadoc on what we intend to do
+        * ## next ## 
+        * Read Data Get data into csv output loop /
         * Print loop / save to TableSaw ### next ##
             * add to loop
-            * output and see what we get
+            * output and see what we ge
     * Unit test
         * run testJsonInCsvOut - and fix and errors 
 

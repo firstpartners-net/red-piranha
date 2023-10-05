@@ -8,26 +8,12 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * Output to CSV
     * Update Code   * ## next ## 
 
-        * Get Unit tests passing again
-
-      
         * Print loop / save
-            * additional values 
-            * split values 3 rows - 
+            * additional values / params / 3 fields -> CSV
 
-        * append to csv??
-        
+        * Code append to csv??
+        *   test check that works with both create and append
 
-    * Unit test
-        * add tests for what is coming back
-        * replace "fails"
-        * test check that works with both create and append
-
-    * CSV Multiline
-        * Change output behaviour
-            * 4/5 Columns: File + CellName + Cell Value + split out
-            * unit tests
-        * 
 
         
 

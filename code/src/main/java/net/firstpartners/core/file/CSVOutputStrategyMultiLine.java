@@ -187,12 +187,8 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 									thisRedCell.getName(),
 									thisRedCell.getValueAsText(),
 									thisRedCell.getOriginalTableReference(),
-									thisRedCell.getOriginalCellReference(),
-									"",
-									"",
-									"",
-									"",
-									"");
+									thisRedCell.getOriginalCellReference()
+									);
 
 			csvPrinter.printRecord(bodyRecord);
 	
@@ -296,26 +292,39 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 
 		assert fieldName!=null : "Incoming Value should not be null";
 
-		//return values
-		String part1=null;
-		String part2=null;
-		String part3=null;
+		//default return values 
+		String part1="";
+		String part2="";
+		String part3="";
+
+		log.debug("Splitting fields from:"+fieldName);
 
 		//If text ends with _0 remove
 		if(fieldName.endsWith("_0")){
 			fieldName = fieldName.substring(0,fieldName.length()-2);
 		}
 
-		//get first part
-		int match1 = fieldName.indexOf("_",0);
-		part1 = fieldName.substring(0, match1);
+		//check that we are not in a single field (e.g. companyname - no table refernecs)
+		if(fieldName.indexOf("_")<0){
+			part1=fieldName;
+		} else {
 
-		//get second aprt
-		int match2 = fieldName.indexOf("_",match1+1);
-		part2 = fieldName.substring(match1+1, match2);
+			// attempt to split out the fields
+			//get first part
+			int match1 = fieldName.indexOf("_",0);
+			part1 = fieldName.substring(0, match1);
 
-		//get third part
-		part3 = fieldName.substring(match2+1,fieldName.length());
+			//get second aprt
+			int match2 = fieldName.indexOf("_",match1+1);
+			part2 = fieldName.substring(match1+1, match2);
+
+			//get third part
+			part3 = fieldName.substring(match2+1,fieldName.length());
+
+		}
+
+
+
 
 		//Combine and return
 		String[] returnValue= {part1,part2,part3};

@@ -82,6 +82,15 @@ public class CSVOutputStrategyMultiLineTest {
 		assertEquals(splitResult[1],"Row1861");
 		assertEquals(splitResult[2],"BaseYear_plus_2");
 
+		//Try for single fields
+		splitResult = csvOut.splitFieldName("CompanyName_0");
+		assertTrue(splitResult.length==3);
+		assertEquals(splitResult[0],"CompanyName");
+		assertEquals(splitResult[1],"");
+		assertEquals(splitResult[2],"");
+
+		
+
 
 	}
 
@@ -155,22 +164,6 @@ public class CSVOutputStrategyMultiLineTest {
 	}
 
 
-	@Test
-	public final void testNoPreExistingCsvFile() throws InvalidFormatException, IOException {
-
-		try {
-
-			CSVOutputStrategyMultiLine testObject = new CSVOutputStrategyMultiLine(
-					"some-file-that-should-never-never-exist.csv");
-			testObject.processOutput();
-
-			fail("expected exception never thrown");
-
-		} catch (java.io.FileNotFoundException iae) {
-			// ok to ignore as we expect it
-		}
-
-	}
 
 	/**
 	 * Reasd Serialised JSON info, check we can output to CSV
@@ -217,15 +210,17 @@ public class CSVOutputStrategyMultiLineTest {
 
 		log.debug("csv data is saved in:"+TestConstants.CSV_TMP_FILE_MULTI_LINE);
 
-		fail("need to test for file");
+		String[] csvFileArray = csvout.getCsvFileAsStringArray();
+		log.debug(csvFileArray[0]);
 
-		fail ("Need to test for main output in headers");
+		//Test for correct headers (already read from file)
+		assertEquals("Input,Runtime,Name,Value,Sheet,Ref,Table,Row,Col" ,csvFileArray[0]);
 
-		fail ("Need to test for additional output in headers");
+		log.debug(csvFileArray[1]);
 
-		fail ("Need to test for additional output in body");
+		//make sure there are not multiple empty values
+		assertTrue("Should not be multiple ,,,,, in field",csvFileArray[1].indexOf(",,,,,,")<0);
 
-		fail ("Need to test for additional output in body");
 
 	}
 

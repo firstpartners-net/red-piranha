@@ -90,8 +90,9 @@ public class ExcelInputStrategyTest {
 		
 		//mockup the configuration we need
 		Config testConfig = new Config();
-
-		//File xlFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.COMPLEX_EXCEL, testConfig);
+		testConfig.setPreprocessScript(dirPrefix+"/"+TestConstants.GROOVY_PREPROCESS);
+		
+		//Handle to our Excel convertor and set config
 		ExcelInputStrategy xlInput = new ExcelInputStrategy(dirPrefix+"/"+TestConstants.COMPLEX_EXCEL);
 		xlInput.setConfig((testConfig));
 

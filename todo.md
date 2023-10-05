@@ -26,7 +26,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 code back in Integration tests line 120
 code back in all integration test run
 
-Cascade through output directory
+Cascade through output directory the dirPrefix+"/" for regen code?? (or already done)
     * ExcelOutputStrategy
     * CSVOutput
     * PDFOutput

@@ -6,9 +6,11 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 
 * Output to CSV
-    * Update Code
-           
-        * ## next ## 
+    * Update Code   * ## next ## 
+
+        * Get Unit tests passing again
+
+      
         * Print loop / save
             * additional values 
             * split values 3 rows - 

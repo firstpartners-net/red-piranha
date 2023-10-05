@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
@@ -55,33 +56,98 @@ public class CSVOutputStrategyMultiLineTest {
 	@Test
 	public final void testSplitFieldNameIntoThreeParts() {
 
-		fail ("Need to implement");
+
+		CSVOutputStrategyMultiLine csvOut = new CSVOutputStrategyMultiLine(TestConstants.CSV_APPEND_FILE);
+
+		String[] splitResult = csvOut.splitFieldName("Cash_NetClosingCashExclShortTermFacilities_BaseYear_plus_1_0");
+		assertTrue(splitResult.length==3);
+
+		log.debug(splitResult[0]);
+		log.debug(splitResult[1]);
+		log.debug(splitResult[2]);
+
+		assertEquals(splitResult[0],"Cash");
+		assertEquals(splitResult[1],"NetClosingCashExclShortTermFacilities");
+		assertEquals(splitResult[2],"BaseYear_plus_1");
+
+		splitResult = csvOut.splitFieldName("BS_InvoicediscountingYEBalance_31_12_19_0");
+		assertTrue(splitResult.length==3);
+		assertEquals(splitResult[0],"BS");
+		assertEquals(splitResult[1],"InvoicediscountingYEBalance");
+		assertEquals(splitResult[2],"31_12_19");
+
+		splitResult = csvOut.splitFieldName("Cash_Row1861_BaseYear_plus_2_0");
+		assertTrue(splitResult.length==3);
+		assertEquals(splitResult[0],"Cash");
+		assertEquals(splitResult[1],"Row1861");
+		assertEquals(splitResult[2],"BaseYear_plus_2");
+
 
 	}
+
+
 
 	@Test
 	public final void testGenerateHeaders() {
 
+		//Additional Header and other test info
+		Map<String,String> additionalInfo = new HashMap<String,String>();
+		additionalInfo.put("date-field","someDate");
+		additionalInfo.put("file-field","someFile");
+		String [] subRecords = {"sub1","sub2","sub3"};
+
 		CSVOutputStrategyMultiLine test = new CSVOutputStrategyMultiLine("Dummy-output.csv");
-		String [] headers = test.generateHeaders();
+		String [] headers = test.generateHeaders(additionalInfo);
+
+		for (int i=0; i<headers.length;i++){
+			log.debug(headers[i]);
+		}
+
 
 		assertNotNull(headers);
 		assertTrue(headers.length==9);
-		assertEquals(headers[0],"Name");
-		assertEquals(headers[1],"Value");
+		assertEquals(headers[0],"file-field");
+		assertEquals(headers[1],"date-field");
+		assertEquals(headers[2],"Name");
+		assertEquals(headers[3],"Value");
+
+		assertEquals(headers[8],"Col");
+
+		//Important that body and header length are the same
+		
+		String [] bodyrow = test.generateBodyRow(additionalInfo,subRecords,"Name","Value","Sheet","Ref");
+		assertEquals(headers.length,bodyrow.length);
 
 	}
 
 	@Test
 	public final void testGenerateBodyLine() {
 
+		Map<String,String> additionalInfo = new HashMap<String,String>();
+		additionalInfo.put("date-field","someDate");
+		additionalInfo.put("file-field","someFile");
+		String [] subRecords = {"sub1","sub2","sub3"};
+
 		CSVOutputStrategyMultiLine test = new CSVOutputStrategyMultiLine("Dummy-output.csv");
-		String [] bodyrow = test.generateBodyRow("one","two","three");
+		String [] bodyrow = test.generateBodyRow(additionalInfo,subRecords,"Name","Value","Sheet","Ref");
 
 		assertNotNull(bodyrow);
-		assertTrue(bodyrow.length==3);
-		assertEquals(bodyrow[0],"one");
-		assertEquals(bodyrow[1],"two");
+
+		for (int i=0; i<bodyrow.length;i++){
+			log.debug(bodyrow[i]);
+		}
+
+
+		assertTrue(bodyrow.length==9);
+		assertEquals(bodyrow[0],"someFile");
+		assertEquals(bodyrow[1],"someDate");
+		assertEquals(bodyrow[2],"Name");
+		assertEquals(bodyrow[3],"Value");
+		assertEquals(bodyrow[4],"Sheet");
+		assertEquals(bodyrow[5],"Ref");
+		assertEquals(bodyrow[6],"sub1");
+		assertEquals(bodyrow[7],"sub2");
+		assertEquals(bodyrow[8],"sub3");
 
 
 

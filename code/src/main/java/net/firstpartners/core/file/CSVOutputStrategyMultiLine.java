@@ -12,6 +12,7 @@ import java.util.Map;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,6 +87,9 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	// Name of the outputfile
 	private String outputFileName = null;
 
+	//Additional data we wish to output
+	private Map<String, String> additionalDataToInclude=null;
+
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
 	 *
@@ -127,7 +131,9 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	/**
 	 * To conform to the interface - not (yet) implemented in this strategy
 	 */
-	public void setAdditionalOutputData(Map<String, String> ignored) {
+	public void setAdditionalOutputData(Map<String, String> additionalDataToInclude) {
+		this.additionalDataToInclude = additionalDataToInclude;
+
 	}
 
 	/**
@@ -158,7 +164,7 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 		log.debug("trying to output Excel to:"+outputPath);
 
 		//define our CSV headers
-		String[] headers = generateHeaders();
+		String[] headers = generateHeaders(additionalDataToInclude);
 
 		// Get all the Cells that we have been keeping track of
 		Map<String, net.firstpartners.data.Cell> allCells = dataToOutput.getAllCellsWithNames();
@@ -174,7 +180,10 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 
 			net.firstpartners.data.Cell thisRedCell = redCells.next();
 
-			Object[] bodyRecord = generateBodyRow(
+			String [] subRecords = splitFieldName(thisRedCell.getName());
+
+			//Generate the main body line
+			Object[] bodyRecord = generateBodyRow(additionalDataToInclude,subRecords,
 									thisRedCell.getName(),
 									thisRedCell.getValueAsText(),
 									thisRedCell.getOriginalTableReference(),
@@ -243,22 +252,76 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 
 	/**
 	 * Generate the headers needed for the CSV File
+	 * Takes additional data to Output and 
 	 * @return
 	 */
-	 String[] generateHeaders() {
-		
-		String[] returnValue = {"Name","Value","Sheet","Ref","Table","Row","Col","Date","Source"};
-		return returnValue;
+	 String[] generateHeaders(Map<String,String> additionalDataToInclude) {
+
+		//convert our must-include values
+		String[] mustIncludeAdditionalKeys = additionalDataToInclude.keySet().toArray(new String[0]);
+
+		//Our standard Headers
+		String[] standardHeaders = {"Name","Value","Sheet","Ref","Table","Row","Col"};
+
+		//concatenate the arrays
+		String[] result = ArrayUtils.addAll(mustIncludeAdditionalKeys,standardHeaders);
+	
+		return result;
 	}
 
 	/**
 	 * Generate the body needed needed for the CSV File
+	 * @param additionalDataToInclude - often including file name and dates
+	 * @param subrecords, extracted directly from the cell
+	 * @param params - 3 key fields extracted from name of cell
 	 * @return
 	 */
-	 String[] generateBodyRow(String ... params) {
+	 String[] generateBodyRow(Map<String,String> additionalDataToInclude,String[]subRecords,String ... params) {
 		
-		String[] returnValue = params;
+		//convert our must-include values
+		String[] mustIncludeAdditionalData = additionalDataToInclude.values().toArray(new String[0]);
+
+		//concatenate the arryas.
+		String[] result = ArrayUtils.addAll(mustIncludeAdditionalData,params);
+		result = ArrayUtils.addAll(result,subRecords);
+
+		return result;
+	}
+
+		/**
+	 * split a generalized names into 3 tokens for our cvs
+	 * @return
+	 */
+	 String[] splitFieldName(String fieldName) {
+
+		assert fieldName!=null : "Incoming Value should not be null";
+
+		//return values
+		String part1=null;
+		String part2=null;
+		String part3=null;
+
+		//If text ends with _0 remove
+		if(fieldName.endsWith("_0")){
+			fieldName = fieldName.substring(0,fieldName.length()-2);
+		}
+
+		//get first part
+		int match1 = fieldName.indexOf("_",0);
+		part1 = fieldName.substring(0, match1);
+
+		//get second aprt
+		int match2 = fieldName.indexOf("_",match1+1);
+		part2 = fieldName.substring(match1+1, match2);
+
+		//get third part
+		part3 = fieldName.substring(match2+1,fieldName.length());
+
+		//Combine and return
+		String[] returnValue= {part1,part2,part3};
 		return returnValue;
 	}
+
+	
 }
 

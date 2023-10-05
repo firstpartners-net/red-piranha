@@ -33,6 +33,7 @@ public class TestConstants {
 	
 	//Serialised files
 	public static final String JSON_SERIAL_FILE ="src/test/resources/testdata/sample_xls_serialised.json";
+	public static final String JSON_SERIAL_FILE_COMPLEX ="src/test/resources/testdata/complex_xls_serialised.json";
 	
 	//tmp files
 	public static final String EXCEL_TMP_FILE = "tmp.xls"; // was src/test/resources/testdata/tmp.xls"

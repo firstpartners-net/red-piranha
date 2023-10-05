@@ -10,12 +10,25 @@ import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import net.firstpartners.TestConstants;
+import net.firstpartners.core.Config;
 import net.firstpartners.data.RangeList;
 import net.firstpartners.ui.RedControllerTest;
 
+@SpringBootTest
 public class CSVOutputStrategyTest {
+
+	// handle for our config
+	@Autowired
+	Config appConfig;
+
+	// Logger
+	private static Logger log = LoggerFactory.getLogger(CSVOutputStrategyTest.class);
 
 	@Test
 	public final void testAppendToCSV() throws IOException, InvalidFormatException, ClassNotFoundException {
@@ -73,5 +86,6 @@ public class CSVOutputStrategyTest {
 		}
 
 	}
+
 
 }

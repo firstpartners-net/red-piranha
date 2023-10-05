@@ -1,12 +1,13 @@
 package net.firstpartners;
 
-import net.firstpartners.core.excel.SpreadSheetConvertorTest;
-import net.firstpartners.core.word.DocumentConvertorTest;
-import net.firstpartners.core.word.DocumentXConvertorTest;
-import net.firstpartners.core.json.JsonInputStrategyTest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.firstpartners.core.excel.ExcelInputStrategyTest;
+import net.firstpartners.core.excel.SpreadSheetConvertorTest;
+import net.firstpartners.core.json.JsonInputStrategyTest;
+import net.firstpartners.core.word.DocumentConvertorTest;
+import net.firstpartners.core.word.DocumentXConvertorTest;
 /**
  * Testing utility to generate test Data
  * Mainly this is Serialized Excel and Word Docs that we use later in unit testing
@@ -40,6 +41,7 @@ public class RegenerateTestData {
 		//make sure we are in the 'code' directory so paths work
 		if(currentDirectory.lastIndexOf("code")<0){
 
+			//the 'code' is needed as that is the sub directory of containing our code, all paths are referenced from it.
 			log.info("Requesting move to code directory:");
 			subArgs[0]="code/";
 		}
@@ -48,6 +50,7 @@ public class RegenerateTestData {
 		DocumentConvertorTest.main(subArgs);
 		DocumentXConvertorTest.main(subArgs);
 		JsonInputStrategyTest.main(subArgs);
+		ExcelInputStrategyTest.main(subArgs);
 		
 	}
 	

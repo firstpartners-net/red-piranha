@@ -4,13 +4,14 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Next - CSV Output
 * Excel input strategy main
-    * resolve conntiguious error
+    * resolve illeiague armus
     
 
 * Output to CSV
     * Unit test
         * generate JSON Data
         * Import JSON data and export to CSV
+        * add preprocess script as that makes it better
     * resolve error with csv output
         * Walk through - is it file not found, or incorrect format
         * unit test error
@@ -142,3 +143,4 @@ Cascade through output directory
 
 # Medium Term Ideas
 * better display of information in JSON
+* better handling of invalid cell refs - function to remove invalid?

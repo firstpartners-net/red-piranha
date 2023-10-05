@@ -1,19 +1,12 @@
 package net.firstpartners.core.excel;
 
 import java.io.IOException;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import groovy.util.ResourceException;
-import groovy.util.ScriptException;
-
-import org.slf4j.Logger;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.poi.ss.SpreadsheetVersion;
 import org.apache.poi.ss.usermodel.Name;
 import org.apache.poi.ss.usermodel.Row;
@@ -21,7 +14,12 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.AreaReference;
 import org.apache.poi.ss.util.CellReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import groovy.util.ResourceException;
+import groovy.util.ScriptException;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.script.PreProcessor;
 import net.firstpartners.data.Range;
@@ -148,10 +146,34 @@ public class SpreadSheetConvertor {
 			log.debug("Converting poi->Red named range:" + thisPoiNamedRange.getNameName() + " refers to:"
 					+ thisPoiNamedRange.getRefersToFormula());
 
+			//The poiCell refs we will convert to Red Cells
+			CellReference[] crefs =  new CellReference[0]; 
 
-			//get the Cells[] that are behind this poi Name
-			AreaReference aref = new AreaReference(thisPoiNamedRange.getRefersToFormula(),SpreadsheetVersion.EXCEL2007);
-			CellReference[] crefs = aref.getAllReferencedCells();
+			//check for non-contiguous aresa
+			if(!AreaReference.isContiguous(thisPoiNamedRange.getRefersToFormula())){
+
+				//Get area refnereces
+				AreaReference[] aref =  AreaReference.generateContiguous(SpreadsheetVersion.EXCEL2007,thisPoiNamedRange.getRefersToFormula());
+
+				//Convert all of these to a single array of cells
+				for (int i=1;i<aref.length;i++){
+
+					//add the poi cells from this part of the referenced area to our poi cell lsit	
+					crefs= ArrayUtils.addAll(crefs, aref[i].getAllReferencedCells());
+
+				}
+
+				log.debug("Will process:"+crefs.length+" referenced cells (non contig)");
+
+			} else {
+
+				//get the singel set of Cells[] that are behind this poi Name
+				AreaReference aref = new  AreaReference(thisPoiNamedRange.getRefersToFormula(),SpreadsheetVersion.EXCEL2007);
+				crefs = aref.getAllReferencedCells();
+				log.debug("Will process:"+crefs.length+" referenced cells (contig)");
+			}
+
+
 
 			// only proceed if we can get an actual handle to this
 			// retrieve the cells at the named range

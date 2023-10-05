@@ -6,10 +6,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 
 * Output to CSV
-    * Update Code   * ## next ## 
-
-        * Print loop / save
-            * additional values / params / 3 fields -> CSV
+    * Update Code  
 
         * Code append to csv??
         *   test check that works with both create and append
@@ -52,6 +49,8 @@ Cascade through output directory the dirPrefix+"/" for regen code?? (or already 
 * Simple Check rules
     * just enough rule to filter / check for dud data
     * may need to see if can write rule to remove all
+* Cross reference back to data
+    * add original cell refernece (need to track through as not currently accurate)
 
 ## Next - Deployment
 * Can deploy and work against true docs

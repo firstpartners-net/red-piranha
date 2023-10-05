@@ -1,5 +1,7 @@
 package net.firstpartners;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import net.firstpartners.core.Config;
+import net.firstpartners.core.MemoryOutputStrategy;
 import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.IRunner;
@@ -63,10 +66,10 @@ class IntegrationTests {
 	}
 
 
- 	// @Test
-	// void testAllSamples() throws Exception, RPException {
-	// 	sampleTestRunner(-1);
-	// }
+ 	@Test
+	void testAllSamples() throws Exception, RPException {
+		sampleTestRunner(-1);
+	}
 
 	/**
 	 * Pass in Integer = null or -1 to run all tests
@@ -116,9 +119,9 @@ class IntegrationTests {
 			
 			// set out OutputStrategy so we can test the output later
 			// this overrides the normal output
-			//log.info("Overriding output strategy - now will use MemoryOutputStrategy");
-			//MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
-			//runner.setDocumentOutputStrategy(outputStrategy);
+			log.info("Overriding output strategy - now will use MemoryOutputStrategy");
+			MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
+			runner.setDocumentOutputStrategy(outputStrategy);
 
 			runner.callRules(testModel);
 
@@ -127,7 +130,7 @@ class IntegrationTests {
 			
 			
 			//check not blowing up and that we have
-			//assertNotNull(outputStrategy.getProcessedDocument());
+			assertNotNull(outputStrategy.getProcessedDocument());
 			
 		}
 

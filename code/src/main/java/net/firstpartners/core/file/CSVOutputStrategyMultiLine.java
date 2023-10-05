@@ -187,7 +187,8 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 									thisRedCell.getName(),
 									thisRedCell.getValueAsText(),
 									thisRedCell.getOriginalTableReference(),
-									thisRedCell.getOriginalCellReference()
+									//thisRedCell.getOriginalCellReference() // blank as we can't trust for the moment
+									""
 									);
 
 			csvPrinter.printRecord(bodyRecord);

@@ -69,6 +69,8 @@ public class CSVOutputStrategySingleLineTest {
 		assertEquals("DEF",valuesFromCells.get("ABC_1"));
 		assertEquals("GHI",valuesFromCells.get("PARA_9_GHI"));
 
+		log.debug("completed checking headers");
+
 	}
 
 	@Test

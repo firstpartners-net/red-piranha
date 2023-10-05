@@ -7,18 +7,18 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     
 
 * Output to CSV
-    * Resolve compliation (single / multiplien VSV)
-    * setup in mapping files to use Multiline by default
+    * Update Code
+        * Javadoc on what we intend to do
+        * Print loop / save to TableSaw ### next ##
+            * add to loop
+            * output and see what we get
     * Unit test
-        * run testJsonInCsvOut - and fix and errors ### next ##
-            * Create file if it doesn't exist (??)
-            * understand current header handling
+        * run testJsonInCsvOut - and fix and errors 
+
     * CSV Multiline
         * Change output behaviour
             * 4/5 Columns: File + CellName + Cell Value 
-        * Config
-            * always add values??
-            * 
+
         
 
 # Tidy INTEGRATION TESTS
@@ -32,6 +32,10 @@ Cascade through output directory the dirPrefix+"/" for regen code?? (or already 
     * PDFOutput
     * JSON Output
 
+## Next - Multiple files
+* Generate 2nd File into 5th sample folder (for multiple files test)
+    * copy generate spreasheet
+    * create new DirectortInputStrategy to "walk" folder and call other input strategy
 
 ## Next tidy
 
@@ -47,11 +51,6 @@ Cascade through output directory the dirPrefix+"/" for regen code?? (or already 
     * how to deploy
     * how to extend
 
-
-## Next - Multiple files
-* Generate 2nd File into 5th sample folder (for multiple files test)
-    * copy generate spreasheet
-    * create new DirectortInputStrategy to "walk" folder and call other input strategy
 
 ## Next - Data Quality
 * Simple Check rules
@@ -77,8 +76,9 @@ Cascade through output directory the dirPrefix+"/" for regen code?? (or already 
     * github
     * docker
 
-## Next Sprint
+## ##############
 
+## Next Sprint - after immediate needs
 
 * Future
     * Create Fiancial extraction Sample - analsyis of single case POC
@@ -104,44 +104,30 @@ Cascade through output directory the dirPrefix+"/" for regen code?? (or already 
 * view vulneribilty report (right click top right of tabs and renable)
 
 
+## upgrades and housekeeping
 
-## Confirm delivered on previous sprint
-
-* Platform (with specific examples)
-* Good draft of user and dev documentation.
-* (Y) Can hand to Java developer and build - proper release
-* (Y) Could be run by simple end-user with docker - proper release
-
-## refactor and upgrades
-* (Move RuleRunner.java remove RuleBuilder to same pre-built model that * DecisionModel uses)
-* Simplify down to Cells (remove all notion or ranges?)
 * restore commented out tests (put @Test back on them)
     * testJSONInOut
 * run JavaDoc checker and tidy comments
 * Migrate to latest version of all libs
 * tidy DSL example
 
-## Move to above, delete, or capture as future dieas
-* recover and reused previous examples (to web) - currently in test folder
-* understand model back and forward better
-* conversion to-from excel - make sure it works better, json better?
-* Dive through stack - can bring back any more info to user
-* Tidy Bootstrap on web page
-* final tests running
-* RP using model from business central or simliar exported backage
-* Move bootstrap offline (and other javascript to make more robust)
-* Serialsiation - Into Tests of convertor / Java test data in JSON
-* use to test cell conversion
-* Better display of Java objects
-* Read drools doc in more detail
-* Outline how to integrate with KIE Server
-* Update red-piranha-sourceforge.com to point to github (grab info first)
-* Enable Swagger
-* Turn back on Spring Services in applicaiton.properites
-* Understand Github pages, Jekyll and see if can build an even 'friendlier' version of this site.
-* Rengerate Javadoc, tidy to site
 
 # Medium Term Ideas
 * better display of information in JSON
 * better handling of invalid cell refs - function to remove invalid?
 * Convert tesets using binary serizlied data to json (comment out in test constants)
+* RP using model from business central or simliar exported backage
+* Better display of Java objects - open by default
+* Understand Github pages, Jekyll and see if can build an even 'friendlier' version of this site.
+* Outline how to integrate with KIE Server
+
+
+# Medium Term tidy
+* Tidy Bootstrap on web page
+* final tests running
+* Serialsiation - Into Tests of convertor / Java test data in JSON
+* Rengerate Javadoc, tidy to site
+* recover and reused previous examples (to web) - currently in test folder
+* Simplify down to Cells (remove all notion or ranges?)
+

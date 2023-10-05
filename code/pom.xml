@@ -161,9 +161,16 @@
 			<version>2.14.1</version>
 		</dependency>
 
+		<!--For Prepprocessing the CSV Output and analytics-->
+		<dependency>
+			<groupId>tech.tablesaw</groupId>
+			<artifactId>tablesaw-core</artifactId>
+			<version>0.43.1</version>
+		</dependency>
+
 		<!--To run the Groovy preprocessing scripts-->
 		<dependency>
-			<groupId>org.apache.groovy</groupId> 
+			<groupId>org.apache.groovy</groupId>
 			<artifactId>groovy-all</artifactId>
 			<version>4.0.15</version>
 			<type>pom</type>
@@ -177,7 +184,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.junit.vintage</groupId>
 			<artifactId>junit-vintage-engine</artifactId>
@@ -246,7 +253,7 @@
 			<plugin>
 				<groupId>org.owasp</groupId>
 				<artifactId>dependency-check-maven</artifactId>
-				<version>8.4.0</version> <!-- was 7.4.2-->
+				<version>8.4.0</version>				<!-- was 7.4.2-->
 				<executions>
 					<execution>
 						<goals>

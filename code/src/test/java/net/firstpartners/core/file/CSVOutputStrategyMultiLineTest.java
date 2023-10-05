@@ -1,13 +1,12 @@
 package net.firstpartners.core.file;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
@@ -21,7 +20,7 @@ import net.firstpartners.core.Config;
 import net.firstpartners.core.RPException;
 import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.data.RangeList;
-import net.firstpartners.ui.RedControllerTest; 
+import net.firstpartners.ui.RedControllerTest;
 
 @SpringBootTest
 public class CSVOutputStrategyMultiLineTest {
@@ -52,34 +51,14 @@ public class CSVOutputStrategyMultiLineTest {
 
 	//
 
-	@Test
-	public final void testGetMatchHeadersFromCSV() throws FileNotFoundException, ClassNotFoundException, IOException {
-
-		RangeList testData = RedControllerTest.getTestDataFromWord();
-
-		CSVOutputStrategyMultiLine csvOut = new CSVOutputStrategyMultiLine(TestConstants.CSV_APPEND_FILE);
-
-		List<String> headers = csvOut.getHeadersFromFile();
-
-		assertEquals(headers.get(0), "ABC_0");
-		assertEquals(headers.get(1), "ABC_1");
-		assertEquals(headers.get(2), "PARA_9_GHI");
-		assertEquals(headers.get(3), "University");
-
-		Map<String, String> valuesFromCells = csvOut.getMatchingValues(headers, testData);
-		assertEquals(4, valuesFromCells.size());
-		assertEquals("ABC",valuesFromCells.get("ABC_0"));
-		assertEquals("DEF",valuesFromCells.get("ABC_1"));
-		assertEquals("GHI",valuesFromCells.get("PARA_9_GHI"));
-
-	}
 
 	@Test
 	public final void testNoPreExistingCsvFile() throws InvalidFormatException, IOException {
 
 		try {
 
-			CSVOutputStrategyMultiLine testObject = new CSVOutputStrategyMultiLine("some-file-that-should-never-never-exist.csv");
+			CSVOutputStrategyMultiLine testObject = new CSVOutputStrategyMultiLine(
+					"some-file-that-should-never-never-exist.csv");
 			testObject.processOutput();
 
 			fail("expected exception never thrown");
@@ -97,11 +76,10 @@ public class CSVOutputStrategyMultiLineTest {
 	@Test
 	public final void testJsonInCsvOut() throws Exception, RPException {
 
-		
 		//mockup the configuration we need
 		Config testConfig = new Config();
 
-		// Delete previous output file if it exists
+		// Delete previous output file if it exists - file should not fail if it doesn't
 		try{
 			File tmpOutputFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_TMP_FILE_MULTI_LINE, testConfig);
 			if(tmpOutputFile!=null){
@@ -119,17 +97,20 @@ public class CSVOutputStrategyMultiLineTest {
 		//setup our CSV Outputter
 		CSVOutputStrategyMultiLine csvout = new CSVOutputStrategyMultiLine(TestConstants.CSV_TMP_FILE_MULTI_LINE);
 		csvout.setConfig(testConfig);
+		
+		assertNotNull("input data should not be empty",testRange);
 
+		
+		// pass in teh data that will be output
+		csvout.setUpdates(null, testRange);
 
 		//Do the output
-
-		// test the class
-		csvout.setUpdates(null, testRange);
 		csvout.processOutput();
 
 		log.debug("csv data is saved in:"+TestConstants.CSV_TMP_FILE_MULTI_LINE);
 
-	}
+		fail ("Need to test for output");
 
+	}
 
 }

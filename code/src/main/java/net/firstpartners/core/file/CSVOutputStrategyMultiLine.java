@@ -4,69 +4,47 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
-import java.io.Writer;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVPrinter;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
-import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
 /**
- * Strategy class of output of CSV Document.
+ * Strategy class to output of CSV Document.
  * <p>
- * CSV will try to append to an existing CSV file. In general, one document
- * processed equals one line in the CSV file.
+ * CSV will try to append to a *New or Existing* CSV file. 
+ * 
+ * In general, one Cell value processed equals one line in the CSV file.
  *
- * The table below might help understand this Outputers behaviour.
- * <table style="border: 1px solid black;">
- * <tr>
- * <td>heading-1</td>
- * <td>heading-2</td>
- * <td>heading-3</td>
- * </tr>
- * <tr>
- * <td>file-a-cell1.value&nbsp;</td>
- * <td>file-a-cell2.value&nbsp;</td>
- * <td>file-a-cell3.value&nbsp;</td>
- * </tr>
- * <td>file-b-cell1.value&nbsp;</td>
- * <td>file-b-cell2.value&nbsp;</td>
- * <td>file-b-cell3.value&nbsp;</td>
- * </tr>
- * </table>
  * <p>
- * The process by which the Outputer works is as follows. It uses the data from
- * the RangeHolder (our version of the Word / Excel / Other document that was
+ * The process by which the output strategy works is as follows:
+ * <ul>
+ * <li>
+ *  It uses the data from  * the RangeHolder (our version of the Word / Excel / Other document that was
  * passed in, that the rules then modified).
- * </p>
- * <p>
- * Happily, this data is displayed in the Red Piranha GUI - picture below - so
- * you can see the data you have to work with.
+ * <li>
+ * <li>
+
+ * Happily, this data is displayed in the Red Piranha GUI - picture on the main page of the GitHub project site - so
+ * you can see the data you have to work with.</li>
  * </p>
  * <ol>
  * <li>The Outputer looks for a csv file of the name given (normally in the
- * config file); if it does not find it will throw an error.</li>
- * <li>The Outputer will take the headers (the first line of the CSV file). In
- * the above example it will be heading-1, heading-2 and heading-3.</li>
- * <li>For each of these header values, the outputer will search for a @see Cell
- * of the same cellName from the RangeHolder data.</li>
- * <li>If it finds a match, it will take the value of that Cell Object and use
- * it when outputing the line.</li>
- * <li>After it has tried to find matches, it will then add one line to the CSV
- * file, using the values found.</li>
+ * params passed in when calling via the web - see smample web application).
+ * </li><li>
+ * If the file is not found it will be created.</li>
+
  * </ol>
  * <p>
  * While the Outputer will not overwrite any data present, it will not check for
@@ -84,11 +62,6 @@ import net.firstpartners.data.RangeList;
  * format of the source document.</li>
  * </ul>
  * </p>
- * <p>
- * <img src=
- * "https://paulbrowne-irl.github.io/red-piranha/images/GuiRangeHolder.png"
- * alt="Red Piranha GUI showing RangeHolder Data></img>
- * </p>
  *
  * @author paul
  * @version $Id: $Id
@@ -104,8 +77,7 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	// Hold the data until we are asked to process it
-	// @SuppressWarnings("unused") // eclipse mistakenly marks this as unused
-	private RangeList processedRange;
+	private RangeList dataToOutput;
 
 	// sub directory e.g. for samples
 	private String subDirectory;
@@ -127,31 +99,6 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 		this.subDirectory = subDirectory;
 	}
 
-	/**
-	 * /**
-	 * Get the values from our Beans (RangeList) that match the headers
-	 *
-	 * @param headers  that we are looking to match in the data
-	 * @param beanData that we have collected.
-	 * @return Map <header-key, matching-value>
-	 */
-	public Map<String, String> getMatchingValues(List<String> headers, RangeList beanData) {
-
-		Map<String, String> returnValues = new HashMap<String, String>();
-
-		// Loop and try to find data matching our header values
-		for (String thisHeader : headers) {
-			Cell matchingCell = beanData.findCell(thisHeader);
-			String value = null;
-			if (matchingCell != null) {
-				value = matchingCell.getValueAsText();
-			}
-
-			returnValues.put(thisHeader, value);
-		}
-
-		return returnValues;
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -186,33 +133,28 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	 */
 	public void processOutput() throws IOException, InvalidFormatException {
 
-		// Get the headers in the incoming file
-		List<String> headers = getHeadersFromFile();
 
-		// Extract data from our bean tree using these headers
-		Map<String, String> outputValues = getMatchingValues(headers, processedRange);
+		assert dataToOutput!=null : "No data available to output";
 
-		// create a list to write out
-		Object[] dataToWrite = new Object[headers.size()];
-		int counter = 0;
+		// Get all the Cells that we have been keeping track of
+		Map<String, net.firstpartners.data.Cell> allCells = dataToOutput.getAllCellsWithNames();
 
-		// Loop and add the values in order
-		for (String thisHeader : headers) {
+		// Loop through the cells
+		Iterator<net.firstpartners.data.Cell> redCells = allCells.values().iterator();
+		while (redCells.hasNext()) {
 
-			dataToWrite[counter] = outputValues.get(thisHeader);
-			log.info("CSV Output for header:" + thisHeader + " value:" + dataToWrite[counter]);
+			net.firstpartners.data.Cell thisRedCell = redCells.next();
+			String orignalSheetRef = thisRedCell.getOriginalTableReference();
+			String originalPoiRef = thisRedCell.getOriginalCellReference();
 
-			counter++;
+			if (originalPoiRef == null || orignalSheetRef == null) {
+				log.debug("Cells has no ref to original sheet or cell - ignoring:" + thisRedCell);
+			} else {
+
+				log.debug("Would Output"+thisRedCell);
+			}
+
 		}
-
-		// create a writer - set to append (true)
-		Writer writer = new FileWriter(appendFileName, true);
-
-		// open-write-flush-close CSV file
-		CSVPrinter printer = CSVFormat.EXCEL.print(writer);
-		printer.printRecord(dataToWrite);
-		printer.flush();
-		writer.close();
 
 	}
 
@@ -229,7 +171,7 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	public void setUpdates(OfficeDocument ignored, RangeList incomingData) throws IOException {
 
 		// this converter ignores any original , we just store the range output
-		processedRange = incomingData;
+		dataToOutput = incomingData;
 
 	}
 

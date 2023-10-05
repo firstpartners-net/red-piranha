@@ -22,8 +22,8 @@ Red Piranha is aimed at 'Excel Power Users'. The information in this page goes '
 * `application.properties` contains the values Spring will pass in as it auto-wires the project on startup. Spring Auto-magically passes these to `Config.java`  at runtime.
 * `RedController.java` have Spring annotations, Web Requests are passed to it.
 * `RedModel.java` holds much of the information as it is passed around the system - the configuration, the input files, the rules to apply and the output once the rules has run.
-* `RuleRunner.java` carries out the call to the Rule Engine. It is created using a factory method - so it will the appropriate implmentation of `ÌDocumentInStrategy.java` to import data from XLS, XSLX, Word, entire Directory etc. A similar pattern is for output files.
-* Different implementations of `IStatusUpdate.java` allow us to log what is happening in th system / pass back user friendly updates.
+* `RuleRunner.java` carries out the call to the Rule Engine. It is created using a factory method - so it will the appropriate implmentation of `ÌDocumentInStrategy.java` to import data from XLS, XSLX, Word, entire Directory etc. A similar pattern is for output files using `ÌDocumentOutStrategy.java`.
+* Different implementations of `IStatusUpdate.java` allow us to log what is happening in the system / pass back user friendly updates.
 * `Ìndex.html`is templated using Spring Thymeleaf - displays the output value back to the user.
 * Samples are contained in `src/main/resources/examples`. When running the web application, all the samples listed in `examples.json` are displayed, to allow an end-user to run. `IntegrationTests.java` is a Unit test that runs all of these samples during the testing phase of the build.
 

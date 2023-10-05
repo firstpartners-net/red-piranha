@@ -3,12 +3,18 @@
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
 ## Next - CSV Output
+* Excel input strategy main
+    * resolve conntiguious error
+    
+
 * Output to CSV
-    * resolve error
+    * Unit test
+        * generate JSON Data
+        * Import JSON data and export to CSV
+    * resolve error with csv output
         * Walk through - is it file not found, or incorrect format
-        * capture json output
-        * use json as input to test
         * unit test error
+        * restore previous Mem stratey
 
     * output as 2 or three columns - update previous class with this
 
@@ -24,9 +30,6 @@ Cascade through output directory
     * CSVOutput
     * PDFOutput
     * JSON Output
-
-** Output as Json then pull in Unit test **
-
 
 
 ## Next tidy

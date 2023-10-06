@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Map;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.junit.Test;
@@ -83,6 +87,9 @@ public class SpreadSheetConvertorTest {
 	@Test
 	public final void testRangeConversationSimpleExcel() throws IOException, ResourceException, ScriptException {
 		
+		//Create a new Empty POI Workbook
+		Workbook localWb = new HSSFWorkbook();
+
 		RangeList myRedRangeList = getTestDataFromWorkbook();
 		assertNotNull(wb);
 		
@@ -99,17 +106,18 @@ public class SpreadSheetConvertorTest {
 	        
 	    }
 			
-		SpreadSheetConvertor.updateRedRangeintoPoiExcel(wb, myRedRangeList);
-		fail("Remove the previous line");
+		SpreadSheetConvertor.updateRedRangeintoPoiExcel(localWb, myRedRangeList);
+
+		// Loop and do something interesting with the data
+		Sheet sheet = wb.getSheetAt(0);
+	
+		for (Row row : sheet) {
+		  for (Cell cell : row) {
+			// Do something here
+		  }
+		}
 
 		fail("add additional assertions to data");
-
-	}
-
-	@Test
-	public final void testRangeConversationCompleExcel() throws IOException, ResourceException, ScriptException {
-		
-		fail("Get Complex Excel like sample 4, repeat test like above (with no preprocess script as gnarlyey sheet)");
 
 	}
 

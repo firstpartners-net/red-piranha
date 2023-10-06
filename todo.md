@@ -11,23 +11,14 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
         * Code append to csv??
         *   test check that works with both create and append
 
-
-        
-
-# Tidy INTEGRATION TESTS
-code back in Integration tests line 120
-code back in all integration test run
-restore previous Mem stratey F
-
-Cascade through output directory the dirPrefix+"/" for regen code?? (or already done)
-    * ExcelOutputStrategy
-    * CSVOutput
-    * PDFOutput
-    * JSON Output
+* NTH 
+   * solve regnerate data issue
+   * (??) also solve 
 
 ## Next - Multiple files
-* Generate 2nd File into 5th sample folder (for multiple files test)
+* Generate 2nd File and 3rd files into 5-sample folder 
     * copy generate spreasheet
+    * more simple json extraction
     * create new DirectortInputStrategy to "walk" folder and call other input strategy
 
 ## Next tidy
@@ -38,8 +29,7 @@ Cascade through output directory the dirPrefix+"/" for regen code?? (or already 
         * Unit test CellConvertorTest (contiguours ranes)
     * Restore all integration tests
         * maybe run them independalty so a failure in one does not block all
-    * Additional 
-        * Is Acme Corp appearning in json
+
 * Decide
     * how to deploy
     * how to extend

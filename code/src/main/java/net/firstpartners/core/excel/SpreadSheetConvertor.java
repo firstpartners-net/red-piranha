@@ -190,22 +190,30 @@ public class SpreadSheetConvertor {
 			//loop through all cells behind this name
 			for (int thisCellCounter=0; thisCellCounter<crefs.length; thisCellCounter++) {
 				
+				
+
 				//Get a handle the to current cell in the range
 				currentPoiSheet = poiWorkbook.getSheet(crefs[thisCellCounter].getSheetName());
 				currentPoiRow= currentPoiSheet.getRow(crefs[thisCellCounter].getRow());
-				currentPoiCell = currentPoiRow.getCell(crefs[thisCellCounter].getCol());
 
-				// extract the cell contents based on cell type etc. and create our (red)Cell / Javabean
-				redCellHandle = redRangeForThisName.getUniqueCellName(thisCellCounter);
-				assert redCellHandle != null;
+				if(currentPoiRow==null){
+					log.error("POI Row is null - unable to convert:"+crefs[thisCellCounter]);
+				} else {
 
-				net.firstpartners.data.Cell redCell = CellConvertor.convertPoiCellToRedCell(redCellHandle,
-						currentPoiCell);
+					currentPoiCell = currentPoiRow.getCell(crefs[thisCellCounter].getCol());
 
-				log.debug("Converted to Red Cell:"+redCell);
+					// extract the cell contents based on cell type etc. and create our (red)Cell / Javabean
+					redCellHandle = redRangeForThisName.getUniqueCellName(thisCellCounter);
+					assert redCellHandle != null;
 
-				// Add the list of cells to a RedRange Group
-				redRangeForThisName.put(redCellHandle, redCell);
+					net.firstpartners.data.Cell redCell = CellConvertor.convertPoiCellToRedCell(redCellHandle,
+							currentPoiCell);
+
+					log.debug("Converted to Red Cell:"+redCell);
+
+					// Add the list of cells to a RedRange Group
+					redRangeForThisName.put(redCellHandle, redCell);
+				}
 
 			}
 

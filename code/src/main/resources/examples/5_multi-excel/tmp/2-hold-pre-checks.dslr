@@ -1,0 +1,123 @@
+package pcv;
+
+//////////////////
+// Basic  checks
+//////////////////
+
+rule "Check CRO" 
+	when 	no CRO number 
+	then 	highlight "CRO Number missing"
+end
+
+rule "Check Services OK" 
+	when 	Services Not OK
+	then 	highlight "Check why Services not OK"
+end
+
+rule "Check for DM Support"
+	when  	DM check finance, DM Check Finance or DM check need for support is missing
+	then 	highlight full DM support not given
+end
+
+rule "check dates"
+	when 	base-year-end is not 31-Dec-2019
+	then	highlight year end in table should be Dec 2019
+end
+
+rule "check opening closing balances"
+	when 	closing cash wk1 does not equal opening cash wk2
+	then	highlight opening and closing cash should align one period to the next
+end
+
+/////////////////////
+// check scheme rules
+/////////////////////
+
+rule "check too much support"
+	when  	Support Requested is larger than 50,000
+	then	highlight only 50k can be supported	
+end
+
+rule "check 50k support"
+	when  	Support Requested is between 25k and 50k
+	and		turnover is greater than €5m  or turnover is less than €1.5m
+	then	highlight company turnover is outside rules	
+end
+
+rule "check 25k support"
+	when  	Support Requested is larger than 50,000
+	and		turnover is greater than €5m 
+	 or		turnover is less than €1.5m
+	then	highlight turnover is outside rules	
+end
+
+rule "covid impact"
+	when  	2020 forecasted turnover is more than 85% of 2019 turnover
+	then	highlight client needs to show impact of Covid on business
+end
+
+////////////////////////
+// Company viability
+///////////////////////
+rule "check historic employment"
+	when 	base year employment is less than base year-1 employment
+	then	highlight jobs (historic) was already reducing
+end
+
+rule "check historic employment"
+	when 	base year turnover is less than base year-1 turnover
+	then	highlight turnover (historic) was already reducing
+end
+
+rule "check historic cash"
+	when 	base year cash is less than base year-1 cash
+	then	highlight cash (historic) was already reducing
+end
+
+rule "Ongoing Company viability and possible repayment"
+	when 	cash headroom month3 is less than 10,000
+	then	highlight company will need to secure ongoing funding towards repayment
+end
+
+rule "check 7 year support (High)"
+	when 	Grants approved last 7 years is more than 150k
+	then	highlight company has received a high amount of EI funding
+end
+
+/////////////////////
+// Need for support
+/////////////////////
+rule "check cash need"
+	when 	cash headroom wk2 is more than cash headroom wk1
+	  or	cash headroom wk3 is more than cash headroom wk2
+	  or	cash headroom wk4 is more than cash headroom wk3
+	  or	cash headroom month2 is more than cash headroom wk4
+	  or	cash headroom month3 is more than cash headroom month2
+	then highlight cash balance in business is increasig
+end	
+
+//////////////////////////////////////////////
+// Banking engagement and other contributions
+/////////////////////////////////////////////
+
+rule "check wages and salaries need"
+	when 	Total Wages wk2 is more than Total Wages wk1
+	  or	Total Wages wk3 is more than Total Wages wk2
+	  or	Total Wages wk4 is more than Total Wages wk3
+	  or	Total Wages month2 is more than Total Wages wk4
+	  or	Total Wages month3 is more than Total Wages month2
+	then highlight Total Wages are increasing
+end	
+
+rule "check bank contribution"
+	when 	no new Sources of Funding
+	then 	highlight no other sources of funding listed
+end
+
+rule "check Government Supports"
+	when 	SBCI Engagement is listed as No
+	or	 	Revenue Temporary Wage Subsidy Scheme as No
+	then	highlight company not availing of all Government supports
+end
+
+

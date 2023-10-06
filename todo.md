@@ -6,11 +6,11 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 
 * Output to CSV
+    * Stub test
+        * test that will create file if
     * Update Code  
         * Code append to csv??
         *   test check that works with both create and append
-
-* NTH 
 
 ## Next - Multiple files
 * Generate 2nd File and 3rd files into 5-sample folder 
@@ -23,7 +23,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * test cell conversion
     * Run other unit tests
         * any other unit test to try out specific conversation (search for Spreadhsheet convertor tess) ###
-        * Unit test CellConvertorTest (contiguours ranes)
+        * Unit test CellConvertorTest (contiguours ranes) - not returning values
     * Restore all integration tests
         * maybe run them independalty so a failure in one does not block all
 

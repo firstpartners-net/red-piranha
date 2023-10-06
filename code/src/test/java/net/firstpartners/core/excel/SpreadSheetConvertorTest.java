@@ -3,7 +3,6 @@ package net.firstpartners.core.excel;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -26,7 +25,6 @@ import groovy.util.ResourceException;
 import groovy.util.ScriptException;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
-import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
 public class SpreadSheetConvertorTest {

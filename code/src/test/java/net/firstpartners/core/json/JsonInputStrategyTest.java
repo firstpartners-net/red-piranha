@@ -77,7 +77,7 @@ public class JsonInputStrategyTest {
 
 		
 		// was 
-		RedModel redModel = new RedModel(TestConstants.JSON_SERIAL_FILE, TestConstants.SIMPLE_LOG_MODIFY_RULES_FILE, "some-dummy.xls");
+		RedModel redModel = new RedModel(TestConstants.JSON_SERIAL_FILE_SIMPLE, TestConstants.SIMPLE_LOG_MODIFY_RULES_FILE, "some-dummy.xls");
 
 		RuleRunner runner = (RuleRunner)RunnerFactory.getRuleRunner(redModel);
 		assertTrue(runner.getDocumentInputStrategy() instanceof JsonInputStrategy);
@@ -105,12 +105,12 @@ public class JsonInputStrategyTest {
 
 		RangeList myRange = new SpreadSheetConvertorTest().getTestDataFromWorkbook();
 
-		JsonOutputStrategy jsonOut = new JsonOutputStrategy(dirPrefix+TestConstants.JSON_SERIAL_FILE);
+		JsonOutputStrategy jsonOut = new JsonOutputStrategy(dirPrefix+TestConstants.JSON_SERIAL_FILE_SIMPLE);
 
 		// test the class
 		jsonOut.setUpdates(null, myRange);
 		jsonOut.processOutput();
-		log.debug("Serialized data is saved in:"+ dirPrefix+TestConstants.JSON_SERIAL_FILE);
+		log.debug("Serialized data is saved in:"+ dirPrefix+TestConstants.JSON_SERIAL_FILE_SIMPLE);
 	}
 
 }

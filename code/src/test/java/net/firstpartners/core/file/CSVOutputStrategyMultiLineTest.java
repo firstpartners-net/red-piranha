@@ -3,6 +3,7 @@ package net.firstpartners.core.file;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,7 +24,6 @@ import net.firstpartners.core.Config;
 import net.firstpartners.core.RPException;
 import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.data.RangeList;
-import net.firstpartners.ui.RedControllerTest;
 
 @SpringBootTest
 public class CSVOutputStrategyMultiLineTest {
@@ -36,19 +36,37 @@ public class CSVOutputStrategyMultiLineTest {
 	private static Logger log = LoggerFactory.getLogger(CSVOutputStrategyMultiLineTest.class);
 
 	@Test
-	public final void testAppendToCSV() throws IOException, InvalidFormatException, ClassNotFoundException {
+	public final void testCreateAppendToCSV() throws IOException, InvalidFormatException, ClassNotFoundException {
 
-		RangeList TestData = RedControllerTest.getTestDataFromWord();
 
+		//Delete previous csv tmp file
+		fail ("Not implemented yet");
+
+		//confirm file does not exist yet
+		fail ("Not implemented yet");
+
+		//etup our test class
 		CSVOutputStrategyMultiLine csvOut = new CSVOutputStrategyMultiLine(TestConstants.CSV_APPEND_FILE);
-		int previousNumberOfCsvRows = csvOut.getNumberOfRowsInFile();
 
-		// test the class
-		csvOut.setUpdates(null, TestData);
-		csvOut.processOutput();
 
-		// check that we have added one line only
-		assertEquals(previousNumberOfCsvRows + 1, csvOut.getNumberOfRowsInFile());
+
+		//get sample data from 	JSON_SERIAL_FILE_MEDIUM
+		fail ("Not implemented yet");
+
+		//output to xls
+		fail ("Not implemented yet");
+
+		//test body and test hearers , capture number of rows
+		fail ("Not implemented yet");
+
+		//output our sample data a second time 
+		fail ("Not implemented yet");
+
+		//check that our number of rows is now doubled.
+		fail ("Not implemented yet");
+
+
+
 
 	}
 

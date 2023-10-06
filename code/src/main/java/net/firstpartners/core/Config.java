@@ -21,23 +21,35 @@ public class Config {
 
 	@Autowired
 	@Value("${sample.Base.Directory.Alternate}")
-	private String sampleBaseDirAlternate="";
+	private String sampleBaseDirAlternate = "";
 
 	@Autowired
 	@Value("${sample.Base.Directory.Default}")
-	private String sampleBaseDirDefault="";
-	
+	private String sampleBaseDirDefault = "";
+
 	@Autowired
 	@Value("${SHOW_FULL_RULE_ENGINE_LOGS}")
 	private boolean showFullRuleEngineLogs = false;
 
-
 	@Autowired
 	@Value("${script.preprocess}")
-	private String preprocessScript="";
+	private String preprocessScript = "";
 
 	/**
-	 * <p>Getter for the field <code>sampleBaseDirAlternate</code>.</p>
+	 * <p>
+	 * Setter for the field <code>sampleBaseDirAlternate</code>.
+	 * </p>
+	 *
+	 * @return a {@link java.lang.String} object
+	 */
+	public void setPreprocessScript(String preProcessScript) {
+		this.preprocessScript = preProcessScript;
+	}
+
+	/**
+	 * <p>
+	 * Getter for the field <code>sampleBaseDirAlternate</code>.
+	 * </p>
 	 *
 	 * @return a {@link java.lang.String} object
 	 */
@@ -46,7 +58,9 @@ public class Config {
 	}
 
 	/**
-	 * <p>Getter for the field <code>sampleBaseDirAlternate</code>.</p>
+	 * <p>
+	 * Getter for the field <code>sampleBaseDirAlternate</code>.
+	 * </p>
 	 *
 	 * @return a {@link java.lang.String} object
 	 */
@@ -55,7 +69,9 @@ public class Config {
 	}
 
 	/**
-	 * <p>Getter for the field <code>sampleBaseDirDefault</code>.</p>
+	 * <p>
+	 * Getter for the field <code>sampleBaseDirDefault</code>.
+	 * </p>
 	 *
 	 * @return a {@link java.lang.String} object
 	 */
@@ -64,7 +80,9 @@ public class Config {
 	}
 
 	/**
-	 * <p>Getter for the field <code>showFullRuleEngineLogs</code>.</p>
+	 * <p>
+	 * Getter for the field <code>showFullRuleEngineLogs</code>.
+	 * </p>
 	 *
 	 * @return a boolean
 	 */
@@ -73,7 +91,9 @@ public class Config {
 	}
 
 	/**
-	 * <p>Setter for the field <code>sampleBaseDirAlternate</code>.</p>
+	 * <p>
+	 * Setter for the field <code>sampleBaseDirAlternate</code>.
+	 * </p>
 	 *
 	 * @param sampleBaseDirAlternate a {@link java.lang.String} object
 	 */
@@ -82,7 +102,9 @@ public class Config {
 	}
 
 	/**
-	 * <p>Setter for the field <code>sampleBaseDirDefault</code>.</p>
+	 * <p>
+	 * Setter for the field <code>sampleBaseDirDefault</code>.
+	 * </p>
 	 *
 	 * @param sampleBaseDirDefault a {@link java.lang.String} object
 	 */
@@ -91,7 +113,9 @@ public class Config {
 	}
 
 	/**
-	 * <p>Setter for the field <code>showFullRuleEngineLogs</code>.</p>
+	 * <p>
+	 * Setter for the field <code>showFullRuleEngineLogs</code>.
+	 * </p>
 	 *
 	 * @param showFullRuleEngineLogs a boolean
 	 */
@@ -100,7 +124,9 @@ public class Config {
 	}
 
 	/**
-	 * <p>toString.</p>
+	 * <p>
+	 * toString.
+	 * </p>
 	 *
 	 * @return a {@link java.lang.String} object
 	 */

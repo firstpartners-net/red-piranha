@@ -3,6 +3,7 @@ package net.firstpartners.core.excel;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Map;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
@@ -118,6 +119,11 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	public void setConfig(Config appConfig) {
 		this.appConfig = appConfig;
 	}
+
+	/**
+	 * To conform to the interface - not (yet) implemented in this strategy
+	 */
+	public void setAdditionalOutputData(Map<String,String> ignored){}
 
 	/**
 	 * {@inheritDoc}

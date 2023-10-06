@@ -15,7 +15,7 @@ import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
-import net.firstpartners.core.file.CSVOutputStrategy;
+import net.firstpartners.core.file.CSVOutputStrategyMultiLine;
 import net.firstpartners.core.file.PDFOutputStrategy;
 import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.core.json.JsonOutputStrategy;
@@ -77,7 +77,7 @@ public class RunnerFactory {
 
 		if (outputSuffixMaps == null) {
 			outputSuffixMaps = new HashMap<String, Class<?>>();
-			outputSuffixMaps.put(SUFFIX_CSV, CSVOutputStrategy.class);
+			outputSuffixMaps.put(SUFFIX_CSV, CSVOutputStrategyMultiLine.class);
 			outputSuffixMaps.put(SUFFIX_PDF, PDFOutputStrategy.class);
 			outputSuffixMaps.put(SUFFIX_EXCEL, ExcelOutputStrategy.class);
 			outputSuffixMaps.put(SUFFIX_EXCELX, ExcelOutputStrategy.class); // same

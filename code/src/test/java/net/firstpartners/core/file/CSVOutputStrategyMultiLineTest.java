@@ -1,0 +1,244 @@
+package net.firstpartners.core.file;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import net.firstpartners.TestConstants;
+import net.firstpartners.core.Config;
+import net.firstpartners.core.RPException;
+import net.firstpartners.core.json.JsonInputStrategy;
+import net.firstpartners.data.RangeList;
+
+@SpringBootTest
+public class CSVOutputStrategyMultiLineTest {
+
+	// handle for our config
+	@Autowired
+	Config appConfig;
+
+	// Logger
+	private static Logger log = LoggerFactory.getLogger(CSVOutputStrategyMultiLineTest.class);
+
+	@Test
+	public final void testCreateAppendToCSV() throws IOException, InvalidFormatException, ClassNotFoundException {
+
+
+		//Delete previous csv tmp file
+		fail ("Not implemented yet");
+
+		//confirm file does not exist yet
+		fail ("Not implemented yet");
+
+		//etup our test class
+		CSVOutputStrategyMultiLine csvOut = new CSVOutputStrategyMultiLine(TestConstants.CSV_APPEND_FILE);
+
+
+
+		//get sample data from 	JSON_SERIAL_FILE_MEDIUM
+		fail ("Not implemented yet");
+
+		//output to xls
+		fail ("Not implemented yet");
+
+		//test body and test hearers , capture number of rows
+		fail ("Not implemented yet");
+
+		//output our sample data a second time 
+		fail ("Not implemented yet");
+
+		//check that our number of rows is now doubled.
+		fail ("Not implemented yet");
+
+
+
+
+	}
+
+	@Test
+	public final void testSplitFieldNameIntoThreeParts() {
+
+
+		CSVOutputStrategyMultiLine csvOut = new CSVOutputStrategyMultiLine(TestConstants.CSV_APPEND_FILE);
+
+		String[] splitResult = csvOut.splitFieldName("Cash_NetClosingCashExclShortTermFacilities_BaseYear_plus_1_0");
+		assertTrue(splitResult.length==3);
+
+		log.debug(splitResult[0]);
+		log.debug(splitResult[1]);
+		log.debug(splitResult[2]);
+
+		assertEquals(splitResult[0],"Cash");
+		assertEquals(splitResult[1],"NetClosingCashExclShortTermFacilities");
+		assertEquals(splitResult[2],"BaseYear_plus_1");
+
+		splitResult = csvOut.splitFieldName("BS_InvoicediscountingYEBalance_31_12_19_0");
+		assertTrue(splitResult.length==3);
+		assertEquals(splitResult[0],"BS");
+		assertEquals(splitResult[1],"InvoicediscountingYEBalance");
+		assertEquals(splitResult[2],"31_12_19");
+
+		splitResult = csvOut.splitFieldName("Cash_Row1861_BaseYear_plus_2_0");
+		assertTrue(splitResult.length==3);
+		assertEquals(splitResult[0],"Cash");
+		assertEquals(splitResult[1],"Row1861");
+		assertEquals(splitResult[2],"BaseYear_plus_2");
+
+		//Try for single fields
+		splitResult = csvOut.splitFieldName("CompanyName_0");
+		assertTrue(splitResult.length==3);
+		assertEquals(splitResult[0],"CompanyName");
+		assertEquals(splitResult[1],"");
+		assertEquals(splitResult[2],"");
+
+		
+
+
+	}
+
+
+
+	@Test
+	public final void testGenerateHeaders() {
+
+		//Additional Header and other test info
+		Map<String,String> additionalInfo = new HashMap<String,String>();
+		additionalInfo.put("date-field","someDate");
+		additionalInfo.put("file-field","someFile");
+		String [] subRecords = {"sub1","sub2","sub3"};
+
+		CSVOutputStrategyMultiLine test = new CSVOutputStrategyMultiLine("Dummy-output.csv");
+		String [] headers = test.generateHeaders(additionalInfo);
+
+		for (int i=0; i<headers.length;i++){
+			log.debug(headers[i]);
+		}
+
+
+		assertNotNull(headers);
+		assertTrue(headers.length==9);
+		assertEquals(headers[0],"file-field");
+		assertEquals(headers[1],"date-field");
+		assertEquals(headers[2],"Name");
+		assertEquals(headers[3],"Value");
+
+		assertEquals(headers[8],"Col");
+
+		//Important that body and header length are the same
+		
+		String [] bodyrow = test.generateBodyRow(additionalInfo,subRecords,"Name","Value","Sheet","Ref");
+		assertEquals(headers.length,bodyrow.length);
+
+	}
+
+	@Test
+	public final void testGenerateBodyLine() {
+
+		Map<String,String> additionalInfo = new HashMap<String,String>();
+		additionalInfo.put("date-field","someDate");
+		additionalInfo.put("file-field","someFile");
+		String [] subRecords = {"sub1","sub2","sub3"};
+
+		CSVOutputStrategyMultiLine test = new CSVOutputStrategyMultiLine("Dummy-output.csv");
+		String [] bodyrow = test.generateBodyRow(additionalInfo,subRecords,"Name","Value","Sheet","Ref");
+
+		assertNotNull(bodyrow);
+
+		for (int i=0; i<bodyrow.length;i++){
+			log.debug(bodyrow[i]);
+		}
+
+
+		assertTrue(bodyrow.length==9);
+		assertEquals(bodyrow[0],"someFile");
+		assertEquals(bodyrow[1],"someDate");
+		assertEquals(bodyrow[2],"Name");
+		assertEquals(bodyrow[3],"Value");
+		assertEquals(bodyrow[4],"Sheet");
+		assertEquals(bodyrow[5],"Ref");
+		assertEquals(bodyrow[6],"sub1");
+		assertEquals(bodyrow[7],"sub2");
+		assertEquals(bodyrow[8],"sub3");
+
+
+
+
+	}
+
+
+
+	/**
+	 * Reasd Serialised JSON info, check we can output to CSV
+	 * @throws RPException
+	 */
+	@Test
+	public final void testJsonInCsvOut() throws Exception, RPException {
+
+		//mockup the configuration we need
+		Config testConfig = new Config();
+
+		// Delete previous output file if it exists - file should not fail if it doesn't
+		try{
+			File tmpOutputFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_TMP_FILE_MULTI_LINE, testConfig);
+			if(tmpOutputFile!=null){
+				tmpOutputFile.delete();
+			}
+		} catch (FileNotFoundException fnfe){
+			log.debug("Tmpfile "+TestConstants.CSV_TMP_FILE_MULTI_LINE+" not found, assume already deleted");
+		}
+
+		//Get our sample data
+		JsonInputStrategy jsInput = new JsonInputStrategy(TestConstants.JSON_SERIAL_FILE_COMPLEX);
+		jsInput.setConfig((testConfig));
+		RangeList testRange = jsInput.getJavaBeansFromSource();
+		assertNotNull("input data should not be empty",testRange);
+
+		//setup our CSV Outputter
+		CSVOutputStrategyMultiLine csvout = new CSVOutputStrategyMultiLine(TestConstants.CSV_TMP_FILE_MULTI_LINE);
+		csvout.setConfig(testConfig);
+		
+		//Update our output strategy with additional info we want it to use
+		HashMap<String,String> additionalOutputs = new HashMap<String,String>();
+		additionalOutputs.put("Input","TestFile");
+		additionalOutputs.put("Runtime",LocalDateTime.now().toString());
+		csvout.setAdditionalOutputData(additionalOutputs);
+
+		
+		// pass in teh data that will be output
+		csvout.setUpdates(null, testRange);
+
+		//Do the output
+		csvout.processOutput();
+
+		log.debug("csv data is saved in:"+TestConstants.CSV_TMP_FILE_MULTI_LINE);
+
+		String[] csvFileArray = csvout.getCsvFileAsStringArray();
+		log.debug(csvFileArray[0]);
+
+		//Test for correct headers (already read from file)
+		assertEquals("Input,Runtime,Name,Value,Sheet,Ref,Table,Row,Col" ,csvFileArray[0]);
+
+		log.debug(csvFileArray[1]);
+
+		//make sure there are not multiple empty values
+		assertTrue("Should not be multiple ,,,,, in field",csvFileArray[1].indexOf(",,,,,,")<0);
+
+
+	}
+
+}

@@ -1,0 +1,178 @@
+package pcv;
+
+
+//TODO - convert to rule, then impleent these checks
+
+// Rules to flag if data has changed
+// name=PARA_6_CRO No., cellValue=CRO No.:
+// name="5.2 Total Expenditure_0", cellValue="5.2 Total Expenditure"
+// name=PARA_30_Adviser: value= Adviser:
+// name=PARA_27_Fund - S , value = "Fund - Small Ent"
+
+// name=Department Manager Name:_0 , originalTableReference ="TABLE_9"
+// name=Give your view on reasons for _0 , cellValue ="Give your view on reasons for recommending this project:" , originalCellCol=0,originalCellRow=6 - must exist
+
+
+//======
+
+/* copy these checks over into rules
+3Ys from DM
+Services ok
+Grants approved last 7 years
+
+*/
+
+
+/*
+Confirmation that the company
+-	Viability as of 31st December 2019
+-	Turnover check (less than 5m) , grant in line.
+-	Demonstration of Covid 19 Impact - of a reduction of 15 per cent or more in actual or projected turnover or profit since the 31st of December 2019
+-	A review of the company’s cash flow and financial position.
+-	A review of the company’s financial track record up until 29 February 2020.
+-	An assessment of the company’s ability to repay.
+-	Check on Banks
+-	Consistence of expenditure planned (e.g. promotors or other parties not taking cash out of the business)
+Other checks
+-	Costs – cashflow - 
+-	Open / closing blance - carry forward
+-	Starting cash / total costs / turnover 2019 / sector business is in/
+-	Checks and rules – actions role – who liase with in cE
+-	Contribution
+-	 CEO and update based  - S
+
+
+* 	Demonstration of a reduction of 15 per cent or more in actual or projected turnover or profit since the 31st of December 2019 as a result of the COVID-19 outbreak; and 
+* 	Demonstration that the company requires funding to cover operational costs for the next 3-6 months.
+Review of the Business Continuity Project Plan
+* 	A review of the funding assistance sought and Business Continuity Project Plan will be undertaken to assess the ability of the plan to sustain business continuity in order to strength the positioning of the company to be trading in 3 years’ time.
+*/
+
+
+//======================================
+
+/*
+The role of this file is to extract information from the source Document. Often the document returns 'strange' names 
+so mapping them to business friendly names (like "Company Name") makes the main set of rules more readable.
+
+It also makes the system more robust; we have rules to check in here if we are being fed the correct source document
+and that the format of that document has not substantially changed. 
+
+When writing these rules it helps that the 'friendly' names we give (in the 'then' part) match what is in the Source document makes iteasier for business users to 
+track where the information is coming from if. e.g. if it says "COMPANY NAME" in the source document, the extractor might call it "TABLE_COMPANY_1_0", 
+we should map it back to "COMPANY NAME"
+
+For mappings, it always better to tie into  name from the document (e.g. Services:_1) rather than PARA_7 - less likely we will pull the wrong data.
+Table and row information is better than Paragraphs, as they are less likely to change.
+
+For key mappings, especially where we're just referring to something like "TABLE_3_ROW_2_1", best practice is to write another rule to check the header 
+on this table is still what we expect (e.g. CellValue of TABLE_3_ROW_1_0 = "My Very Important Table"). This won't stop things going wrong, but
+it allows us to flag a warning (and stops hidden errors that might only be caught much, much later). 
+*/
+
+/*
+rule "Copy DA" 
+	when 	there is a document value starting with name PARA_31_
+    then   	use this name instead DA Name
+end
+*/
+
+rule "Copy CES ID" 
+	when 	there is a document value with name CES ID:_2
+    then   	use this name instead CES Id
+end
+
+rule "Copy CRO No" 
+	when 	there is a document value with name CRO No.:_2
+    then   	use this name instead  CRO No
+end
+
+rule "Copy DA" 
+	when 	there is a document value with name Adviser:_2
+    then   	use this name instead Account Manager Name
+end
+
+rule "Copy CES Name" 
+	when there is a document value with name CES Company Name:_2
+    then use this name instead Client
+end
+
+rule "Copy DM Name" 
+	when there is a document value with name TABLE_9_ROW_9_1
+    then use this name instead DM Name
+end
+
+rule "Support Applied for" 
+	when there is a document value with name 5.2 Total Expenditure_1
+    then use this name instead Support Applied For
+end
+
+rule "Support DA Recommends" 
+	when there is a document value with name 5.2 Total Expenditure_2
+    then use this name instead Support DA Recommends
+end
+
+rule "Services OK" 
+	when there is a document value with name Services Ok:_1
+    then use this name instead Services OK
+end
+
+rule "Grants approved last 7 years" 
+	when there is a document value with name 7 Year Total_1
+    then use this name instead Grants approved last 7 years
+end
+
+rule "DM check finance" 
+	when there is a document value with name - I have reviewed the financia_2
+    then use this name instead DM check finance
+end
+
+rule "DM check value for money" 
+	when there is a document value with name - I have reviewed the value-fo_2
+    then use this name instead DM check value for money
+end
+
+rule "DM need for ei support" 
+	when there is a document value with name - I have reviewed the proposal_2
+    then use this name instead DM need for ei support
+end
+
+rule "Copy Bank Engagement" 
+	when there is a document value with name XXXX
+    then use this name instead Bank Engagement
+end
+
+rule "Copy Starting Cash wk1" 
+	when there is a document value with name XXXX
+    then use this name instead Starting Cash wk1
+end
+
+rule "Copy End Cash" 
+	when there is a document value with name XXXX
+    then use this name instead End Cash
+end
+
+rule "Copy Employment" 
+	when there is a document value with name XXXX
+    then use this name instead Employment
+end
+
+rule "Copy Turnover reduction" 
+	when there is a document value with name XXXX
+    then use this name instead Turnover reduction
+end
+
+rule "Copy Turnover end 2019" 
+	when there is a row starting with Turnover
+	update name two cells in to Turnover end 2019
+end
+
+
+
+// info we need to tie to wider system - should not need to change
+
+import net.firstpartners.core.log.IStatusUpdate
+import net.firstpartners.data.Cell;
+
+global IStatusUpdate log;
+			

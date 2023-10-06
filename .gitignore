@@ -42,3 +42,8 @@ code/src/main/resources/examples/4_folder_scan/.~lock.Complex_Financial.xlsx#
 #Local logs
 RedPiranha.log
 code/src/main/resources/examples/4_complex_excel/.~lock.Complex_Financial.xlsx#
+code/src/test/resources/testdata/tmp-multi.csv
+code/src/test/resources/testdata/tmp.xlsx
+code/src/test/resources/testdata/tmp-multi.csv
+code/src/test/java/net/firstpartners/TestConstants.java
+code/src/test/resources/testdata/tmp-multi.csv

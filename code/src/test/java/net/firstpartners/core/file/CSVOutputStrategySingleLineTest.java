@@ -10,19 +10,32 @@ import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import net.firstpartners.TestConstants;
+import net.firstpartners.core.Config;
 import net.firstpartners.data.RangeList;
-import net.firstpartners.ui.RedControllerTest;
+import net.firstpartners.ui.RedControllerTest; 
 
-public class CSVOutputStrategyTest {
+@SpringBootTest
+public class CSVOutputStrategySingleLineTest {
+
+	// handle for our config
+	@Autowired
+	Config appConfig;
+
+	// Logger
+	private static Logger log = LoggerFactory.getLogger(CSVOutputStrategySingleLineTest.class);
 
 	@Test
 	public final void testAppendToCSV() throws IOException, InvalidFormatException, ClassNotFoundException {
 
 		RangeList TestData = RedControllerTest.getTestDataFromWord();
 
-		CSVOutputStrategy csvOut = new CSVOutputStrategy(TestConstants.CSV_APPEND_FILE);
+		CSVOutputStrategySingleLine csvOut = new CSVOutputStrategySingleLine(TestConstants.CSV_APPEND_FILE);
 		int previousNumberOfCsvRows = csvOut.getNumberOfRowsInFile();
 
 		// test the class
@@ -41,7 +54,7 @@ public class CSVOutputStrategyTest {
 
 		RangeList testData = RedControllerTest.getTestDataFromWord();
 
-		CSVOutputStrategy csvOut = new CSVOutputStrategy(TestConstants.CSV_APPEND_FILE);
+		CSVOutputStrategySingleLine csvOut = new CSVOutputStrategySingleLine(TestConstants.CSV_APPEND_FILE);
 
 		List<String> headers = csvOut.getHeadersFromFile();
 
@@ -56,6 +69,8 @@ public class CSVOutputStrategyTest {
 		assertEquals("DEF",valuesFromCells.get("ABC_1"));
 		assertEquals("GHI",valuesFromCells.get("PARA_9_GHI"));
 
+		log.debug("completed checking headers");
+
 	}
 
 	@Test
@@ -63,7 +78,7 @@ public class CSVOutputStrategyTest {
 
 		try {
 
-			CSVOutputStrategy testObject = new CSVOutputStrategy("some-file-that-should-never-never-exist.csv");
+			CSVOutputStrategySingleLine testObject = new CSVOutputStrategySingleLine("some-file-that-should-never-never-exist.csv");
 			testObject.processOutput();
 
 			fail("expected exception never thrown");
@@ -74,4 +89,5 @@ public class CSVOutputStrategyTest {
 
 	}
 
+	
 }

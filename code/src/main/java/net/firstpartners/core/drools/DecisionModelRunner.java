@@ -55,9 +55,9 @@ public class DecisionModelRunner extends AbstractRunner {
 
 	}
 
-	protected void instantiateKIEifNecessary(){
+	protected void instantiateKIEifNecessary() {
 
-		if(this.dmnRuntime==null){
+		if (this.dmnRuntime == null) {
 			this.kieServices = KieServices.Factory.get();
 			this.kieContainer = kieServices.getKieClasspathContainer();
 			this.dmnRuntime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
@@ -75,7 +75,7 @@ public class DecisionModelRunner extends AbstractRunner {
 	 */
 	DMNModel getDmnModel(String nameSpace, String decisionModelName) throws RPException {
 
-		//make sure our KIE environment is setup
+		// make sure our KIE environment is setup
 		instantiateKIEifNecessary();
 
 		log.debug("Looking for model:" + decisionModelName);
@@ -115,9 +115,9 @@ public class DecisionModelRunner extends AbstractRunner {
 
 		}
 
-		//Check that we have a model with that name
+		// Check that we have a model with that name
 		assert dmnModel != null : "Unable to find any DNMModel with that Name";
-		
+
 		return dmnModel;
 
 	}
@@ -132,10 +132,10 @@ public class DecisionModelRunner extends AbstractRunner {
 	Collection<Cell> runModel(RedModel model)
 			throws RPException {
 
-		//make sure our KIE environment is setup
+		// make sure our KIE environment is setup
 		instantiateKIEifNecessary();
 
-		//our results objects
+		// our results objects
 		ArrayList<Cell> outputCells = new ArrayList<Cell>();
 
 		// Find the Decision Model
@@ -180,38 +180,51 @@ public class DecisionModelRunner extends AbstractRunner {
 	 * @param inputObject
 	 * @return
 	 */
-	Collection<Cell> convertDecisionResultToCells(Object inputObject) {
+	Collection<Cell> convertDecisionResultToCells(Cell inputObject) {
 
+		assert inputObject != null : "Input Cell should not be null";
+		ArrayList<Cell> cellResult = new ArrayList<Cell>();
+		cellResult.add(inputObject);
+		return cellResult;
+
+	}
+
+	/**
+	 * Convert the Result of the Decision Model into Cell Objects
+	 * 
+	 * @param inputObject
+	 * @return
+	 */
+	Collection<Cell> convertDecisionResultToCells(List<Object> loopList) {
+
+		assert loopList != null : "Input Object should not be null";
 		ArrayList<Cell> cellResult = new ArrayList<Cell>();
 
-		// Check for a list
-		if (inputObject instanceof List) {
+		for (int i = 0; i < loopList.size(); i++) {
+			cellResult.addAll(convertDecisionResultToCells(loopList.get(i)));
 
-			List<Object> loopList = (List<Object>)inputObject;
-
-			for (int i = 0; i < loopList.size(); i++) {
-				cellResult.addAll(convertDecisionResultToCells(loopList.get(i)));
-			}
-			return cellResult;
-		}
-
-		if (inputObject != null) {
-			log.debug("Converting Decision Result of Type:" + inputObject.getClass());
-
-			if (inputObject instanceof Cell) {
-				cellResult.add((Cell) inputObject);
-			} else {
-
-				// generic conversation based on cell toString
-				Cell tmpCell = new Cell("", inputObject.toString());
-				cellResult.add(tmpCell);
-			}
-
-		} else {
-			log.warn("convertDecisionResultToCells called with a null value - unlikely to be what you want");
 		}
 
 		return cellResult;
+	}
+
+	/**
+	 * Convert the Result of the Decision Model into Cell Objects
+	 * 
+	 * @param inputObject
+	 * @return
+	 */
+	Collection<Cell> convertDecisionResultToCells(Object inputObject) {
+
+		assert inputObject != null : "Input Object should not be null";
+		ArrayList<Cell> cellResult = new ArrayList<Cell>();
+
+		// generic conversation based on cell toString
+		Cell tmpCell = new Cell("", inputObject.toString());
+		cellResult.add(tmpCell);
+
+		return cellResult;
+
 	}
 
 }

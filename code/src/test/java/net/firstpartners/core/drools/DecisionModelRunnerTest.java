@@ -27,7 +27,7 @@ public class DecisionModelRunnerTest {
 	public void testRunDmnModel() throws RPException {
 
 		RedModel testModel = new RedModel(TestConstants.SIMPLE_EXCEL, TestConstants.SIMPLE_DECISION_MODEL,
-		TestConstants.CSV_TMP_FILE);
+		TestConstants.CSV_TMP_FILE_MULTI_LINE);
 
 		Cell testCell = new Cell("Name","Paul");
 		testModel.addFact(testCell);
@@ -51,7 +51,7 @@ public class DecisionModelRunnerTest {
 	@Test
 	public void testconvertDecisionResultToCells() throws RPException{
 		RedModel testModel = new RedModel(TestConstants.SIMPLE_EXCEL, TestConstants.SIMPLE_DECISION_MODEL,
-		TestConstants.CSV_TMP_FILE);
+		TestConstants.CSV_TMP_FILE_MULTI_LINE);
 
 		//implicit test - we should always get a decision model		
 		DecisionModelRunner myRunner = (DecisionModelRunner)RunnerFactory.getRuleRunner(testModel);

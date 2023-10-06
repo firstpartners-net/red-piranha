@@ -1,6 +1,6 @@
 package net.firstpartners;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -9,7 +9,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,10 +66,10 @@ class IntegrationTests {
 	}
 
 
- 	// @Test
-	// void testAllSamples() throws Exception, RPException {
-	// 	sampleTestRunner(-1);
-	// }
+ 	@Test
+	void testAllSamples() throws Exception, RPException {
+		sampleTestRunner(-1);
+	}
 
 	/**
 	 * Pass in Integer = null or -1 to run all tests
@@ -127,7 +126,7 @@ class IntegrationTests {
 			runner.callRules(testModel);
 
 			log.debug("\n=======\n");
-			log.debug(testModel.toString());
+			//log.debug(testModel.toString());
 			
 			
 			//check not blowing up and that we have

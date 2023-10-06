@@ -1,0 +1,81 @@
+package pcv;
+
+import net.firstpartners.core.log.IStatusUpdate;
+import net.firstpartners.data.Cell;
+
+global IStatusUpdate log;
+
+
+//#====
+//testing
+
+
+
+rule "test"
+	when
+	//#[condition][net.firstpartners.data.Cell]when there is a row starting with {value}= 
+		$cellFind : Cell( value =="Turnover") 
+		$nextCell : Cell (name== $cellFind.nextName) 
+		$cell : Cell (name== $nextCell.nextName)
+	//[consequence][]update name two cells in to {outname}=
+	then
+		$cell.setName("Turnover end 2019");
+		log.info("Updating cell Name to Turnover end 2019 value:"+$cell.getValue());
+end 
+
+
+//#===
+
+
+/**
+Rules in this file are housekeeping that support the main
+rules validated by the Business (e.g. data validation)
+
+An example is making sure there is an area to roll-up and capture our warning.
+
+Written as normal rule .drl file as these rules not likely to be directly reviewed by business users
+
+*/
+
+rule "sample of rule warnings cell to capture warnings" 
+	no-loop
+	when
+			$cell : Cell( name == "PARA_6_CRO No.:",value =="XX CRO No.:")
+    then   
+    	 //Logging message
+    	log.info("Updating warning flag on "+$cell);
+    	modify($cell) {setComment("WARNING cellName:"+$cell.getName()+" has unexpected value of "+$cell.getValue())};	
+end
+
+
+rule "insert cell to capture warnings" 
+	no-loop
+	when
+		not Cell( name == "Validation Notes")
+    then   
+    	 //Logging message
+    	log.info("inserting cell to gather validation notes");
+    	insert(new Cell("Validation Notes",""));
+end
+
+rule "check validation notes" 
+	no-loop
+	when
+		$cell : Cell( name == "Validation Notes")
+    then   
+    	 //Logging message
+    	log.info("Validation notes:"+$cell.getValue());
+   
+end
+
+rule "Collate warnings" 
+    no-loop
+	when
+			$cell : Cell( comment!=null)
+			$validation :  Cell( name == "Validation Notes")
+    then   
+    	 //Logging message
+    	log.info("noted cell:"+$cell+" with comments:"+$cell.getComment());
+    	modify($validation) {appendValue($cell.getComment())};
+    	
+end

@@ -1,6 +1,8 @@
 package net.firstpartners.ui;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -95,8 +97,13 @@ public class RedController {
 			IRunner runner = RunnerFactory.getRuleRunner(redModel,appConfig);
 
 			//Update configuration on this
-			
 			runner.getDocumentInputStrategy().setConfig(appConfig);
+		
+			//Update our output strategy with additional info we want it to use
+			HashMap<String,String> additionalOutputs = new HashMap<String,String>();
+			additionalOutputs.put("Input",redModel.getInputFileLocation());
+			additionalOutputs.put("Runtime",LocalDateTime.now().toString());
+			runner.getDocumentOutputStrategy().setAdditionalOutputData(additionalOutputs);
 
 			// Call the rules using this datafile
 			redModel.addUIInfoMessage("Running Rules:");

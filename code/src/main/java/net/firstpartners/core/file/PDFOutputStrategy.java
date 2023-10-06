@@ -1,6 +1,7 @@
 package net.firstpartners.core.file;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -56,6 +57,10 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 		this.subDirectory = subDirectory;
 	}
 
+	/**
+	 * To conform to the interface - not (yet) implemented in this strategy
+	 */
+	public void setAdditionalOutputData(Map<String,String> ignored){}
 
 	/**
 	 * {@inheritDoc}

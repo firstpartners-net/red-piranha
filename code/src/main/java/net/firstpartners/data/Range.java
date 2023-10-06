@@ -11,6 +11,8 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 /**
  * A range is just a holder for a group of named cells - maps to a similar
@@ -24,6 +26,7 @@ import org.slf4j.LoggerFactory;
  * @author paul
  * @version $Id: $Id
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Range implements Map<String, Cell>, Serializable {
 
 	/** Constant <code>CELLNAME_NUM_SEPARATOR="_"</code> */

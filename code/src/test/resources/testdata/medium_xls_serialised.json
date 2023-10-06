@@ -1,0 +1,211 @@
+[ {
+  "CompanyName_0" : {
+    "comment" : null,
+    "modified" : false,
+    "name" : "CompanyName_0",
+    "nextName" : null,
+    "originalCellCol" : 0,
+    "originalCellRow" : 3,
+    "originalTableReference" : "Accounts",
+    "value" : "ACME Corp",
+    "originalCellReference" : "R3C0",
+    "valueAsLong" : null,
+    "valueAsBoolean" : null,
+    "valueAsText" : "ACME Corp"
+  }
+}, {
+  "Info_YearEnd_BaseYear_minus_2_0" : {
+    "comment" : null,
+    "modified" : false,
+    "name" : "Info_YearEnd_BaseYear_minus_2_0",
+    "nextName" : null,
+    "originalCellCol" : 1,
+    "originalCellRow" : 12,
+    "originalTableReference" : "Accounts",
+    "value" : 43465.0,
+    "originalCellReference" : "R12C1",
+    "valueAsLong" : 43465,
+    "valueAsBoolean" : null,
+    "valueAsText" : "43465.0"
+  }
+}, {
+  "Info_YearEnd_BaseYear_minus_1_0" : {
+    "comment" : null,
+    "modified" : false,
+    "name" : "Info_YearEnd_BaseYear_minus_1_0",
+    "nextName" : null,
+    "originalCellCol" : 2,
+    "originalCellRow" : 12,
+    "originalTableReference" : "Accounts",
+    "value" : 43830.0,
+    "originalCellReference" : "R12C2",
+    "valueAsLong" : 43830,
+    "valueAsBoolean" : null,
+    "valueAsText" : "43830.0"
+  }
+}, {
+  "Info_YearEnd_BaseYear_0" : {
+    "comment" : null,
+    "modified" : false,
+    "name" : "Info_YearEnd_BaseYear_0",
+    "nextName" : null,
+    "originalCellCol" : 3,
+    "originalCellRow" : 12,
+    "originalTableReference" : "Accounts",
+    "value" : 44196.0,
+    "originalCellReference" : "R12C3",
+    "valueAsLong" : 44196,
+    "valueAsBoolean" : null,
+    "valueAsText" : "44196.0"
+  }
+}, {
+  "Info_YearEnd_CurrentYear_0" : {
+    "comment" : null,
+    "modified" : false,
+    "name" : "Info_YearEnd_CurrentYear_0",
+    "nextName" : null,
+    "originalCellCol" : 4,
+    "originalCellRow" : 12,
+    "originalTableReference" : "Accounts",
+    "value" : 44561.0,
+    "originalCellReference" : "R12C4",
+    "valueAsLong" : 44561,
+    "valueAsBoolean" : null,
+    "valueAsText" : "44561.0"
+  }
+}, {
+  "Info_YearEnd_BaseYear_plus_2_0" : {
+    "comment" : null,
+    "modified" : false,
+    "name" : "Info_YearEnd_BaseYear_plus_2_0",
+    "nextName" : null,
+    "originalCellCol" : 5,
+    "originalCellRow" : 12,
+    "originalTableReference" : "Accounts",
+    "value" : 44926.0,
+    "originalCellReference" : "R12C5",
+    "valueAsLong" : 44926,
+    "valueAsBoolean" : null,
+    "valueAsText" : "44926.0"
+  }
+}, {
+  "Info_YearEnd_BaseYear_plus_3_0" : {
+    "comment" : null,
+    "modified" : false,
+    "name" : "Info_YearEnd_BaseYear_plus_3_0",
+    "nextName" : null,
+    "originalCellCol" : 6,
+    "originalCellRow" : 12,
+    "originalTableReference" : "Accounts",
+    "value" : 45291.0,
+    "originalCellReference" : "R12C6",
+    "valueAsLong" : 45291,
+    "valueAsBoolean" : null,
+    "valueAsText" : "45291.0"
+  }
+}, {
+  "Info_YearEnd_BaseYear_plus_4_0" : {
+    "comment" : null,
+    "modified" : false,
+    "name" : "Info_YearEnd_BaseYear_plus_4_0",
+    "nextName" : null,
+    "originalCellCol" : 7,
+    "originalCellRow" : 12,
+    "originalTableReference" : "Accounts",
+    "value" : 45656.0,
+    "originalCellReference" : "R12C7",
+    "valueAsLong" : 45656,
+    "valueAsBoolean" : null,
+    "valueAsText" : "45656.0"
+  }
+}, {
+  "Info_YearEnd_BaseYear_plus_5_0" : {
+    "comment" : null,
+    "modified" : false,
+    "name" : "Info_YearEnd_BaseYear_plus_5_0",
+    "nextName" : null,
+    "originalCellCol" : 8,
+    "originalCellRow" : 12,
+    "originalTableReference" : "Accounts",
+    "value" : 46022.0,
+    "originalCellReference" : "R12C8",
+    "valueAsLong" : 46022,
+    "valueAsBoolean" : null,
+    "valueAsText" : "46022.0"
+  }
+}, {
+  "Info_No.ofGlobalEmployeesy_einclIrishemployment_BaseYear_minus_2_0" : {
+    "comment" : null,
+    "modified" : false,
+    "name" : "Info_No.ofGlobalEmployeesy_einclIrishemployment_BaseYear_minus_2_0",
+    "nextName" : null,
+    "originalCellCol" : 1,
+    "originalCellRow" : 13,
+    "originalTableReference" : "Accounts",
+    "value" : 21.0,
+    "originalCellReference" : "R13C1",
+    "valueAsLong" : 21,
+    "valueAsBoolean" : null,
+    "valueAsText" : "21.0"
+  }
+}, {
+  "Info_No.ofGlobalEmployeesy_einclIrishemployment_BaseYear_minus_1_0" : {
+    "comment" : null,
+    "modified" : false,
+    "name" : "Info_No.ofGlobalEmployeesy_einclIrishemployment_BaseYear_minus_1_0",
+    "nextName" : null,
+    "originalCellCol" : 2,
+    "originalCellRow" : 13,
+    "originalTableReference" : "Accounts",
+    "value" : 32.0,
+    "originalCellReference" : "R13C2",
+    "valueAsLong" : 32,
+    "valueAsBoolean" : null,
+    "valueAsText" : "32.0"
+  }
+}, {
+  "Info_No.ofGlobalEmployeesy_einclIrishemployment_BaseYear_0" : {
+    "comment" : null,
+    "modified" : false,
+    "name" : "Info_No.ofGlobalEmployeesy_einclIrishemployment_BaseYear_0",
+    "nextName" : null,
+    "originalCellCol" : 3,
+    "originalCellRow" : 13,
+    "originalTableReference" : "Accounts",
+    "value" : 34.0,
+    "originalCellReference" : "R13C3",
+    "valueAsLong" : 34,
+    "valueAsBoolean" : null,
+    "valueAsText" : "34.0"
+  }
+}, {
+  "Info_No.ofGlobalEmployeesy_einclIrishemployment_CurrentYear_0" : {
+    "comment" : null,
+    "modified" : false,
+    "name" : "Info_No.ofGlobalEmployeesy_einclIrishemployment_CurrentYear_0",
+    "nextName" : null,
+    "originalCellCol" : 4,
+    "originalCellRow" : 13,
+    "originalTableReference" : "Accounts",
+    "value" : 38.0,
+    "originalCellReference" : "R13C4",
+    "valueAsLong" : 38,
+    "valueAsBoolean" : null,
+    "valueAsText" : "38.0"
+  }
+}, {
+  "Info_No.ofGlobalEmployeesy_einclIrishemployment_BaseYear_plus_2_0" : {
+    "comment" : null,
+    "modified" : false,
+    "name" : "Info_No.ofGlobalEmployeesy_einclIrishemployment_BaseYear_plus_2_0",
+    "nextName" : null,
+    "originalCellCol" : 5,
+    "originalCellRow" : 13,
+    "originalTableReference" : "Accounts",
+    "value" : 44.0,
+    "originalCellReference" : "R13C5",
+    "valueAsLong" : 44,
+    "valueAsBoolean" : null,
+    "valueAsText" : "44.0"
+  }
+} ]

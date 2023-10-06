@@ -2,42 +2,42 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
-## NEXT STEP 
+## Next - CSV Output
 
-* Update documentation (go through again) #####
-    * tidy main readme.md
-        * move old book to book.md
-        * new section on book
-        * add running samples section
-        * new before screenshot / new after screenshot
 
-* push / merge docs into main
+* Output to CSV
+    * Stub test
+        * test that will create file if
+    * Update Code  
+        * Code append to csv??
+        *   test check that works with both create and append
+
+## Next - Multiple files
+* Generate 2nd File and 3rd files into 5-sample folder 
+    * copy generate spreasheet
+    * more simple json extraction
+    * create new DirectortInputStrategy to "walk" folder and call other input strategy
+
+## Next tidy
 
 * test cell conversion
     * Run other unit tests
         * any other unit test to try out specific conversation (search for Spreadhsheet convertor tess) ###
-        * Unit test CellConvertorTest (contiguours ranes)
+        * Unit test CellConvertorTest (contiguours ranes) - not returning values
     * Restore all integration tests
         * maybe run them independalty so a failure in one does not block all
-    * Additional 
-        * Is Acme Corp appearning in json
+
 * Decide
     * how to deploy
     * how to extend
 
-## Next - CSV Output
-* Output to CSV
-    * output as 2 or three columns - update previous class with this
-
-## Next - Multiple files
-* Generate 2nd File into 5th sample folder (for multiplel filtes test)
-    * copy generate spreasheet
-    * create new DirectortInputStrategy to "walk" folder and call other input strategy
 
 ## Next - Data Quality
 * Simple Check rules
     * just enough rule to filter / check for dud data
     * may need to see if can write rule to remove all
+* Cross reference back to data
+    * add original cell refernece (need to track through as not currently accurate)
 
 ## Next - Deployment
 * Can deploy and work against true docs
@@ -58,8 +58,9 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     * github
     * docker
 
-## Next Sprint
+## ##############
 
+## Next Sprint - after immediate needs
 
 * Future
     * Create Fiancial extraction Sample - analsyis of single case POC
@@ -85,42 +86,30 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * view vulneribilty report (right click top right of tabs and renable)
 
 
+## upgrades and housekeeping
 
-## Confirm delivered on previous sprint
-
-* Platform (with specific examples)
-* Good draft of user and dev documentation.
-* (Y) Can hand to Java developer and build - proper release
-* (Y) Could be run by simple end-user with docker - proper release
-
-## refactor and upgrades
-* (Move RuleRunner.java remove RuleBuilder to same pre-built model that * DecisionModel uses)
-* Simplify down to Cells (remove all notion or ranges?)
 * restore commented out tests (put @Test back on them)
     * testJSONInOut
 * run JavaDoc checker and tidy comments
 * Migrate to latest version of all libs
 * tidy DSL example
 
-## Move to above, delete, or capture as future dieas
-* recover and reused previous examples (to web) - currently in test folder
-* understand model back and forward better
-* conversion to-from excel - make sure it works better, json better?
-* Dive through stack - can bring back any more info to user
-* Tidy Bootstrap on web page
-* final tests running
-* RP using model from business central or simliar exported backage
-* Move bootstrap offline (and other javascript to make more robust)
-* Serialsiation - Into Tests of convertor / Java test data in JSON
-* use to test cell conversion
-* Better display of Java objects
-* Read drools doc in more detail
-* Outline how to integrate with KIE Server
-* Update red-piranha-sourceforge.com to point to github (grab info first)
-* Enable Swagger
-* Turn back on Spring Services in applicaiton.properites
-* Understand Github pages, Jekyll and see if can build an even 'friendlier' version of this site.
-* Rengerate Javadoc, tidy to site
 
 # Medium Term Ideas
 * better display of information in JSON
+* better handling of invalid cell refs - function to remove invalid?
+* Convert tesets using binary serizlied data to json (comment out in test constants)
+* RP using model from business central or simliar exported backage
+* Better display of Java objects - open by default
+* Understand Github pages, Jekyll and see if can build an even 'friendlier' version of this site.
+* Outline how to integrate with KIE Server
+
+
+# Medium Term tidy
+* Tidy Bootstrap on web page
+* final tests running
+* Serialsiation - Into Tests of convertor / Java test data in JSON
+* Rengerate Javadoc, tidy to site
+* recover and reused previous examples (to web) - currently in test folder
+* Simplify down to Cells (remove all notion or ranges?)
+

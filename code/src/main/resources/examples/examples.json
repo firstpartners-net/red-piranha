@@ -34,9 +34,19 @@
 {
   "id" : 4,
   "baseDirectory":"4_complex_excel/",
-  "inputFileLocation" : "Complex_Financial.xlsx",
+  "inputFileLocation" : "C",
   "ruleFileLocation" : "log-then-modify-rules.drl",
-  "outputFileLocation" : "output.json",
+  "outputFileLocation" : "output.csv",
+  "dslFileLocation" : "",
+  "testingResult" : ""
+  		
+},
+{
+  "id" : 5,
+  "baseDirectory":"5_multi_excel/",
+  "inputFileLocation" : "",
+  "ruleFileLocation" : "log-then-modify-rules.drl",
+  "outputFileLocation" : "output.csv",
   "dslFileLocation" : "",
   "testingResult" : ""
   		

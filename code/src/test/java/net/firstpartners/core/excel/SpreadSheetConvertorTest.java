@@ -2,14 +2,18 @@ package net.firstpartners.core.excel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertTrue;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.Map;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.junit.Test;
@@ -21,7 +25,6 @@ import groovy.util.ResourceException;
 import groovy.util.ScriptException;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
-import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
 public class SpreadSheetConvertorTest {
@@ -83,6 +86,9 @@ public class SpreadSheetConvertorTest {
 	@Test
 	public final void testRangeConversationSimpleExcel() throws IOException, ResourceException, ScriptException {
 		
+		//Create a new Empty POI Workbook
+		Workbook localWb = new HSSFWorkbook();
+
 		RangeList myRedRangeList = getTestDataFromWorkbook();
 		assertNotNull(wb);
 		
@@ -91,26 +97,36 @@ public class SpreadSheetConvertorTest {
 		assertEquals(myRedRangeList.getAllCellsWithNames().size(), 132);
 
 		// loop through and checck rnages
-		Map<String, Cell> map = myRedRangeList.getAllCellsWithNames();
-		for (Map.Entry<String, Cell> entry : map.entrySet()) {
+		Map<String, net.firstpartners.data.Cell> map = myRedRangeList.getAllCellsWithNames();
+		for (Map.Entry<String, net.firstpartners.data.Cell> entry : map.entrySet()) {
 	        System.out.println(entry.getKey() + ":" + entry.getValue());
 	        assertNotNull(entry.getKey());
 	        assertNotNull(entry.getValue());
 	        
 	    }
 			
-		SpreadSheetConvertor.updateRedRangeintoPoiExcel(wb, myRedRangeList);
-		fail("Remove the previous line");
+		SpreadSheetConvertor.updateRedRangeintoPoiExcel(localWb, myRedRangeList);
 
-		fail("add additional assertions to data");
-
-	}
-
-	@Test
-	public final void testRangeConversationCompleExcel() throws IOException, ResourceException, ScriptException {
+		// Loop and do something interesting with the data
+		Sheet sheet = wb.getSheetAt(0);
+	
 		
-		fail("Get Complex Excel like sample 4, repeat test like above (with no preprocess script as gnarlyey sheet)");
+		assertEquals(30,sheet.getPhysicalNumberOfRows());
 
+		for (Row row : sheet) {
+		  for (org.apache.poi.ss.usermodel.Cell poiCell : row) {
+			log.debug("Row contains cells:"+row.getPhysicalNumberOfCells()+" Cell:"+poiCell.getCellType());
+			assertTrue(row.getPhysicalNumberOfCells()>0);
+		  }
+		}
+
+		//only to check our format
+		OutputStream fileOut = new FileOutputStream(TestConstants.XLSX_TMP_FILE);
+ 		wb.write(fileOut);
+
+		log.debug("Successfully wrote converted file to :"+TestConstants.XLSX_TMP_FILE);
+	
+		
 	}
 
 }

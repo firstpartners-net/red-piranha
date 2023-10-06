@@ -10,6 +10,9 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     * work through tests
     * work through Calling in spring
 
+Robust
+    * add escaping to csv output (googel)
+
 * Output to CSV
     * Write Code to meet test
         * Get CSVOutputStrategyMultiLineTest#testCreateAppendToCSV running and passing (write code / remove fails)

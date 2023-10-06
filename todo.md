@@ -4,6 +4,11 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Next - CSV Output
 
+* Debug
+    * introduce space to sheet name
+    * regenerate test data in JSON?
+    * work through tests
+    * work through Calling in spring
 
 * Output to CSV
     * Write Code to meet test

@@ -6,17 +6,19 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 
 * Output to CSV
-    * Stub test
-        * test that will create file if
+    * Write Code to meet test
+        * Get CSVOutputStrategyMultiLineTest#testCreateAppendToCSV running and passing (write code / remove fails)
     * Update Code  
         * Code append to csv??
         *   test check that works with both create and append
 
 ## Next - Multiple files
-* Generate 2nd File and 3rd files into 5-sample folder 
+* Generate 2nd File and 3rd files in the 5-sample folder 
     * copy generate spreasheet
-    * more simple json extraction
+    * more simple json extraction (just first tample)
     * create new DirectortInputStrategy to "walk" folder and call other input strategy
+    * Create DirectortInputStrategyTest and stub
+    * Write and test behaviou
 
 ## Next tidy
 

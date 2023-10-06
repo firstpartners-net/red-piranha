@@ -7,13 +7,10 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 * Output to CSV
     * Update Code  
-
         * Code append to csv??
         *   test check that works with both create and append
 
 * NTH 
-   * solve regnerate data issue
-   * (??) also solve 
 
 ## Next - Multiple files
 * Generate 2nd File and 3rd files into 5-sample folder 

@@ -76,7 +76,7 @@ public class ScriptSupport {
 			Sheet sheet = this.wb.getSheetAt(i);
 			String tmpSheetName = sheet.getSheetName();
 
-			// remove spaces
+			// remove spaces from sheet name
 			tmpSheetName=tmpSheetName.replaceAll("\\s", "");
 			
 			//rename sheet to match this
@@ -274,8 +274,10 @@ public class ScriptSupport {
 	 */
 	public void nameSingleCell(String baseName, String sheetName, String cellRef) {
 
-		//ensure our sheets have no spaces in them
+		//ensure our sheets have no spaces in them, nor in teh incoming sheet name
 		removeSpacesSheetNames();
+		sheetName=sheetName.replaceAll("\\s", "");
+
 
 		String formula = sheetName + "!" + cellRef; // should give us same as in Excel e.g. Accounts!B14:I14
 

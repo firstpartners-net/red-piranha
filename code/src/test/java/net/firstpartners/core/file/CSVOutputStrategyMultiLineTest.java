@@ -36,7 +36,7 @@ public class CSVOutputStrategyMultiLineTest {
 	private static Logger log = LoggerFactory.getLogger(CSVOutputStrategyMultiLineTest.class);
 
 	@Test
-	public final void testCreateAppendToCSV() throws IOException, InvalidFormatException, ClassNotFoundException {
+	public final void testCreateAppendToCSVNoOverwrite() throws IOException, InvalidFormatException, ClassNotFoundException {
 
 		//mockup the configuration we need
 		Config testConfig = new Config();
@@ -100,26 +100,14 @@ public class CSVOutputStrategyMultiLineTest {
 
 		String[] csvFileArrayPass2 = csvout.getCsvFileAsStringArray();
 		log.debug(csvFileArrayPass2[0]);
-		int secondPass = csvFileArrayPass2.length;
+		int secondPassNumberRows = csvFileArrayPass2.length;
 
 		//check that our number of rows is now doubled.
-		log.debug("First Size:"+firstPassNumberRows+" second size:"+secondPass);
-		fail("add assertion and code still needed");
-
+		log.debug("First Size:"+firstPassNumberRows+" second size:"+secondPassNumberRows);
+		assertEquals("CSV is not double -1 to allow for headers", secondPassNumberRows,(firstPassNumberRows*2)-1);
+		
 		//Test for correct headers (already read from file)
 		assertEquals("Input,Runtime,Name,Value,Sheet,Ref,Table,Row,Col" ,csvFileArrayPass2[0]);
-
-
-
-
-
-
-		
-
-	
-
-		
-
 
 		log.debug(csvFileArray[1]);
 

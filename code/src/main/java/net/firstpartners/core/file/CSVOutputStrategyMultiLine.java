@@ -3,10 +3,12 @@ package net.firstpartners.core.file;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -149,6 +151,7 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	public void processOutput() throws IOException, InvalidFormatException {
 
 
+		//check the data before processing
 		assert dataToOutput!=null : "No data available to output";
 
 		String outputFileDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
@@ -161,18 +164,44 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 			outputPath = Paths.get(outputFileName);
 		}
 
-		log.debug("trying to output Excel to:"+outputPath);
+		//placesholders for the  CSV Output classes we will output next
+		BufferedWriter writer = null;
+		CSVPrinter csvPrinter  =null;
+		File tmpOutputFileConfirm =null;
 
-		//define our CSV headers
-		String[] headers = generateHeaders(additionalDataToInclude);
+		//confirm outfile exists or not - open for append if it is
+		try{
+			tmpOutputFileConfirm = ResourceFinder.getFileResourceUsingConfig(outputPath.toString(), appConfig);
+	
+		} catch (FileNotFoundException fnfe){
+			log.debug("CSV Output file "+outputPath.toString()+" not found when checking - this is ok as we will create");
+		}
+
+
+		//check if we need to create teh file from scratch, or create a new one
+		if(tmpOutputFileConfirm==null||!tmpOutputFileConfirm.exists()){
+
+			//create a new file
+			log.debug("Will to output CSV to new file:"+outputPath);
+
+			//define our CSV headers
+			String[] headers = generateHeaders(additionalDataToInclude);
+
+			writer = Files.newBufferedWriter(outputPath);
+			csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(headers));
+
+		} else {
+			// reuse the existing (i.e. we don't need to add headers)
+			log.debug("Will to add CSV to existing file:"+outputPath);
+			writer = Files.newBufferedWriter(outputPath, StandardOpenOption.APPEND);
+			csvPrinter = new CSVPrinter(writer,CSVFormat.DEFAULT.withSkipHeaderRecord());
+		}
+
+
 
 		// Get all the Cells that we have been keeping track of
 		Map<String, net.firstpartners.data.Cell> allCells = dataToOutput.getAllCellsWithNames();
 
-		//Setup the CSV Writer
-		BufferedWriter writer = Files.newBufferedWriter(outputPath);
-		CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(headers));
-        
         
 		// Loop through the cells
 		Iterator<net.firstpartners.data.Cell> redCells = allCells.values().iterator();
@@ -196,6 +225,7 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 		}
 		csvPrinter.flush(); 
 		csvPrinter.close(); 
+		writer.close();
 
 	}
 

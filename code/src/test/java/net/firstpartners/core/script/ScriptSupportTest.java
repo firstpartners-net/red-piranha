@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
+import net.firstpartners.core.excel.SpreadSheetConvertor;
 import net.firstpartners.core.file.ResourceFinder;
 
 //@RunWith(SpringJUnit4ClassRunner.class)
@@ -97,7 +98,7 @@ public class ScriptSupportTest {
 		ScriptSupport sprt = new ScriptSupport(excelWorkBook);
 
 		// Get a handle to a cell, format, check return value
-		org.apache.poi.ss.usermodel.Sheet sheet = excelWorkBook.getSheet("Accounts");
+		org.apache.poi.ss.usermodel.Sheet sheet = SpreadSheetConvertor.getSheetFromWorkBookNameSafe(excelWorkBook, "Accounts");
 
 		// setup a hasmhap of cells and the values we expect to extract
 		HashMap<String, String> testMap = new HashMap<String, String>();

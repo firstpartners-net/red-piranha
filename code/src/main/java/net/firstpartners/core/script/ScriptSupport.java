@@ -11,11 +11,13 @@ import org.slf4j.LoggerFactory;
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
 import net.firstpartners.core.excel.CellConvertor;
+import net.firstpartners.core.excel.SpreadSheetConvertor;
 
 import org.apache.poi.ss.SpreadsheetVersion;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.AreaReference;
 import org.apache.poi.ss.util.CellReference;
+
 
 /**
  * Utilities for supporting Groovy Scripts in injecting names into the sheet
@@ -83,13 +85,15 @@ public class ScriptSupport {
 	private void nameTable(String baseName, String sheetName, String mainTableRef, int numberOfHeaderRows,
 			int numberOfColumnLabels) {
 
+
 		// get handle to block of cells at maintable ref
 		String formula = sheetName + "!" + mainTableRef; // should give us same as in Excel e.g. Accounts!B14:I14
+
 		log.debug("Looking for Table Formula:" + formula);
 		AreaReference aref = new AreaReference(formula, SpreadsheetVersion.EXCEL2007);
 
 		// Setup our loop
-		Sheet s = wb.getSheet(sheetName);
+		Sheet s = SpreadSheetConvertor.getSheetFromWorkBookNameSafe(wb, sheetName);
 		CellReference[] crefs = aref.getAllReferencedCells();
 		String currentCellText = "";
 		Row poiRow = null;
@@ -112,6 +116,8 @@ public class ScriptSupport {
 			boolean colLabel = false;
 
 			// Get Cell from Spreadhseet
+			//s = SpreadSheetConvertor.getSheetFromWorkBookNameSafe(wb, sheetName);
+			assert s!=null : "sheet should not be null";
 			poiRow = s.getRow(crefs[i].getRow());
 			poiCell = poiRow.getCell(crefs[i].getCol());
 
@@ -290,7 +296,7 @@ public class ScriptSupport {
 	public void setText(String newValue, String sheetName, String cellRef) {
 
 		CellReference cr = new CellReference(sheetName+"!"+cellRef);
-        Sheet s = wb.getSheet(sheetName);
+        Sheet s = SpreadSheetConvertor.getSheetFromWorkBookNameSafe(wb, sheetName);
 		Row row = s.getRow(cr.getRow());
 		Cell cell = row.getCell(cr.getCol());
 

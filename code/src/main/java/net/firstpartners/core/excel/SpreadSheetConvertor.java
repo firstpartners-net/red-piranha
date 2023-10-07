@@ -1,12 +1,16 @@
 package net.firstpartners.core.excel;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.ss.SpreadsheetVersion;
 import org.apache.poi.ss.usermodel.Name;
 import org.apache.poi.ss.usermodel.Row;
@@ -41,6 +45,9 @@ public class SpreadSheetConvertor {
 
 	// Handle to the preprocessor
 	static PreProcessor preProcess = null;
+
+	// Handle to a cahed list of spreadheet names
+	private static Map<String, Sheet> cachedSheetNames = null;
 
 	// handle for our config
 	@Autowired
@@ -106,7 +113,8 @@ public class SpreadSheetConvertor {
 	 * Read an excel file and return what we find as a set of simple JavaBeans
 	 *
 	 * @param wb - Apache Poi workbook to convert
-	 * @return RangeList - a list of Red Ranges (RP Formal) contain one or more Red Cells (RP Format)  
+	 * @return RangeList - a list of Red Ranges (RP Formal) contain one or more Red
+	 *         Cells (RP Format)
 	 * @throws java.io.IOException
 	 * @throws ScriptException
 	 * @throws ResourceException
@@ -114,8 +122,7 @@ public class SpreadSheetConvertor {
 	public RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook poiWorkbook)
 			throws IOException, ResourceException, ScriptException {
 
-
-		//Note in this code we prefix variables as follows
+		// Note in this code we prefix variables as follows
 		// poiXXX objects using the Apache POI Structure
 		// redXXX objects using our our (Red Piranha) JavaBeans
 
@@ -142,38 +149,38 @@ public class SpreadSheetConvertor {
 		while (namedRangeList.hasNext()) {
 
 			// Get the next named range
-			thisPoiNamedRange = namedRangeList.next(); 
+			thisPoiNamedRange = namedRangeList.next();
 			log.debug("Converting poi->Red named range:" + thisPoiNamedRange.getNameName() + " refers to:"
 					+ thisPoiNamedRange.getRefersToFormula());
 
-			//The poiCell refs we will convert to Red Cells
-			CellReference[] crefs =  new CellReference[0]; 
+			// The poiCell refs we will convert to Red Cells
+			CellReference[] crefs = new CellReference[0];
 
-			//check for non-contiguous aresa
-			if(!AreaReference.isContiguous(thisPoiNamedRange.getRefersToFormula())){
+			// check for non-contiguous aresa
+			if (!AreaReference.isContiguous(thisPoiNamedRange.getRefersToFormula())) {
 
-				//Get area refnereces
-				AreaReference[] aref =  AreaReference.generateContiguous(SpreadsheetVersion.EXCEL2007,thisPoiNamedRange.getRefersToFormula());
+				// Get area refnereces
+				AreaReference[] aref = AreaReference.generateContiguous(SpreadsheetVersion.EXCEL2007,
+						thisPoiNamedRange.getRefersToFormula());
 
-				//Convert all of these to a single array of cells
-				for (int i=1;i<aref.length;i++){
+				// Convert all of these to a single array of cells
+				for (int i = 1; i < aref.length; i++) {
 
-					//add the poi cells from this part of the referenced area to our poi cell lsit	
-					crefs= ArrayUtils.addAll(crefs, aref[i].getAllReferencedCells());
+					// add the poi cells from this part of the referenced area to our poi cell lsit
+					crefs = ArrayUtils.addAll(crefs, aref[i].getAllReferencedCells());
 
 				}
 
-				log.debug("Will process:"+crefs.length+" referenced cells (non contig)");
+				log.debug("Will process:" + crefs.length + " referenced cells (non contig)");
 
 			} else {
 
-				//get the singel set of Cells[] that are behind this poi Name
-				AreaReference aref = new  AreaReference(thisPoiNamedRange.getRefersToFormula(),SpreadsheetVersion.EXCEL2007);
+				// get the singel set of Cells[] that are behind this poi Name
+				AreaReference aref = new AreaReference(thisPoiNamedRange.getRefersToFormula(),
+						SpreadsheetVersion.EXCEL2007);
 				crefs = aref.getAllReferencedCells();
-				log.debug("Will process:"+crefs.length+" referenced cells (contig)");
+				log.debug("Will process:" + crefs.length + " referenced cells (contig)");
 			}
-
-
 
 			// only proceed if we can get an actual handle to this
 			// retrieve the cells at the named range
@@ -181,35 +188,34 @@ public class SpreadSheetConvertor {
 			// A Red Range that we will put the new cells *for this name* into
 			net.firstpartners.data.Range redRangeForThisName = new Range(thisPoiNamedRange.getNameName());
 
-			//setup loop
+			// setup loop
 			Sheet currentPoiSheet;
 			Row currentPoiRow;
 			org.apache.poi.ss.usermodel.Cell currentPoiCell;
 			String redCellHandle;
 
-			//loop through all cells behind this name
-			for (int thisCellCounter=0; thisCellCounter<crefs.length; thisCellCounter++) {
-				
-				
+			// loop through all cells behind this name
+			for (int thisCellCounter = 0; thisCellCounter < crefs.length; thisCellCounter++) {
 
-				//Get a handle the to current cell in the range
+				// Get a handle the to current cell in the range
 				currentPoiSheet = poiWorkbook.getSheet(crefs[thisCellCounter].getSheetName());
-				currentPoiRow= currentPoiSheet.getRow(crefs[thisCellCounter].getRow());
+				currentPoiRow = currentPoiSheet.getRow(crefs[thisCellCounter].getRow());
 
-				if(currentPoiRow==null){
-					log.error("POI Row is null - unable to convert:"+crefs[thisCellCounter]);
+				if (currentPoiRow == null) {
+					log.error("POI Row is null - unable to convert:" + crefs[thisCellCounter]);
 				} else {
 
 					currentPoiCell = currentPoiRow.getCell(crefs[thisCellCounter].getCol());
 
-					// extract the cell contents based on cell type etc. and create our (red)Cell / Javabean
+					// extract the cell contents based on cell type etc. and create our (red)Cell /
+					// Javabean
 					redCellHandle = redRangeForThisName.getUniqueCellName(thisCellCounter);
 					assert redCellHandle != null;
 
 					net.firstpartners.data.Cell redCell = CellConvertor.convertPoiCellToRedCell(redCellHandle,
 							currentPoiCell);
 
-					log.debug("Converted to Red Cell:"+redCell);
+					log.debug("Converted to Red Cell:" + redCell);
 
 					// Add the list of cells to a RedRange Group
 					redRangeForThisName.put(redCellHandle, redCell);
@@ -217,23 +223,65 @@ public class SpreadSheetConvertor {
 
 			}
 
-
-			// save to the full list tthat weill be returned  later
+			// save to the full list tthat weill be returned later
 			redReturnList.add(redRangeForThisName);
-
 
 		}
 
 		return redReturnList;
 
-//## move this into a tighter catch loop
-			// } catch (IllegalArgumentException iae) {
+		// ## move this into a tighter catch loop
+		// } catch (IllegalArgumentException iae) {
 
-			// 	// It is possible that a named range exists in excel but, the actual cell as
-			// 	// been deleted
-			// 	log.debug("Ignoring invalid Excel range ref:", iae);
-			// }
+		// // It is possible that a named range exists in excel but, the actual cell as
+		// // been deleted
+		// log.debug("Ignoring invalid Excel range ref:", iae);
+		// }
 
+	}
+
+	/**
+	 * Get a Sheet from a POI Workbook dealing with spaces in names
+	 * 
+	 * @param wb        - workbook to work on
+	 * @param sheetName to find
+	 * @return
+	 */
+	public static Sheet getSheetFromWorkBookNameSafe(Workbook wb, String sheetName) {
+
+		// if normal get works, use that
+		Sheet s = wb.getSheet(sheetName);
+		if (s != null) {
+			log.debug("Found sheet:"+sheetName+" isnull?"+(s==null));
+			return s;
+		}
+
+		if (cachedSheetNames == null) {
+			cachedSheetNames = new HashMap<String, Sheet>();
+
+	
+			for (int i = 0; i < wb.getNumberOfSheets(); i++) {
+				Sheet sheet = wb.getSheetAt(i);
+				String tmpSheetName = sheet.getSheetName();
+
+				// remove spaces
+				tmpSheetName=tmpSheetName.replaceAll("\\s", "");
+				
+				//rename sheet to match this
+				 wb.setSheetName(i, tmpSheetName);
+				cachedSheetNames.put(tmpSheetName, sheet);
+
+				log.debug("Added sheet:" + tmpSheetName);
+			}
+		}
+
+		// now use this to get our sheet
+		sheetName=sheetName.replaceAll("\\s", "");
+		log.debug("Looking for sheet:"+sheetName);
+		Sheet returnSheet = cachedSheetNames.get(sheetName);
+		log.debug("ReturnSheet is null? " + (returnSheet == null));
+
+		return returnSheet;
 
 	}
 

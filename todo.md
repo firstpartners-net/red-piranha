@@ -5,10 +5,16 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## Next - CSV Output
 
 * Debug
-    * introduce space to sheet name
-    * regenerate test data in JSON?
-    * work through tests
+    * Resolve cell space error
+        * helper method with get sheet
+        * cache -> sheetnumber
+    work through tests
+    * 
+    * Integration test
     * work through Calling in spring
+
+
+    Serach for "fail" in tests
 
 Robust
     * add escaping to csv output (googel)

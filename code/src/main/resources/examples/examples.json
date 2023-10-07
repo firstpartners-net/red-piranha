@@ -34,7 +34,7 @@
 {
   "id" : 4,
   "baseDirectory":"4_complex_excel/",
-  "inputFileLocation" : "C",
+  "inputFileLocation" : "Complex_Financial.xlsx",
   "ruleFileLocation" : "log-then-modify-rules.drl",
   "outputFileLocation" : "output.csv",
   "dslFileLocation" : "",

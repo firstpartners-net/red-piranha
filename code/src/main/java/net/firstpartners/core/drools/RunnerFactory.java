@@ -107,7 +107,7 @@ public class RunnerFactory {
 		if (splitPoint == -1) {
 			// nothing found
 			throw new IllegalArgumentException(
-					"Unable to guess the type of file (based on where '. is) for:" + fileName);
+					"Unable to guess the type of file (cannot find '.' to locate file extension' ):" + fileName);
 		}
 		String suffix = fileName.substring(splitPoint, fileName.length());
 

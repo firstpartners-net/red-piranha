@@ -14,7 +14,7 @@ rule "Check Services OK"
 	then 	highlight "Check why Services not OK"
 end
 
-rule "Check for DM Support"
+rule "Check for Support"
 	when  	DM check finance, DM Check Finance or DM check need for support is missing
 	then 	highlight full DM support not given
 end
@@ -114,8 +114,8 @@ rule "check bank contribution"
 	then 	highlight no other sources of funding listed
 end
 
-rule "check Government Supports"
-	when 	SBCI Engagement is listed as No
+rule "check Supports"
+	when 	Engagement is listed as No
 	or	 	Revenue Temporary Wage Subsidy Scheme as No
 	then	highlight company not availing of all Government supports
 end

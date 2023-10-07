@@ -101,7 +101,11 @@ public class RunnerFactory {
 		// change to lower case
 		fileName = fileName.toLowerCase();
 
-		buildReferenceTables();
+		//build reference tables if first time here
+		if(inputSuffixMaps==null || outputSuffixMaps ==null){
+			buildReferenceTables();
+		}
+		
 
 		int splitPoint = fileName.lastIndexOf(".");
 		if (splitPoint == -1) {
@@ -137,7 +141,10 @@ public class RunnerFactory {
 
 		fileName = fileName.toLowerCase();
 
-		buildReferenceTables();
+		//build reference tables if first time here
+		if(inputSuffixMaps==null || outputSuffixMaps ==null){
+			buildReferenceTables();
+		}
 
 		int splitPoint = fileName.lastIndexOf(".");
 		if (splitPoint == -1) {

@@ -2,20 +2,6 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
-## Next - CSV Output
-
-
-Robust
-    * add escaping to csv output (googel)
-    * remove static (search for in ccode)
-
-* Output to CSV
-    * Code to replace or append
-    * Write Code to meet test
-        * Get CSVOutputStrategyMultiLineTest#testCreateAppendToCSV running and passing (write code / remove fails)
-    * Update Code  
-        * Code append to csv??
-        *   test check that works with both create and append
 
 ## Next - Multiple files
 * Generate 2nd File and 3rd files in the 5-sample folder 
@@ -72,7 +58,7 @@ Robust
 ## Next Sprint - after immediate needs
 
 * Future
-    * Create Fiancial extraction Sample - analsyis of single case POC
+    * Create Fiancial extraction Sample - analsyis of single case POC - use 4 complex tmp
     * multiple output options
     * decision test
 * Improve Data Extraction

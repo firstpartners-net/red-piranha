@@ -174,9 +174,19 @@ public class ScriptSupportTest {
 
 		assertNotNull(wb); 
 
+		
+
 		//Create teh script support and get handle to the ??updated?? wb in it
 		ScriptSupport sprt = new ScriptSupport(wb);
+		
+		//Our test data has invalid rangenames that need removed
+		sprt.removePreviousNamedRanges();
+
+		// now try to remove sheet spaces
+		sprt.removeSpacesSheetNames();
+		
 		wb = sprt.wb;
+	
 
 		//Check we can't find a sheet with a space in it
 

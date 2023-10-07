@@ -43,6 +43,9 @@ public class ScriptSupport {
 	// reusable cell and date formatter
 	DataFormatter df = new DataFormatter();
 
+	// flag have we already removed spaces
+	private boolean spacesRemoved = false;
+
 	/**
 	 * Constructor
 	 * 
@@ -51,31 +54,37 @@ public class ScriptSupport {
 	public ScriptSupport(Workbook xlWorkbook) {
 		
 		//update to remove spaces
-		removeSpacesWorkbookNames(xlWorkbook);
-
 		this.wb = xlWorkbook;
+		
 	}
 
 	/**
-	 * Internal Method - remove spaces from workbook names
-	 * 
+	 * Internal Method - remove spaces from sheet names
+	 *  Marked final - as called by constructor
 	 * @param wb        - workbook to work on
 	 * @param sheetName to find
 	 * @return
 	 */
-	void removeSpacesWorkbookNames(Workbook wb) {
+	public void removeSpacesSheetNames() {
+
+		//check if we've already done this
+		if(this.spacesRemoved){
+			return;
+		}
 	
-		for (int i = 0; i < wb.getNumberOfSheets(); i++) {
-			Sheet sheet = wb.getSheetAt(i);
+		for (int i = 0; i < this.wb.getNumberOfSheets(); i++) {
+			Sheet sheet = this.wb.getSheetAt(i);
 			String tmpSheetName = sheet.getSheetName();
 
 			// remove spaces
 			tmpSheetName=tmpSheetName.replaceAll("\\s", "");
 			
 			//rename sheet to match this
-			wb.setSheetName(i, tmpSheetName);
+			this.wb.setSheetName(i, tmpSheetName);
 			log.debug("Updated sheet name:" + tmpSheetName);
 		}
+
+		this.spacesRemoved = true;
 		
 
 	}
@@ -119,6 +128,8 @@ public class ScriptSupport {
 	private void nameTable(String baseName, String sheetName, String mainTableRef, int numberOfHeaderRows,
 			int numberOfColumnLabels) {
 
+		//ensure our sheets have no spaces in them
+		removeSpacesSheetNames();
 
 		// get handle to block of cells at maintable ref
 		sheetName = sheetName.replaceAll("\\s", ""); // we ignore spaces
@@ -262,6 +273,9 @@ public class ScriptSupport {
 	 * @param int                numberOfColumnRows
 	 */
 	public void nameSingleCell(String baseName, String sheetName, String cellRef) {
+
+		//ensure our sheets have no spaces in them
+		removeSpacesSheetNames();
 
 		String formula = sheetName + "!" + cellRef; // should give us same as in Excel e.g. Accounts!B14:I14
 

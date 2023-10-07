@@ -25,6 +25,9 @@ Robust
     * Create DirectortInputStrategyTest and stub
     * Write and test behaviou
 
+# Mini Snapshot -> Main
+    * For later pulling down and test
+
 ## Next tidy
 
 * test cell conversion
@@ -34,9 +37,6 @@ Robust
     * Restore all integration tests
         * maybe run them independalty so a failure in one does not block all
 
-* Decide
-    * how to deploy
-    * how to extend
 
 ## Next - Documentation
 * graphic to show steps (Prepprocess, Input Strategy convert excel->Java, Rules, Output Strategy convert Java -> CSV) and map against screenshot
@@ -48,7 +48,7 @@ Robust
 * Cross reference back to data
     * add original cell refernece (need to track through as not currently accurate)
 
-## Next - Deployment
+## Next - Deployment Official snaphot
 * Can deploy and work against true docs
 * Snapshot current code and make note for book readers
 * dsl based on existing - working and sharable

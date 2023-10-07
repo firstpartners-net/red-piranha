@@ -114,9 +114,6 @@ public class CSVOutputStrategyMultiLineTest {
 		//make sure there are not multiple empty values
 		assertTrue("Should not be multiple ,,,,, in field",csvFileArray[1].indexOf(",,,,,,")<0);
 
-
-
-
 	}
 
 	@Test

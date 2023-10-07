@@ -5,20 +5,17 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## Next - CSV Output
 
 * Debug
-    * Resolve cell space error ### next run integration ##
-        * test testSheetsNameSafe
     work through tests
     * test all - no other problems
-    * Integration test
     * work through Calling in spring
-
 
 Robust
     * add escaping to csv output (googel)
     * remove static (search for in ccode)
-    *     Serach for "fail" in tests
+    *  Serach for "fail" in tests
 
 * Output to CSV
+    * Code to replace or append
     * Write Code to meet test
         * Get CSVOutputStrategyMultiLineTest#testCreateAppendToCSV running and passing (write code / remove fails)
     * Update Code  

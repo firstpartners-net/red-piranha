@@ -53,8 +53,9 @@ public class ScriptSupportTest {
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 
-		// handle to the class under test
+		// handle to the class under test and remove broken names
 		ScriptSupport sprt = new ScriptSupport(excelWorkBook);
+		sprt.removePreviousNamedRanges();
 
 		// try out the naming
 		sprt.nameSingleCell("testName", "Accounts", "A1:B2");
@@ -72,8 +73,9 @@ public class ScriptSupportTest {
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 
-		// handle to the class under test
+		// handle to the class under test and clean ranges
 		ScriptSupport sprt = new ScriptSupport(excelWorkBook);
+		sprt.removePreviousNamedRanges();
 
 		// try out the naming
 		sprt.nameTable("Key Info", "Accounts", "A12:I30");

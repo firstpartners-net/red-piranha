@@ -38,31 +38,93 @@ public class CSVOutputStrategyMultiLineTest {
 	@Test
 	public final void testCreateAppendToCSV() throws IOException, InvalidFormatException, ClassNotFoundException {
 
+		//mockup the configuration we need
+		Config testConfig = new Config();
 
-		//Delete previous csv tmp file
-		fail ("Not implemented yet");
+		// Delete previous output file if it exists - file should not fail if it doesn't
+		try{
+			File tmpOutputFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_APPEND_FILE, testConfig);
+			if(tmpOutputFile!=null){
+				tmpOutputFile.delete();
+			}
+		} catch (FileNotFoundException fnfe){
+			log.debug("Tmpfile "+TestConstants.CSV_APPEND_FILE+" not found, assume already deleted");
+		}
+		
 
 		//confirm file does not exist yet
-		fail ("Not implemented yet");
+		// Delete previous output file if it exists - file should not fail if it doesn't
+		try{
+			File tmpOutputFileConfirm = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_APPEND_FILE, testConfig);
+			
+			// confirm file does not exist
+			assertTrue(tmpOutputFileConfirm==null||!tmpOutputFileConfirm.exists());
+	
+		} catch (FileNotFoundException fnfe){
+			log.debug("Tmpfile "+TestConstants.CSV_APPEND_FILE+" not found when checking - this is ok");
+		}
 
-		//etup our test class
-		CSVOutputStrategyMultiLine csvOut = new CSVOutputStrategyMultiLine(TestConstants.CSV_APPEND_FILE);
 
+		//get sample data - medium sized
+		JsonInputStrategy jsInput = new JsonInputStrategy(TestConstants.JSON_SERIAL_FILE_MEDIUM);
+		jsInput.setConfig((testConfig));
+		RangeList testRange = jsInput.getJavaBeansFromSource();
+		assertNotNull("input data should not be empty",testRange);
 
-		//get sample data from 	JSON_SERIAL_FILE_MEDIUM
-		fail ("Not implemented yet");
+		//output to csv - pass 1
+		CSVOutputStrategyMultiLine csvout = new CSVOutputStrategyMultiLine(TestConstants.CSV_APPEND_FILE);
+		csvout.setConfig(testConfig);
 
-		//output to xls
-		fail ("Not implemented yet");
+		//Update our output strategy with additional info we want it to use
+		HashMap<String,String> additionalOutputs = new HashMap<String,String>();
+		additionalOutputs.put("Input","TestFile");
+		additionalOutputs.put("Runtime",LocalDateTime.now().toString());
+		csvout.setAdditionalOutputData(additionalOutputs);
+
+		// pass in the data that will be output and do the output
+		csvout.setUpdates(null, testRange);
+		csvout.processOutput();
+		log.debug("csv data is saved in:"+TestConstants.CSV_TMP_FILE_MULTI_LINE);
 
 		//test body and test hearers , capture number of rows
-		fail ("Not implemented yet");
+		String[] csvFileArray = csvout.getCsvFileAsStringArray();
+		log.debug(csvFileArray[0]);
+		int firstPassNumberRows = csvFileArray.length;
 
-		//output our sample data a second time 
-		fail ("Not implemented yet");
+		//Test for correct headers (already read from file)
+		assertEquals("Input,Runtime,Name,Value,Sheet,Ref,Table,Row,Col" ,csvFileArray[0]);
+
+		//output our sample data a second time - pass 2
+		csvout.processOutput();
+		log.debug("More CSV data is saved in:"+TestConstants.CSV_APPEND_FILE);
+
+		String[] csvFileArrayPass2 = csvout.getCsvFileAsStringArray();
+		log.debug(csvFileArrayPass2[0]);
+		int secondPass = csvFileArrayPass2.length;
 
 		//check that our number of rows is now doubled.
-		fail ("Not implemented yet");
+		log.debug("First Size:"+firstPassNumberRows+" second size:"+secondPass);
+		fail("add assertion and code still needed");
+
+		//Test for correct headers (already read from file)
+		assertEquals("Input,Runtime,Name,Value,Sheet,Ref,Table,Row,Col" ,csvFileArrayPass2[0]);
+
+
+
+
+
+
+		
+
+	
+
+		
+
+
+		log.debug(csvFileArray[1]);
+
+		//make sure there are not multiple empty values
+		assertTrue("Should not be multiple ,,,,, in field",csvFileArray[1].indexOf(",,,,,,")<0);
 
 
 

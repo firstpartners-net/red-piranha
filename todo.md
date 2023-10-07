@@ -4,15 +4,10 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Next - CSV Output
 
-* Debug
-    work through tests
-    * test all - no other problems
-    * work through Calling in spring
 
 Robust
     * add escaping to csv output (googel)
     * remove static (search for in ccode)
-    *  Serach for "fail" in tests
 
 * Output to CSV
     * Code to replace or append
@@ -43,6 +38,8 @@ Robust
     * how to deploy
     * how to extend
 
+## Next - Documentation
+* graphic to show steps (Prepprocess, Input Strategy convert excel->Java, Rules, Output Strategy convert Java -> CSV) and map against screenshot
 
 ## Next - Data Quality
 * Simple Check rules

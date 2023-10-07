@@ -1,16 +1,12 @@
 package net.firstpartners.core.excel;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.ss.SpreadsheetVersion;
 import org.apache.poi.ss.usermodel.Name;
 import org.apache.poi.ss.usermodel.Row;
@@ -46,8 +42,6 @@ public class SpreadSheetConvertor {
 	// Handle to the preprocessor
 	static PreProcessor preProcess = null;
 
-	// Handle to a cahed list of spreadheet names
-	private static Map<String, Sheet> cachedSheetNames = null;
 
 	// handle for our config
 	@Autowired
@@ -240,49 +234,5 @@ public class SpreadSheetConvertor {
 
 	}
 
-	/**
-	 * Get a Sheet from a POI Workbook dealing with spaces in names
-	 * 
-	 * @param wb        - workbook to work on
-	 * @param sheetName to find
-	 * @return
-	 */
-	public static Sheet getSheetFromWorkBookNameSafe(Workbook wb, String sheetName) {
-
-		// if normal get works, use that
-		Sheet s = wb.getSheet(sheetName);
-		if (s != null) {
-			log.debug("Found sheet:"+sheetName+" isnull?"+(s==null));
-			return s;
-		}
-
-		if (cachedSheetNames == null) {
-			cachedSheetNames = new HashMap<String, Sheet>();
-
-	
-			for (int i = 0; i < wb.getNumberOfSheets(); i++) {
-				Sheet sheet = wb.getSheetAt(i);
-				String tmpSheetName = sheet.getSheetName();
-
-				// remove spaces
-				tmpSheetName=tmpSheetName.replaceAll("\\s", "");
-				
-				//rename sheet to match this
-				 wb.setSheetName(i, tmpSheetName);
-				cachedSheetNames.put(tmpSheetName, sheet);
-
-				log.debug("Added sheet:" + tmpSheetName);
-			}
-		}
-
-		// now use this to get our sheet
-		sheetName=sheetName.replaceAll("\\s", "");
-		log.debug("Looking for sheet:"+sheetName);
-		Sheet returnSheet = cachedSheetNames.get(sheetName);
-		log.debug("ReturnSheet is null? " + (returnSheet == null));
-
-		return returnSheet;
-
-	}
 
 }

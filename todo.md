@@ -6,18 +6,17 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 * Debug
     * Resolve cell space error ### next run integration ##
-        * helper method with get sheet
-        * cache -> sheetnumber
+        * test testSheetsNameSafe
     work through tests
-    * 
+    * test all - no other problems
     * Integration test
     * work through Calling in spring
 
 
-    Serach for "fail" in tests
-
 Robust
     * add escaping to csv output (googel)
+    * remove static (search for in ccode)
+    *     Serach for "fail" in tests
 
 * Output to CSV
     * Write Code to meet test

@@ -1,9 +1,12 @@
 package net.firstpartners.core.script;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +14,7 @@ import java.util.Map;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Name;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.CellReference;
@@ -20,9 +24,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import groovy.util.ResourceException;
+import groovy.util.ScriptException;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
-import net.firstpartners.core.excel.SpreadSheetConvertor;
 import net.firstpartners.core.file.ResourceFinder;
 
 //@RunWith(SpringJUnit4ClassRunner.class)
@@ -98,7 +103,7 @@ public class ScriptSupportTest {
 		ScriptSupport sprt = new ScriptSupport(excelWorkBook);
 
 		// Get a handle to a cell, format, check return value
-		org.apache.poi.ss.usermodel.Sheet sheet = SpreadSheetConvertor.getSheetFromWorkBookNameSafe(excelWorkBook, "Accounts");
+		org.apache.poi.ss.usermodel.Sheet sheet = excelWorkBook.getSheet("Accounts");
 
 		// setup a hasmhap of cells and the values we expect to extract
 		HashMap<String, String> testMap = new HashMap<String, String>();
@@ -156,6 +161,35 @@ public class ScriptSupportTest {
 		sprt.removePreviousNamedRanges();
 		assertTrue("List of Named Ranges should be empty after operation",excelWorkBook.getAllNames().size()==0);
 
+
+	}
+
+	@Test
+	public final void testSheetsNameSafe() throws IOException, ResourceException, ScriptException {
+		
+		//Handle to test data
+		File xlFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.COMPLEX_EXCEL, appConfig);
+		InputStream inputAsStream = new FileInputStream(xlFile);
+		Workbook wb = WorkbookFactory.create(inputAsStream);
+
+		assertNotNull(wb); 
+
+		//Create teh script support and get handle to the ??updated?? wb in it
+		ScriptSupport sprt = new ScriptSupport(wb);
+		wb = sprt.wb;
+
+		//Check we can't find a sheet with a space in it
+
+		for (int i = 0; i < wb.getNumberOfSheets(); i++) {
+			Sheet sheet = wb.getSheetAt(i);
+			String tmpSheetName = sheet.getSheetName();
+
+			log.debug("Reviewing sheet name:" + tmpSheetName);
+			assertTrue(!tmpSheetName.contains(" "));
+	
+			
+		}
+		
 
 	}
 

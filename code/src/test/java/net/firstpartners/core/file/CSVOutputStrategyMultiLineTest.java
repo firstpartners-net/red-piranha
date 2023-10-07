@@ -49,7 +49,6 @@ public class CSVOutputStrategyMultiLineTest {
 		CSVOutputStrategyMultiLine csvOut = new CSVOutputStrategyMultiLine(TestConstants.CSV_APPEND_FILE);
 
 
-
 		//get sample data from 	JSON_SERIAL_FILE_MEDIUM
 		fail ("Not implemented yet");
 

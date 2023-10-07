@@ -3,16 +3,12 @@ package net.firstpartners.core.excel;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -29,7 +25,6 @@ import groovy.util.ResourceException;
 import groovy.util.ScriptException;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
-import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.data.RangeList;
 
 public class SpreadSheetConvertorTest {
@@ -133,23 +128,6 @@ public class SpreadSheetConvertorTest {
 
 	}
 
-	@Test
-	public final void testGetSheetbyNameSpaceSafe() throws IOException, ResourceException, ScriptException {
-		
-		//Handle to test data
-		File xlFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.COMPLEX_EXCEL, appConfig);
-		InputStream inputAsStream = new FileInputStream(xlFile);
-		Workbook wb = WorkbookFactory.create(inputAsStream);
 
-		assertNotNull(wb); 
-
-		//Check we can get a sheet with a space in it
-		assertNotNull(SpreadSheetConvertor.getSheetFromWorkBookNameSafe(wb, "Cash Flow"));
-		assertNotNull(SpreadSheetConvertor.getSheetFromWorkBookNameSafe(wb, "Document Tables"));
-		assertNotNull(SpreadSheetConvertor.getSheetFromWorkBookNameSafe(wb, "Accounts"));
-
-
-
-	}
 
 }

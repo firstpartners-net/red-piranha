@@ -5,18 +5,23 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 
+import org.apache.poi.ss.SpreadsheetVersion;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.Name;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.AreaReference;
+import org.apache.poi.ss.util.CellReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
 import net.firstpartners.core.excel.CellConvertor;
-import net.firstpartners.core.excel.SpreadSheetConvertor;
-
-import org.apache.poi.ss.SpreadsheetVersion;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.util.AreaReference;
-import org.apache.poi.ss.util.CellReference;
 
 
 /**
@@ -33,7 +38,7 @@ public class ScriptSupport {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	// Handle to the workbook we will be operating on
-	private Workbook wb = null;
+	Workbook wb = null;
 
 	// reusable cell and date formatter
 	DataFormatter df = new DataFormatter();
@@ -44,8 +49,37 @@ public class ScriptSupport {
 	 * @param xlWorkbook that we
 	 */
 	public ScriptSupport(Workbook xlWorkbook) {
+		
+		//update to remove spaces
+		removeSpacesWorkbookNames(xlWorkbook);
+
 		this.wb = xlWorkbook;
 	}
+
+	/**
+	 * Internal Method - remove spaces from workbook names
+	 * 
+	 * @param wb        - workbook to work on
+	 * @param sheetName to find
+	 * @return
+	 */
+	void removeSpacesWorkbookNames(Workbook wb) {
+	
+		for (int i = 0; i < wb.getNumberOfSheets(); i++) {
+			Sheet sheet = wb.getSheetAt(i);
+			String tmpSheetName = sheet.getSheetName();
+
+			// remove spaces
+			tmpSheetName=tmpSheetName.replaceAll("\\s", "");
+			
+			//rename sheet to match this
+			wb.setSheetName(i, tmpSheetName);
+			log.debug("Updated sheet name:" + tmpSheetName);
+		}
+		
+
+	}
+
 
 	/**
 	 * Loop through a table in Excel, naming the rangess individually within thems.
@@ -87,13 +121,14 @@ public class ScriptSupport {
 
 
 		// get handle to block of cells at maintable ref
+		sheetName = sheetName.replaceAll("\\s", ""); // we ignore spaces
 		String formula = sheetName + "!" + mainTableRef; // should give us same as in Excel e.g. Accounts!B14:I14
 
 		log.debug("Looking for Table Formula:" + formula);
 		AreaReference aref = new AreaReference(formula, SpreadsheetVersion.EXCEL2007);
 
 		// Setup our loop
-		Sheet s = SpreadSheetConvertor.getSheetFromWorkBookNameSafe(wb, sheetName);
+		Sheet s = wb.getSheet(sheetName);
 		CellReference[] crefs = aref.getAllReferencedCells();
 		String currentCellText = "";
 		Row poiRow = null;
@@ -295,8 +330,11 @@ public class ScriptSupport {
 	 */
 	public void setText(String newValue, String sheetName, String cellRef) {
 
+
+		sheetName= sheetName.replaceAll("\\s", ""); // we ignore spaces
+
 		CellReference cr = new CellReference(sheetName+"!"+cellRef);
-        Sheet s = SpreadSheetConvertor.getSheetFromWorkBookNameSafe(wb, sheetName);
+        Sheet s = wb.getSheet(sheetName);
 		Row row = s.getRow(cr.getRow());
 		Cell cell = row.getCell(cr.getCol());
 

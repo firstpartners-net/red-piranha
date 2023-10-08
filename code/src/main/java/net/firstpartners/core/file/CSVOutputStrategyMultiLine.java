@@ -151,7 +151,7 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 		//check the data before processing
 		assert dataToOutput!=null : "No data available to output";
 
-		String outputFileDir = ResourceFinder.getDirectoryResourceUsingConfig();
+		String outputFileDir = ResourceFinder.getBaseDirOfAllSamples();
 		
 		//Construct the output file including directory
 		Path outputPath;

@@ -87,7 +87,7 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 	 */
 	public void processOutput() throws IOException, InvalidFormatException {
 
-		String outputDir = ResourceFinder.getDirectoryResourceUsingConfig();
+		String outputDir = ResourceFinder.getBaseDirOfAllSamples();
 		
 		// Open the outputfile as a stream
 		log.debug("trying to output to:" + savedRange);

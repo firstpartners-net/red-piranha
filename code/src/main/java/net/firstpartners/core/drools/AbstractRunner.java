@@ -98,15 +98,21 @@ public abstract class AbstractRunner implements IRunner {
 			RangeList ranges;
 			try {
 				ranges = thisDocumentSource.getJavaBeansFromSource();
-			} catch (EncryptedDocumentException | InvalidFormatException | IOException e) {
+			} catch (EncryptedDocumentException e) {
 				log.warn("error",e);
-				throw new RPException("EncryedError when opening Input", e);
+				throw new RPException("EncryptedDocumentException when opening Input", e);
 			} catch (ResourceException e) {
 				log.warn("error",e);
-				throw new RPException("Resource Exception when opening Input", e);
+				throw new RPException("ResourceException when opening Input", e);
 			} catch (ScriptException e) {
 				log.warn("error",e);
-				throw new RPException("Script Exception when opening Input", e);
+				throw new RPException("ScriptException when opening Input", e);
+			} catch (InvalidFormatException e) {
+				log.warn("error",e);
+				throw new RPException("InvalidFormatException when opening Input", e);
+			} catch (IOException e) {
+				log.warn("error",e);
+				throw new RPException("IOException when opening Input", e);
 			}
 
 			// Set the Modified flag on the cells

@@ -174,7 +174,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	void outputToFile(Workbook wb) throws IOException {
 
-		String outputFileDir = ResourceFinder.getDirectoryResourceUsingConfig();
+		String outputFileDir = ResourceFinder.getBaseDirOfAllSamples();
 		
 		//Construct the output file including directory
 		String outputFile;

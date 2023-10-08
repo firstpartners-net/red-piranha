@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
+import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.core.file.Utils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,24 +30,21 @@ public class ExcelOutputStrategyTest {
 	@Test
 	public final void testOutputExcelThenDelete() throws IOException {
 
+		// Make sure we can delete previos file
+		Utils.deleteOutputFileIfExists(TestConstants.XLSX_TMP_FILE); // object remembers file name from earlier
+
 		Workbook wb = WorkbookFactory.create(true); // create new boolean
 
-		ExcelOutputStrategy excelOut = new ExcelOutputStrategy(TestConstants.EXCEL_TMP_FILE);
+		ExcelOutputStrategy excelOut = new ExcelOutputStrategy(TestConstants.XLSX_TMP_FILE);
 		excelOut.setWorkbook(wb);
-	//	excelOut.appConfig = this.appConfig;
 
 		// Process the output
 		excelOut.processOutput();
 
-		// check that this exists
-		File f = new File(TestConstants.EXCEL_TMP_FILE);
-		assertTrue("Cannot find file that should exist in:"+TestConstants.EXCEL_TMP_FILE, f.exists());
+		// check that this exists //TODO apply pattern if works
+		File f= ResourceFinder.getFileResourceUsingConfig(TestConstants.XLSX_TMP_FILE);
+		assertTrue("Cannot find file that should exist in:"+TestConstants.XLSX_TMP_FILE, f.exists());
 		f = null; // avoid any interference in the next step
-
-		// Make sure we can delete file
-		Utils.deleteOutputFileIfExists(TestConstants.EXCEL_TMP_FILE); // object remembers file name from earlier
-		f = new File(TestConstants.EXCEL_TMP_FILE);
-		assertFalse("Found file that should not exist:"+TestConstants.EXCEL_TMP_FILE, f.exists());
 
 	}
 

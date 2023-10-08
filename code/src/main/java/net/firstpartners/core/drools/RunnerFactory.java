@@ -165,7 +165,7 @@ public class RunnerFactory {
 
 			log.debug("Attemping to generate strategies for files in Directory:"+subDir);
 
-			List<File> filesInDirectory=ResourceFinder.getFilesInDirUsingConfig(subDir);
+			List<File> filesInDirectory=ResourceFinder.getDirectoryFilesUsingConfig(subDir);
 
 			for(File thisFile : filesInDirectory){
 				

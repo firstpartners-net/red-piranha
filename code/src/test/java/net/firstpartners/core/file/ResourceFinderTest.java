@@ -33,7 +33,7 @@ public class ResourceFinderTest {
 	@Test
 	public final void testFindMultiInFromDir() throws IOException {
 
-		List<File> foundFiles = ResourceFinder.getFilesInDirUsingConfig(TestConstants.DIRECTORY_SAMPLE);
+		List<File> foundFiles = ResourceFinder.getDirectoryFilesUsingConfig(TestConstants.DIRECTORY_SAMPLE);
 
 		log.debug("Number of files found:"+foundFiles.size());
 		assertEquals("Number of files in sample Directory five should be 8",8,foundFiles.size());

@@ -37,8 +37,9 @@ public class ResourceFinder {
 	 */
 	@PostConstruct     
   	private void initStaticConfig () {
-		log.debug("Setting post construct app config to:"+this.appConfig0);
+		
      	appConfig = this.appConfig0;
+		log.debug("Setting post construct app config to:"+appConfig.toString());
   	}
 
 	/**
@@ -105,6 +106,7 @@ public class ResourceFinder {
 		}
 
 		log.debug("Seeking:" + resourceName);
+		log.debug("App Base directory:"+new File("").getAbsolutePath());
 
 		File bareFile = new File(seekName);
 
@@ -112,15 +114,10 @@ public class ResourceFinder {
 		if (bareFile.exists()) {
 			return bareFile;
 		} else {
-			log.debug("1 No resource:" + seekName + " found in " + workingDir.getAbsolutePath()
+			log.debug("1 App Base Directory - No resource:" + seekName + " found in " + workingDir.getAbsolutePath()
 					+ " attempting another approach?");
 		}
 
-		// We need config info to try backups
-		if (appConfig == null) {
-			throw new FileNotFoundException(
-					"1 Cannot find :" + seekName + " and no config provided to try other locations");
-		}
 
 		String defaultDir = appConfig.getSampleBaseDirDefault();
 		File defaultFile = new File(defaultDir + seekName);
@@ -155,15 +152,10 @@ public class ResourceFinder {
 	 * @throws java.io.FileNotFoundException
 	 * @return a {@link java.lang.String} object
 	 */
-	public static String getDirectoryResourceUsingConfig() throws FileNotFoundException {
+	public static String getBaseDirOfAllSamples() throws FileNotFoundException {
 
-		//Check incoming params
-		assert appConfig!=null: "Config should not be null";
-
-		//Now get the values using the Config
-		String directoryName = appConfig.getSampleBaseDirDefault();
-
-		return getDirectoryResourceUsingConfig(directoryName);
+		//empty directory should match to first or alternate base dir
+		return getDirectoryUsingConfig("");
 
 	}
 
@@ -176,49 +168,44 @@ public class ResourceFinder {
 	 * @throws java.io.FileNotFoundException
 	 * @return a {@link java.lang.String} object
 	 */
-	public static String getDirectoryResourceUsingConfig(String directoryName) {
+	public static String getDirectoryUsingConfig(String directoryName) {
 
 		
 		//Check incoming params
 		assert appConfig!=null: "Config should not be null";
 
-		// We need config info to try backups - default to current working directory
-		//TODO - can we remove this dead code
-		if (appConfig == null) {
-			log.debug("Config is null - defaulting to working dir");
-
-			String workingDir = new File(".").getAbsolutePath();
-
-			// handle bug of . being appended to this path name
-			if (workingDir.endsWith(".")) {
-				workingDir = workingDir.replaceAll(".", "");
-			}
-
-			return workingDir;
-
+		//attempt based on config - primary
+		String primaryDirName = appConfig.getSampleBaseDirDefault();
+		File primaryDir = new File(primaryDirName);
+		if (primaryDir.exists()) {
+			log.debug("1 Using Primary Config Directory:" + primaryDir);
+			return primaryDirName;
 		} else {
-			log.debug("Config is not null");
+			log.debug("1 No Directory in primary config location:" + primaryDirName);
 		}
 
-		// String defaultDir =
-		File defaultFile = new File(directoryName);
-		if (defaultFile.exists()) {
+		//attempt based on config - alternatve
+		String alternateDirName = appConfig.getSampleBaseDirAlternate();
+		File alternateDirLocation = new File(alternateDirName);
+		if (alternateDirLocation.exists()) {
+			log.debug("2 Using Alternate Config Directory:" + alternateDirName);
+			return alternateDirName;
+		} else {
+			log.debug("2 No Directory in config alternate dir:" + alternateDirName);
+		}
+
+		//try to see if it is in the straight location
+		File defaultDir = new File(directoryName);
+		if (defaultDir.exists()) {
+			log.debug("3 Matched on directory location:"+directoryName);
 			return directoryName;
 		} else {
-			log.debug("1 No resource in default dir:" + defaultFile + " attempting another approach");
+			log.debug("3 No Directory in location:" + directoryName + " attempting another approach");
 		}
 
-		String alternateDir = appConfig.getSampleBaseDirAlternate();
-		File alternateFile = new File(alternateDir);
-		if (alternateFile.exists()) {
-			log.debug("Using Alternate Dir:" + alternateDir);
-			return alternateDir;
-		} else {
-			log.debug("2 No resource in alternate dir:" + alternateDir);
-		}
-
-		log.debug("3 BackupPlan- defaulting to base dir");
-		return new File(".").getAbsolutePath();
+		//Default to current Dir
+		log.debug("4 BackupPlan- defaulting to application working dir");
+		return new File("").getAbsolutePath();
 
 	}
 
@@ -229,7 +216,7 @@ public class ResourceFinder {
 	 * @param directoryToFind
 	 * @return
 	 */
-	public static List<File> getFilesInDirUsingConfig( String directoryToFind) {
+	public static List<File> getDirectoryFilesUsingConfig( String directoryToFind) {
 
 
 		
@@ -244,7 +231,7 @@ public class ResourceFinder {
 
 		
 		// Try to locate using config
-		String foundDir = getDirectoryResourceUsingConfig(directoryToFind);
+		String foundDir = getDirectoryUsingConfig(directoryToFind);
 
 		if (foundDir == null || foundDir.equals("")) {
 

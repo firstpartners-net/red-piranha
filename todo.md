@@ -5,7 +5,11 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Next - Multiple files
 
+* NEXT DECIDE
+    * decide how to handle ignored files check where is is no mapping
+    * decide on how multiple input strategies get set (poss remove directorystrategy, return list of ...?)
 
+* NEXT
 * find and impement TODO
 * Complete
     * DirectortInputStrategy to "walk" folder and call other input strategy
@@ -15,8 +19,6 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * NTH
     * run and pass CellConvertorTest
 
-Tidy
-* remove redModel.getprogress
 
 # Mini Snapshot -> Main
     * For later pulling down and test

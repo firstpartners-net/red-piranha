@@ -1,8 +1,12 @@
 package net.firstpartners.core.drools;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -16,8 +20,8 @@ import net.firstpartners.core.RedModel;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.file.CSVOutputStrategyMultiLine;
-import net.firstpartners.core.file.DirectoryInputStrategy;
 import net.firstpartners.core.file.PDFOutputStrategy;
+import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.core.json.JsonOutputStrategy;
 import net.firstpartners.core.word.WordInputStrategy;
@@ -34,6 +38,7 @@ public class RunnerFactory {
 
 	// Handle to the logger
 	private static final Logger log = LoggerFactory.getLogger(RunnerFactory.class);
+
 
 	// How we identify file types
 	/** Constant <code>SUFFIX_WORD=".doc"</code> */
@@ -94,10 +99,11 @@ public class RunnerFactory {
 	 * @param string - full filename
 	 * @throws Illegal Argument exception if we don't have a mapping for this class
 	 * @return
+	 * @throws RPException
 	 */
-	static Class<?> getInputMapping(String fileName) {
+	static List<Class<?>> getInputMapping(String fileName) throws RPException {
 
-		//checks on incoming values
+		//check incoming values
 		assert fileName != null;
 		fileName = fileName.toLowerCase();
 
@@ -106,34 +112,81 @@ public class RunnerFactory {
 			buildReferenceTables();
 		}
 
-		// handle for our return value
-		Class<?> strategyClass = null;
+		// handle for our return value(s)		
+		List<Class<?>> returnClassList = new ArrayList<Class<?>>();
 
 		//Check for directory
-		int splitPoint = fileName.lastIndexOf(".");
-		if (splitPoint == -1) {
-			log.debug("No file extension found in input source:"+fileName+" defaulting to directory input");
-			strategyClass = DirectoryInputStrategy.class;
+		returnClassList.addAll(handleDirectoryInput(null,fileName));
 
-		} else {
+		//No results, then try individual file mapping
+		if(returnClassList ==null|| returnClassList.size()==0){
+
 
 			//try and map our values to a source
-			String suffix = fileName.substring(splitPoint, fileName.length());
+			log.debug("Checking:"+fileName);
 
-			log.debug("Looking for input Mapping against suffix:" + suffix);
+			int splitPoint = fileName.lastIndexOf(".");
 
-			strategyClass = inputSuffixMaps.get(suffix);
 
-			log.debug("Found strategy class:" + strategyClass);
+			if(splitPoint>0){
+				String suffix = fileName.substring(splitPoint, fileName.length());
 
-			if (strategyClass == null) {
-				throw new IllegalArgumentException("No Input Strategy Found to read files of type:" + suffix);
+				log.debug("Looking for input Mapping against suffix:" + suffix);
+				Class<?> strategyClass = inputSuffixMaps.get(suffix);
+
+				log.debug("Found strategy class:" + strategyClass);
+
+				if (strategyClass == null) {
+					throw new RPException("No Input Strategy Found to read files of type:" + suffix);
+				}
+				returnClassList.add(strategyClass);
 			}
+
+
 
 		}
 
+		return returnClassList;
 
-		return strategyClass;
+	}
+
+	/**
+	 * check if we have directory input, review the files in that directory, and get an input strategy for each file
+	 */
+	static List<Class<?>> handleDirectoryInput(Config appConfig, String fileName) {
+
+		// handle for our return value(s)		
+		List<Class<?>> returnClassList = new ArrayList<Class<?>>();
+
+		if(fileName.endsWith("/")){
+
+			log.debug("Attemping to generate strategies for files in Directory:"+fileName);
+
+			List<File> tmpFiles=ResourceFinder.getFilesInDirUsingConfig(appConfig,fileName);
+
+			for(File thisFile : tmpFiles){
+				
+				String tmpFileName="";
+
+				//do a recursive call to get the strategy for this single file
+				//TODO this filename probably needs modified- so we can find it
+				try {
+					log.debug("Recursive call to identify strategy for:"+thisFile.getCanonicalPath());
+					tmpFileName = thisFile.getCanonicalPath();
+					returnClassList.addAll(getInputMapping(tmpFileName));
+				} catch (IOException e) {
+					log.warn("Ignoring IO Error when trying to look at:"+tmpFileName);
+				} catch (RPException rpe) {
+					log.info("No strategy found for file:"+tmpFileName);
+				}
+			}
+			
+
+		} else {
+			log.debug("Not a directory - will attempt to treat later as an input file");
+		}
+
+		return returnClassList;
 
 	}
 
@@ -185,7 +238,7 @@ public class RunnerFactory {
 
 		return getRuleRunner(dataModel, new Config());
 
-	}
+	} 
 
 	/**
 	 * Create a properly configured RuleRunner for the Input / Output file types we
@@ -218,28 +271,91 @@ public class RunnerFactory {
 
 		// handle on our strategy objects
 		IRunner myRunner;
-		IDocumentInStrategy inputStrat;
-		IDocumentOutStrategy outputStrat;
+		List<IDocumentInStrategy> inputStrategies=null;
+		IDocumentOutStrategy outputStrat =null;
 
-		// Decide on our input strategy
-		Class<?> strategyClass = getInputMapping(redModel.getInputFileLocation());
+		//Call the the submethods to get our input and output strategies
+		inputStrategies = defineInputStrategies(redModel, appConfig);
+		outputStrat = defineOutputStrategy(redModel, appConfig);
 
-		log.debug("trying to create Strategy Object from class:" + strategyClass);
-		Constructor<?> constructor;
-		try {
-			constructor = strategyClass.getConstructor(String.class);
-			inputStrat = (IDocumentInStrategy) constructor
-					.newInstance(redModel.getBaseDirectory() + redModel.getInputFileLocation());
 
-			// pass in the config
-			inputStrat.setSubDirectory(redModel.getBaseDirectory());
-			inputStrat.setConfig(appConfig);
+		// Decide on the Strategy (runner) we want to execute this model
+		if (redModel.getRuleFileLocation().toLowerCase().endsWith(".dmn")) {
 
-		} catch (NoSuchMethodException | SecurityException | InstantiationException | InvocationTargetException
-				| IllegalAccessException e) {
-			throw new RPException("Error when creating input strategy Object", e);
+			myRunner = new DecisionModelRunner(inputStrategies, outputStrat, appConfig);
+		} else {
+			myRunner = new RuleRunner(inputStrategies, outputStrat, appConfig);
+
 		}
 
+		
+		//Log the different strategies being used
+		for (IDocumentInStrategy inStrat : inputStrategies){
+			log.debug("Using DocumentInputStrategy:" + inStrat.getClass()); 
+		}
+		log.debug("Using Runner:"+myRunner.getClass());
+		log.debug("Using DocumentOutputStrategy:" + outputStrat.getClass());
+
+		return myRunner;
+
+	}
+
+	/**
+	 * Use the available information to define our Input strategy(s)
+	 * @param redModel
+	 * @param appConfig
+	 * @return
+	 * @throws RPException
+	 */
+	private static List<IDocumentInStrategy> defineInputStrategies(RedModel redModel, Config appConfig) throws RPException {
+
+		//setup our return list		
+		List <IDocumentInStrategy>inputStrategies = new ArrayList<IDocumentInStrategy>();
+		
+		// Decide on our input strategy(s)
+		log.debug("Trying to create strategy(s) to input:"+redModel.getInputFileLocation());
+		List<Class<?>> strategyClassList = getInputMapping(redModel.getInputFileLocation());
+
+		//Now loop through and create these
+		for(Class<?> tmpClass :strategyClassList ){
+
+		
+			log.debug("trying to create Strategy Object from class:" + strategyClassList);
+			Constructor<?> constructor;
+			try {
+				constructor = tmpClass.getConstructor(String.class);
+				IDocumentInStrategy tmpStrategy = (IDocumentInStrategy) constructor
+						.newInstance(redModel.getBaseDirectory() + redModel.getInputFileLocation());
+
+				// pass in the config
+				tmpStrategy.setSubDirectory(redModel.getBaseDirectory());
+				tmpStrategy.setConfig(appConfig);
+
+				//Add this out our returnList
+				inputStrategies.add(tmpStrategy);
+
+			} catch (NoSuchMethodException | SecurityException | InstantiationException | InvocationTargetException
+					| IllegalAccessException e) {
+				throw new RPException("Error when creating input strategy Object", e);
+			}
+		}
+		return inputStrategies;
+	}
+
+	/**
+	 * Use the available information to define our output strategy
+	 * @param redModel
+	 * @param appConfig
+	 * @return
+	 * @throws RPException
+	 */
+	private static IDocumentOutStrategy defineOutputStrategy(RedModel redModel, Config appConfig)
+			throws RPException {
+
+		 IDocumentOutStrategy outputStrat;
+		Class<?> strategyClass;
+		Constructor<?> constructor;
+		
 		// Decide on our output strategy
 		strategyClass = null;
 		strategyClass = getOutputMapping(redModel.getOutputFileLocation());
@@ -258,21 +374,7 @@ public class RunnerFactory {
 		// pass in the config
 		outputStrat.setSubDirectory(redModel.getBaseDirectory());
 		outputStrat.setConfig(appConfig);
-
-		log.debug("Using DocumentInputStrategy:" + inputStrat.getClass());
-		log.debug("Using DocumentOutputStrategy:" + outputStrat);
-
-		// Decide on the Strategy (runner) we want to execute this model
-		if (redModel.getRuleFileLocation().toLowerCase().endsWith(".dmn")) {
-
-			myRunner = new DecisionModelRunner(inputStrat, outputStrat, appConfig);
-		} else {
-			myRunner = new RuleRunner(inputStrat, outputStrat, appConfig);
-
-		}
-
-		return myRunner;
-
+		return outputStrat;
 	}
 
 }

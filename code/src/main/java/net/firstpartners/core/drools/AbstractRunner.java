@@ -102,6 +102,7 @@ public abstract class AbstractRunner implements IRunner {
 			try {
 				ranges = thisDocumentSource.getJavaBeansFromSource();
 			} catch (EncryptedDocumentException | InvalidFormatException | IOException e) {
+				log.warn("error",e);
 				throw new RPException("Error when opening Input", e);
 			}
 

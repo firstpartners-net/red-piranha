@@ -63,7 +63,7 @@ public class PreProcessor {
 
 		//get a handle to the script - Groovy Engine needs file name
 		try{
-			File script = ResourceFinder.getFileResourceUsingConfig(subDirectory,groovyScriptName, appConfig);
+			File script = ResourceFinder.getFileResourceUsingConfig(appConfig,subDirectory,groovyScriptName);
 			
 			String scriptPath =script.getAbsolutePath();
 			log.debug("ScriptPath:"+scriptPath);

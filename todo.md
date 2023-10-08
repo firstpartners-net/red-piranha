@@ -6,6 +6,9 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## Next - Multiple files
 
 * NEXT RESOLVE
+    * 
+    * get tests running again
+        * testOutputJsonThenDelete
     * Bring through subdir and allow strategy based on that
     * Sample 5 - integration test
         * why not picking up on files in direcotyr (ResourceFinder?) when can do it in SampleDataLoader

@@ -74,7 +74,7 @@ public class RuleBuilder {
 
 				log.debug("loading into KFS:" + rulesLocs[counter]);
 				try {
-					currentFile = ResourceFinder.getFileResourceUsingConfig(redModel.getSubDirectory(),rulesLocs[counter], appConfig);
+					currentFile = ResourceFinder.getFileResourceUsingConfig(appConfig,redModel.getSubDirectory(),rulesLocs[counter] );
 				} catch (FileNotFoundException e) {
 					throw new RPException("Error when loading rules",e);
 				}

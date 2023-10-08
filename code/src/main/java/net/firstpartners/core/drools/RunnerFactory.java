@@ -156,8 +156,6 @@ public class RunnerFactory {
 	static List<Class<?>> handleDirectoryInput(Config appConfig, String subDir, String fileName) {
 
 
-		//TODO - use baseDir as part of our decision
-
 		// handle for our return value(s)		
 		List<Class<?>> returnClassList = new ArrayList<Class<?>>();
 

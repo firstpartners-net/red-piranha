@@ -58,7 +58,7 @@ public class RedController {
 		// (re)load sample information
 		try {
 			List<SampleData> sampleData = 
-					SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON,appConfig);
+					SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON);
 			model.addAttribute(SAMPLE_INFO, sampleData);
 			
 		} catch (IOException e) {
@@ -94,10 +94,8 @@ public class RedController {
 
 			// The Factory auto-generates the input and output strategy based on the
 			// filenames
-			IRunner runner = RunnerFactory.getRuleRunner(redModel,appConfig);
+			IRunner runner = RunnerFactory.getRuleRunner(redModel);
 
-			//Update configuration on this
-			runner.setConfigAllStrategies(appConfig);
 		
 			//Update our output strategy with additional info we want it to use
 			HashMap<String,String> additionalOutputs = new HashMap<String,String>();

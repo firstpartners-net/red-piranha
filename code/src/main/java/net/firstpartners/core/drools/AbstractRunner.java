@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
-import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.RPException;
@@ -32,8 +31,6 @@ import net.firstpartners.data.RangeList;
  */
 public abstract class AbstractRunner implements IRunner {
 
-	// Application Config - if passed in
-	protected Config appConfig;
 
 	// Handle to the Strategy Class for specific incoming document (Excel, Word etc
 	// tasks)
@@ -89,7 +86,7 @@ public abstract class AbstractRunner implements IRunner {
 	 * @throws ResourceException
 	 */
 	public RedModel callRules(RedModel ruleModel)
-			throws RPException, ResourceException, ScriptException {
+			throws RPException {
 		//loop over our input file(s)
 		for(IDocumentInStrategy thisDocumentSource : this.inputStrategy)
 		{  
@@ -103,7 +100,13 @@ public abstract class AbstractRunner implements IRunner {
 				ranges = thisDocumentSource.getJavaBeansFromSource();
 			} catch (EncryptedDocumentException | InvalidFormatException | IOException e) {
 				log.warn("error",e);
-				throw new RPException("Error when opening Input", e);
+				throw new RPException("EncryedError when opening Input", e);
+			} catch (ResourceException e) {
+				log.warn("error",e);
+				throw new RPException("Resource Exception when opening Input", e);
+			} catch (ScriptException e) {
+				log.warn("error",e);
+				throw new RPException("Script Exception when opening Input", e);
 			}
 
 			// Set the Modified flag on the cells
@@ -155,23 +158,6 @@ public abstract class AbstractRunner implements IRunner {
 		} // end loop over docuemtns
 
 		return ruleModel;
-
-	}
-
-    /**
-     * Fail safe method - ensure that config data is set on all input and output strategies
-     */
-    public void setConfigAllStrategies(Config appConfig){
-
-		// set the config on the (single) output strategy
-		this.outputStrategy.setConfig(appConfig);
-
-		// Loop and set the config on the mutiple input strategies
-		for(IDocumentInStrategy thisDocumentSource : this.inputStrategy)
-		{  
-			thisDocumentSource.setConfig(appConfig);
-		}
-
 
 	}
 

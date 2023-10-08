@@ -6,15 +6,16 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## Next - Multiple files
 
 * NEXT RESOLVE
-    * 
+    * Move to rely on Spring appconfig and not pass around
+        * compile again
+        * search for appconfig in code and review usage
     * get tests running again
         * testOutputJsonThenDelete
     * Bring through subdir and allow strategy based on that
     * Sample 5 - integration test
         * why not picking up on files in direcotyr (ResourceFinder?) when can do it in SampleDataLoader
     * Sample 5 - on web
-    * Work though Unit tests again
-        * confirm no issues wiht appConfig being null
+    * Work though Unit tests again post config changes
 
 
 

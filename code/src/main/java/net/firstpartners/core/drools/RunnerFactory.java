@@ -12,7 +12,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.RPException;
@@ -116,7 +115,7 @@ public class RunnerFactory {
 		List<Class<?>> returnClassList = new ArrayList<Class<?>>();
 
 		//Check for directory
-		returnClassList.addAll(handleDirectoryInput(null,subDir,fileName));
+		returnClassList.addAll(handleDirectoryInput(subDir,fileName));
 
 		//No results, then try individual file mapping
 		if(returnClassList ==null|| returnClassList.size()==0){
@@ -153,7 +152,7 @@ public class RunnerFactory {
 	/**
 	 * check if we have directory input, review the files in that directory, and get an input strategy for each file
 	 */
-	static List<Class<?>> handleDirectoryInput(Config appConfig, String subDir, String fileName) {
+	static List<Class<?>> handleDirectoryInput(String subDir, String fileName) {
 
 
 		// handle for our return value(s)		
@@ -166,7 +165,7 @@ public class RunnerFactory {
 
 			log.debug("Attemping to generate strategies for files in Directory:"+subDir);
 
-			List<File> filesInDirectory=ResourceFinder.getFilesInDirUsingConfig(appConfig,subDir);
+			List<File> filesInDirectory=ResourceFinder.getFilesInDirUsingConfig(subDir);
 
 			for(File thisFile : filesInDirectory){
 				
@@ -231,24 +230,10 @@ public class RunnerFactory {
 	}
 
 	/**
-	 * Overloaded method, for convenience
-	 *
-	 * @param dataModel a {@link net.firstpartners.core.RedModel} object
-	 * @throws RPException
-	 * @return a {@link net.firstpartners.core.drools.RuleRunner} object
-	 */
-	public static IRunner getRuleRunner(RedModel dataModel) throws RPException {
-
-		return getRuleRunner(dataModel, new Config());
-
-	} 
-
-	/**
 	 * Create a properly configured RuleRunner for the Input / Output file types we
 	 * are passing within the RedModel cargo object
 	 *
 	 * @param redModel  - where we get the data from
-	 * @param appConfig - application Configuration
 	 * @return RuleRunner Object with the correct input / output Strategies
 	 *         configured
 	 * @throws java.lang.reflect.InvocationTargetException - from underlying input -
@@ -263,11 +248,10 @@ public class RunnerFactory {
 	 * @throws java.lang.SecurityException        if any.
 	 * @throws java.lang.IllegalArgumentException if any.
 	 */
-	public static IRunner getRuleRunner(RedModel redModel, Config appConfig)
+	public static IRunner getRuleRunner(RedModel redModel)
 			throws RPException {
 
 		// check our incoming params
-		assert appConfig!=null;
 		assert redModel != null;
 		assert redModel.getInputFileLocation() != null;
 		assert redModel.getRuleFileLocation() != null;
@@ -279,16 +263,16 @@ public class RunnerFactory {
 		IDocumentOutStrategy outputStrat =null;
 
 		//Call the the submethods to get our input and output strategies
-		inputStrategies = defineInputStrategies(redModel, appConfig);
-		outputStrat = defineOutputStrategy(redModel, appConfig);
+		inputStrategies = defineInputStrategies(redModel);
+		outputStrat = defineOutputStrategy(redModel);
 
 
 		// Decide on the Strategy (runner) we want to execute this model
 		if (redModel.getRuleFileLocation().toLowerCase().endsWith(".dmn")) {
 
-			myRunner = new DecisionModelRunner(inputStrategies, outputStrat, appConfig);
+			myRunner = new DecisionModelRunner(inputStrategies, outputStrat);
 		} else {
-			myRunner = new RuleRunner(inputStrategies, outputStrat, appConfig);
+			myRunner = new RuleRunner(inputStrategies, outputStrat);
 
 		}
 
@@ -307,15 +291,13 @@ public class RunnerFactory {
 	/**
 	 * Use the available information to define our Input strategy(s)
 	 * @param redModel
-	 * @param appConfig
 	 * @return
 	 * @throws RPException
 	 */
-	private static List<IDocumentInStrategy> defineInputStrategies(RedModel redModel, Config appConfig) throws RPException {
+	private static List<IDocumentInStrategy> defineInputStrategies(RedModel redModel) throws RPException {
 
 		//check our incoming values
 		assert redModel!=null;
-		assert appConfig!=null;
 
 
 		//setup our return list		
@@ -338,7 +320,6 @@ public class RunnerFactory {
 
 				// pass in the config
 				tmpStrategy.setSubDirectory(redModel.getSubDirectory());
-				tmpStrategy.setConfig(appConfig);
 
 				//Add this out our returnList
 				inputStrategies.add(tmpStrategy);
@@ -354,11 +335,10 @@ public class RunnerFactory {
 	/**
 	 * Use the available information to define our output strategy
 	 * @param redModel
-	 * @param appConfig
 	 * @return
 	 * @throws RPException
 	 */
-	private static IDocumentOutStrategy defineOutputStrategy(RedModel redModel, Config appConfig)
+	private static IDocumentOutStrategy defineOutputStrategy(RedModel redModel)
 			throws RPException {
 
 		 IDocumentOutStrategy outputStrat;
@@ -382,7 +362,6 @@ public class RunnerFactory {
 
 		// pass in the config
 		outputStrat.setSubDirectory(redModel.getSubDirectory());
-		outputStrat.setConfig(appConfig);
 		return outputStrat;
 	}
 

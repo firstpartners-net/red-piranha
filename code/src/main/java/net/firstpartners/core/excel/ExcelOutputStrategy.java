@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
-import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
@@ -27,8 +26,6 @@ import net.firstpartners.data.RangeList;
  */
 public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
-
-	Config appConfig;
 	
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -115,10 +112,6 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 	}
 
-	/** {@inheritDoc} */
-	public void setConfig(Config appConfig) {
-		this.appConfig = appConfig;
-	}
 
 	/**
 	 * To conform to the interface - not (yet) implemented in this strategy
@@ -167,8 +160,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	void outputToConsole(Workbook wb) throws IOException, ResourceException, ScriptException {
 
-		SpreadSheetConvertor convertor = new SpreadSheetConvertor(appConfig);
-		RangeList ranges = convertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
+		RangeList ranges = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		outputToConsole(ranges);
 
 	}
@@ -182,7 +174,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	void outputToFile(Workbook wb) throws IOException {
 
-		String outputFileDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
+		String outputFileDir = ResourceFinder.getDirectoryResourceUsingConfig();
 		
 		//Construct the output file including directory
 		String outputFile;

@@ -46,10 +46,10 @@ public class PreProcessorTest {
 	public final void testRunPreProcessor() throws Exception {
 
 		// handle to the class under test
-		PreProcessor processor = new PreProcessor(appConfig);
+		PreProcessor processor = new PreProcessor();
 
 		//Handle to test data
-		File xlFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.COMPLEX_EXCEL, appConfig);
+		File xlFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.COMPLEX_EXCEL);
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 

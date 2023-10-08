@@ -19,7 +19,6 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
@@ -95,7 +94,6 @@ import net.firstpartners.data.RangeList;
  */
 public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 
-	private Config appConfig;
 
 	// Name of the output file
 	private String appendFileName = null;
@@ -221,11 +219,6 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 
 	}
 
-	/** {@inheritDoc} */
-	public void setConfig(Config appConfig) {
-		this.appConfig = appConfig;
-	}
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -241,7 +234,7 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 	List<String> getHeadersFromFile() throws IOException {
 
 		// We must have a pre existing file
-		File appendFile = ResourceFinder.getFileResourceUsingConfig(appendFileName, appConfig);
+		File appendFile = ResourceFinder.getFileResourceUsingConfig(appendFileName);
 
 		if (!appendFile.exists()) {
 			throw new IllegalArgumentException(

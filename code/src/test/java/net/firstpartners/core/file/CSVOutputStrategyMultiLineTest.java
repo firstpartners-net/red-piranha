@@ -13,23 +13,21 @@ import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.Config;
 import net.firstpartners.core.RPException;
 import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.data.RangeList;
 
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class CSVOutputStrategyMultiLineTest {
 
-	// handle for our config
-	@Autowired
-	Config appConfig;
 
 	// Logger
 	private static Logger log = LoggerFactory.getLogger(CSVOutputStrategyMultiLineTest.class);
@@ -37,12 +35,9 @@ public class CSVOutputStrategyMultiLineTest {
 	@Test
 	public final void testCreateAppendToCSVNoOverwrite() throws IOException, InvalidFormatException, ClassNotFoundException {
 
-		//mockup the configuration we need
-		Config testConfig = new Config();
-
 		// Delete previous output file if it exists - file should not fail if it doesn't
 		try{
-			File tmpOutputFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_APPEND_FILE, testConfig);
+			File tmpOutputFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_APPEND_FILE);
 			if(tmpOutputFile!=null){
 				tmpOutputFile.delete();
 			}
@@ -54,7 +49,7 @@ public class CSVOutputStrategyMultiLineTest {
 		//confirm file does not exist yet
 		// Delete previous output file if it exists - file should not fail if it doesn't
 		try{
-			File tmpOutputFileConfirm = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_APPEND_FILE, testConfig);
+			File tmpOutputFileConfirm = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_APPEND_FILE);
 			
 			// confirm file does not exist
 			assertTrue(tmpOutputFileConfirm==null||!tmpOutputFileConfirm.exists());
@@ -66,13 +61,11 @@ public class CSVOutputStrategyMultiLineTest {
 
 		//get sample data - medium sized
 		JsonInputStrategy jsInput = new JsonInputStrategy(TestConstants.JSON_SERIAL_FILE_MEDIUM);
-		jsInput.setConfig((testConfig));
 		RangeList testRange = jsInput.getJavaBeansFromSource();
 		assertNotNull("input data should not be empty",testRange);
 
 		//output to csv - pass 1
 		CSVOutputStrategyMultiLine csvout = new CSVOutputStrategyMultiLine(TestConstants.CSV_APPEND_FILE);
-		csvout.setConfig(testConfig);
 
 		//Update our output strategy with additional info we want it to use
 		HashMap<String,String> additionalOutputs = new HashMap<String,String>();
@@ -234,12 +227,10 @@ public class CSVOutputStrategyMultiLineTest {
 	@Test
 	public final void testJsonInCsvOut() throws Exception, RPException {
 
-		//mockup the configuration we need
-		Config testConfig = new Config();
 
 		// Delete previous output file if it exists - file should not fail if it doesn't
 		try{
-			File tmpOutputFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_TMP_FILE_MULTI_LINE, testConfig);
+			File tmpOutputFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_TMP_FILE_MULTI_LINE);
 			if(tmpOutputFile!=null){
 				tmpOutputFile.delete();
 			}
@@ -249,13 +240,11 @@ public class CSVOutputStrategyMultiLineTest {
 
 		//Get our sample data
 		JsonInputStrategy jsInput = new JsonInputStrategy(TestConstants.JSON_SERIAL_FILE_COMPLEX);
-		jsInput.setConfig((testConfig));
 		RangeList testRange = jsInput.getJavaBeansFromSource();
 		assertNotNull("input data should not be empty",testRange);
 
 		//setup our CSV Outputter
 		CSVOutputStrategyMultiLine csvout = new CSVOutputStrategyMultiLine(TestConstants.CSV_TMP_FILE_MULTI_LINE);
-		csvout.setConfig(testConfig);
 		
 		//Update our output strategy with additional info we want it to use
 		HashMap<String,String> additionalOutputs = new HashMap<String,String>();

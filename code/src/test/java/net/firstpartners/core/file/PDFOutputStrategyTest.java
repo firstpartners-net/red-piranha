@@ -9,12 +9,10 @@ import java.io.IOException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.Config;
 import net.firstpartners.data.RangeList;
 import net.firstpartners.ui.RedControllerTest;
 
@@ -22,9 +20,6 @@ import net.firstpartners.ui.RedControllerTest;
 @SpringBootTest
 public class PDFOutputStrategyTest {
 
-		// handle for our config
-	@Autowired
-	Config appConfig;
 
 	@Test
 	public final void testOutputPdfThenDelete() throws IOException, InvalidFormatException, ClassNotFoundException {

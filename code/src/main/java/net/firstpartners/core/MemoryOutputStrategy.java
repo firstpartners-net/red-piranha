@@ -19,8 +19,6 @@ import net.firstpartners.data.RangeList;
  */
 public class MemoryOutputStrategy implements IDocumentOutStrategy {
 
-	private Config appConfig;
-
 	
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -37,6 +35,7 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	}
 
 	public void setSubDirectory(String subDirectory) {
+		log.debug("Set Directory to:"+subDirectory);
 		this.subDirectory = subDirectory;
 	}
 
@@ -73,14 +72,7 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	 */
 	public void processOutput() throws IOException {
 
-		// do nothing - we just keep it in momeory
-		log.debug("Config:"+appConfig);// to clear compiliation warning
 		
-	}
-
-	/** {@inheritDoc} */
-	public void setConfig(Config appConfig) {
-		this.appConfig = appConfig;
 	}
 
 	/** {@inheritDoc} */

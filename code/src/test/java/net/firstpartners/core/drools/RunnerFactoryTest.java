@@ -260,13 +260,11 @@ public class RunnerFactoryTest {
 
 	@Test
 	public void testHandleDirectoryInput() throws RPException {
-		
-		//setup teh config
-		Config testConfig = new Config();
+
 
 		RedModel testModel = new RedModel(TestConstants.DIRECTORY_SAMPLE,
 				"http-something-else", "some-gernic.xls");
-		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel,testConfig);
+		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 
 
 		assertNotNull(myRunner);

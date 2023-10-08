@@ -16,11 +16,9 @@ import org.apache.poi.ss.util.AreaReference;
 import org.apache.poi.ss.util.CellReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
-import net.firstpartners.core.Config;
 import net.firstpartners.core.script.PreProcessor;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
@@ -41,22 +39,6 @@ public class SpreadSheetConvertor {
 
 	// Handle to the preprocessor
 	static PreProcessor preProcess = null;
-
-	// handle for our config
-	@Autowired
-	Config appConfig;
-
-	public SpreadSheetConvertor(Config appConfig) {
-		this.appConfig = appConfig;
-	}
-
-	public Config getAppConfig() {
-		return appConfig;
-	}
-
-	public void setAppConfig(Config appConfig) {
-		this.appConfig = appConfig;
-	}
 
 	/**
 	 * Update an excel file with our new values uses the original sheet and original
@@ -112,7 +94,7 @@ public class SpreadSheetConvertor {
 	 * @throws ScriptException
 	 * @throws ResourceException
 	 */
-	public RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook poiWorkbook)
+	public static RangeList convertNamesFromPoiWorkbookIntoRedRange(org.apache.poi.ss.usermodel.Workbook poiWorkbook)
 			throws IOException, ResourceException, ScriptException {
 
 		// Note in this code we prefix variables as follows

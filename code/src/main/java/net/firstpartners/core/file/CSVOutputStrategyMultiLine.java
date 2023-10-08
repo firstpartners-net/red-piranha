@@ -19,7 +19,6 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.data.RangeList;
 
@@ -74,8 +73,6 @@ import net.firstpartners.data.RangeList;
  * @version $Id: $Id
  */
 public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
-
-	private Config appConfig;
 
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -154,7 +151,7 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 		//check the data before processing
 		assert dataToOutput!=null : "No data available to output";
 
-		String outputFileDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
+		String outputFileDir = ResourceFinder.getDirectoryResourceUsingConfig();
 		
 		//Construct the output file including directory
 		Path outputPath;
@@ -171,7 +168,7 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 
 		//confirm outfile exists or not - open for append if it is
 		try{
-			tmpOutputFileConfirm = ResourceFinder.getFileResourceUsingConfig(outputPath.toString(), appConfig);
+			tmpOutputFileConfirm = ResourceFinder.getFileResourceUsingConfig(outputPath.toString());
 	
 		} catch (FileNotFoundException fnfe){
 			log.debug("CSV Output file "+outputPath.toString()+" not found when checking - this is ok as we will create");
@@ -230,11 +227,6 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	}
 
 
-
-	/** {@inheritDoc} */
-	public void setConfig(Config appConfig) {
-		this.appConfig = appConfig;
-	}
 
 	/**
 	 * {@inheritDoc}

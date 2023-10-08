@@ -13,22 +13,20 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.data.RangeList;
 
 /**
- * Specific steps needed for feeding Word (pre 2003) Documents into and out of the Rule
+ * Specific steps needed for feeding Word (pre 2003) Documents into and out of
+ * the Rule
  * Engine
  *
  * @author PBrowne
  * @version $Id: $Id
  */
 public class WordInputStrategy implements IDocumentInStrategy {
-
-	private Config appConfig;
 
 	// Handle to the loggers
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -54,8 +52,8 @@ public class WordInputStrategy implements IDocumentInStrategy {
 	/**
 	 * Set the base Directory
 	 */
-	public void setSubDirectory(String subDirectory){
-		this.subDirectory= subDirectory;
+	public void setSubDirectory(String subDirectory) {
+		this.subDirectory = subDirectory;
 	}
 
 	/** {@inheritDoc} */
@@ -74,12 +72,11 @@ public class WordInputStrategy implements IDocumentInStrategy {
 
 		log.debug("converting incoming word stream to Javabeans");
 
-		File wordFile = ResourceFinder.getFileResourceUsingConfig(wordInputFileName, appConfig);
+		File wordFile = ResourceFinder.getFileResourceUsingConfig(wordInputFileName);
 
 		InputStream inputAsStream = new FileInputStream(wordFile);
 		POIFSFileSystem fs = new POIFSFileSystem(inputAsStream);
 		HWPFDocument poiDoc = new HWPFDocument(fs);
-
 
 		RangeList myRange = DocumentConvertor.convertFromPoiWordIntoRedRange(poiDoc);
 		inputAsStream.close();
@@ -94,14 +91,10 @@ public class WordInputStrategy implements IDocumentInStrategy {
 		return new OfficeDocument(poiDoc);
 	}
 
-	/** {@inheritDoc} */
-	@Override
-	public void setConfig(Config appConfig) {
-		this.appConfig = appConfig;
-	}
-
 	/**
-	 * <p>setInputFileName.</p>
+	 * <p>
+	 * setInputFileName.
+	 * </p>
 	 *
 	 * @param wordInputFileName a {@link java.lang.String} object
 	 */

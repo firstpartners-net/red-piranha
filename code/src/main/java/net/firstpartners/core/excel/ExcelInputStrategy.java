@@ -35,7 +35,6 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	private String excelInputFileName = null;
 	private Workbook excelWorkBook = null;
 
-	private Config appConfig;
 
 	private String subDirectory;
 
@@ -55,11 +54,6 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 		this.subDirectory= subDirectory;
 	}
 	
-	/** {@inheritDoc} */
-	public void setConfig(Config appConfig) {
-		log.debug("Config set");
-		this.appConfig = appConfig;
-	}
 
 	/** {@inheritDoc} */
 	@Override
@@ -86,20 +80,25 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	@Override
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, ResourceException, ScriptException {
 
-		//check incoming values	
-		assert appConfig!=null: "App Config should not be null";
 
+		
 		// load our Excel file and convert to our internal beans
-		File xlFile = ResourceFinder.getFileResourceUsingConfig(excelInputFileName, appConfig);
+		File xlFile = ResourceFinder.getFileResourceUsingConfig(excelInputFileName);
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		log.debug("converting incoming excel stream to Javabeans");
 		excelWorkBook = WorkbookFactory.create(inputAsStream);
+
+		//Get the name of the preprocess script
+		Config appConfig = ResourceFinder.getConfig();
+		assert appConfig!=null;
+
+
 
 		//call the processor if available
 		if(appConfig.getPreprocessScript()!=null){
 
 			log.debug("Configured to use pre-processor subDir:"+subDirectory+" script:"+appConfig.getPreprocessScript());
-			PreProcessor preProcess = new PreProcessor(appConfig);
+			PreProcessor preProcess = new PreProcessor();
 			excelWorkBook= preProcess.preprocessXlWorkbook(subDirectory,appConfig.getPreprocessScript(), excelWorkBook);
 
 		} else {
@@ -107,8 +106,7 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 		}
 
 		//Get handle and use convertor
-		SpreadSheetConvertor convertor = new SpreadSheetConvertor(appConfig);
-		RangeList myRange = convertor.convertNamesFromPoiWorkbookIntoRedRange(excelWorkBook);
+		RangeList myRange = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(excelWorkBook);
 		inputAsStream.close();
 		return myRange;
 

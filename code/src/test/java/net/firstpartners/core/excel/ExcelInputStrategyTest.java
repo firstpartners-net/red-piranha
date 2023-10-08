@@ -7,8 +7,11 @@ import java.io.IOException;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
@@ -22,7 +25,8 @@ import net.firstpartners.core.drools.RunnerFactory;
 import net.firstpartners.core.json.JsonOutputStrategy;
 import net.firstpartners.data.RangeList;
 
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 public class ExcelInputStrategyTest {
 
 	// Logger
@@ -94,7 +98,6 @@ public class ExcelInputStrategyTest {
 		
 		//Handle to our Excel convertor and set config
 		ExcelInputStrategy xlInput = new ExcelInputStrategy(dirPrefix+"/"+TestConstants.COMPLEX_EXCEL);
-		xlInput.setConfig((testConfig));
 
 		//call and get the data
 		RangeList myRange = xlInput.getJavaBeansFromSource();

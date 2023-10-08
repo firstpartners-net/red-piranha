@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
@@ -28,9 +27,6 @@ import net.firstpartners.data.RangeList;
  * @version $Id: $Id
  */
 public class JsonInputStrategy implements IDocumentInStrategy {
-
-	
-	private Config appConfig;
 
 	private String jsonInputFileName;
 	
@@ -77,7 +73,7 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 
 		log.debug("Convert Json to RedBeans");
 		ObjectMapper objectMapper = new ObjectMapper();
-		File jsonSource = ResourceFinder.getFileResourceUsingConfig(jsonInputFileName, appConfig);
+		File jsonSource = ResourceFinder.getFileResourceUsingConfig(jsonInputFileName);
 		
 		RangeList myRange  = objectMapper.readValue(jsonSource, RangeList.class);
 		JsonNode rootNode = objectMapper.readTree(jsonSource);
@@ -109,12 +105,6 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 		return officeDocument;
 	}
 
-
-
-	/** {@inheritDoc} */
-	public void setConfig(Config appConfig) {
-		this.appConfig = appConfig;
-	}
 
 	/**
 	 * <p>Setter for the field <code>jsonInputFileName</code>.</p>

@@ -12,7 +12,6 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
@@ -27,7 +26,6 @@ import net.firstpartners.data.RangeList;
  */
 public class WordXInputStrategy implements IDocumentInStrategy {
 
-	private Config appConfig;
 
 	// Handle to the loggers
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -72,7 +70,7 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException {
 
 		log.debug("converting incoming word stream to Javabeans");
-		File wordFile = ResourceFinder.getFileResourceUsingConfig(this.wordInputFileName, appConfig);
+		File wordFile = ResourceFinder.getFileResourceUsingConfig(this.wordInputFileName);
 
 		InputStream inputAsStream = new FileInputStream(wordFile);
 		poiDoc= new XWPFDocument(OPCPackage.open(inputAsStream));
@@ -90,11 +88,6 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 		return new OfficeDocument(poiDoc);
 	}
 
-	/** {@inheritDoc} */
-	@Override
-	public void setConfig(Config appConfig) {
-		this.appConfig = appConfig;
-	}
 
 	/**
 	 * <p>setInputFileName.</p>

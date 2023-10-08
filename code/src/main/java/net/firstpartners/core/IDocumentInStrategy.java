@@ -28,12 +28,6 @@ public interface IDocumentInStrategy {
 	 */
 	OfficeDocument getOriginalDocument();
 
-	/**
-	 * Allows us to pass details of the environment
-	 *
-	 * @param config a {@link net.firstpartners.core.Config} object
-	 */
-	void setConfig(Config config);
 	
 	/**
 	 * State where out input is coming from

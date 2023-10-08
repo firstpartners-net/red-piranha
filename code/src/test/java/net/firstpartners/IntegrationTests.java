@@ -34,7 +34,7 @@ import net.firstpartners.core.json.SampleDataLoader;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-class IntegrationTests {
+public class IntegrationTests {
 
 	// handle for our config
 	@Autowired
@@ -83,8 +83,7 @@ class IntegrationTests {
 	 */
 	private void sampleTestRunner(int sampleToRun) throws Exception, RPException{
 
-		List<SampleData> examples = SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON,
-		appConfig);
+		List<SampleData> examples = SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON);
 
 		//counter
 		if(sampleToRun<0){
@@ -118,7 +117,7 @@ class IntegrationTests {
 
 			log.debug("Running:\n" + testModel);
 
-			IRunner runner = RunnerFactory.getRuleRunner(testModel, appConfig);
+			IRunner runner = RunnerFactory.getRuleRunner(testModel);
 			
 			// set out OutputStrategy so we can test the output later
 			// this overrides the normal output

@@ -7,14 +7,11 @@ import java.util.Map;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
@@ -28,8 +25,6 @@ import net.firstpartners.data.RangeList;
  */
 public class JsonOutputStrategy implements IDocumentOutStrategy {
 
-	@Autowired
-	private Config appConfig;
 
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -100,7 +95,7 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 
 
 		// create a writer - set to append (true)
-		String outputDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
+		String outputDir = ResourceFinder.getDirectoryResourceUsingConfig();
 		
 		log.debug("Writing Json to :" +outputDir+ outputFile);
 
@@ -112,12 +107,6 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 		log.debug("Output complete");
 
 	}
-
-	/** {@inheritDoc} */
-	public void setConfig(Config appConfig) {
-		this.appConfig = appConfig;
-	}
-
 	/**
 	 * {@inheritDoc}
 	 *

@@ -2,9 +2,7 @@ package net.firstpartners.core.drools;
 
 import java.util.List;
 
-import groovy.util.ResourceException;
-import groovy.util.ScriptException;
-import net.firstpartners.core.Config;
+
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.RPException;
@@ -24,7 +22,7 @@ public interface IRunner {
      * @throws ResourceException
      * @throws ScriptException
      */
-    public RedModel callRules(RedModel ruleModel) throws RPException, ResourceException, ScriptException;
+    public RedModel callRules(RedModel ruleModel) throws RPException;
 
     /**
      * Allows us to replace previous output stategies (e.g. for testing)
@@ -43,8 +41,4 @@ public interface IRunner {
      */
     public IDocumentOutStrategy getDocumentOutputStrategy();
 
-    /**
-     * Fail safe method - ensure that config data is set on all input and output strategies
-     */
-    public void setConfigAllStrategies(Config appConfig);
 }

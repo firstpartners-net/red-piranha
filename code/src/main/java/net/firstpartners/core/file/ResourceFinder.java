@@ -33,13 +33,30 @@ public class ResourceFinder {
 
 
 	/**
-	 * Allows setting of config (overrides) eg. for testing
+	 * Called by Spring post construction
 	 */
 	@PostConstruct     
-  	public void initStaticConfig () {
+  	private void initStaticConfig () {
 		log.debug("Setting post construct app config to:"+this.appConfig0);
      	appConfig = this.appConfig0;
   	}
+
+	/**
+	 * Allows setting of config (overrides) eg. for testing
+	 * @param Config inconfig to replace existing
+	 */
+	public static void setConfig(Config inConfig){
+		appConfig = inConfig;
+	}
+
+	/**
+	 * Mostly Spring will well the app config on the components
+	 * This method is here as an interim refactoring method
+	 */
+	public static Config getConfig(){
+		return appConfig;
+	}
+
 	/**
 	 * Try to load the file at resource name , in this order 1) in working directory
 	 * 2) in directory as specified in Config.sampleBaseDirDefault + ResourceName 3)
@@ -52,18 +69,13 @@ public class ResourceFinder {
 	 * @throws java.io.FileNotFoundException
 	 * @return a {@link java.io.File} object
 	 */
-	public static File getFileResourceUsingConfig(String resourceName, Config incomingConfig) throws FileNotFoundException {
+	public static File getFileResourceUsingConfig(String resourceName ) throws FileNotFoundException {
 
-		//allow overriding on config
-		if(incomingConfig==null){
-			log.debug("Incoming config is null using spring configured default:"+appConfig);
-			incomingConfig = appConfig;
-		}
-		
+
 		//Check incoming params
-		assert incomingConfig!=null: "Config should not be null";
+		assert appConfig!=null: "Config should not be null";
 
-		return getFileResourceUsingConfig(incomingConfig,"", resourceName);
+		return getFileResourceUsingConfig("", resourceName);
 	}
 
 	/**
@@ -78,17 +90,12 @@ public class ResourceFinder {
 	 * @throws java.io.FileNotFoundException
 	 * @return a {@link java.io.File} object
 	 */
-	public static File getFileResourceUsingConfig(Config incomingConfig,String baseDir, String resourceName)
+	public static File getFileResourceUsingConfig(String baseDir, String resourceName)
 			throws FileNotFoundException {
 
-		//allow overriding on config
-		if(incomingConfig==null){
-			log.debug("Incoming config is null using spring configured default:"+appConfig);
-			incomingConfig = appConfig;
-		}
-		
+
 		//Check incoming params
-		assert incomingConfig!=null: "Config should not be null";
+		assert appConfig!=null: "Config should not be null";
 		
 		String seekName = resourceName;
 
@@ -110,12 +117,12 @@ public class ResourceFinder {
 		}
 
 		// We need config info to try backups
-		if (incomingConfig == null) {
+		if (appConfig == null) {
 			throw new FileNotFoundException(
 					"1 Cannot find :" + seekName + " and no config provided to try other locations");
 		}
 
-		String defaultDir = incomingConfig.getSampleBaseDirDefault();
+		String defaultDir = appConfig.getSampleBaseDirDefault();
 		File defaultFile = new File(defaultDir + seekName);
 		if (defaultFile.exists()) {
 			log.debug("2 Found Resource:" + defaultFile);
@@ -125,7 +132,7 @@ public class ResourceFinder {
 					+ " attempting another approach");
 		}
 
-		String alternateDir = incomingConfig.getSampleBaseDirAlternate();
+		String alternateDir = appConfig.getSampleBaseDirAlternate();
 		File alternateFile = new File(alternateDir + seekName);
 		if (alternateFile.exists()) {
 			log.debug("2 Found Resource:" + alternateFile);
@@ -148,21 +155,15 @@ public class ResourceFinder {
 	 * @throws java.io.FileNotFoundException
 	 * @return a {@link java.lang.String} object
 	 */
-	public static String getDirectoryResourceUsingConfig(Config incomingConfig) throws FileNotFoundException {
+	public static String getDirectoryResourceUsingConfig() throws FileNotFoundException {
 
-		//allow overriding on config
-		if(incomingConfig==null){
-			log.debug("Incoming config is null using spring configured default:"+appConfig);
-			incomingConfig = appConfig;
-		}
-		
 		//Check incoming params
-		assert incomingConfig!=null: "Config should not be null";
+		assert appConfig!=null: "Config should not be null";
 
 		//Now get the values using the Config
-		String directoryName = incomingConfig.getSampleBaseDirDefault();
+		String directoryName = appConfig.getSampleBaseDirDefault();
 
-		return getDirectoryResourceUsingConfig(incomingConfig,directoryName);
+		return getDirectoryResourceUsingConfig(directoryName);
 
 	}
 
@@ -175,19 +176,15 @@ public class ResourceFinder {
 	 * @throws java.io.FileNotFoundException
 	 * @return a {@link java.lang.String} object
 	 */
-	public static String getDirectoryResourceUsingConfig(Config incomingConfig, String directoryName) {
+	public static String getDirectoryResourceUsingConfig(String directoryName) {
 
-		//allow overriding on config
-		if(incomingConfig==null){
-			log.debug("Incoming config is null using spring configured default:"+appConfig);
-			incomingConfig = appConfig;
-		}
 		
 		//Check incoming params
-		assert incomingConfig!=null: "Config should not be null";
+		assert appConfig!=null: "Config should not be null";
 
 		// We need config info to try backups - default to current working directory
-		if (incomingConfig == null) {
+		//TODO - can we remove this dead code
+		if (appConfig == null) {
 			log.debug("Config is null - defaulting to working dir");
 
 			String workingDir = new File(".").getAbsolutePath();
@@ -211,7 +208,7 @@ public class ResourceFinder {
 			log.debug("1 No resource in default dir:" + defaultFile + " attempting another approach");
 		}
 
-		String alternateDir = incomingConfig.getSampleBaseDirAlternate();
+		String alternateDir = appConfig.getSampleBaseDirAlternate();
 		File alternateFile = new File(alternateDir);
 		if (alternateFile.exists()) {
 			log.debug("Using Alternate Dir:" + alternateDir);
@@ -232,17 +229,12 @@ public class ResourceFinder {
 	 * @param directoryToFind
 	 * @return
 	 */
-	public static List<File> getFilesInDirUsingConfig(Config incomingConfig, String directoryToFind) {
+	public static List<File> getFilesInDirUsingConfig( String directoryToFind) {
 
 
-		//allow overriding on config
-		if(incomingConfig==null){
-			log.debug("Incoming config is null using spring configured default:"+appConfig);
-			incomingConfig = appConfig;
-		}
 		
 		//Check incoming params
-		assert incomingConfig!=null: "Config should not be null";
+		assert appConfig!=null: "Config should not be null";
 
 		//Setup return values
 		List<File> foundFiles = new ArrayList<File>();
@@ -252,7 +244,7 @@ public class ResourceFinder {
 
 		
 		// Try to locate using config
-		String foundDir = getDirectoryResourceUsingConfig(incomingConfig, directoryToFind);
+		String foundDir = getDirectoryResourceUsingConfig(directoryToFind);
 
 		if (foundDir == null || foundDir.equals("")) {
 

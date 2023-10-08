@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.Config;
 import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.file.Utils;
@@ -23,11 +22,11 @@ class RuleBuilderTest {
 	void testDefaultBuild() throws Exception, RPException {
 
 		RedModel myModel = new RedModel();
-		Config testConfig = new Config();
+
 		
 		myModel.setRuleFileLocation(TestConstants.SIMPLE_LOG_MODIFY_RULES_FILE);
 
-		KieBuilder myBuilder = new RuleBuilder().loadRules(myModel,testConfig);
+		KieBuilder myBuilder = new RuleBuilder().loadRules(myModel);
 		KieModule myModule = myBuilder.getKieModule();
 
 		assertNotNull(myModule);
@@ -41,9 +40,8 @@ class RuleBuilderTest {
 		RedModel rulesToCompile = new RedModel();
 		rulesToCompile.setRuleFileLocation(TestConstants.SIMPLE_LOG_MODIFY_RULES_FILE);
 		
-		Config testConfig = new Config();
 
-		KieBuilder myBuilder = new RuleBuilder().loadRules(rulesToCompile,testConfig);
+		KieBuilder myBuilder = new RuleBuilder().loadRules(rulesToCompile);
 		KieModule myModule = myBuilder.getKieModule();
 
 		assertNotNull(myModule);

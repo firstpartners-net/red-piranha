@@ -104,7 +104,7 @@ public class DecisionModelRunnerTest {
 
 
 
-		DecisionModelRunner testRunner = new DecisionModelRunner(dummyIn,null,null);
+		DecisionModelRunner testRunner = new DecisionModelRunner(dummyIn,null);
 
 		DMNModel myModel = testRunner.getDmnModel("namespace-wont-match",TestConstants.SIMPLE_DECISION_MODEL);
 
@@ -115,7 +115,7 @@ public class DecisionModelRunnerTest {
 	@Test
 	public void testGetModelWithNameSpace() throws RPException{
 
-		DecisionModelRunner testRunner = new DecisionModelRunner(dummyIn,null,null);
+		DecisionModelRunner testRunner = new DecisionModelRunner(dummyIn,null);
 
 		DMNModel myModel = testRunner.getDmnModel("https://kiegroup.org/dmn/_54252F75-EDEF-4D4A-81DC-EA924A966D0E",TestConstants.SIMPLE_DECISION_MODEL);
 

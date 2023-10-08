@@ -79,8 +79,7 @@ public class SpreadSheetConvertorTest {
 		FileInputStream inputStream = new FileInputStream(testDataLocation);
 		wb = WorkbookFactory.create(inputStream);
 
-		SpreadSheetConvertor convertor = new SpreadSheetConvertor(appConfig);
-		return convertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
+		return SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 
 	}
 

@@ -24,12 +24,6 @@ public interface IDocumentOutStrategy {
 	 */
 	public String getOutputDestination();
 
-	/**
-	 * Allows us to pass details of the environment
-	 *
-	 * @param config a {@link net.firstpartners.core.Config} object
-	 */
-	void setConfig(Config config);
 
 	/**
 	 * Update our Original Document with new data

@@ -13,7 +13,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import net.firstpartners.core.Config;
 import net.firstpartners.core.file.ResourceFinder;
 
 /**
@@ -41,11 +40,11 @@ public class SampleDataLoader {
 	 * @throws com.fasterxml.jackson.core.exc.StreamReadException
 	 * @return a {@link java.util.List} object
 	 */
-	public static List<SampleData> loadSampleInformation(String jsonSampleDataFileName,Config appConfig) throws StreamReadException, DatabindException, IOException{
+	public static List<SampleData> loadSampleInformation(String jsonSampleDataFileName) throws StreamReadException, DatabindException, IOException{
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		File jsonSource = ResourceFinder.getFileResourceUsingConfig(jsonSampleDataFileName, appConfig);
+		File jsonSource = ResourceFinder.getFileResourceUsingConfig(jsonSampleDataFileName);
 		
 		List<SampleData> sampleData = objectMapper.readValue(
 		        jsonSource, 
@@ -63,7 +62,7 @@ public class SampleDataLoader {
 			log.debug("trying to find readme.html for:"+sampleReadme);
 
 			//Dind the sample file and read teh contents
-			File readmeHtml = ResourceFinder.getFileResourceUsingConfig(sampleReadme, appConfig);
+			File readmeHtml = ResourceFinder.getFileResourceUsingConfig(sampleReadme);
 			log.debug("Found file:"+readmeHtml.exists());
 
 			contents = FileUtils.readFileToString(readmeHtml, "utf-8");

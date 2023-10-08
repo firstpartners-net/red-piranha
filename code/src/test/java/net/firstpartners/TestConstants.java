@@ -19,6 +19,9 @@ public class TestConstants {
 
 	//Sample CSV file to append to
 	public static final String CSV_APPEND_FILE="src/test/resources/testdata/sample-csv-to-append-to.csv";
+
+	//Sample Directory to test against
+	public final static String DIRECTORY_SAMPLE="src/main/resources/examples/5_multi_excel/";
 	
 	
 	//Sample Rules files

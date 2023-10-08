@@ -14,6 +14,7 @@ import net.firstpartners.core.RedModel;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.file.CSVOutputStrategyMultiLine;
+import net.firstpartners.core.file.DirectoryInputStrategy;
 import net.firstpartners.core.file.PDFOutputStrategy;
 import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.core.json.JsonOutputStrategy;
@@ -121,6 +122,22 @@ public class RunnerFactoryTest {
 																									// is stored
 
 	}
+
+	@Test
+	public void testDirectoryFactory() throws RPException {
+		
+		
+		RedModel testModel = new RedModel("somedirectory/", "someFile",
+				"generic.xls");
+		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
+		assertNotNull(myRunner);
+		assertTrue (myRunner instanceof RuleRunner);
+		assertTrue(myRunner.getDocumentInputStrategy() instanceof DirectoryInputStrategy);
+		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
+																									// is stored
+
+	}
+
 
 	@Test
 	public void testUrlFactory() throws RPException {

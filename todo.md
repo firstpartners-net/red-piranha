@@ -4,12 +4,17 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 
 ## Next - Multiple files
-* Generate 2nd File and 3rd files in the 5-sample folder 
-    * copy generate spreasheet
-    * more simple json extraction (just first tample)
-    * create new DirectortInputStrategy to "walk" folder and call other input strategy
-    * Create DirectortInputStrategyTest and stub
-    * Write and test behaviou
+
+* write readme.html
+* confirm stateless rules
+complete new DirectortInputStrategy to "walk" folder and call other input strategy
+* complete DirectortInputStrategyTest and stub
+* change interface - returns InpputStrategy[] or interactor
+* Write and test behaviour
+* find and impement TODO
+
+## NTH
+* run and pass CellConvertorTest
 
 # Mini Snapshot -> Main
     * For later pulling down and test
@@ -20,13 +25,55 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     * Run other unit tests
         * any other unit test to try out specific conversation (search for Spreadhsheet convertor tess) ###
         * Unit test CellConvertorTest (contiguours ranes) - not returning values
-    * Restore all integration tests
-        * maybe run them independalty so a failure in one does not block all
 
 
-## Next - Documentation
+## Next - Deployment Official snaphot (tag and docker)
+* Can deploy and work against true docs
+* Merge branch back into main (and create bugfix branch)
+* Snapshot current code and make note for book readers
+* Add note on book to here
+* Tests passing - any others I can make work (quick check)
+
+
+## Upgrade Doc
+* add 3 minute quickstart
+    * Readme.md how to run the sample in VSCode online
+* add about new and old book
+* tidy off *notes*.md files
+
+* update notes-release.md and use to improve notes
+* Carry out release
+    * github
+    * docker
+
+
+
+
+## Release
+* Or at least update release notes
+* do interim github and docker release
+* Merge back into main, create new bugfix branch?
+
+## ##############
+
+## Next Sprint - after immediate needs
+
+## Use case - confirm
+
+* Future
+    * Create Fiancial extraction Sample - analsyis of single case POC - use 4 complex tmp
+    * multiple output options
+    * decision test
+* dsl based on existing - working and sharable
+* Tests
+    * integration tests - run  independalty so a failure in one does not block all
+
+## More Docs
+* Automate release (package and docker)
+* Resolve GitHub [firstpartners-net/red-piranha] pages build and deployment workflow run 
 * graphic to show steps (Prepprocess, Input Strategy convert excel->Java, Rules, Output Strategy convert Java -> CSV) and map against screenshot
 
+    
 ## Next - Data Quality
 * Simple Check rules
     * just enough rule to filter / check for dud data
@@ -34,68 +81,30 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * Cross reference back to data
     * add original cell refernece (need to track through as not currently accurate)
 
-## Next - Deployment Official snaphot
-* Can deploy and work against true docs
-* Snapshot current code and make note for book readers
-* dsl based on existing - working and sharable
-* Read all docs and refresh
-* Add note on book to here
-* Resolve GitHub [firstpartners-net/red-piranha] pages build and deployment workflow run 
-* Tests passing
 
-## Next upgrade Doc pre release
-* add 3 minute quickstart
-    * Readme.md how to run the sample in VSCode online
-* add about new and old book
-* tidy off *notes*.md files
-* update notes-release.md
-* Carry out release
-    * github
-    * docker
-
-## ##############
-
-## Next Sprint - after immediate needs
-
-* Future
-    * Create Fiancial extraction Sample - analsyis of single case POC - use 4 complex tmp
-    * multiple output options
-    * decision test
-* Improve Data Extraction
-    * Where we "Ignoring name already exists" - update script to cope better
-
-## Release
-* Automate release (package and docker)
-* Or at least update release notes
-* do interim github and docker release
-* Merge back into main, create new branch?
-
-## ##############
+## ############## MEDIUM TERM
 
 ## Tidy
 * Clear down warning
-* Figure out why current excel example is outputting incorrectly
+* Figure out why excel->excel example is outputting incorrectly
 * More info through to front end
 * more tests compile / rule
 * tidy of all readme pages
 * view vulneribilty report (right click top right of tabs and renable)
-
+* restore commented out tests (put @Test back on them)
+    * testJSONInOut
 
 ## upgrades and housekeeping
 
-* restore commented out tests (put @Test back on them)
-    * testJSONInOut
-* run JavaDoc checker and tidy comments
+
 * Migrate to latest version of all libs
 * tidy DSL example
 
 
 # Medium Term Ideas
 * better display of information in JSON
-* better handling of invalid cell refs - function to remove invalid?
-* Convert tesets using binary serizlied data to json (comment out in test constants)
 * RP using model from business central or simliar exported backage
-* Better display of Java objects - open by default
+* Better display of Java objects on webpage- open by default
 * Understand Github pages, Jekyll and see if can build an even 'friendlier' version of this site.
 * Outline how to integrate with KIE Server
 
@@ -103,7 +112,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 # Medium Term tidy
 * Tidy Bootstrap on web page
 * final tests running
-* Serialsiation - Into Tests of convertor / Java test data in JSON
+* Serialsiation - Into Tests of convertor / Java test data in JSON (replace binary)
 * Rengerate Javadoc, tidy to site
 * recover and reused previous examples (to web) - currently in test folder
 * Simplify down to Cells (remove all notion or ranges?)

@@ -42,7 +42,6 @@ public class SpreadSheetConvertor {
 	// Handle to the preprocessor
 	static PreProcessor preProcess = null;
 
-
 	// handle for our config
 	@Autowired
 	Config appConfig;

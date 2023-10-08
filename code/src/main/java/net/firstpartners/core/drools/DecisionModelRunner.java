@@ -37,6 +37,23 @@ public class DecisionModelRunner extends AbstractRunner {
 	DMNRuntime dmnRuntime;
 
 	/**
+	 * Overloaded constructor, will wrap documentinStrategy in a List
+	 * @param documentinStrategy
+	 */
+	protected DecisionModelRunner(IDocumentInStrategy documentinStrategy, IDocumentOutStrategy outputStrategy,Config appConfig){
+		
+		List<IDocumentInStrategy> inList = new ArrayList<IDocumentInStrategy>();
+		inList.add(documentinStrategy);
+
+		this.inputStrategy = inList;
+		this.outputStrategy = outputStrategy;
+		this.appConfig = appConfig;
+
+	}
+
+
+
+	/**
 	 * Construct a new Runner.
 	 *
 	 * @see RunnerFactory in this package which we use to build a properly
@@ -47,9 +64,9 @@ public class DecisionModelRunner extends AbstractRunner {
 	 *                         object
 	 * @param appConfig        a {@link net.firstpartners.core.Config} object
 	 */
-	protected DecisionModelRunner(IDocumentInStrategy documentStrategy, IDocumentOutStrategy outputStrategy,
+	protected DecisionModelRunner(List<IDocumentInStrategy> documentinStrategy, IDocumentOutStrategy outputStrategy,
 			Config appConfig) {
-		this.inputStrategy = documentStrategy;
+		this.inputStrategy = documentinStrategy;
 		this.outputStrategy = outputStrategy;
 		this.appConfig = appConfig;
 

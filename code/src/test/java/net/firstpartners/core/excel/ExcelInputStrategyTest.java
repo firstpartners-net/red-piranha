@@ -60,7 +60,7 @@ public class ExcelInputStrategyTest {
 		RedModel redModel = new RedModel(TestConstants.XLSX_DATA_FILE,TestConstants.SIMPLE_LOG_MODIFY_RULES_FILE,"some-dummy.xls");
 
 		RuleRunner runner =(RuleRunner)RunnerFactory.getRuleRunner(redModel);
-		assertTrue (runner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
+		assertTrue (runner.getDocumentInputStrategy().get(0) instanceof ExcelInputStrategy);
 		
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();

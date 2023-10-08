@@ -1,7 +1,9 @@
 package net.firstpartners.core.drools;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -22,7 +24,8 @@ import net.firstpartners.data.RangeList;
 /**
  * Call JBoss Drools (Rules Engine) passing in Document data as Java Objects
  *
- * This class uses an IDocumentStrategy Object to handle different types
+ * This class uses an IDocumentStrategy Object to handle different types of
+ * input and output.
  *
  * @author paulf
  * @version $Id: $Id
@@ -35,7 +38,7 @@ public abstract class AbstractRunner implements IRunner {
 	// Handle to the Strategy Class for specific incoming document (Excel, Word etc
 	// tasks)
 	// Setup by RunnerFactory
-	protected IDocumentInStrategy inputStrategy = null;
+	protected List<IDocumentInStrategy> inputStrategy = new ArrayList<IDocumentInStrategy>();
 
 	// Handle to the logger
 	protected Logger log = LoggerFactory.getLogger(this.getClass());
@@ -49,7 +52,7 @@ public abstract class AbstractRunner implements IRunner {
 	 *
 	 * @return the strategy object
 	 */
-	public IDocumentInStrategy getDocumentInputStrategy() {
+	public List<IDocumentInStrategy> getDocumentInputStrategy() {
 		return inputStrategy;
 	}
 
@@ -87,75 +90,90 @@ public abstract class AbstractRunner implements IRunner {
 	 */
 	public RedModel callRules(RedModel ruleModel)
 			throws RPException, ResourceException, ScriptException {
+		//loop over our input file(s)
+		for(IDocumentInStrategy thisDocumentSource : this.inputStrategy)
+		{  
 
-		// Convert the cell and log if we have a handle
-		ruleModel.addUIInfoMessage("Opening Input :" + this.inputStrategy.getInputName());
-		RangeList ranges;
-		try {
-			ranges = inputStrategy.getJavaBeansFromSource();
-		} catch (EncryptedDocumentException | InvalidFormatException | IOException e) {
-			throw new RPException("Error when opening Input", e);
-		}
 
-		// Set the Modified flag on the cells
-		if (ranges != null) {
-			ranges.cascadeResetIsModifiedFlag();
-		}
+			// Convert the cell and log if we have a handle
 
-		// Update / snapshot our progress
-		ruleModel.setPreRulesSnapShot(ranges);
-		ruleModel.setUIProgressStatus(10);
+			ruleModel.addUIInfoMessage("Opening Input :" + thisDocumentSource.getInputName());
+			RangeList ranges;
+			try {
+				ranges = thisDocumentSource.getJavaBeansFromSource();
+			} catch (EncryptedDocumentException | InvalidFormatException | IOException e) {
+				throw new RPException("Error when opening Input", e);
+			}
 
-		// Add the document contents as facts into the working Memory
-		ruleModel.addUIInfoMessage("Adding Excel Cells as facts into Rule Engine Memory");
+			// Set the Modified flag on the cells
+			if (ranges != null) {
+				ranges.cascadeResetIsModifiedFlag();
+			}
 
-		if (ranges != null) {
-			ruleModel.addFacts(ranges.getAllCellsInAllRanges());
-		} else {
-			throw new RPException("No Data (Ranges =null) was passed in, this is unlikely to be what you want");
-		}
+			// Update / snapshot our progress
+			ruleModel.setPreRulesSnapShot(ranges);
 
-		ruleModel.setUIProgressStatus(30);
+			// Add the document contents as facts into the working Memory
+			ruleModel.addUIInfoMessage("Adding Excel Cells as facts into Rule Engine Memory");
 
-		// Load and fire our rules files against the data
-		Collection<Cell> newFacts = runModel(ruleModel);
+			if (ranges != null) {
+				ruleModel.addFacts(ranges.getAllCellsInAllRanges());
+			} else {
+				throw new RPException("No Data (Ranges =null) was passed in, this is unlikely to be what you want");
+			}
 
-		// update the progress bar
-		ruleModel.setUIProgressStatus(60);
+			// Load and fire our rules files against the data
+			Collection<Cell> newFacts = runModel(ruleModel);
 
-		// Make a note of any new facts added
-		ruleModel.addUIInfoMessage("Collecting New Cells and put them into Excel");
-		Range newRange = new Range("New Facts");
-		newRange.put(newFacts);
-		ranges.add(newRange);
-		ruleModel.setUIProgressStatus(80);
+			// Make a note of any new facts added
+			ruleModel.addUIInfoMessage("Collecting New Cells and put them into Excel");
+			Range newRange = new Range("New Facts");
+			newRange.put(newFacts);
+			ranges.add(newRange);
 
-		// update a copy of the original document (to be saved as copy) with the result
-		// of our rules
-		log.debug("RunRules - object " + inputStrategy.getOriginalDocument());
-		try {
-			outputStrategy.setUpdates(inputStrategy.getOriginalDocument(), ranges);
-		} catch (IOException e) {
-			throw new RPException("Error when updating document", e);
-		}
+			// update a copy of the original document (to be saved as copy) with the result
+			// of our rules
+			try {
+				outputStrategy.setUpdates(thisDocumentSource.getOriginalDocument(), ranges);
+			} catch (IOException e) {
+				throw new RPException("Error when updating document", e);
+			}
 
-		ruleModel.addUIInfoMessage("Write to Output file:" + outputStrategy.getOutputDestination());
-		ruleModel.setUIProgressStatus(90);
+			ruleModel.addUIInfoMessage("Write to Output file:" + outputStrategy.getOutputDestination());
 
-		// update our post rules snapshot
-		ruleModel.setPostRulesSnapShot(ranges);
+			// update our post rules snapshot
+			ruleModel.setPostRulesSnapShot(ranges);
 
-		// make sure both get written (to disk?)
-		try {
-			outputStrategy.processOutput();
-		} catch (InvalidFormatException | IOException e) {
-			throw new RPException("Error when writing out document", e);
-		}
-		ruleModel.setUIProgressStatus(100);
+			// make sure both get written (to disk?)
+			try {
+				outputStrategy.processOutput();
+			} catch (InvalidFormatException | IOException e) {
+				throw new RPException("Error when writing out document", e);
+			}
+
+		} // end loop over docuemtns
 
 		return ruleModel;
 
 	}
+
+    /**
+     * Fail safe method - ensure that config data is set on all input and output strategies
+     */
+    public void setConfigAllStrategies(Config appConfig){
+
+		// set the config on the (single) output strategy
+		this.outputStrategy.setConfig(appConfig);
+
+		// Loop and set the config on the mutiple input strategies
+		for(IDocumentInStrategy thisDocumentSource : this.inputStrategy)
+		{  
+			thisDocumentSource.setConfig(appConfig);
+		}
+
+
+	}
+
 
 	/**
 	 * Abstract Method to be implemented by subclasses

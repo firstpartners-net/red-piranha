@@ -35,7 +35,7 @@ public class RunnerFactoryTest {
 		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
 		assertTrue (myRunner instanceof RuleRunner);
-		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
+		assertTrue(myRunner.getDocumentInputStrategy().get(0) instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 
 	}
@@ -48,7 +48,7 @@ public class RunnerFactoryTest {
 		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
 		assertTrue (myRunner instanceof RuleRunner);
-		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
+		assertTrue(myRunner.getDocumentInputStrategy().get(0) instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 
 	}
@@ -60,7 +60,7 @@ public class RunnerFactoryTest {
 		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
 		assertTrue (myRunner instanceof RuleRunner);
-		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordInputStrategy);
+		assertTrue(myRunner.getDocumentInputStrategy().get(0) instanceof WordInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof CSVOutputStrategyMultiLine);
 
 	}
@@ -73,7 +73,7 @@ public class RunnerFactoryTest {
 		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
 		assertTrue (myRunner instanceof RuleRunner);
-		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordXInputStrategy);
+		assertTrue(myRunner.getDocumentInputStrategy().get(0) instanceof WordXInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof PDFOutputStrategy);
 
 	}
@@ -86,7 +86,7 @@ public class RunnerFactoryTest {
 		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
 		assertTrue (myRunner instanceof RuleRunner);
-		assertTrue(myRunner.getDocumentInputStrategy() instanceof WordInputStrategy);
+		assertTrue(myRunner.getDocumentInputStrategy().get(0) instanceof WordInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof CSVOutputStrategyMultiLine);
 
 	}
@@ -117,7 +117,7 @@ public class RunnerFactoryTest {
 		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
 		assertTrue (myRunner instanceof RuleRunner);
-		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
+		assertTrue(myRunner.getDocumentInputStrategy().get(0) instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 																									// is stored
 
@@ -132,7 +132,7 @@ public class RunnerFactoryTest {
 		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
 		assertTrue (myRunner instanceof RuleRunner);
-		assertTrue(myRunner.getDocumentInputStrategy() instanceof DirectoryInputStrategy);
+		assertTrue(myRunner.getDocumentInputStrategy().get(0) instanceof DirectoryInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 																									// is stored
 
@@ -147,7 +147,7 @@ public class RunnerFactoryTest {
 		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
 		assertTrue (myRunner instanceof RuleRunner);
-		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
+		assertTrue(myRunner.getDocumentInputStrategy().get(0) instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 
 	}
@@ -189,7 +189,7 @@ public class RunnerFactoryTest {
 		RuleRunner myRunner = (RuleRunner)RunnerFactory.getRuleRunner(testModel);
 		assertNotNull(myRunner);
 		assertTrue (myRunner instanceof RuleRunner);
-		assertTrue(myRunner.getDocumentInputStrategy() instanceof JsonInputStrategy);
+		assertTrue(myRunner.getDocumentInputStrategy().get(0) instanceof JsonInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof JsonOutputStrategy);
 																									// is stored
 
@@ -207,7 +207,7 @@ public class RunnerFactoryTest {
 		//this is the key test
 		assertTrue (myRunner instanceof DecisionModelRunner);
 
-		assertTrue(myRunner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
+		assertTrue(myRunner.getDocumentInputStrategy().get(0) instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
 
 

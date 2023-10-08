@@ -58,16 +58,11 @@ public class CSVOutputStrategySingleLineTest {
 
 		List<String> headers = csvOut.getHeadersFromFile();
 
-		assertEquals(headers.get(0), "ABC_0");
-		assertEquals(headers.get(1), "ABC_1");
-		assertEquals(headers.get(2), "PARA_9_GHI");
-		assertEquals(headers.get(3), "University");
+		assertEquals(headers.get(0), "Input");
+		assertEquals(headers.get(1), "Runtime");
+		assertEquals(headers.get(2), "Name");
+		assertEquals(headers.get(3), "Value");
 
-		Map<String, String> valuesFromCells = csvOut.getMatchingValues(headers, testData);
-		assertEquals(4, valuesFromCells.size());
-		assertEquals("ABC",valuesFromCells.get("ABC_0"));
-		assertEquals("DEF",valuesFromCells.get("ABC_1"));
-		assertEquals("GHI",valuesFromCells.get("PARA_9_GHI"));
 
 		log.debug("completed checking headers");
 

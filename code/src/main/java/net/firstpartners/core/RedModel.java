@@ -55,8 +55,6 @@ public class RedModel implements IStatusUpdate {
 
 	private String UICurrentStatus;
 
-	private int uIProgressStatus;
-
 	/**
 	 * Default constructor - needed so this remains a bean
 	 */
@@ -322,14 +320,6 @@ public class RedModel implements IStatusUpdate {
 		return UICurrentStatus;
 	}
 
-	/**
-	 * <p>Getter for the field <code>uIProgressStatus</code>.</p>
-	 *
-	 * @return a int
-	 */
-	public int getUIProgressStatus() {
-		return uIProgressStatus;
-	}
 
 	/**
 	 * <p>getUserMessageContents.</p>
@@ -491,14 +481,6 @@ public class RedModel implements IStatusUpdate {
 		this.UICurrentStatus = currentStatus;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * Notifies the user of percentage progress made
-	 */
-	public void setUIProgressStatus(int uIProgressStatus) {
-		this.uIProgressStatus = uIProgressStatus;
-	}
 
 	/** {@inheritDoc} */
 	@Override

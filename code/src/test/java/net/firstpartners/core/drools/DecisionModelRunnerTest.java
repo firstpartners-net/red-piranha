@@ -13,12 +13,16 @@ import org.slf4j.LoggerFactory;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
+import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.data.Cell;
 
 public class DecisionModelRunnerTest {
 
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
+
+	//needed as a paramter for some tests but not used
+	private JsonInputStrategy dummyIn = new JsonInputStrategy("");
 
 	/**
 	 * @throws Exception
@@ -87,7 +91,9 @@ public class DecisionModelRunnerTest {
 	@Test
 	public void testGetModelMadeupNoNameSpace() throws RPException{
 
-		DecisionModelRunner testRunner = new DecisionModelRunner(null,null,null);
+
+
+		DecisionModelRunner testRunner = new DecisionModelRunner(dummyIn,null,null);
 
 		DMNModel myModel = testRunner.getDmnModel("namespace-wont-match",TestConstants.SIMPLE_DECISION_MODEL);
 
@@ -98,7 +104,7 @@ public class DecisionModelRunnerTest {
 	@Test
 	public void testGetModelWithNameSpace() throws RPException{
 
-		DecisionModelRunner testRunner = new DecisionModelRunner(null,null,null);
+		DecisionModelRunner testRunner = new DecisionModelRunner(dummyIn,null,null);
 
 		DMNModel myModel = testRunner.getDmnModel("https://kiegroup.org/dmn/_54252F75-EDEF-4D4A-81DC-EA924A966D0E",TestConstants.SIMPLE_DECISION_MODEL);
 

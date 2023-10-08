@@ -80,7 +80,7 @@ public class JsonInputStrategyTest {
 		RedModel redModel = new RedModel(TestConstants.JSON_SERIAL_FILE_SIMPLE, TestConstants.SIMPLE_LOG_MODIFY_RULES_FILE, "some-dummy.xls");
 
 		RuleRunner runner = (RuleRunner)RunnerFactory.getRuleRunner(redModel);
-		assertTrue(runner.getDocumentInputStrategy() instanceof JsonInputStrategy);
+		assertTrue(runner.getDocumentInputStrategy().get(0) instanceof JsonInputStrategy);
 
 		// set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();

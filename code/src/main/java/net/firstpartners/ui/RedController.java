@@ -97,7 +97,7 @@ public class RedController {
 			IRunner runner = RunnerFactory.getRuleRunner(redModel,appConfig);
 
 			//Update configuration on this
-			runner.getDocumentInputStrategy().setConfig(appConfig);
+			runner.setConfigAllStrategies(appConfig);
 		
 			//Update our output strategy with additional info we want it to use
 			HashMap<String,String> additionalOutputs = new HashMap<String,String>();

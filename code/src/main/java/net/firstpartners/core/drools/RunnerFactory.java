@@ -101,7 +101,7 @@ public class RunnerFactory {
 	 * @return
 	 * @throws RPException
 	 */
-	static List<Class<?>> getInputMapping(String fileName) throws RPException {
+	static List<Class<?>> getInputMapping(String subDir, String fileName) throws RPException {
 
 		//check incoming values
 		assert fileName != null;
@@ -116,14 +116,14 @@ public class RunnerFactory {
 		List<Class<?>> returnClassList = new ArrayList<Class<?>>();
 
 		//Check for directory
-		returnClassList.addAll(handleDirectoryInput(null,fileName));
+		returnClassList.addAll(handleDirectoryInput(null,subDir,fileName));
 
 		//No results, then try individual file mapping
 		if(returnClassList ==null|| returnClassList.size()==0){
 
 
 			//try and map our values to a source
-			log.debug("Checking:"+fileName);
+			log.debug("Checking to get mapping for files of type:"+fileName);
 
 			int splitPoint = fileName.lastIndexOf(".");
 
@@ -153,27 +153,32 @@ public class RunnerFactory {
 	/**
 	 * check if we have directory input, review the files in that directory, and get an input strategy for each file
 	 */
-	static List<Class<?>> handleDirectoryInput(Config appConfig, String fileName) {
+	static List<Class<?>> handleDirectoryInput(Config appConfig, String subDir, String fileName) {
+
+
+		//TODO - use baseDir as part of our decision
 
 		// handle for our return value(s)		
 		List<Class<?>> returnClassList = new ArrayList<Class<?>>();
 
-		if(fileName.endsWith("/")){
+		log.debug("Testing for directory based on subdir:"+subDir+" filename:"+fileName);
 
-			log.debug("Attemping to generate strategies for files in Directory:"+fileName);
+		
+		if(fileName.equals("")){
 
-			List<File> tmpFiles=ResourceFinder.getFilesInDirUsingConfig(appConfig,fileName);
+			log.debug("Attemping to generate strategies for files in Directory:"+subDir);
 
-			for(File thisFile : tmpFiles){
+			List<File> filesInDirectory=ResourceFinder.getFilesInDirUsingConfig(appConfig,subDir);
+
+			for(File thisFile : filesInDirectory){
 				
 				String tmpFileName="";
 
 				//do a recursive call to get the strategy for this single file
-				//TODO this filename probably needs modified- so we can find it
 				try {
 					log.debug("Recursive call to identify strategy for:"+thisFile.getCanonicalPath());
 					tmpFileName = thisFile.getCanonicalPath();
-					returnClassList.addAll(getInputMapping(tmpFileName));
+					returnClassList.addAll(getInputMapping(subDir,tmpFileName));
 				} catch (IOException e) {
 					log.warn("Ignoring IO Error when trying to look at:"+tmpFileName);
 				} catch (RPException rpe) {
@@ -183,7 +188,7 @@ public class RunnerFactory {
 			
 
 		} else {
-			log.debug("Not a directory - will attempt to treat later as an input file");
+			log.debug("Not a directory:"+fileName+"- will attempt to treat later as an input file");
 		}
 
 		return returnClassList;
@@ -264,6 +269,7 @@ public class RunnerFactory {
 			throws RPException {
 
 		// check our incoming params
+		assert appConfig!=null;
 		assert redModel != null;
 		assert redModel.getInputFileLocation() != null;
 		assert redModel.getRuleFileLocation() != null;
@@ -309,12 +315,17 @@ public class RunnerFactory {
 	 */
 	private static List<IDocumentInStrategy> defineInputStrategies(RedModel redModel, Config appConfig) throws RPException {
 
+		//check our incoming values
+		assert redModel!=null;
+		assert appConfig!=null;
+
+
 		//setup our return list		
 		List <IDocumentInStrategy>inputStrategies = new ArrayList<IDocumentInStrategy>();
 		
 		// Decide on our input strategy(s)
 		log.debug("Trying to create strategy(s) to input:"+redModel.getInputFileLocation());
-		List<Class<?>> strategyClassList = getInputMapping(redModel.getInputFileLocation());
+		List<Class<?>> strategyClassList = getInputMapping(redModel.getSubDirectory(),redModel.getInputFileLocation());
 
 		//Now loop through and create these
 		for(Class<?> tmpClass :strategyClassList ){
@@ -325,10 +336,10 @@ public class RunnerFactory {
 			try {
 				constructor = tmpClass.getConstructor(String.class);
 				IDocumentInStrategy tmpStrategy = (IDocumentInStrategy) constructor
-						.newInstance(redModel.getBaseDirectory() + redModel.getInputFileLocation());
+						.newInstance(redModel.getSubDirectory() + redModel.getInputFileLocation());
 
 				// pass in the config
-				tmpStrategy.setSubDirectory(redModel.getBaseDirectory());
+				tmpStrategy.setSubDirectory(redModel.getSubDirectory());
 				tmpStrategy.setConfig(appConfig);
 
 				//Add this out our returnList
@@ -364,7 +375,7 @@ public class RunnerFactory {
 		try {
 			constructor = strategyClass.getConstructor(String.class);
 			outputStrat = (IDocumentOutStrategy) constructor
-					.newInstance(redModel.getBaseDirectory() + redModel.getOutputFileLocation());
+					.newInstance(redModel.getSubDirectory() + redModel.getOutputFileLocation());
 
 		} catch (NoSuchMethodException | SecurityException | InstantiationException | InvocationTargetException
 				| IllegalAccessException e) {
@@ -372,7 +383,7 @@ public class RunnerFactory {
 		}
 
 		// pass in the config
-		outputStrat.setSubDirectory(redModel.getBaseDirectory());
+		outputStrat.setSubDirectory(redModel.getSubDirectory());
 		outputStrat.setConfig(appConfig);
 		return outputStrat;
 	}

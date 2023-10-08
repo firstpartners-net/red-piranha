@@ -20,9 +20,12 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.CellReference;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
@@ -30,8 +33,8 @@ import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.file.ResourceFinder;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@SpringBootTest
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 public class ScriptSupportTest {
 
 	// Handle to the loggers
@@ -48,6 +51,8 @@ public class ScriptSupportTest {
 
 	@Test
 	public final void testSingleCellNaming() throws Exception {
+
+		assertNotNull(appConfig);
 
 		File xlFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.COMPLEX_EXCEL, appConfig);
 		InputStream inputAsStream = new FileInputStream(xlFile);

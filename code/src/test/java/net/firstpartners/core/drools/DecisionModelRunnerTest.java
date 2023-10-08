@@ -6,20 +6,31 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.kie.dmn.api.core.DMNModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.firstpartners.TestConstants;
+import net.firstpartners.core.Config;
 import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.data.Cell;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 public class DecisionModelRunnerTest {
 
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
+
+		// handle for our config
+	@Autowired
+	Config appConfig;
 
 	//needed as a paramter for some tests but not used
 	private JsonInputStrategy dummyIn = new JsonInputStrategy("");

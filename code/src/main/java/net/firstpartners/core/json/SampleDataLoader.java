@@ -22,6 +22,7 @@ import net.firstpartners.core.file.ResourceFinder;
  * @author paulf
  * @version $Id: $Id
  */
+
 public class SampleDataLoader {
 
 	/** Constant <code>SAMPLE_INFO_IN_JSON="examples.json"</code> */
@@ -58,7 +59,7 @@ public class SampleDataLoader {
 		for (SampleData singleSample : sampleData) {
 
 			//check for readme.html	
-			String sampleReadme = singleSample.getBaseDirectory()+"readme.html";
+			String sampleReadme = singleSample.getSubDirectory()+"readme.html";
 			log.debug("trying to find readme.html for:"+sampleReadme);
 
 			//Dind the sample file and read teh contents

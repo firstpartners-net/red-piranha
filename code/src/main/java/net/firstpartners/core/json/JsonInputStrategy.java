@@ -1,5 +1,7 @@
 package net.firstpartners.core.json;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -82,7 +84,8 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 		
 		//beware - the following can generate a lot of Json into the log! 
 		//log.debug("Found:"+rootNode);
-		rootNode =null;
+		assertNotNull(rootNode);
+		
 		
 
 		

@@ -5,19 +5,14 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Next - Multiple files
 
-* NEXT DECIDE
-    * decide how to handle ignored files check where is is no mapping
-    * decide on how multiple input strategies get set (poss remove directorystrategy, return list of ...?)
+* NEXT RESOLVE
+    * Bring through subdir and allow strategy based on that
+    * Sample 5 - integration test
+        * why not picking up on files in direcotyr (ResourceFinder?) when can do it in SampleDataLoader
+    * Sample 5 - on web
+    * Work though Unit tests again
+        * confirm no issues wiht appConfig being null
 
-* NEXT
-* find and impement TODO
-* Complete
-    * DirectortInputStrategy to "walk" folder and call other input strategy
-    * complete DirectortInputStrategyTest and stub
-* Confirm other tests stil working
-    * work through issues / test failing
-* NTH
-    * run and pass CellConvertorTest
 
 
 # Mini Snapshot -> Main
@@ -31,7 +26,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
         * Unit test CellConvertorTest (contiguours ranes) - not returning values
 
 
-## Next - Deployment Official snaphot (tag and docker)
+## Next - Deployment snaphot (tag and docker)
 * Can deploy and work against true docs
 * Merge branch back into main (and create bugfix branch)
 * Snapshot current code and make note for book readers

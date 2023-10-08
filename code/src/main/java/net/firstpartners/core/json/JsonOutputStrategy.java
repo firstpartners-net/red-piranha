@@ -7,6 +7,8 @@ import java.util.Map;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,6 +28,7 @@ import net.firstpartners.data.RangeList;
  */
 public class JsonOutputStrategy implements IDocumentOutStrategy {
 
+	@Autowired
 	private Config appConfig;
 
 	// Logger
@@ -50,7 +53,6 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 	public JsonOutputStrategy(String outputFileName) {
 		this.outputFile = outputFileName;
 	}
-
 
 
 	public String getSubDirectory() {
@@ -95,6 +97,7 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 	 */
 	@Override
 	public void processOutput() throws IOException, InvalidFormatException {
+
 
 		// create a writer - set to append (true)
 		String outputDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);

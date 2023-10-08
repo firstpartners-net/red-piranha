@@ -7,8 +7,12 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
@@ -23,10 +27,17 @@ import net.firstpartners.core.json.JsonOutputStrategy;
 import net.firstpartners.core.word.WordInputStrategy;
 import net.firstpartners.core.word.WordXInputStrategy;
 
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 public class RunnerFactoryTest {
 
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
+
+	// handle for our config
+	@Autowired
+	Config appConfig;
 	
 	@Test
 	public void testGenericXLSFactory() throws RPException{
@@ -207,9 +218,9 @@ public class RunnerFactoryTest {
 	@Test
 	public void testInputMappings() throws RPException {
 
-		Object tmpObject = RunnerFactory.getInputMapping("something.xlsx");
+		Object tmpObject = RunnerFactory.getInputMapping("","something.xlsx");
 		log.debug("InputMapping:"+tmpObject);
-		assertTrue(RunnerFactory.getInputMapping("something.xlsx").get(0) == ExcelInputStrategy.class);
+		assertTrue(RunnerFactory.getInputMapping("","something.xlsx").get(0) == ExcelInputStrategy.class);
 	}
 	
 	@Test

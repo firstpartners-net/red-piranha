@@ -15,16 +15,19 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.file.ResourceFinder;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@SpringBootTest
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 public class PreProcessorTest {
 
 	// Handle to the loggers

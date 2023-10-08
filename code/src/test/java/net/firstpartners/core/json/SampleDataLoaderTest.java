@@ -76,8 +76,8 @@ class SampleDataLoaderTest {
 			log.debug(thisSample.toString());
 
 			
-			assertNotNull(thisSample.getBaseDirectory());
-			assertNotNull(thisSample.getBaseDirectory());
+			assertNotNull(thisSample.getSubDirectory());
+			assertNotNull(thisSample.getDslFileLocation());
 			assertNotNull(thisSample.getInputFileLocation());
 			assertNotNull(thisSample.getRuleFileLocation());
 			assertNotNull(thisSample.getOutputFileLocation());

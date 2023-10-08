@@ -8,7 +8,10 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import jakarta.annotation.PostConstruct;
 import net.firstpartners.core.Config;
 
 /**
@@ -17,11 +20,23 @@ import net.firstpartners.core.Config;
  * @author paulf
  * @version $Id: $Id
  */
+@Component
 public class ResourceFinder {
 
 	// Handle to the logger
 	private static Logger log = LoggerFactory.getLogger(ResourceFinder.class);
 
+	//handle to our config
+	@Autowired
+	private Config appConfig0;
+	private static Config appConfig; // done this way to allow for post constrcut
+
+
+	@PostConstruct     
+  	  private void initStaticConfig () {
+		log.debug("Setting post construct app config");
+     	appConfig = this.appConfig0;
+  	}
 	/**
 	 * Try to load the file at resource name , in this order 1) in working directory
 	 * 2) in directory as specified in Config.sampleBaseDirDefault + ResourceName 3)
@@ -35,6 +50,10 @@ public class ResourceFinder {
 	 * @return a {@link java.io.File} object
 	 */
 	public static File getFileResourceUsingConfig(String resourceName, Config appConfig) throws FileNotFoundException {
+
+		//Check incoming params
+		assert appConfig!=null: "Config should not be null";
+
 		return getFileResourceUsingConfig("", resourceName, appConfig);
 	}
 
@@ -53,6 +72,9 @@ public class ResourceFinder {
 	public static File getFileResourceUsingConfig(String baseDir, String resourceName, Config appConfig)
 			throws FileNotFoundException {
 
+		//Check incoming params
+		assert appConfig!=null: "Config should not be null";
+		
 		String seekName = resourceName;
 
 		if (baseDir != null && baseDir != "") {
@@ -113,11 +135,28 @@ public class ResourceFinder {
 	 */
 	public static String getDirectoryResourceUsingConfig(Config appConfig) throws FileNotFoundException {
 
-		return getDirectoryResourceUsingConfig(appConfig, appConfig.getSampleBaseDirDefault());
+		//Check incoming params
+		assert appConfig!=null: "Config should not be null";
+
+		String directoryName = appConfig.getSampleBaseDirDefault();
+
+		return getDirectoryResourceUsingConfig(appConfig,directoryName);
 
 	}
 
+	/**
+	 * Try to load the file at resource name , in this order 1) in working directory
+	 * 2) in directory as specified in Config.sampleBaseDirDefault + ResourceName 3)
+	 * 3) in directory as specified in Config.sampleBaseDirAlternate + ResourceName
+	 *
+	 * @param appConfig a {@link net.firstpartners.core.Config} object
+	 * @throws java.io.FileNotFoundException
+	 * @return a {@link java.lang.String} object
+	 */
 	public static String getDirectoryResourceUsingConfig(Config appConfig, String directoryName) {
+
+		//Check incoming params
+		assert appConfig!=null: "Config should not be null";
 
 		// We need config info to try backups - default to current working directory
 		if (appConfig == null) {
@@ -132,6 +171,8 @@ public class ResourceFinder {
 
 			return workingDir;
 
+		} else {
+			log.debug("AppConfig is not null");
 		}
 
 		// String defaultDir =
@@ -171,33 +212,40 @@ public class ResourceFinder {
 
 		// Try to locate using config
 		String foundDir = getDirectoryResourceUsingConfig(appConfig, directoryToFind);
+
 		if (foundDir == null || foundDir.equals("")) {
+
+			// attempt to use direct pass in value
 			foundDir = directoryToFind; // revert to previous value
+			log.debug("Reverting to Original Directory:" + foundDir);
 
+		} else {
 			log.debug("Looking for Modified Directory:" + foundDir);
+		}
 
-			// Creating a File object for directory
-			File directoryPath = new File(foundDir);
-			log.debug("Found Dir:" + directoryPath);
+		// Creating a File object for directory
+		File directoryPath = new File(foundDir);
+		log.debug("Found Dir:" + directoryPath);
 
-			// List of all files and directories
-			File[] filesList = directoryPath.listFiles();
-			if (filesList != null) {
-				log.debug("Number of files found:" + filesList.length);
-				//for (int i = 0; i < filesList.length; i++) {
-				//	log.debug(filesList[i].getAbsolutePath());
-				//}
+		// List of all files and directories
+		File[] filesList = directoryPath.listFiles();
+		if (filesList != null) {
 
-				Collections.addAll(foundFiles, filesList);
-			} else {
-				log.info("No files found in directory");
-			}
+			log.debug("Number of files found:" + filesList.length);
+
+			// for (int i = 0; i < filesList.length; i++) {
+			// log.debug(filesList[i].getAbsolutePath());
+			// }
 
 			// adding elements of array to arrayList.
 
-
-
+			Collections.addAll(foundFiles, filesList);
+		} else {
+			log.info("No files found in directory");
 		}
+
 		return foundFiles;
 	}
+
+
 }

@@ -9,10 +9,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.firstpartners.core.Config;
 import net.firstpartners.core.MemoryOutputStrategy;
@@ -30,6 +32,7 @@ import net.firstpartners.core.json.SampleDataLoader;
  * @author paulf
  *
  */
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 class IntegrationTests {
 
@@ -62,7 +65,7 @@ class IntegrationTests {
 	 * @throws Exception
 	 */
 	void testSpecificExample() throws Exception, RPException {
-		sampleTestRunner(4);
+		sampleTestRunner(5);
 	}
 
 
@@ -111,7 +114,7 @@ class IntegrationTests {
 			testModel.setRuleFileLocation(thisExample.getRuleFileLocation());
 			testModel.setOutputFileLocation(thisExample.getOutputFileLocation());
 			testModel.setDslFileLocation(thisExample.getDslFileLocation());
-			testModel.setBaseDirectory(thisExample.getBaseDirectory());
+			testModel.setSubDirectory(thisExample.getSubDirectory());
 
 			log.debug("Running:\n" + testModel);
 
@@ -129,7 +132,7 @@ class IntegrationTests {
 			//log.debug(testModel.toString());
 			
 			
-			//check not blowing up and that we have
+			//check not blowing up and that we have a value back
 			assertNotNull(outputStrategy.getProcessedDocument());
 			
 		}

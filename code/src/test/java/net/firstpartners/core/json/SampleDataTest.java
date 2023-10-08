@@ -37,7 +37,7 @@ class SampleDataTest {
 	void testGetSampleUrl() throws UnsupportedEncodingException {
 		
 		SampleData testData = new SampleData();
-		testData.setBaseDirectory("/blah");
+		testData.setSubDirectory("/blah");
 		testData.setDslFileLocation("example/dslfile.dsl");
 		testData.setInputFileLocation("example/inputfile.xls");
 		testData.setOutputFileLocation("example/outputFile.xls");

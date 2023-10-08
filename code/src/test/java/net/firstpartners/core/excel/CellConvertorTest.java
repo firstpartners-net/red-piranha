@@ -16,21 +16,29 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.CellReference;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.firstpartners.TestConstants;
+import net.firstpartners.core.Config;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 public class CellConvertorTest {
 
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	//private static RangeList redData = null;
-	//private static Workbook excelData = null;
-
+	// handle for our config
+	@Autowired
+	Config appConfig;
+	
 	@Test
 	public final void testConvertRedCellToPoiCell() throws IOException, ClassNotFoundException {
 		

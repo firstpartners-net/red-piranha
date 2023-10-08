@@ -81,7 +81,7 @@ public class DirectoryInputStrategyTest {
 		RedModel redModel = new RedModel(TestConstants.DIRECTORY_SAMPLE, TestConstants.SIMPLE_LOG_MODIFY_RULES_FILE, "some-dummy.xls");
 
 		RuleRunner runner = (RuleRunner)RunnerFactory.getRuleRunner(redModel);
-		assertTrue(runner.getDocumentInputStrategy() instanceof DirectoryInputStrategy);
+		assertTrue(runner.getDocumentInputStrategy().get(0) instanceof DirectoryInputStrategy);
 
 		// set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();

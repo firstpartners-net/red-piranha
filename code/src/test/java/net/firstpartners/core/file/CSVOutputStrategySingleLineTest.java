@@ -52,8 +52,7 @@ public class CSVOutputStrategySingleLineTest {
 	@Test
 	public final void testGetMatchHeadersFromCSV() throws FileNotFoundException, ClassNotFoundException, IOException {
 
-		RangeList testData = RedControllerTest.getTestDataFromWord();
-
+	
 		CSVOutputStrategySingleLine csvOut = new CSVOutputStrategySingleLine(TestConstants.CSV_APPEND_FILE);
 
 		List<String> headers = csvOut.getHeadersFromFile();

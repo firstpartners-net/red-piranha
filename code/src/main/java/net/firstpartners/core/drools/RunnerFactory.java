@@ -16,6 +16,7 @@ import net.firstpartners.core.RedModel;
 import net.firstpartners.core.excel.ExcelInputStrategy;
 import net.firstpartners.core.excel.ExcelOutputStrategy;
 import net.firstpartners.core.file.CSVOutputStrategyMultiLine;
+import net.firstpartners.core.file.DirectoryInputStrategy;
 import net.firstpartners.core.file.PDFOutputStrategy;
 import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.core.json.JsonOutputStrategy;
@@ -96,34 +97,41 @@ public class RunnerFactory {
 	 */
 	static Class<?> getInputMapping(String fileName) {
 
+		//checks on incoming values
 		assert fileName != null;
-
-		// change to lower case
 		fileName = fileName.toLowerCase();
 
 		//build reference tables if first time here
 		if(inputSuffixMaps==null || outputSuffixMaps ==null){
 			buildReferenceTables();
 		}
-		
 
+		// handle for our return value
+		Class<?> strategyClass = null;
+
+		//Check for directory
 		int splitPoint = fileName.lastIndexOf(".");
 		if (splitPoint == -1) {
-			// nothing found
-			throw new IllegalArgumentException(
-					"Unable to guess the type of file (cannot find '.' to locate file extension' ):" + fileName);
+			log.debug("No file extension found in input source:"+fileName+" defaulting to directory input");
+			strategyClass = DirectoryInputStrategy.class;
+
+		} else {
+
+			//try and map our values to a source
+			String suffix = fileName.substring(splitPoint, fileName.length());
+
+			log.debug("Looking for input Mapping against suffix:" + suffix);
+
+			strategyClass = inputSuffixMaps.get(suffix);
+
+			log.debug("Found strategy class:" + strategyClass);
+
+			if (strategyClass == null) {
+				throw new IllegalArgumentException("No Input Strategy Found to read files of type:" + suffix);
+			}
+
 		}
-		String suffix = fileName.substring(splitPoint, fileName.length());
 
-		log.debug("Looking for input Mapping against suffix:" + suffix);
-
-		Class<?> strategyClass = inputSuffixMaps.get(suffix);
-
-		log.debug("Found strategy class:" + strategyClass);
-
-		if (strategyClass == null) {
-			throw new IllegalArgumentException("No Input Strategy Found to read files of type:" + suffix);
-		}
 
 		return strategyClass;
 
@@ -141,8 +149,8 @@ public class RunnerFactory {
 
 		fileName = fileName.toLowerCase();
 
-		//build reference tables if first time here
-		if(inputSuffixMaps==null || outputSuffixMaps ==null){
+		// build reference tables if first time here
+		if (inputSuffixMaps == null || outputSuffixMaps == null) {
 			buildReferenceTables();
 		}
 
@@ -183,7 +191,7 @@ public class RunnerFactory {
 	 * Create a properly configured RuleRunner for the Input / Output file types we
 	 * are passing within the RedModel cargo object
 	 *
-	 * @param redModel - where we get the data from
+	 * @param redModel  - where we get the data from
 	 * @param appConfig - application Configuration
 	 * @return RuleRunner Object with the correct input / output Strategies
 	 *         configured
@@ -208,7 +216,6 @@ public class RunnerFactory {
 		assert redModel.getRuleFileLocation() != null;
 		assert redModel.getOutputFileLocation() != null;
 
-
 		// handle on our strategy objects
 		IRunner myRunner;
 		IDocumentInStrategy inputStrat;
@@ -222,13 +229,14 @@ public class RunnerFactory {
 		try {
 			constructor = strategyClass.getConstructor(String.class);
 			inputStrat = (IDocumentInStrategy) constructor
-					.newInstance(redModel.getBaseDirectory()+redModel.getInputFileLocation());
+					.newInstance(redModel.getBaseDirectory() + redModel.getInputFileLocation());
 
 			// pass in the config
 			inputStrat.setSubDirectory(redModel.getBaseDirectory());
 			inputStrat.setConfig(appConfig);
 
-		} catch (NoSuchMethodException | SecurityException |InstantiationException | InvocationTargetException |IllegalAccessException e) {
+		} catch (NoSuchMethodException | SecurityException | InstantiationException | InvocationTargetException
+				| IllegalAccessException e) {
 			throw new RPException("Error when creating input strategy Object", e);
 		}
 
@@ -239,10 +247,11 @@ public class RunnerFactory {
 		log.debug("trying to create Strategy Object from class:" + strategyClass);
 		try {
 			constructor = strategyClass.getConstructor(String.class);
-			 outputStrat = (IDocumentOutStrategy) constructor
-			.newInstance(redModel.getBaseDirectory()+redModel.getOutputFileLocation());
+			outputStrat = (IDocumentOutStrategy) constructor
+					.newInstance(redModel.getBaseDirectory() + redModel.getOutputFileLocation());
 
-		} catch (NoSuchMethodException | SecurityException |InstantiationException | InvocationTargetException |IllegalAccessException e) {
+		} catch (NoSuchMethodException | SecurityException | InstantiationException | InvocationTargetException
+				| IllegalAccessException e) {
 			throw new RPException("Error when creating output strategy Object", e);
 		}
 

@@ -5,16 +5,18 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Next - Multiple files
 
-* write readme.html
-* confirm stateless rules
-complete new DirectortInputStrategy to "walk" folder and call other input strategy
-* complete DirectortInputStrategyTest and stub
-* change interface - returns InpputStrategy[] or interactor
-* Write and test behaviour
-* find and impement TODO
 
-## NTH
-* run and pass CellConvertorTest
+* find and impement TODO
+* Complete
+    * DirectortInputStrategy to "walk" folder and call other input strategy
+    * complete DirectortInputStrategyTest and stub
+* Confirm other tests stil working
+    * work through issues / test failing
+* NTH
+    * run and pass CellConvertorTest
+
+Tidy
+* remove redModel.getprogress
 
 # Mini Snapshot -> Main
     * For later pulling down and test

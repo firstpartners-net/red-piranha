@@ -43,8 +43,13 @@ public class CellConvertor {
 		net.firstpartners.data.Cell redCell = new net.firstpartners.data.Cell();
 
 		// Keep a reference to the original cell location
-		//redCell.setOriginalCellReference(poiCell.getAddress().getRow(), poiCell.getAddress().getColumn()); //TODO restore reference , faulty currently
-		redCell.setOriginalTableReference(poiCell.getSheet().getSheetName());
+		if(poiCell!=null){
+			redCell.setOriginalCellReference(poiCell.getAddress().getRow(), poiCell.getAddress().getColumn()); //TODO restore reference , faulty currently
+			redCell.setOriginalTableReference(poiCell.getSheet().getSheetName());
+		} else {
+			log.info("poiCell "+cellNameFromRange+" was null - skipping");
+		}
+
 
 		// The name makes them as a range
 		redCell.setName(cellNameFromRange);
@@ -54,10 +59,13 @@ public class CellConvertor {
 		redCell.setValue(value);
 
 		// copy over the comments
-		Comment anyComment = poiCell.getCellComment();
+		if(poiCell!=null){
+			Comment anyComment = poiCell.getCellComment();
 		if (anyComment != null) {
 			redCell.setComment(anyComment.getString().toString());
 		}
+		}
+
 
 		// Reset the modified flag
 		redCell.setModified(false);
@@ -72,6 +80,11 @@ public class CellConvertor {
 	 * @return Object (Boolean , Number or String). It attempts to get the values, and the result of a formula.
 	 */
 	public static Object getCellContents(org.apache.poi.ss.usermodel.Cell poiCell){
+
+		if (poiCell==null){
+			log.debug("poiCell was null - returning null");
+			return null;
+		}
 
 		Object value = null; // to capture the output
 

@@ -11,7 +11,6 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
         * throw RP from ScriptSupport if sheet not found
         * check for spaces in names    
 
-* Possible create https://www.baeldung.com/spring-boot-console-app
 
 # Mini Snapshot -> Main
     * For later pulling down and test
@@ -54,6 +53,10 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## ##############
 
 ## Next Sprint - after immediate needs
+
+## Backup Plan
+* Possible create https://www.baeldung.com/spring-boot-console-app
+
 
 ## Use case - confirm
 

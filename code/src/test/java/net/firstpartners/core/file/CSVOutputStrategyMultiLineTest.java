@@ -40,23 +40,18 @@ public class CSVOutputStrategyMultiLineTest {
 	public final void testCreateAppendToCSVNoOverwrite() throws IOException, InvalidFormatException, ClassNotFoundException {
 
 		// Delete previous output file if it exists - file should not fail if it doesn't
-		try{
-			File tmpOutputFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_APPEND_FILE);
-			if(tmpOutputFile!=null){
-				tmpOutputFile.delete();
-			}
-		} catch (FileNotFoundException fnfe){
-			log.debug("Tmpfile "+TestConstants.CSV_APPEND_FILE+" not found, assume already deleted");
-		}
+		Utils.deleteOutputFileIfExists(TestConstants.CSV_APPEND_FILE);
 		
 
 		//confirm file does not exist yet
 		// Delete previous output file if it exists - file should not fail if it doesn't
+
 		try{
 			File tmpOutputFileConfirm = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_APPEND_FILE);
 			
 			// confirm file does not exist
-			assertTrue(tmpOutputFileConfirm==null||!tmpOutputFileConfirm.exists());
+		//	assertTrue(tmpOutputFileConfirm==null);
+			assertTrue(!tmpOutputFileConfirm.exists());
 	
 		} catch (FileNotFoundException fnfe){
 			log.debug("Tmpfile "+TestConstants.CSV_APPEND_FILE+" not found when checking - this is ok");

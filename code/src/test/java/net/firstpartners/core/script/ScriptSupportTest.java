@@ -31,6 +31,7 @@ import groovy.util.ResourceException;
 import groovy.util.ScriptException;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
+import net.firstpartners.core.RPException;
 import net.firstpartners.core.file.ResourceFinder;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -71,7 +72,7 @@ public class ScriptSupportTest {
 	}
 
 	@Test
-	public final void testCellStringNaming() throws Exception {
+	public final void testCellStringNaming() throws Exception, RPException {
 
 		File xlFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.COMPLEX_EXCEL);
 		InputStream inputAsStream = new FileInputStream(xlFile);

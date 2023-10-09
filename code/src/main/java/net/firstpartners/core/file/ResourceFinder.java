@@ -43,7 +43,7 @@ public class ResourceFinder {
   	private void initStaticConfig () {
 		
      	appConfig = this.appConfig0;
-		log.debug("Setting post construct app config to:"+appConfig.toString());
+		//log.debug("Setting post construct app config to:"+appConfig.toString());
   	}
 
 	/**
@@ -159,7 +159,7 @@ public class ResourceFinder {
 
 		String alternateDir = appConfig.getSampleBaseDirAlternate();
 		File alternateFile = new File(alternateDir + seekName);
-		log.debug("isFile:"+alternateFile.isFile());
+		//log.debug("isFile:"+alternateFile.isFile());
 		if (alternateFile.exists()) {
 			log.debug("3 File - Found Resource:" + alternateFile);
 			return alternateFile;

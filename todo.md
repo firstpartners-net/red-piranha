@@ -12,6 +12,10 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
         * Move File utils to resource finder
         * new method - find or create a resource
 
+    * Robustness
+        * throw RP from ScriptSupport if sheet not found
+        * check for spaces in names    
+
 # Mini Snapshot -> Main
     * For later pulling down and test
 

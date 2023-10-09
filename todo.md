@@ -7,17 +7,11 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 * NEXT RESOLVE
 
-    - Move deleteUtils
-    - take config out of resourcefindername
-
-    * get tests running again
-        * testOutputJsonThenDelete
-        * Move File utils to resource finder
-        * new method - find or create a resource
-
     * Robustness
         * throw RP from ScriptSupport if sheet not found
         * check for spaces in names    
+
+* Possible create https://www.baeldung.com/spring-boot-console-app
 
 # Mini Snapshot -> Main
     * For later pulling down and test

@@ -46,7 +46,7 @@ public class CSVOutputStrategyMultiLineTest {
 		// Delete previous output file if it exists - file should not fail if it doesn't
 
 		try{
-			File tmpOutputFileConfirm = ResourceFinder.getFileResource(TestConstants.CSV_APPEND_FILE);
+			File tmpOutputFileConfirm = ResourceFinder.getFile(TestConstants.CSV_APPEND_FILE);
 			
 			// confirm file does not exist
 		//	assertTrue(tmpOutputFileConfirm==null);
@@ -106,7 +106,7 @@ public class CSVOutputStrategyMultiLineTest {
 
 
 		//now check for acme / roadrunner - the company names from our example 5 files
-		File tmpResultCSV = ResourceFinder.getFileResource(TestConstants.CSV_APPEND_FILE);
+		File tmpResultCSV = ResourceFinder.getFile(TestConstants.CSV_APPEND_FILE);
 
 		FileUtils.readFileToString(tmpResultCSV,Charset.defaultCharset()).contains("ACME");
 		FileUtils.readFileToString(tmpResultCSV,Charset.defaultCharset()).contains("RoadRunner");
@@ -234,7 +234,7 @@ public class CSVOutputStrategyMultiLineTest {
 
 		// Delete previous output file if it exists - file should not fail if it doesn't
 		try{
-			File tmpOutputFile = ResourceFinder.getFileResource(TestConstants.CSV_TMP_FILE_MULTI_LINE);
+			File tmpOutputFile = ResourceFinder.getFile(TestConstants.CSV_TMP_FILE_MULTI_LINE);
 			if(tmpOutputFile!=null){
 				tmpOutputFile.delete();
 			}

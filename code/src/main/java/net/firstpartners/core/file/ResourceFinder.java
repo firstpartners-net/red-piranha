@@ -98,7 +98,7 @@ public class ResourceFinder {
 	 * @return a {@link java.io.File} object
 	 * @throws IOException
 	 */
-	public static File getFileResource(String resourceName ) throws IOException {
+	public static File getFile(String resourceName ) throws IOException {
 
 
 		//Check incoming params
@@ -315,7 +315,7 @@ public class ResourceFinder {
 
 		File fileOfInterest;
 		try {
-			fileOfInterest = getFileResource(fileToDelete);
+			fileOfInterest = getFile(fileToDelete);
 
 			 if (fileOfInterest.exists()) {
 			fileOfInterest.delete();

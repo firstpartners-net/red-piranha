@@ -54,7 +54,7 @@ public class ScriptSupportTest {
 	public final void testSingleCellNaming() throws Exception {
 
 
-		File xlFile = ResourceFinder.getFileResource(TestConstants.COMPLEX_EXCEL);
+		File xlFile = ResourceFinder.getFile(TestConstants.COMPLEX_EXCEL);
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 
@@ -74,7 +74,7 @@ public class ScriptSupportTest {
 	@Test
 	public final void testCellStringNaming() throws Exception, RPException {
 
-		File xlFile = ResourceFinder.getFileResource(TestConstants.COMPLEX_EXCEL);
+		File xlFile = ResourceFinder.getFile(TestConstants.COMPLEX_EXCEL);
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 
@@ -102,7 +102,7 @@ public class ScriptSupportTest {
 	@Test
 	public final void testTableNaming() throws Exception {
 
-		File xlFile = ResourceFinder.getFileResource(TestConstants.COMPLEX_EXCEL);
+		File xlFile = ResourceFinder.getFile(TestConstants.COMPLEX_EXCEL);
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 
@@ -135,7 +135,7 @@ public class ScriptSupportTest {
 	@Test
 	public final void testUpdateTableValues() throws Exception {
 
-		File xlFile = ResourceFinder.getFileResource(TestConstants.COMPLEX_EXCEL);
+		File xlFile = ResourceFinder.getFile(TestConstants.COMPLEX_EXCEL);
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 
@@ -156,7 +156,7 @@ public class ScriptSupportTest {
 	@Test
 	public final void testRemoveNamedRages() throws Exception {
 
-		File xlFile = ResourceFinder.getFileResource(TestConstants.COMPLEX_EXCEL);
+		File xlFile = ResourceFinder.getFile(TestConstants.COMPLEX_EXCEL);
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 
@@ -175,7 +175,7 @@ public class ScriptSupportTest {
 	public final void testSheetsNameSafe() throws IOException, ResourceException, ScriptException {
 		
 		//Handle to test data
-		File xlFile = ResourceFinder.getFileResource(TestConstants.COMPLEX_EXCEL);
+		File xlFile = ResourceFinder.getFile(TestConstants.COMPLEX_EXCEL);
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		Workbook wb = WorkbookFactory.create(inputAsStream);
 

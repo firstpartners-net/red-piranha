@@ -293,6 +293,10 @@ public class ScriptSupport {
 
 		// Convert our cell differently depending if is a date or note
 		// log.debug("Cell Type:"+(poiCell.getCellType()));
+		if(poiCell==null){
+			log.debug("poiCell was null - returning empty string");
+			return "";
+		}
 
 		String simpleConversion = "" + CellConvertor.getCellContents(poiCell);
 		// log.debug("Simple Conversion:"+simpleConversion);

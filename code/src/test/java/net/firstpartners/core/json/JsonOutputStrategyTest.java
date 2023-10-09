@@ -46,7 +46,7 @@ public class JsonOutputStrategyTest {
 		jsonOut.processOutput();
 
 		// check that this exists
-		File newFile = ResourceFinder.getFileResource(TestConstants.JSON_TMP_FILE);
+		File newFile = ResourceFinder.getFile(TestConstants.JSON_TMP_FILE);
 		assertTrue("Cannot find file that should exist", newFile.exists());
 
 	}

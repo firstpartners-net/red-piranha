@@ -37,13 +37,13 @@ public class CellConvertor {
 			org.apache.poi.ss.usermodel.Cell poiCell) {
 
 		// Check for null parameter
-		assert (poiCell!=null) : "incoming POI Cell (from Excel) should not be null";
+		assert poiCell!=null : "incoming POI Cell (from Excel) should not be null";
 
 		// Start building our new (Red) Cell
 		net.firstpartners.data.Cell redCell = new net.firstpartners.data.Cell();
 
 		// Keep a reference to the original cell location
-		redCell.setOriginalCellReference(poiCell.getAddress().getRow(), poiCell.getAddress().getColumn());
+		//redCell.setOriginalCellReference(poiCell.getAddress().getRow(), poiCell.getAddress().getColumn()); //TODO restore reference , faulty currently
 		redCell.setOriginalTableReference(poiCell.getSheet().getSheetName());
 
 		// The name makes them as a range
@@ -230,6 +230,7 @@ public class CellConvertor {
 	 * @param commentText
 	 */
 	static void setPoiCellComment(Workbook workbook, Cell cell, String author, String commentText) {
+
 
 		//Handle to the comment we are going to modify or update
 		Comment comment =null;

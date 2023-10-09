@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.file.ResourceFinder;
-import net.firstpartners.core.file.Utils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -30,7 +29,7 @@ public class ExcelOutputStrategyTest {
 	public final void testOutputExcelThenDelete() throws IOException {
 
 		// Make sure we can delete previos file
-		Utils.deleteOutputFileIfExists(TestConstants.XLSX_TMP_FILE); // object remembers file name from earlier
+		ResourceFinder.deleteOutputFileIfExists(TestConstants.XLSX_TMP_FILE); // object remembers file name from earlier
 
 		Workbook wb = WorkbookFactory.create(true); // create new boolean
 

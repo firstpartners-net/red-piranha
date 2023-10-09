@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
-import net.firstpartners.core.file.Utils;
+import net.firstpartners.core.file.ResourceFinder;
 
 class RuleBuilderTest {
 
@@ -45,7 +45,7 @@ class RuleBuilderTest {
 		KieModule myModule = myBuilder.getKieModule();
 
 		assertNotNull(myModule);
-		Utils.deleteOutputFileIfExists(TestConstants.KNOWLEDGE_BASE_FILE_TMP);
+		ResourceFinder.deleteOutputFileIfExists(TestConstants.KNOWLEDGE_BASE_FILE_TMP);
 
 	}
 

@@ -40,7 +40,7 @@ public class CSVOutputStrategyMultiLineTest {
 	public final void testCreateAppendToCSVNoOverwrite() throws IOException, InvalidFormatException, ClassNotFoundException {
 
 		// Delete previous output file if it exists - file should not fail if it doesn't
-		Utils.deleteOutputFileIfExists(TestConstants.CSV_APPEND_FILE);
+		ResourceFinder.deleteOutputFileIfExists(TestConstants.CSV_APPEND_FILE);
 		
 
 		//confirm file does not exist yet

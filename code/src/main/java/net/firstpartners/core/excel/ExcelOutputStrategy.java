@@ -14,7 +14,6 @@ import groovy.util.ScriptException;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
-import net.firstpartners.core.file.Utils;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
@@ -113,7 +112,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	public void processOutput() throws IOException {
 
 		// delete the outputFile if it exists
-		Utils.deleteOutputFileIfExists(outputFileName);
+		ResourceFinder.deleteOutputFileIfExists(outputFileName);
 
 		// Open the outputfile as a stream
 		outputToFile(workbook);

@@ -306,5 +306,27 @@ public class ResourceFinder {
 		return foundFiles;
 	}
 
+	/**
+	 * Delete the output file if it already exists
+	 *
+	 * @param fileToDelete a {@link java.lang.String} object
+	 */
+	public static void deleteOutputFileIfExists(String fileToDelete) {
+
+		File fileOfInterest;
+		try {
+			fileOfInterest = getFileResourceUsingConfig(fileToDelete);
+
+			 if (fileOfInterest.exists()) {
+			fileOfInterest.delete();
+		}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			log.debug("file:"+fileToDelete+" already gone -ok");
+		}
+
+
+	}
+
 
 }

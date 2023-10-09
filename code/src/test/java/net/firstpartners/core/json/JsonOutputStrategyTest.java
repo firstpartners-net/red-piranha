@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.file.ResourceFinder;
-import net.firstpartners.core.file.Utils;
 import net.firstpartners.data.RangeList;
 import net.firstpartners.ui.RedControllerTest;
 
@@ -35,7 +34,7 @@ public class JsonOutputStrategyTest {
 		assert appConfig!=null;
 
 		// Make sure we can delete file
-		Utils.deleteOutputFileIfExists(TestConstants.JSON_TMP_FILE); // object remembers file name from earlier
+		ResourceFinder.deleteOutputFileIfExists(TestConstants.JSON_TMP_FILE); // object remembers file name from earlier
 		//File f = ResourceFinder.getFileResourceUsingConfig(TestConstants.JSON_TMP_FILE);
 		//assertFalse("Found file that should exist", f.exists());
 

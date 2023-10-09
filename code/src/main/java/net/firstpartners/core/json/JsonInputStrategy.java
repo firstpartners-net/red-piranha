@@ -78,7 +78,7 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 
 		log.debug("Convert Json to RedBeans");
 		ObjectMapper objectMapper = new ObjectMapper();
-		File jsonSource = ResourceFinder.getFileResourceUsingConfig(jsonInput);
+		File jsonSource = ResourceFinder.getFile(jsonInput);
 
 		RangeList myRange = objectMapper.readValue(jsonSource, RangeList.class);
 		JsonNode rootNode = objectMapper.readTree(jsonSource);

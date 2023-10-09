@@ -88,7 +88,7 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 
 		
 		// load our Excel file and convert to our internal beans
-		File xlFile = ResourceFinder.getFileResourceUsingConfig(inputDetails);
+		File xlFile = ResourceFinder.getFile(inputDetails);
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		log.debug("converting incoming excel stream to Javabeans");
 		excelWorkBook = WorkbookFactory.create(inputAsStream);

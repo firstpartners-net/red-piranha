@@ -40,7 +40,7 @@ public class ExcelOutputStrategyTest {
 		excelOut.processOutput();
 
 		// check that this exists 
-		File f= ResourceFinder.getFileResourceUsingConfig(TestConstants.XLSX_TMP_FILE);
+		File f= ResourceFinder.getFileResource(TestConstants.XLSX_TMP_FILE);
 		assertTrue("Cannot find file that should exist in:"+TestConstants.XLSX_TMP_FILE, f.exists());
 		f = null; // avoid any interference in the next step
 

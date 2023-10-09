@@ -33,7 +33,7 @@ public class PDFOutputStrategyTest {
 		pdfOut.processOutput();
 
 		// check that this exists
-		File f= ResourceFinder.getFileResourceUsingConfig(TestConstants.PDF_TMP_FILE);
+		File f= ResourceFinder.getFileResource(TestConstants.PDF_TMP_FILE);
 		assertTrue("Cannot find file that should exist", f.exists());
 		f = null; // avoid any interference in the next step
 

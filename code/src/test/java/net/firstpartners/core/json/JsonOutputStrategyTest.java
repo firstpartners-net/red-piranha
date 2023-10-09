@@ -1,12 +1,11 @@
 package net.firstpartners.core.json;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import java.io.File;
 import java.io.IOException;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +46,7 @@ public class JsonOutputStrategyTest {
 		jsonOut.processOutput();
 
 		// check that this exists
-		File newFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.JSON_TMP_FILE);
+		File newFile = ResourceFinder.getFileResource(TestConstants.JSON_TMP_FILE);
 		assertTrue("Cannot find file that should exist", newFile.exists());
 
 	}

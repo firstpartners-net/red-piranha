@@ -74,7 +74,7 @@ public class ResourceFinder {
 	 * @return a {@link java.io.File} object
 	 * @throws IOException
 	 */
-	public static File getFileResourceUsingConfig(ClassAndLocation location)  throws IOException {
+	public static File getFile(ClassAndLocation location)  throws IOException {
 
 		if(location.fileLocation!=null){
 			log.debug("Using cached handle to location:"+location.fileLocation);
@@ -84,7 +84,7 @@ public class ResourceFinder {
 		//if not pre set, try finding
 		log.debug("Searching for file using string filename:"+location.locationText);
 
-		return getFileResourceUsingConfig("", location.locationText);
+		return getFile("", location.locationText);
 	}
 
 	/**
@@ -98,13 +98,13 @@ public class ResourceFinder {
 	 * @return a {@link java.io.File} object
 	 * @throws IOException
 	 */
-	public static File getFileResourceUsingConfig(String resourceName ) throws IOException {
+	public static File getFileResource(String resourceName ) throws IOException {
 
 
 		//Check incoming params
 		assert appConfig!=null: "Config should not be null";
 
-		return getFileResourceUsingConfig("", resourceName);
+		return getFile("", resourceName);
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class ResourceFinder {
 	 * @return a {@link java.io.File} object
 	 * @throws IOException
 	 */
-	public static File getFileResourceUsingConfig(String baseDir, String resourceName)
+	public static File getFile(String baseDir, String resourceName)
 			throws IOException {
 
 
@@ -207,7 +207,7 @@ public class ResourceFinder {
 	public static String getBaseDirOfAllSamples() throws FileNotFoundException {
 
 		//empty directory should match to first or alternate base dir
-		return getDirectoryUsingConfig("");
+		return getDirectory("");
 
 	}
 
@@ -219,7 +219,7 @@ public class ResourceFinder {
 	 * @throws java.io.FileNotFoundException
 	 * @return a {@link java.lang.String} object
 	 */
-	public static String getDirectoryUsingConfig(String directoryName) {
+	public static String getDirectory(String directoryName) {
 
 		
 		//Check incoming params
@@ -267,7 +267,7 @@ public class ResourceFinder {
 	 * @param directoryToFind
 	 * @return
 	 */
-	public static List<File> getDirectoryFilesUsingConfig( String directoryToFind) {
+	public static List<File> getDirectoryFiles( String directoryToFind) {
 
 		
 		//Check incoming params
@@ -281,7 +281,7 @@ public class ResourceFinder {
 
 		
 		// Try to locate using config
-		String foundDir = getDirectoryUsingConfig(directoryToFind);
+		String foundDir = getDirectory(directoryToFind);
 
 		if (foundDir == null || foundDir.equals("")) {
 			log.debug("No directory found - returning empty list");
@@ -315,13 +315,12 @@ public class ResourceFinder {
 
 		File fileOfInterest;
 		try {
-			fileOfInterest = getFileResourceUsingConfig(fileToDelete);
+			fileOfInterest = getFileResource(fileToDelete);
 
 			 if (fileOfInterest.exists()) {
 			fileOfInterest.delete();
 		}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			log.debug("file:"+fileToDelete+" already gone -ok");
 		}
 

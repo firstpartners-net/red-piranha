@@ -75,7 +75,7 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException {
 
 		log.debug("converting incoming word stream to Javabeans");
-		File wordFile = ResourceFinder.getFileResourceUsingConfig(this.inputDetails);
+		File wordFile = ResourceFinder.getFile(this.inputDetails);
 
 		InputStream inputAsStream = new FileInputStream(wordFile);
 		poiDoc = new XWPFDocument(OPCPackage.open(inputAsStream));

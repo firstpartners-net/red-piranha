@@ -164,7 +164,7 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 
 		// confirm outfile exists or not - open for append if it is
 		try {
-			tmpOutputFileConfirm = ResourceFinder.getFileResourceUsingConfig(outputPath.toString());
+			tmpOutputFileConfirm = ResourceFinder.getFileResource(outputPath.toString());
 
 		} catch (FileNotFoundException fnfe) {
 			log.debug("CSV Output file " + outputPath.toString()
@@ -238,7 +238,7 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 
 	String[] getCsvFileAsStringArray() throws IOException {
 
-		File file = ResourceFinder.getFileResourceUsingConfig(outputFileName);
+		File file = ResourceFinder.getFileResource(outputFileName);
 
 		//File file = new File(outputFileName);
 		FileInputStream fis = new FileInputStream(file);

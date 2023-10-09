@@ -370,7 +370,7 @@ public class RunnerFactory {
 
 			log.debug("Attemping to generate strategies for files in Directory:"+subDir);
 
-			List<File> filesInDirectory=ResourceFinder.getDirectoryFilesUsingConfig(subDir);
+			List<File> filesInDirectory=ResourceFinder.getDirectoryFiles(subDir);
 
 			for(File currentFile : filesInDirectory){
 				

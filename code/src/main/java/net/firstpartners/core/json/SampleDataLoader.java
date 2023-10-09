@@ -43,7 +43,7 @@ public class SampleDataLoader {
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		File jsonSource = ResourceFinder.getFileResourceUsingConfig(jsonSampleDataFileName);
+		File jsonSource = ResourceFinder.getFileResource(jsonSampleDataFileName);
 		
 		List<SampleData> sampleData = objectMapper.readValue(
 		        jsonSource, 
@@ -61,7 +61,7 @@ public class SampleDataLoader {
 			log.debug("trying to find readme.html for:"+sampleReadme);
 
 			//Dind the sample file and read teh contents
-			File readmeHtml = ResourceFinder.getFileResourceUsingConfig(sampleReadme);
+			File readmeHtml = ResourceFinder.getFileResource(sampleReadme);
 			log.debug("Found file:"+readmeHtml.exists());
 
 			contents = FileUtils.readFileToString(readmeHtml, "utf-8");

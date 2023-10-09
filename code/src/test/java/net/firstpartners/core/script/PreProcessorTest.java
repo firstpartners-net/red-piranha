@@ -49,7 +49,7 @@ public class PreProcessorTest {
 		PreProcessor processor = new PreProcessor();
 
 		//Handle to test data
-		File xlFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.COMPLEX_EXCEL);
+		File xlFile = ResourceFinder.getFileResource(TestConstants.COMPLEX_EXCEL);
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
 

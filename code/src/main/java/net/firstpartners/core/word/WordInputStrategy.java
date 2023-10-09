@@ -77,7 +77,7 @@ public class WordInputStrategy implements IDocumentInStrategy {
 
 		log.debug("converting incoming word stream to Javabeans");
 
-		File wordFile = ResourceFinder.getFileResourceUsingConfig(inputDetails);
+		File wordFile = ResourceFinder.getFile(inputDetails);
 
 		InputStream inputAsStream = new FileInputStream(wordFile);
 		POIFSFileSystem fs = new POIFSFileSystem(inputAsStream);

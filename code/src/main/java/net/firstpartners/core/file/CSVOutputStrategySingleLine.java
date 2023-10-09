@@ -236,7 +236,7 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 	List<String> getHeadersFromFile() throws IOException {
 
 		// We must have a pre existing file
-		File appendFile = ResourceFinder.getFileResourceUsingConfig(appendFileName);
+		File appendFile = ResourceFinder.getFileResource(appendFileName);
 
 		if (!appendFile.exists()) {
 			throw new IllegalArgumentException(
@@ -245,7 +245,7 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 
 		log.debug("Found CSV:" + appendFileName);
 
-		File readerFile = ResourceFinder.getFileResourceUsingConfig(appendFileName);
+		File readerFile = ResourceFinder.getFileResource(appendFileName);
 
 		// Open in a reader
 		Reader reader = new BufferedReader(new FileReader(readerFile));
@@ -271,7 +271,7 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 	 */
 	int getNumberOfRowsInFile() throws IOException {
 
-		File file =  ResourceFinder.getFileResourceUsingConfig(appendFileName);
+		File file =  ResourceFinder.getFileResource(appendFileName);
 		FileInputStream fis = new FileInputStream(file);
 		byte[] byteArray = new byte[(int) file.length()];
 		fis.read(byteArray);

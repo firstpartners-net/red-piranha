@@ -72,7 +72,7 @@ public class RuleBuilder {
 
 				log.debug("loading into KFS:" + rulesLocs[counter]);
 				try {
-					currentFile = ResourceFinder.getFileResourceUsingConfig(redModel.getSubDirectory(),rulesLocs[counter] );
+					currentFile = ResourceFinder.getFile(redModel.getSubDirectory(),rulesLocs[counter] );
 				} catch (FileNotFoundException e) {
 					throw new RPException("FileNotFound Error when loading",e);
 				} catch (IOException e) {

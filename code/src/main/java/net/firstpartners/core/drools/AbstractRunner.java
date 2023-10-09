@@ -180,7 +180,7 @@ public abstract class AbstractRunner implements IRunner {
 			//update any additional output data
 			ClassAndLocation cAndL =thisDocumentSource.getInputDetails();
 			String updateSource =cAndL.locationText;// default
-			if(cAndL!=null){
+			if(cAndL!=null&&cAndL.fileLocation!=null){
 				//Better to use actual file location
 				updateSource= cAndL.fileLocation.getName();
 			}

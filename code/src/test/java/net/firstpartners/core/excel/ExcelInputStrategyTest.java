@@ -66,7 +66,10 @@ public class ExcelInputStrategyTest {
 
 		RuleRunner runner =(RuleRunner)RunnerFactory.getRuleRunner(redModel);
 		assertTrue (runner.getDocumentInputStrategy().get(0) instanceof ExcelInputStrategy);
+		assertTrue (runner.getDocumentInputStrategy().get(0).getInputDetails() !=null);
 		
+		log.debug("Locations:"+runner.getDocumentInputStrategy().get(0).getInputDetails());
+
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 		runner.setDocumentOutputStrategy(outputStrategy);

@@ -33,7 +33,7 @@ public class DecisionModelRunnerTest {
 	Config appConfig;
 
 	//needed as a paramter for some tests but not used
-	private JsonInputStrategy dummyIn = new JsonInputStrategy("");
+	private JsonInputStrategy dummyIn = new JsonInputStrategy(new ClassAndLocation(""));
 
 	/**
 	 * @throws Exception

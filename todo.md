@@ -6,9 +6,8 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## Next - Multiple files
 
 * NEXT RESOLVE
-    * Move to rely on Spring appconfig and not pass around
-        * compile again
-        * search for appconfig in code and review usage
+    * file resource find
+        * set to use just file name
     * get tests running again
         * testOutputJsonThenDelete
     * Bring through subdir and allow strategy based on that

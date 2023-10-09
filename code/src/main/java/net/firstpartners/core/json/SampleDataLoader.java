@@ -34,7 +34,6 @@ public class SampleDataLoader {
 	 * Loads information on our samples
 	 *
 	 * @param jsonSampleDataFileName a {@link java.lang.String} object
-	 * @param appConfig - can be null, or can contain information on the directories to look in
 	 * @throws java.io.IOException
 	 * @throws com.fasterxml.jackson.databind.DatabindException
 	 * @throws com.fasterxml.jackson.core.exc.StreamReadException

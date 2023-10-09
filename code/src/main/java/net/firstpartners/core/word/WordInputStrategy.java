@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.firstpartners.core.IDocumentInStrategy;
+import net.firstpartners.core.drools.ClassAndLocation;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.data.RangeList;
@@ -32,7 +33,7 @@ public class WordInputStrategy implements IDocumentInStrategy {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	private XWPFDocument poiDoc = null;
 
-	private String wordInputFileName = null;
+	private ClassAndLocation inputDetails = null;
 
 	private String subDirectory;
 
@@ -41,8 +42,8 @@ public class WordInputStrategy implements IDocumentInStrategy {
 	 *
 	 * @param wordInputFileName a {@link java.lang.String} object
 	 */
-	public WordInputStrategy(String wordInputFileName) {
-		this.wordInputFileName = wordInputFileName;
+	public WordInputStrategy(ClassAndLocation inputDetails) {
+		this.inputDetails = inputDetails;
 	}
 
 	public String getSubDirectory() {
@@ -58,8 +59,12 @@ public class WordInputStrategy implements IDocumentInStrategy {
 
 	/** {@inheritDoc} */
 	@Override
-	public String getInputName() {
-		return wordInputFileName;
+	public ClassAndLocation getInputDetails() {
+		return inputDetails;
+	}
+
+	public void setInputDetails(ClassAndLocation inputName) {
+		this.inputDetails = inputName;
 	}
 
 	/**
@@ -72,7 +77,7 @@ public class WordInputStrategy implements IDocumentInStrategy {
 
 		log.debug("converting incoming word stream to Javabeans");
 
-		File wordFile = ResourceFinder.getFileResourceUsingConfig(wordInputFileName);
+		File wordFile = ResourceFinder.getFileResourceUsingConfig(inputDetails);
 
 		InputStream inputAsStream = new FileInputStream(wordFile);
 		POIFSFileSystem fs = new POIFSFileSystem(inputAsStream);
@@ -98,8 +103,8 @@ public class WordInputStrategy implements IDocumentInStrategy {
 	 *
 	 * @param wordInputFileName a {@link java.lang.String} object
 	 */
-	public void setInputFileName(String wordInputFileName) {
-		this.wordInputFileName = wordInputFileName;
+	public void setInputFileName(ClassAndLocation inputDetails) {
+		this.inputDetails = inputDetails;
 	}
 
 	/** {@inheritDoc} */

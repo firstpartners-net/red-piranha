@@ -50,6 +50,7 @@ public class RunnerFactoryTest {
 		assertTrue (myRunner instanceof RuleRunner);
 		assertTrue(myRunner.getDocumentInputStrategy().get(0) instanceof ExcelInputStrategy);
 		assertTrue(myRunner.getDocumentOutputStrategy() instanceof ExcelOutputStrategy);
+		log.debug("test complete");
 
 	}
 
@@ -218,9 +219,8 @@ public class RunnerFactoryTest {
 	@Test
 	public void testInputMappings() throws RPException {
 
-		Object tmpObject = RunnerFactory.getInputMapping("","something.xlsx");
-		log.debug("InputMapping:"+tmpObject);
-		assertTrue(RunnerFactory.getInputMapping("","something.xlsx").get(0) == ExcelInputStrategy.class);
+
+		assertTrue(RunnerFactory.getInputMapping("","something.xlsx",null).get(0).classHolder == ExcelInputStrategy.class);
 	}
 	
 	@Test

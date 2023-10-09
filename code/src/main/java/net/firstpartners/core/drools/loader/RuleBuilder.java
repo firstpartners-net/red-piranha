@@ -2,6 +2,7 @@ package net.firstpartners.core.drools.loader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -36,8 +37,6 @@ public class RuleBuilder {
 	 * Load the rules from the sources listed in the Data model and configuration
 	 *
 	 * @param redModel  - the data model
-	 * @param appConfig - application configuration, including where the rules files
-	 *                  are stored
 	 * @throws java.lang.Exception
 	 * @return a {@link org.kie.api.builder.KieBuilder} object
 	 */
@@ -75,7 +74,9 @@ public class RuleBuilder {
 				try {
 					currentFile = ResourceFinder.getFileResourceUsingConfig(redModel.getSubDirectory(),rulesLocs[counter] );
 				} catch (FileNotFoundException e) {
-					throw new RPException("Error when loading rules",e);
+					throw new RPException("FileNotFound Error when loading",e);
+				} catch (IOException e) {
+					throw new RPException("IOException Error when loading",e);
 				}
 				Resource resource = ks.getResources().newFileSystemResource(currentFile)
 						.setResourceType(ResourceType.DRL);

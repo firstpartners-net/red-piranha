@@ -45,7 +45,6 @@ public class RuleRunner extends AbstractRunner {
 	 *                         object
 	 * @param outputStrategy   a {@link net.firstpartners.core.IDocumentOutStrategy}
 	 *                         object
-	 * @param appConfig        a {@link net.firstpartners.core.Config} object
 	 */
 	protected RuleRunner(List<IDocumentInStrategy> documentInStrategy, IDocumentOutStrategy outputStrategy) {
 		this.inputStrategy = documentInStrategy;

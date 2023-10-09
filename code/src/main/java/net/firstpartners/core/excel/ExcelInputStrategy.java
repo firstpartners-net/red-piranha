@@ -15,6 +15,7 @@ import groovy.util.ResourceException;
 import groovy.util.ScriptException;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
+import net.firstpartners.core.drools.ClassAndLocation;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.core.script.PreProcessor;
@@ -32,7 +33,7 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	private String excelInputFileName = null;
+	private ClassAndLocation inputDetails = null;
 	private Workbook excelWorkBook = null;
 
 
@@ -43,8 +44,8 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	 *
 	 * @param excelInputFileName a {@link java.lang.String} object
 	 */
-	public ExcelInputStrategy(String excelInputFileName) {
-		this.excelInputFileName = excelInputFileName;
+	public ExcelInputStrategy(ClassAndLocation excelInput) {
+		this.inputDetails = excelInput;
 	}
 
 	/**
@@ -66,8 +67,12 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	 *
 	 * @return a {@link java.lang.String} object
 	 */
-	public String getInputName() {
-		return excelInputFileName;
+	public ClassAndLocation getInputDetails() {
+		return inputDetails;
+	}
+
+	public void setInputDetails(ClassAndLocation inputDetails){
+		this.inputDetails=inputDetails;
 	}
 
 	/**
@@ -83,7 +88,7 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 
 		
 		// load our Excel file and convert to our internal beans
-		File xlFile = ResourceFinder.getFileResourceUsingConfig(excelInputFileName);
+		File xlFile = ResourceFinder.getFileResourceUsingConfig(inputDetails);
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		log.debug("converting incoming excel stream to Javabeans");
 		excelWorkBook = WorkbookFactory.create(inputAsStream);
@@ -112,14 +117,6 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 
 	}
 
-	/**
-	 * <p>Setter for the field <code>excelInputFileName</code>.</p>
-	 *
-	 * @param excelInputFileName a {@link java.lang.String} object
-	 */
-	public void setExcelInputFileName(String excelInputFileName) {
-		this.excelInputFileName = excelInputFileName;
-	}
 
 	/** {@inheritDoc} */
 	@Override

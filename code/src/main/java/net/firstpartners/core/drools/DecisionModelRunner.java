@@ -60,7 +60,6 @@ public class DecisionModelRunner extends AbstractRunner {
 	 *                         object
 	 * @param outputStrategy   a {@link net.firstpartners.core.IDocumentOutStrategy}
 	 *                         object
-	 * @param appConfig        a {@link net.firstpartners.core.Config} object
 	 */
 	protected DecisionModelRunner(List<IDocumentInStrategy> documentinStrategy, IDocumentOutStrategy outputStrategy) {
 		this.inputStrategy = documentinStrategy;

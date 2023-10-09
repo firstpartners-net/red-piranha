@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.firstpartners.core.IDocumentInStrategy;
+import net.firstpartners.core.drools.ClassAndLocation;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.data.RangeList;
@@ -28,13 +29,13 @@ import net.firstpartners.data.RangeList;
  */
 public class JsonInputStrategy implements IDocumentInStrategy {
 
-	private String jsonInputFileName;
-	
+	private ClassAndLocation jsonInput;
+
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	private OfficeDocument officeDocument;
-	
+	private OfficeDocument officeDocument; // TODO see if we can remove
+
 	private String subDirectory;
 
 	/**
@@ -42,8 +43,8 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 	 *
 	 * @param jsonInputFileName a {@link java.lang.String} object
 	 */
-	public JsonInputStrategy(String jsonInputFileName) {
-		this.jsonInputFileName = jsonInputFileName;
+	public JsonInputStrategy(ClassAndLocation jsonInput) {
+		this.jsonInput = jsonInput;
 	}
 
 	public String getSubDirectory() {
@@ -53,14 +54,18 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 	/**
 	 * Set the base Directory
 	 */
-	public void setSubDirectory(String subDirectory){
-		this.subDirectory= subDirectory;
+	public void setSubDirectory(String subDirectory) {
+		this.subDirectory = subDirectory;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public String getInputName() {
-		return jsonInputFileName;
+	public ClassAndLocation getInputDetails() {
+		return jsonInput;
+	}
+
+	public void setInputDetails(ClassAndLocation jsonInput) {
+		this.jsonInput = jsonInput;
 	}
 
 	/**
@@ -73,31 +78,28 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 
 		log.debug("Convert Json to RedBeans");
 		ObjectMapper objectMapper = new ObjectMapper();
-		File jsonSource = ResourceFinder.getFileResourceUsingConfig(jsonInputFileName);
-		
-		RangeList myRange  = objectMapper.readValue(jsonSource, RangeList.class);
-		JsonNode rootNode = objectMapper.readTree(jsonSource);
-		
-		//beware - the following can generate a lot of Json into the log! 
-		//log.debug("Found:"+rootNode);
-		assertNotNull(rootNode);
-		
-		
+		File jsonSource = ResourceFinder.getFileResourceUsingConfig(jsonInput);
 
-		
+		RangeList myRange = objectMapper.readValue(jsonSource, RangeList.class);
+		JsonNode rootNode = objectMapper.readTree(jsonSource);
+
+		// beware - the following can generate a lot of Json into the log!
+		// log.debug("Found:"+rootNode);
+		assertNotNull(rootNode);
+
 		return myRange;
 	}
 
 	/**
-	 * <p>Getter for the field <code>jsonInputFileName</code>.</p>
+	 * <p>
+	 * Getter for the field <code>jsonInputFileName</code>.
+	 * </p>
 	 *
 	 * @return a {@link java.lang.String} object
 	 */
-	public String getJsonInputFileName() {
-		return jsonInputFileName;
+	public ClassAndLocation getJsonInputFileName() {
+		return jsonInput;
 	}
-
-
 
 	/** {@inheritDoc} */
 	@Override
@@ -105,16 +107,16 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 		return officeDocument;
 	}
 
-
 	/**
-	 * <p>Setter for the field <code>jsonInputFileName</code>.</p>
+	 * <p>
+	 * Setter for the field <code>jsonInputFileName</code>.
+	 * </p>
 	 *
 	 * @param jsonInputFileName a {@link java.lang.String} object
 	 */
-	public void setJsonInputFileName(String jsonInputFileName) {
-		this.jsonInputFileName = jsonInputFileName;
+	public void setJsonInputFileName(ClassAndLocation jsonInput) {
+		this.jsonInput = jsonInput;
 	}
-
 
 	/** {@inheritDoc} */
 	@Override
@@ -122,6 +124,4 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 		this.officeDocument = officeDocument;
 	}
 
-
 }
-

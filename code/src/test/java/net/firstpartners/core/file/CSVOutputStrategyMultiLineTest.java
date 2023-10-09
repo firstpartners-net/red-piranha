@@ -21,6 +21,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.RPException;
+import net.firstpartners.core.drools.ClassAndLocation;
 import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.data.RangeList;
 
@@ -60,7 +61,7 @@ public class CSVOutputStrategyMultiLineTest {
 
 
 		//get sample data - medium sized
-		JsonInputStrategy jsInput = new JsonInputStrategy(TestConstants.JSON_SERIAL_FILE_MEDIUM);
+		JsonInputStrategy jsInput = new JsonInputStrategy(new ClassAndLocation(TestConstants.JSON_SERIAL_FILE_MEDIUM));
 		RangeList testRange = jsInput.getJavaBeansFromSource();
 		assertNotNull("input data should not be empty",testRange);
 
@@ -239,7 +240,7 @@ public class CSVOutputStrategyMultiLineTest {
 		}
 
 		//Get our sample data
-		JsonInputStrategy jsInput = new JsonInputStrategy(TestConstants.JSON_SERIAL_FILE_COMPLEX);
+		JsonInputStrategy jsInput = new JsonInputStrategy(new ClassAndLocation(TestConstants.JSON_SERIAL_FILE_COMPLEX));
 		RangeList testRange = jsInput.getJavaBeansFromSource();
 		assertNotNull("input data should not be empty",testRange);
 

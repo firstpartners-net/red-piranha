@@ -93,8 +93,9 @@ public abstract class AbstractRunner implements IRunner {
 
 
 			// Convert the cell and log if we have a handle
+			log.info("Opening Input:"+thisDocumentSource.getInputDetails());
+			ruleModel.addUIInfoMessage("Opening Input :" + thisDocumentSource.getInputDetails());
 
-			ruleModel.addUIInfoMessage("Opening Input :" + thisDocumentSource.getInputName());
 			RangeList ranges;
 			try {
 				ranges = thisDocumentSource.getJavaBeansFromSource();

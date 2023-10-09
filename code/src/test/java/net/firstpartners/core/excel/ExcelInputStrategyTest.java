@@ -20,6 +20,7 @@ import net.firstpartners.core.Config;
 import net.firstpartners.core.MemoryOutputStrategy;
 import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
+import net.firstpartners.core.drools.ClassAndLocation;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RunnerFactory;
 import net.firstpartners.core.json.JsonOutputStrategy;
@@ -97,7 +98,7 @@ public class ExcelInputStrategyTest {
 		testConfig.setPreprocessScript(dirPrefix+"/"+TestConstants.GROOVY_PREPROCESS);
 		
 		//Handle to our Excel convertor and set config
-		ExcelInputStrategy xlInput = new ExcelInputStrategy(dirPrefix+"/"+TestConstants.COMPLEX_EXCEL);
+		ExcelInputStrategy xlInput = new ExcelInputStrategy(new ClassAndLocation(dirPrefix+"/"+TestConstants.COMPLEX_EXCEL));
 
 		//call and get the data
 		RangeList myRange = xlInput.getJavaBeansFromSource();

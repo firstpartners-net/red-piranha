@@ -86,12 +86,12 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	// Name of the outputfile
 	private String outputFileName = null;
 
-	//Additional data we wish to output
-	Map<String, String> additionalDataToInclude=null;
+	// Additional data we wish to output
+	Map<String, String> additionalDataToInclude = null;
 
-	//Associated Settor
-	public void setAdditionalOutputData(Map<String, String> additionalData){
-		this.additionalDataToInclude=additionalData;
+	// Associated Settor
+	public void setAdditionalOutputData(Map<String, String> additionalData) {
+		this.additionalDataToInclude = additionalData;
 	}
 
 	/**
@@ -132,7 +132,6 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 		return outputFileName;
 	}
 
-
 	/**
 	 * Process the output from the system
 	 *
@@ -145,86 +144,83 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	 */
 	public void processOutput() throws IOException, InvalidFormatException {
 
-
-		//check the data before processing
-		assert dataToOutput!=null : "No data available to output";
+		// check the data before processing
+		assert dataToOutput != null : "No data available to output";
 
 		String outputFileDir = ResourceFinder.getBaseDirOfAllSamples();
-		
-		//Construct the output file including directory
+
+		// Construct the output file including directory
 		Path outputPath;
-		if(outputFileDir!=""){
-			outputPath = Paths.get(outputFileDir+"/"+outputFileName);
+		if (outputFileDir != "") {
+			outputPath = Paths.get(outputFileDir + "/" + outputFileName);
 		} else {
 			outputPath = Paths.get(outputFileName);
 		}
 
-		//placeholders for the  CSV Output classes we will output next
+		// placeholders for the CSV Output classes we will output next
 		BufferedWriter writer = null;
-		CSVPrinter csvPrinter  =null;
-		File tmpOutputFileConfirm =null;
+		CSVPrinter csvPrinter = null;
+		File tmpOutputFileConfirm = null;
 
-		//confirm outfile exists or not - open for append if it is
-		try{
+		// confirm outfile exists or not - open for append if it is
+		try {
 			tmpOutputFileConfirm = ResourceFinder.getFileResourceUsingConfig(outputPath.toString());
-	
-		} catch (FileNotFoundException fnfe){
-			log.debug("CSV Output file "+outputPath.toString()+" not found when checking - this is ok as we will create");
+
+		} catch (FileNotFoundException fnfe) {
+			log.debug("CSV Output file " + outputPath.toString()
+					+ " not found when checking - this is ok as we will create");
 		}
 
+		// check if we need to create teh file from scratch, or create a new one
+		if (tmpOutputFileConfirm == null || !tmpOutputFileConfirm.exists()) {
 
-		//check if we need to create teh file from scratch, or create a new one
-		if(tmpOutputFileConfirm==null||!tmpOutputFileConfirm.exists()){
+			// create a new file
+			File tmpFile = new File(".");
+			log.debug("Current Dir:" + tmpFile.getAbsolutePath());
+			log.debug("Will to output CSV to new file:" + outputPath);
 
-			//create a new file
-			log.debug("Will to output CSV to new file:"+outputPath);
-
-			//define our CSV headers
+			// define our CSV headers
 			String[] headers = generateHeaders(additionalDataToInclude);
 
-			writer = Files.newBufferedWriter(outputPath);
+			writer = Files.newBufferedWriter(outputPath, StandardOpenOption.CREATE_NEW,
+					StandardOpenOption.WRITE);
 			csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(headers));
 
 		} else {
 			// reuse the existing (i.e. we don't need to add headers)
-			log.debug("Will to add CSV to existing file:"+outputPath);
+			log.debug("Will to add CSV to existing file:" + outputPath);
 			writer = Files.newBufferedWriter(outputPath, StandardOpenOption.APPEND);
-			csvPrinter = new CSVPrinter(writer,CSVFormat.DEFAULT.withSkipHeaderRecord());
+			csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withSkipHeaderRecord());
 		}
-
-
 
 		// Get all the Cells that we have been keeping track of
 		Map<String, net.firstpartners.data.Cell> allCells = dataToOutput.getAllCellsWithNames();
 
-        
 		// Loop through the cells
 		Iterator<net.firstpartners.data.Cell> redCells = allCells.values().iterator();
 		while (redCells.hasNext()) {
 
 			net.firstpartners.data.Cell thisRedCell = redCells.next();
 
-			String [] subRecords = splitFieldName(thisRedCell.getName());
+			String[] subRecords = splitFieldName(thisRedCell.getName());
 
-			//Generate the main body line
-			Object[] bodyRecord = generateBodyRow(additionalDataToInclude,subRecords,
-									thisRedCell.getName(),
-									thisRedCell.getValueAsText(),
-									thisRedCell.getOriginalTableReference(),
-									//thisRedCell.getOriginalCellReference() // blank as we can't trust for the moment
-									""
-									);
+			// Generate the main body line
+			Object[] bodyRecord = generateBodyRow(additionalDataToInclude, subRecords,
+					thisRedCell.getName(),
+					thisRedCell.getValueAsText(),
+					thisRedCell.getOriginalTableReference(),
+					// thisRedCell.getOriginalCellReference() // blank as we can't trust for the
+					// moment
+					"");
 
 			csvPrinter.printRecord(bodyRecord);
-	
+
 		}
-		csvPrinter.flush(); 
-		csvPrinter.close(); 
+		csvPrinter.flush();
+		csvPrinter.close();
 		writer.close();
 
 	}
-
-
 
 	/**
 	 * {@inheritDoc}
@@ -242,7 +238,9 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 
 	String[] getCsvFileAsStringArray() throws IOException {
 
-		File file = new File(outputFileName);
+		File file = ResourceFinder.getFileResourceUsingConfig(outputFileName);
+
+		//File file = new File(outputFileName);
 		FileInputStream fis = new FileInputStream(file);
 		byte[] byteArray = new byte[(int) file.length()];
 		fis.read(byteArray);
@@ -250,8 +248,10 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 		fis.close();
 		String[] stringArray = data.split("\r\n");
 
+		fis.close();
+
 		return stringArray;
-		
+
 	}
 
 	/**
@@ -269,90 +269,89 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 
 	/**
 	 * Generate the headers needed for the CSV File
-	 * Takes additional data to Output and 
+	 * Takes additional data to Output and
+	 * 
 	 * @return
 	 */
-	 String[] generateHeaders(Map<String,String> additionalDataToInclude) {
+	String[] generateHeaders(Map<String, String> additionalDataToInclude) {
 
-		//convert our must-include values
+		// convert our must-include values
 		String[] mustIncludeAdditionalKeys = additionalDataToInclude.keySet().toArray(new String[0]);
 
-		//Our standard Headers
-		String[] standardHeaders = {"Name","Value","Sheet","Ref","Table","Row","Col"};
+		// Our standard Headers
+		String[] standardHeaders = { "Name", "Value", "Sheet", "Ref", "Table", "Row", "Col" };
 
-		//concatenate the arrays
-		String[] result = ArrayUtils.addAll(mustIncludeAdditionalKeys,standardHeaders);
-	
+		// concatenate the arrays
+		String[] result = ArrayUtils.addAll(mustIncludeAdditionalKeys, standardHeaders);
+
 		return result;
 	}
 
 	/**
 	 * Generate the body needed needed for the CSV File
+	 * 
 	 * @param additionalDataToInclude - often including file name and dates
-	 * @param subrecords, extracted directly from the cell
-	 * @param params - 3 key fields extracted from name of cell
+	 * @param subrecords,             extracted directly from the cell
+	 * @param params                  - 3 key fields extracted from name of cell
 	 * @return
 	 */
-	 String[] generateBodyRow(Map<String,String> additionalDataToInclude,String[]subRecords,String ... params) {
-		
-		//convert our must-include values
+	String[] generateBodyRow(Map<String, String> additionalDataToInclude, String[] subRecords, String... params) {
+
+		// convert our must-include values
 		String[] mustIncludeAdditionalData = additionalDataToInclude.values().toArray(new String[0]);
 
-		//concatenate the arryas.
-		String[] result = ArrayUtils.addAll(mustIncludeAdditionalData,params);
-		result = ArrayUtils.addAll(result,subRecords);
-		//log.debug("Additional Data to include:"+Arrays.toString(result));
+		// concatenate the arryas.
+		String[] result = ArrayUtils.addAll(mustIncludeAdditionalData, params);
+		result = ArrayUtils.addAll(result, subRecords);
+		// log.debug("Additional Data to include:"+Arrays.toString(result));
 
 		return result;
 	}
 
-		/**
+	/**
 	 * split a generalized names into 3 tokens for our cvs
+	 * 
 	 * @return
 	 */
-	 String[] splitFieldName(String fieldName) {
+	String[] splitFieldName(String fieldName) {
 
-		assert fieldName!=null : "Incoming Value should not be null";
+		assert fieldName != null : "Incoming Value should not be null";
 
-		//default return values 
-		String part1="";
-		String part2="";
-		String part3="";
+		// default return values
+		String part1 = "";
+		String part2 = "";
+		String part3 = "";
 
-		log.debug("Splitting fields from:"+fieldName);
+		log.debug("Splitting fields from:" + fieldName);
 
-		//If text ends with _0 remove
-		if(fieldName.endsWith("_0")){
-			fieldName = fieldName.substring(0,fieldName.length()-2);
+		// If text ends with _0 remove
+		if (fieldName.endsWith("_0")) {
+			fieldName = fieldName.substring(0, fieldName.length() - 2);
 		}
 
-		//check that we are not in a single field (e.g. companyname - no table refernecs)
-		if(fieldName.indexOf("_")<0){
-			part1=fieldName;
+		// check that we are not in a single field (e.g. companyname - no table
+		// refernecs)
+		if (fieldName.indexOf("_") < 0) {
+			part1 = fieldName;
 		} else {
 
 			// attempt to split out the fields
-			//get first part
-			int match1 = fieldName.indexOf("_",0);
+			// get first part
+			int match1 = fieldName.indexOf("_", 0);
 			part1 = fieldName.substring(0, match1);
 
-			//get second aprt
-			int match2 = fieldName.indexOf("_",match1+1);
-			part2 = fieldName.substring(match1+1, match2);
+			// get second aprt
+			int match2 = fieldName.indexOf("_", match1 + 1);
+			part2 = fieldName.substring(match1 + 1, match2);
 
-			//get third part
-			part3 = fieldName.substring(match2+1,fieldName.length());
+			// get third part
+			part3 = fieldName.substring(match2 + 1, fieldName.length());
 
 		}
 
-
-
-
-		//Combine and return
-		String[] returnValue= {part1,part2,part3};
+		// Combine and return
+		String[] returnValue = { part1, part2, part3 };
 		return returnValue;
 	}
 
-	
 }
-

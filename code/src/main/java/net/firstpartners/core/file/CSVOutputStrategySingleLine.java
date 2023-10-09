@@ -245,10 +245,12 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 
 		log.debug("Found CSV:" + appendFileName);
 
-		// Open in a reader
-		Reader reader = new BufferedReader(new FileReader(appendFileName));
+		File readerFile = ResourceFinder.getFileResourceUsingConfig(appendFileName);
 
-		@SuppressWarnings("deprecation")
+		// Open in a reader
+		Reader reader = new BufferedReader(new FileReader(readerFile));
+
+		@SuppressWarnings("deprecation") //TODO remove deprecation supression
 		CSVParser csvParser = CSVParser.parse(reader, CSVFormat.EXCEL.withFirstRecordAsHeader());
 
 		List<String> returnValues = csvParser.getHeaderNames();
@@ -269,7 +271,7 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 	 */
 	int getNumberOfRowsInFile() throws IOException {
 
-		File file = new File(appendFileName);
+		File file =  ResourceFinder.getFileResourceUsingConfig(appendFileName);
 		FileInputStream fis = new FileInputStream(file);
 		byte[] byteArray = new byte[(int) file.length()];
 		fis.read(byteArray);

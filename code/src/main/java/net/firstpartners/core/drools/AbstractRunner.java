@@ -108,7 +108,14 @@ public abstract class AbstractRunner implements IRunner {
 
 
 			// Convert the cell and log if we have a handle
+			log.debug("=======================================================");
+			log.debug("\n\n\n\n\n\n\n");
 			log.info("Opening Input:"+thisDocumentSource.getInputDetails());
+			log.debug("\n\n\n\n\n\n\n");
+			log.debug("=======================================================");
+
+
+
 			ruleModel.addUIInfoMessage("Opening Input :" + thisDocumentSource.getInputDetails());
 
 			RangeList ranges;

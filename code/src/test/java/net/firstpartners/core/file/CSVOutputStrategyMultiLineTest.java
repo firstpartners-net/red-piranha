@@ -8,10 +8,12 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -108,8 +110,12 @@ public class CSVOutputStrategyMultiLineTest {
 		//make sure there are not multiple empty values
 		assertTrue("Should not be multiple ,,,,, in field",csvFileArray[1].indexOf(",,,,,,")<0);
 
-		fail("add test to check for Acme and Roadrunner");
 
+		//now check for acme / roadrunner - the company names from our example 5 files
+		File tmpResultCSV = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_APPEND_FILE);
+
+		FileUtils.readFileToString(tmpResultCSV,Charset.defaultCharset()).contains("ACME");
+		FileUtils.readFileToString(tmpResultCSV,Charset.defaultCharset()).contains("RoadRunner");
 	}
 
 	@Test
@@ -248,7 +254,7 @@ public class CSVOutputStrategyMultiLineTest {
 		assertNotNull("input data should not be empty",testRange);
 
 		//setup our CSV Outputter
-		CSVOutputStrategyMultiLine csvout = new CSVOutputStrategyMultiLine(TestConstants.CSV_TMP_FILE_MULTI_LINE);
+		CSVOutputStrategyMultiLine csvout = new CSVOutputStrategyMultiLine(TestConstants.CSV_TMP_FILE_MULTI_LINE); 
 		
 		//Update our output strategy with additional info we want it to use
 		HashMap<String,String> additionalOutputs = new HashMap<String,String>();

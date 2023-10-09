@@ -58,6 +58,7 @@ public class CSVOutputStrategySingleLineTest {
 		CSVOutputStrategySingleLine csvOut = new CSVOutputStrategySingleLine(TestConstants.CSV_APPEND_FILE);
 
 		List<String> headers = csvOut.getHeadersFromFile();
+		
 
 		assertEquals(headers.get(0), "Input");
 		assertEquals(headers.get(1), "Runtime");

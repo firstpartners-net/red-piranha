@@ -6,15 +6,11 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## Next - Multiple files
 
 * NEXT RESOLVE
-    * Need to bring through filename
-    * file resource find
-        * set to use just file name
+
     * get tests running again
         * testOutputJsonThenDelete
-
-    * Work though Unit tests again post config changes
-
-
+        * Move File utils to resource finder
+        * new method - find or create a resource
 
 # Mini Snapshot -> Main
     * For later pulling down and test

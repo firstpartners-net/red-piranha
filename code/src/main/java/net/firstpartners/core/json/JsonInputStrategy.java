@@ -34,7 +34,7 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	private OfficeDocument officeDocument; // TODO see if we can remove
+	private OfficeDocument officeDocument; 
 
 	private String subDirectory;
 

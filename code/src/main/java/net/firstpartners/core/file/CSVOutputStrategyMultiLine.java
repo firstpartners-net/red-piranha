@@ -87,7 +87,12 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 	private String outputFileName = null;
 
 	//Additional data we wish to output
-	private Map<String, String> additionalDataToInclude=null;
+	Map<String, String> additionalDataToInclude=null;
+
+	//Associated Settor
+	public void setAdditionalOutputData(Map<String, String> additionalData){
+		this.additionalDataToInclude=additionalData;
+	}
 
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
@@ -127,13 +132,6 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 		return outputFileName;
 	}
 
-	/**
-	 * To conform to the interface - not (yet) implemented in this strategy
-	 */
-	public void setAdditionalOutputData(Map<String, String> additionalDataToInclude) {
-		this.additionalDataToInclude = additionalDataToInclude;
-
-	}
 
 	/**
 	 * Process the output from the system
@@ -161,7 +159,7 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 			outputPath = Paths.get(outputFileName);
 		}
 
-		//placesholders for the  CSV Output classes we will output next
+		//placeholders for the  CSV Output classes we will output next
 		BufferedWriter writer = null;
 		CSVPrinter csvPrinter  =null;
 		File tmpOutputFileConfirm =null;

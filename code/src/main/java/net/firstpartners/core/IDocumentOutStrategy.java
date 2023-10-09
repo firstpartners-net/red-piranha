@@ -1,7 +1,6 @@
 package net.firstpartners.core;
 
 import java.io.IOException;
-
 import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -16,6 +15,10 @@ import net.firstpartners.data.RangeList;
  * @version $Id: $Id
  */
 public interface IDocumentOutStrategy {
+
+	//Constants - these will be the headings we use when outputting additional data
+	public static final String ADDITIONALDATA_SOURCE ="Source";
+	public static final String ADDITIONALDATA_DATE ="Extract Date";
 
 	/**
 	 * String representation of where our output will be going to
@@ -51,9 +54,7 @@ public interface IDocumentOutStrategy {
 	 */
 	public void processOutput() throws IOException, InvalidFormatException;
 
-	/**
-	 * Allows us to set additional output data
-	 * What the various strategies do with it is up to them.
-	 */
-	void setAdditionalOutputData(Map<String,String> additionalData);
+
+	public void setAdditionalOutputData(Map<String, String> additionalData);
+
 }

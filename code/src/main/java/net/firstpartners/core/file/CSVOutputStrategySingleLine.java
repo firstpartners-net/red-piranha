@@ -94,7 +94,6 @@ import net.firstpartners.data.RangeList;
  */
 public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 
-
 	// Name of the output file
 	private String appendFileName = null;
 
@@ -107,6 +106,14 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 
 	// sub directory e.g. for samples
 	private String subDirectory;
+
+	// Additional data we wish to output
+	Map<String, String> additionalDataToInclude = null;
+
+	// Associated Settor
+	public void setAdditionalOutputData(Map<String, String> additionalData) {
+		this.additionalDataToInclude = additionalData;
+	}
 
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
@@ -124,11 +131,6 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 	public void setSubDirectory(String subDirectory) {
 		this.subDirectory = subDirectory;
 	}
-
-	/**
-	 * To conform to the interface - not (yet) implemented in this strategy
-	 */
-	public void setAdditionalOutputData(Map<String,String> ignored){}
 
 	/**
 	 * /**

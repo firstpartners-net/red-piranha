@@ -1,8 +1,9 @@
 package net.firstpartners.core.drools;
 
 import java.util.List;
+import java.util.Map;
 
-
+import groovy.util.ResourceException;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.RPException;
@@ -40,5 +41,10 @@ public interface IRunner {
      * @return
      */
     public IDocumentOutStrategy getDocumentOutputStrategy();
+
+    /**
+     * Additional Data that we'd like to output alongside our data (e.g. sourcefilename or date)
+     */
+    public void setAdditionalOutputData(Map<String,String> additionalDataToInclude);
 
 }

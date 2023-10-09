@@ -38,6 +38,14 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 	private Workbook workbook;
 
+		//Additional data we wish to output
+	Map<String, String> additionalDataToInclude=null;
+
+	//Associated Settor
+	public void setAdditionalOutputData(Map<String, String> additionalData){
+		this.additionalDataToInclude=additionalData;
+	}
+
 
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
@@ -112,11 +120,6 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
 	}
 
-
-	/**
-	 * To conform to the interface - not (yet) implemented in this strategy
-	 */
-	public void setAdditionalOutputData(Map<String,String> ignored){}
 
 	/**
 	 * {@inheritDoc}

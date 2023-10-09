@@ -73,7 +73,7 @@ public class CSVOutputStrategyMultiLineTest {
 		HashMap<String,String> additionalOutputs = new HashMap<String,String>();
 		additionalOutputs.put("Input","TestFile");
 		additionalOutputs.put("Runtime",LocalDateTime.now().toString());
-		csvout.setAdditionalOutputData(additionalOutputs);
+		csvout.additionalDataToInclude=additionalOutputs;
 
 		// pass in the data that will be output and do the output
 		csvout.setUpdates(null, testRange);
@@ -254,7 +254,7 @@ public class CSVOutputStrategyMultiLineTest {
 		HashMap<String,String> additionalOutputs = new HashMap<String,String>();
 		additionalOutputs.put("Input","TestFile");
 		additionalOutputs.put("Runtime",LocalDateTime.now().toString());
-		csvout.setAdditionalOutputData(additionalOutputs);
+		csvout.additionalDataToInclude=additionalOutputs;
 
 		
 		// pass in teh data that will be output

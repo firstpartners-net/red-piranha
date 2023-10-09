@@ -3,7 +3,9 @@ package net.firstpartners.core.drools;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -43,6 +45,19 @@ public abstract class AbstractRunner implements IRunner {
 	// Handle to the strategy Class to write out the document
 	// Setup by RunnerFactory
 	protected IDocumentOutStrategy outputStrategy = null;
+
+	//Additional data that we wish to be passed to the output
+	Map<String,String> additionalData = new HashMap<String,String>();
+
+	//getts and setters
+	public Map<String, String> getAdditionalOutputData() {
+		return additionalData;
+	}
+
+	public void setAdditionalOutputData(Map<String, String> additionalData) {
+		this.additionalData = additionalData;
+	}
+
 
 	/**
 	 * The strategy we use for dealing with incoming documents
@@ -154,6 +169,10 @@ public abstract class AbstractRunner implements IRunner {
 
 			// update our post rules snapshot
 			ruleModel.setPostRulesSnapShot(ranges);
+
+			//update any additional output data
+			additionalData.put(IDocumentOutStrategy.ADDITIONALDATA_SOURCE, null); // overwrite any previous source
+			outputStrategy.setAdditionalOutputData(additionalData);
 
 			// make sure both get written (to disk?)
 			try {

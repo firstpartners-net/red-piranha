@@ -24,17 +24,24 @@ import net.firstpartners.data.RangeList;
  */
 public class PDFOutputStrategy implements IDocumentOutStrategy {
 
-	
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	// Name of the outputfile
 	private String outputFileName = null;
-	
+
 	private RangeList savedRange;
 
-	//sub directory e.g. for samples
+	// sub directory e.g. for samples
 	private String subDirectory;
+
+	// Additional data we wish to output
+	Map<String, String> additionalDataToInclude = null;
+
+	// Associated Settor
+	public void setAdditionalOutputData(Map<String, String> additionalData) {
+		this.additionalDataToInclude = additionalData;
+	}
 
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
@@ -45,20 +52,13 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 		this.outputFileName = outputFileName;
 	}
 
-
 	public String getSubDirectory() {
 		return subDirectory;
 	}
 
-
 	public void setSubDirectory(String subDirectory) {
 		this.subDirectory = subDirectory;
 	}
-
-	/**
-	 * To conform to the interface - not (yet) implemented in this strategy
-	 */
-	public void setAdditionalOutputData(Map<String,String> ignored){}
 
 	/**
 	 * {@inheritDoc}
@@ -71,7 +71,9 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 	}
 
 	/**
-	 * <p>Getter for the field <code>outputFileName</code>.</p>
+	 * <p>
+	 * Getter for the field <code>outputFileName</code>.
+	 * </p>
 	 *
 	 * @return a {@link java.lang.String} object
 	 */
@@ -88,7 +90,7 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 	public void processOutput() throws IOException, InvalidFormatException {
 
 		String outputDir = ResourceFinder.getBaseDirOfAllSamples();
-		
+
 		// Open the outputfile as a stream
 		log.debug("trying to output to:" + savedRange);
 
@@ -107,7 +109,7 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 			contents.endText();
 			contents.close();
 
-			doc.save(outputDir+outputFileName);
+			doc.save(outputDir + outputFileName);
 		} finally {
 			doc.close();
 		}
@@ -126,7 +128,6 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 		this.savedRange = range;
 
 	}
-
 
 	/**
 	 * Outputs Red-Piranha's own internal format to a Logging Console

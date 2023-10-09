@@ -35,7 +35,6 @@ import net.firstpartners.data.Cell;
 public class RuleRunner extends AbstractRunner {
 
 
-	
 	/**
 	 * Construct a new RuleRunner.
 	 *

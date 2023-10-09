@@ -29,6 +29,14 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	//sub directory e.g. for samples
 	private String subDirectory;
 
+		//Additional data we wish to output
+	Map<String, String> additionalDataToInclude=null;
+
+	//Associated Settor
+	public void setAdditionalOutputData(Map<String, String> additionalData){
+		this.additionalDataToInclude=additionalData;
+	}
+
 
 	public String getSubDirectory() {
 		return subDirectory;
@@ -51,10 +59,6 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 		return "Held in Memory";
 	}
 
-	/**
-	 * To conform to the interface - not (yet) implemented in this strategy
-	 */
-	public void setAdditionalOutputData(Map<String,String> ignored){}
 
 	/**
 	 * <p>getProcessedDocument.</p>

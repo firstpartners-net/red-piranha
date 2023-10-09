@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -301,6 +302,7 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 		//concatenate the arryas.
 		String[] result = ArrayUtils.addAll(mustIncludeAdditionalData,params);
 		result = ArrayUtils.addAll(result,subRecords);
+		//log.debug("Additional Data to include:"+Arrays.toString(result));
 
 		return result;
 	}

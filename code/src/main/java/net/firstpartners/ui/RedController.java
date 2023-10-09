@@ -144,11 +144,11 @@ public class RedController {
 	private HashMap<String, String> getAdditionalOutputs(RedModel redModel) {
 
 		HashMap<String, String> additionalOutputs = new HashMap<String, String>();
-		//get teh single intput file location
-		additionalOutputs.put(IDocumentOutStrategy.ADDITIONALDATA_SOURCE, redModel.getInputFileLocation());
 
 		//set the output date
 		additionalOutputs.put(IDocumentOutStrategy.ADDITIONALDATA_DATE, LocalDateTime.now().toString());
+
+		//Note - output file set later in process
 
 		return additionalOutputs;
 

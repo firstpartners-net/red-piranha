@@ -171,7 +171,15 @@ public abstract class AbstractRunner implements IRunner {
 			ruleModel.setPostRulesSnapShot(ranges);
 
 			//update any additional output data
-			additionalData.put(IDocumentOutStrategy.ADDITIONALDATA_SOURCE, null); // overwrite any previous source
+			ClassAndLocation cAndL =thisDocumentSource.getInputDetails();
+			String updateSource =cAndL.locationText;// default
+			if(cAndL!=null){
+				//Better to use actual file location
+				updateSource= cAndL.fileLocation.getName();
+			}
+			log.debug("Updated Source in Output to:"+updateSource);
+
+			additionalData.put(IDocumentOutStrategy.ADDITIONALDATA_SOURCE,updateSource); // overwrite any previous source
 			outputStrategy.setAdditionalOutputData(additionalData);
 
 			// make sure both get written (to disk?)

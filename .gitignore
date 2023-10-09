@@ -48,4 +48,6 @@ code/src/test/resources/testdata/tmp-multi.csv
 code/src/test/java/net/firstpartners/TestConstants.java
 code/src/test/resources/testdata/tmp-multi.csv
 
-6_no-share/
+**/6_no-share/
+*.gz
+

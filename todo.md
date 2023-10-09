@@ -7,6 +7,9 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 * NEXT RESOLVE
 
+    - Move deleteUtils
+    - take config out of resourcefindername
+
     * get tests running again
         * testOutputJsonThenDelete
         * Move File utils to resource finder

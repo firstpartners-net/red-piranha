@@ -3,6 +3,7 @@ package net.firstpartners.core.file;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -106,6 +107,8 @@ public class CSVOutputStrategyMultiLineTest {
 
 		//make sure there are not multiple empty values
 		assertTrue("Should not be multiple ,,,,, in field",csvFileArray[1].indexOf(",,,,,,")<0);
+
+		fail("add test to check for Acme and Roadrunner");
 
 	}
 

@@ -6,14 +6,12 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## Next - Multiple files
 
 * NEXT RESOLVE
+    * Need to bring through filename
     * file resource find
         * set to use just file name
     * get tests running again
         * testOutputJsonThenDelete
-    * Bring through subdir and allow strategy based on that
-    * Sample 5 - integration test
-        * why not picking up on files in direcotyr (ResourceFinder?) when can do it in SampleDataLoader
-    * Sample 5 - on web
+
     * Work though Unit tests again post config changes
 
 

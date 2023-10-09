@@ -1,15 +1,11 @@
 package net.firstpartners.core.script;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 
 import org.apache.poi.ss.SpreadsheetVersion;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Name;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -21,7 +17,6 @@ import org.slf4j.LoggerFactory;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
-
 import net.firstpartners.core.excel.CellConvertor;
 
 /**
@@ -145,11 +140,13 @@ public class ScriptSupport {
 			// Get Cell from Spreadhseet
 			assert s != null : "sheet should not be null";
 			poiRow = s.getRow(crefs[i].getRow());
-			poiCell = poiRow.getCell(crefs[i].getCol());
-
+			if(poiRow!=null){
+				poiCell = poiRow.getCell(crefs[i].getCol());
+			}
+			
 			// Get the current cells value use our main convertor
 			// for this use case, we just want it as a string.
-			currentCellText = getCellAsStringForceDateConversion(poiCell);
+			currentCellText = CellConvertor.getCellAsStringForceDateConversion(poiCell);
 			// log.debug("CurrentCellText:"+currentCellText+"
 			// length"+currentCellText.length());
 
@@ -279,49 +276,6 @@ public class ScriptSupport {
 
 	}
 
-	/**
-	 * Convert Cell to the String
-	 * for this use case, we just want it as a string.
-	 * e.g. for headers like "20/12/21" we want it as that value, not string
-	 * Note that numbers will often be treated as dates - since these are more
-	 * likely to be headers
-	 * 
-	 * @param poiCell
-	 * @return
-	 */
-	public String getCellAsStringForceDateConversion(Cell poiCell) {
-
-		// Convert our cell differently depending if is a date or note
-		// log.debug("Cell Type:"+(poiCell.getCellType()));
-		if(poiCell==null){
-			log.debug("poiCell was null - returning empty string");
-			return "";
-		}
-
-		String simpleConversion = "" + CellConvertor.getCellContents(poiCell);
-		// log.debug("Simple Conversion:"+simpleConversion);
-
-		CellType type = poiCell.getCellType();
-
-		if (type == CellType.NUMERIC
-				|| (poiCell.getCellType() == CellType.FORMULA) && (DateUtil.isCellDateFormatted(poiCell))) {
-
-			// convert using null checks
-			if (simpleConversion != null) {
-				Date javaDate = DateUtil.getJavaDate(Double.parseDouble(simpleConversion));
-				if (javaDate != null) {
-					return new SimpleDateFormat("dd/MM/yy").format(javaDate);
-				}
-			}
-
-		}
-
-		// return default conversion if we get this far
-		return simpleConversion;
-
-		
-
-	}
 
 	/**
 	 * Update a value in a cell in workbook in memory (not original sheet)
@@ -362,7 +316,7 @@ public class ScriptSupport {
 		Row row = s.getRow(cr.getRow());
 		Cell cell = row.getCell(cr.getCol());
 
-		return getCellAsStringForceDateConversion(cell);
+		return CellConvertor.getCellAsStringForceDateConversion(cell);
 	}
 
 	/**

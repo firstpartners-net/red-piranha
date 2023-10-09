@@ -32,6 +32,7 @@ import groovy.util.ScriptException;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.RPException;
+import net.firstpartners.core.excel.CellConvertor;
 import net.firstpartners.core.file.ResourceFinder;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -127,7 +128,7 @@ public class ScriptSupportTest {
 			Row row = sheet.getRow(cellReference.getRow());
 			Cell cell = row.getCell(cellReference.getCol());
 
-			assertEquals(set.getValue(), sprt.getCellAsStringForceDateConversion(cell));
+			assertEquals(set.getValue(), CellConvertor.getCellAsStringForceDateConversion(cell));
 
 		}
 	}

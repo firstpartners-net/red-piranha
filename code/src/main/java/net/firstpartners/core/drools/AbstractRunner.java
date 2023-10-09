@@ -195,6 +195,9 @@ public abstract class AbstractRunner implements IRunner {
 			} catch (InvalidFormatException | IOException e) {
 				throw new RPException("Error when writing out document", e);
 			}
+			log.debug("=======================================================");
+			log.debug("Current Document Complete");
+			log.debug("=======================================================");
 
 		} // end loop over docuemtns
 

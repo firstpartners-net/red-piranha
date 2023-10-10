@@ -43,7 +43,10 @@ code/src/main/resources/examples/1_Hello_World/output.xls
 code/src/test/resources/testdata/tmp.json
 code/src/test/resources/testdata/tmp.pdf
 code/src/test/resources/testdata/tmp.pdf
-code/src/main/resources/examples/4_folder_scan/.~lock.Complex_Financial.xlsx#
+code/src/main/resources/examples/4_folder_scan/.~lock.Complex_Financial.xlsx
+
+#local examples that should not leave server
+code/src/main/resources/examples/subset
 
 #Local logs
 RedPiranha.log*

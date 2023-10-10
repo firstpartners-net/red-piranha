@@ -217,7 +217,7 @@ public class ScriptSupport {
 				String refName = baseName + "_" + colNames.get("" + row) + "_" + headerNames.get("" + col);
 
 				// tidy to remove spaces etc as Excel won't allow them in named range
-				refName = refName.replaceAll("y/e", "ye");
+				refName = refName.replaceAll("y/e", "YE");
 				refName = refName.replaceAll("/", "_");
 				refName = refName.replaceAll("-", "_minus_");
 				refName = refName.replaceAll("\\+", "_plus_");

@@ -95,43 +95,7 @@ public class ScriptSupportTest {
 
 	}
 
-	/**
-	 * Test the formatter - especially useful to get dates as "31/12/20" etc
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public final void testTableNaming() throws Exception {
 
-		File xlFile = ResourceFinder.getFile(TestConstants.COMPLEX_EXCEL);
-		InputStream inputAsStream = new FileInputStream(xlFile);
-		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
-
-		// handle to the class under test
-		ScriptSupport sprt = new ScriptSupport(excelWorkBook);
-
-		// Get a handle to a cell, format, check return value
-		org.apache.poi.ss.usermodel.Sheet sheet = excelWorkBook.getSheet("Accounts");
-
-		// setup a hasmhap of cells and the values we expect to extract
-		HashMap<String, String> testMap = new HashMap<String, String>();
-		// testMap.put("Accounts!B39","2751.0");
-		testMap.put("Accounts!A14", "No. of Global Employees @ y/e (incl Irish employment)");
-		testMap.put("Accounts!B34", "31/12/18");
-
-		// Iterating HashMap through for loop
-		for (Map.Entry<String, String> set : testMap.entrySet()) {
-
-			CellReference cellReference = new CellReference(set.getKey());
-			log.debug("Testing cell:" + set.getKey() + " hoping for:" + set.getValue());
-
-			Row row = sheet.getRow(cellReference.getRow());
-			Cell cell = row.getCell(cellReference.getCol());
-
-			assertEquals(set.getValue(), CellConvertor.getCellAsStringForceDateConversion(cell));
-
-		}
-	}
 
 	@Test
 	public final void testUpdateTableValues() throws Exception {

@@ -48,12 +48,7 @@ public class CellConvertor {
 
 		// Keep a reference to the original cell location
 		if (poiCell != null) {
-			redCell.setOriginalCellReference(poiCell.getAddress().getRow(), poiCell.getAddress().getColumn()); // TODO
-																												// restore
-																												// reference
-																												// ,
-																												// faulty
-																												// currently
+			redCell.setOriginalCellReference(poiCell.getAddress().getRow(), poiCell.getAddress().getColumn()); 
 			redCell.setOriginalTableReference(poiCell.getSheet().getSheetName());
 		} else {
 			log.info("poiCell " + cellNameFromRange + " was null - skipping");

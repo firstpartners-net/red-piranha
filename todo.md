@@ -9,8 +9,10 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
     * Review
         * Review Data out and add to tweak list below
+        * * Tests passing - any others I can make work (quick check, then move to spillover)
+    * Quick Check
+        * Is / can we get sample 1 and 4 working again (as useful for testing the items below)
     * Robustness
-        * clearer at end (in RedController that process is complete)
         * spring timeout make note in example
             * add to readme.md this and other settings in application.properties
         * poiCell -> RedCell conversion
@@ -19,13 +21,21 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
             * Unit test CellConvertorTest (contiguours ranes) - not returning values
             * setup properties just to have Debug on CellConvertor / Script support
             * maybe add cell-> poiCell to assist in deubbing
-        * Tests passing - any others I can make work (quick check, then move to spillover)
+        * Script support Test
+            * getCellAsStringForceDateConversion
+        
 
-
-        * Update Regex
-            ye -> YE
         * Unit test Splitter (search Splitting fields from)
         * Review which items are log.info and which are log.debug (for when deploinging)
+        * Setting - continue after error
+            * web page (but read only) & examples
+            * Note in Readme.md
+            * check in RPException catch as part of main loop
+            * refactor of main loop?
+        * Upgrade RP Logging to show different documents (Y/N)
+            * Flush this to disk
+            * Remove input and output
+            * make a note of this in readme.html
     * NTH
         * can I use rules to support the above
         

@@ -4,11 +4,14 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -23,6 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
 import net.firstpartners.data.Cell;
@@ -151,6 +155,44 @@ public class CellConvertorTest {
 
 		}
 
+	}
+
+		/**
+	 * Test the formatter - especially useful to get dates as "31/12/20" etc
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public final void testForcedDateRenaming() throws Exception {
+
+		File xlFile = ResourceFinder.getFile(TestConstants.COMPLEX_EXCEL);
+		InputStream inputAsStream = new FileInputStream(xlFile);
+		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
+
+		// handle to the class under test
+		//ScriptSupport sprt = new ScriptSupport(excelWorkBook);
+
+		// Get a handle to a cell, format, check return value
+		org.apache.poi.ss.usermodel.Sheet sheet = excelWorkBook.getSheet("Accounts");
+
+		// setup a hasmhap of cells and the values we expect to extract
+		HashMap<String, String> testMap = new HashMap<String, String>();
+		// testMap.put("Accounts!B39","2751.0");
+		testMap.put("Accounts!A14", "No. of Global Employees @ y/e (incl Irish employment)");
+		testMap.put("Accounts!B34", "31/12/18");
+
+		// Iterating HashMap through for loop
+		for (Map.Entry<String, String> set : testMap.entrySet()) {
+
+			CellReference cellReference = new CellReference(set.getKey());
+			log.debug("Testing cell:" + set.getKey() + " hoping for:" + set.getValue());
+
+			Row row = sheet.getRow(cellReference.getRow());
+			org.apache.poi.ss.usermodel.Cell cell = row.getCell(cellReference.getCol());
+
+			assertEquals(set.getValue(), CellConvertor.getCellAsStringForceDateConversion(cell));
+
+		}
 	}
 
 }

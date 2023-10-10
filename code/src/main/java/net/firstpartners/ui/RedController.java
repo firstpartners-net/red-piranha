@@ -132,6 +132,11 @@ public class RedController {
 		// make the config we used available as well
 		model.addAttribute(RED_MODEL, redModel);
 
+		//end of processing
+		log.debug("#################");
+		log.debug("End of Processing");
+		log.debug("#################");
+
 		// set the html page we want to display
 		return "index";
 	}

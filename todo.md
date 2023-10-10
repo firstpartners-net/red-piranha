@@ -7,33 +7,32 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 * NEXT RESOLVE
 
+    * Review
+        * Review Data out and add to tweak list below
     * Robustness
+        * clearer at end (in RedController that process is complete)
         * spring timeout make note in example
             * add to readme.md this and other settings in application.properties
-        * Move cnd to local
+        * poiCell -> RedCell conversion
+            * where cell is "" because of null, pass back null 
+            * debug CellConvertor in more detail
+            * Unit test CellConvertorTest (contiguours ranes) - not returning values
+            * setup properties just to have Debug on CellConvertor / Script support
+            * maybe add cell-> poiCell to assist in deubbing
+        * Tests passing - any others I can make work (quick check, then move to spillover)
+
+
+        * Update Regex
+            ye -> YE
         * Unit test Splitter (search Splitting fields from)
         * Review which items are log.info and which are log.debug (for when deploinging)
-        * where cell is "" because of null, pass back null 
-
-
-
-# Mini Snapshot -> Main
-    * For later pulling down and test
-
-## Next tidy
-
-* test cell conversion
-    * Run other unit tests
-        * any other unit test to try out specific conversation (search for Spreadhsheet convertor tess) ###
-        * Unit test CellConvertorTest (contiguours ranes) - not returning values
-
+    * NTH
+        * can I use rules to support the above
+        
 
 ## Next - Deployment snaphot (tag and docker)
-* Can deploy and work against true docs
-* Merge branch back into main (and create bugfix branch)
-* Snapshot current code and make note for book readers
-* Add note on book to here
-* Tests passing - any others I can make work (quick check)
+
+* (Decide) Merge branch back into main (and create bugfix branch)
 
 
 ## Upgrade Doc
@@ -42,18 +41,29 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * add about new and old book
 * tidy off *notes*.md files
 
+## Update release docs
 * update notes-release.md and use to improve notes
-* Carry out release
+* Carry out release and update notes (first pass)
     * github
     * docker
-
-
-
+* Tidy release instructions (second pass)
 
 ## Release
 * Or at least update release notes
 * do interim github and docker release
-* Merge back into main, create new bugfix branch?
+
+
+## ################
+* END OF MAIN PUSH
+## ################
+
+* Carry over from previous sprint
+         * Move CDN to local (Or move this back?) for computers without internet access
+
+* Rules 
+    * being loaded each run - can we load once and reuses
+    * check code - might already be implemented
+
 
 ## ##############
 
@@ -89,18 +99,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## ############## MEDIUM TERM
 
-## Tidy
-* Clear down warning
-* Figure out why excel->excel example is outputting incorrectly
-* More info through to front end
-* more tests compile / rule
-* tidy of all readme pages
-* view vulneribilty report (right click top right of tabs and renable)
-* restore commented out tests (put @Test back on them)
-    * testJSONInOut
-
 ## upgrades and housekeeping
-
 
 * Migrate to latest version of all libs
 * tidy DSL example
@@ -121,4 +120,10 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * Rengerate Javadoc, tidy to site
 * recover and reused previous examples (to web) - currently in test folder
 * Simplify down to Cells (remove all notion or ranges?)
+* Figure out why excel->excel example is outputting incorrectly
+* More info through to front end
+* more tests compile / rule
+* tidy of all readme pages
+* view vulneribilty report (right click top right of tabs and renable)
+
 

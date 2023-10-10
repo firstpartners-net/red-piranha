@@ -11,11 +11,9 @@ import org.slf4j.LoggerFactory;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
-import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
-import net.firstpartners.core.file.Utils;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
@@ -27,8 +25,6 @@ import net.firstpartners.data.RangeList;
  */
 public class ExcelOutputStrategy implements IDocumentOutStrategy {
 
-
-	Config appConfig;
 	
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -40,6 +36,14 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	private String subDirectory =null;
 
 	private Workbook workbook;
+
+		//Additional data we wish to output
+	Map<String, String> additionalDataToInclude=null;
+
+	//Associated Settor
+	public void setAdditionalOutputData(Map<String, String> additionalData){
+		this.additionalDataToInclude=additionalData;
+	}
 
 
 	/**
@@ -108,22 +112,13 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	public void processOutput() throws IOException {
 
 		// delete the outputFile if it exists
-		Utils.deleteOutputFileIfExists(outputFileName);
+		ResourceFinder.deleteOutputFileIfExists(outputFileName);
 
 		// Open the outputfile as a stream
 		outputToFile(workbook);
 
 	}
 
-	/** {@inheritDoc} */
-	public void setConfig(Config appConfig) {
-		this.appConfig = appConfig;
-	}
-
-	/**
-	 * To conform to the interface - not (yet) implemented in this strategy
-	 */
-	public void setAdditionalOutputData(Map<String,String> ignored){}
 
 	/**
 	 * {@inheritDoc}
@@ -167,8 +162,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	void outputToConsole(Workbook wb) throws IOException, ResourceException, ScriptException {
 
-		SpreadSheetConvertor convertor = new SpreadSheetConvertor(appConfig);
-		RangeList ranges = convertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
+		RangeList ranges = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(wb);
 		outputToConsole(ranges);
 
 	}
@@ -182,7 +176,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	 */
 	void outputToFile(Workbook wb) throws IOException {
 
-		String outputFileDir = ResourceFinder.getDirectoryResourceUsingConfig(appConfig);
+		String outputFileDir = ResourceFinder.getBaseDirOfAllSamples();
 		
 		//Construct the output file including directory
 		String outputFile;

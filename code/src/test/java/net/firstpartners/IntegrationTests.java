@@ -1,18 +1,20 @@
 package net.firstpartners;
 
+
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.firstpartners.core.Config;
 import net.firstpartners.core.MemoryOutputStrategy;
@@ -30,8 +32,9 @@ import net.firstpartners.core.json.SampleDataLoader;
  * @author paulf
  *
  */
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-class IntegrationTests {
+public class IntegrationTests {
 
 	// handle for our config
 	@Autowired
@@ -40,34 +43,19 @@ class IntegrationTests {
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
-
-	@BeforeEach
-	void setUp() throws Exception {
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-
-	@Test
+	
 	/**
 	 * Useful if we want to unit test a specfici example
 	 * @throws Exception
 	 */
-	void testSpecificExample() throws Exception, RPException {
+	@Test
+	public void testSpecificExample() throws Exception, RPException {
 		sampleTestRunner(4);
 	}
 
 
  	@Test
-	void testAllSamples() throws Exception, RPException {
+	public void testAllSamples() throws Exception, RPException {
 		sampleTestRunner(-1);
 	}
 
@@ -80,8 +68,7 @@ class IntegrationTests {
 	 */
 	private void sampleTestRunner(int sampleToRun) throws Exception, RPException{
 
-		List<SampleData> examples = SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON,
-		appConfig);
+		List<SampleData> examples = SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON);
 
 		//counter
 		if(sampleToRun<0){
@@ -111,11 +98,11 @@ class IntegrationTests {
 			testModel.setRuleFileLocation(thisExample.getRuleFileLocation());
 			testModel.setOutputFileLocation(thisExample.getOutputFileLocation());
 			testModel.setDslFileLocation(thisExample.getDslFileLocation());
-			testModel.setBaseDirectory(thisExample.getBaseDirectory());
+			testModel.setSubDirectory(thisExample.getSubDirectory());
 
 			log.debug("Running:\n" + testModel);
 
-			IRunner runner = RunnerFactory.getRuleRunner(testModel, appConfig);
+			IRunner runner = RunnerFactory.getRuleRunner(testModel);
 			
 			// set out OutputStrategy so we can test the output later
 			// this overrides the normal output
@@ -129,7 +116,7 @@ class IntegrationTests {
 			//log.debug(testModel.toString());
 			
 			
-			//check not blowing up and that we have
+			//check not blowing up and that we have a value back
 			assertNotNull(outputStrategy.getProcessedDocument());
 			
 		}

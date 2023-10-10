@@ -15,6 +15,7 @@ import groovy.util.ResourceException;
 import groovy.util.ScriptException;
 import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
+import net.firstpartners.core.drools.ClassAndLocation;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.core.script.PreProcessor;
@@ -32,10 +33,9 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	private String excelInputFileName = null;
+	private ClassAndLocation inputDetails = null;
 	private Workbook excelWorkBook = null;
 
-	private Config appConfig;
 
 	private String subDirectory;
 
@@ -44,8 +44,8 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	 *
 	 * @param excelInputFileName a {@link java.lang.String} object
 	 */
-	public ExcelInputStrategy(String excelInputFileName) {
-		this.excelInputFileName = excelInputFileName;
+	public ExcelInputStrategy(ClassAndLocation excelInput) {
+		this.inputDetails = excelInput;
 	}
 
 	/**
@@ -55,11 +55,6 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 		this.subDirectory= subDirectory;
 	}
 	
-	/** {@inheritDoc} */
-	public void setConfig(Config appConfig) {
-		log.debug("Config set");
-		this.appConfig = appConfig;
-	}
 
 	/** {@inheritDoc} */
 	@Override
@@ -72,8 +67,12 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	 *
 	 * @return a {@link java.lang.String} object
 	 */
-	public String getInputName() {
-		return excelInputFileName;
+	public ClassAndLocation getInputDetails() {
+		return inputDetails;
+	}
+
+	public void setInputDetails(ClassAndLocation inputDetails){
+		this.inputDetails=inputDetails;
 	}
 
 	/**
@@ -86,20 +85,25 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	@Override
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, ResourceException, ScriptException {
 
-		//check incoming values	
-		assert appConfig!=null: "App Config should not be null";
 
+		
 		// load our Excel file and convert to our internal beans
-		File xlFile = ResourceFinder.getFileResourceUsingConfig(excelInputFileName, appConfig);
+		File xlFile = ResourceFinder.getFile(inputDetails);
 		InputStream inputAsStream = new FileInputStream(xlFile);
 		log.debug("converting incoming excel stream to Javabeans");
 		excelWorkBook = WorkbookFactory.create(inputAsStream);
+
+		//Get the name of the preprocess script
+		Config appConfig = ResourceFinder.getConfig();
+		assert appConfig!=null;
+
+
 
 		//call the processor if available
 		if(appConfig.getPreprocessScript()!=null){
 
 			log.debug("Configured to use pre-processor subDir:"+subDirectory+" script:"+appConfig.getPreprocessScript());
-			PreProcessor preProcess = new PreProcessor(appConfig);
+			PreProcessor preProcess = new PreProcessor();
 			excelWorkBook= preProcess.preprocessXlWorkbook(subDirectory,appConfig.getPreprocessScript(), excelWorkBook);
 
 		} else {
@@ -107,21 +111,12 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 		}
 
 		//Get handle and use convertor
-		SpreadSheetConvertor convertor = new SpreadSheetConvertor(appConfig);
-		RangeList myRange = convertor.convertNamesFromPoiWorkbookIntoRedRange(excelWorkBook);
+		RangeList myRange = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(excelWorkBook);
 		inputAsStream.close();
 		return myRange;
 
 	}
 
-	/**
-	 * <p>Setter for the field <code>excelInputFileName</code>.</p>
-	 *
-	 * @param excelInputFileName a {@link java.lang.String} object
-	 */
-	public void setExcelInputFileName(String excelInputFileName) {
-		this.excelInputFileName = excelInputFileName;
-	}
 
 	/** {@inheritDoc} */
 	@Override

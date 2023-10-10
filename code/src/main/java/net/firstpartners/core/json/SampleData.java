@@ -16,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 public class SampleData {
 
 	private int id;
-	private String baseDirectory;
+	private String subDirectory;
 	private String inputFileLocation;
 	private String ruleFileLocation;
 	private String outputFileLocation;
@@ -54,11 +54,7 @@ public class SampleData {
 		return preProcessNotice;
 	}
 
-	/**
-	 * <p>Setter for the field <code>baseDirectory</code>.</p>
-	 *
-	 * @param descriptiontext a {@link java.lang.String} object
-	 */
+
 	public void setPreProcessNotice(String preProcessNotice) {
 		this.preProcessNotice = preProcessNotice;
 	}
@@ -69,8 +65,8 @@ public class SampleData {
 	 *
 	 * @return a {@link java.lang.String} object
 	 */
-	public String getBaseDirectory() {
-		return baseDirectory;
+	public String getSubDirectory() {
+		return subDirectory;
 	}
 
 	/**
@@ -78,8 +74,8 @@ public class SampleData {
 	 *
 	 * @param descriptiontext a {@link java.lang.String} object
 	 */
-	public void setBaseDirectory(String baseDirectory) {
-		this.baseDirectory = baseDirectory;
+	public void setSubDirectory(String subDirectory) {
+		this.subDirectory = subDirectory;
 	}
 
 	/**
@@ -213,7 +209,7 @@ public class SampleData {
 		StringBuffer returnValue = new StringBuffer();
 		
 		String enc = StandardCharsets.UTF_8.toString();
-		returnValue.append("?baseDirectory=" + URLEncoder.encode(this.baseDirectory, enc));
+		returnValue.append("?subDirectory=" + URLEncoder.encode(this.subDirectory, enc));
 		returnValue.append("&inputFileLocation=" + URLEncoder.encode(this.inputFileLocation, enc));
 		returnValue.append("&ruleFileLocation=" + URLEncoder.encode(this.ruleFileLocation, enc));
 		returnValue.append("&outputFileLocation=" + URLEncoder.encode(this.outputFileLocation, enc));

@@ -1,5 +1,5 @@
 
-<b>What example does:</b> Read information from a complex Excel Spreadsheet and summarize as json/csv.
+<b>What example does:</b> Read information from a complex Excel Spreadsheet and summarize as csv.
 <p>
 The sample demonstrates extracting data from a complex Excel file - it uses preprocessing to tidy the Named Ranges in the document
  often needed for historical documents and used to identify the Cells we want to extact and pass into the Rule Engine. 
@@ -22,7 +22,7 @@ In this sample the rules are simple - but could
 be a lot more complex (e.g.) making a decision to invest, or listing the reason why not. Our sample uses rules to tidy tidy 
 and identify files not in the format we expect.
 </li><li>
-Finally the sample outputs the values to a CSV file. 
+Finally the sample appends the values to a CSV file. You may want to delete this file manually between runs.
 </li><li>
 The net effect is that clean values are extracted from an untidy Excel sheet,
 tidied up, and output cleanly into a format suitable for ingestion into the next step e.g. a Machine Learning pipeline.

@@ -44,6 +44,8 @@ sprt.setText("Overdraft_new","Accounts","A173")
 
 // Start setting names - single cells
 sprt.nameSingleCell("CompanyName", "Accounts", "A4")
+sprt.nameSingleCell("ClosingCash", "Cash flow", "M82")
+
 
 // Start Naming Tables - each cell in table will be named individually using 
 //the base value, then a combination of the the header and rows
@@ -53,6 +55,10 @@ sprt.nameTable("Info","Accounts","A12:I30")
 sprt.nameTable("PL","Accounts","A34:I75")
 sprt.nameTable("BS","Accounts","A81:I124")
 sprt.nameTable("Cash","Accounts","A131:I195")
+
+//Another sheet name, this one with a space 
+sprt.nameTable("Cashflow","Cash flow","A8:M24")
+
 
 
 // the final value in our script will be returned to Red Piranha

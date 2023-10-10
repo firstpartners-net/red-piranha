@@ -19,7 +19,6 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
@@ -95,8 +94,6 @@ import net.firstpartners.data.RangeList;
  */
 public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 
-	private Config appConfig;
-
 	// Name of the output file
 	private String appendFileName = null;
 
@@ -109,6 +106,14 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 
 	// sub directory e.g. for samples
 	private String subDirectory;
+
+	// Additional data we wish to output
+	Map<String, String> additionalDataToInclude = null;
+
+	// Associated Settor
+	public void setAdditionalOutputData(Map<String, String> additionalData) {
+		this.additionalDataToInclude = additionalData;
+	}
 
 	/**
 	 * Constructor - takes the name of the file we intend outputting to
@@ -126,11 +131,6 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 	public void setSubDirectory(String subDirectory) {
 		this.subDirectory = subDirectory;
 	}
-
-	/**
-	 * To conform to the interface - not (yet) implemented in this strategy
-	 */
-	public void setAdditionalOutputData(Map<String,String> ignored){}
 
 	/**
 	 * /**
@@ -221,11 +221,6 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 
 	}
 
-	/** {@inheritDoc} */
-	public void setConfig(Config appConfig) {
-		this.appConfig = appConfig;
-	}
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -241,7 +236,7 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 	List<String> getHeadersFromFile() throws IOException {
 
 		// We must have a pre existing file
-		File appendFile = ResourceFinder.getFileResourceUsingConfig(appendFileName, appConfig);
+		File appendFile = ResourceFinder.getFile(appendFileName);
 
 		if (!appendFile.exists()) {
 			throw new IllegalArgumentException(
@@ -250,10 +245,11 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 
 		log.debug("Found CSV:" + appendFileName);
 
-		// Open in a reader
-		Reader reader = new BufferedReader(new FileReader(appendFileName));
+		File readerFile = ResourceFinder.getFile(appendFileName);
 
-		@SuppressWarnings("deprecation")
+		// Open in a reader
+		Reader reader = new BufferedReader(new FileReader(readerFile));
+
 		CSVParser csvParser = CSVParser.parse(reader, CSVFormat.EXCEL.withFirstRecordAsHeader());
 
 		List<String> returnValues = csvParser.getHeaderNames();
@@ -274,7 +270,7 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 	 */
 	int getNumberOfRowsInFile() throws IOException {
 
-		File file = new File(appendFileName);
+		File file =  ResourceFinder.getFile(appendFileName);
 		FileInputStream fis = new FileInputStream(file);
 		byte[] byteArray = new byte[(int) file.length()];
 		fis.read(byteArray);

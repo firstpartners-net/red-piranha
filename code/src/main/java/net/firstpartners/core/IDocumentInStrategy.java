@@ -7,6 +7,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
+import net.firstpartners.core.drools.ClassAndLocation;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.word.WordXInputStrategy;
 import net.firstpartners.data.RangeList;
@@ -28,19 +29,20 @@ public interface IDocumentInStrategy {
 	 */
 	OfficeDocument getOriginalDocument();
 
-	/**
-	 * Allows us to pass details of the environment
-	 *
-	 * @param config a {@link net.firstpartners.core.Config} object
-	 */
-	void setConfig(Config config);
 	
 	/**
 	 * State where out input is coming from
+	 * @return class and locaiton of input strategy
 	 *
 	 * @return a {@link java.lang.String} object
 	 */
-	String getInputName();
+	ClassAndLocation getInputDetails();
+
+	/**
+	 * Set where the input is coming from
+	 * @param class and locaiton of input strategy
+	 */
+	void setInputDetails(ClassAndLocation inputDetails);
 
 	/**
 	 * Access a Stream, convert it to Red JavaBeans (representing and Office Objects)

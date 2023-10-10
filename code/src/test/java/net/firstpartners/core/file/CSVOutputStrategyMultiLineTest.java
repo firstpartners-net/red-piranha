@@ -3,71 +3,113 @@ package net.firstpartners.core.file;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.firstpartners.TestConstants;
-import net.firstpartners.core.Config;
 import net.firstpartners.core.RPException;
+import net.firstpartners.core.drools.ClassAndLocation;
 import net.firstpartners.core.json.JsonInputStrategy;
 import net.firstpartners.data.RangeList;
 
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class CSVOutputStrategyMultiLineTest {
 
-	// handle for our config
-	@Autowired
-	Config appConfig;
 
 	// Logger
 	private static Logger log = LoggerFactory.getLogger(CSVOutputStrategyMultiLineTest.class);
 
 	@Test
-	public final void testCreateAppendToCSV() throws IOException, InvalidFormatException, ClassNotFoundException {
+	public final void testCreateAppendToCSVNoOverwrite() throws IOException, InvalidFormatException, ClassNotFoundException {
 
-
-		//Delete previous csv tmp file
-		fail ("Not implemented yet");
+		// Delete previous output file if it exists - file should not fail if it doesn't
+		ResourceFinder.deleteOutputFileIfExists(TestConstants.CSV_APPEND_FILE);
+		
 
 		//confirm file does not exist yet
-		fail ("Not implemented yet");
+		// Delete previous output file if it exists - file should not fail if it doesn't
 
-		//etup our test class
-		CSVOutputStrategyMultiLine csvOut = new CSVOutputStrategyMultiLine(TestConstants.CSV_APPEND_FILE);
+		try{
+			File tmpOutputFileConfirm = ResourceFinder.getFile(TestConstants.CSV_APPEND_FILE);
+			
+			// confirm file does not exist
+		//	assertTrue(tmpOutputFileConfirm==null);
+			assertTrue(!tmpOutputFileConfirm.exists());
+	
+		} catch (FileNotFoundException fnfe){
+			log.debug("Tmpfile "+TestConstants.CSV_APPEND_FILE+" not found when checking - this is ok");
+		}
 
 
+		//get sample data - medium sized
+		JsonInputStrategy jsInput = new JsonInputStrategy(new ClassAndLocation(TestConstants.JSON_SERIAL_FILE_MEDIUM));
+		RangeList testRange = jsInput.getJavaBeansFromSource();
+		assertNotNull("input data should not be empty",testRange);
 
-		//get sample data from 	JSON_SERIAL_FILE_MEDIUM
-		fail ("Not implemented yet");
+		//output to csv - pass 1
+		CSVOutputStrategyMultiLine csvout = new CSVOutputStrategyMultiLine(TestConstants.CSV_APPEND_FILE);
 
-		//output to xls
-		fail ("Not implemented yet");
+		//Update our output strategy with additional info we want it to use
+		HashMap<String,String> additionalOutputs = new HashMap<String,String>();
+		additionalOutputs.put("Input","TestFile");
+		additionalOutputs.put("Runtime",LocalDateTime.now().toString());
+		csvout.additionalDataToInclude=additionalOutputs;
+
+		// pass in the data that will be output and do the output
+		csvout.setUpdates(null, testRange);
+		csvout.processOutput();
+		log.debug("csv data is saved in:"+TestConstants.CSV_TMP_FILE_MULTI_LINE);
 
 		//test body and test hearers , capture number of rows
-		fail ("Not implemented yet");
+		String[] csvFileArray = csvout.getCsvFileAsStringArray();
+		log.debug(csvFileArray[0]);
+		int firstPassNumberRows = csvFileArray.length;
 
-		//output our sample data a second time 
-		fail ("Not implemented yet");
+		//Test for correct headers (already read from file)
+		assertEquals("Input,Runtime,Name,Value,Sheet,Ref,Table,Row,Col" ,csvFileArray[0]);
+
+		//output our sample data a second time - pass 2
+		csvout.processOutput();
+		log.debug("More CSV data is saved in:"+TestConstants.CSV_APPEND_FILE);
+
+		String[] csvFileArrayPass2 = csvout.getCsvFileAsStringArray();
+		log.debug(csvFileArrayPass2[0]);
+		int secondPassNumberRows = csvFileArrayPass2.length;
 
 		//check that our number of rows is now doubled.
-		fail ("Not implemented yet");
+		log.debug("First Size:"+firstPassNumberRows+" second size:"+secondPassNumberRows);
+		assertEquals("CSV is not double -1 to allow for headers", secondPassNumberRows,(firstPassNumberRows*2)-1);
+		
+		//Test for correct headers (already read from file)
+		assertEquals("Input,Runtime,Name,Value,Sheet,Ref,Table,Row,Col" ,csvFileArrayPass2[0]);
+
+		log.debug(csvFileArray[1]);
+
+		//make sure there are not multiple empty values
+		assertTrue("Should not be multiple ,,,,, in field",csvFileArray[1].indexOf(",,,,,,")<0);
 
 
+		//now check for acme / roadrunner - the company names from our example 5 files
+		File tmpResultCSV = ResourceFinder.getFile(TestConstants.CSV_APPEND_FILE);
 
-
+		FileUtils.readFileToString(tmpResultCSV,Charset.defaultCharset()).contains("ACME");
+		FileUtils.readFileToString(tmpResultCSV,Charset.defaultCharset()).contains("RoadRunner");
 	}
 
 	@Test
@@ -189,12 +231,10 @@ public class CSVOutputStrategyMultiLineTest {
 	@Test
 	public final void testJsonInCsvOut() throws Exception, RPException {
 
-		//mockup the configuration we need
-		Config testConfig = new Config();
 
 		// Delete previous output file if it exists - file should not fail if it doesn't
 		try{
-			File tmpOutputFile = ResourceFinder.getFileResourceUsingConfig(TestConstants.CSV_TMP_FILE_MULTI_LINE, testConfig);
+			File tmpOutputFile = ResourceFinder.getFile(TestConstants.CSV_TMP_FILE_MULTI_LINE);
 			if(tmpOutputFile!=null){
 				tmpOutputFile.delete();
 			}
@@ -203,20 +243,18 @@ public class CSVOutputStrategyMultiLineTest {
 		}
 
 		//Get our sample data
-		JsonInputStrategy jsInput = new JsonInputStrategy(TestConstants.JSON_SERIAL_FILE_COMPLEX);
-		jsInput.setConfig((testConfig));
+		JsonInputStrategy jsInput = new JsonInputStrategy(new ClassAndLocation(TestConstants.JSON_SERIAL_FILE_COMPLEX));
 		RangeList testRange = jsInput.getJavaBeansFromSource();
 		assertNotNull("input data should not be empty",testRange);
 
 		//setup our CSV Outputter
-		CSVOutputStrategyMultiLine csvout = new CSVOutputStrategyMultiLine(TestConstants.CSV_TMP_FILE_MULTI_LINE);
-		csvout.setConfig(testConfig);
+		CSVOutputStrategyMultiLine csvout = new CSVOutputStrategyMultiLine(TestConstants.CSV_TMP_FILE_MULTI_LINE); 
 		
 		//Update our output strategy with additional info we want it to use
 		HashMap<String,String> additionalOutputs = new HashMap<String,String>();
 		additionalOutputs.put("Input","TestFile");
 		additionalOutputs.put("Runtime",LocalDateTime.now().toString());
-		csvout.setAdditionalOutputData(additionalOutputs);
+		csvout.additionalDataToInclude=additionalOutputs;
 
 		
 		// pass in teh data that will be output

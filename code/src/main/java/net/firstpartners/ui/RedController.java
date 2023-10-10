@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.firstpartners.core.Config;
+import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.IRunner;
 import net.firstpartners.core.drools.RunnerFactory;
@@ -57,10 +58,9 @@ public class RedController {
 
 		// (re)load sample information
 		try {
-			List<SampleData> sampleData = 
-					SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON,appConfig);
+			List<SampleData> sampleData = SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON);
 			model.addAttribute(SAMPLE_INFO, sampleData);
-			
+
 		} catch (IOException e) {
 			log.warn("Error loading Sample information " + e.getMessage());
 		}
@@ -81,7 +81,7 @@ public class RedController {
 	@RequestMapping(value = "/runRules")
 	public String runRules(Model model, @ModelAttribute(RED_MODEL) RedModel redModel) {
 
-		log.debug("baseDirectory:" + redModel.getBaseDirectory());	
+		log.debug("subDirectory:" + redModel.getSubDirectory());	
 		log.debug("inputFileLocation:" + redModel.getInputFileLocation());
 		log.debug("DSL?" + redModel.getDslFileLocation());
 		log.debug("DRL?" + redModel.getRuleFileLocation());
@@ -94,21 +94,20 @@ public class RedController {
 
 			// The Factory auto-generates the input and output strategy based on the
 			// filenames
-			IRunner runner = RunnerFactory.getRuleRunner(redModel,appConfig);
+			IRunner runner = RunnerFactory.getRuleRunner(redModel);
 
-			//Update configuration on this
-			runner.getDocumentInputStrategy().setConfig(appConfig);
 		
-			//Update our output strategy with additional info we want it to use
-			HashMap<String,String> additionalOutputs = new HashMap<String,String>();
-			additionalOutputs.put("Input",redModel.getInputFileLocation());
-			additionalOutputs.put("Runtime",LocalDateTime.now().toString());
-			runner.getDocumentOutputStrategy().setAdditionalOutputData(additionalOutputs);
+			//Update our output strategy with additional info we want it to include in the file
+			HashMap<String,String> additionalOutputs = getAdditionalOutputs(redModel);
+			runner.setAdditionalOutputData(additionalOutputs);
+
 
 			// Call the rules using this datafile
+			/////////////////////////////////////
 			redModel.addUIInfoMessage("Running Rules:");
 			runner.callRules(redModel);
 			redModel.addUIInfoMessage("Rules Completed");
+			////////////////////////////////////////////////////
 
 			// update our main status message
 			redModel.setUICurrentStatus("Rules Complete");
@@ -133,8 +132,31 @@ public class RedController {
 		// make the config we used available as well
 		model.addAttribute(RED_MODEL, redModel);
 
+		//end of processing
+		log.debug("#################");
+		log.debug("End of Processing");
+		log.debug("#################");
+
 		// set the html page we want to display
 		return "index";
+	}
+
+	/**
+	 * Helper methods
+	 * 
+	 * @return
+	 */
+	private HashMap<String, String> getAdditionalOutputs(RedModel redModel) {
+
+		HashMap<String, String> additionalOutputs = new HashMap<String, String>();
+
+		//set the output date
+		additionalOutputs.put(IDocumentOutStrategy.ADDITIONALDATA_DATE, LocalDateTime.now().toString());
+
+		//Note - output file set later in process
+
+		return additionalOutputs;
+
 	}
 
 }

@@ -8,6 +8,8 @@ package net.firstpartners;
  */
 public class TestConstants {
 
+
+
 	// Sample Excel files
 	public static final String XLS_DATA_FILE = "src/test/resources/testdata/chocolate-data-tricky-formatting.xls";
 	public static final String XLSX_DATA_FILE = "src/test/resources/testdata/chocolate-data-tricky-formatting.xlsx";
@@ -18,7 +20,10 @@ public class TestConstants {
 	public static final String WORD_DATA_FILE = "src/test/resources/testdata/simple-word.doc";
 
 	//Sample CSV file to append to
-	public static final String CSV_APPEND_FILE="src/test/resources/testdata/sample-csv-to-append-to.csv";
+	public static final String CSV_APPEND_FILE="sample-csv-to-append-to.csv";
+
+	//Sample Directory to test against
+	public final static String DIRECTORY_SAMPLE="src/main/resources/examples/5_multi_excel/";
 	
 	
 	//Sample Rules files
@@ -33,7 +38,7 @@ public class TestConstants {
 	
 	//Serialized Test Data(JSON)
 	public static final String JSON_SERIAL_FILE_SIMPLE ="src/test/resources/testdata/sample_xls_serialised.json";
-	public static final String JSON_SERIAL_FILE_MEDIUM ="src/test/resources/testdata/meduim_xls_serialised.json";
+	public static final String JSON_SERIAL_FILE_MEDIUM ="src/test/resources/testdata/medium_xls_serialised.json";///root/rp2/code/src/test/resources/testdata/medium_xls_serialised.json
 	public static final String JSON_SERIAL_FILE_COMPLEX ="src/test/resources/testdata/complex_xls_serialised.json";
 	
 	//Serialized Test Data (Binary)
@@ -53,13 +58,12 @@ public class TestConstants {
 	public final static String GROOVY_PREPROCESS="src/main/resources/examples/4_complex_excel/InjectNamedRanges.groovy";
 
 	//tmp files
-	public static final String EXCEL_TMP_FILE = "tmp.xls"; 
-	public static final String XLSX_TMP_FILE = "src/test/resources/testdata/tmp.xlsx";
-	public static final String CSV_TMP_FILE_SINGLE_LINE = "src/test/resources/testdata/tmp-single.csv";
-	public static final String CSV_TMP_FILE_MULTI_LINE = "src/test/resources/testdata/tmp-multi.csv";
+	public static final String XLSX_TMP_FILE = "tmp.xlsx";
+	public static final String CSV_TMP_FILE_SINGLE_LINE = "tmp-single.csv";
+	public static final String CSV_TMP_FILE_MULTI_LINE = "tmp-multi.csv"; //was in same as above
 
-	public static final String PDF_TMP_FILE = "src/test/resources/testdata/tmp.pdf";
-	public static final String JSON_TMP_FILE = "src/test/resources/testdata/tmp.json";
+	public static final String PDF_TMP_FILE = "tmp.pdf";
+	public static final String JSON_TMP_FILE = "tmp.json";
 	
 	
 

@@ -19,8 +19,6 @@ import net.firstpartners.data.RangeList;
  */
 public class MemoryOutputStrategy implements IDocumentOutStrategy {
 
-	private Config appConfig;
-
 	
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -31,12 +29,21 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	//sub directory e.g. for samples
 	private String subDirectory;
 
+		//Additional data we wish to output
+	Map<String, String> additionalDataToInclude=null;
+
+	//Associated Settor
+	public void setAdditionalOutputData(Map<String, String> additionalData){
+		this.additionalDataToInclude=additionalData;
+	}
+
 
 	public String getSubDirectory() {
 		return subDirectory;
 	}
 
 	public void setSubDirectory(String subDirectory) {
+		log.debug("Set Directory to:"+subDirectory);
 		this.subDirectory = subDirectory;
 	}
 
@@ -52,10 +59,6 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 		return "Held in Memory";
 	}
 
-	/**
-	 * To conform to the interface - not (yet) implemented in this strategy
-	 */
-	public void setAdditionalOutputData(Map<String,String> ignored){}
 
 	/**
 	 * <p>getProcessedDocument.</p>
@@ -73,14 +76,7 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 	 */
 	public void processOutput() throws IOException {
 
-		// do nothing - we just keep it in momeory
-		log.debug("Config:"+appConfig);// to clear compiliation warning
 		
-	}
-
-	/** {@inheritDoc} */
-	public void setConfig(Config appConfig) {
-		this.appConfig = appConfig;
 	}
 
 	/** {@inheritDoc} */

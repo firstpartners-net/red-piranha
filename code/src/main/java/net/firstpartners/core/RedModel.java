@@ -34,7 +34,7 @@ public class RedModel implements IStatusUpdate {
 
 	private HashMap<String, Cell> globals = new HashMap<>();
 
-	private String baseDirectory;
+	private String subDirectory;
 
 	private String inputFileLocation;
 
@@ -55,8 +55,6 @@ public class RedModel implements IStatusUpdate {
 
 	private String UICurrentStatus;
 
-	private int uIProgressStatus;
-
 	/**
 	 * Default constructor - needed so this remains a bean
 	 */
@@ -65,7 +63,7 @@ public class RedModel implements IStatusUpdate {
 
 	/**
 	 * Convenience constructor - most commonly used use case
-	 * @param baseDirectory - the folder there all the base files are located
+	 * @param subDirectory - the folder there all the sub files are located
 	 * @param ruleFileLocation a {@link java.lang.String} object
 	 * @param outputFileLocation a {@link java.lang.String} object
 	 * @param inputFileLocation a {@link java.lang.String} object
@@ -78,16 +76,16 @@ public class RedModel implements IStatusUpdate {
 
 	/**
 	 * Convenience constructor - most commonly used use case
-	 * @param baseDirectory - the folder there all the base files are located
+	 * @param subDirectory - the folder there all the sub files are located
 	 * @param ruleFileLocation a {@link java.lang.String} object
 	 * @param outputFileLocation a {@link java.lang.String} object
 	 * @param inputFileLocation a {@link java.lang.String} object
 	 */
-	public RedModel(String baseDirectory, String inputFileLocation, String ruleFileLocation, String outputFileLocation) {
+	public RedModel(String subDirectory, String inputFileLocation, String ruleFileLocation, String outputFileLocation) {
 
 		this();
 
-		this.baseDirectory = baseDirectory;
+		this.subDirectory = subDirectory;
 		this.inputFileLocation = inputFileLocation;
 		this.ruleFileLocation = ruleFileLocation;
 		this.outputFileLocation = outputFileLocation;
@@ -232,17 +230,17 @@ public class RedModel implements IStatusUpdate {
 	}
 
 	/**
-	 * <p>Getter for the field <code>baseDirectory</code>.</p>
+	 * <p>Getter for the field <code>subDirectory</code>.</p>
 	 * Modified to make it null safe (will return a blank string)
 	 * @return a {@link java.lang.String} object
 	 */
-	public String getBaseDirectory() {
+	public String getSubDirectory() {
 
-		if(this.baseDirectory==null){
+		if(this.subDirectory==null){
 			return "";
 		}
 
-		return this.baseDirectory;
+		return this.subDirectory;
 	}
 
 
@@ -251,7 +249,7 @@ public class RedModel implements IStatusUpdate {
 	 *
 	 * @return a {@link java.lang.String} object
 	 */
-	public String getKnowledgeBaseLocation() {
+	public String getknowledgeBaseLocation() {
 		return knowledgeBaseLocation;
 	}
 
@@ -322,14 +320,6 @@ public class RedModel implements IStatusUpdate {
 		return UICurrentStatus;
 	}
 
-	/**
-	 * <p>Getter for the field <code>uIProgressStatus</code>.</p>
-	 *
-	 * @return a int
-	 */
-	public int getUIProgressStatus() {
-		return uIProgressStatus;
-	}
 
 	/**
 	 * <p>getUserMessageContents.</p>
@@ -379,12 +369,12 @@ public class RedModel implements IStatusUpdate {
 	}
 
 		/**
-	 * <p>Setter for the field <code>baseDirectory</code>.</p>
+	 * <p>Setter for the field <code>subDirectory</code>.</p>
 	 *
-	 * @param baseDirectory a {@link java.lang.String} object
+	 * @param subDirectory a {@link java.lang.String} object
 	 */
-	public void setBaseDirectory(String baseDirectory) {
-		this.baseDirectory = baseDirectory;
+	public void setSubDirectory(String subDirectory) {
+		this.subDirectory = subDirectory;
 	}
 
 
@@ -402,7 +392,7 @@ public class RedModel implements IStatusUpdate {
 	 *
 	 * @param knowledgeBaseLocation a {@link java.lang.String} object
 	 */
-	public void setKnowledgeBaseLocation(String knowledgeBaseLocation) {
+	public void setknowledgeBaseLocation(String knowledgeBaseLocation) {
 		this.knowledgeBaseLocation = knowledgeBaseLocation;
 	}
 
@@ -491,14 +481,6 @@ public class RedModel implements IStatusUpdate {
 		this.UICurrentStatus = currentStatus;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * Notifies the user of percentage progress made
-	 */
-	public void setUIProgressStatus(int uIProgressStatus) {
-		this.uIProgressStatus = uIProgressStatus;
-	}
 
 	/** {@inheritDoc} */
 	@Override

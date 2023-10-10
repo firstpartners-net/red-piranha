@@ -59,10 +59,4 @@ public interface IStatusUpdate {
 	 */
 	public void setPreRulesSnapShot(Object dataToSnapshotToUser);
 
-	/**
-	 * Notifies the user of percentage progress made
-	 *
-	 * @param percentProgressMade 0 to 100
-	 */
-	public void setUIProgressStatus(int percentProgressMade);
 }

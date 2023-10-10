@@ -16,7 +16,6 @@ import groovy.lang.GroovyShell;
 import groovy.util.GroovyScriptEngine;
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
-import net.firstpartners.core.Config;
 import net.firstpartners.core.file.ResourceFinder;
 
 
@@ -35,15 +34,6 @@ public class PreProcessor {
 	//Handle to the Groovy script engine
 	private GroovyScriptEngine engine = null;
 
-	// Handle to the appconfig
-	private Config appConfig;
-
-	/**
-	 * Constructor
-	 */
-	public PreProcessor(Config appConfig){
-		this.appConfig = appConfig;
-	}
 
 	/**
 	 * Run the Specified Groovy Script
@@ -63,7 +53,7 @@ public class PreProcessor {
 
 		//get a handle to the script - Groovy Engine needs file name
 		try{
-			File script = ResourceFinder.getFileResourceUsingConfig(subDirectory,groovyScriptName, appConfig);
+			File script = ResourceFinder.getFile(subDirectory,groovyScriptName);
 			
 			String scriptPath =script.getAbsolutePath();
 			log.debug("ScriptPath:"+scriptPath);

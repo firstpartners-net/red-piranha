@@ -66,8 +66,8 @@
 
 
 					<div class="col-sm-10">
-						<label class="col-sm-2 control-label">Base&nbsp;Directory:
-							<input type="text" class="form-control" th:field="*{baseDirectory}" />
+						<label class="col-sm-2 control-label">Sub&nbsp;Directory:
+							<input type="text" class="form-control" th:field="*{subDirectory}" />
 						</label>
 					</div>
 				</div>
@@ -144,7 +144,7 @@
 				<a th:href="'runRules'+${sample.sampleUrlParams}" class="btn btn-default">Run Sample</a>
 			</div>
 			<div class="col-md-4">
-				<p th:text="${sample.baseDirectory}"></p>
+				<p th:text="${sample.subDirectory}"></p>
 			</div>
 			<div class="col-md-4">
 				<p th:text="${sample.inputFileLocation}"></p>

@@ -1,21 +1,23 @@
 package net.firstpartners.core.script;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 
+import org.apache.poi.ss.SpreadsheetVersion;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Name;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.AreaReference;
+import org.apache.poi.ss.util.CellReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
 import net.firstpartners.core.excel.CellConvertor;
-
-import org.apache.poi.ss.SpreadsheetVersion;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.util.AreaReference;
-import org.apache.poi.ss.util.CellReference;
 
 /**
  * Utilities for supporting Groovy Scripts in injecting names into the sheet
@@ -31,10 +33,13 @@ public class ScriptSupport {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	// Handle to the workbook we will be operating on
-	private Workbook wb = null;
+	Workbook wb = null;
 
 	// reusable cell and date formatter
 	DataFormatter df = new DataFormatter();
+
+	// flag have we already removed spaces
+	private boolean spacesRemoved = false;
 
 	/**
 	 * Constructor
@@ -42,7 +47,41 @@ public class ScriptSupport {
 	 * @param xlWorkbook that we
 	 */
 	public ScriptSupport(Workbook xlWorkbook) {
+
+		// update to remove spaces
 		this.wb = xlWorkbook;
+
+	}
+
+	/**
+	 * Internal Method - remove spaces from sheet names
+	 * Marked final - as called by constructor
+	 * 
+	 * @param wb        - workbook to work on
+	 * @param sheetName to find
+	 * @return
+	 */
+	public void removeSpacesSheetNames() {
+
+		// check if we've already done this
+		if (this.spacesRemoved) {
+			return;
+		}
+
+		for (int i = 0; i < this.wb.getNumberOfSheets(); i++) {
+			Sheet sheet = this.wb.getSheetAt(i);
+			String tmpSheetName = sheet.getSheetName();
+
+			// remove spaces from sheet name
+			tmpSheetName = tmpSheetName.replaceAll("\\s", "");
+
+			// rename sheet to match this
+			this.wb.setSheetName(i, tmpSheetName);
+			log.debug("Updated sheet name:" + tmpSheetName);
+		}
+
+		this.spacesRemoved = true;
+
 	}
 
 	/**
@@ -61,35 +100,22 @@ public class ScriptSupport {
 	 */
 	public void nameTable(String baseName, String sheetName, String mainTableRef) {
 
-		nameTable(baseName, sheetName, mainTableRef, 1, 1);
+		// method level constants
+		int numberOfHeaderRows = 1;
+		int numberOfColumnLabels = 1;
 
-	}
-
-	/**
-	 * Loop through a table in Excel, naming the ranges individually within them
-	 * Currently marked "Private" as only implemented / tested to be called with one
-	 * header row / col
-	 * 
-	 * @param baseName           - foundation we will generate names from e.g. a
-	 *                           baseName of "Cash" might generate "Cash-In-FY22"
-	 * @param sheetName          - withing the workbook, where we want to set the
-	 *                           workbook
-	 * @param mainTableRef       - the full table, in Excel notation *including* the
-	 *                           Header and column rows
-	 * @param numberOfHeaderRows - can be 0 (if none), 1 (e.g. years) or 2 or more
-	 *                           (in which we will collate teh date)
-	 * @param int                numberOfColumnRows
-	 */
-	private void nameTable(String baseName, String sheetName, String mainTableRef, int numberOfHeaderRows,
-			int numberOfColumnLabels) {
+		// ensure our sheets have no spaces in them
+		removeSpacesSheetNames();
 
 		// get handle to block of cells at maintable ref
+		sheetName = sheetName.replaceAll("\\s", ""); // we ignore spaces
 		String formula = sheetName + "!" + mainTableRef; // should give us same as in Excel e.g. Accounts!B14:I14
+
 		log.debug("Looking for Table Formula:" + formula);
 		AreaReference aref = new AreaReference(formula, SpreadsheetVersion.EXCEL2007);
 
 		// Setup our loop
-		Sheet s = wb.getSheet(sheetName);
+		Sheet s = getSafeSheet(sheetName);
 		CellReference[] crefs = aref.getAllReferencedCells();
 		String currentCellText = "";
 		Row poiRow = null;
@@ -112,12 +138,15 @@ public class ScriptSupport {
 			boolean colLabel = false;
 
 			// Get Cell from Spreadhseet
+			assert s != null : "sheet should not be null";
 			poiRow = s.getRow(crefs[i].getRow());
-			poiCell = poiRow.getCell(crefs[i].getCol());
-
+			if(poiRow!=null){
+				poiCell = poiRow.getCell(crefs[i].getCol());
+			}
+			
 			// Get the current cells value use our main convertor
 			// for this use case, we just want it as a string.
-			currentCellText = getCellAsStringForceDateConversion(poiCell);
+			currentCellText = CellConvertor.getCellAsStringForceDateConversion(poiCell);
 			// log.debug("CurrentCellText:"+currentCellText+"
 			// length"+currentCellText.length());
 
@@ -179,23 +208,25 @@ public class ScriptSupport {
 
 			if (!colLabel && !rowLabel) {
 				// we are in main body of table labels(s)
-				//log.debug(" Row:" + row + " Col:" + col + " " + Arrays.toString(crefs[i].getCellRefParts())
-				//		+ " table body value:" + currentCellText);
+				// log.debug(" Row:" + row + " Col:" + col + " " +
+				// Arrays.toString(crefs[i].getCellRefParts())
+				// + " table body value:" + currentCellText);
 
 				// Calculate namedRangeName based on header and col
 				// remember it is a table, so the col names will differ by row (and vice versa)
 				String refName = baseName + "_" + colNames.get("" + row) + "_" + headerNames.get("" + col);
 
 				// tidy to remove spaces etc as Excel won't allow them in named range
-				refName = refName.replaceAll("y/e", "ye");
+				refName = refName.replaceAll("y/e", "YE");
 				refName = refName.replaceAll("/", "_");
 				refName = refName.replaceAll("-", "_minus_");
 				refName = refName.replaceAll("\\+", "_plus_");
 				refName = refName.replaceAll("[^A-Za-z0-9_.]", "");
 
 				// name this cell
-				//log.debug("Would name cell:" + refName + " sheetname:" + sheetName + " excelref:"
-				//		+ crefs[i].formatAsString());
+				// log.debug("Would name cell:" + refName + " sheetname:" + sheetName + "
+				// excelref:"
+				// + crefs[i].formatAsString());
 				nameSingleCell(refName, sheetName, crefs[i].formatAsString(false));
 			}
 
@@ -222,15 +253,20 @@ public class ScriptSupport {
 	 */
 	public void nameSingleCell(String baseName, String sheetName, String cellRef) {
 
+		// ensure our sheets have no spaces in them, nor in teh incoming sheet name
+		removeSpacesSheetNames();
+		sheetName = sheetName.replaceAll("\\s", "");
+
 		String formula = sheetName + "!" + cellRef; // should give us same as in Excel e.g. Accounts!B14:I14
 
-		//check if the name already exists
+		// check if the name already exists
 		Name existingName = wb.getName(baseName);
-		if(existingName!=null){
-			log.info("Ignoring existing name:"+baseName+" refers to:"+existingName.getRefersToFormula()+" duplicate new ref:"+cellRef);
+		if (existingName != null) {
+			log.info("Ignoring existing name:" + baseName + " refers to:" + existingName.getRefersToFormula()
+					+ " duplicate new ref:" + cellRef);
 		} else {
 
-			//try to add it
+			// try to add it
 			Name newXlNamedRange = wb.createName();
 			newXlNamedRange.setNameName(baseName);
 			newXlNamedRange.setRefersToFormula(formula);
@@ -240,57 +276,24 @@ public class ScriptSupport {
 
 	}
 
-	/**
-	 * Convert Cell to the String
-	 * for this use case, we just want it as a string.
-	 * e.g. for headers like "20/12/21" we want it as that value, not string
-	 * Note that numbers will often be treated as dates - since these are more
-	 * likely to be headers
-	 * 
-	 * @param poiCell
-	 * @return
-	 */
-	public String getCellAsStringForceDateConversion(Cell poiCell) {
-
-		// Convert our cell differently depending if is a date or note
-		// log.debug("Cell Type:"+(poiCell.getCellType()));
-
-		String simpleConversion = "" + CellConvertor.getCellContents(poiCell);
-		// log.debug("Simple Conversion:"+simpleConversion);
-
-		CellType type = poiCell.getCellType();
-
-		if (type == CellType.NUMERIC
-				|| (poiCell.getCellType() == CellType.FORMULA) && (DateUtil.isCellDateFormatted(poiCell))) {
-
-			// convert using null checks
-			if(simpleConversion!=null){
-				Date javaDate = DateUtil.getJavaDate(Double.parseDouble(simpleConversion));
-				if(javaDate!=null){
-					return new SimpleDateFormat("dd/MM/yy").format(javaDate);
-				}
-			}
-
-		}
-
-		// return default conversion if we get this far
-		return simpleConversion;
-
-		//
-
-	}
 
 	/**
 	 * Update a value in a cell in workbook in memory (not original sheet)
 	 * This helps resolve naming clashes later
-	 * @param newValue - that we will update the cell to
+	 * 
+	 * @param newValue  - that we will update the cell to
 	 * @param sheetName - name of the sheet we wish to update
-	 * @param cellRef - in format B17 of cell we wish to update
+	 * @param cellRef   - in format B17 of cell we wish to update
 	 */
 	public void setText(String newValue, String sheetName, String cellRef) {
 
-		CellReference cr = new CellReference(sheetName+"!"+cellRef);
-        Sheet s = wb.getSheet(sheetName);
+		sheetName = sheetName.replaceAll("\\s", ""); // we ignore spaces
+
+		CellReference cr = new CellReference(sheetName + "!" + cellRef);
+
+		log.debug("attempting to setText on:" + sheetName + "!" + cellRef);
+
+		Sheet s = getSafeSheet(sheetName);
 		Row row = s.getRow(cr.getRow());
 		Cell cell = row.getCell(cr.getCol());
 
@@ -300,36 +303,70 @@ public class ScriptSupport {
 
 	/**
 	 * Get a value from the workbook (as string)
+	 * 
 	 * @param sheetName
-	 * @param cellRef within this sheet
+	 * @param cellRef   within this sheet
 	 * @return value as text of this cell
 	 */
-    public String get(String sheetName, String cellRef) {
+	public String get(String sheetName, String cellRef) {
 
-		CellReference cr = new CellReference(sheetName+"!"+cellRef);
-        Sheet s = wb.getSheet(sheetName);
+		CellReference cr = new CellReference(sheetName + "!" + cellRef);
+		Sheet s = getSafeSheet(sheetName);
+
 		Row row = s.getRow(cr.getRow());
 		Cell cell = row.getCell(cr.getCol());
 
-		return getCellAsStringForceDateConversion(cell);
-    }
+		return CellConvertor.getCellAsStringForceDateConversion(cell);
+	}
 
 	/**
 	 * Remove all previous named ranges in workbook
 	 * This updates Memory only and not original source file
 	 */
-	public void removePreviousNamedRanges(){
+	public void removePreviousNamedRanges() {
 
-		//Loop over names and remove each one
+		// Loop over names and remove each one
 		// we do it in this loop fashion to give POI a chance to update
-		while(wb.getAllNames().size()>0){
+		while (wb.getAllNames().size() > 0) {
 			Name thisName = wb.getAllNames().get(0);
-			//log.debug("Removing:"+thisName.getNameName());
+			// log.debug("Removing:"+thisName.getNameName());
 			wb.removeName(thisName);
 
 		}
 
+	}
 
+	/**
+	 * Get sheet in a safe manner
+	 * 
+	 * @param wb2
+	 * @param sheetName
+	 * @return
+	 */
+	private Sheet getSafeSheet(String sheetName) {
+
+		Sheet s = this.wb.getSheet(sheetName);
+
+		if (s == null) {
+			sheetName = sheetName.replaceAll("[^A-Za-z0-9_.]", "");
+
+			log.debug("No match on:"+sheetName+" trying:"+sheetName);
+			
+			s = this.wb.getSheet(sheetName);
+		}
+
+		// if it's still null
+		if (s == null) {
+
+			//Log the info
+			for (int i = 0; i < this.wb.getNumberOfSheets(); i++) {
+				Sheet sheet = this.wb.getSheetAt(i);
+				String tmpSheetName = sheet.getSheetName();
+				log.debug("Noting no match - existing sheet name:" + tmpSheetName);
+			}
+		}
+
+		return s;
 	}
 
 }

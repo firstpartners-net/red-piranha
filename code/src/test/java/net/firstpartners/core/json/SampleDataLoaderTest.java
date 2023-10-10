@@ -59,7 +59,7 @@ class SampleDataLoaderTest {
 	void testLoadSampleConfigJson() throws StreamWriteException, DatabindException, IOException {
 		
 		//load the samples - passing in null means we only look relative to working directory
-		List<SampleData> samples = SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON,myConfig);
+		List<SampleData> samples = SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON);
 		
 
 		assertNotNull(samples);
@@ -76,8 +76,8 @@ class SampleDataLoaderTest {
 			log.debug(thisSample.toString());
 
 			
-			assertNotNull(thisSample.getBaseDirectory());
-			assertNotNull(thisSample.getBaseDirectory());
+			assertNotNull(thisSample.getSubDirectory());
+			assertNotNull(thisSample.getDslFileLocation());
 			assertNotNull(thisSample.getInputFileLocation());
 			assertNotNull(thisSample.getRuleFileLocation());
 			assertNotNull(thisSample.getOutputFileLocation());

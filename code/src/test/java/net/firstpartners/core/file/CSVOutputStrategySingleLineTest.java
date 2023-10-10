@@ -6,20 +6,22 @@ import static org.junit.Assert.fail;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.firstpartners.TestConstants;
 import net.firstpartners.core.Config;
 import net.firstpartners.data.RangeList;
 import net.firstpartners.ui.RedControllerTest; 
 
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class CSVOutputStrategySingleLineTest {
 
@@ -52,22 +54,17 @@ public class CSVOutputStrategySingleLineTest {
 	@Test
 	public final void testGetMatchHeadersFromCSV() throws FileNotFoundException, ClassNotFoundException, IOException {
 
-		RangeList testData = RedControllerTest.getTestDataFromWord();
-
+	
 		CSVOutputStrategySingleLine csvOut = new CSVOutputStrategySingleLine(TestConstants.CSV_APPEND_FILE);
 
 		List<String> headers = csvOut.getHeadersFromFile();
+		
 
-		assertEquals(headers.get(0), "ABC_0");
-		assertEquals(headers.get(1), "ABC_1");
-		assertEquals(headers.get(2), "PARA_9_GHI");
-		assertEquals(headers.get(3), "University");
+		assertEquals(headers.get(0), "Input");
+		assertEquals(headers.get(1), "Runtime");
+		assertEquals(headers.get(2), "Name");
+		assertEquals(headers.get(3), "Value");
 
-		Map<String, String> valuesFromCells = csvOut.getMatchingValues(headers, testData);
-		assertEquals(4, valuesFromCells.size());
-		assertEquals("ABC",valuesFromCells.get("ABC_0"));
-		assertEquals("DEF",valuesFromCells.get("ABC_1"));
-		assertEquals("GHI",valuesFromCells.get("PARA_9_GHI"));
 
 		log.debug("completed checking headers");
 

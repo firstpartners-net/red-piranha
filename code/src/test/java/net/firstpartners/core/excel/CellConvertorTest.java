@@ -4,11 +4,14 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -16,33 +19,50 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.CellReference;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import static org.junit.Assert.assertEquals;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.TestConstants;
+import net.firstpartners.core.Config;
 import net.firstpartners.data.Cell;
 import net.firstpartners.data.RangeList;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 public class CellConvertorTest {
 
 	// Handle to the logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	//private static RangeList redData = null;
-	//private static Workbook excelData = null;
-
+	// handle for our config
+	@Autowired
+	Config appConfig;
+	
 	@Test
-	public final void testConvertRedCellToPoiCell() throws IOException, ClassNotFoundException {
+	public final void testRedPoiRed() throws IOException, ClassNotFoundException {
+		
+		
+		
+ 		//Get our sample data
 		
 
 		FileInputStream fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
 		ObjectInputStream in = new ObjectInputStream(fileIn);
 		RangeList redData = (RangeList) in.readObject();
-
 		in.close();
 		fileIn.close();
-		
-		assertNotNull(redData);
+		assert redData !=null;
+
+		//========================
+		//====== POI TO RED ======
+		//========================
 
 		int counter =1;
 
@@ -112,14 +132,12 @@ public class CellConvertorTest {
 
 		}
 
-		// Save the Excel data - we will need it later
-		//excelData = wb;
+		//Map data across
+		Workbook excelData=wb;
 
-		// try out the subtest
-		subTestConvertPoiCellToRedCell(wb);
-	}
-
-	public final void subTestConvertPoiCellToRedCell(Workbook excelData) {
+		//========================
+		//====== RED TO POI ======
+		//========================
 		assertNotNull(excelData);
 
 		Sheet sheet = excelData.getSheetAt(0);
@@ -143,6 +161,44 @@ public class CellConvertorTest {
 
 		}
 
+	}
+
+		/**
+	 * Test the formatter - especially useful to get dates as "31/12/20" etc
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public final void testForcedDateRenaming() throws Exception {
+
+		File xlFile = ResourceFinder.getFile(TestConstants.COMPLEX_EXCEL);
+		InputStream inputAsStream = new FileInputStream(xlFile);
+		Workbook excelWorkBook = WorkbookFactory.create(inputAsStream);
+
+		// handle to the class under test
+		//ScriptSupport sprt = new ScriptSupport(excelWorkBook);
+
+		// Get a handle to a cell, format, check return value
+		org.apache.poi.ss.usermodel.Sheet sheet = excelWorkBook.getSheet("Accounts");
+
+		// setup a hasmhap of cells and the values we expect to extract
+		HashMap<String, String> testMap = new HashMap<String, String>();
+		// testMap.put("Accounts!B39","2751.0");
+		testMap.put("Accounts!A14", "No. of Global Employees @ y/e (incl Irish employment)");
+		testMap.put("Accounts!B34", "31/12/18");
+
+		// Iterating HashMap through for loop
+		for (Map.Entry<String, String> set : testMap.entrySet()) {
+
+			CellReference cellReference = new CellReference(set.getKey());
+			log.debug("Testing cell:" + set.getKey() + " hoping for:" + set.getValue());
+
+			Row row = sheet.getRow(cellReference.getRow());
+			org.apache.poi.ss.usermodel.Cell cell = row.getCell(cellReference.getCol());
+
+			assertEquals(set.getValue(), CellConvertor.getCellAsStringForceDateConversion(cell));
+
+		}
 	}
 
 }

@@ -14,7 +14,6 @@ import org.kie.dmn.api.core.DMNModel;
 import org.kie.dmn.api.core.DMNResult;
 import org.kie.dmn.api.core.DMNRuntime;
 
-import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.RPException;
@@ -37,6 +36,22 @@ public class DecisionModelRunner extends AbstractRunner {
 	DMNRuntime dmnRuntime;
 
 	/**
+	 * Overloaded constructor, will wrap documentinStrategy in a List
+	 * @param documentinStrategy
+	 */
+	protected DecisionModelRunner(IDocumentInStrategy documentinStrategy, IDocumentOutStrategy outputStrategy){
+		
+		List<IDocumentInStrategy> inList = new ArrayList<IDocumentInStrategy>();
+		inList.add(documentinStrategy);
+
+		this.inputStrategy = inList;
+		this.outputStrategy = outputStrategy;
+
+	}
+
+
+
+	/**
 	 * Construct a new Runner.
 	 *
 	 * @see RunnerFactory in this package which we use to build a properly
@@ -45,13 +60,10 @@ public class DecisionModelRunner extends AbstractRunner {
 	 *                         object
 	 * @param outputStrategy   a {@link net.firstpartners.core.IDocumentOutStrategy}
 	 *                         object
-	 * @param appConfig        a {@link net.firstpartners.core.Config} object
 	 */
-	protected DecisionModelRunner(IDocumentInStrategy documentStrategy, IDocumentOutStrategy outputStrategy,
-			Config appConfig) {
-		this.inputStrategy = documentStrategy;
+	protected DecisionModelRunner(List<IDocumentInStrategy> documentinStrategy, IDocumentOutStrategy outputStrategy) {
+		this.inputStrategy = documentinStrategy;
 		this.outputStrategy = outputStrategy;
-		this.appConfig = appConfig;
 
 	}
 

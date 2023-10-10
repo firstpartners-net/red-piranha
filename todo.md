@@ -2,38 +2,110 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
-## Next - CSV Output
-
-
-* Output to CSV
-    * Write Code to meet test
-        * Get CSVOutputStrategyMultiLineTest#testCreateAppendToCSV running and passing (write code / remove fails)
-    * Update Code  
-        * Code append to csv??
-        *   test check that works with both create and append
 
 ## Next - Multiple files
-* Generate 2nd File and 3rd files in the 5-sample folder 
-    * copy generate spreasheet
-    * more simple json extraction (just first tample)
-    * create new DirectortInputStrategy to "walk" folder and call other input strategy
-    * Create DirectortInputStrategyTest and stub
-    * Write and test behaviou
 
-## Next tidy
+* NEXT RESOLVE
 
-* test cell conversion
-    * Run other unit tests
-        * any other unit test to try out specific conversation (search for Spreadhsheet convertor tess) ###
-        * Unit test CellConvertorTest (contiguours ranes) - not returning values
-    * Restore all integration tests
-        * maybe run them independalty so a failure in one does not block all
+    * Review
+        * Review Data out and add to tweak list below
+        * * Tests passing - any others I can make work (quick check, then move to spillover)
+    * Robustness
+        * spring timeout make note in example
+            * add to readme.md this and other settings in application.properties
+        * poiCell -> RedCell conversion
+            * where cell is "" because of null, pass back null 
+            * debug CellConvertor in more detail
+            * Unit test CellConvertorTest (contiguours ranes) - not returning values
+            * setup properties just to have Debug on CellConvertor / Script support
+            * maybe add cell-> poiCell to assist in deubbing
+        * CellConvertorTest
+            * getCellAsStringForceDateConversion (called from script support)
+        
 
-* Decide
-    * how to deploy
-    * how to extend
+        * Unit test Splitter (search Splitting fields from)
+        * Review which items are log.info and which are log.debug (for when deploinging)
+        * Setting - continue after error
+            * web page (but read only) & examples
+            * Note in Readme.md
+            * check in RPException catch as part of main loop
+            * refactor of main loop?
+        * Upgrade RP Logging to show different documents (Y/N)
+            * Flush this to disk
+            * Remove input and output
+            * make a note of this in readme.html
+    * Restore
+        * Integration Test 110 
+    
+    * NTH
+        * can I use rules to support the above
+        
+
+## Next - Deployment snaphot (tag and docker)
+
+* (Decide) Merge branch back into main (and create bugfix branch)
 
 
+## Upgrade Doc
+* add 3 minute quickstart
+    * Readme.md how to run the sample in VSCode online
+* add about new and old book
+* tidy off *notes*.md files
+
+## Update release docs
+* update notes-release.md and use to improve notes
+* Carry out release and update notes (first pass)
+    * github
+    * docker
+* Tidy release instructions (second pass)
+
+## Release
+* Or at least update release notes
+* do interim github and docker release
+
+
+## ################
+* END OF MAIN PUSH
+## ################
+
+* Carry over from previous sprint
+         * Move CDN to local (Or move this back?) for computers without internet access
+
+* Rules 
+    * being loaded each run - can we load once and reuses
+    * check code - might already be implemented
+
+* Test Data
+    * update paths to put in some test folder (currently in root of examples)
+
+* Deprecation
+    * Update CSV Output
+
+
+## ##############
+
+## Next Sprint - after immediate needs
+
+## Backup Plan
+* Possible create https://www.baeldung.com/spring-boot-console-app
+
+
+## Use case - confirm
+
+* Future
+    * Create Fiancial extraction Sample - analsyis of single case POC - use 4 complex tmp
+    * multiple output options
+    * decision test
+* dsl based on existing - working and sharable
+* Tests
+    * integration tests - run  independalty so a failure in one does not block all
+
+## More Docs
+* Automate release (package and docker)
+* Resolve GitHub [firstpartners-net/red-piranha] pages build and deployment workflow run 
+* graphic to show steps (Prepprocess, Input Strategy convert excel->Java, Rules, Output Strategy convert Java -> CSV) and map against screenshot
+
+    
 ## Next - Data Quality
 * Simple Check rules
     * just enough rule to filter / check for dud data
@@ -41,68 +113,19 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * Cross reference back to data
     * add original cell refernece (need to track through as not currently accurate)
 
-## Next - Deployment
-* Can deploy and work against true docs
-* Snapshot current code and make note for book readers
-* dsl based on existing - working and sharable
-* Read all docs and refresh
-* Add note on book to here
-* Resolve GitHub [firstpartners-net/red-piranha] pages build and deployment workflow run 
-* Tests passing
 
-## Next upgrade Doc pre release
-* add 3 minute quickstart
-    * Readme.md how to run the sample in VSCode online
-* add about new and old book
-* tidy off *notes*.md files
-* update notes-release.md
-* Carry out release
-    * github
-    * docker
-
-## ##############
-
-## Next Sprint - after immediate needs
-
-* Future
-    * Create Fiancial extraction Sample - analsyis of single case POC
-    * multiple output options
-    * decision test
-* Improve Data Extraction
-    * Where we "Ignoring name already exists" - update script to cope better
-
-## Release
-* Automate release (package and docker)
-* Or at least update release notes
-* do interim github and docker release
-* Merge back into main, create new branch?
-
-## ##############
-
-## Tidy
-* Clear down warning
-* Figure out why current excel example is outputting incorrectly
-* More info through to front end
-* more tests compile / rule
-* tidy of all readme pages
-* view vulneribilty report (right click top right of tabs and renable)
-
+## ############## MEDIUM TERM
 
 ## upgrades and housekeeping
 
-* restore commented out tests (put @Test back on them)
-    * testJSONInOut
-* run JavaDoc checker and tidy comments
 * Migrate to latest version of all libs
 * tidy DSL example
 
 
 # Medium Term Ideas
 * better display of information in JSON
-* better handling of invalid cell refs - function to remove invalid?
-* Convert tesets using binary serizlied data to json (comment out in test constants)
 * RP using model from business central or simliar exported backage
-* Better display of Java objects - open by default
+* Better display of Java objects on webpage- open by default
 * Understand Github pages, Jekyll and see if can build an even 'friendlier' version of this site.
 * Outline how to integrate with KIE Server
 
@@ -110,8 +133,14 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 # Medium Term tidy
 * Tidy Bootstrap on web page
 * final tests running
-* Serialsiation - Into Tests of convertor / Java test data in JSON
+* Serialsiation - Into Tests of convertor / Java test data in JSON (replace binary)
 * Rengerate Javadoc, tidy to site
 * recover and reused previous examples (to web) - currently in test folder
 * Simplify down to Cells (remove all notion or ranges?)
+* Figure out why excel->excel example is outputting incorrectly
+* More info through to front end
+* more tests compile / rule
+* tidy of all readme pages
+* view vulneribilty report (right click top right of tabs and renable)
+
 

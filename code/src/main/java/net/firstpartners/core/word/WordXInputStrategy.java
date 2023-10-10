@@ -12,14 +12,15 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
+import net.firstpartners.core.drools.ClassAndLocation;
 import net.firstpartners.core.file.OfficeDocument;
 import net.firstpartners.core.file.ResourceFinder;
 import net.firstpartners.data.RangeList;
 
 /**
- * Specific steps needed for feeding WordX (latest Office) Documents into and out of the Rule
+ * Specific steps needed for feeding WordX (latest Office) Documents into and
+ * out of the Rule
  * Engine
  *
  * @author PBrowne
@@ -27,13 +28,11 @@ import net.firstpartners.data.RangeList;
  */
 public class WordXInputStrategy implements IDocumentInStrategy {
 
-	private Config appConfig;
-
 	// Handle to the loggers
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	private XWPFDocument poiDoc = null;
 
-	private String wordInputFileName = null;
+	private ClassAndLocation inputDetails = null;
 
 	private String subDirectory;
 
@@ -42,8 +41,8 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 	 *
 	 * @param wordxInputFileName that we are reading from
 	 */
-	public WordXInputStrategy(String wordxInputFileName) {
-		this.wordInputFileName = wordxInputFileName;
+	public WordXInputStrategy(ClassAndLocation inputDetails) {
+		this.inputDetails = inputDetails;
 	}
 
 	public String getSubDirectory() {
@@ -53,14 +52,18 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 	/**
 	 * Set the base Directory
 	 */
-	public void setSubDirectory(String subDirectory){
-		this.subDirectory= subDirectory;
+	public void setSubDirectory(String subDirectory) {
+		this.subDirectory = subDirectory;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public String getInputName() {
-		return wordInputFileName;
+	public ClassAndLocation getInputDetails() {
+		return inputDetails;
+	}
+
+	public void setInputDetails(ClassAndLocation inputDetails) {
+		this.inputDetails = inputDetails;
 	}
 
 	/**
@@ -72,10 +75,10 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, InvalidFormatException {
 
 		log.debug("converting incoming word stream to Javabeans");
-		File wordFile = ResourceFinder.getFileResourceUsingConfig(this.wordInputFileName, appConfig);
+		File wordFile = ResourceFinder.getFile(this.inputDetails);
 
 		InputStream inputAsStream = new FileInputStream(wordFile);
-		poiDoc= new XWPFDocument(OPCPackage.open(inputAsStream));
+		poiDoc = new XWPFDocument(OPCPackage.open(inputAsStream));
 
 		RangeList myRange = DocumentXConvertor.convertFromPoiWordIntoRedRange(poiDoc);
 		inputAsStream.close();
@@ -90,19 +93,15 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 		return new OfficeDocument(poiDoc);
 	}
 
-	/** {@inheritDoc} */
-	@Override
-	public void setConfig(Config appConfig) {
-		this.appConfig = appConfig;
-	}
-
 	/**
-	 * <p>setInputFileName.</p>
+	 * <p>
+	 * setInputFileName.
+	 * </p>
 	 *
 	 * @param wordInputFileName a {@link java.lang.String} object
 	 */
-	public void setInputFileName(String wordInputFileName) {
-		this.wordInputFileName = wordInputFileName;
+	public void setInputFileName(ClassAndLocation inputDetails) {
+		this.inputDetails = inputDetails;
 	}
 
 	/** {@inheritDoc} */

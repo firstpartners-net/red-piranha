@@ -7,8 +7,11 @@ import java.io.IOException;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
@@ -17,12 +20,14 @@ import net.firstpartners.core.Config;
 import net.firstpartners.core.MemoryOutputStrategy;
 import net.firstpartners.core.RPException;
 import net.firstpartners.core.RedModel;
+import net.firstpartners.core.drools.ClassAndLocation;
 import net.firstpartners.core.drools.RuleRunner;
 import net.firstpartners.core.drools.RunnerFactory;
 import net.firstpartners.core.json.JsonOutputStrategy;
 import net.firstpartners.data.RangeList;
 
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 public class ExcelInputStrategyTest {
 
 	// Logger
@@ -60,8 +65,11 @@ public class ExcelInputStrategyTest {
 		RedModel redModel = new RedModel(TestConstants.XLSX_DATA_FILE,TestConstants.SIMPLE_LOG_MODIFY_RULES_FILE,"some-dummy.xls");
 
 		RuleRunner runner =(RuleRunner)RunnerFactory.getRuleRunner(redModel);
-		assertTrue (runner.getDocumentInputStrategy() instanceof ExcelInputStrategy);
+		assertTrue (runner.getDocumentInputStrategy().get(0) instanceof ExcelInputStrategy);
+		assertTrue (runner.getDocumentInputStrategy().get(0).getInputDetails() !=null);
 		
+		log.debug("Locations:"+runner.getDocumentInputStrategy().get(0).getInputDetails());
+
 		//set out OutputStrategy so we can test the output later
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 		runner.setDocumentOutputStrategy(outputStrategy);
@@ -93,8 +101,7 @@ public class ExcelInputStrategyTest {
 		testConfig.setPreprocessScript(dirPrefix+"/"+TestConstants.GROOVY_PREPROCESS);
 		
 		//Handle to our Excel convertor and set config
-		ExcelInputStrategy xlInput = new ExcelInputStrategy(dirPrefix+"/"+TestConstants.COMPLEX_EXCEL);
-		xlInput.setConfig((testConfig));
+		ExcelInputStrategy xlInput = new ExcelInputStrategy(new ClassAndLocation(dirPrefix+"/"+TestConstants.COMPLEX_EXCEL));
 
 		//call and get the data
 		RangeList myRange = xlInput.getJavaBeansFromSource();

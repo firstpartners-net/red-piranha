@@ -1,31 +1,39 @@
 
-<b>What example does:</b> Read information from a complex Excel Spreadsheet and summarize as json/csv.
+<b>What example does:</b> Read information from a multiple Excel files then summarize as single csv file.
 <p>
-The sample demonstrates extracting data from a complex Excel file - it uses preprocessing to tidy the Named Ranges in the document
- often needed for historical documents and used to identify the Cells we want to extact and pass into the Rule Engine. 
-</p><p>
+The sample demonstrates locating and extracting data from multiple Excel files. It is simlilar to Example 4 in that it uses a pre-processing script to identify
+the values in Excel we're most interested in. Each file is loaded individually, the business rules applied, with the results then appended to the output csv file.
+</P><p>
+When running the sample, we pass in a <b>directory</b> and not a file as an input value, which indicates we  want to process *all* the files in the directory. 
+These are gathered into a list, and the the following steps are performed on the list of files as a loop (one-by-one for each excel file):
 <ul>
 <li>
-The sample directory contains a pre-processing script called <a href="https://github.com/firstpartners-net/red-piranha/blob/main/code/src/main/resources/examples/4_complex_excel/InjectNamedRanges.groovy">
-<I>InjectNamedRange.Groovy</I>. </a>
-</li><li>There is a setting in
-<i>application.properties</i> that causes files with this name to be excecuted after the Spreadsheet is loaded but 
-before the business rules are executed.  
+The sample directory contains a pre-processing script called <a href="https://github.com/firstpartners-net/red-piranha/blob/main/code/src/main/resources/examples/5_multi_excel/InjectNamedRanges.groovy">
+<I>InjectNamedRange.Groovy</I></a>. This script extracts fewer fields than Example 4 (but we could make more sophisticated).
 </li><li>
-This script is passed a copy of the incoming spreadsheet which allows it to be manipulated. This is all done in memory (no change made to the original document).
-</li><li>In this case the 
-script adds Excel Named Ranges tagging the areas of the sheet we are most interested in, but other alterations are possible. 
+This script is passed a copy of the next spreadsheet on the list for pre-processing. This is done in memory (no change made to the original document).
+</li><li>The script adds Excel Named Ranges tagging the areas of the sheet we are most interested in. 
 </li><li>
-After loading the document into memory, the business rules are fired against it. 
+After loading the document into memory, the business rules are fired against it. In this sample the rules are simple - but could be extended to check if the file is in the format
+we expect and filter out items we don't ex
 </li><li>
-In this sample the rules are simple - but could
-be a lot more complex (e.g.) making a decision to invest, or listing the reason why not. Our sample uses rules to tidy tidy 
-and identify files not in the format we expect.
+Finally the sample <b>appends</b> the values to a CSV file. 
 </li><li>
-Finally the sample outputs the values to a CSV file. 
-</li><li>
-The net effect is that clean values are extracted from an untidy Excel sheet,
-tidied up, and output cleanly into a format suitable for ingestion into the next step e.g. a Machine Learning pipeline.
+After the loop completes, the effect is that clean values are extracted from an multiple Excel sheets,
+tidied up, and output cleanly into a single dataset. This dataset could be used many ways e.g. carrying out analysis using PowerBI or similar tools 
 </li>
 </ul>
+<P>
+In this sample, the Excel input files are all in a similar format. But it is possible to extend the sample to cope with very different formats - using the pre-processing script to locate the
+different areas in Excel that we are interested in. And also possible to use the business rules to further filter and transform this data before outputting.
+</p><p>
+This sample only has Excel input files. But other input formats (e.g. Word or JSON) are possible. The appropriate <I>InputStrategy</I> will be used for each file format.
+</p><p>
+It is important to note this sample works on each file standalone. Each file is processed individually, output, and the next file processed with a clean-sheet.<br/>
+There are use cases where we want to load all files into working memory <I>together</I> .e.g. to cross reference information between Word and Excel in our business rules.
+It is possible to extend the source-code to do this, but it is not the default implementation.
+</p>
+<p>
+Because of the loop; In the Web Page, showing input and output data - only data the very last document processed will appear. Full details of items processed are still 
+visible in the log file.
 </p>

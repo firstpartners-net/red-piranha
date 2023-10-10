@@ -1,12 +1,16 @@
 package net.firstpartners.core.excel;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.Comment;
 import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Drawing;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
@@ -30,33 +34,39 @@ public class CellConvertor {
 	 *
 	 * @param cellNameFromRange - allows us to treat this cell as a member of a
 	 *                          range
-	 * @param poiCell a {@link org.apache.poi.ss.usermodel.Cell} object
+	 * @param poiCell           a {@link org.apache.poi.ss.usermodel.Cell} object
 	 * @return a {@link net.firstpartners.data.Cell} object
 	 */
 	public static net.firstpartners.data.Cell convertPoiCellToRedCell(String cellNameFromRange,
 			org.apache.poi.ss.usermodel.Cell poiCell) {
 
 		// Check for null parameter
-		assert (poiCell!=null) : "incoming POI Cell (from Excel) should not be null";
+		assert poiCell != null : "incoming POI Cell (from Excel) should not be null";
 
 		// Start building our new (Red) Cell
 		net.firstpartners.data.Cell redCell = new net.firstpartners.data.Cell();
 
 		// Keep a reference to the original cell location
-		redCell.setOriginalCellReference(poiCell.getAddress().getRow(), poiCell.getAddress().getColumn());
-		redCell.setOriginalTableReference(poiCell.getSheet().getSheetName());
+		if (poiCell != null) {
+			redCell.setOriginalCellReference(poiCell.getAddress().getRow(), poiCell.getAddress().getColumn()); 
+			redCell.setOriginalTableReference(poiCell.getSheet().getSheetName());
+		} else {
+			log.info("poiCell " + cellNameFromRange + " was null - skipping");
+		}
 
 		// The name makes them as a range
 		redCell.setName(cellNameFromRange);
 
-		//Get the cell contents and update our object model
+		// Get the cell contents and update our object model
 		Object value = getCellContents(poiCell);
 		redCell.setValue(value);
 
 		// copy over the comments
-		Comment anyComment = poiCell.getCellComment();
-		if (anyComment != null) {
-			redCell.setComment(anyComment.getString().toString());
+		if (poiCell != null) {
+			Comment anyComment = poiCell.getCellComment();
+			if (anyComment != null) {
+				redCell.setComment(anyComment.getString().toString());
+			}
 		}
 
 		// Reset the modified flag
@@ -67,53 +77,117 @@ public class CellConvertor {
 	}
 
 	/**
-	 * Helper Method to get the contents of an Apache POI Cell using a reference.
-	 * @param org.apache.poi.ss.usermodel.Cell - Apache POI Cell
-	 * @return Object (Boolean , Number or String). It attempts to get the values, and the result of a formula.
+	 * Convert Cell to the String
+	 * for this use case, we just want it as a string.
+	 * e.g. for headers like "20/12/21" we want it as that value, not string
+	 * Note that numbers will often be treated as dates - since these are more
+	 * likely to be headers
+	 * 
+	 * @param poiCell
+	 * @return
 	 */
-	public static Object getCellContents(org.apache.poi.ss.usermodel.Cell poiCell){
+	public static String getCellAsStringForceDateConversion(Cell poiCell) {
+
+		// Convert our cell differently depending if is a date or note
+		// log.debug("Cell Type:"+(poiCell.getCellType()));
+		if(poiCell==null){
+			log.debug("poiCell was null - returning empty string");
+			return "";
+		}
+
+		String simpleConversion = "" + CellConvertor.getCellContents(poiCell);
+		// log.debug("Simple Conversion:"+simpleConversion);
+
+		CellType type = poiCell.getCellType();
+		log.debug("Cell Type:");
+
+
+
+		try{
+
+			if (type == CellType.NUMERIC
+				|| (poiCell.getCellType() == CellType.FORMULA) && (DateUtil.isCellDateFormatted(poiCell))) {
+
+				// convert using null checks
+				if (simpleConversion != null) {
+					Date javaDate = DateUtil.getJavaDate(Double.parseDouble(simpleConversion));
+					if (javaDate != null) {
+						return new SimpleDateFormat("dd/MM/yy").format(javaDate);
+					}
+				}
+			}
+
+		} catch (java.lang.IllegalStateException ise){
+
+
+				DataFormatter dataFormatter = new DataFormatter();
+				simpleConversion = dataFormatter.formatCellValue(poiCell);
+				log.debug("Recovering from conversion error:"+simpleConversion);
+		}
+
+	
+
+		// return default conversion if we get this far
+		return simpleConversion;
+
+		
+
+	}
+
+	/**
+	 * Helper Method to get the contents of an Apache POI Cell using a reference.
+	 * 
+	 * @param org.apache.poi.ss.usermodel.Cell - Apache POI Cell
+	 * @return Object (Boolean , Number or String). It attempts to get the values,
+	 *         and the result of a formula.
+	 */
+	public static Object getCellContents(org.apache.poi.ss.usermodel.Cell poiCell) {
+
+		if (poiCell == null) {
+			log.debug("poiCell was null - returning null");
+			return null;
+		}
 
 		Object value = null; // to capture the output
 
-		//Determine the cell type
+		// Determine the cell type
 		org.apache.poi.ss.usermodel.CellType myCellType = poiCell.getCellType();
-		//log.debug("Working with Poi Cell Type:" + myCellType);
-
+		// log.debug("Working with Poi Cell Type:" + myCellType);
 
 		switch (myCellType.toString()) {
 
-		case "BOOLEAN":
-			value = poiCell.getBooleanCellValue();
-			break;
-		case "NUMERIC":
-			value = poiCell.getNumericCellValue();
-			break;
-		case "STRING":
-			value = poiCell.getRichStringCellValue().getString();
-			break;
-		case "BLANK":
-			value = "";
-			break;
-		case "ERROR":
-			value = "";
-			break;
-		case "FORMULA":
-
-			// treat formulas using their cached values
-			switch (poiCell.getCachedFormulaResultType()) {
-			case BOOLEAN:
+			case "BOOLEAN":
 				value = poiCell.getBooleanCellValue();
 				break;
-			case NUMERIC:
+			case "NUMERIC":
 				value = poiCell.getNumericCellValue();
 				break;
-			case STRING:
-				value = poiCell.getRichStringCellValue();
+			case "STRING":
+				value = poiCell.getRichStringCellValue().getString();
 				break;
-			default:
+			case "BLANK":
 				value = "";
 				break;
-			}
+			case "ERROR":
+				value = "";
+				break;
+			case "FORMULA":
+
+				// treat formulas using their cached values
+				switch (poiCell.getCachedFormulaResultType()) {
+					case BOOLEAN:
+						value = poiCell.getBooleanCellValue();
+						break;
+					case NUMERIC:
+						value = poiCell.getNumericCellValue();
+						break;
+					case STRING:
+						value = poiCell.getRichStringCellValue();
+						break;
+					default:
+						value = "";
+						break;
+				}
 
 		}
 
@@ -121,13 +195,12 @@ public class CellConvertor {
 
 	}
 
-
 	/**
 	 * Convert from Standard JavaBean to Excel (Apache Poi) Cells
 	 *
 	 * @param poiCell a {@link org.apache.poi.ss.usermodel.Cell} object
 	 * @param redCell a {@link net.firstpartners.data.Cell} object
-	 * @param wb a {@link org.apache.poi.ss.usermodel.Workbook} object
+	 * @param wb      a {@link org.apache.poi.ss.usermodel.Workbook} object
 	 */
 	public static void convertRedCellToPoiCell(org.apache.poi.ss.usermodel.Workbook wb,
 			org.apache.poi.ss.usermodel.Cell poiCell, net.firstpartners.data.Cell redCell) {
@@ -231,20 +304,19 @@ public class CellConvertor {
 	 */
 	static void setPoiCellComment(Workbook workbook, Cell cell, String author, String commentText) {
 
-		//Handle to the comment we are going to modify or update
-		Comment comment =null;
+		// Handle to the comment we are going to modify or update
+		Comment comment = null;
 		CreationHelper factory = workbook.getCreationHelper();
 
-		//Remove any previous cell comment
-		if(cell.getCellComment()!=null){
-			log.debug("reusing previous cell comment for "+cell.getAddress());
-			 comment = cell.getCellComment();
+		// Remove any previous cell comment
+		if (cell.getCellComment() != null) {
+			log.debug("reusing previous cell comment for " + cell.getAddress());
+			comment = cell.getCellComment();
 		} else {
-			log.debug("creating new cell comment for "+cell.getAddress());
-		
+			log.debug("creating new cell comment for " + cell.getAddress());
 
 			// Create the anchor onto the workbook
-			
+
 			ClientAnchor anchor = factory.createClientAnchor();
 
 			// i found it useful to show the comment box at the bottom right corner
@@ -260,8 +332,6 @@ public class CellConvertor {
 		// set the comment text and author
 		comment.setString(factory.createRichTextString(commentText));
 		comment.setAuthor(author);
-
-
 
 		cell.setCellComment(comment);
 	}

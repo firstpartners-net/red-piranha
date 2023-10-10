@@ -51,17 +51,7 @@
   "testingResult" : ""
   		
 }
-,
-{
-  "id" : 6,
-  "subDirectory":"6_no_share/",
-  "inputFileLocation" : "",
-  "ruleFileLocation" : "log-then-modify-rules.drl",
-  "outputFileLocation" : "output.csv",
-  "dslFileLocation" : "",
-  "testingResult" : ""
-  		
-}
+
 
 
 ]

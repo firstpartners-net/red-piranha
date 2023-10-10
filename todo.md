@@ -24,6 +24,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
         
 
         * Unit test Splitter (search Splitting fields from)
+            * get sample data to test
         * Review which items are log.info and which are log.debug (for when deploinging)
         * Setting - continue after error
             * web page (but read only) & examples
@@ -34,8 +35,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
             * Flush this to disk
             * Remove input and output
             * make a note of this in readme.html
-    * Restore
-        * Integration Test 110 
+
     
     * NTH
         * can I use rules to support the above

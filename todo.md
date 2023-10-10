@@ -10,8 +10,6 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     * Review
         * Review Data out and add to tweak list below
         * * Tests passing - any others I can make work (quick check, then move to spillover)
-    * Quick Check
-        * Is / can we get sample 1 and 4 working again (as useful for testing the items below)
     * Robustness
         * spring timeout make note in example
             * add to readme.md this and other settings in application.properties
@@ -21,8 +19,8 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
             * Unit test CellConvertorTest (contiguours ranes) - not returning values
             * setup properties just to have Debug on CellConvertor / Script support
             * maybe add cell-> poiCell to assist in deubbing
-        * Script support Test
-            * getCellAsStringForceDateConversion
+        * CellConvertorTest
+            * getCellAsStringForceDateConversion (called from script support)
         
 
         * Unit test Splitter (search Splitting fields from)
@@ -36,6 +34,9 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
             * Flush this to disk
             * Remove input and output
             * make a note of this in readme.html
+    * Restore
+        * Integration Test 110 
+    
     * NTH
         * can I use rules to support the above
         
@@ -73,6 +74,12 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * Rules 
     * being loaded each run - can we load once and reuses
     * check code - might already be implemented
+
+* Test Data
+    * update paths to put in some test folder (currently in root of examples)
+
+* Deprecation
+    * Update CSV Output
 
 
 ## ##############

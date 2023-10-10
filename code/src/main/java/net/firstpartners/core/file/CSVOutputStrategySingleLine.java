@@ -250,7 +250,6 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 		// Open in a reader
 		Reader reader = new BufferedReader(new FileReader(readerFile));
 
-		@SuppressWarnings("deprecation") //TODO remove deprecation supression
 		CSVParser csvParser = CSVParser.parse(reader, CSVFormat.EXCEL.withFirstRecordAsHeader());
 
 		List<String> returnValues = csvParser.getHeaderNames();

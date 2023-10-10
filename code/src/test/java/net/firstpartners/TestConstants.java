@@ -8,7 +8,7 @@ package net.firstpartners;
  */
 public class TestConstants {
 
-	//TODO - update paths to put in some test folder (currently in root of examples)
+
 
 	// Sample Excel files
 	public static final String XLS_DATA_FILE = "src/test/resources/testdata/chocolate-data-tricky-formatting.xls";

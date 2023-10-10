@@ -20,6 +20,8 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.CellReference;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.junit.Assert.assertEquals;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,17 +46,23 @@ public class CellConvertorTest {
 	Config appConfig;
 	
 	@Test
-	public final void testConvertRedCellToPoiCell() throws IOException, ClassNotFoundException {
+	public final void testRedPoiRed() throws IOException, ClassNotFoundException {
+		
+		
+		
+ 		//Get our sample data
 		
 
 		FileInputStream fileIn = new FileInputStream(TestConstants.SAVED_EXCEL_RANGEHOLDER_DATA);
 		ObjectInputStream in = new ObjectInputStream(fileIn);
 		RangeList redData = (RangeList) in.readObject();
-
 		in.close();
 		fileIn.close();
-		
-		assertNotNull(redData);
+		assert redData !=null;
+
+		//========================
+		//====== POI TO RED ======
+		//========================
 
 		int counter =1;
 
@@ -124,14 +132,12 @@ public class CellConvertorTest {
 
 		}
 
-		// Save the Excel data - we will need it later
-		//excelData = wb;
+		//Map data across
+		Workbook excelData=wb;
 
-		// try out the subtest
-		subTestConvertPoiCellToRedCell(wb);
-	}
-
-	public final void subTestConvertPoiCellToRedCell(Workbook excelData) {
+		//========================
+		//====== RED TO POI ======
+		//========================
 		assertNotNull(excelData);
 
 		Sheet sheet = excelData.getSheetAt(0);

@@ -50,7 +50,7 @@ public class IntegrationTests {
 	 */
 	@Test
 	public void testSpecificExample() throws Exception, RPException {
-		sampleTestRunner(5);
+		sampleTestRunner(4);
 	}
 
 

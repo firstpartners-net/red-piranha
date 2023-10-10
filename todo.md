@@ -8,8 +8,12 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * NEXT RESOLVE
 
     * Robustness
-        * throw RP from ScriptSupport if sheet not found
-        * check for spaces in names    
+        * spring timeout
+        * Move cnd to local
+        * Unit test Splitter (search 
+        * Review which items are log.info )
+        * where cell is "" because of null, pass back null 
+
 
 
 # Mini Snapshot -> Main

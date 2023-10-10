@@ -8,10 +8,11 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * NEXT RESOLVE
 
     * Robustness
-        * spring timeout
+        * spring timeout make note in example
+            * add to readme.md this and other settings in application.properties
         * Move cnd to local
-        * Unit test Splitter (search 
-        * Review which items are log.info )
+        * Unit test Splitter (search Splitting fields from)
+        * Review which items are log.info and which are log.debug (for when deploinging)
         * where cell is "" because of null, pass back null 
 
 

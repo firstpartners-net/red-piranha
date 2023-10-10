@@ -1,6 +1,7 @@
 _site
 *.class
 *.log
+*.gz
 build
 dist
 
@@ -50,5 +51,7 @@ code/src/test/resources/testdata/tmp-multi.csv
 
 **/6_no_share/*.*
 **/6_no_share/tmp/*.*
-*.gz
+**/subset/*.*
+**/subset/tmp/*.*
+
 

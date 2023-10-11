@@ -27,13 +27,22 @@ Because business rules can be written in 'near English' language they are much m
 
 ## What is Red Piranha
 
-By default, Drools,  doesn't read in Excel Data. Red Piranha fills in this gap with:
+By default, KIE and Drools doesn't read in Excel Data. Red Piranha fills in this gap with:
 
-* A user Interface to run the rules from your desktop
+* A user Interface to run the rules from your desktop / web browser
 * Conversion of your Excel Data into a format the rule engine can read.
+* Applies Rules based AI to your Excel Data.
 * Conversion of the outout back into a (different) Excel file or other format.
 * Samples to get your started.
 * Information to show you what is going on within the Rule Engine.
+
+## Books Featuring Red Piranha
+
+While you don't need the books to use Red Piranha (or vice Versa), both talk about the same problem; Rules Based AI, and applying these business rules to your Excel Data. <a href="https://www.amazon.com/stores/Paul-Browne/author/B007MCQ55I?ref=ap_rdr&store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true">Both are Published by Packt</a>.
+
+| ![Drools Business Rules   ](/images/book-drools.jpg)
+ | ![AI and Business Rules for Excel Power Users](/images/ai-book.jpg)
+|
 
 ## Main features 
 

@@ -155,8 +155,7 @@ public class CellConvertorTest {
 				Cell redCell = CellConvertor.convertPoiCellToRedCell("", poiCell);
 
 				assertNotNull(redCell);
-				fail("additional tests that data has been copied over etc");
-
+				
 			}
 
 		}

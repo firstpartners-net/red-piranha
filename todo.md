@@ -11,8 +11,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
         * Review Data out and add to tweak list below
         * * Tests passing - any others I can make work (quick check, then move to spillover)
     * Robustness
-        * spring timeout make note in example
-            * add to readme.md this and other settings in application.properties
+
         * poiCell -> RedCell conversion
             * where cell is "" because of null, pass back null 
             * debug CellConvertor in more detail
@@ -24,6 +23,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
         
 
         * Unit test Splitter (search Splitting fields from)
+            * get sample data to test
         * Review which items are log.info and which are log.debug (for when deploinging)
         * Setting - continue after error
             * web page (but read only) & examples
@@ -34,8 +34,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
             * Flush this to disk
             * Remove input and output
             * make a note of this in readme.html
-    * Restore
-        * Integration Test 110 
+
     
     * NTH
         * can I use rules to support the above
@@ -47,10 +46,9 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 
 ## Upgrade Doc
-* add 3 minute quickstart
-    * Readme.md how to run the sample in VSCode online
-* add about new and old book
+* add 3 minute quickstart (as first section)
 * tidy off *notes*.md files
+* get book images working
 
 ## Update release docs
 * update notes-release.md and use to improve notes

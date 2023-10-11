@@ -14,9 +14,16 @@ Powered by [KIE from IBM and RedHat Drools](https://incubator.apache.org/clutch/
 
 Instead of having your knowledge 'disappear' into complicated formulas that you can't read, a Rules Engine keeps things in a simple 'English' like format. Even better, because of the way it works 'under the covers' it is faster and more powerful than code translated into a technical language.
 
+## Books Featuring Red Piranha
+
+While you don't need the books to use Red Piranha (or vice versa), both talk about the same problem; Rules Based AI, and applying these business rules to your Excel Data. <a href="https://www.amazon.com/stores/Paul-Browne/author/B007MCQ55I?ref=ap_rdr&store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true">Both are from Packt Publishing.</a>.
+
+![Drools Business Rules](https://github.com/firstpartners-net/red-piranha/blob/main/images/book_drools.jpg)
+![AI and Business Rules for Excel Power Users](https://github.com/firstpartners-net/red-piranha/blob/main/images/ai_book.jpg)
+
 ## What is a Business Rule
 
-A business rule is a simple statement that represents some important aspect of a business. By capturing the rules for your business--the logic that governs its operation-- you gain the ability to create systems fully aligned with your business needs.
+A business rule is a simple statement that represents some important aspect of a business. By capturing the rules for your business --the logic that governs its operation-- you gain the ability to create systems fully aligned with your business needs.
 
 All people have business rules. Examples of a 'real' busniess rules that can be fed into the engine are:
 
@@ -27,10 +34,11 @@ Because business rules can be written in 'near English' language they are much m
 
 ## What is Red Piranha
 
-By default, Drools,  doesn't read in Excel Data. Red Piranha fills in this gap with:
+By default, KIE and Drools doesn't read in Excel Data. Red Piranha fills in this gap with:
 
-* A user Interface to run the rules from your desktop
+* A user Interface to run the rules from your desktop / web browser
 * Conversion of your Excel Data into a format the rule engine can read.
+* Applies Rules based AI to your Excel Data.
 * Conversion of the outout back into a (different) Excel file or other format.
 * Samples to get your started.
 * Information to show you what is going on within the Rule Engine.
@@ -93,7 +101,8 @@ Each of the samples has a readme.html to explain what the sample is showcasing. 
 1. [Sample 1 - a simple hello world](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/1_hello_world)
 1. [Sample 2 - slightly more sophisticated example with rule based decision making](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/2_chocolate-factory)
 1. [Sample 3 - making decisions on Excel data using a graphical decision model (DMN) ](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/3_simple_dmn)
-1. [Sample 4 - Complex Excel document, extracting data using named ranges and rule based validation](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/4_complex_excel)
+1. [Sample 4 - Complex Excel document, extracting data using named ranges and rule based validation, output to a single CSV file](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/4_complex_excel)
+1. [Sample 5 - Multiple Excel documents in one folder, extracting data using named ranges and rule based validation, output to a single csv file](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/5_multi_excel)
 
 **After running**
 The top part of screen will alter - showing the base directory, input file, business rules, DSL (Language mapping) and output file used.

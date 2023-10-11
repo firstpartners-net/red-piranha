@@ -29,6 +29,8 @@ different areas in Excel that we are interested in. And also possible to use the
 </p><p>
 This sample only has Excel input files. But other input formats (e.g. Word or JSON) are possible. The appropriate <I>InputStrategy</I> will be used for each file format.
 </p><p>
+Since this example can take some time to complete, it is worth checking the timeout value in application.properties .
+</p><p>
 It is important to note this sample works on each file standalone. Each file is processed individually, output, and the next file processed with a clean-sheet.<br/>
 There are use cases where we want to load all files into working memory <I>together</I> .e.g. to cross reference information between Word and Excel in our business rules.
 It is possible to extend the source-code to do this, but it is not the default implementation.

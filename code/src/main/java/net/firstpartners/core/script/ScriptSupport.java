@@ -29,6 +29,10 @@ import net.firstpartners.core.excel.CellConvertor;
  */
 public class ScriptSupport {
 
+	//The string we use to "glue names together"
+	//needs to be alphanumeric (as it will becom and Excel name, yet easy to split later)
+	public static final String COMBO="_III_";
+
 	// Handle to the loggers
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -214,7 +218,7 @@ public class ScriptSupport {
 
 				// Calculate namedRangeName based on header and col
 				// remember it is a table, so the col names will differ by row (and vice versa)
-				String refName = baseName + "_" + colNames.get("" + row) + "_" + headerNames.get("" + col);
+				String refName = baseName + COMBO + colNames.get("" + row) + COMBO + headerNames.get("" + col);
 
 				// tidy to remove spaces etc as Excel won't allow them in named range
 				refName = refName.replaceAll("y/e", "YE");

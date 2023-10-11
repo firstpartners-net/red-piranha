@@ -47,7 +47,7 @@ public class Application {
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {
 			
-			log.info("Configuration:\n"+myConfig);
+			log.debug("Configuration:\n"+myConfig);
 
 			/**
 			log.debug("Inspect the beans provided by Spring Boot:");

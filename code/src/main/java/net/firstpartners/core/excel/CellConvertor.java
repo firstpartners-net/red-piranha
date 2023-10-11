@@ -51,7 +51,7 @@ public class CellConvertor {
 			redCell.setOriginalCellReference(poiCell.getAddress().getRow(), poiCell.getAddress().getColumn()); 
 			redCell.setOriginalTableReference(poiCell.getSheet().getSheetName());
 		} else {
-			log.info("poiCell " + cellNameFromRange + " was null - skipping");
+			log.debug("poiCell " + cellNameFromRange + " was null - skipping");
 		}
 
 		// The name makes them as a range
@@ -119,7 +119,9 @@ public class CellConvertor {
 
 		} catch (java.lang.IllegalStateException ise){
 
-
+				//@TODO - try making this main converson remove commented out code.
+				//
+				//try to convert using date
 				DataFormatter dataFormatter = new DataFormatter();
 				simpleConversion = dataFormatter.formatCellValue(poiCell);
 				log.debug("Recovering from conversion error:"+simpleConversion);
@@ -145,7 +147,7 @@ public class CellConvertor {
 
 		if (poiCell == null) {
 			log.debug("poiCell was null - returning null");
-			return null;
+			return "null";	//TODO this is to assist in debugging
 		}
 
 		Object value = null; // to capture the output

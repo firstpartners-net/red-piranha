@@ -11,29 +11,36 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
         * * Tests passing - any others I can make work (quick check, then move to spillover)
     * Robustness
 
-        * poiCell -> RedCell conversion
+        * Upgrade poiCell -> RedCell conversion
             * where cell is "" because of null, pass back null 
             * debug CellConvertor in more detail
             * Unit test CellConvertorTest (contiguours ranes) - not returning values
             * setup properties just to have Debug on CellConvertor / Script support
             * maybe add cell-> poiCell to assist in deubbing
-        * CellConvertorTest
+
+        * Upgrade CellConvertorTest
             * getCellAsStringForceDateConversion (called from script support)
         
-
-        * Unit test Splitter (search Splitting fields from)
-            * get sample data to test
-        * Review which items are log.info and which are log.debug (for when deploinging)
         * Setting - continue after error
             * web page (but read only) & examples
+            * Bring through to redmodel
             * Note in Readme.md
             * check in RPException catch as part of main loop
             * refactor of main loop?
+
         * Upgrade RP Logging to show different documents (Y/N)
             * Flush this to disk
             * Remove input and output
             * make a note of this in readme.html
+            * Review which items are log.info and which are log.debug (for when deploinging)
 
+
+        * Look at DateFormatter - can it be used first
+        * review @TODOs
+
+    * Check
+        * new separateor approch = COMBO ="_III_"
+        * any "null" cell values coming through - any any more I can do
     
     * NTH
         * can I use rules to support the above
@@ -47,7 +54,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## Upgrade Doc
 * add 3 minute quickstart (as first section)
 * tidy off *notes*.md files
-* get book images working
+* get book images working (as link)
 
 ## Update release docs
 * update notes-release.md and use to improve notes
@@ -68,6 +75,9 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * Carry over from previous sprint
          * Move CDN to local (Or move this back?) for computers without internet access
 
+* GitHub build
+    * build 
+
 * Rules 
     * being loaded each run - can we load once and reuses
     * check code - might already be implemented
@@ -75,7 +85,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 * Test Data
     * update paths to put in some test folder (currently in root of examples)
 
-* Deprecation
+* Deprecation errors resolve
     * Update CSV Output
 
 

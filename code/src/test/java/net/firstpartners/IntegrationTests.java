@@ -72,9 +72,9 @@ public class IntegrationTests {
 
 		//counter
 		if(sampleToRun<0){
-			log.info("running all integrations samples");
+			log.debug("running all integrations samples");
 		} else {
-			log.info("running single integration sample:"+sampleToRun);
+			log.debug("running single integration sample:"+sampleToRun);
 		}
 		
 
@@ -85,10 +85,10 @@ public class IntegrationTests {
 			if(sampleToRun>0){
 				
 				if(sampleToRun != thisExample.getId()){
-					log.info("Running in single sample mode - skip sample:"+thisExample.getId());
+					log.debug("Running in single sample mode - skip sample:"+thisExample.getId());
 					continue; //skips this iteration of the loop
 				} else {
-					log.info("Running single sample:"+sampleToRun);
+					log.deebug("Running single sample:"+sampleToRun);
 				}
 
 			}

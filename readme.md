@@ -109,7 +109,7 @@ The top part of screen will alter - showing the base directory, input file, busi
 ![Red Piranha Screenshot](/images/main-screenshot-after.jpg)
 
 
-The bottom part of screen will also update - it will show messages as the sample runs, and a snapshot of the data before and after the buisness rules (to allow you to write your rules).
+The bottom part of screen will also update - it will show messages as the sample runs, and a snapshot of the data before and after the business rules (to allow you to write your rules).
 ![Red Piranha Screenshot](/images/main-screenshot-after-2.jpg)
 
 

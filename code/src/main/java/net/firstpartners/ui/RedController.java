@@ -53,7 +53,7 @@ public class RedController {
 
 		// this attribute will be available in the view index.html as a thymeleaf
 		// variable
-		log.info("\nCreating new Red Model - replacing any previous settings with incoming values\n");
+		log.debug("\nCreating new Red Model - replacing any previous settings with incoming values\n");
 		model.addAttribute(RED_MODEL, new RedModel());
 
 		// (re)load sample information

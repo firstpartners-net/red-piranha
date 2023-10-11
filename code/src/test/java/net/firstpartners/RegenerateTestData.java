@@ -33,7 +33,7 @@ public class RegenerateTestData {
 
 		//check our current working directory in Java
 		String currentDirectory = System.getProperty("user.dir");
-		log.info("Current Directory:"+currentDirectory);
+		log.debug("Current Directory:"+currentDirectory);
 
 		//Default args to pass into Regen methods
 		String[] subArgs = {""};  
@@ -42,7 +42,7 @@ public class RegenerateTestData {
 		if(currentDirectory.lastIndexOf("code")<0){
 
 			//the 'code' is needed as that is the sub directory of containing our code, all paths are referenced from it.
-			log.info("Requesting move to code directory:");
+			log.debug("Requesting move to code directory:");
 			subArgs[0]="code/";
 		}
 		

@@ -109,9 +109,9 @@ public abstract class AbstractRunner implements IRunner {
 
 			// Convert the cell and log if we have a handle
 			log.debug("=======================================================");
-			log.debug("\n\n\n\n\n\n\n");
+			log.debug("\n\n");
 			log.info("Opening Input:"+thisDocumentSource.getInputDetails());
-			log.debug("\n\n\n\n\n\n\n");
+			log.debug("\n\n");
 			log.debug("=======================================================");
 
 
@@ -196,7 +196,7 @@ public abstract class AbstractRunner implements IRunner {
 				throw new RPException("Error when writing out document", e);
 			}
 			log.debug("==========================");
-			log.debug("Current Document Complete");
+			log.info("Current Document Complete");
 			log.debug("==========================");
 
 		} // end loop over document

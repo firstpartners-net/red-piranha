@@ -14,6 +14,13 @@ Powered by [KIE from IBM and RedHat Drools](https://incubator.apache.org/clutch/
 
 Instead of having your knowledge 'disappear' into complicated formulas that you can't read, a Rules Engine keeps things in a simple 'English' like format. Even better, because of the way it works 'under the covers' it is faster and more powerful than code translated into a technical language.
 
+## Books Featuring Red Piranha
+
+While you don't need the books to use Red Piranha (or vice versa), both talk about the same problem; Rules Based AI, and applying these business rules to your Excel Data. <a href="https://www.amazon.com/stores/Paul-Browne/author/B007MCQ55I?ref=ap_rdr&store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true">Both are Published by Packt</a>.
+
+| ![Drools Business Rules   ](/images/book-drools.jpg)
+ | ![AI and Business Rules for Excel Power Users](/images/ai-book.jpg)
+
 ## What is a Business Rule
 
 A business rule is a simple statement that represents some important aspect of a business. By capturing the rules for your business--the logic that governs its operation-- you gain the ability to create systems fully aligned with your business needs.
@@ -36,12 +43,7 @@ By default, KIE and Drools doesn't read in Excel Data. Red Piranha fills in this
 * Samples to get your started.
 * Information to show you what is going on within the Rule Engine.
 
-## Books Featuring Red Piranha
 
-While you don't need the books to use Red Piranha (or vice Versa), both talk about the same problem; Rules Based AI, and applying these business rules to your Excel Data. <a href="https://www.amazon.com/stores/Paul-Browne/author/B007MCQ55I?ref=ap_rdr&store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true">Both are Published by Packt</a>.
-
-| ![Drools Business Rules   ](/images/book-drools.jpg)
- | ![AI and Business Rules for Excel Power Users](/images/ai-book.jpg)
 |
 
 ## Main features 

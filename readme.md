@@ -18,8 +18,8 @@ Instead of having your knowledge 'disappear' into complicated formulas that you 
 
 While you don't need the books to use Red Piranha (or vice versa), both talk about the same problem; Rules Based AI, and applying these business rules to your Excel Data. <a href="https://www.amazon.com/stores/Paul-Browne/author/B007MCQ55I?ref=ap_rdr&store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true">Both are from Packt Publishing.</a>.
 
-![Drools Business Rules](/images/book-drools.jpg)
-![AI and Business Rules for Excel Power Users](/images/ai-book.jpg)
+![Drools Business Rules](https://github.com/firstpartners-net/red-piranha/blob/main/images/book_drools.jpg)
+![AI and Business Rules for Excel Power Users](https://github.com/firstpartners-net/red-piranha/blob/main/images/ai_book.jpg)
 
 ## What is a Business Rule
 

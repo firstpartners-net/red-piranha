@@ -23,7 +23,7 @@ While you don't need the books to use Red Piranha (or vice versa), both talk abo
 
 ## What is a Business Rule
 
-A business rule is a simple statement that represents some important aspect of a business. By capturing the rules for your business--the logic that governs its operation-- you gain the ability to create systems fully aligned with your business needs.
+A business rule is a simple statement that represents some important aspect of a business. By capturing the rules for your business --the logic that governs its operation-- you gain the ability to create systems fully aligned with your business needs.
 
 All people have business rules. Examples of a 'real' busniess rules that can be fed into the engine are:
 

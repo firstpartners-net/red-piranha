@@ -19,8 +19,8 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
-import net.firstpartners.core.script.ScriptSupport;
 import net.firstpartners.data.RangeList;
 
 /**
@@ -332,17 +332,17 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 
 		// check that we are not in a single field (e.g. companyname - no table
 		// refernecs)
-		if (fieldName.indexOf(ScriptSupport.COMBO)) < 0) {
+		if (fieldName.indexOf(Config.COMBO) < 0) {
 			part1 = fieldName;
 		} else {
 
 			// attempt to split out the fields
 			// get first part
-			int match1 = fieldName.indexOf(ScriptSupport.COMBO, 0);
+			int match1 = fieldName.indexOf(Config.COMBO, 0);
 			part1 = fieldName.substring(0, match1);
 
 			// get second aprt
-			int match2 = fieldName.indexOf(ScriptSupport.COMBO, match1 + 1);
+			int match2 = fieldName.indexOf(Config.COMBO, match1 + 1);
 			part2 = fieldName.substring(match1 + 1, match2);
 
 			// get third part

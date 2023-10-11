@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.firstpartners.core.Config;
-import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.RedModel;
 import net.firstpartners.core.drools.IRunner;
 import net.firstpartners.core.drools.RunnerFactory;
@@ -32,6 +31,7 @@ import net.firstpartners.core.json.SampleDataLoader;
 @Controller
 public class RedController {
 
+	private static final String USER_LOG = "SOME_USER_LOG";
 	private static final String RED_MODEL = "redModel";
 	private static final String SAMPLE_INFO = "samples";
 
@@ -106,7 +106,7 @@ public class RedController {
 			/////////////////////////////////////
 			redModel.addUIInfoMessage("Running Rules:");
 			runner.callRules(redModel);
-			redModel.addUIInfoMessage("Rules Completed");
+			redModel.addUIInfoMessage("Rules Complete");
 			////////////////////////////////////////////////////
 
 			// update our main status message
@@ -122,6 +122,10 @@ public class RedController {
 
 		}
 
+		//Flush the user friendly logs to disk as well
+		//these will still also be displayed on the webpage
+		flushUserLogsToDisk(redModel.getUserMessageContents());
+
 
 		// update the web values with the values coming back
 		model.addAttribute("updateMessage", redModel.getUICurrentStatus());
@@ -133,13 +137,14 @@ public class RedController {
 		model.addAttribute(RED_MODEL, redModel);
 
 		//end of processing
-		log.debug("#################");
-		log.debug("End of Processing");
-		log.debug("#################");
+		log.debug("##############################");
+		log.debug("Documents Processing Complete");
+		log.debug("##############################");
 
 		// set the html page we want to display
 		return "index";
 	}
+
 
 	/**
 	 * Helper methods
@@ -151,12 +156,30 @@ public class RedController {
 		HashMap<String, String> additionalOutputs = new HashMap<String, String>();
 
 		//set the output date
-		additionalOutputs.put(IDocumentOutStrategy.ADDITIONALDATA_DATE, LocalDateTime.now().toString());
+		additionalOutputs.put(Config.ADDITIONALDATA_DATE, LocalDateTime.now().toString());
 
 		//Note - output file set later in process
 
 		return additionalOutputs;
 
 	}
+
+	/*
+	 * Helper method - persist any user friendly messages to disk 
+	 * @param userMessageContents
+	 */
+	private void flushUserLogsToDisk(List<String> userMessageContents) {
+
+		//TODO - implement getting this from application.properties
+		Logger userLogger = LoggerFactory.getLogger(USER_LOG);
+
+		
+		for(String message : userMessageContents){
+			userLogger.info(message);
+		}
+
+		log.debug("Saved User MessageS to:"+USER_LOG);
+	}
+
 
 }

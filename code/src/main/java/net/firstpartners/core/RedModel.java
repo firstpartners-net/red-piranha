@@ -64,31 +64,31 @@ public class RedModel implements IStatusUpdate {
 	/**
 	 * Convenience constructor - most commonly used use case
 	 * @param subDirectory - the folder there all the sub files are located
-	 * @param ruleFileLocation a {@link java.lang.String} object
-	 * @param outputFileLocation a {@link java.lang.String} object
-	 * @param inputFileLocation a {@link java.lang.String} object
+	 * @param ruleLocation a {@link java.lang.String} object
+	 * @param outputLocation a {@link java.lang.String} object
+	 * @param inputLocation a {@link java.lang.String} object
 	 */
-	public RedModel(String inputFileLocation, String ruleFileLocation, String outputFileLocation) {
+	public RedModel(String inputLocation, String ruleLocation, String outputLocation) {
 
-		this("",inputFileLocation,ruleFileLocation,outputFileLocation);
+		this("",inputLocation,ruleLocation,outputLocation);
 
 	}
 
 	/**
 	 * Convenience constructor - most commonly used use case
 	 * @param subDirectory - the folder there all the sub files are located
-	 * @param ruleFileLocation a {@link java.lang.String} object
-	 * @param outputFileLocation a {@link java.lang.String} object
-	 * @param inputFileLocation a {@link java.lang.String} object
+	 * @param ruleLocation a {@link java.lang.String} object
+	 * @param outputLocation a {@link java.lang.String} object
+	 * @param inputLocation a {@link java.lang.String} object
 	 */
-	public RedModel(String subDirectory, String inputFileLocation, String ruleFileLocation, String outputFileLocation) {
+	public RedModel(String subDirectory, String inputLocation, String ruleLocation, String outputLocation) {
 
 		this();
 
 		this.subDirectory = subDirectory;
-		this.inputFileLocation = inputFileLocation;
-		this.ruleFileLocation = ruleFileLocation;
-		this.outputFileLocation = outputFileLocation;
+		this.inputFileLocation = inputLocation;
+		this.ruleFileLocation = ruleLocation;
+		this.outputFileLocation = outputLocation;
 
 	}
 
@@ -154,7 +154,7 @@ public class RedModel implements IStatusUpdate {
 
 	}
 
-		/** {@inheritDoc} */
+	/** {@inheritDoc} */
 	@Override
 	public void debug(String output) {
 		addUIDebugMessage(output);

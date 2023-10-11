@@ -19,6 +19,17 @@ import org.springframework.stereotype.Component;
 @ManagedResource
 public class Config {
 
+
+	//Constants
+	//@TODO - consider moving to config
+	//The string we use to "glue names together"
+	//needs to be alphanumeric (as it will becom and Excel name, yet easy to split later)
+	public static final String COMBO="_III_";
+
+	//Constants - these will be the headings we use when outputting additional data
+	public static final String ADDITIONALDATA_SOURCE ="Source";
+	public static final String ADDITIONALDATA_DATE ="Extract Date";
+
 	@Autowired
 	@Value("${sample.Base.Directory.Alternate}")
 	private String sampleBaseDirAlternate = "";

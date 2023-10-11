@@ -4,11 +4,18 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Next - Multiple files
 
+* TIDY
+     * Move constnnts to config
+     * rule - remove cells with "Error"
+     * 
+
+
 * NEXT RESOLVE
 
     * Review
-        * Review Data out and add to tweak list below
+        NEXT: recover from exception
         * * Tests passing - any others I can make work (quick check, then move to spillover)
+        
     * Robustness
 
         * Upgrade poiCell -> RedCell conversion
@@ -17,6 +24,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
             * Unit test CellConvertorTest (contiguours ranes) - not returning values
             * setup properties just to have Debug on CellConvertor / Script support
             * maybe add cell-> poiCell to assist in deubbing
+        * Change error on Cell
 
         * Upgrade CellConvertorTest
             * getCellAsStringForceDateConversion (called from script support)

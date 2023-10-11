@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
+import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentInStrategy;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.core.RPException;
@@ -186,7 +187,7 @@ public abstract class AbstractRunner implements IRunner {
 			}
 			log.debug("Updated Source in Output to:"+updateSource);
 
-			additionalData.put(IDocumentOutStrategy.ADDITIONALDATA_SOURCE,updateSource); // overwrite any previous source
+			additionalData.put(Config.ADDITIONALDATA_SOURCE,updateSource); // overwrite any previous source
 			outputStrategy.setAdditionalOutputData(additionalData);
 
 			// make sure both get written (to disk?)

@@ -88,7 +88,7 @@ public class IntegrationTests {
 					log.debug("Running in single sample mode - skip sample:"+thisExample.getId());
 					continue; //skips this iteration of the loop
 				} else {
-					log.deebug("Running single sample:"+sampleToRun);
+					log.debug("Running single sample:"+sampleToRun);
 				}
 
 			}

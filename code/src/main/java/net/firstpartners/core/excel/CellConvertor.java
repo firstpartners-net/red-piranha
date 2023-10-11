@@ -147,7 +147,7 @@ public class CellConvertor {
 
 		if (poiCell == null) {
 			log.debug("poiCell was null - returning null");
-			return "null";	//TODO this is to assist in debugging
+			return "null";	//TODO this is to assist in debugging - remove
 		}
 
 		Object value = null; // to capture the output

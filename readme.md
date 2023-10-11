@@ -94,7 +94,7 @@ Each of the samples has a readme.html to explain what the sample is showcasing. 
 1. [Sample 2 - slightly more sophisticated example with rule based decision making](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/2_chocolate-factory)
 1. [Sample 3 - making decisions on Excel data using a graphical decision model (DMN) ](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/3_simple_dmn)
 1. [Sample 4 - Complex Excel document, extracting data using named ranges and rule based validation, output to a single CSV file](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/4_complex_excel)
-1. [Sample 5 - Multiple Excel documents in one folder, extracting data using named ranges and rule based validation, output to a single csv file](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/4_complex_excel)
+1. [Sample 5 - Multiple Excel documents in one folder, extracting data using named ranges and rule based validation, output to a single csv file](https://github.com/firstpartners-net/red-piranha/tree/main/code/src/main/resources/examples/5_multi_excel)
 
 **After running**
 The top part of screen will alter - showing the base directory, input file, business rules, DSL (Language mapping) and output file used.

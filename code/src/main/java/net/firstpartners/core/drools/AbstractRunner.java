@@ -34,7 +34,6 @@ import net.firstpartners.data.RangeList;
  */
 public abstract class AbstractRunner implements IRunner {
 
-
 	// Handle to the Strategy Class for specific incoming document (Excel, Word etc
 	// tasks)
 	// Setup by RunnerFactory
@@ -47,10 +46,10 @@ public abstract class AbstractRunner implements IRunner {
 	// Setup by RunnerFactory
 	protected IDocumentOutStrategy outputStrategy = null;
 
-	//Additional data that we wish to be passed to the output
-	Map<String,String> additionalData = new HashMap<String,String>();
+	// Additional data that we wish to be passed to the output
+	Map<String, String> additionalData = new HashMap<String, String>();
 
-	//getts and setters
+	// getts and setters
 	public Map<String, String> getAdditionalOutputData() {
 		return additionalData;
 	}
@@ -58,7 +57,6 @@ public abstract class AbstractRunner implements IRunner {
 	public void setAdditionalOutputData(Map<String, String> additionalData) {
 		this.additionalData = additionalData;
 	}
-
 
 	/**
 	 * The strategy we use for dealing with incoming documents
@@ -92,8 +90,9 @@ public abstract class AbstractRunner implements IRunner {
 
 	/**
 	 * Call the Decision Engine - data input / output has already been set during
-	 * the
-	 * creation of this class
+	 * the creation of this class.
+	 * 
+	 * If there are multiple input strategies, it will iterate over those
 	 *
 	 * @return our Model with all the information so we can display back to the user
 	 * @throws java.lang.Exception
@@ -101,111 +100,138 @@ public abstract class AbstractRunner implements IRunner {
 	 * @throws ScriptException
 	 * @throws ResourceException
 	 */
-	public RedModel callRules(RedModel ruleModel)
-			throws RPException {
-		//loop over our input file(s)
-		for(IDocumentInStrategy thisDocumentSource : this.inputStrategy)
-		{  
+	public RedModel callRulesLoop(RedModel redModel)
+			//throws RPException 
+			{
 
+		// loop over our input file(s)
+		for (IDocumentInStrategy thisDocumentSource : this.inputStrategy) {
 
-			// Convert the cell and log if we have a handle
-			log.debug("=======================================================");
-			log.debug("\n\n");
-			log.info("Opening Input:"+thisDocumentSource.getInputDetails());
-			log.debug("\n\n");
-			log.debug("=======================================================");
-
-
-
-			ruleModel.addUIInfoMessage("Opening Input :" + thisDocumentSource.getInputDetails());
-
-			RangeList ranges;
 			try {
-				ranges = thisDocumentSource.getJavaBeansFromSource();
-			} catch (EncryptedDocumentException e) {
-				log.warn("error",e);
-				throw new RPException("EncryptedDocumentException when opening Input", e);
-			} catch (ResourceException e) {
-				log.warn("error",e);
-				throw new RPException("ResourceException when opening Input", e);
-			} catch (ScriptException e) {
-				log.warn("error",e);
-				throw new RPException("ScriptException when opening Input", e);
-			} catch (InvalidFormatException e) {
-				log.warn("error",e);
-				throw new RPException("InvalidFormatException when opening Input", e);
-			} catch (IOException e) {
-				log.warn("error",e);
-				throw new RPException("IOException when opening Input", e);
+				// Process this document
+				getUpdateSource(redModel, thisDocumentSource);
+
+			} catch (Throwable t) {
+
+				// We try to show as much details as possible (in the logs) without scaring the
+				// user
+				log.error("Full details of error", t);
+				redModel.addUIWarnMessage("Uncaught Exception", t);
+				
 			}
-
-			// Set the Modified flag on the cells
-			if (ranges != null) {
-				ranges.cascadeResetIsModifiedFlag();
-			}
-
-			// Update / snapshot our progress
-			ruleModel.setPreRulesSnapShot(ranges);
-
-			// Add the document contents as facts into the working Memory
-			ruleModel.addUIInfoMessage("Adding Excel Cells as facts into Rule Engine Memory");
-
-			if (ranges != null) {
-				ruleModel.addFacts(ranges.getAllCellsInAllRanges());
-			} else {
-				throw new RPException("No Data (Ranges =null) was passed in, this is unlikely to be what you want");
-			}
-
-			// Load and fire our rules files against the data
-			Collection<Cell> newFacts = runModel(ruleModel);
-
-			// Make a note of any new facts added
-			ruleModel.addUIInfoMessage("Collecting New Cells and put them into Excel");
-			Range newRange = new Range("New Facts");
-			newRange.put(newFacts);
-			ranges.add(newRange);
-
-			// update a copy of the original document (to be saved as copy) with the result
-			// of our rules
-			try {
-				outputStrategy.setUpdates(thisDocumentSource.getOriginalDocument(), ranges);
-			} catch (IOException e) {
-				throw new RPException("Error when updating document", e);
-			}
-
-			ruleModel.addUIInfoMessage("Write to Output file:" + outputStrategy.getOutputDestination());
-
-			// update our post rules snapshot
-			ruleModel.setPostRulesSnapShot(ranges);
-
-			//update any additional output data
-			ClassAndLocation cAndL =thisDocumentSource.getInputDetails();
-			String updateSource =cAndL.locationText;// default
-			if(cAndL!=null&&cAndL.fileLocation!=null){
-				//Better to use actual file location
-				updateSource= cAndL.fileLocation.getName();
-			}
-			log.debug("Updated Source in Output to:"+updateSource);
-
-			additionalData.put(Config.ADDITIONALDATA_SOURCE,updateSource); // overwrite any previous source
-			outputStrategy.setAdditionalOutputData(additionalData);
-
-			// make sure both get written (to disk?)
-			try {
-				outputStrategy.processOutput();
-			} catch (InvalidFormatException | IOException e) {
-				throw new RPException("Error when writing out document", e);
-			}
-			log.debug("==========================");
-			log.info("Current Document Complete");
-			log.debug("==========================");
 
 		} // end loop over document
 
-		return ruleModel;
+		//Return the original (now updated) model
+		return redModel;
 
 	}
 
+	/**
+	 * 
+	 * @param ruleModel
+	 * @param thisDocumentSource
+	 * @return
+	 * @throws RPException
+	 */
+	private RangeList getUpdateSource(RedModel ruleModel, IDocumentInStrategy thisDocumentSource) throws RPException {
+
+		// Convert the cell and log if we have a handle
+		log.debug("=======================================================");
+		log.debug("\n\n");
+		log.info("Opening Input:" + thisDocumentSource.getInputDetails());
+		log.debug("\n\n");
+		log.debug("=======================================================");
+
+		ruleModel.addUIInfoMessage("Opening Input :" + thisDocumentSource.getInputDetails());
+
+		RangeList ranges;
+
+		try {
+			ranges = thisDocumentSource.getJavaBeansFromSource();
+		} catch (EncryptedDocumentException e) {
+			log.warn("error", e);
+			throw new RPException("EncryptedDocumentException when opening Input", e);
+		} catch (ResourceException e) {
+			log.warn("error", e);
+			throw new RPException("ResourceException when opening Input", e);
+		} catch (ScriptException e) {
+			log.warn("error", e);
+			throw new RPException("ScriptException when opening Input", e);
+		} catch (InvalidFormatException e) {
+			log.warn("error", e);
+			throw new RPException("InvalidFormatException when opening Input", e);
+		} catch (IOException e) {
+			log.warn("error", e);
+			throw new RPException("IOException when opening Input", e);
+		}
+
+		// Set the Modified flag on the cells
+		if (ranges != null) {
+			ranges.cascadeResetIsModifiedFlag();
+		}
+
+		// Update / snapshot our progress
+		ruleModel.setPreRulesSnapShot(ranges);
+
+		// Add the document contents as facts into the working Memory
+		ruleModel.addUIInfoMessage("Adding Excel Cells as facts into Rule Engine Memory");
+
+		if (ranges != null) {
+			ruleModel.addFacts(ranges.getAllCellsInAllRanges());
+		} else {
+			throw new RPException("No Data (Ranges =null) was passed in, this is unlikely to be what you want");
+		}
+
+		// Load and fire our rules files against the data
+		Collection<Cell> newFacts = runModel(ruleModel);
+
+		// Make a note of any new facts added
+		ruleModel.addUIInfoMessage("Collecting New Cells and put them into Excel");
+		Range newRange = new Range("New Facts");
+		newRange.put(newFacts);
+		ranges.add(newRange);
+
+		// update a copy of the original document (to be saved as copy) with the result
+		// of our rules
+		try {
+			outputStrategy.setUpdates(thisDocumentSource.getOriginalDocument(), ranges);
+		} catch (IOException e) {
+			throw new RPException("Error when updating document", e);
+		}
+
+		ruleModel.addUIInfoMessage("Write to Output file:" + outputStrategy.getOutputDestination());
+
+		// update our post rules snapshot
+		ruleModel.setPostRulesSnapShot(ranges);
+
+		// update any additional output data
+		ClassAndLocation cAndL = thisDocumentSource.getInputDetails();
+		String updateSource = cAndL.locationText;// default
+
+		if (cAndL != null && cAndL.fileLocation != null) {
+			// Better to use actual file location
+			updateSource = cAndL.fileLocation.getName();
+		}
+		log.debug("Updated Source in Output to:" + updateSource);
+
+		additionalData.put(Config.ADDITIONALDATA_SOURCE, updateSource); // overwrite any previous source
+		outputStrategy.setAdditionalOutputData(additionalData);
+
+		// make sure both get written (to disk?)
+		try {
+			outputStrategy.processOutput();
+		} catch (InvalidFormatException | IOException e) {
+			throw new RPException("Error when writing out document", e);
+		}
+
+		log.debug("==========================");
+		log.info("Current Document Complete");
+		log.debug("==========================");
+
+		// for testing - return the ranges, even though the processing is done
+		return ranges;
+	}
 
 	/**
 	 * Abstract Method to be implemented by subclasses

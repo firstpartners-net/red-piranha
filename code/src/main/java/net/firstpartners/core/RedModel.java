@@ -55,6 +55,8 @@ public class RedModel implements IStatusUpdate {
 
 	private String UICurrentStatus;
 
+	private Throwable lastKnownException;
+
 	/**
 	 * Default constructor - needed so this remains a bean
 	 */
@@ -168,6 +170,11 @@ public class RedModel implements IStatusUpdate {
 		if(t!=null) {
 			messagesUI.add(t.getMessage());	
 		}
+		this.lastKnownException = t;
+	}
+
+	public Throwable getLastKnownException(){
+		return this.lastKnownException;
 	}
 
 	/** {@inheritDoc} */

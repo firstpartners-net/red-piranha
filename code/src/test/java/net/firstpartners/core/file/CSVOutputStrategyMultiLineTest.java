@@ -118,7 +118,7 @@ public class CSVOutputStrategyMultiLineTest {
 
 		CSVOutputStrategyMultiLine csvOut = new CSVOutputStrategyMultiLine(TestConstants.CSV_APPEND_FILE);
 
-		String[] splitResult = csvOut.splitFieldName("Cash_NetClosingCashExclShortTermFacilities_BaseYear_plus_1_0");
+		String[] splitResult = csvOut.splitFieldName("Cash_III_NetClosingCashExclShortTermFacilitiesCash_III_BaseYear_plus_1_0");
 		assertTrue(splitResult.length==3);
 
 		log.debug(splitResult[0]);

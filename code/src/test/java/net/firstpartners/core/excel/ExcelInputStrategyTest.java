@@ -51,7 +51,7 @@ public class ExcelInputStrategyTest {
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 		runner.setDocumentOutputStrategy(outputStrategy);
  
-		runner.callRules(redModel);
+		runner.callRulesLoop(redModel);
 		assertNotNull(outputStrategy.getProcessedDocument());
 
 	}
@@ -74,7 +74,7 @@ public class ExcelInputStrategyTest {
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 		runner.setDocumentOutputStrategy(outputStrategy);
 
-		runner.callRules(redModel);
+		runner.callRulesLoop(redModel);
 		assertNotNull(outputStrategy.getProcessedDocument());
 
 	}

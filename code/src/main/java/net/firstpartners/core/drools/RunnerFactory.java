@@ -229,7 +229,8 @@ public class RunnerFactory {
 	 * @throws java.lang.IllegalArgumentException if any.
 	 */
 	public static IRunner getRuleRunner(RedModel redModel)
-			throws RPException {
+			throws RPException
+			 {
 
 		// check our incoming params
 		assert redModel != null;
@@ -328,7 +329,8 @@ public class RunnerFactory {
 	 * @throws RPException
 	 */
 	private static IDocumentOutStrategy defineOutputStrategy(RedModel redModel)
-			throws RPException {
+			throws RPException 
+			{
 
 		 IDocumentOutStrategy outputStrat;
 		Class<?> strategyClass;

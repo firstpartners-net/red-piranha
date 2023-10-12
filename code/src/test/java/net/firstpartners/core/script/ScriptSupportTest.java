@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.poi.ss.usermodel.Name;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -80,12 +81,24 @@ public class ScriptSupportTest {
 		// try out the naming
 		sprt.nameTable("Key Info", "Accounts", "A12:I30");
 
-		// test the named ranges coming back
-		Name testName = excelWorkBook.getName("KeyInfo_YearEnd_BaseYear_minus_2");
-		assertEquals(testName.getRefersToFormula(), "Accounts!B13");
+		// Debug - loop over all teh names
+				// Loop over names and remove each one
+		// we do it in this loop fashion to give POI a chance to update
+		List<? extends Name> nameList = excelWorkBook.getAllNames();
 
-		testName = excelWorkBook.getName("KeyInfo_InvoicediscountingProjectedYearEndBalance_BaseYear_plus_2");
-		assertEquals(testName.getRefersToFormula(), "Accounts!F22");
+		
+		for(Name thisName : nameList){
+			log.debug("Named Range:"+thisName.getNameName());
+		}
+
+
+
+		// test the named ranges coming back
+		Name testName = excelWorkBook.getName("KeyInfo_III_YearEnd_III_BaseYear_plus_2");
+		assertEquals(testName.getRefersToFormula(), "Accounts!F13");
+
+		testName = excelWorkBook.getName("KeyInfo_III_YearEnd_III_BaseYear");
+		assertEquals(testName.getRefersToFormula(), "Accounts!D13");
 
 	}
 

@@ -30,6 +30,12 @@ public class Config {
 	public static final String ADDITIONALDATA_SOURCE ="Source";
 	public static final String ADDITIONALDATA_DATE ="Extract Date";
 
+	//How we mark cells with potential errors
+    public static final String ERROR_CELL_MARKER = "error";
+
+	//a user friendly log (containing main messages)
+	public static final String USER_LOG = "SOME_USER_LOG";
+
 	@Autowired
 	@Value("${sample.Base.Directory.Alternate}")
 	private String sampleBaseDirAlternate = "";

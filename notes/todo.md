@@ -4,54 +4,51 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Next - Multiple files
 
-* TIDY
-     * Move constnnts to config
-     * rule - remove cells with "Error"
-     * 
+* NEXT 
+
+     * try get unit test passing
+     * try error handling loop against failing case
+        * more etests
+     * remove III from split strings
+     * try Tests passing - any others I can make work (quick check, then move to spillover)
+     * any "null" or error or CEcell values coming through - any any more I can do
+     * push stable version
 
 
 * NEXT RESOLVE
 
-    * Review
-        NEXT: recover from exception
-        * * Tests passing - any others I can make work (quick check, then move to spillover)
-        
+    * Cover
+        - remove words EI and grant (search whole sheet)
+
     * Robustness
 
         * Upgrade poiCell -> RedCell conversion
-            * where cell is "" because of null, pass back null 
             * debug CellConvertor in more detail
             * Unit test CellConvertorTest (contiguours ranes) - not returning values
-            * setup properties just to have Debug on CellConvertor / Script support
-            * maybe add cell-> poiCell to assist in deubbing
-        * Change error on Cell
-
+        
+        * Find some_user_log
+        
         * Upgrade CellConvertorTest
             * getCellAsStringForceDateConversion (called from script support)
-        
-        * Setting - continue after error
-            * web page (but read only) & examples
-            * Bring through to redmodel
-            * Note in Readme.md
-            * check in RPException catch as part of main loop
-            * refactor of main loop?
+    
 
-        * Upgrade RP Logging to show different documents (Y/N)
+        * (DONE??) Upgrade RP Logging to show different documents (Y/N)
             * Flush this to disk
             * Remove input and output
             * make a note of this in readme.html
             * Review which items are log.info and which are log.debug (for when deploinging)
 
-
         * Look at DateFormatter - can it be used first
         * review @TODOs
 
-    * Check
-        * new separateor approch = COMBO ="_III_"
-        * any "null" cell values coming through - any any more I can do
-    
+    * MH
+        * rule to prune cells with error
+
     * NTH
         * can I use rules to support the above
+        * red -> Poi -> red test
+        * split out tests
+        
         
 
 ## Next - Deployment snaphot (tag and docker)
@@ -81,7 +78,8 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## ################
 
 * Carry over from previous sprint
-         * Move CDN to local (Or move this back?) for computers without internet access
+    * Move CDN to local (Or move this back?) for computers without internet access
+    * Consider adding caching to rule loading
 
 * GitHub build
     * build 

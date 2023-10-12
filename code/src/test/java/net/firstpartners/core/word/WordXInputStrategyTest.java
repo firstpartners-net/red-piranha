@@ -41,7 +41,7 @@ public class WordXInputStrategyTest {
 		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 		runner.setDocumentOutputStrategy(outputStrategy);
 
-		runner.callRules(redModel);
+		runner.callRulesLoop(redModel);
 		assertNotNull(outputStrategy.getProcessedDocument());
 
 	}

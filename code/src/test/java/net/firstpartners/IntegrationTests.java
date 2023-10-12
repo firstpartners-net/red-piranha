@@ -110,7 +110,7 @@ public class IntegrationTests {
 			MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
 			runner.setDocumentOutputStrategy(outputStrategy);
 
-			runner.callRules(testModel);
+			runner.callRulesLoop(testModel);
 
 			log.debug("\n=======\n");
 			//log.debug(testModel.toString());

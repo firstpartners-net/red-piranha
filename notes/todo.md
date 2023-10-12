@@ -2,31 +2,11 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
-## Next - Multiple files
-
-Todo
-
-* notes on running from command line
-
-
 * NEXT 
 
-     * try error handling loop against failing case
-     * any "null" or error or CEcell values coming through - any any more I can do
      * push stable version
-     * test against 10
-     * test aginst 100
-
-
-* NEXT RESOLVE
-
-    * Tidy
-        * command line Additional outputs
-
-
+=
     * Robustness
-
-        * Add run command line to readme.md
 
         * Upgrade poiCell -> RedCell conversion
             * debug CellConvertor in more detail
@@ -34,24 +14,16 @@ Todo
         
         * Upgrade CellConvertorTest
             * getCellAsStringForceDateConversion (called from script support)
-    
 
-        * (DONE??) Upgrade RP Logging to show different documents (Y/N)
-            * Flush this to disk
-            * Remove input and output
-            * make a note of this in readme.html
-            * Review which items are log.info and which are log.debug (for when deploinging)
 
         * Again 
             * Look at DateFormatter - can it be used first
             * review @TODOs
             * try get unit test passing
 
-    * MH
-        * rule to prune cells with error
 
     * NTH
-        * can I use rules to support the above
+        * rule to prune cells with error
         * red -> Poi -> red test
 
         
@@ -80,7 +52,7 @@ Todo
 
 
 ## ################
-* END OF MAIN PUSH
+* END OF THIS PUSH
 ## ################
 
 * Carry over from previous sprint

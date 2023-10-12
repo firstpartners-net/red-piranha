@@ -2,42 +2,26 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
+
+* Branch notes
+    * RC2 = active development
+    * RC1 = bugfix and stable
+
 * NEXT 
-
-     * push stable version
-=
-    * Robustness
-
-        * Upgrade poiCell -> RedCell conversion
-            * debug CellConvertor in more detail
-            * Unit test CellConvertorTest (contiguours ranes) - not returning values
-        
-        * Upgrade CellConvertorTest
-            * getCellAsStringForceDateConversion (called from script support)
-
-
-        * Again 
-            * Look at DateFormatter - can it be used first
-            * review @TODOs
-            * try get unit test passing
-
 
     * NTH
         * rule to prune cells with error
         * red -> Poi -> red test
 
-        
-        
-
+    
 ## Next - Deployment snaphot (tag and docker)
-
-* (Decide) Merge branch back into main (and create bugfix branch)
 
 
 ## Upgrade Doc
-* add 3 minute quickstart (as first section)
+* update 3 minute quickstart (as first section)
 * tidy off *notes*.md files
 * get book images working (as link)
+
 
 ## Update release docs
 * update notes-release.md and use to improve notes
@@ -56,7 +40,24 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## ################
 
 * Carry over from previous sprint
-    * Move CDN to local (Or move this back?) for computers without internet access
+
+    * Robustness 2nd phase
+
+        * Upgrade poiCell -> RedCell conversion
+            * debug CellConvertor in more detail
+            * Unit test CellConvertorTest (contiguours ranes) - not returning values
+        
+        * Upgrade CellConvertorTest
+            * getCellAsStringForceDateConversion (called from script support)
+
+
+        * Again 
+            * Look at DateFormatter - can it be used first
+            * review @TODOs
+            * try get unit test passing
+
+
+        * Move CDN to local (Or move this back?) for computers without internet access
 
 * GitHub build
     * build 

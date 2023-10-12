@@ -173,14 +173,17 @@ public class RedController {
 	 */
 	private void flushUserLogsToDisk(List<String> userMessageContents) {
 
-		// TODO - implement getting this from application.properties
-		Logger userLogger = LoggerFactory.getLogger(Config.USER_LOG);
+
+	//	Logger userLogger = LoggerFactory.getLogger(Config.USER_LOG);
 
 		for (String message : userMessageContents) {
-			userLogger.info(message);
+			
+			//userLogger.info(message); // log to special userlog
+			log.info(message); // useful to have at end our normal log as well
+
 		}
 
-		log.debug("Saved User MessageS to:" + Config.USER_LOG);
+		log.debug("Saved User Messages to:" + Config.USER_LOG);
 	}
 
 }

@@ -47,7 +47,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
     * NTH
         * can I use rules to support the above
         * red -> Poi -> red test
-        * split out tests
+
         
         
 
@@ -79,13 +79,12 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 * Carry over from previous sprint
     * Move CDN to local (Or move this back?) for computers without internet access
-    * Consider adding caching to rule loading
 
 * GitHub build
     * build 
 
 * Rules 
-    * being loaded each run - can we load once and reuses
+    * being loaded each run - can we load once and reuse (caching)
     * check code - might already be implemented
 
 * Test Data

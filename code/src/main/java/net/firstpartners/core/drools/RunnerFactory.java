@@ -365,10 +365,12 @@ public class RunnerFactory {
 		// handle for our return value(s)		
 		List<ClassAndLocation> returnClassList = new ArrayList<ClassAndLocation>();
 
-		log.debug("Testing for directory based on subdir:"+subDir+" filename:"+fileName);
+		String searchFile = subDir+"/"+fileName;
+
+		log.debug("Testing for directory based on subdir:"+searchFile);
 
 		
-		if(fileName.equals("")){
+		if(!searchFile.equals("")){
 
 			log.debug("Attemping to generate strategies for files in Directory:"+subDir);
 

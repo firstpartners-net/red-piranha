@@ -6,6 +6,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.File;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -161,6 +163,8 @@ public class RunnerFactoryTest {
 	@Test
 	public void testDirectoryFactory() throws RPException {
 		
+		File workingDir = new File("");
+		log.debug("File Working Dir:"+workingDir.getAbsolutePath());
 		
 		RedModel testModel = new RedModel(TestConstants.DIRECTORY_SAMPLE, "someFile",
 				"generic.csv");

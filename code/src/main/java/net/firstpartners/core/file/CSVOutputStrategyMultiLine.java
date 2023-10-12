@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -342,16 +343,17 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 			part1 = fieldName.substring(0, match1);
 
 			// get second aprt
-			int match2 = fieldName.indexOf(Config.COMBO, match1 + 1);
-			part2 = fieldName.substring(match1 + 1, match2);
+			int match2 = fieldName.indexOf(Config.COMBO, match1 + 5);
+			part2 = fieldName.substring(match1 + 5, match2);
 
 			// get third part
-			part3 = fieldName.substring(match2 + 1, fieldName.length());
+			part3 = fieldName.substring(match2 + 5, fieldName.length());
 
 		}
 
 		// Combine and return
 		String[] returnValue = { part1, part2, part3 };
+		log.debug(Arrays.toString(returnValue));
 		return returnValue;
 	}
 

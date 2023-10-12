@@ -118,7 +118,7 @@ public class CSVOutputStrategyMultiLineTest {
 
 		CSVOutputStrategyMultiLine csvOut = new CSVOutputStrategyMultiLine(TestConstants.CSV_APPEND_FILE);
 
-		String[] splitResult = csvOut.splitFieldName("Cash_NetClosingCashExclShortTermFacilities_BaseYear_plus_1_0");
+		String[] splitResult = csvOut.splitFieldName("Cash_III_NetClosingCashExclShortTermFacilitiesCash_III_BaseYear_plus_1_0");
 		assertTrue(splitResult.length==3);
 
 		log.debug(splitResult[0]);
@@ -126,16 +126,16 @@ public class CSVOutputStrategyMultiLineTest {
 		log.debug(splitResult[2]);
 
 		assertEquals(splitResult[0],"Cash");
-		assertEquals(splitResult[1],"NetClosingCashExclShortTermFacilities");
+		assertEquals(splitResult[1],"NetClosingCashExclShortTermFacilitiesCash");
 		assertEquals(splitResult[2],"BaseYear_plus_1");
 
-		splitResult = csvOut.splitFieldName("BS_InvoicediscountingYEBalance_31_12_19_0");
+		splitResult = csvOut.splitFieldName("BS_III_InvoicediscountingYEBalance_III_31_12_19_0");
 		assertTrue(splitResult.length==3);
 		assertEquals(splitResult[0],"BS");
 		assertEquals(splitResult[1],"InvoicediscountingYEBalance");
 		assertEquals(splitResult[2],"31_12_19");
 
-		splitResult = csvOut.splitFieldName("Cash_Row1861_BaseYear_plus_2_0");
+		splitResult = csvOut.splitFieldName("Cash_III_Row1861_III_BaseYear_plus_2_0");
 		assertTrue(splitResult.length==3);
 		assertEquals(splitResult[0],"Cash");
 		assertEquals(splitResult[1],"Row1861");

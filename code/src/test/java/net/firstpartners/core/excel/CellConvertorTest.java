@@ -2,7 +2,6 @@ package net.firstpartners.core.excel;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -94,23 +93,23 @@ public class CellConvertorTest {
 			int tmpCellRow = thisRedCell.getOriginalCellRow();
 			int tmpCellCol = thisRedCell.getOriginalCellCol();
 			
-			log.info("Tmp Cell Row,Col:" + tmpCellRow+","+tmpCellCol);
+			log.debug("Tmp Cell Row,Col:" + tmpCellRow+","+tmpCellCol);
 
 			//CellReference cellReference = new CellReference(tmpCellRef);
 			CellReference cellReference = new CellReference(tmpCellRow,tmpCellCol);
 			
 			Row row = SheetConvertor.getOrCreateRow(thisSheet, cellReference);
 
-			log.info("found Row:" + row);
+			log.debug("found Row:" + row);
 			org.apache.poi.ss.usermodel.Cell poiCell = SheetConvertor.getOrCreateCell(row, cellReference);
 
 			assertNotNull(thisRedCell);
-			log.info("redCell:"+thisRedCell);
+			log.debug("redCell:"+thisRedCell);
 
 			CellConvertor.convertRedCellToPoiCell(wb, poiCell, thisRedCell);
 			
 			assertNotNull(poiCell);
-			log.info("poiCell:"+poiCell);
+			log.debug("poiCell:"+poiCell);
 			
 			//check that values have been copieed over
 			String redValue = thisRedCell.getValueAsText();

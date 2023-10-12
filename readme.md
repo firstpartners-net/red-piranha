@@ -59,14 +59,13 @@ By default, KIE and Drools doesn't read in Excel Data. Red Piranha fills in this
 nversion from Excel into Java Objects looks like.
 * Information output - what the information coming out of the rule engine looks like before we save it as Excel.
 
-## Running in Docker
-If you're into Docker, a packaged example is available on Dockerhub.
-https://hub.docker.com/repository/docker/paulbrowne/redpiranha
 
-When running the image, map port 7000, so that you can connect your browser to the application running within docker.
+## 3 minute start - Running the project online in GitHub Codespaces
 
-The docker build is not yet automated, so could be slightly (or a lot) behind the code in this repository.
-
+It is also possible to run the project in GitHub Code spaces.
+1. Click on the blue `code` button above
+1. Select the `Codespaces` tab.
+1. Select the button to `Create Codespace on main`
 ## Running the project on your laptop 
 
 The Project follows a standard structure, using the Spring Boot Framework and the Maven build tool. So if you're a Java developer, it's pretty easy for you to download and run.
@@ -80,16 +79,17 @@ The Project follows a standard structure, using the Spring Boot Framework and th
 
 Samples are integrated into the page at this link - so take a look at them as a next step.
 
-## 3 minute start - Running the project online in GitHub Codespaces
 
-It is also possible to run the project in GitHub Code spaces.
-1. Click on the blue `code` button above
-1. Select the `Codespaces` tab.
-1. Select the button to `Create Codespace on main`
 
 Once the VSCode Editor and Terminal is open in your browser, follow the laptop instructions above from step 3.
 
+## Running in Docker
+If you're into Docker, a packaged example is available on Dockerhub.
+https://hub.docker.com/repository/docker/paulbrowne/redpiranha
 
+When running the image, map port 7000, so that you can connect your browser to the application running within docker.
+
+The docker build is not yet automated, so could be slightly (or a lot) behind the code in this repository.
 ## Samples
 
 Opening the Red Piranha webpage (normally at `http://localhost:7000/`) will show a list of ready to go samples.
@@ -109,9 +109,17 @@ The top part of screen will alter - showing the base directory, input file, busi
 ![Red Piranha Screenshot](/images/main-screenshot-after.jpg)
 
 
-The bottom part of screen will also update - it will show messages as the sample runs, and a snapshot of the data before and after the buisness rules (to allow you to write your rules).
+The bottom part of screen will also update - it will show messages as the sample runs, and a snapshot of the data before and after the business rules (to allow you to write your rules).
 ![Red Piranha Screenshot](/images/main-screenshot-after-2.jpg)
 
+## Running command line only
+
+* For longer running examples (e.g. Example 5) it is sometimes better to run them __without__ the web interface.
+* Passing the example number into the application will run the 
+example as listed in `èxamples.json` . 
+* For example
+  `mvn spring-boot:run -Dspring-boot.run.arguments=--examples=5` will run the fith sample.
+  
 
 
 

@@ -23,7 +23,7 @@ public interface IRunner {
      * @throws ResourceException
      * @throws ScriptException
      */
-    public RedModel callRules(RedModel ruleModel) throws RPException;
+    public RedModel callRulesLoop(RedModel ruleModel) throws RPException; //throws RPException;
 
     /**
      * Allows us to replace previous output stategies (e.g. for testing)

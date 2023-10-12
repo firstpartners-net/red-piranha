@@ -68,8 +68,8 @@ public class PreProcessorTest {
 		ListIterator<? extends Name> loopList = namedRanges.listIterator();
 
 		//Some specific names we are looking for
-		boolean Info_YearEnd_BaseYear_minus_2 = false;
-		boolean Info_TotalIrishLabourCosts000s_BaseYear_plus_5 = false;
+		boolean Cash_III_WorkingCapitalIncrease_Decrease_III_BaseYear_minus_1_0	= false;
+		boolean PL_III_OtherRDexpenditure_III_31_12_18_0 = false;
 
 
 		while (loopList.hasNext()) {
@@ -81,15 +81,16 @@ public class PreProcessorTest {
 			assertFalse("Range Name "+namedRange+ " should not contain null",namedRange.contains("null"));
 
 			//note if we have found specific sample ranges
-			if(namedRange.equals("Info_YearEnd_BaseYear_minus_2")){Info_YearEnd_BaseYear_minus_2=true;}
-			if(namedRange.equals("Info_TotalIrishLabourCosts000s_BaseYear_plus_5")){Info_TotalIrishLabourCosts000s_BaseYear_plus_5=true;}
+			//remember the III format is also in Excel
+			if(namedRange.equals("Cash_III_WorkingCapitalIncrease_Decrease_III_BaseYear_minus_1")){Cash_III_WorkingCapitalIncrease_Decrease_III_BaseYear_minus_1_0=true;}
+			if(namedRange.equals("PL_III_OtherRDexpenditure_III_31_12_18")){PL_III_OtherRDexpenditure_III_31_12_18_0=true;}
 
 			// retrieve the cells at the named range
 			log.debug("Processing named range:" + aNamedRange.getNameName());
 		}
 
-		assertTrue("Did not find expected sample range:Info_YearEnd_BaseYear_minus_2",Info_YearEnd_BaseYear_minus_2);
-		assertTrue("Did not find expected sample range:Info_TotalIrishLabourCosts000s_BaseYear_plus_5",Info_TotalIrishLabourCosts000s_BaseYear_plus_5);
+		assertTrue("Did not find expected sample range:Info_YearEnd_BaseYear_minus_2",Cash_III_WorkingCapitalIncrease_Decrease_III_BaseYear_minus_1_0);
+		assertTrue("Did not find expected sample range:PL_III_OtherRDexpenditure_III_31_12_18",PL_III_OtherRDexpenditure_III_31_12_18_0);
 		//
 
 

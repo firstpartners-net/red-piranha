@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.firstpartners.core.Config;
 import net.firstpartners.core.IDocumentOutStrategy;
 import net.firstpartners.data.RangeList;
 
@@ -331,26 +333,27 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 
 		// check that we are not in a single field (e.g. companyname - no table
 		// refernecs)
-		if (fieldName.indexOf("_") < 0) {
+		if (fieldName.indexOf(Config.COMBO) < 0) {
 			part1 = fieldName;
 		} else {
 
 			// attempt to split out the fields
 			// get first part
-			int match1 = fieldName.indexOf("_", 0);
+			int match1 = fieldName.indexOf(Config.COMBO, 0);
 			part1 = fieldName.substring(0, match1);
 
 			// get second aprt
-			int match2 = fieldName.indexOf("_", match1 + 1);
-			part2 = fieldName.substring(match1 + 1, match2);
+			int match2 = fieldName.indexOf(Config.COMBO, match1 + 5);
+			part2 = fieldName.substring(match1 + 5, match2);
 
 			// get third part
-			part3 = fieldName.substring(match2 + 1, fieldName.length());
+			part3 = fieldName.substring(match2 + 5, fieldName.length());
 
 		}
 
 		// Combine and return
 		String[] returnValue = { part1, part2, part3 };
+		log.debug(Arrays.toString(returnValue));
 		return returnValue;
 	}
 

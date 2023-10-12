@@ -2,41 +2,31 @@
 
 Yes, we should be using the GitHub issue tracker. But for this stage in development (multiple small improvements) a todo list works fine.
 
-## Next - Multiple files
+* NEXT 
 
-* NEXT RESOLVE
-
-    * Review
-        * Review Data out and add to tweak list below
-        * * Tests passing - any others I can make work (quick check, then move to spillover)
+     * push stable version
+=
     * Robustness
 
-        * poiCell -> RedCell conversion
-            * where cell is "" because of null, pass back null 
+        * Upgrade poiCell -> RedCell conversion
             * debug CellConvertor in more detail
             * Unit test CellConvertorTest (contiguours ranes) - not returning values
-            * setup properties just to have Debug on CellConvertor / Script support
-            * maybe add cell-> poiCell to assist in deubbing
-        * CellConvertorTest
-            * getCellAsStringForceDateConversion (called from script support)
         
+        * Upgrade CellConvertorTest
+            * getCellAsStringForceDateConversion (called from script support)
 
-        * Unit test Splitter (search Splitting fields from)
-            * get sample data to test
-        * Review which items are log.info and which are log.debug (for when deploinging)
-        * Setting - continue after error
-            * web page (but read only) & examples
-            * Note in Readme.md
-            * check in RPException catch as part of main loop
-            * refactor of main loop?
-        * Upgrade RP Logging to show different documents (Y/N)
-            * Flush this to disk
-            * Remove input and output
-            * make a note of this in readme.html
 
-    
+        * Again 
+            * Look at DateFormatter - can it be used first
+            * review @TODOs
+            * try get unit test passing
+
+
     * NTH
-        * can I use rules to support the above
+        * rule to prune cells with error
+        * red -> Poi -> red test
+
+        
         
 
 ## Next - Deployment snaphot (tag and docker)
@@ -47,7 +37,7 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## Upgrade Doc
 * add 3 minute quickstart (as first section)
 * tidy off *notes*.md files
-* get book images working
+* get book images working (as link)
 
 ## Update release docs
 * update notes-release.md and use to improve notes
@@ -62,20 +52,23 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 
 ## ################
-* END OF MAIN PUSH
+* END OF THIS PUSH
 ## ################
 
 * Carry over from previous sprint
-         * Move CDN to local (Or move this back?) for computers without internet access
+    * Move CDN to local (Or move this back?) for computers without internet access
+
+* GitHub build
+    * build 
 
 * Rules 
-    * being loaded each run - can we load once and reuses
+    * being loaded each run - can we load once and reuse (caching)
     * check code - might already be implemented
 
 * Test Data
     * update paths to put in some test folder (currently in root of examples)
 
-* Deprecation
+* Deprecation errors resolve
     * Update CSV Output
 
 

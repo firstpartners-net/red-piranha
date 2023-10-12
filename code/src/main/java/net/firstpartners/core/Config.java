@@ -19,6 +19,23 @@ import org.springframework.stereotype.Component;
 @ManagedResource
 public class Config {
 
+
+	//Constants
+	//@TODO - consider moving to config
+	//The string we use to "glue names together"
+	//needs to be alphanumeric (as it will becom and Excel name, yet easy to split later)
+	public static final String COMBO="_III_";
+
+	//Constants - these will be the headings we use when outputting additional data
+	public static final String ADDITIONALDATA_SOURCE ="Source";
+	public static final String ADDITIONALDATA_DATE ="Extract Date";
+
+	//How we mark cells with potential errors
+    public static final String ERROR_CELL_MARKER = "error";
+
+	//a user friendly log (containing main messages)
+	public static final String USER_LOG = "SOME_USER_LOG";
+
 	@Autowired
 	@Value("${sample.Base.Directory.Alternate}")
 	private String sampleBaseDirAlternate = "";

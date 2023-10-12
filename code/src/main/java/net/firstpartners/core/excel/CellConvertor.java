@@ -16,6 +16,9 @@ import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.LoggerFactory;
+
+import net.firstpartners.core.Config;
+
 import org.slf4j.Logger;
 
 /**
@@ -51,7 +54,7 @@ public class CellConvertor {
 			redCell.setOriginalCellReference(poiCell.getAddress().getRow(), poiCell.getAddress().getColumn()); 
 			redCell.setOriginalTableReference(poiCell.getSheet().getSheetName());
 		} else {
-			log.info("poiCell " + cellNameFromRange + " was null - skipping");
+			log.debug("poiCell " + cellNameFromRange + " was null - skipping");
 		}
 
 		// The name makes them as a range
@@ -91,40 +94,44 @@ public class CellConvertor {
 		// Convert our cell differently depending if is a date or note
 		// log.debug("Cell Type:"+(poiCell.getCellType()));
 		if(poiCell==null){
-			log.debug("poiCell was null - returning empty string");
-			return "";
+			log.debug("poiCell was null - returning error string");
+			return Config.ERROR_CELL_MARKER;
 		}
 
 		String simpleConversion = "" + CellConvertor.getCellContents(poiCell);
 		// log.debug("Simple Conversion:"+simpleConversion);
 
-		CellType type = poiCell.getCellType();
-		log.debug("Cell Type:");
+		if(poiCell!=null){
+
+			// try the conversion
+			CellType type = poiCell.getCellType();
+			//log.debug("Cell Type:");
 
 
+			try{
 
-		try{
+				if (type == CellType.NUMERIC
+					|| (poiCell.getCellType() == CellType.FORMULA) && (DateUtil.isCellDateFormatted(poiCell))) {
 
-			if (type == CellType.NUMERIC
-				|| (poiCell.getCellType() == CellType.FORMULA) && (DateUtil.isCellDateFormatted(poiCell))) {
-
-				// convert using null checks
-				if (simpleConversion != null) {
-					Date javaDate = DateUtil.getJavaDate(Double.parseDouble(simpleConversion));
-					if (javaDate != null) {
-						return new SimpleDateFormat("dd/MM/yy").format(javaDate);
+					// convert using null checks
+					if (simpleConversion != null) {
+						Date javaDate = DateUtil.getJavaDate(Double.parseDouble(simpleConversion));
+						if (javaDate != null) {
+							return new SimpleDateFormat("dd/MM/yy").format(javaDate);
+						}
 					}
 				}
+
+			} catch (java.lang.IllegalStateException ise){
+
+					//@TODO - try making this main converson remove commented out code.
+					//
+					//try to convert using date
+					DataFormatter dataFormatter = new DataFormatter();
+					simpleConversion = "DF:"+dataFormatter.formatCellValue(poiCell); // @TODO work through this, see the format
+					log.debug("Recovering from conversion error:"+simpleConversion);
 			}
-
-		} catch (java.lang.IllegalStateException ise){
-
-
-				DataFormatter dataFormatter = new DataFormatter();
-				simpleConversion = dataFormatter.formatCellValue(poiCell);
-				log.debug("Recovering from conversion error:"+simpleConversion);
 		}
-
 	
 
 		// return default conversion if we get this far
@@ -145,7 +152,7 @@ public class CellConvertor {
 
 		if (poiCell == null) {
 			log.debug("poiCell was null - returning null");
-			return null;
+			return null;	
 		}
 
 		Object value = null; // to capture the output

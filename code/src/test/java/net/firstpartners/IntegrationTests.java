@@ -1,10 +1,8 @@
 package net.firstpartners;
 
-
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
-
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,84 +41,73 @@ public class IntegrationTests {
 	// Logger
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	
-	/**
-	 * Useful if we want to unit test a specfici example
-	 * @throws Exception
-	 */
+
 	@Test
-	public void testSpecificExample() throws Exception, RPException {
+	public void testSample1() throws Exception, RPException {
+		sampleTestRunner(1);
+	}
+
+	@Test
+	public void testSample2() throws Exception, RPException {
+		sampleTestRunner(2);
+	}
+
+	@Test
+	public void testSample3() throws Exception, RPException {
+		sampleTestRunner(3);
+	}
+
+	@Test
+	public void testSample4() throws Exception, RPException {
 		sampleTestRunner(4);
 	}
 
-
- 	@Test
-	public void testAllSamples() throws Exception, RPException {
-		sampleTestRunner(-1);
+		@Test
+	public void testSample5() throws Exception, RPException {
+		sampleTestRunner(5);
 	}
 
+
+
+
+
 	/**
-	 * Pass in Integer = null or -1 to run all tests
-	 * Or single number to run single test
+	 * Pass in single number to run single test
+	 * 
 	 * @param sampleToRun
 	 * @throws Exception
 	 * @throws RPException
 	 */
-	private void sampleTestRunner(int sampleToRun) throws Exception, RPException{
+	private void sampleTestRunner(int sampleToRun) throws Exception, RPException {
 
 		List<SampleData> examples = SampleDataLoader.loadSampleInformation(SampleDataLoader.SAMPLE_INFO_IN_JSON);
 
-		//counter
-		if(sampleToRun<0){
-			log.info("running all integrations samples");
-		} else {
-			log.info("running single integration sample:"+sampleToRun);
-		}
-		
+		SampleData thisExample = examples.get(sampleToRun-1); //adjust for 0 based sampels
 
+		RedModel testModel = new RedModel();
+		testModel.setInputFileLocation(thisExample.getInputFileLocation());
+		testModel.setRuleFileLocation(thisExample.getRuleFileLocation());
+		testModel.setOutputFileLocation(thisExample.getOutputFileLocation());
+		testModel.setDslFileLocation(thisExample.getDslFileLocation());
+		testModel.setSubDirectory(thisExample.getSubDirectory());
 
-		for (SampleData thisExample : examples) {
+		log.debug("Running:\n" + testModel);
 
-			//check if we're running in single test mode
-			if(sampleToRun>0){
-				
-				if(sampleToRun != thisExample.getId()){
-					log.info("Running in single sample mode - skip sample:"+thisExample.getId());
-					continue; //skips this iteration of the loop
-				} else {
-					log.info("Running single sample:"+sampleToRun);
-				}
+		IRunner runner = RunnerFactory.getRuleRunner(testModel);
 
-			}
+		// set out OutputStrategy so we can test the output later
+		// this overrides the normal output
+		log.info("Overriding output strategy - now will use MemoryOutputStrategy");
+		MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
+		runner.setDocumentOutputStrategy(outputStrategy);
 
-			RedModel testModel = new RedModel();
-			testModel.setInputFileLocation(thisExample.getInputFileLocation());
-			testModel.setRuleFileLocation(thisExample.getRuleFileLocation());
-			testModel.setOutputFileLocation(thisExample.getOutputFileLocation());
-			testModel.setDslFileLocation(thisExample.getDslFileLocation());
-			testModel.setSubDirectory(thisExample.getSubDirectory());
+		runner.callRulesLoop(testModel);
 
-			log.debug("Running:\n" + testModel);
+		log.debug("\n=======\n");
+		// log.debug(testModel.toString());
 
-			IRunner runner = RunnerFactory.getRuleRunner(testModel);
-			
-			// set out OutputStrategy so we can test the output later
-			// this overrides the normal output
-			log.info("Overriding output strategy - now will use MemoryOutputStrategy");
-			MemoryOutputStrategy outputStrategy = new MemoryOutputStrategy();
-			runner.setDocumentOutputStrategy(outputStrategy);
-
-			runner.callRules(testModel);
-
-			log.debug("\n=======\n");
-			//log.debug(testModel.toString());
-			
-			
-			//check not blowing up and that we have a value back
-			assertNotNull(outputStrategy.getProcessedDocument());
-			
-		}
-
+		// check not blowing up and that we have a value back
+		assertNotNull(outputStrategy.getProcessedDocument());
 
 	}
 

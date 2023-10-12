@@ -16,9 +16,7 @@ import net.firstpartners.data.RangeList;
  */
 public interface IDocumentOutStrategy {
 
-	//Constants - these will be the headings we use when outputting additional data
-	public static final String ADDITIONALDATA_SOURCE ="Source";
-	public static final String ADDITIONALDATA_DATE ="Extract Date";
+
 
 	/**
 	 * String representation of where our output will be going to

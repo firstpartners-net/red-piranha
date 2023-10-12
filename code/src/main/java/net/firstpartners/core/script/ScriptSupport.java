@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
+import net.firstpartners.core.Config;
 import net.firstpartners.core.excel.CellConvertor;
 
 /**
@@ -28,6 +29,7 @@ import net.firstpartners.core.excel.CellConvertor;
  * @version $Id: $Id
  */
 public class ScriptSupport {
+
 
 	// Handle to the loggers
 	private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -214,7 +216,7 @@ public class ScriptSupport {
 
 				// Calculate namedRangeName based on header and col
 				// remember it is a table, so the col names will differ by row (and vice versa)
-				String refName = baseName + "_" + colNames.get("" + row) + "_" + headerNames.get("" + col);
+				String refName = baseName + Config.COMBO + colNames.get("" + row) + Config.COMBO + headerNames.get("" + col);
 
 				// tidy to remove spaces etc as Excel won't allow them in named range
 				refName = refName.replaceAll("y/e", "YE");

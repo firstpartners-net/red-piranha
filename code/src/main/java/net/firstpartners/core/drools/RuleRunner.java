@@ -68,7 +68,7 @@ public class RuleRunner extends AbstractRunner {
 	/**
 	 * Run the rules
 	 *
-	 * @Param RedModel model containing the facts we will pass to the run egine
+	 * @Param RedModel model containing the facts we will pass to the run engine
 	 * @throws Exception
 	 */
 	Collection<Cell> runModel(RedModel model)

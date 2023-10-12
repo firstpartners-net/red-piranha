@@ -109,7 +109,8 @@ public abstract class AbstractRunner implements IRunner {
 
 			try {
 				// Process this document
-				getUpdateSource(redModel, thisDocumentSource);
+				
+				applyRulesToSource(redModel, thisDocumentSource);
 
 			} catch (Throwable t) {
 
@@ -134,7 +135,7 @@ public abstract class AbstractRunner implements IRunner {
 	 * @return
 	 * @throws RPException
 	 */
-	private RangeList getUpdateSource(RedModel ruleModel, IDocumentInStrategy thisDocumentSource) throws RPException {
+	private RangeList applyRulesToSource(RedModel ruleModel, IDocumentInStrategy thisDocumentSource) throws RPException {
 
 		// Convert the cell and log if we have a handle
 		log.debug("=======================================================");

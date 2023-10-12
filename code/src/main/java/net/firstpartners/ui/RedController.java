@@ -97,33 +97,32 @@ public class RedController {
 		IRunner runner = null;
 		try {
 			runner = RunnerFactory.getRuleRunner(redModel);
+
+			// catch block was here
+
+			// if we have a runner
+			if (runner != null) {
+
+				// Update our output strategy with additional info we want it to include in the
+				// file
+				HashMap<String, String> additionalOutputs = getAdditionalOutputs(redModel);
+				runner.setAdditionalOutputData(additionalOutputs);
+
+				// Call the rules using this datafile
+				//////////////////////////////////////////////////////////
+				redModel.addUIInfoMessage("Running Document Loop");
+				runner.callRulesLoop(redModel);
+				redModel.addUIInfoMessage("Document Loop Complete");
+				//////////////////////////////////////////////////////////
+
+				// update our main status message
+				redModel.setUICurrentStatus("Rules Complete");
+			}
+
 		} catch (RPException e) {
 			model.addAttribute("displayException", e);
 			redModel.setUICurrentStatus("Error creating input and output strategies");
 		}
-
-		// if we have a runner
-		if (runner != null) {
-
-			// Update our output strategy with additional info we want it to include in the
-			// file
-			HashMap<String, String> additionalOutputs = getAdditionalOutputs(redModel);
-			runner.setAdditionalOutputData(additionalOutputs);
-
-			// Call the rules using this datafile
-			//////////////////////////////////////////////////////////
-			redModel.addUIInfoMessage("Running Document Loop");
-			runner.callRulesLoop(redModel);
-			redModel.addUIInfoMessage("Document Loop Complete");
-			//////////////////////////////////////////////////////////
-
-			// update our main status message
-			redModel.setUICurrentStatus("Rules Complete");
-		}
-
-		// Flush the user friendly logs to disk as well
-		// these will still also be displayed on the webpage
-		flushUserLogsToDisk(redModel.getUserMessageContents());
 
 		// update the web values with the values coming back
 		model.addAttribute("updateMessage", redModel.getUICurrentStatus());
@@ -136,8 +135,12 @@ public class RedController {
 			model.addAttribute("displayException", redModel.getLastKnownException());
 		}
 
-		// make the config we used available as well
+		// make the model we used available as well
 		model.addAttribute(RED_MODEL, redModel);
+
+		// Flush the user friendly logs to disk as well
+		// these will still also be displayed on the webpage
+		flushUserLogsToDisk(redModel.getUserMessageContents());
 
 		// end of processing
 		log.debug("##############################");
@@ -173,12 +176,12 @@ public class RedController {
 	 */
 	private void flushUserLogsToDisk(List<String> userMessageContents) {
 
-
-	//	Logger userLogger = LoggerFactory.getLogger(Config.USER_LOG);
+		log.info("===== User Messages =====");
+		// Logger userLogger = LoggerFactory.getLogger(Config.USER_LOG);
 
 		for (String message : userMessageContents) {
-			
-			//userLogger.info(message); // log to special userlog
+
+			// userLogger.info(message); // log to special userlog
 			log.info(message); // useful to have at end our normal log as well
 
 		}

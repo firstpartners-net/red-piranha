@@ -4,29 +4,34 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 
 ## Next - Multiple files
 
+Todo
+* simple commandline app
+    * call example 1
+    * call example 5
+    * call example 6
+    * additional info as per web loop?
+
+* notes on running from command line
+
+
 * NEXT 
 
-     * try get unit test passing
      * try error handling loop against failing case
-        * more etests
-     * remove III from split strings
-     * try Tests passing - any others I can make work (quick check, then move to spillover)
      * any "null" or error or CEcell values coming through - any any more I can do
      * push stable version
+     * test against 10
+     * test aginst 100
 
 
 * NEXT RESOLVE
 
-    * Cover
-        - remove words EI and grant (search whole sheet)
-
     * Robustness
+
+        * Add run command line to readme.md
 
         * Upgrade poiCell -> RedCell conversion
             * debug CellConvertor in more detail
             * Unit test CellConvertorTest (contiguours ranes) - not returning values
-        
-        * Find some_user_log
         
         * Upgrade CellConvertorTest
             * getCellAsStringForceDateConversion (called from script support)
@@ -38,8 +43,10 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
             * make a note of this in readme.html
             * Review which items are log.info and which are log.debug (for when deploinging)
 
-        * Look at DateFormatter - can it be used first
-        * review @TODOs
+        * Again 
+            * Look at DateFormatter - can it be used first
+            * review @TODOs
+            * try get unit test passing
 
     * MH
         * rule to prune cells with error

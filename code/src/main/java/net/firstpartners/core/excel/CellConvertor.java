@@ -105,7 +105,7 @@ public class CellConvertor {
 
 			// try the conversion
 			CellType type = poiCell.getCellType();
-			log.debug("Cell Type:");
+			//log.debug("Cell Type:");
 
 
 			try{
@@ -152,7 +152,7 @@ public class CellConvertor {
 
 		if (poiCell == null) {
 			log.debug("poiCell was null - returning null");
-			return null;	//TODO this is to assist in debugging - remove
+			return null;	
 		}
 
 		Object value = null; // to capture the output

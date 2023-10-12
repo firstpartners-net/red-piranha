@@ -72,8 +72,7 @@ public class IntegrationTests {
 
 
 	/**
-	 * Pass in Integer = null or -1 to run all tests
-	 * Or single number to run single test
+	 * Pass in single number to run single test
 	 * 
 	 * @param sampleToRun
 	 * @throws Exception

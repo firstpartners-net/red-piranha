@@ -1,5 +1,6 @@
 package net.firstpartners;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -8,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
 import net.firstpartners.core.Config;
@@ -18,6 +21,7 @@ import net.firstpartners.core.drools.IRunner;
 import net.firstpartners.core.drools.RunnerFactory;
 import net.firstpartners.core.json.SampleData;
 import net.firstpartners.core.json.SampleDataLoader;
+import net.firstpartners.ui.RedController;
 
 /**
  * Main class called by Spring on Command line to start Application.
@@ -44,7 +48,7 @@ public class Application implements ApplicationRunner {
     private ApplicationContext appContext;
 
 	// Logger
-	private Logger log = LoggerFactory.getLogger(this.getClass());
+	private static Logger log = LoggerFactory.getLogger(Application.class);
 
 	/**
 	 * <p>
@@ -57,7 +61,18 @@ public class Application implements ApplicationRunner {
 
 		// Allow the main Spring Application to configure itself.
 
-		SpringApplication.run(Application.class, commandLineArgs);
+        SpringApplicationBuilder app = new SpringApplicationBuilder(Application.class);
+        if (commandLineArgs.length == 0) { // This can be any condition you want
+            app.web(WebApplicationType.SERVLET);
+			log.info("Running As Web");
+        } else {
+            app.web(WebApplicationType.NONE);
+			log.info("running as Command Line only");
+        }
+        app.run(commandLineArgs);
+
+		//was
+		//SpringApplication.run(Application.class, commandLineArgs);
 	}
 
 	/**
@@ -108,16 +123,29 @@ public class Application implements ApplicationRunner {
 			SampleData thisExample = examples.get(sampleAsNumber - 1); // adjust for 0 based sampels
 
 			RedModel sampleModel = new RedModel();
+
+			//Configure it using our example info
 			sampleModel.setInputFileLocation(thisExample.getInputFileLocation());
 			sampleModel.setRuleFileLocation(thisExample.getRuleFileLocation());
 			sampleModel.setOutputFileLocation(thisExample.getOutputFileLocation());
 			sampleModel.setDslFileLocation(thisExample.getDslFileLocation());
 			sampleModel.setSubDirectory(thisExample.getSubDirectory());
 
+
 			log.info("Running:\n" + sampleModel);
 			IRunner runner = RunnerFactory.getRuleRunner(sampleModel);
 
+			// Update our output strategy with additional info we want it to include in the
+			HashMap<String, String> additionalOutputs = RedController.getAdditionalOutputs(sampleModel);
+			runner.setAdditionalOutputData(additionalOutputs);
+			
+
 			runner.callRulesLoop(sampleModel);
+
+			//flush logs
+			flushUserLogs(sampleModel.getUserMessageContents());
+			
+
 		} catch (Throwable t) {
 
 			log.warn("Error when trying to run inital sample:",t);
@@ -127,4 +155,23 @@ public class Application implements ApplicationRunner {
 
 	}
 
+		/*
+	 * Helper method - persist any user friendly messages to disk
+	 * 
+	 * @param userMessageContents
+	 */
+	public static void flushUserLogs(List<String> userMessageContents) {
+
+		log.info("===== User Messages =====");
+		// Logger userLogger = LoggerFactory.getLogger(Config.USER_LOG);
+
+		for (String message : userMessageContents) {
+
+			// userLogger.info(message); // log to special userlog
+			log.info(message); // useful to have at end our normal log as well
+
+		}
+
+		//log.debug("Saved User Messages to:" + Config.USER_LOG);
+	}
 }

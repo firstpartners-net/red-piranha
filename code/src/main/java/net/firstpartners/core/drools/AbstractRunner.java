@@ -109,7 +109,7 @@ public abstract class AbstractRunner implements IRunner {
 
 			try {
 				// Process this document
-				
+				log.info("Pricessing:"+thisDocumentSource.getInputDetails());
 				applyRulesToSource(redModel, thisDocumentSource);
 
 			} catch (Throwable t) {

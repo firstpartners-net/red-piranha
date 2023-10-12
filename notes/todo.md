@@ -5,11 +5,6 @@ Yes, we should be using the GitHub issue tracker. But for this stage in developm
 ## Next - Multiple files
 
 Todo
-* simple commandline app
-    * call example 1
-    * call example 5
-    * call example 6
-    * additional info as per web loop?
 
 * notes on running from command line
 
@@ -24,6 +19,10 @@ Todo
 
 
 * NEXT RESOLVE
+
+    * Tidy
+        * command line Additional outputs
+
 
     * Robustness
 

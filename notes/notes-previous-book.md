@@ -1,5 +1,3 @@
-## Newer book
-
 
 ## Older Book - Beginning Business rules with JBoss Drools
 

@@ -13,9 +13,9 @@ import org.slf4j.LoggerFactory;
 
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
-import groovy.util.GroovyScriptEngine;
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
+import net.firstpartners.core.Config;
 import net.firstpartners.core.file.ResourceFinder;
 
 
@@ -31,9 +31,6 @@ public class PreProcessor {
 	// Handle to the loggers
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	//Handle to the Groovy script engine
-	private GroovyScriptEngine engine = null;
-
 
 	/**
 	 * Run the Specified Groovy Script
@@ -47,9 +44,9 @@ public class PreProcessor {
 	 */
 	public Workbook preprocessXlWorkbook (String subDirectory, String groovyScriptName, Workbook xlWorkbook) throws IOException, ResourceException, ScriptException {
 
-		if(engine==null){
-			engine = new GroovyScriptEngine(new String[]{ "." });
-		}
+
+		//GroovyScriptEngine engine = new GroovyScriptEngine(new String[]{ "." });
+
 
 		//get a handle to the script - Groovy Engine needs file name
 		try{
@@ -58,17 +55,20 @@ public class PreProcessor {
 			String scriptPath =script.getAbsolutePath();
 			log.debug("ScriptPath:"+scriptPath);
 
-			//read the script contents
+			//read the script contents (closed automatically)
 			String scriptContents = FileUtils.readFileToString(script, "utf-8");
 			//log.debug("Script Contents\n"+scriptContents);
 
 			//Pass the Workbook in 
 			Binding binding = new Binding();
-			binding.setVariable("xlWorkbook", xlWorkbook);
+			binding.setVariable(Config.XL_WORKBOOK_TO_SCRIPT, xlWorkbook);
 			
 			//and call the script
 			GroovyShell shell = new GroovyShell(binding);                       
-			Object result = shell.evaluate(scriptContents); 	
+			Object result = shell.evaluate(scriptContents); 
+
+			//tidy up bindings
+			binding.removeVariable(Config.XL_WORKBOOK_TO_SCRIPT); // avoid memory leak	
 
 			//check the script returns a workbook
 			assert result instanceof org.apache.poi.ss.usermodel.Workbook : "Script should return type of Workbook";
@@ -76,7 +76,7 @@ public class PreProcessor {
 			
 		} catch (FileNotFoundException fnfe){
 			log.warn("Could not find preprocess Script - continue without script with unmodified workbook");
-		}
+		} 
 
 		//default - return the incoming workbook
 		return xlWorkbook;

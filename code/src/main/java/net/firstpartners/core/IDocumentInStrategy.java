@@ -69,4 +69,9 @@ public interface IDocumentInStrategy {
 	 */
 	void setSubDirectory(String subDirectory);
 
+	/**
+	 * Indicates the strategy should release any resources 
+	 */
+	void complete();
+
 }

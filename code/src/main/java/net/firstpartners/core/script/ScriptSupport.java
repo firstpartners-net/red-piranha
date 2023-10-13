@@ -1,5 +1,6 @@
 package net.firstpartners.core.script;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -370,5 +371,23 @@ public class ScriptSupport {
 
 		return s;
 	}
+
+	/**
+	 * Cleans up our Scripts, remove
+	 */
+	public void complete(){
+
+		if (this.wb!=null){
+			try {
+				wb.close();
+			} catch (IOException e) {
+				log.debug("Error when closing workbook - recovering",e);
+			}
+			wb=null;
+		}
+
+	}
+
+
 
 }

@@ -281,4 +281,10 @@ public class CSVOutputStrategySingleLine implements IDocumentOutStrategy {
 		return stringArray.length;
 	}
 
+	@Override
+	public void complete() {
+		
+	}
+
+
 }

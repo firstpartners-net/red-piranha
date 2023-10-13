@@ -36,6 +36,9 @@ public class Config {
 	//a user friendly log (containing main messages)
 	public static final String USER_LOG = "SOME_USER_LOG";
 
+	//The name we pass XL Workbooks to in scripts
+	public static final String XL_WORKBOOK_TO_SCRIPT="xlWorkbook";
+
 	@Autowired
 	@Value("${sample.Base.Directory.Alternate}")
 	private String sampleBaseDirAlternate = "";

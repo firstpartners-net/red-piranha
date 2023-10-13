@@ -110,4 +110,11 @@ public class WordXInputStrategy implements IDocumentInStrategy {
 		this.poiDoc = originalDoc.getOriginalAsPoiWordDoc();
 	}
 
+	@Override
+	public void complete() {
+		this.poiDoc=null;
+		this.inputDetails=null;
+	}
+
+
 }

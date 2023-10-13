@@ -113,4 +113,13 @@ public class WordInputStrategy implements IDocumentInStrategy {
 		this.poiDoc = originalDoc.getOriginalAsPoiWordDoc();
 	}
 
+		/**
+	 * Cleanup any class level resources
+	 */
+	@Override
+	public void complete() {
+		this.poiDoc=null;
+		this.inputDetails=null;
+	}
+
 }

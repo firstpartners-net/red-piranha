@@ -57,6 +57,7 @@ sprt.nameTable("Cash","Accounts","A131:I195")
 
 // the final value in our script will be returned to Red Piranha
 // do-not-change as it expects an Excel Workbook back
+sprt.complete
 xlWorkbook
 // end do-not-change
 

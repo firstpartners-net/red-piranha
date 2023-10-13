@@ -19,7 +19,6 @@ import org.slf4j.LoggerFactory;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
-import net.firstpartners.core.script.PreProcessor;
 import net.firstpartners.data.Range;
 import net.firstpartners.data.RangeList;
 
@@ -37,8 +36,7 @@ public class SpreadSheetConvertor {
 	// Logging
 	private static final Logger log = LoggerFactory.getLogger(SpreadSheetConvertor.class);
 
-	// Handle to the preprocessor
-	static PreProcessor preProcess = null;
+
 
 	/**
 	 * Update an excel file with our new values uses the original sheet and original

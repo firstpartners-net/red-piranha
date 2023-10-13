@@ -117,6 +117,13 @@ public class JsonOutputStrategy implements IDocumentOutStrategy {
 		// this converter ignores any original , we just store the range output
 		processedRange = incomingData;
 
+
 	}
+
+	@Override
+	public void complete() {
+		
+	}
+
 
 }

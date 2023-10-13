@@ -97,4 +97,10 @@ public class MemoryOutputStrategy implements IDocumentOutStrategy {
 		this.processedDoc = processedWorkbook;
 	}
 
+	@Override
+	public void complete() {
+		
+	}
+
+
 }

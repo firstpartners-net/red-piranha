@@ -52,7 +52,14 @@ public interface IDocumentOutStrategy {
 	 */
 	public void processOutput() throws IOException, InvalidFormatException;
 
-
+	/** 
+	 * Any additional output data to be included - optional
+	 */
 	public void setAdditionalOutputData(Map<String, String> additionalData);
+
+	/**
+	 * Indicates the strategy should release any resources 
+	 */
+	void complete();
 
 }

@@ -132,7 +132,7 @@ public class Application implements ApplicationRunner {
 			sampleModel.setSubDirectory(thisExample.getSubDirectory());
 
 
-			log.info("Running:\n" + sampleModel);
+			log.info("Running Sample"+sampleAsNumber+":\n" + sampleModel);
 			IRunner runner = RunnerFactory.getRuleRunner(sampleModel);
 
 			// Update our output strategy with additional info we want it to include in the

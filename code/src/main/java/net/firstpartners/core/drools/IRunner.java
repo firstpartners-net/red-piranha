@@ -25,16 +25,18 @@ public interface IRunner {
      */
     public RedModel callRulesLoop(RedModel ruleModel) throws RPException; //throws RPException;
 
+    /*
+     * Get the (List of) InputStategy to read our data
+     */
+    public List<IDocumentInStrategy> getDocumentInputStrategy();
+
+
     /**
      * Allows us to replace previous output stategies (e.g. for testing)
      * @param newStrategy
      */
     public void setDocumentOutputStrategy(IDocumentOutStrategy newStrategy);
 
-    /*
-     * Get the (List of) InputStategy to read our data
-     */
-    public List<IDocumentInStrategy> getDocumentInputStrategy();
 
     /**
      * Get the OutputStrategy that will save our data.

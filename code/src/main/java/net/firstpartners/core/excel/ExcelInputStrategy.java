@@ -36,7 +36,6 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	private ClassAndLocation inputDetails = null;
 	private Workbook excelWorkBook = null;
 
-
 	private String subDirectory;
 
 	/**
@@ -85,19 +84,17 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	@Override
 	public RangeList getJavaBeansFromSource() throws EncryptedDocumentException, IOException, ResourceException, ScriptException {
 
-
 		
 		// load our Excel file and convert to our internal beans
 		File xlFile = ResourceFinder.getFile(inputDetails);
 		InputStream inputAsStream = new FileInputStream(xlFile);
+
 		log.debug("converting incoming excel stream to Javabeans");
 		excelWorkBook = WorkbookFactory.create(inputAsStream);
 
 		//Get the name of the preprocess script
 		Config appConfig = ResourceFinder.getConfig();
 		assert appConfig!=null;
-
-
 
 		//call the processor if available
 		if(appConfig.getPreprocessScript()!=null){
@@ -112,7 +109,12 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 
 		//Get handle and use convertor
 		RangeList myRange = SpreadSheetConvertor.convertNamesFromPoiWorkbookIntoRedRange(excelWorkBook);
+
+		//close off all our items
 		inputAsStream.close();
+		excelWorkBook.close();
+		
+		
 		return myRange;
 
 	}
@@ -122,6 +124,15 @@ public class ExcelInputStrategy implements IDocumentInStrategy {
 	@Override
 	public void setOriginalDocument(OfficeDocument excelWorkBook) {
 		this.excelWorkBook = excelWorkBook.getOriginalAsPoiWorkbook();
+	}
+
+	/**
+	 * Cleanup any class level resources
+	 */
+	@Override
+	public void complete() {
+		this.excelWorkBook=null;
+		this.inputDetails=null;
 	}
 
 }

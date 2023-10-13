@@ -218,11 +218,16 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 			csvPrinter.printRecord(bodyRecord);
 
 		}
+
+		//Tidy off resources
 		csvPrinter.flush();
 		csvPrinter.close();
 		writer.close();
 
 	}
+
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -355,6 +360,14 @@ public class CSVOutputStrategyMultiLine implements IDocumentOutStrategy {
 		String[] returnValue = { part1, part2, part3 };
 		log.debug(Arrays.toString(returnValue));
 		return returnValue;
+	}
+
+	/**
+	 * Cleanup any class level resources
+	 */
+	@Override
+	public void complete() {
+		this.dataToOutput=null;
 	}
 
 }

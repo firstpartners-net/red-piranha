@@ -124,4 +124,13 @@ public class JsonInputStrategy implements IDocumentInStrategy {
 		this.officeDocument = officeDocument;
 	}
 
+		/**
+	 * Cleanup any class level resources
+	 */
+	@Override
+	public void complete() {
+		this.officeDocument=null;
+		this.jsonInput=null;
+	}
+
 }

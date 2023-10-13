@@ -140,4 +140,9 @@ public class PDFOutputStrategy implements IDocumentOutStrategy {
 		}
 	}
 
+	@Override
+	public void complete() {
+		
+	}
+
 }

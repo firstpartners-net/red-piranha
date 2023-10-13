@@ -121,7 +121,16 @@ public abstract class AbstractRunner implements IRunner {
 				
 			}
 
+			// Cleanup from this loop
+			thisDocumentSource.complete();
+			
+
 		} // end loop over document
+
+
+		//cleanup the output
+		this.outputStrategy.complete();
+		
 
 		//Return the original (now updated) model
 		return redModel;
@@ -138,11 +147,11 @@ public abstract class AbstractRunner implements IRunner {
 	private RangeList applyRulesToSource(RedModel ruleModel, IDocumentInStrategy thisDocumentSource) throws RPException {
 
 		// Convert the cell and log if we have a handle
-		log.debug("=======================================================");
+		log.info("=======================================================");
 		log.debug("\n\n");
 		log.info("Opening Input:" + thisDocumentSource.getInputDetails());
 		log.debug("\n\n");
-		log.debug("=======================================================");
+		log.info("=======================================================");
 
 		ruleModel.addUIInfoMessage("Opening Input :" + thisDocumentSource.getInputDetails());
 

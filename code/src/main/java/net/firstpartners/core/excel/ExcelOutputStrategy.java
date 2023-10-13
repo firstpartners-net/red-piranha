@@ -102,6 +102,7 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 	public void outputToStream(Workbook wb, OutputStream stream) throws IOException {
 
 		wb.write(stream);
+		wb.close();
 	}
 
 	/**
@@ -199,5 +200,14 @@ public class ExcelOutputStrategy implements IDocumentOutStrategy {
 		
 
 	}
+
+	/**
+	 * Cleanup any class level resources
+	 */
+	@Override
+	public void complete() {
+		this.workbook=null;
+	}
+
 
 }

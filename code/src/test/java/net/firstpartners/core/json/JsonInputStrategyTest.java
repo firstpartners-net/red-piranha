@@ -13,8 +13,11 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
@@ -31,6 +34,9 @@ import net.firstpartners.data.RangeList;
  * @author paulf
  *
  */
+
+ @RunWith(SpringJUnit4ClassRunner.class)
+ @SpringBootTest
 public class JsonInputStrategyTest {
 
 	//if we need to change the directory prefix
@@ -80,6 +86,7 @@ public class JsonInputStrategyTest {
 		RedModel redModel = new RedModel(TestConstants.JSON_SERIAL_FILE_SIMPLE, TestConstants.SIMPLE_LOG_MODIFY_RULES_FILE, "some-dummy.xls");
 
 		RuleRunner runner = (RuleRunner)RunnerFactory.getRuleRunner(redModel);
+		log.debug("Class type:"+runner.getDocumentInputStrategy().get(0).getClass());
 		assertTrue(runner.getDocumentInputStrategy().get(0) instanceof JsonInputStrategy);
 
 		// set out OutputStrategy so we can test the output later
